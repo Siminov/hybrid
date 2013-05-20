@@ -20,10 +20,10 @@
 
 <library>
 
-	<property name="name">SIMINOV-JS</property>
+	<property name="name">SIMINOV-HYBRID</property>
 	
 	<!-- Optional Field -->
-	<property name="description">Siminov JS</property>
+	<property name="description">Siminov Hybrid</property>
 
 	<js-adapters>
 	    

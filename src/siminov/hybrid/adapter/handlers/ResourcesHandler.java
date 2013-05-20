@@ -393,12 +393,12 @@ public class ResourcesHandler {
 	}
 	
 	
-	public String getJSDescriptor() throws SiminovException {
+	public String getHybridDescriptor() throws SiminovException {
 	
-		HybridDescriptor jsDescriptor = hybridResources.getHybridDescriptor();
+		HybridDescriptor hybridDescriptor = hybridResources.getHybridDescriptor();
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		hybridSiminovDatas.addHybridSiminovData(getHybridDescriptor(jsDescriptor));
+		hybridSiminovDatas.addHybridSiminovData(getHybridDescriptor(hybridDescriptor));
 		
 		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
 		

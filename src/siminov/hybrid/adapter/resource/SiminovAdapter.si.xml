@@ -23,8 +23,8 @@
 	<adapter>
 	    
 	    <property name="name">SIMINOV</property>
-	    <property name="description">Siminov JS Handler</property>
-	    <property name="type">JS-TO-NATIVE</property>
+	    <property name="description">Siminov Hybrid Handler</property>
+	    <property name="type">WEB-TO-NATIVE</property>
 	    <property name="map_to">siminov.hybrid.adapter.handlers.SiminovHandler</property>
 	    		
 	    <handlers>
@@ -45,19 +45,19 @@
 	
 	<adapter>
 	    
-	    <property name="name">SIMINOV-NATIVE-TO-JS</property>
-	    <property name="description">Siminov JS Handler</property>
-	    <property name="type">NATIVE-TO-JS</property>
+	    <property name="name">SIMINOV-NATIVE-TO-WEB</property>
+	    <property name="description">Siminov Hybrid Handler</property>
+	    <property name="type">NATIVE-TO-WEB</property>
 	    <property name="map_to">Adapter</property>
 	    
 	    <handlers>
 	        
 	        <handler>
 	            
-	            <property name="name">HANDLE-NATIVE-TO-JS</property>
+	            <property name="name">HANDLE-NATIVE-TO-WEB</property>
 	            <property name="type">SYNC</property>
 	            <property name="map_to">handle</property>
-	            <property name="description">Handle Call From Native To JS</property>
+	            <property name="description">Handle Call From Native To Hybrid</property>
 	            
 	            <parameters>
 	                
@@ -88,7 +88,7 @@
     
 	    <property name="name">SIMINOV-EXCEPTION-HANDLER</property>
 	    <property name="description">Siminov Exception Handler</property>
-	    <property name="type">NATIVE-TO-JS</property>
+	    <property name="type">NATIVE-TO-WEB</property>
 	    <property name="map_to">SiminovExcpetionHandler</property>
 
 	    <handlers>

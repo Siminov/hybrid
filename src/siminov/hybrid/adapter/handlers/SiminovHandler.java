@@ -12,7 +12,6 @@ import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.AdapterResources;
 import siminov.hybrid.adapter.IHandler;
 import siminov.hybrid.adapter.constants.HybridSiminovException;
-import siminov.hybrid.model.HybridDescriptor;
 import siminov.hybrid.model.HybridDescriptor.Adapter;
 import siminov.hybrid.model.HybridDescriptor.Adapter.Handler;
 import siminov.hybrid.model.HybridDescriptor.Adapter.Handler.Parameter;

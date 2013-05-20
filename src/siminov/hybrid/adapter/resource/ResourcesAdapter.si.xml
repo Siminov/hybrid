@@ -21,8 +21,8 @@
 <adapter>
     
     <property name="name">RESOURCES</property>
-    <property name="description">Resources JS Handler</property>
-    <property name="type">JS-TO-NATIVE</property>
+    <property name="description">Resources Hybrid Handler</property>
+    <property name="type">WEB-TO-NATIVE</property>
     <property name="map_to">siminov.hybrid.adapter.handlers.ResourcesHandler</property>
 	<property name="cache">true</property>
 
@@ -418,18 +418,18 @@
         </handler>
         
         
-        <!-- JS BASED HANDLERS -->
+        <!-- HYBRID BASED HANDLERS -->
         <handler>
             
-            <property name="name">GET-JS-DESCRIPTOR</property>
+            <property name="name">GET-HYBRID-DESCRIPTOR</property>
             <property name="type">SYNC</property>
-            <property name="map_to">getJSDescriptor</property>
-            <property name="description">Get JS Descriptor</property>
+            <property name="map_to">getHybridDescriptor</property>
+            <property name="description">Get Hybrid Descriptor</property>
 
 			<return>
 	        
 			    	<property name="type">java.lang.String</property>
-	                <property name="description">JS Descriptor</property>
+	                <property name="description">Hybrid Descriptor</property>
 	                
 	      	</return>
             

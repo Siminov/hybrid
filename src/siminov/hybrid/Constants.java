@@ -1,5 +1,5 @@
 /** 
- * [SIMINOV FRAMEWORK]
+` * [SIMINOV FRAMEWORK]
  * Copyright [2013] [Siminov Software Solution|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
