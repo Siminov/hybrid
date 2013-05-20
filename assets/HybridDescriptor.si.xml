@@ -1,0 +1,120 @@
+<!-- 
+/** 
+ * [SIMINOV FRAMEWORK]
+ * Copyright [2013] [Siminov Software Solution|support@siminov.com]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
+ -->
+
+
+<!-- Design of HybridDescriptor.si.xml -->
+ 
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hybird-descriptor>
+	
+    
+    <!-- Adapter -->
+    <adapter>
+        
+        <!-- General Adapter Properties -->
+        	<!-- Mandatory Field -->
+        <property name="name">adapter_name</property>
+        	
+        	<!-- Optional Field -->
+        <property name="description">adapter_description</property>
+        
+        	<!-- Mandatory Field -->
+        <property name="type">WEB-TO-NATIVE|NATIVE-TO-WEB</property>
+        
+        	<!-- Optional Field -->
+        <property name="map_to">name_of_adapter_class</property>
+
+        	<!-- Optional Field (DEFAULT: FALSE)-->
+        <property name="cache">true/false</property>
+
+        	<!-- Optional Error Handler -->
+        <property name="error_handler">error_handler_id</property>
+        
+        <!-- Handlers -->
+        	<!-- Handler -->
+        <handlers>
+            
+	        <handler>
+	            
+	            <!-- General Handler Properties -->
+	            	<!-- Mandatory Field -->
+	            <property name="name">handler_name</property>
+	            
+	            	<!-- Optional Field -->
+	            <property name="type">SYNC|ASYNC</property>
+	            
+	            	<!-- Optional Field -->
+	            <property name="callback_id">callback_adapter_name</property>
+	
+	            	<!-- Mandatory Field -->
+	            <property name="map_to">name_of_handler_method</property>	            
+
+	            	<!-- Optional Field -->
+	            <property name="description">handler_description</property>	            
+
+		       		<!-- Optional Error Handler -->
+		       	<property name="error_handler">error_handler_id</property>
+		            	            
+	            	            	           
+	            <!-- Parameters -->
+	            <parameters>
+	                <!-- Parameter -->
+	                <parameter>
+	                    
+	                    	<!-- Mandatory Field -->
+	                    <property name="type">parameter_type</property>
+	                    
+	                    	<!-- Optional Field -->
+	                    <property name="description">description_of_parameter</property>
+	                    
+	                </parameter>
+	                
+	            </parameters>
+	            
+	            <return>
+	                
+	                	<!-- Mandatory Field -->
+	                <property name="type">return_type</property>
+	                
+	                	<!-- Optional Field -->
+	                <property name="description">return_data_description</property>
+	                
+	            </return>
+	            
+	        </handler>
+	            
+        </handlers>
+
+    </adapter>
+    
+
+    <!-- Adapter Paths -->
+    <adapter path="adapter_path" />
+    
+
+    <!-- Library Needed Under This HybridDescriptor -->
+    <libraries>
+        
+        <library>full_path_of_library_descriptor_file</library>
+        
+    </libraries>
+    
+</hybird-descriptor>
