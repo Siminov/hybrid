@@ -1,6 +1,6 @@
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution|support@siminov.com]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 package siminov.hybrid.adapter.handlers;
 
@@ -1027,20 +1028,6 @@ public class ResourcesHandler {
 		handlerName.setValue(handler.getName());
 		
 		hybridHandler.addValue(handlerName);
-		
-		
-		HybridSiminovValue handlerType = new HybridSiminovValue();
-		handlerType.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_TYPE);
-		handlerType.setValue(handler.getType());
-		
-		hybridHandler.addValue(handlerType);
-		
-		
-		HybridSiminovValue handlerCallbackId = new HybridSiminovValue();
-		handlerCallbackId.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_CALLBACK_ID);
-		handlerCallbackId.setValue(handler.getCallbackId());
-		
-		hybridHandler.addValue(handlerCallbackId);
 		
 		
 		HybridSiminovValue handlerMapTo = new HybridSiminovValue();

@@ -1,6 +1,6 @@
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution|support@siminov.com]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 package siminov.hybrid.parsers;
 
@@ -76,8 +77,12 @@ public class HybridDescriptorParser extends SiminovSAXDefaultHandler implements 
 		try {
 			adapterStream = getClass().getClassLoader().getResourceAsStream(libraryPackageName.replace(".", "/") + "/" + adapterPath);
 		} catch(Exception exception) {
-			Log.loge(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + exception.getMessage());
-			throw new SiminovException(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + exception.getMessage());
+			Log.logd(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + exception.getMessage());
+			
+			//If Application have not describe HybridDescriptor.si.xml file in their Application.
+			
+			return;
+			
 		}
 		
 		try {
@@ -130,11 +135,11 @@ public class HybridDescriptorParser extends SiminovSAXDefaultHandler implements 
 			
 			handler = new Adapter.Handler();
 			isHandler = true;
-		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_PARAMETER)) {
+		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER)) {
 			
 			parameter = new Adapter.Handler.Parameter();
 			isParameter = true;
-		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_RETURN)) {
+		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN)) {
 			
 			returnData = new Adapter.Handler.Return();
 			isReturn = true;
@@ -176,13 +181,13 @@ public class HybridDescriptorParser extends SiminovSAXDefaultHandler implements 
 			
 			handler = null;
 			isHandler = false;
-		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_PARAMETER)) {
+		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER)) {
 			
 			handler.addParameter(parameter);
 			
 			parameter = null;
 			isParameter = false;
-		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_RETURN)) {
+		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN)) {
 			
 			handler.setReturn(returnData);
 			

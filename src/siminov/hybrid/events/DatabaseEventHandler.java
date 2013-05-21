@@ -1,6 +1,6 @@
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution|support@siminov.com]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 package siminov.hybrid.events;
 
@@ -35,11 +36,18 @@ import siminov.orm.model.DatabaseDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor.Index;
 
+/**
+ * Handles SIMINOV FRAMEWORK DATABASE events, and redirect to application if registered for IDatabase Event.
+ *
+ */
 public class DatabaseEventHandler implements IDatabaseEvents {
 
 	private Resources hybridResources = Resources.getInstance();
 	private EventHandler eventHandler = EventHandler.getInstance();
 
+	/**
+	 * Handle Database Created Event, and redirect to application databaseCreated event API.
+	 */
 	public void databaseCreated(DatabaseDescriptor databaseDescriptor) {
 		
 		if(!hybridResources.doesEventsRegistered()) {
@@ -113,6 +121,9 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 	}
 
+	/**
+	 * Handle Database Dropped Event, and redirect to application databaseDropped event API.
+	 */
 	public void databaseDropped(DatabaseDescriptor databaseDescriptor) {
 
 		if(!hybridResources.doesEventsRegistered()) {
@@ -185,6 +196,9 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 
 	}
 
+	/**
+	 * Handle Table Created Event, and redirect to application tableCreated event API.
+	 */
 	public void tableCreated(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor) {
 	
 		if(!hybridResources.doesEventsRegistered()) {
@@ -265,6 +279,9 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 	}
 
+	/**
+	 * Handle Table Dropped Event, and redirect to application tableDropped event API.
+	 */
 	public void tableDropped(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor) {
 		
 		if(!hybridResources.doesEventsRegistered()) {
@@ -345,6 +362,9 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 
 	}
 
+	/**
+	 * Handle Index Created Event, and redirect to application indexCreated event API.
+	 */
 	public void indexCreated(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor, Index index) {
 		
 		if(!hybridResources.doesEventsRegistered()) {
@@ -427,6 +447,9 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 
 	}
 
+	/**
+	 * Handle Index Dropped Event, and redirect to application indexDropped event API.
+	 */
 	public void indexDropped(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor, Index index) {
 
 		if(!hybridResources.doesEventsRegistered()) {

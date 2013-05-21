@@ -1,6 +1,6 @@
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution|support@siminov.com]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 package siminov.hybrid.events;
 
@@ -31,11 +32,18 @@ import siminov.orm.events.ISiminovEvents;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
+/**
+ * Handles SIMINOV FRAMEWORK life cycle events, and redirect to application if registered for ISiminov Event.
+ *
+ */
 public class SiminovEventHandler implements ISiminovEvents {
 
 	private Resources hybridResources = Resources.getInstance();
 	private EventHandler eventHandler = EventHandler.getInstance();
-	
+
+	/**
+	 * Handle event if Siminov is initialized for first time, and redirect to application firstTimeSiminovInitialized event API.
+	 */
 	public void firstTimeSiminovInitialized() {
 
 		if(!hybridResources.doesEventsRegistered()) {
@@ -95,6 +103,9 @@ public class SiminovEventHandler implements ISiminovEvents {
 		
 	}
 
+	/**
+	 * Handle event if Siminov is initialized, and redirect to application siminovInitialized event API.
+	 */
 	public void siminovInitialized() {
 
 		if(!hybridResources.doesEventsRegistered()) {
@@ -154,6 +165,9 @@ public class SiminovEventHandler implements ISiminovEvents {
 
 	}
 
+	/**
+	 * Handle event if Siminov is stopped, and redirect to application siminovStopped event API.
+	 */
 	public void siminovStopped() {
 		
 		if(!hybridResources.doesEventsRegistered()) {

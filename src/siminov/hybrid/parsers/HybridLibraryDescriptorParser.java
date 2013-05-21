@@ -1,6 +1,6 @@
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution|support@siminov.com]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  * limitations under the License.
  **/
 
+
 package siminov.hybrid.parsers;
 
 import java.io.InputStream;
@@ -23,7 +24,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 import siminov.hybrid.Constants;
-import siminov.hybrid.model.HybridLibraryDescriptor;
+import siminov.hybrid.model.LibraryDescriptor;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 import siminov.orm.parsers.SiminovSAXDefaultHandler;
@@ -33,7 +34,7 @@ import android.content.Context;
 public class HybridLibraryDescriptorParser extends SiminovSAXDefaultHandler implements Constants {
 
 	private String tempValue = null;
-	private HybridLibraryDescriptor hybridLibraryDescriptor = new HybridLibraryDescriptor();
+	private LibraryDescriptor libraryDescriptor = new LibraryDescriptor();
 	
 	private boolean isName = false;
 	private boolean isDescription = false;
@@ -72,7 +73,7 @@ public class HybridLibraryDescriptorParser extends SiminovSAXDefaultHandler impl
 			initializeProperty(attributes);
 		} else if(localName.equalsIgnoreCase(HYBRID_LIBRARY_DESCRIPTOR_ADAPTER)) {
 			String adapterPath = attributes.getValue(HYBRID_LIBRARY_DESCRIPTOR_ADAPTER_PATH);
-			hybridLibraryDescriptor.addAdapterPath(adapterPath);
+			libraryDescriptor.addAdapterPath(adapterPath);
 		}
 
 		super.startElement(uri, localName, qName, attributes);
@@ -91,17 +92,17 @@ public class HybridLibraryDescriptorParser extends SiminovSAXDefaultHandler impl
 	public void endElement(String uri, String localName, String qName) throws SAXException {
 		if(localName.equalsIgnoreCase(HYBRID_LIBRARY_DESCRIPTOR_PROPERTY)) {
 			if(isName) {
-				hybridLibraryDescriptor.setName(tempValue);
+				libraryDescriptor.setName(tempValue);
 				isName = false;
 			} else if(isDescription) {
-				hybridLibraryDescriptor.setDescription(tempValue);
+				libraryDescriptor.setDescription(tempValue);
 				isDescription = false;
 			}
 		} 
 	}
 	
 	private void initializeProperty(final Attributes attributes) {
-		String property = attributes.getValue(HYBRID_LIBRARY_DESCRIPTOR_PROPERTY_NAME);
+		String property = attributes.getValue(HYBRID_LIBRARY_DESCRIPTOR_NAME);
 		
 		if(property.equalsIgnoreCase(HYBRID_LIBRARY_DESCRIPTOR_NAME)) {
 			isName = true;
@@ -110,8 +111,8 @@ public class HybridLibraryDescriptorParser extends SiminovSAXDefaultHandler impl
 		}
 	}
 	
-	public HybridLibraryDescriptor getLibraryDescriptor() {
-		return this.hybridLibraryDescriptor;
+	public LibraryDescriptor getLibraryDescriptor() {
+		return this.libraryDescriptor;
 	}
 	
 }
