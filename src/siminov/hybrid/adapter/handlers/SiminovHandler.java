@@ -43,6 +43,11 @@ import siminov.orm.log.Log;
 import siminov.orm.utils.ClassUtils;
 import android.webkit.JavascriptInterface;
 
+
+/**
+ * This actually deals with Request Handling Between WEB-TO-NATIVE and NATIVE-TO-WEB.
+ *
+ */
 public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 
 	protected siminov.orm.resource.Resources ormResources = siminov.orm.resource.Resources.getInstance();

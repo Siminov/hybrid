@@ -542,7 +542,7 @@
             
             <property name="name">GET-ADAPTER</property>
             <property name="type">SYNC</property>
-            <property name="map_to">getAdapter</property>
+            <property name="map_to">getAdapterBasedOnName</property>
             <property name="description">Get Adapter</property>
 
             <parameters>
