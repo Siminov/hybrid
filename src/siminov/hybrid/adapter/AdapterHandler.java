@@ -23,6 +23,11 @@ import siminov.hybrid.resource.Resources;
 import siminov.orm.utils.ClassUtils;
 import android.webkit.WebView;
 
+
+/**
+ * It works has a bridge between WEB-TO-NATIVE and NATIVE-TO-WEB, basically every request is handled by this class.
+ *
+ */
 public class AdapterHandler {
 
 	private static Resources resources = Resources.getInstance();
@@ -39,6 +44,11 @@ public class AdapterHandler {
 	
 	}
 	
+	/**
+	 * It provides an instance of Adapter Handler class.
+	 * 
+	 * @return Adapter Handler instance.
+	 */
 	public static final AdapterHandler getInstance() {
 		if(adapterHandler == null) {
 			adapterHandler = new AdapterHandler();
@@ -47,6 +57,11 @@ public class AdapterHandler {
 		return adapterHandler;
 	}
 	
+	
+	/**
+	 * Registers Handler instance to handle all request processed between Web and Native.  
+	 * @param handler IHandler Instance.
+	 */
 	public void register(IHandler handler) {
 		
 		Adapter adapter = resources.getAdapter(Constants.HYBRID_SIMINOV_WEB_TO_NATIVE_ADAPTER);
@@ -58,6 +73,11 @@ public class AdapterHandler {
 		webView.addJavascriptInterface(this.handler, adapterName);
 	}
 	
+	
+	/**
+	 * Get IHandler instance which receives and handler request processed between Web and Native.
+	 * @return IHandler Instance.
+	 */
 	public IHandler getHandler() {
 		return this.handler;
 	}
