@@ -18,21 +18,58 @@
 
 package siminov.hybrid.adapter.constants;
 
+/**
+ * Exposes constants to which represents Application Descriptor on Web.
+ */
 public interface HybridApplicationDescriptor {
 
+	/**
+	 * Web Module Application Descriptor Function Name.
+	 */
 	public String APPLICATION_DESCRIPTOR = "ApplicationDescriptor";
 	
+	/**
+	 * Web Application Descriptor Name.
+	 */
 	public String NAME = "name";
+	
+	/**
+	 * Web Application Descriptor Description.
+	 */
 	public String DESCRIPTION = "description";
 	
+	/**
+	 * Web Application Descriptor Version.
+	 */
 	public String VERSION = "version";
 	
+	/**
+	 * Web Application Descriptor Load Initially.
+	 */
 	public String LOAD_INITIALLY = "loadInitially";
 	
+	
+	
+	/**
+	 * Web Application Descriptor Database Descriptor Paths.
+	 */
 	public String DATABASE_DESCRIPTORS = "Array";
+	
+	/**
+	 * Web Application Descriptor Database Descriptor Path Property.
+	 */
 	public String DATABASE_DESCRIPTOR_PATH = "databaseDescriptorPath";
 	
+	
+	
+	/**
+	 * Web Application Descriptor Event Notifiers.
+	 */
 	public String EVENT_NOTIFIERS = "Array";
+	
+	/**
+	 * Web Application Descriptor Event Notifier.
+	 */
 	public String EVENT_NOTIFIER = "event";
 	
 }
