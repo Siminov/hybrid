@@ -27,6 +27,11 @@ import siminov.orm.events.ISiminovEvents;
 import siminov.orm.log.Log;
 import siminov.orm.utils.ClassUtils;
 
+
+/**
+ * Exposes methods to GET and SET Application Event Notifiers
+ *
+ */
 public class EventHandler {
 
 	private static EventHandler eventHandler = null;
@@ -41,6 +46,11 @@ public class EventHandler {
 	
 	}
 
+	/**
+	 * It provides an instance of EventHandler class.
+	 * 
+	 * @return EventHandler instance.
+	 */
 	public static final EventHandler getInstance() {
 		
 		if(eventHandler == null) {
@@ -50,6 +60,11 @@ public class EventHandler {
 		return eventHandler;
 	}
 
+	
+	/**
+	 * Check whether Application is registered for any of Events.
+	 * @return true/false.
+	 */
 	public boolean doesEventsRegistered() {
 		
 		if(this.events.size() > 0) {
@@ -59,15 +74,29 @@ public class EventHandler {
 		return false;
 	}
 	
+	
+	/**
+	 * Add Application Event Notifier.
+	 * @param event Event
+	 */
 	public void addEvent(String event) {
 		events.add(event);
 	}
 	
+	
+	/**
+	 * Get All Event Notifiers Registered By Application.
+	 * @return All Events.
+	 */
 	public Iterator<String> getEvents() {
 		return this.events.iterator();
 	}
 	
 	
+	/**
+	 * Get ISiminov Event Notifier Defined By Application.
+	 * @return ISiminov Event Notifier.
+	 */
 	public ISiminovEvents getSiminovEvent() {
 		
 		if(siminovEvents != null) {
@@ -111,6 +140,11 @@ public class EventHandler {
 		return siminovEvents;
 	}
 	
+	
+	/**
+	 * Get IDatabase Event Notifier Registered By Application.
+	 * @return IDatabseEvent Notifier.
+	 */
 	public IDatabaseEvents getDatabaseEvents() {
 		
 		if(databaseEvents != null) {
