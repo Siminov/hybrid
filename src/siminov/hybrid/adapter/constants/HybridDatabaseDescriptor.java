@@ -18,21 +18,58 @@
 
 package siminov.hybrid.adapter.constants;
 
+/**
+ * Exposes constants to which represents Database Descriptor on Web.
+ */
 public interface HybridDatabaseDescriptor {
 
+	/**
+	 * Web Module Database Descriptor Function Name.
+	 */
 	public String DATABASE_DESCRIPTOR = "DatabaseDescriptor";
 	
+	
+	/**
+	 * Web Database Descriptor Database Name.
+	 */
 	public String NAME = "databaseName";
+	
+	/**
+	 * Web Database Descriptor Description.
+	 */
 	public String DESCRIPTION = "description";
 	
+	
+	/**
+	 * Web Database Descriptor Is Locking Required.
+	 */
 	public String IS_LOCKING_REQUIRED = "lockingRequired";
 	
+	/**
+	 * Web Database Descriptor External Storage.
+	 */
 	public String EXTERNAL_STORAGE = "externalStorage";
 	
+	
+	/**
+	 * Web Database Descriptor Database Mapping Descriptor Paths.
+	 */
 	public String DATABASE_MAPPING_DESCRIPTORS = "Array";
+	
+	/**
+	 * Web Database Descriptor Database Mapping Descriptor Path.
+	 */
 	public String DATABASE_MAPPING_DESCRIPTOR_PATH = "databaseMappingDescriptorPath";
 	
+	
+	/**
+	 * Web Database Descriptor Libraries.
+	 */
 	public String LIBRARIES = "Array";
+	
+	/**
+	 * Web Database Descriptor Library Path.
+	 */
 	public String LIBRARY_PATH = "libraryPath";
 	
 }
