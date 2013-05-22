@@ -46,11 +46,22 @@ import siminov.orm.model.DatabaseMappingDescriptor.Column;
 import siminov.orm.model.DatabaseMappingDescriptor.Relationship;
 import siminov.orm.resource.Resources;
 
+
+/**
+ * It handles all request related to database.
+ * LIKE: save, update, saveOrUpdate, delete.
+ */
 public class DatabaseHandler {
 
 	private static Resources ormResources = Resources.getInstance();
 	private static siminov.hybrid.resource.Resources hybridResources = siminov.hybrid.resource.Resources.getInstance();
+
 	
+	/**
+	 * Handles Database Save Request From Web.
+	 * @param data Data Need To Be Save In Database.
+	 * @throws DatabaseException If any exception occur while saving data in Database.
+	 */
 	public void save(final String data) throws DatabaseException {
 
 		HybridSiminovDatas jsSiminovDatas = parseHybridSiminovDatas(data);
@@ -181,7 +192,14 @@ public class DatabaseHandler {
 			}
 		}
 	}
+
 	
+	
+	/**
+	 * Handles Database Update Request From Web.
+	 * @param data Data Need To Be Update In Database.
+	 * @throws DatabaseException If any exception occur while updating data in Database.
+	 */
 	public void update(String data) throws DatabaseException {
 		
 		HybridSiminovDatas jsSiminovDatas = parseHybridSiminovDatas(data);
@@ -328,6 +346,12 @@ public class DatabaseHandler {
 		
 	}
 	
+
+	/**
+	 * Handles Database Save Or Update Request From Web.
+	 * @param data Data Need To Be Save Or Update In Database.
+	 * @throws DatabaseException If any exception occur while saving or updating data in Database.
+	 */
 	public void saveOrUpdate(String data) throws DatabaseException {
 
 		HybridSiminovDatas jsSiminovDatas = parseHybridSiminovDatas(data);
@@ -400,6 +424,15 @@ public class DatabaseHandler {
 		}
 	}
 	
+
+	
+	/**
+	 * Handles Database Delete Request From Web.
+	 * @param className Web Model Class Name of which delete request is sent.
+	 * @param whereClause Based on which tuple will be deleted from table.
+	 * @param data Data Need To Be Delete In Database.
+	 * @throws DatabaseException If any exception occur while deleting data in Database.
+	 */
 	public void delete(final String className, final String whereClause, final String data) throws DatabaseException {
 		
 		HybridSiminovDatas jsSiminovDatas = null;
@@ -482,6 +515,27 @@ public class DatabaseHandler {
 
 	}
 	
+
+	/**
+	 * 
+	 * @param data 
+	 * @throws DatabaseException 
+	 */
+	
+	/**
+	 * Handles Database Select Request From Web.
+	 * @param className Web Model Function Name.
+	 * @param distinct Distinct tuples need to be fetched or not.
+	 * @param whereClause Where Clause based on which tuples will be fetched from table.
+	 * @param columnNames Name of Columns for which data needs to be fetched.
+	 * @param groupBy Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+	 * @param havingClause Used to specify HAVING clause to SQL because the WHERE keyword could not be used with aggregate functions.
+	 * @param orderBy Used to specify ORDER BY keyword to sort the result-set.
+	 * @param whichOrderBy Used to specify ORDER BY ASC OR DESC keyword to sort the result-set in ascending order.
+	 * @param limit Used to specify the range of data need to fetch from table.
+	 * @return Return Tuples Fetched From Table.
+	 * @throws DatabaseException If any exception occur while selecting data in Database.
+	 */
 	public String select(final String className, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
@@ -569,6 +623,11 @@ public class DatabaseHandler {
 	}
 	
 	
+	/**
+	 * Handles Database Begin Transaction Request From Web.
+	 * @param databaseDescriptorName Name of Database Descriptor.
+	 * @throws DatabaseException If any exception occur while beginning transaction.
+	 */
 	public void beginTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseDescriptorName(databaseDescriptorName);
@@ -584,6 +643,11 @@ public class DatabaseHandler {
 	}
 
 	
+	/**
+	 * Handles Database Commit Transaction Request From Web.
+	 * @param databaseDescriptorName Name of Database Descriptor.
+	 * @throws DatabaseException If any error occur while committing transaction. 
+	 */
 	public void commitTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseDescriptorName(databaseDescriptorName);
@@ -599,6 +663,11 @@ public class DatabaseHandler {
 	}
 	
 	
+	/**
+	 * Handles Database End Transaction Request From Web.
+	 * @param databaseDescriptorName Name of Database Descriptor.
+	 * @throws DatabaseException If any error occur while ending transaction.
+	 */
 	public void endTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseDescriptorName(databaseDescriptorName);
@@ -616,6 +685,18 @@ public class DatabaseHandler {
 		}
 	}
 	
+	
+	/**
+	 * Handles Database Count Request From Web.
+	 * @param className Web Model Class Name.
+	 * @param column Name of Column For Which Count Needs To Be Find.
+	 * @param distinct Distinct tuples needs to be calculated or not.
+	 * @param whereClause Where Clause based on which Count needs to be found.
+	 * @param groupBys Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+	 * @param having Used to specify HAVING clause to SQL because the WHERE keyword could not be used with aggregate functions.
+	 * @return Count Of Tuples.
+	 * @throws DatabaseException If any error occur while getting count.
+	 */
 	public String count(final String className, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
 
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
@@ -680,6 +761,18 @@ public class DatabaseHandler {
 		return 0;
 	}
 	
+
+	
+	/**
+	 * Handles Database Average Request From Web.
+	 * @param className Web Model Class Name.
+	 * @param column Name of Column For Which Average Needs To Be Find.
+	 * @param whereClause Where Clause based on which Average needs to be found.
+	 * @param groupBys Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+	 * @param having Used to specify HAVING clause to SQL because the WHERE keyword could not be used with aggregate functions.
+	 * @return Average Of Tuples.
+	 * @throws DatabaseException If any error occur while getting count.
+	 */
 	public String avg(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -752,6 +845,17 @@ public class DatabaseHandler {
 		
 	}
 
+
+	/**
+	 * Handles Database Sum Request From Web.
+	 * @param className Web Model Class Name.
+	 * @param column Name of Column For Which Sum Needs To Be Find.
+	 * @param whereClause Where Clause based on which Sum needs to be found.
+	 * @param groupBys Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+	 * @param having Used to specify HAVING clause to SQL because the WHERE keyword could not be used with Sum functions.
+	 * @return Sum Of Tuples.
+	 * @throws DatabaseException If any error occur while getting sum.
+	 */
 	public String sum(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -824,6 +928,16 @@ public class DatabaseHandler {
 	}
 
 	
+	/**
+	 * Handles Database Total Request From Web.
+	 * @param className Web Model Class Name.
+	 * @param column Name of Column For Which Total Needs To Be Find.
+	 * @param whereClause Where Clause based on which Total needs to be found.
+	 * @param groupBys Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+	 * @param having Used to specify HAVING clause to SQL because the WHERE keyword could not be used with Total functions.
+	 * @return Total Of Tuples.
+	 * @throws DatabaseException If any error occur while getting total.
+	 */
 	public String total(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -895,6 +1009,17 @@ public class DatabaseHandler {
 		
 	}
 
+
+	/**
+	 * Handles Database Minimum Request From Web.
+	 * @param className Web Model Class Name.
+	 * @param column Name of Column For Which Minimum Needs To Be Find.
+	 * @param whereClause Where Clause based on which Minimum needs to be found.
+	 * @param groupBys Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+	 * @param having Used to specify HAVING clause to SQL because the WHERE keyword could not be used with Minimum functions.
+	 * @return Minimum Of Tuples.
+	 * @throws DatabaseException If any error occur while getting minimum.
+	 */
 	public String min(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -966,6 +1091,17 @@ public class DatabaseHandler {
 		
 	}
 	
+
+	/**
+	 * Handles Database Maximum Request From Web.
+	 * @param className Web Model Class Name.
+	 * @param column Name of Column For Which Maximum Needs To Be Find.
+	 * @param whereClause Where Clause based on which Maximum needs to be found.
+	 * @param groupBys Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+	 * @param having Used to specify HAVING clause to SQL because the WHERE keyword could not be used with Maximum functions.
+	 * @return Maximum Of Tuples.
+	 * @throws DatabaseException If any error occur while getting maximum.
+	 */
 	public String max(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -1038,6 +1174,18 @@ public class DatabaseHandler {
 		
 	}
 	
+
+	
+	/**
+	 * Handles Database Group Concat Request From Web.
+	 * @param className Web Model Class Name.
+	 * @param column Name of Column For Which Group Concat Needs To Be Find.
+	 * @param whereClause Where Clause based on which Group Concat needs to be found.
+	 * @param groupBys Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+	 * @param having Used to specify HAVING clause to SQL because the WHERE keyword could not be used with Group Concat functions.
+	 * @return Group Concat Of Tuples.
+	 * @throws DatabaseException If any error occur while getting Group Concat.
+	 */
 	public String groupConcat(final String className, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -1100,7 +1248,14 @@ public class DatabaseHandler {
 		
 	}
 	
+
 	
+	/**
+	 * Handles Database Get Table Name Request From Web.
+	 * @param className Web Model Class Name.
+	 * @return Table Name.
+	 * @throws DatabaseException If any error occur while get table name mapped to web model class name.
+	 */
 	public String getTableName(final String className) throws DatabaseException {
 	
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -1130,6 +1285,13 @@ public class DatabaseHandler {
 		return databaseMappingDescriptor.getTableName();
 	}
 
+	
+	/**
+	 * Handles Database Get Columns Names Request From Web.
+	 * @param className Web Model Class Name.
+	 * @return Column Names.
+	 * @throws DatabaseException If any error occur while getting column names mapped to web model class name.
+	 */
 	public String getColumnNames(final String className) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -1214,6 +1376,14 @@ public class DatabaseHandler {
 		
 	}
 	
+
+	
+	/**
+	 * Handles Database Get Columns Types Request From Web.
+	 * @param className Web Model Class Name.
+	 * @return Column Types.
+	 * @throws DatabaseException If any error occur while getting column types mapped to web model class name.
+	 */
 	public String getColumnTypes(final String className) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -1292,6 +1462,12 @@ public class DatabaseHandler {
 	}
 	
 	
+	/**
+	 * Handles Database Get Primary Column Names Request From Web.
+	 * @param className Web Model Class Name.
+	 * @return Primary Column Names.
+	 * @throws DatabaseException If any error occur while get primary column names mapped to web model class name.
+	 */
 	public String getPrimaryKeys(final String className) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -1381,6 +1557,13 @@ public class DatabaseHandler {
 		
 	}
 	
+
+	/**
+	 * Handles Database Get Mandatory Column Names Request From Web.
+	 * @param className Web Model Class Name.
+	 * @return Mandatory Names.
+	 * @throws DatabaseException If any error occur while getting mandatory column names mapped to web model class name.
+	 */
 	public String getMandatoryFields(final String className) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -1475,6 +1658,12 @@ public class DatabaseHandler {
 	}
 	
 	
+	/**
+	 * Handles Database Get Unique Column Names Request From Web.
+	 * @param className Web Model Class Name.
+	 * @return Unique Column Names.
+	 * @throws DatabaseException If any error occur while getting unique column names. 
+	 */
 	public String getUniqueFields(final String className) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -1573,6 +1762,13 @@ public class DatabaseHandler {
 		
 	}
 	
+	
+	/**
+	 * Handle Database Get Foreign Column Names Request From Web.
+	 * @param className Web Model Class Name.
+	 * @return Foreign Column Names.
+	 * @throws DatabaseException If any error occur while getting foreign column names.
+	 */
 	public String getForeignKeys(final String className) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);

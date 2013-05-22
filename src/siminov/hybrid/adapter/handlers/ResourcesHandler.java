@@ -42,11 +42,22 @@ import siminov.orm.model.DatabaseMappingDescriptor.Index;
 import siminov.orm.model.DatabaseMappingDescriptor.Relationship;
 import siminov.orm.model.LibraryDescriptor;
 
+/**
+ * It handles all request related to resources.
+ * LIKE: Application Descriptor, Database Descriptor, Library Descriptor, Database Mapping Descriptor, Hybrid Descriptor.
+ */
 public class ResourcesHandler {
 
 	private static siminov.orm.resource.Resources ormResources = siminov.orm.resource.Resources.getInstance();
 	private static siminov.hybrid.resource.Resources hybridResources = siminov.hybrid.resource.Resources.getInstance(); 
 
+	
+	
+	/**
+	 * Handles Get Application Descriptor Request From Web.
+	 * @return Application Descriptor.
+	 * @throws SiminovException If any error occur while getting Application Descriptor.
+	 */
 	public String getApplicationDescriptor() throws SiminovException {
 		
 		ApplicationDescriptor applicationDescriptor = ormResources.getApplicationDescriptor();
@@ -128,6 +139,12 @@ public class ResourcesHandler {
 		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
 	}
 
+	
+	/**
+	 * Handle Get Database Descriptor Paths Request From Web.
+	 * @return Database Descriptor Paths.
+	 * @throws SiminovException If any error occur while getting Database Descriptor Paths.
+	 */
 	public String getDatabaseDescriptorPaths() throws SiminovException {
 		
 		Iterator<String> databaseDescriptorPaths = ormResources.getDatabaseDescriptorPaths();
@@ -149,6 +166,13 @@ public class ResourcesHandler {
 		return HybridSiminovDataBuilder.jsonBuidler(hybridDatabaseDescriptorPaths);
 	}
 
+	
+	/**
+	 * Handle Get Database Descriptor Based On Database Descriptor Path Request From Web.
+	 * @param databaseDescriptorPath Database Descriptor Path.
+	 * @return Database Descriptor
+	 * @throws SiminovException If any error occur while getting Database Descriptor.
+	 */
 	public String getDatabaseDescriptorBasedOnPath(final String databaseDescriptorPath) throws SiminovException {
 		
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnPath(databaseDescriptorPath);
@@ -160,6 +184,13 @@ public class ResourcesHandler {
 		
 	}
 	
+	
+	/**
+	 * Handle Get Database Descriptor Based On Database Descriptor Name Request From Web.
+	 * @param databaseDescriptorName Database Descriptor Name.
+	 * @return Database Descriptor.
+	 * @throws SiminovException If any error occur while getting Database Descriptor.
+	 */
 	public String getDatabaseDescriptorBasedOnName(final String databaseDescriptorName) throws SiminovException {
 		
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnName(databaseDescriptorName);
@@ -171,6 +202,12 @@ public class ResourcesHandler {
 		
 	}
 
+	
+	/**
+	 * Handle Get Database Descriptors Request From Web.
+	 * @return Database Descriptors.
+	 * @throws SiminovException If any error occur while getting Database Descriptors.
+	 */
 	public String getDatabaseDescriptors() throws SiminovException {
 		
 		Iterator<DatabaseDescriptor> databaseDescriptors = ormResources.getDatabaseDescriptors();
@@ -185,6 +222,13 @@ public class ResourcesHandler {
 
 	}
 
+	
+	/**
+	 * Handle Get Database Descriptor Based On Web Class Name Request From Web.
+	 * @param className Web Model Class Name.
+	 * @return Database Descriptor.
+	 * @throws SiminovException If any error occur while getting Database Descriptor.
+	 */
 	public String getDatabaseDescriptorBasedOnClassName(final String className) throws SiminovException {
 		
 		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(className);
@@ -196,6 +240,13 @@ public class ResourcesHandler {
 		
 	}
 
+	
+	/**
+	 * Handle Get Database Descriptor Name Based On Web Model Class Name Request From Web.
+	 * @param className Web Model Class Name.
+	 * @return Database Descriptor Name.
+	 * @throws SiminovException If any error occur while getting Database Descriptor.
+	 */
 	public String getDatabaseDescriptorNameBasedOnClassName(final String className) throws SiminovException {
 		
 		String databaseDescriptorName = hybridResources.getDatabaseDescriptorNameBasedOnClassName(className);
@@ -214,6 +265,13 @@ public class ResourcesHandler {
 		
 	}
 
+	
+	/**
+	 * Handle Get Database Descriptor Name Based On Table Name Request From Web.
+	 * @param tableName Name of Table.
+	 * @return Database Descriptor Name.
+	 * @throws SiminovException If any error occur while getting Database Descriptor Name.
+	 */
 	public String getDatabaseDescriptorNameBasedOnTableName(final String tableName) throws SiminovException {
 		
 		String databaseDescriptorName = hybridResources.getDatabaseDescriptorNameBasedOnTableName(tableName);
@@ -232,6 +290,13 @@ public class ResourcesHandler {
 		
 	}
 	
+	
+	/**
+	 * Handle Get Database Descriptor Based On Table Name Request From Web.
+	 * @param tableName Name of Table.
+	 * @return Database Descriptor Name.
+	 * @throws SiminovException If any error occur while getting Database Descriptor Name.
+	 */
 	public String getDatabaseDescriptorBasedOnTableName(final String tableName) throws SiminovException {
 		
 		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnTableName(tableName);
@@ -243,6 +308,13 @@ public class ResourcesHandler {
 		
 	}
 	
+	
+	/**
+	 * Handle Get Database Mapping Descriptor Based On Web Model Class Name.
+	 * @param className Name of Web Model Class.
+	 * @return Database Mapping Descriptor.
+	 * @throws SiminovException If any error occur while getting Database Mapping Descriptor.
+	 */
 	public String getDatabaseMappingDescriptorBasedOnClassName(final String className) throws SiminovException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
@@ -254,6 +326,13 @@ public class ResourcesHandler {
 		
 	}
 
+	
+	/**
+	 * Handle Get Database Mapping Descriptor Based On Table Name Request From Web.
+	 * @param tableName Name of Table.
+	 * @return Database Mapping Descriptor.
+	 * @throws SiminovException If any error occur while getting Database Mapping Descriptor.
+	 */
 	public String getDatabaseMappingDescriptorBasedOnTableName(final String tableName) throws SiminovException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnTableName(tableName);
@@ -265,6 +344,12 @@ public class ResourcesHandler {
 		
 	}
 	
+	
+	/**
+	 * Handle Get Database Mapping Descriptors Request From Web.
+	 * @return Get Database Mapping Descriptors.
+	 * @throws SiminovException if any error occur while getting Database Mapping Descriptors.
+	 */
 	public String getDatabaseMappingDescriptors() throws SiminovException {
 		
 		Iterator<DatabaseMappingDescriptor> databaseMappingDescriptors = ormResources.getDatabaseMappingDescriptors();
@@ -278,6 +363,12 @@ public class ResourcesHandler {
 		
 	}
 	
+	
+	/**
+	 * Handle Get Library Descriptors Paths Request From Web.
+	 * @return Library Descriptors Paths.
+	 * @throws SiminovException If any error occur while getting Library Descriptor Paths.
+	 */
 	public String getLibraryDescriptorPaths() throws SiminovException {
 		
 		Iterator<String> libraryDescriptorPaths = ormResources.getLibraryPaths();
@@ -303,6 +394,12 @@ public class ResourcesHandler {
 	}
 	
 	
+	/**
+	 * Handle Get Library Paths Based On Database Descriptor Name Request From Web.
+	 * @param databaseDescriptorName Name of Database Descriptor.
+	 * @return Library Paths
+	 * @throws SiminovException If any error occur while getting library paths.
+	 */
 	public String getLibraryPathsBasedOnDatabaseDescriptorName(final String databaseDescriptorName) throws SiminovException {
 	
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnName(databaseDescriptorName); 
@@ -329,6 +426,11 @@ public class ResourcesHandler {
 	}
 	
 
+	/**
+	 * Handle Get Library Descriptors Request From Web.
+	 * @return Library Descriptors.
+	 * @throws SiminovException If any error occur while getting Library Descriptors.
+	 */
 	public String getLibraryDescriptors() throws SiminovException {
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
@@ -342,6 +444,13 @@ public class ResourcesHandler {
 		
 	}
 	
+	
+	/**
+	 * Handle Get Libraries Based On Database Descriptor Name Request From Web.
+	 * @param databaseDescriptorName Name of Database Descriptor.
+	 * @return Libraries.
+	 * @throws SiminovException If any occur while getting libraries.
+	 */
 	public String getLibrariesBasedOnDatabaseDescriptorName(final String databaseDescriptorName) throws SiminovException {
 	
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnName(databaseDescriptorName);
@@ -358,6 +467,12 @@ public class ResourcesHandler {
 	}
 	
 	
+	/**
+	 * Handle Get Library Database Mapping Descriptors Based On Library Descriptor Path Request From Web.
+	 * @param libraryDescriptorPath Library Descriptor Path.
+	 * @return Library Database Mapping Descriptors.
+	 * @throws SiminovException If any error occur while getting Library Database Mapping Descriptors.
+	 */
 	public String getLibraryDatabaseMappingDescriptorsBasedOnLibraryDescriptorPath(final String libraryDescriptorPath) throws SiminovException {
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
@@ -371,12 +486,24 @@ public class ResourcesHandler {
 		
 	}
 	
+	
+	/**
+	 * Handle Remove Database Based On Database Descriptor Name Request From Web.
+	 * @param databaseDescriptorName Name of Database Descriptor.
+	 * @throws SiminovException If any error occur while removing Database.
+	 */
 	public void removeDatabaseBasedOnDatabaseDescriptorName(final String databaseDescriptorName) throws SiminovException {
 		
 		ormResources.removeDatabaseBundleBasedOnDatabaseDescriptorName(databaseDescriptorName);
 		
 	}
 	
+	
+	/**
+	 * Handle Remove Database Based On Database Mapping Descriptor Class Name.
+	 * @param databaseMappingDescriptorClassName Name of Database Mapping Descriptor Class Name.
+	 * @throws SiminovException If any error occur while removing Database Mapping Descriptor Class Name.
+	 */
 	public void removeDatabaseBasedOnDatabaseMappingDescriptorClassName(final String databaseMappingDescriptorClassName) throws SiminovException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(databaseMappingDescriptorClassName);
@@ -385,6 +512,12 @@ public class ResourcesHandler {
 		
 	}
 	
+	
+	/**
+	 * Handle Remove Database Based On Database Mapping Descriptor Table Name Request From Web.
+	 * @param databaseMappingDescriptorTableName Name of Table.
+	 * @throws SiminovException If any error occur while removing Database.
+	 */
 	public void removeDatabaseBasedOnDatabaseMappingDescriptorTableName(final String databaseMappingDescriptorTableName) throws SiminovException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnTableName(databaseMappingDescriptorTableName);
@@ -394,6 +527,11 @@ public class ResourcesHandler {
 	}
 	
 	
+	/**
+	 * Handle Get Hybrid Descriptor Request From Web.
+	 * @return Hybrid Descriptor
+	 * @throws SiminovException If any error occur while getting Hybrid Descriptor.
+	 */
 	public String getHybridDescriptor() throws SiminovException {
 	
 		HybridDescriptor hybridDescriptor = hybridResources.getHybridDescriptor();
@@ -406,6 +544,11 @@ public class ResourcesHandler {
 	}
 	
 	
+	/**
+	 * Handle Get Adapters Request From Web.
+	 * @return Adapters.
+	 * @throws SiminovException If any error occur while getting Adapters.
+	 */
 	public String getAdapters() throws SiminovException {
 	
 		HybridSiminovDatas jsSiminovDatas = new HybridSiminovDatas();
@@ -921,7 +1064,7 @@ public class ResourcesHandler {
 	private HybridSiminovData getHybridDescriptor(final HybridDescriptor hybridDescriptor) {
 		
 		HybridSiminovData hybridWebDescriptor = new HybridSiminovData();
-		hybridWebDescriptor.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.JS_DESCRIPTOR);
+		hybridWebDescriptor.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HRBRID_DESCRIPTOR);
 		
 		
 		HybridSiminovData hybridAdapters = new HybridSiminovData();
