@@ -18,14 +18,36 @@
 
 package siminov.hybrid.adapter.constants;
 
+/**
+ * Exposes constants to which represents Hybrid Library Descriptor on Web.
+ */
 public interface HybridLibraryDescriptor {
 
+	/**
+	 * Web Module Library Descriptor Function Name.
+	 */
 	public String LIBRARY_DESCRIPTOR = "LibraryDescriptor";
 	
+	
+	/**
+	 * Web Library Descriptor Name.
+	 */
 	public String NAME = "name";
+	
+	/**
+	 * Web Library Descriptor Description.
+	 */
 	public String DESCRIPTION = "description";
 	
+	
+	/**
+	 * Web Library Descriptor Paths.
+	 */
 	public String DATABASE_MAPPING_DESCRIPTOR_PATHS = "Array";
+	
+	/**
+	 * Web Library Descriptor Path.
+	 */
 	public String DATABASE_MAPPING_DESCRIPTOR_PATH = "databaseMappingDescriptorPath";
 	
 	
