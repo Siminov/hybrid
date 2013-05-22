@@ -17,14 +17,30 @@
 
 package siminov.hybrid.adapter.constants;
 
+/**
+ * Exposes constants to which represents Hybrid Siminov Exception on Web.
+ */
 public interface HybridSiminovException {
 
+	
+	/**
+	 * Web Module Siminov Exception Function Name.
+	 */
 	public String SIMINOV_EXCEPTION = "SiminovException";
 	
+	/**
+	 * Web Siminov Exception Class Name.
+	 */
 	public String CLASS_NAME = "className";
 	
+	/**
+	 * Web Siminov Exception Method Name.
+	 */
 	public String METHOD_NAME = "methodName";
 	
+	/**
+	 * Web Siminvo Exception Message.
+	 */
 	public String MESSAGE = "message";
 	
 }
