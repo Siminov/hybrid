@@ -26,14 +26,24 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.AdapterResources;
+import siminov.hybrid.adapter.constants.HybridDatabaseDescriptor;
+import siminov.hybrid.adapter.constants.HybridDatabaseMappingDescriptor;
+import siminov.hybrid.adapter.constants.HybridLibraryDescriptor;
 import siminov.hybrid.events.EventHandler;
 import siminov.hybrid.model.HybridDescriptor;
 import siminov.hybrid.model.HybridDescriptor.Adapter;
 import siminov.hybrid.model.HybridDescriptor.Adapter.Handler;
+import siminov.hybrid.model.HybridDescriptor.Adapter.Handler.Parameter;
+import siminov.hybrid.model.HybridDescriptor.Adapter.Handler.Return;
+import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
+import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
 import siminov.hybrid.model.LibraryDescriptor;
 import siminov.orm.database.DatabaseBundle;
 import siminov.orm.model.DatabaseDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor;
+import siminov.orm.model.DatabaseMappingDescriptor.Column;
+import siminov.orm.model.DatabaseMappingDescriptor.Index;
+import siminov.orm.model.DatabaseMappingDescriptor.Relationship;
 import android.webkit.WebView;
 
 /**
@@ -615,5 +625,556 @@ public class Resources {
 			
 		}
 	}
+
+	
+	/**
+	 * Generates Hybrid Database Descriptor
+	 * @param databaseDescriptor Database Descriptor.
+	 * @return Hybrid Application Descriptor. 
+	 */
+	public HybridSiminovData generateHybridDatabaseDescriptor(DatabaseDescriptor databaseDescriptor) {
+		
+		HybridSiminovData hybridDatabaseDescriptor = new HybridSiminovData();
+		hybridDatabaseDescriptor.setDataType(HybridDatabaseDescriptor.DATABASE_DESCRIPTOR);
+		
+		HybridSiminovValue databaseName = new HybridSiminovValue();
+		databaseName.setType(HybridDatabaseDescriptor.NAME);
+		databaseName.setValue(databaseDescriptor.getDatabaseName());
+
+		hybridDatabaseDescriptor.addValue(databaseName);
+		
+		HybridSiminovValue databaseDescription = new HybridSiminovValue();
+		databaseDescription.setType(HybridDatabaseDescriptor.DESCRIPTION);
+		databaseDescription.setValue(databaseDescriptor.getDescription());
+		
+		hybridDatabaseDescriptor.addValue(databaseDescription);
+		
+		HybridSiminovValue isLockingRequired = new HybridSiminovValue();
+		isLockingRequired.setType(HybridDatabaseDescriptor.IS_LOCKING_REQUIRED);
+		isLockingRequired.setValue(Boolean.toString(databaseDescriptor.isLockingRequired()));
+		
+		hybridDatabaseDescriptor.addValue(isLockingRequired);
+		
+		HybridSiminovValue externalStorage = new HybridSiminovValue();
+		externalStorage.setType(HybridDatabaseDescriptor.EXTERNAL_STORAGE);
+		externalStorage.setValue(Boolean.toString(databaseDescriptor.isExternalStorageEnable()));
+		
+		hybridDatabaseDescriptor.addValue(externalStorage);
+		
+		HybridSiminovData jsDatabaseMappingDescriptorPaths = new HybridSiminovData();
+		jsDatabaseMappingDescriptorPaths.setDataType(HybridDatabaseDescriptor.DATABASE_MAPPING_DESCRIPTORS);
+		
+		Iterator<String> databaseMappingDescriptors = databaseDescriptor.getDatabaseMappingPaths();
+		while(databaseMappingDescriptors.hasNext()) {
+			
+			HybridSiminovValue databaseMappingDescriptorPath = new HybridSiminovValue();
+			databaseMappingDescriptorPath.setType(HybridDatabaseDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATH);
+			databaseMappingDescriptorPath.setValue(databaseMappingDescriptors.next());
+			
+			jsDatabaseMappingDescriptorPaths.addValue(databaseMappingDescriptorPath);
+			
+		}
+		
+		hybridDatabaseDescriptor.addData(jsDatabaseMappingDescriptorPaths);
+		
+		HybridSiminovData hybridLibraries = new HybridSiminovData();
+		hybridLibraries.setDataType(HybridDatabaseDescriptor.LIBRARIES);
+		
+		Iterator<String> libraries = databaseDescriptor.getLibraryPaths();
+		while(libraries.hasNext()) {
+			
+			HybridSiminovValue library = new HybridSiminovValue();
+			library.setType(HybridDatabaseDescriptor.LIBRARY_PATH);
+			library.setValue(libraries.next());
+			
+			hybridLibraries.addValue(library);
+		}
+		
+		hybridDatabaseDescriptor.addData(hybridLibraries);
+		
+		return hybridDatabaseDescriptor;
+	}
+
+	
+	/**
+	 * Generate Hybrid Database Mapping Descriptor.
+	 * @param databaseMappingDescriptor Database Mapping Descriptor.
+	 * @return Hybrid Database Mapping Descriptor.
+	 */
+	public HybridSiminovData generateHybridDatabaseMappingDescriptor(final DatabaseMappingDescriptor databaseMappingDescriptor) {
+		
+		HybridSiminovData hybridDatabaseMappingDescriptor = new HybridSiminovData();
+		hybridDatabaseMappingDescriptor.setDataType(HybridDatabaseMappingDescriptor.DATABASE_MAPPING_DESCRIPTOR);
+		
+		
+		HybridSiminovValue tableName = new HybridSiminovValue();
+		tableName.setType(HybridDatabaseMappingDescriptor.TABLE_NAME);
+		tableName.setValue(databaseMappingDescriptor.getTableName());
+		
+		hybridDatabaseMappingDescriptor.addValue(tableName);
+		
+		
+		HybridSiminovValue className = new HybridSiminovValue();
+		className.setType(HybridDatabaseMappingDescriptor.CLASS_NAME);
+		className.setValue(databaseMappingDescriptor.getClassName());
+		
+		hybridDatabaseMappingDescriptor.addValue(className);
+		
+		
+		HybridSiminovData hybridColumns = new HybridSiminovData();
+		hybridColumns.setDataType(HybridDatabaseMappingDescriptor.COLUMNS);
+		
+		Iterator<Column> columns = databaseMappingDescriptor.getColumns();
+		while(columns.hasNext()) {
+			
+			Column column = columns.next();
+			HybridSiminovData hybridColumn = generateHybridDatabaseMappingDescriptorColumn(column);
+			hybridColumns.addData(hybridColumn);
+			
+		}
+
+		
+		hybridDatabaseMappingDescriptor.addData(hybridColumns);
+		
+		
+		HybridSiminovData hybridIndexs = new HybridSiminovData();
+		hybridIndexs.setDataType(HybridDatabaseMappingDescriptor.INDEXS);
+		
+		Iterator<Index> indexs = databaseMappingDescriptor.getIndexes();
+		while(indexs.hasNext()) {
+			
+			Index index = indexs.next();
+			HybridSiminovData jsIndex = generateHybridDatabaseMappingDescriptorIndex(index);
+			hybridIndexs.addData(jsIndex);
+		}
+			
+		hybridDatabaseMappingDescriptor.addData(hybridIndexs);
+		
+		
+		HybridSiminovData hybridRelationships = new HybridSiminovData();
+		hybridRelationships.setDataType(HybridDatabaseMappingDescriptor.RELATIONSHIPS);
+		
+		Iterator<Relationship> relationships = databaseMappingDescriptor.getRelationships();
+		while(relationships.hasNext()) {
+			Relationship relationship = relationships.next();
+			
+			HybridSiminovData hybridRelationship = generateHybridDatabaseMappingDescriptorRelationship(relationship);
+			hybridRelationships.addData(hybridRelationship);
+		}
+
+		hybridDatabaseMappingDescriptor.addData(hybridRelationships);
+			
+		return hybridDatabaseMappingDescriptor;
+	}
+
+	
+	/**
+	 * Generate Hybrid Database Mapping Descriptor Column.
+	 * @param column Database Mapping Descriptor Column.
+	 * @return Hybrid Siminov Data.
+	 */
+	public HybridSiminovData generateHybridDatabaseMappingDescriptorColumn(final Column column) {
+		
+		HybridSiminovData hybridColumn = new HybridSiminovData();
+		hybridColumn.setDataType(HybridDatabaseMappingDescriptor.COLUMN);
+		
+		HybridSiminovValue variableName = new HybridSiminovValue();
+		variableName.setType(HybridDatabaseMappingDescriptor.VARIABLE_NAME);
+		variableName.setValue(column.getVariableName());
+		
+		hybridColumn.addValue(variableName);
+		
+		
+		HybridSiminovValue columnName = new HybridSiminovValue();
+		columnName.setType(HybridDatabaseMappingDescriptor.COLUMN_NAME);
+		columnName.setValue(column.getColumnName());
+		
+		hybridColumn.addValue(columnName);
+		
+		
+		HybridSiminovValue type = new HybridSiminovValue();
+		type.setType(HybridDatabaseMappingDescriptor.TYPE);
+		type.setValue(column.getType());
+		
+		hybridColumn.addValue(type);
+		
+		
+		HybridSiminovValue primaryKey = new HybridSiminovValue();
+		primaryKey.setType(HybridDatabaseMappingDescriptor.PRIMARY_KEY);
+		primaryKey.setValue(Boolean.toString(column.isPrimaryKey()));
+		
+		hybridColumn.addValue(primaryKey);
+		
+		
+		HybridSiminovValue notNull = new HybridSiminovValue();
+		notNull.setType(HybridDatabaseMappingDescriptor.NOT_NULL);
+		notNull.setValue(Boolean.toString(column.isNotNull()));
+		
+		hybridColumn.addValue(notNull);
+		
+		
+		HybridSiminovValue unique = new HybridSiminovValue();
+		unique.setType(HybridDatabaseMappingDescriptor.UNIQUE);
+		unique.setValue(Boolean.toString(column.isUnique()));
+		
+		hybridColumn.addValue(unique);
+		
+		
+		HybridSiminovValue check = new HybridSiminovValue();
+		check.setType(HybridDatabaseMappingDescriptor.CHECK);
+		check.setValue(column.getCheck());
+		
+		hybridColumn.addValue(check);
+		
+		
+		HybridSiminovValue defaultValue = new HybridSiminovValue();
+		defaultValue.setType(HybridDatabaseMappingDescriptor.DEFAULT);
+		defaultValue.setValue(column.getDefaultValue());
+		
+		hybridColumn.addValue(defaultValue);
+
+		return hybridColumn;
+
+	}
+	
+	
+	/**
+	 * Generate Hybrid Database Mapping Descriptor Index.
+	 * @param index Database Mapping Descriptor Index.
+	 * @return Hybrid Database Mapping Descriptor Index.
+	 */
+	public HybridSiminovData generateHybridDatabaseMappingDescriptorIndex(final Index index) {
+		
+		HybridSiminovData hybridIndex = new HybridSiminovData();
+		hybridIndex.setDataType(HybridDatabaseMappingDescriptor.INDEX);
+		
+		HybridSiminovValue name = new HybridSiminovValue();
+		name.setType(HybridDatabaseMappingDescriptor.INDEX_NAME);
+		name.setValue(index.getName());
+		
+		hybridIndex.addValue(name);
+		
+		
+		HybridSiminovValue unique = new HybridSiminovValue();
+		unique.setType(HybridDatabaseMappingDescriptor.INDEX_UNIQUE);
+		unique.setValue(Boolean.toString(index.isUnique()));
+		
+		hybridIndex.addValue(unique);
+		
+		HybridSiminovData hybridIndexColumns = new HybridSiminovData();
+		
+		Iterator<String> columnNames = index.getColumns();
+		while(columnNames.hasNext()) {
+			HybridSiminovValue column = new HybridSiminovValue();
+			column.setType(HybridDatabaseMappingDescriptor.INDEX_COLUMN);
+			column.setValue(columnNames.next());
+
+			hybridIndexColumns.addValue(column);
+			
+		}
+
+		return hybridIndex;
+		
+	}
+	
+	
+	/**
+	 * Generate Hybrid Database Mapping Descriptor Relationship.
+	 * @param relationship Database Mapping Descriptor Relationship.
+	 * @return Hybrid Database Mapping Descriptor Relationship.
+	 */
+	public HybridSiminovData generateHybridDatabaseMappingDescriptorRelationship(final Relationship relationship) {
+		
+		HybridSiminovData hybridRelationship = new HybridSiminovData();
+		hybridRelationship.setDataType(HybridDatabaseMappingDescriptor.RELATIONSHIP);
+		
+		HybridSiminovValue relationshipType = new HybridSiminovValue();
+		relationshipType.setType(HybridDatabaseMappingDescriptor.RELATIONSHIP_TYPE);
+		relationshipType.setValue(relationship.getRelationshipType());
+		
+		hybridRelationship.addValue(relationshipType);
+		
+		
+		HybridSiminovValue refer = new HybridSiminovValue();
+		refer.setType(HybridDatabaseMappingDescriptor.REFER);
+		refer.setValue(relationship.getRefer());
+		
+		hybridRelationship.addValue(refer);
+		
+		
+		HybridSiminovValue referTo = new HybridSiminovValue();
+		referTo.setType(HybridDatabaseMappingDescriptor.REFER_TO);
+		referTo.setValue(relationship.getReferTo());
+		
+		hybridRelationship.addValue(referTo);
+		
+		
+		HybridSiminovValue onUpdate = new HybridSiminovValue();
+		onUpdate.setType(HybridDatabaseMappingDescriptor.ON_UPDATE);
+		onUpdate.setValue(relationship.getOnUpdate());
+		
+		hybridRelationship.addValue(onUpdate);
+		
+		
+		HybridSiminovValue  onDelete = new HybridSiminovValue();
+		onDelete.setType(HybridDatabaseMappingDescriptor.ON_DELETE);
+		onDelete.setValue(relationship.getOnDelete());
+		
+		hybridRelationship.addValue(onDelete);
+		
+		
+		HybridSiminovValue load = new HybridSiminovValue();
+		load.setType(HybridDatabaseMappingDescriptor.LOAD);
+		load.setValue(Boolean.toString(relationship.isLoad()));
+		
+		hybridRelationship.addValue(load);
+
+		return hybridRelationship;
+		
+	}
+
+	
+	/**
+	 * Generate Hybrid Library Descriptor.
+	 * @param libraryDescriptor Library Descriptor.
+	 * @return Hybrid Library Descriptor.
+	 */
+	public HybridSiminovData generateHybridLibraryDescriptor(final siminov.orm.model.LibraryDescriptor libraryDescriptor) {
+		
+		HybridSiminovData hybridLibraryDescriptor = new HybridSiminovData();
+		hybridLibraryDescriptor.setDataType(HybridLibraryDescriptor.LIBRARY_DESCRIPTOR);
+		
+		
+		HybridSiminovValue name = new HybridSiminovValue();
+		name.setType(HybridLibraryDescriptor.NAME);
+		name.setValue(libraryDescriptor.getName());
+		
+		hybridLibraryDescriptor.addValue(name);
+		
+		
+		HybridSiminovValue description = new HybridSiminovValue();
+		description.setType(HybridLibraryDescriptor.DESCRIPTION);
+		description.setValue(libraryDescriptor.getDescription());
+		
+		
+		HybridSiminovData hybridDatabaseMappingDescriptorPaths = new HybridSiminovData();
+		hybridDatabaseMappingDescriptorPaths.setDataType(HybridLibraryDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATHS);
+		
+		Iterator<String> databaseMappingDescriptorPaths = libraryDescriptor.getDatabaseMappingPaths();
+		while(databaseMappingDescriptorPaths.hasNext()) {
+			
+			HybridSiminovValue hybridDatabaseMappingDescriptorPath = new HybridSiminovValue();
+			hybridDatabaseMappingDescriptorPath.setType(HybridLibraryDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATH);
+			
+			hybridDatabaseMappingDescriptorPaths.addValue(hybridDatabaseMappingDescriptorPath);
+		}
+		
+		hybridLibraryDescriptor.addData(hybridDatabaseMappingDescriptorPaths);
+		
+		return hybridLibraryDescriptor;
+		
+	}
+
+	
+	/**
+	 * Generate Hybrid Descriptor.
+	 * @param hybridDescriptor Hybrid Descriptor.
+	 * @return Web Hybrid Descriptor.
+	 */
+	public HybridSiminovData generateHybridDescriptor(final HybridDescriptor hybridDescriptor) {
+		
+		HybridSiminovData hybridWebDescriptor = new HybridSiminovData();
+		hybridWebDescriptor.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HRBRID_DESCRIPTOR);
+		
+		
+		HybridSiminovData hybridAdapters = new HybridSiminovData();
+		hybridAdapters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTERS);
+		
+		Iterator<Adapter> adapters = hybridDescriptor.getAdapters();
+		while(adapters.hasNext()) {
+			hybridAdapters.addData(generateHybridAdapter(adapters.next()));
+		}
+
+		HybridSiminovData hybridAdapterPaths = new HybridSiminovData();
+		hybridAdapterPaths.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_PATHS);
+		
+		Iterator<String> adapterPaths = hybridDescriptor.getAdapterPaths();
+		while(adapterPaths.hasNext()) {
+			
+			HybridSiminovValue hybridAdapterPath = new HybridSiminovValue();
+			hybridAdapterPath.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_PATH);
+			hybridAdapterPath.setValue(adapterPaths.next());
+			
+		}
+		
+		hybridWebDescriptor.addData(hybridAdapterPaths);
+		
+		
+		HybridSiminovData hybridLibraries = new HybridSiminovData();
+		hybridLibraries.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.LIBRARIES);
+		
+		Iterator<String> libraries = hybridDescriptor.getLibraryPaths();
+		while(libraries.hasNext()) {
+			
+			HybridSiminovValue jsLibrary = new HybridSiminovValue();
+			jsLibrary.setType(siminov.hybrid.adapter.constants.HybridDescriptor.LIBRARY);
+			jsLibrary.setValue(libraries.next());
+			
+			hybridLibraries.addValue(jsLibrary);
+			
+		}
+		
+		hybridWebDescriptor.addData(hybridLibraries);
+		
+		hybridWebDescriptor.addData(hybridAdapters);
+
+		return hybridWebDescriptor;
+		
+	}
+	
+	
+	/**
+	 * Generate Hybrid Adapter.
+	 * @param adapter Adapter.
+	 * @return Hybrid Adapter.
+	 */
+	public HybridSiminovData generateHybridAdapter(final Adapter adapter) {
+		
+		HybridSiminovData hybridAdapter = new HybridSiminovData();
+		hybridAdapter.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER);
+		
+		
+		HybridSiminovValue adapterName = new HybridSiminovValue();
+		adapterName.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_NAME);
+		adapterName.setValue(adapter.getName());
+		
+		hybridAdapter.addValue(adapterName);
+		
+
+		HybridSiminovValue adapterDescription = new HybridSiminovValue();
+		adapterDescription.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_DESCRIPTION);
+		adapterDescription.setValue(adapter.getDescription());
+		
+		hybridAdapter.addValue(adapterDescription);
+		
+		
+		HybridSiminovValue adapterMapTo = new HybridSiminovValue();
+		adapterMapTo.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_MAP_TO);
+		adapterMapTo.setValue(adapter.getMapTo());
+		
+		hybridAdapter.addValue(adapterMapTo);
+		
+		
+		HybridSiminovValue cache = new HybridSiminovValue();
+		cache.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_CACHE);
+		cache.setValue(Boolean.toString(adapter.isCache()));
+		
+		hybridAdapter.addValue(cache);
+		
+		
+		HybridSiminovData hybridHandlers = new HybridSiminovData();
+		hybridHandlers.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLERS);
+		
+		Iterator<Handler> handlers = adapter.getHandlers();
+		while(handlers.hasNext()) {
+			hybridHandlers.addData(generateHybridHandler(handlers.next()));
+		}
+		
+
+		hybridAdapter.addData(hybridHandlers);
+		
+		return hybridAdapter;
+	}
+
+	
+	/**
+	 * Generate Hybrid Handler.
+	 * @param handler Handler.
+	 * @return Hybrid Handler.
+	 */
+	public HybridSiminovData generateHybridHandler(final Handler handler) {
+		
+		HybridSiminovData hybridHandler = new HybridSiminovData();
+		hybridHandler.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER);
+		
+		
+		HybridSiminovValue handlerName = new HybridSiminovValue();
+		handlerName.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_NAME);
+		handlerName.setValue(handler.getName());
+		
+		hybridHandler.addValue(handlerName);
+		
+		
+		HybridSiminovValue handlerMapTo = new HybridSiminovValue();
+		handlerMapTo.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_MAP_TO);
+		handlerMapTo.setValue(handler.getMapTo());
+		
+		hybridHandler.addValue(handlerMapTo);
+		
+		
+		HybridSiminovValue handlerDescription = new HybridSiminovValue();
+		handlerDescription.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_DESCRIPTION);
+		handlerDescription.setValue(handler.getDescription());
+		
+		hybridHandler.addValue(handlerDescription);
+		
+		
+		HybridSiminovData hybridHandlerParameters = new HybridSiminovData();
+		hybridHandlerParameters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_PARAMETERS);
+		
+		Iterator<Parameter> parameters = handler.getParameters();
+		while(parameters.hasNext())  {
+			
+			Parameter parameter = parameters.next();
+			
+			HybridSiminovData hybridHandlerParameter = new HybridSiminovData();
+			hybridHandlerParameter.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_PARAMETER);
+			
+			
+			HybridSiminovValue parameterType = new HybridSiminovValue();
+			parameterType.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_PARAMETER_TYPE);
+			parameterType.setValue(parameter.getType());
+			
+			hybridHandlerParameter.addValue(parameterType);
+			
+			
+			HybridSiminovValue parameterDescription = new HybridSiminovValue();
+			parameterDescription.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_PARAMETER_DESCRIPTION);
+			parameterDescription.setValue(parameter.getDescription());
+			
+			hybridHandlerParameter.addValue(parameterDescription);
+			
+			hybridHandlerParameters.addData(hybridHandlerParameter);
+			
+		}
+		
+		hybridHandler.addData(hybridHandlerParameters);
+
+		Return returnType = handler.getReturn();
+		if(returnType != null) {
+
+			HybridSiminovData hybridReturn = new HybridSiminovData();
+			hybridReturn.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_RETURN);
+			
+			
+			HybridSiminovValue hybridReturnType = new HybridSiminovValue();
+			hybridReturnType.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_RETURN_TYPE);
+			hybridReturnType.setValue(returnType.getType());
+			
+			hybridReturn.addValue(hybridReturnType);
+					
+			
+			HybridSiminovValue hybridReturnDescription = new HybridSiminovValue();
+			hybridReturnDescription.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_RETURN_DESCRIPTION);
+			hybridReturnDescription.setValue(returnType.getDescription());
+			
+			hybridReturn.addValue(hybridReturnDescription);
+			
+			hybridHandler.addData(hybridReturn);
+		}
+
+		return hybridHandler;
+	}
+
 	
 }

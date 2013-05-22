@@ -23,7 +23,6 @@ import java.util.Iterator;
 import siminov.hybrid.Constants;
 import siminov.hybrid.adapter.Adapter;
 import siminov.hybrid.adapter.constants.HybridEventHandler;
-import siminov.hybrid.adapter.handlers.ResourcesHandler;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
@@ -91,9 +90,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		//Parameters
-		ResourcesHandler resourcesHandler = new ResourcesHandler();
-		HybridSiminovData jsDatabaseDescriptor = null;
-		jsDatabaseDescriptor = resourcesHandler.generateHybridDatabaseDescriptor(databaseDescriptor);
+		HybridSiminovData jsDatabaseDescriptor = hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor);
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);
@@ -167,13 +164,11 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		//Parameters
-		ResourcesHandler resourcesHandler = new ResourcesHandler();
-		HybridSiminovData jsDatabaseDescriptor = null;
-		jsDatabaseDescriptor = resourcesHandler.generateHybridDatabaseDescriptor(databaseDescriptor);
+		HybridSiminovData hybridDatabaseDescriptor = hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor);;
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);
-		parameteres.addData(jsDatabaseDescriptor);
+		parameteres.addData(hybridDatabaseDescriptor);
 		
 		hybridSiminovDatas.addHybridSiminovData(parameteres);
 		
@@ -242,13 +237,9 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		//Parameters
-		ResourcesHandler resourcesHandler = new ResourcesHandler();
-
-		HybridSiminovData hybridDatabaseDescriptor = null;
-		hybridDatabaseDescriptor = resourcesHandler.generateHybridDatabaseDescriptor(databaseDescriptor);
+		HybridSiminovData hybridDatabaseDescriptor = hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor);
 		
-		HybridSiminovData hybridDatabaseMappingDescriptor = null;
-		hybridDatabaseMappingDescriptor = resourcesHandler.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptor);
+		HybridSiminovData hybridDatabaseMappingDescriptor = hybridResources.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptor);
 		
 		
 		HybridSiminovData parameters = new HybridSiminovData();
@@ -325,14 +316,9 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		//Parameters
-		ResourcesHandler resourcesHandler = new ResourcesHandler();
-
-		HybridSiminovData hybridDatabaseDescriptor = null;
-		hybridDatabaseDescriptor = resourcesHandler.generateHybridDatabaseDescriptor(databaseDescriptor);
+		HybridSiminovData hybridDatabaseDescriptor = hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor);
 		
-		HybridSiminovData hybridDatabaseMappingDescriptor = null;
-		hybridDatabaseMappingDescriptor = resourcesHandler.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptor);
-		
+		HybridSiminovData hybridDatabaseMappingDescriptor = hybridResources.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptor);;
 		
 		HybridSiminovData parameters = new HybridSiminovData();
 		parameters.setDataType(HybridEventHandler.EVENT_PARAMETERS);
@@ -408,16 +394,11 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		//Parameters
-		ResourcesHandler resourcesHandler = new ResourcesHandler();
-
-		HybridSiminovData hybridDatabaseDescriptor = null;
-		hybridDatabaseDescriptor = resourcesHandler.generateHybridDatabaseDescriptor(databaseDescriptor);
+		HybridSiminovData hybridDatabaseDescriptor = hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor);
 		
-		HybridSiminovData hybridDatabaseMappingDescriptor = null;
-		hybridDatabaseMappingDescriptor = resourcesHandler.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptor);
+		HybridSiminovData hybridDatabaseMappingDescriptor = hybridResources.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptor);
 		
-		HybridSiminovData hybridDatabaseMappingDescriptorIndex = null;
-		hybridDatabaseMappingDescriptorIndex = resourcesHandler.generateHybridDatabaseMappingDescriptorIndex(index);
+		HybridSiminovData hybridDatabaseMappingDescriptorIndex = hybridResources.generateHybridDatabaseMappingDescriptorIndex(index);
 		
 		HybridSiminovData parameters = new HybridSiminovData();
 		parameters.setDataType(HybridEventHandler.EVENT_PARAMETERS);
@@ -493,16 +474,11 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		//Parameters
-		ResourcesHandler resourcesHandler = new ResourcesHandler();
-
-		HybridSiminovData hybridDatabaseDescriptor = null;
-		hybridDatabaseDescriptor = resourcesHandler.generateHybridDatabaseDescriptor(databaseDescriptor);
+		HybridSiminovData hybridDatabaseDescriptor = hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor);
 		
-		HybridSiminovData hybridDatabaseMappingDescriptor = null;
-		hybridDatabaseMappingDescriptor = resourcesHandler.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptor);
+		HybridSiminovData hybridDatabaseMappingDescriptor = hybridResources.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptor);
 		
-		HybridSiminovData hybridDatabaseMappingDescriptorIndex = null;
-		hybridDatabaseMappingDescriptorIndex = resourcesHandler.generateHybridDatabaseMappingDescriptorIndex(index);
+		HybridSiminovData hybridDatabaseMappingDescriptorIndex = hybridResources.generateHybridDatabaseMappingDescriptorIndex(index);
 		
 		HybridSiminovData parameters = new HybridSiminovData();
 		parameters.setDataType(HybridEventHandler.EVENT_PARAMETERS);
