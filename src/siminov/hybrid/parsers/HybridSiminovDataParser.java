@@ -32,6 +32,10 @@ import siminov.orm.exception.SiminovCriticalException;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
+/**
+ * Exposes API to parse Siminov Hybrid JSON format data to transfer between WEB-TO-NATIVE or NATIVE-TO-WEB.
+ *
+ */
 public class HybridSiminovDataParser implements Constants {
 
 	private HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();

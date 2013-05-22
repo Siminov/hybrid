@@ -34,6 +34,64 @@ import siminov.orm.parsers.SiminovSAXDefaultHandler;
 import siminov.orm.resource.Resources;
 import android.content.Context;
 
+
+/**
+ * Exposes methods to parse Hybrid Descriptor information as per define in HybridDescriptor.si.xml file by application.
+	<p>
+		<pre>
+		
+Example:
+	{@code
+	<hybrid-descriptor>
+	
+		<adapters>
+			
+			<adapter>
+				<property name="name">name_of_adapter</property>
+				<property name="description">description_about_adapter</property>
+				<property name="type">type_of_adapter</property>
+				<property name="map_to">map_to_class_name</property>
+				<property name="cache">should_be_cached_or_not</property>
+				
+				<handlers>
+				
+					<handler>
+						<property name="name">name_of_handler</property>
+						<property name="description">description_about_handler</property>
+						<property name="map_to">map_to_function_name</property>
+						
+						<parameters>
+							
+							<parameter>
+								<property name="name"></property>
+								<property name="description"></property>
+								<property name="type"></property>
+							</parameter>
+						
+						</parameter>
+						
+						<return>
+								<property name="type">return_data_type</property>
+								<property name="description">description_about_return_data</property>
+						</return>
+						
+					</handler>
+				
+				</handlers>
+				
+			</adapter>
+			
+		</adapters>
+		
+			
+			
+	</hybrid-descriptor>
+	}
+	
+		</pre>
+	</p>
+ *
+ */
 public class HybridDescriptorParser extends SiminovSAXDefaultHandler implements Constants {
 
 	private String tempValue = null;

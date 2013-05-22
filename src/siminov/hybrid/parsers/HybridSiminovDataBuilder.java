@@ -30,9 +30,19 @@ import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovVa
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
-
+/**
+ * Exposes API to build Siminov Hybrid JSON format data to transfer between WEB-TO-NATIVE or NATIVE-TO-WEB.
+ *
+ */
 public class HybridSiminovDataBuilder {
 
+	
+	/**
+	 * Build JSON using Hybrid Siminov Datas.
+	 * @param jsSiminovDatas Hybrid Siminov Datas.
+	 * @return Siminov JSON
+	 * @throws SiminovException If any error occur while generating JSON out of Hybrid Siminov Datas.
+	 */
 	public static String jsonBuidler(HybridSiminovDatas jsSiminovDatas) throws SiminovException {
 		
 		JSONObject jsonHybridSiminovData = new JSONObject();

@@ -31,6 +31,41 @@ import siminov.orm.parsers.SiminovSAXDefaultHandler;
 import siminov.orm.resource.Resources;
 import android.content.Context;
 
+/**
+ * Exposes methods to parse Library Descriptor information as per define in LibraryDescriptor.si.xml file by application.
+	<p>
+		<pre>
+		
+Example:
+	{@code
+	<library>
+	
+		<property name="name">SIMINOV LIBRARY TEMPLATE</property>
+		<property name="description">Siminov Library Template</property>
+	
+		<!-- Database Mappings -->
+			<database-mappings>
+				<database-mapping path="Credential.si.xml" />
+			</database-mappings>
+	
+			 	<!-- OR -->
+			 
+			<database-mappings>
+				<database-mapping path="siminov.orm.library.template.model.Credential" />
+			</database-mappings>
+
+		 <!-- Adapters -->
+		 	<adapters>
+		 		<adapter path="adapter_full_path" />
+		 	</adapters>
+		 
+	</library>
+	}
+	
+		</pre>
+	</p>
+ *
+ */
 public class HybridLibraryDescriptorParser extends SiminovSAXDefaultHandler implements Constants {
 
 	private String tempValue = null;
