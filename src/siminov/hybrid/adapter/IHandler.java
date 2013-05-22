@@ -19,13 +19,34 @@
 package siminov.hybrid.adapter;
 
 
-
+/**
+ * Exposes methods to deal with actual request comes from WEB-TO-NATIVE or NATIVE-TO-WEB. 
+ * It has methods to open, create, close, and execute query's.
+ */
 public interface IHandler {
 
+	/**
+	 * Handle request from WEB-TO-NATIVE
+	 * @param action Action Needs to be performed on Native.
+	 * @return Return Data By Native Handler API.
+	 */
 	public Object handleWebToNative(final String action);
 	
+	
+	/**
+	 * Handle request from WEB-TO-NATIVE
+	 * @param action Action Needs to be performed on Native.
+	 * @param data Data to Native Handler.
+	 * @return
+	 */
 	public Object handleWebToNative(final String action, final String data);
 	
+	
+	/**
+	 * Handle request from NATIVE-TO-WEB.
+	 * @param action Action Needs to be performed on Web.
+	 * @param data Data to Web Handler.
+	 */
 	public void handleNativeToWeb(final String action, final String...data);
 	
 }
