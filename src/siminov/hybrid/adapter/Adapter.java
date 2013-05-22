@@ -21,6 +21,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Handle Request between NATIVE-TO-WEB.
+ * Exposes method to GET and SET information about request.
+ *
+ */
 public class Adapter {
 
 	private AdapterHandler adapterHandler = AdapterHandler.getInstance();
@@ -30,31 +35,58 @@ public class Adapter {
 	
 	private List<String> parameters = new ArrayList<String>();
 	
+	/**
+	 * Get Adapter Name.
+	 * @return Name of Adapter.
+	 */
 	public String getAdapterName() {
 		return this.adapterName;
 	}
 	
+	/**
+	 * Set Adapter Name.
+	 * @param adapterName Name of Adapter.
+	 */
 	public void setAdapterName(String adapterName) {
 		this.adapterName = adapterName;
 	}
 	
+	/**
+	 * Get Handler Name.
+	 * @return Name of Handler.
+	 */
 	public String getHandlerName() {
 		return this.handlerName;
 	}
 	
+	/**
+	 * Set Handler Name.
+	 * @param handlerName Name of Handler.
+	 */
 	public void setHandlerName(String handlerName) {
 		this.handlerName = handlerName;
 	}
 	
+	/**
+	 * Get Handler Parameters.
+	 * @return Handler Parameters.
+	 */
 	public Iterator<String> getParameters() {
 		return this.parameters.iterator();
 	}
 	
+	/**
+	 * Set Handler Parameters.
+	 * @param parameter Handler Parameters.
+	 */
 	public void addParameter(String parameter) {
 		this.parameters.add(parameter);
 	}
 	
 	
+	/**
+	 * Invokes Handler based on request parameter set.
+	 */
 	public void invoke() {
 		
 		IHandler handler = adapterHandler.getHandler();
