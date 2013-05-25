@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="yui">
+    	    
+    <target name="yui">
+        
+        <java jar="yui.assets/yuicompressor-2.4.7.jar" fork="true">
+	        <!-- input path for JS files -->
+	        <arg value="build/Siminov/Siminov-build.js" />
+	        <arg value="build/Siminov/Constants.js" /> 
+	        <arg value="build/Siminov/Adapter/*.js" />
+	        <arg value="build/Siminov/Collection/*.js" />
+	        <arg value="build/Siminov/Database/*.js" />
+	        <arg value="build/Siminov/Database/Impl/*.js" />
+	        <arg value="build/Siminov/Events/*.js" />
+	        <arg value="build/Siminov/Exception/*.js" />
+	        <arg value="build/Siminov/Log/*.js" />
+	        <arg value="build/Siminov/Model/*.js" />
+	        <arg value="build/Siminov/Parser/*.js" />
+	        <arg value="build/Siminov/Resource/*.js" />
+	        <arg value="build/Siminov/Utils/*.js" />
+	        	        
+	        <!--<arg value="-v" /> --><!-- Turn on verbose -->
+	        <arg value="-o" />
+		    <arg value="'.js$:.js'" />
+	        <!-- output path for JS files -->
+	        <arg value="build/Siminov/*.js" /> 
+	        
+	        <classpath>
+	            <pathelement location="yui.assets/yuicompressor-2.4.7.jar"/>
+	        </classpath>
+	    </java>
+	    <echo message="Siminov Hybrid Build Successful." />
+	    
+        <touch file = "build/Siminov.js" /> 
+        
+	    <concat destfile="build/Siminov.js">
+	        <fileset dir="build/Siminov/" includes="Siminov-build.js" />
+  	        <fileset dir="build/Siminov/" includes="Constants.js" />
+	        <fileset dir="build/Siminov/Adapter" includes="*.js" />
+	        <fileset dir="build/Siminov/Collection" includes="*.js" />
+	        <fileset dir="build/Siminov/Database" includes="*.js" />
+  	        <fileset dir="build/Siminov/Database/Impl" includes="*.js" />
+	        <fileset dir="build/Siminov/Events" includes="*.js" />
+	        <fileset dir="build/Siminov/Exception" includes="*.js" />
+	        <fileset dir="build/Siminov/Log" includes="*.js" />
+	        <fileset dir="build/Siminov/Model" includes="*.js" />
+	        <fileset dir="build/Siminov/Parser" includes="*.js" />
+	        <fileset dir="build/Siminov/Resource" includes="*.js" />
+	        <fileset dir="build/Siminov/Utils" includes="*.js" />
+  	    </concat>
+	    <echo message="Siminov Hybrid Compression Successful." />
+	    
+   	</target>
+    
+</project>
