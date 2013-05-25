@@ -158,19 +158,9 @@ public class Siminov extends siminov.orm.Siminov {
 	 */
 	protected static void processHybridDescriptor() {
 		
-		HybridDescriptorParser jsDescriptorParser = null;
+		HybridDescriptorParser hybridDescriptorParser = new HybridDescriptorParser();
 		
-		try {
-			jsDescriptorParser = new HybridDescriptorParser();
-		} catch(SiminovException siminovException) {
-			Log.logd(Siminov.class.getName(), "processHybridDescriptor", "SiminovException caught while doing js descriptor parser, " + siminovException.getMessage());
-			throw new DeploymentException(Siminov.class.getName(), "processHybridDescriptor", siminovException.getMessage());
-		} catch(DeploymentException deploymentException) {
-			Log.logd(Siminov.class.getName(), "processHybridDescriptor", "DeploymentException caught while doing js descriptor parser, " + deploymentException.getMessage());
-			throw new DeploymentException(Siminov.class.getName(), "processHybridDescriptor", deploymentException.getMessage());
-		}
-		
-		HybridDescriptor jsDescriptor = jsDescriptorParser.getJSDescriptor();
+		HybridDescriptor jsDescriptor = hybridDescriptorParser.getJSDescriptor();
 		if(jsDescriptor == null) {
 			Log.logd(Siminov.class.getName(), "processHybridDescriptor", "Invalid JS Descriptor Found.");
 			throw new DeploymentException(Siminov.class.getName(), "processHybridDescriptor", "Invalid JS Descriptor Found.");
@@ -241,16 +231,9 @@ public class Siminov extends siminov.orm.Siminov {
 		HybridDescriptor jsDescriptor = hybridResources.getHybridDescriptor();
 		while(adapterPaths.hasNext()) {
 			String adapterPath = adapterPaths.next();
-			HybridDescriptorParser jsDescriptorParser = null;
+			HybridDescriptorParser hybridDescriptorParser = new HybridDescriptorParser(adapterPath);
 			
-			try {
-				jsDescriptorParser = new HybridDescriptorParser(adapterPath);
-			} catch(SiminovException ce) {
-				Log.loge(Siminov.class.getName(), "processAdapters", "SiminovException caught while parsing database mapping, LIBRARY-DATABASE-MAPPING: " + adapterPath + ", " + ce.getMessage());
-				throw new DeploymentException(Siminov.class.getName(), "processAdapters", "LIBRARY-DATABASE-MAPPING: " + adapterPath + ", " + ce.getMessage());
-			}
-			
-			Iterator<Adapter> adapters = jsDescriptorParser.getJSDescriptor().getAdapters();
+			Iterator<Adapter> adapters = hybridDescriptorParser.getJSDescriptor().getAdapters();
 			while(adapters.hasNext()) {
 				Adapter adapter = adapters.next();
 				jsDescriptor.addAdapter(adapterPath, adapter);				
@@ -264,16 +247,9 @@ public class Siminov extends siminov.orm.Siminov {
 		Iterator<String> libraryAdapterPaths = libraryDescriptor.getAdapterPaths();
 		while(libraryAdapterPaths.hasNext()) {
 			String libraryAdapterPath = libraryAdapterPaths.next();
-			HybridDescriptorParser jsDescriptorParser = null;
+			HybridDescriptorParser hybridDescriptorParser = new HybridDescriptorParser(libraryPackageName, libraryAdapterPath);
 			
-			try {
-				jsDescriptorParser = new HybridDescriptorParser(libraryPackageName, libraryAdapterPath);
-			} catch(SiminovException ce) {
-				Log.loge(Siminov.class.getName(), "processAdapters", "SiminovException caught while parsing database mapping, LIBRARY-DATABASE-MAPPING: " + libraryAdapterPath + ", " + ce.getMessage());
-				throw new DeploymentException(Siminov.class.getName(), "processAdapters", "LIBRARY-DATABASE-MAPPING: " + libraryAdapterPath + ", " + ce.getMessage());
-			}
-			
-			Iterator<Adapter> adapters = jsDescriptorParser.getJSDescriptor().getAdapters();
+			Iterator<Adapter> adapters = hybridDescriptorParser.getJSDescriptor().getAdapters();
 			while(adapters.hasNext()) {
 				Adapter adapter = adapters.next();
 				libraryDescriptor.addAdapter(libraryAdapterPath, adapter);				

@@ -1,4 +1,5 @@
 /** 
+
  * [SIMINOV FRAMEWORK]
  * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
  *
@@ -111,20 +112,20 @@ public class HybridDescriptorParser extends SiminovSAXDefaultHandler implements 
 
 	private String propertyName = null;
 	
-	public HybridDescriptorParser() throws SiminovException, DeploymentException {
+	public HybridDescriptorParser() {
 		parse(HYBRID_DESCRIPTOR_FILE_NAME);
 	}
 
-	public HybridDescriptorParser(String adapterPath) throws SiminovException, DeploymentException {
+	public HybridDescriptorParser(String adapterPath) {
 		parse(adapterPath);
 	}
 	
-	public HybridDescriptorParser(String libraryPackageName, String adapterPath) throws SiminovException, DeploymentException {
+	public HybridDescriptorParser(String libraryPackageName, String adapterPath) {
 		
 		Context context = resources.getApplicationContext();
 		if(context == null) {
 			Log.loge(getClass().getName(), "Constructor", "Invalid context found.");
-			throw new SiminovException(getClass().getName(), "Constructor", "Invalid context found.");
+			throw new DeploymentException(getClass().getName(), "Constructor", "Invalid context found.");
 		}
 
 		/*
@@ -136,46 +137,45 @@ public class HybridDescriptorParser extends SiminovSAXDefaultHandler implements 
 			adapterStream = getClass().getClassLoader().getResourceAsStream(libraryPackageName.replace(".", "/") + "/" + adapterPath);
 		} catch(Exception exception) {
 			Log.logd(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + exception.getMessage());
-			
-			//If Application have not describe HybridDescriptor.si.xml file in their Application.
-			
-			return;
-			
+			throw new DeploymentException(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + exception.getMessage());
 		}
 		
 		try {
 			parseMessage(adapterStream);
 		} catch(Exception exception) {
 			Log.loge(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
-			throw new SiminovException(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
+			throw new DeploymentException(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
 		}
 	}
 	
-	private void parse(String fileName) throws SiminovException, DeploymentException {
+	private void parse(String fileName) {
 
 		Context context = resources.getApplicationContext();
 		if(context == null) {
 			Log.loge(getClass().getName(), "Constructor", "Invalid context found.");
-			throw new SiminovException(getClass().getName(), "Constructor", "Invalid context found.");
+			throw new DeploymentException(getClass().getName(), "Constructor", "Invalid context found.");
 		}
 
 		/*
-		 * Parse ApplicationDescriptor.
+		 * Parse HybridDescriptor.
 		 */
 		InputStream applicationDescriptorStream = null;
 		
 		try {
 			applicationDescriptorStream = context.getAssets().open(fileName);
 		} catch(IOException ioException) {
-			Log.loge(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + ioException.getMessage());
-			throw new SiminovException(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + ioException.getMessage());
+			Log.logd(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + ioException.getMessage());
+			
+			//Ignore If Hybrid Descriptor Not Defined.
+			
+			return;
 		}
 		
 		try {
 			parseMessage(applicationDescriptorStream);
 		} catch(Exception exception) {
 			Log.loge(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
-			throw new SiminovException(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
+			throw new DeploymentException(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
 		}
 	}
 	
