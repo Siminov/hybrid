@@ -125,7 +125,18 @@ DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modellin
 		-> table_name*: Name of table. It is mandatory field. 
 		
 		-> class_name*: Name of POJO class name which is to be mapped to table name. It is mandatory field.
-		
+
+			Note*: 
+				-> POJO Class can be define in both Native and Web.
+				
+				-> Native Class: If you have mapped POJO class in Native then defined class using Java. 
+						Specify full Java class path and name in class_name TAG.
+				
+				-> Web Class: If you have mapped POJO class in Web then defined class using JavaScript. 
+						Specify only JavaScript Function name in class_name TAG.
+				
+				-> Both (Native/Web) Class: If you have mapped POJO class in both Native and Web then defined both classes using Java and JavaScript.		
+						Specify full Java class path and name in class_name TAG, no need to define for JavaScript because Siminov will automatically accume same name for it.
 		
 		
 	ii. COLUMN TAG: This tag defines the relationship between database table column and its mapped POJO class variable name.
@@ -137,7 +148,43 @@ DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modellin
 		
 		PROPERTIES OF COLUMN TAG
 		
-			-> type*: TEXT/INTEGER/LONG/BLOG/FLOAT. Database table column type. It is mandatory field.
+			-> type*: Variable data type. It is mandatory field.
+		
+					Note*: 
+						-> POJO Class can be define in both Native and Web.
+						
+						-> Native Class: If you have mapped POJO class in Native then specify Java Variable data type.
+							
+							Java Data Type*:
+								-> java.lang.int
+								-> java.lang.Integer
+								-> java.lang.long
+								-> java.lang.Long
+								-> java.lang.float
+								-> java.lang.Float
+								-> java.lang.boolean
+								-> java.lang.Boolean
+								-> java.lang.char
+								-> java.lang.Character
+								-> java.lang.String
+								-> java.lang.byte
+								-> java.lang.Byte
+								-> java.lang.void
+								-> java.lang.Void
+								-> java.lang.short
+								-> java.lang.Short
+				
+						-> Web Class: If you have mapped POJO class in Web then specify JavaScript Variable data type.
+						
+							JavaScript Data Type*:
+								-> String 
+								-> Number
+								-> Boolean
+								-> Array
+								-> Object
+								-> Null
+								-> Undefined
+								
 			
 			-> primary_key: TRUE/FALSE. It defines whether the field is primary key to table or not. It is optional field. Default value is false.
 			
@@ -199,6 +246,15 @@ DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modellin
 			-> refer*: Name of variable which needs to be mapped. It is mandatory field.
 			
 			-> refer_to*: Class name of mapped variable. It is mandatory field.
+			
+					Note*: 
+						-> Class can be define in both Native and Web.
+						
+						-> Native Class: If you have mapped class in Native then specify Java class path and name in refer_to TAG.
+						
+						-> Web Class: If you have mapped POJO class in Web then specify only JavaScript Function name in refer_to TAG.
+						
+						-> Both (Native/Web) Class: If you have mapped POJO class in both Native and Web then specify full Java class path and name in refer_to TAG, no need to define for JavaScript because Siminov will automatically accume same name for it.
 			
 			-> on_update: cascade/restrict/no_action/set_null/set_default. It defines action needs to be done, when update occur.
 		

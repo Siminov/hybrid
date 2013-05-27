@@ -22,7 +22,7 @@
  
 <?xml version="1.0" encoding="UTF-8"?>
 
-<core>
+<siminov>
     
 	<!-- General Application Description Properties -->
 	
@@ -59,7 +59,7 @@
 		<event-handler>full_java_class_path_of_event_handler/javascript_class_path_of_event_handler (ISiminovHandler/IDatabaseHandler)</event-handler>
 	</event-handlers>
 
-</core>
+</siminov>
 
 
 
@@ -104,5 +104,19 @@ Application Descriptor Elements:
 				such as (databaseCreated, databaseDroped, tableCreated, tableDroped, indexCreated).
 
 		- Application can have implementation of this two event listeners.
+
+
+			Note*: 
+				-> Event Handler can be define in both Native and Web.
+				
+				-> Native Event Handler: If you want to handle Event in Native then define Event Handler using Java. 
+						Specify full Java class path and name in ApplicationDescriptor.si.xml.
+				
+				-> Web Event Handler: If you want to handle Event in Web then define Event Handler using JavaScript.
+						Specify only JavaScript Function name in ApplicationDescriptor.si.xml.
+				
+				-> Both (Native/Web) Event Handler: If you want to handle Event in both Native and Web then define Event Handler in both Java and JavaScript.
+						Specify full Java class path and name in ApplicationDescriptor.si.xml, no need to define for JavaScript because Siminov will automatically accume same name for it.
+				
 
 -->
