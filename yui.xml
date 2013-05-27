@@ -2,6 +2,14 @@
 <project default="yui">
     	    
     <target name="yui">
+
+        <mkdir dir="build/Siminov"/>
+
+        <copy todir="build/Siminov">
+            
+            <fileset dir="assets/Siminov" />
+            
+        </copy>
         
         <java jar="yui.assets/yuicompressor-2.4.7.jar" fork="true">
 	        <!-- input path for JS files -->
@@ -49,7 +57,7 @@
 	        <fileset dir="build/Siminov/Utils" includes="*.js" />
   	    </concat>
 	    <echo message="Siminov Hybrid Compression Successful." />
-	    
+        
    	</target>
     
 </project>
