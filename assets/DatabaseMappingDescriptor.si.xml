@@ -129,13 +129,13 @@ DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modellin
 			Note*: 
 				-> POJO Class can be define in both Native and Web.
 				
-				-> Native Class: If you have mapped POJO class in Native then defined class using Java. 
+				-> Native Class: If you have mapped POJO class is in Native then use Java to define class. 
 						Specify full Java class path and name in class_name TAG.
 				
-				-> Web Class: If you have mapped POJO class in Web then defined class using JavaScript. 
+				-> Web Class: If you have mapped POJO class is in Web then use JavaScript to define class. 
 						Specify only JavaScript Function name in class_name TAG.
 				
-				-> Both (Native/Web) Class: If you have mapped POJO class in both Native and Web then defined both classes using Java and JavaScript.		
+				-> Both (Native/Web) Class: If you have mapped POJO class is in both Native and Web then both Java and JavaScript to define classes.		
 						Specify full Java class path and name in class_name TAG, no need to define for JavaScript because Siminov will automatically accume same name for it.
 		
 		
