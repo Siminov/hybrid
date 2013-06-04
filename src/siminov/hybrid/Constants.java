@@ -213,7 +213,7 @@ public interface Constants {
 	/**
 	 * Siminov Hybrid LibraryDescriptor.si.xml file path.
 	 */
-	public String HYBRID_DESCRIPTOR_SIMINOV_HYBRID_LIBRARY_PATH = "siminov.hybrid.adapter.resource";
+	public String HYBRID_DESCRIPTOR_SIMINOV_HYBRID_LIBRARY_PATH = "siminov.hybrid.adapter.resources";
 
 	
 	//HYBRID-Library Descriptor
