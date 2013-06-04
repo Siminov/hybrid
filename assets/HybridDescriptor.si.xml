@@ -118,7 +118,7 @@
 
 <!-- 
 
-HybridDescriptor.si.xml is one which describes property required to map Web TO Native.
+HybridDescriptor.si.xml is one which describes properties required to map Web TO Native and vice-versa.
 
 
 HybridDescriptor Elements:
@@ -129,12 +129,12 @@ HybridDescriptor Elements:
 		
 		-> description: Description about Adapter. It is Optional field.
 		
-		-> type: Type of Adapter. Is is Mandatory field. 
+		-> type: Type of Adapter. It is Mandatory field. 
 			
 			i. WEB-TO-NATIVE: It says this adapter maps JavaScript functions to Native functions.
 			ii. NATIVE-TO-WEB: It says this adapter maps Native functions to JavaScript functions.
 			
-		-> map_to: Name of Class (JavaScript/Native) mapped to this adapter. It is not mandatory field.
+		-> map_to: Name of Class (Web/Native) mapped to this adapter. It is not mandatory field.
 		
 		-> cache:  true/false: It says that adapter mapped to Class needs to be cached or not. It is Optional field. Default is false.
 		

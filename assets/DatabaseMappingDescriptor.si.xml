@@ -185,6 +185,8 @@ DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modellin
 								-> Null
 								-> Undefined
 								
+						-> Native and Web Class: If your mapped POJO class is in both Native and Web then only specify Java Variable data type, for JavaScript Siminov will take care.
+
 			
 			-> primary_key: TRUE/FALSE. It defines whether the field is primary key to table or not. It is optional field. Default value is false.
 			
