@@ -1,0 +1,863 @@
+<!-- 
+/** 
+ * [SIMINOV FRAMEWORK]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
+
+ -->
+
+<adapter>
+    
+    <property name="name">DATABASE</property>
+    <property name="description">Database Hybrid Handler</property>
+    <property name="type">WEB-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.DatabaseHandler</property>
+	<property name="cache">true</property>
+	
+    <handlers>
+        
+        <handler>
+            
+            <property name="name">SAVE</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">save</property>
+            <property name="description">Save Data</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Siminov Data Format</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">UPDATE</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">update</property>
+            <property name="description">Update Data</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Siminov Data Format</property>
+                    
+                </parameter>
+                
+            </parameters>
+            
+        </handler>
+
+		<handler>
+            
+            <property name="name">SAVE-OR-UPDATE</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">saveOrUpdate</property>
+            <property name="description">Save Or Update Data</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Siminov Data Format</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+        </handler>
+        
+		<handler>
+            
+            <property name="name">DELETE</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">delete</property>
+            <property name="description">Delete Data</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Siminov Data Format</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Where Clause</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+        </handler>
+
+				
+		<handler>
+            
+            <property name="name">SELECT</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">select</property>
+            <property name="description">Select Data From Table</property>
+
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.Boolean</property>
+                    <property name="description">Distinct</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Where Clause</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">[Ljava.lang.String;</property>
+                    <property name="description">Column Names</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">[Ljava.lang.String;</property>
+                    <property name="description">Group Bys</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Having Clause</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">[Ljava.lang.String;</property>
+                    <property name="description">Order Bys</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Which Order By</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Limit</property>
+                    
+                </parameter>
+                
+        	</parameters>
+
+            
+            <return>
+                
+                <type>java.lang.String</type>
+                <description>Siminov Data Format</description>
+                
+            </return>
+            
+        </handler>
+		
+
+		<handler>
+            
+            <property name="name">COUNT</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">count</property>
+            <property name="description">Get Count Of Tuples</property>
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Column Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.Boolean</property>
+                    <property name="description">Distinct</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Where Clause</property>
+                    
+                </parameter>
+                
+                
+                <parameter>
+                    
+                    <property name="type">[Ljava.lang.String;</property>
+                    <property name="description">Group Bys</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Having Clause</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.String</type>
+                <description>Count</description>
+                
+            </return>
+            
+        </handler>
+
+		<handler>
+            
+            <property name="name">AVG</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">avg</property>
+            <property name="description">Get Avg Of Tuples Based On Column Name</property>
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Column Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Where Clause</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">[Ljava.lang.String;</property>
+                    <property name="description">Group Bys</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Having Clause</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.String</type>
+                <description>Avg</description>
+                
+            </return>
+            
+        </handler>
+		
+
+		<handler>
+            
+            <property name="name">SUM</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">sum</property>
+            <property name="description">Get Sum Of Tuples</property>
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Column Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Where Clause</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">[Ljava.lang.String;</property>
+                    <property name="description">Group Bys</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Having Clause</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.String</type>
+                <description>Sum</description>
+                
+            </return>
+            
+        </handler>
+		
+		<handler>
+            
+            <property name="name">TOTAL</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">total</property>
+            <property name="description">Get Total Of Tuples</property>
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Column Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Where Clause</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">[Ljava.lang.String;</property>
+                    <property name="description">Group Bys</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Having Clause</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.String</type>
+                <description>Total</description>
+                
+            </return>
+            
+        </handler>
+
+		<handler>
+            
+            <property name="name">MIN</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">min</property>
+            <property name="description">Get Min Of Tuples</property>
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Column Name</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Where Clause</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">[Ljava.lang.String;</property>
+                    <property name="description">Group Bys</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Having Clause</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.String</type>
+                <description>Min</description>
+                
+            </return>
+            
+        </handler>
+				
+		
+		<handler>
+            
+            <property name="name">MAX</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">max</property>
+            <property name="description">Get Max Of Tuples</property>
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                	<property name="type">java.lang.String</property>
+                    <property name="description">Column Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Where Clause</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">[Ljava.lang.String;</property>
+                    <property name="description">Group Bys</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Having Clause</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.String</type>
+                <description>Max</description>
+                
+            </return>
+            
+        </handler>
+				
+		<handler>
+            
+            <property name="name">GROUP-CONCAT</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">groupConcat</property>
+            <property name="description">Get Group Concat Of Tuples</property>
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Column Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Delimiter</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Where Clause</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">[Ljava.lang.String;</property>
+                    <property name="description">Group Bys</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Having Clause</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.int</type>
+                <description>GroupConcat</description>
+                
+            </return>
+            
+        </handler>
+				
+        <handler>
+            
+            <property name="name">GET-TABLE-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getTableName</property>
+            <property name="description">Get Table Name</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.int</type>
+                <description>Table Name</description>
+                
+            </return>
+            
+		</handler>
+				
+        <handler>
+            
+            <property name="name">GET-COLUMN-NAMES</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getColumnNames</property>
+            <property name="description">Get Column Names</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.int</type>
+                <description>Column Names</description>
+                
+            </return>
+            
+		</handler>
+
+        <handler>
+            
+            <property name="name">GET-COLUMN-TYPES</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getColumnTypes</property>
+            <property name="description">Get Column Types</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.int</type>
+                <description>Column Types</description>
+                
+            </return>
+            
+		</handler>
+        
+        <handler>
+            
+            <property name="name">GET-PRIMARY-KEYS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getPrimaryKeys</property>
+            <property name="description">Get Primary Keys</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.int</type>
+                <description>Primary Keys</description>
+                
+            </return>
+            
+		</handler>
+        								
+        <handler>
+            
+            <property name="name">GET-MANDATORY-FIELDS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getMandatoryFields</property>
+            <property name="description">Get Mandatory Fields</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.int</type>
+                <description>Mandatory Fields</description>
+                
+            </return>
+            
+		</handler>
+        								
+        <handler>
+            
+            <property name="name">GET-UNIQUE-FIELDS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getUniqueFields</property>
+            <property name="description">Get Unique Fields</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.int</type>
+                <description>Unique Fields</description>
+                
+            </return>
+            
+		</handler>
+        
+        <handler>
+            
+            <property name="name">GET-FOREIGN-KEYS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getForeignKeys</property>
+            <property name="description">Get Foreign Keys</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+            <return>
+                
+                <type>java.lang.int</type>
+                <description>Foreign Keys</description>
+                
+            </return>
+            
+		</handler>
+        
+        
+        <handler>
+            
+            <property name="name">BEGIN-TRANSACTION</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">beginTransaction</property>
+            <property name="description">Begin Transaction</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+		</handler>
+        				
+        
+        <handler>
+            
+            <property name="name">COMMIT-TRANSACTION</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">commitTransaction</property>
+            <property name="description">Commit Transaction</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+		</handler>
+        
+        
+        <handler>
+            
+            <property name="name">END-TRANSACTION</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">endTransaction</property>
+            <property name="description">End Transaction</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+		</handler>
+        
+        																		
+    </handlers>
+    
+</adapter>
