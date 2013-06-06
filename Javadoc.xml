@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="javadoc">
     <target name="javadoc">
-    	<javadoc access="public" destdir="docs/java"    bootclasspath="C:/Program Files (x86)/Android/android-sdk/platforms/android-7/android.jar"
+    	<javadoc access="public" destdir="docs.java"    bootclasspath="C:/Program Files (x86)/Android/android-sdk/platforms/android-7/android.jar"
     		  windowtitle="Siminov Framework"    doctitle="Siminov Framework"    header="Produced by Siminov Software Solution LLP" 		footer="Apache License 2.0"	      bottom="Copyright 2013"
     		  stylesheetfile="doclet.assets/siminov-javadocsstylesheet.css" 		classpath="." 		sourcepath="src:gen"
     		  packagenames="siminov.hybrid, siminov.hybrid.adapter, siminov.hybrid.adapter.constants, siminov.hybrid.adapter.handlers, siminov.hybrid.adapter.resources, siminov.hybrid.events, siminov.hybrid.model, siminov.hybrid.parsers, siminov.hybrid.resource, siminov.hybrid.utils" 
@@ -12,7 +12,7 @@
     	</javadoc>
     	
     	
-    	<copy todir="docs/java/resources">
+    	<copy todir="docs.java/resources">
             <fileset dir="doclet.assets/resources" />
         </copy>
     	
