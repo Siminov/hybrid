@@ -15,7 +15,11 @@
  * limitations under the License.
  **/
 
-
+/**
+ * Handle Request between NATIVE-TO-WEB and WEB-TO-NATIVE.
+ * Exposes method to GET and SET information about request.
+ * @class Adapter
+ */
 function Adapter() {
 
     var adapterName;

@@ -17,6 +17,11 @@
 
 
 
+/**
+ *	Dictionary maps keys to values. A Dictionary cannot contain duplicate keys; each key can map to at most on value.
+ * @class Dictionary
+ *	
+*/
 function Dictionary() {
     var data = {};
 

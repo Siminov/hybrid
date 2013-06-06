@@ -17,6 +17,13 @@
 
 
 
+/**
+ *	A mutable sequence of characters.
+ * 	The principal operations on a StringBuilder are the append methods.
+ *  The append method always adds these characters at the end of the builder;
+ 
+ 	@class StringBuilder
+*/
 function StringBuilder(value) {
 	this.strings = new Array("");
 	this.append(value);
