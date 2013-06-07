@@ -1,15 +1,15 @@
 {
 	"name": "Siminov Hybrid",
   	"description": "Siminov Hybrid JavaScript APIs Documentation",
-  	"version": "0.2.38",
+  	"version": "0.9",
   	"url": "http://siminov.github.com/android-hybrid",
   	"logo": "yuidoc.assets/yui-logo.png",
   	"options": {
     	"linkNatives": "true",
     	"attributesEmit": "true",
-    	"paths": [
-      		"*.js"
-	    ],
+
+        "themedir": "yuidoc.assets/bootstrap",
+        "helpers": ["yuidoc.assets/bootstrap/helpers/helpers.js"],
 	    
     	"outdir": "docs.javascript"
   	}

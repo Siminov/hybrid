@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="yuidoc">
+    	
+    <property name="yui" value="C:\Users\Ajaydeep\AppData\Roaming\npm" />
+    <property name="appDir" value="" />
+    
+    <target name="yuidoc">
+
+        <mkdir dir="docs.javascript"/>
+
+        <copy todir="docs.javascript/yuidoc.assets">
+            <fileset dir="yuidoc.assets/resources" />
+        </copy>
+   
+   	</target>
+    
+</project>	
