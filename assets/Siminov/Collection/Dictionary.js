@@ -18,31 +18,67 @@
 
 
 /**
- *	Dictionary maps keys to values. A Dictionary cannot contain duplicate keys; each key can map to at most on value.
- * @class Dictionary
- *	
+	Dictionary maps keys to values. A Dictionary cannot contain duplicate keys; each key can map to at most on value.
+	 
+ 	@class Dictionary
+ 
 */
 function Dictionary() {
     var data = {};
 
+	/**
+		Add a Key Value pair.
+		
+		@method add
+		@param Key
+		@param Value
+	*/
     this.add = function(key, value) {
         if(!this.exists(key)) {
             data[key] = value;
         }
     }
 
+
+	/**
+		Check whether key exists or not.
+		
+		@method exists
+		@param Key
+		@return true/false; TRUE: If key exists, FALSE: If key does not exists.
+	*/
     this.exists = function(key) {
         return data[key] != null;
     }
 
+	/**
+		Get value based on Key.
+		
+		@method get
+		@param Key
+		@return Value
+	*/
     this.get = function(key) {
         return data[key];
     }
 
+	/**
+		Remove value based on key.
+		
+		@method remove
+		@param Key
+	*/
 	this.remove = function(key) {
 		delete data[key];
 	}
 
+
+	/**
+		Get All Keys.
+		
+		@method keys
+		@return All Keys
+	*/
     this.keys = function() {
         var keys = [];
 
@@ -50,10 +86,23 @@ function Dictionary() {
         return properties;
     }
 
+
+	/**
+		Get All Values.
+		
+		@method values
+		@return Values.
+	*/
 	this.values = function() {
 		return data;
 	}
 
+	/**
+		Get All Key and Values
+		
+		@method toArray
+		@return Key and Values.
+	*/
     this.toArray = function() {
         return data;
     }
