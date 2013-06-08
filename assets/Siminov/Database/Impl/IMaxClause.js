@@ -46,24 +46,100 @@ function IMaxClause(clause) {
 
     return {
 
+		/**
+			Name of Interface
+		*/
         interfaceName : "IMaxClause",
 
+
+		/**
+		 	Used to specify EQUAL TO (=) condition.
+		 	
+		 	@method equalTo
+		 	@param value {String} Value for which EQUAL TO (=) condition will be applied.
+		 	@return {IMax} IMax Interface.
+		 */
         equalTo : clause.equalTo,
 
+
+		/**
+		 	Used to specify NOT EQUAL TO (!=) condition.
+		 	
+		 	@method notEqualTo
+		 	@param value {String} Value for which NOT EQUAL TO (=) condition will be applied.
+		 	@return {IMax} IMax Interface.
+		 */
         notEqualTo : clause.notEqualTo,
 
+
+		/**
+		 	Used to specify GREATER THAN (>) condition.
+		 	
+		 	@method greaterThan
+		 	@param value {String} Value for while GREATER THAN (>) condition will be specified.
+		 	@return {IMax} IMax Interface.
+		 */
         greaterThan : clause.greaterThan,
 
+
+		/**
+		 	Used to specify GREATER THAN EQUAL (>=) condition.
+		 	
+		 	@method greaterThanEqual
+		 	@param value {String} Value for which GREATER THAN EQUAL (>=) condition will be specified.
+		 	@return {IMax} IMax Interface.
+		 */
         greaterThanEqual : clause.greaterThanEqual,
 
+
+		/**
+		 	Used to specify LESS THAN (<) condition.
+		 	
+		 	@method lessThan
+		 	@param value {String} Value for which LESS THAN (<) condition will be specified.
+		 	@return {IMax} IMax Interface.
+		 */
         lessThan : clause.lessThan,
 
+
+		/**
+		 	Used to specify LESS THAN EQUAL (<=) condition.
+		 	
+		 	@method lessThanEqual
+		 	@param value {String} Value for which LESS THAN EQUAL (<=) condition will be specified.
+		 	@return {IMax} IMax Interface.
+		 */
         lessThanEqual : clause.lessThanEqual,
 
+
+		/**
+		 	Used to specify BETWEEN condition.
+		 	
+		 	@method between
+		 	@param start {String} Start Range.
+		 	@param end {String} End Range.
+		 	@return {IMax} IMax Interface.
+		 */
         between : clause.between,
 
+
+		/**
+		 	Used to specify LIKE condition.
+		 	
+		 	@method like
+		 	@param like {String} LIKE condition.
+		 	@return {IMax} IMax Interface.
+		 */
         like : clause.like,
 
+
+		/**
+		 	Used to specify IN condition.
+		 	
+		 	@method in
+		 	@param values {Array} Values for IN condition.
+		 	@return {IMax} IMax Interface.
+		 */
         'in' : clause['in']
 
     }

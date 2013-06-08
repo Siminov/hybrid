@@ -50,24 +50,100 @@ function ISum(select) {
 
     return {
 
+	
+		/**
+			Name of Interface
+		*/
         interfaceName : "ISum",
 
+
+		/**
+		 	Column name of which condition will be specified.
+		 	
+		 	@method where
+		 	@param column {String} Name of column.
+		 	@return {ISumClause} ISumClause Interface.
+		 */
         where : select.where,
 
+
+		/**
+		 	Used to provide manually created Where clause, instead of using API's.
+		 	
+		 	@method whereClause
+		 	@param whereClause {String} Manually created where clause.
+		 	@return {ISum} ISum Interface.
+		 */
         whereClause : select.whereClause,
 
+
+		/**
+		 	Used to specify AND condition between where clause.
+		 	
+		 	@method and
+		 	@param column {column} Name of column on which condition need to be specified.
+		 	@return {ISumClause} ISumClause Interface.
+		 */
         and : select.and,
 
+
+		/**
+		 	Used to specify OR condition between where clause.
+		 	
+		 	@method or
+		 	@param column {column} Name of column on which condition need to be specified.
+		 	@return {ISumClause} ISumClause Interface.
+		 */
         or : select.or,
 
+
+		/**
+		 	Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+		 	
+		 	@method groupBy
+		 	@param columns {Array} Name of columns.
+		 	@return {ISum} ISum Interface.
+		 */
         groupBy : select.groupBy,
 
+
+		/**
+		 	Used to specify HAVING clause to SQL because the WHERE keyword could not be used with aggregate functions.
+		 	
+		 	@method having
+		 	@param column {String} Name of column on which condition need to be applied.
+		 	@return {ISumClause} ISumClause Interface.
+		 */
         having : select.having,
 
+
+		/**
+		 	Used to provide manually created Where clause, instead of using API's.
+		 	
+		 	@method havingClause
+		 	@param havingClause {String} Where clause.
+		 	@return {ISum} ISum Interface.
+		 */
         havingClause : select.havingClause,
 
+
+		/**
+		 	Used to provide name of column for which sum will be calculated.
+		 	
+		 	@method column
+		 	@param column {String} Name of column.
+		 	@return {ISum} ISum Interface.
+		 */
         column : select.column,
 
+
+		/**
+		 	Used to get sum, this method should be called in last to calculate sum.
+		 	
+		 	@method execute
+		 	@return {Object} Return sum.
+		 	@throws DatabaseException Throws exception if any error occur while calculating sum. 
+		 */
         execute : select.execute
 
     }

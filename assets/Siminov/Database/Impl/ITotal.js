@@ -49,24 +49,99 @@ function ITotal(select) {
 
     return {
 
+		/**
+			Name of Interface
+		*/
         interfaceName : "ITotal",
 
+
+		/**
+		 	Column name of which condition will be specified.
+		 	
+		 	@method where
+		 	@param column {String} Name of column.
+		 	@return {ITotalClause} ITotalClause Interface.
+		 */
         where : select.where,
 
+	
+		/**
+		 	Used to provide manually created Where clause, instead of using API's.
+		 	
+		 	@method whereClause
+		 	@param whereClause {String} Manually created where clause.
+		 	@return {ITotal} ITotal Interface.
+		 */
         whereClause : select.whereClause,
 
+
+		/**
+		 	Used to specify AND condition between where clause.
+		 	
+		 	@method and
+		 	@param column {String} Name of column on which condition need to be specified.
+		 	@return {ITotalClause} ITotalClause Interface.
+		 */
         and : select.and,
 
+
+		/**
+		 	Used to specify OR condition between where clause.
+		 	
+		 	@method or
+		 	@param column {String} Name of column on which condition need to be specified.
+		 	@return {ITotalClause} ITotalClause Interface.
+		 */
         or : select.or,
 
+
+		/**
+		 	Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+		 	
+		 	@method groupBy
+		 	@param columns {String} Name of columns.
+		 	@return {ITotal} ITotal Interface.
+		 */
         groupBy : select.groupBy,
 
+
+		/**
+		 	Used to specify HAVING clause to SQL because the WHERE keyword could not be used with aggregate functions.
+		 	
+		 	@method having
+		 	@param column {String} Name of column on which condition need to be applied.
+		 	@return {ITotalClause} ITotalClause Interface.
+		 */
         having : select.having,
 
+
+		/**
+		 	Used to provide manually created Where clause, instead of using API's.
+		 	
+		 	@method havingClause
+		 	@param havingClause {String} Where clause.
+		 	@return {ITotal} ITotal Interface.
+		 */
         havingClause : select.havingClause,
 
+
+		/**
+		 	Used to provide name of column for which total will be calculated.
+		 	
+		 	@method column
+		 	@param column {String} Name of column.
+		 	@return {ITotal} ITotal Interface.
+		 */
         column : select.column,
 
+
+		/**
+		 	Used to get total, this method should be called in last to calculate total.
+		 	
+		 	@method execute
+		 	@return {Object} Return total.
+		 	@throws DatabaseException Throws exception if any error occur while calculating total. 
+		 */
         execute : select.execute
 
     }

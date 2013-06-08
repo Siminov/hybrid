@@ -48,24 +48,100 @@ function IMin(select) {
 
     return {
 
+
+		/**
+			Name of Interface
+		*/
         interfaceName : "IMin",
 
+
+		/**
+		 	Column name of which condition will be specified.
+		 	
+		 	@method where
+		 	@param column {String} Name of column.
+		 	@return {IMinClause} IMinClause Interface.
+		 */
         where : select.where,
 
+
+		/**
+		 	Used to provide manually created Where clause, instead of using API's.
+		 	
+		 	@method whereClause
+		 	@param whereClause {String} Manually created where clause.
+		 	@return {IMin} IMin Interface.
+		 */
         whereClause : select.whereClause,
 
+
+		/**
+		 	Used to specify AND condition between where clause.
+		 	
+		 	@method and
+		 	@param column {String} Name of column on which condition need to be specified.
+		 	@return {IMinClause} IMinClause Interface.
+		 */
         and : select.and,
 
+
+		/**
+		 	Used to specify OR condition between where clause.
+		 	
+		 	@method or
+		 	@param column {String} Name of column on which condition need to be specified.
+		 	@return {IMinClause} IMinClause Interface.
+		 */
         or : select.or,
 
+
+		/**
+		 	Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+		 	
+		 	@method groupBy
+		 	@param columns {Array} Name of columns.
+		 	@return {IMin} IMin Interface.
+		 */
         groupBy : select.groupBy,
 
+
+		/**
+		 	Used to specify HAVING clause to SQL because the WHERE keyword could not be used with aggregate functions.
+		 	
+		 	@method having
+		 	@param column {String} Name of column on which condition need to be applied.
+		 	@return {IMinClause} IMinClause Interface.
+		 */
         having : select.having,
 
+
+		/**
+		 	Used to provide manually created Where clause, instead of using API's.
+		 	
+		 	@method havingClause
+		 	@param havingClause {String} Where clause.
+		 	@return {IMin} IMin Interface.
+		 */
         havingClause : select.havingClause,
 
+
+		/**
+		 	Used to provide name of column for which max will be calculated.
+		 	
+		 	@method column
+		 	@param column {String} Name of column.
+		 	@return {IMin} IMin Interface.
+		 */
         column : select.column,
 
+
+		/**
+		 	Used to get minimum, this method should be called in last to calculate minimum.
+		 	
+		 	@method execute
+		 	@return {Object} Return minimum.
+		 	@throws DatabaseException Throws exception if any error occur while calculating minimum. 
+		 */
         execute : select.execute
 
     }
