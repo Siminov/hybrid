@@ -17,6 +17,35 @@
 
 
 
+/**
+	Exposes classes which deal with database.
+	A Siminov Database Abstraction Layer is an application programming interface which unifies the communication between a computer application and database such as SQLite.
+	Siminov Database Layer reduce the amount of work by providing a consistent API to the developer and hide the database specifics behind this interface as much as possible.
+	
+	@module Database
+*/
+
+
+/**
+	Impl contain all interfaces required by database layer to deal with database.
+
+	@module Database
+	@submodule Impl
+*/
+
+
+/**
+ * Exposes API's to return sum of all non-NULL values in the group.
+ * If there are no non-NULL input rows then sum() returns NULL but total() returns 0.0.
+ * NULL is not normally a helpful result for the sum of no rows but the SQL standard requires it and most other SQL database engines implement sum() that way so SQLite does it in the same way in order to be compatible.
+ * The result of sum() is an integer value if all non-NULL inputs are integers. 
+
+	@module Database
+	@submodule Impl
+	@class ISum	
+	@constructor
+	@param select {Select} Select class object.
+*/
 function ISum(select) {
 
     return {

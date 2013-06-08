@@ -16,6 +16,22 @@
  **/
 
 
+/**
+	Exposes classes which deal with database.
+	A Siminov Database Abstraction Layer is an application programming interface which unifies the communication between a computer application and database such as SQLite.
+	Siminov Database Layer reduce the amount of work by providing a consistent API to the developer and hide the database specifics behind this interface as much as possible.
+	
+	@module Database
+*/
+
+
+/**
+	Exposes methods to deal with database.
+	It has methods to create, delete, and perform other common database management tasks.
+
+	@module Database	
+	@class Database	
+*/
 function Database() {
 
 	this.save = function() {

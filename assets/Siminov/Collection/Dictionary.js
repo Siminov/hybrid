@@ -16,12 +16,20 @@
  **/
 
 
+/**
+	A Collection represents a group of objects, know as its elements.
+	Siminov Collection (SI Collection) is a set of classes and interfaces that implement commonly reusable collection data structures.
+	
+	@module Collection
+*/
+
 
 /**
 	Dictionary maps keys to values. A Dictionary cannot contain duplicate keys; each key can map to at most on value.
-	 
+
+	@module Collection	 
  	@class Dictionary
- 
+ 	@constructor
 */
 function Dictionary() {
     var data = {};
@@ -30,8 +38,8 @@ function Dictionary() {
 		Add a Key Value pair.
 		
 		@method add
-		@param Key
-		@param Value
+		@param key {String} Key
+		@param value {Object} Value
 	*/
     this.add = function(key, value) {
         if(!this.exists(key)) {
@@ -44,8 +52,8 @@ function Dictionary() {
 		Check whether key exists or not.
 		
 		@method exists
-		@param Key
-		@return true/false; TRUE: If key exists, FALSE: If key does not exists.
+		@param key {String} Key
+		@return {Boolean} true/false; TRUE: If key exists, FALSE: If key does not exists.
 	*/
     this.exists = function(key) {
         return data[key] != null;
@@ -55,8 +63,8 @@ function Dictionary() {
 		Get value based on Key.
 		
 		@method get
-		@param Key
-		@return Value
+		@param key {String} Key
+		@return {Object} Value
 	*/
     this.get = function(key) {
         return data[key];
@@ -66,7 +74,7 @@ function Dictionary() {
 		Remove value based on key.
 		
 		@method remove
-		@param Key
+		@param key {String} Key
 	*/
 	this.remove = function(key) {
 		delete data[key];
@@ -77,7 +85,7 @@ function Dictionary() {
 		Get All Keys.
 		
 		@method keys
-		@return All Keys
+		@return {Array} All Keys
 	*/
     this.keys = function() {
         var keys = [];
@@ -91,7 +99,7 @@ function Dictionary() {
 		Get All Values.
 		
 		@method values
-		@return Values.
+		@return {Array} Values.
 	*/
 	this.values = function() {
 		return data;
@@ -101,7 +109,7 @@ function Dictionary() {
 		Get All Key and Values
 		
 		@method toArray
-		@return Key and Values.
+		@return {Array} Key and Values.
 	*/
     this.toArray = function() {
         return data;

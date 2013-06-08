@@ -16,49 +16,60 @@
  **/
 
 
+/**
+	A Collection represents a group of objects, know as its elements.
+	Siminov Collection (SI Collection) is a set of classes and interfaces that implement commonly reusable collection data structures.
+	
+	@module Collection
+*/
+
 
 /**
 	A mutable sequence of characters.
 	The principal operations on a StringBuilder are the append methods.
 	The append method always adds these characters at the end of the builder;
- 
+
+	@module Collection 
  	@class StringBuilder
+ 	@constructor
+ 	@param value {String} Array of characters. 
 */
 function StringBuilder(value) {
-	this.strings = new Array("");
-	this.append(value);
-}
-
-/**
-	Append adds given characters at the end of the builder.
+	var strings = new Array("");
+	strings.append(value);
 	
-	@method append
-	@param Characters need to be append.
-*/
-StringBuilder.prototype.append = function (value) {
-	if (value) {
-		this.strings.push(value);
+	/**
+		Append adds given characters at the end of the builder.
+		
+		@method append
+		@param value {String} Characters need to be append.
+	*/
+	this.append = function (value) {
+		if (value) {
+			this.strings.push(value);
+		}
+	}
+	
+	
+	/**
+		Clear buffered StringBuider.
+		Remove all elements saved.
+		
+		@method clear
+	*/
+	this.clear = function () {
+		this.strings.length = 1;
+	}
+	
+	
+	/**
+		Get characters saved in StringBuilder.
+		
+		@method toString
+		@return {String} All Characters
+	*/
+	this.toString = function () {
+		return this.strings.join("");
 	}
 }
 
-
-/**
-	Clear buffered StringBuider.
-	Remove all elements saved.
-	
-	@method clear
-*/
-StringBuilder.prototype.clear = function () {
-	this.strings.length = 1;
-}
-
-
-/**
-	Get characters saved in StringBuilder.
-	
-	@method toString
-	@return All Characters
-*/
-StringBuilder.prototype.toString = function () {
-	return this.strings.join("");
-}

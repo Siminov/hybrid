@@ -15,11 +15,21 @@
  * limitations under the License.
  **/
 
+
+/**
+	It is one which describes properties required to map Web TO Native and vice-versa.
+
+	@module Adapter
+*/
+
+
 /**
 	Handle Request between NATIVE-TO-WEB and WEB-TO-NATIVE.
 	Exposes method to GET and SET information about request.
 
+	@module Adapter
 	@class Adapter
+	@constructor
  */
 function Adapter() {
 
@@ -33,7 +43,7 @@ function Adapter() {
 		Get Adapter Name.
 		
 		@method getAdapterName
-		@return Name of Adapter.	
+		@return {String} Name of Adapter.	
 	*/
     this.getAdapterName = function() {
         return adapterName;
@@ -43,7 +53,7 @@ function Adapter() {
 		Set Adapter Name.
 		
 		@method setAdapterName
-		@param Name of Adapter.
+		@param value {String} Name of Adapter.
 	*/
     this.setAdapterName = function(value) {
         adapterName = value;
@@ -54,7 +64,7 @@ function Adapter() {
 		Get Handler Name.
 		
 		@method getHandlerName
-		@return Name of Handler.
+		@return {String} Name of Handler.
 	*/
     this.getHandlerName = function() {
         return handlerName;
@@ -64,7 +74,7 @@ function Adapter() {
 		Set Handler Name.
 		
 		@method setHandlerName
-		@param Name of Handler
+		@param value {String} Name of Handler
 	*/
     this.setHandlerName = function(value) {
         handlerName = value;
@@ -75,7 +85,7 @@ function Adapter() {
 		Add Adapter Parameter.
 		
 		@method addParameter
-		@param Parameter.
+		@param parameter {String} Parameter.
 	*/
     this.addParameter = function(parameter) {
         parameters.push(parameter);
@@ -85,7 +95,7 @@ function Adapter() {
 		Get All Parameters.
 		
 		@method getParameters
-		@return All Parameters.
+		@return {Array} All Parameters.
 	*/
 	this.getParameters = function() {
 		return parameters;
@@ -117,8 +127,8 @@ function Adapter() {
 		Any request from NATIVE-TO-WEB is first handled by this API.
 		
 		@method handle
-		@param Name of Action. Action Represent WEB API Needs To Be Invoke.
-		@param Data Is Basically Parameter To WEB API.
+		@param action {String} Name of Action. Action Represent WEB API Needs To Be Invoke.
+		@param data {String} Data Is Basically Parameter To WEB API.
 	*/
     this.handle = function(action, data) {
 

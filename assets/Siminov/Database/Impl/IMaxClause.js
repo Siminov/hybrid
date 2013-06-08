@@ -16,7 +16,32 @@
  **/
 
 
+/**
+	Exposes classes which deal with database.
+	A Siminov Database Abstraction Layer is an application programming interface which unifies the communication between a computer application and database such as SQLite.
+	Siminov Database Layer reduce the amount of work by providing a consistent API to the developer and hide the database specifics behind this interface as much as possible.
+	
+	@module Database
+*/
 
+
+/**
+	Impl contain all interfaces required by database layer to deal with database.
+
+	@module Database
+	@submodule Impl
+*/
+
+
+/**
+ * Exposes API's to provide condition on where clause to calculate maximum.
+ 
+	@module Database
+ 	@submodule Impl
+ 	@class IMaxClause 	
+	@constructor
+	@param clause {Clause} Clause class object
+*/
 function IMaxClause(clause) {
 
     return {

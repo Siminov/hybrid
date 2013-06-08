@@ -16,6 +16,23 @@
  **/
 
 
+/**
+	It contain Siminov defined exceptions.
+	
+	@module Exception
+*/
+
+
+/**
+* This is general exception, which is thrown through Siminov APIs, if any exception occur while performing any tasks.
+
+	@module Exception
+	@class SiminovException
+	@constructor 
+	@param className {String} Name of Class
+	@param methodName {String} Name of Method
+	@param message {String} Message
+*/
 function SiminovException(className, methodName, message) {
 
     var className = className;
