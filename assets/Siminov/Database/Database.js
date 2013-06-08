@@ -57,7 +57,8 @@ function Database() {
 			}
 
 	    </pre>
-	 
+
+		@method save	 
 	   	@throws {SiminovException} If any error occurs while saving tuples in database.
 	 */
 	this.save = function() {
@@ -107,6 +108,7 @@ function Database() {
 				//Log it.
 			}
 
+		@method update
 	   	@throws DatabaseException If any error occurs while saving tuples in database.
 	 */
     this.update = function() {
@@ -159,7 +161,8 @@ function Database() {
 			} catch(DatabaseException de) {
 				//Log it.
 			}
-						
+
+		@method saveOrUpdate						
 	   	@throws {SiminovException} If any error occurs while saving tuples in database.
 	 */
     this.saveOrUpdate = function() {
@@ -201,6 +204,7 @@ function Database() {
 						.and(Liquor.ALCHOL_CONTENT).equalTo("90%")
 						.fetch();
 		
+		@method select
 	 	@return {ISelect} ISelect to provide extra information based on which tuples will be fetched from table.
 	 	@throws {SiminovException} If any error occur while fetching tuples from table.
 	 */
@@ -224,6 +228,7 @@ function Database() {
 				//Log it.
 			}
 	
+		@method select
 	 	@param query Manual query on which tuples need to be fetched.
 	 	@return Array Of Objects.
 	 	@throws SiminovException If any error occur while getting tuples from a single table.
@@ -260,6 +265,7 @@ function Database() {
 				//Log It.
 			}
 			
+		@method delete	
 	   	@throws {SiminovException} If any error occurs while saving tuples in database.
 	 */
     this['delete'] = function() {
@@ -284,6 +290,7 @@ function Database() {
 				//Log it.
 			}
 		
+		@method avg
 	 	@return {IAverage} IAverage to provide extra information based on which average will be calculated.
 	 	@throws {SiminovException} If any error occur while finding average.
 	 */
@@ -308,6 +315,7 @@ function Database() {
 				//Log it.
 			}
 		
+		@method count
 	 	@return {ICount} ICount to provide extra information based on which count will be calculated.
 	 	@throws {SiminovException} If any error occur while find count.
 	 */
@@ -333,6 +341,7 @@ function Database() {
 				//Log it.
 			}
 	
+		@method max
 	 	@return {IMax} IMax to provide extra information based on which maximum will be calculated.
 	 	@throws {SiminovException} If any error occur while finding minimum.
 	 */
@@ -358,6 +367,7 @@ function Database() {
 				//Log it.
 			}
 	
+		@method min
 	 	@return {IMin} IMin to provide extra information based on which minimum will be calculated.
 	 	@throws {SiminovException} If any error occur while finding minimum.
 	 */
@@ -383,6 +393,7 @@ function Database() {
 				//Log it.
 			}
 			
+		@method sum	
 	 	@return {ISum} ISum to provide extra information based on which sum will be calculated.
 	 	@throws {SiminovException} If any error occur while finding sum.
 	 */
@@ -408,6 +419,7 @@ function Database() {
 				//Log it.
 			}
 	    
+	    @method total
 	 	@return {ITotal} ITotal to provide extra information based on which total will be calculated.
 	 	@throws {SiminovException} If any error occur while finding total.
 	 */
@@ -433,7 +445,7 @@ function Database() {
 				//Log it.
 			}
 		
-	 
+	 	@method groupConcat
 	 	@return {IGroupConcat} IGroupConcat to provide extra information based on which group concat will be calculated.
 	 	@throws SiminovException If any error occur while finding group concat.
 	 */
@@ -454,6 +466,7 @@ function Database() {
 				//Log it.
 			}
 	
+		@method getTableName
 	 	@return {String} Mapped Table name.
 	 	@throws {SiminovException} If no mapped table found for invoked class object.
 	 */
@@ -506,6 +519,7 @@ function Database() {
 				//Log it.
 			}
 	 		
+		@method getColumnNames
 	 	@return {Array} All column names of mapped table.
 	 	@throws {SiminovException} If no mapped table found for invoked class object.
 	 */
@@ -559,6 +573,7 @@ function Database() {
 				//Log it.
 			}	
 	
+		@method getColumnTypes
 	 	@return {Dictionary} All columns with there data types.
 	 	@throws {SiminovException} If no mapped table found for invoked class object.
 	 */
@@ -620,6 +635,7 @@ function Database() {
 				//Log it.
 			}
 	
+		@method getPrimaryKeys
 	 	@return {Array} All primary keys.
 	 	@throws {SiminovException} If not mapped table found for invoked class object.
 	 */
@@ -673,6 +689,7 @@ function Database() {
 				//Log it.
 			}
 
+		@method getMandatoryFields
 	 	@return {Array} All mandatory fields for mapped table.
 	 	@throws SiminovException If no mapped table found for invoked class object.
 	 */
@@ -725,7 +742,8 @@ function Database() {
 			} catch(DatabaseException de) {
 				//Log it.
 			}
-	 		
+
+		@method getUniqueFields	 		
 	 	@return {Array} All unique fields for mapped table.
 	 	@throws {SiminovException} If no mapped table found for invoked class object.
 	 */
@@ -780,6 +798,7 @@ function Database() {
 				//Log it.
 			}
 	
+		@method getForeignKeys
 	 	@return {Array} All foreign keys of mapped table.
 	 	@throws {SiminovException} If no mapped table found for invoked class object.
 	 */
@@ -823,7 +842,7 @@ function Database() {
 
 
 	/**
-	 * Returns database descriptor object based on the POJO class called.
+	 	Returns database descriptor object based on the POJO class called.
 
 		Example:
 		
@@ -833,8 +852,9 @@ function Database() {
 				//Log It.
 			}
 	
-	 * @return {DatabaseDescriptor} Database Descriptor Object.
-	 * @throws {SiminovException} If any error occur while getting database descriptor object.
+		@method getDatabaseDescriptor
+	 	@return {DatabaseDescriptor} Database Descriptor Object.
+	 	@throws {SiminovException} If any error occur while getting database descriptor object.
 	 */
     this.getDatabaseDescriptor = function() {
 
@@ -857,6 +877,7 @@ function Database() {
 				//Log it.
 			}
 	
+		@method getDatabaseMappingDescriptor
 	 	@return {DatabaseMappingDescriptor} Database Mapping Descriptor Object
 	 	@throws {SiminovException} If database mapping object not mapped for invoked class object.
 	 */
