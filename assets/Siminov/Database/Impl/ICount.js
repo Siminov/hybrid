@@ -145,7 +145,7 @@ function ICount(select) {
 		 
 		 	@method execute
 			@return {Object} Return count.
-		 	@throws DatabaseException Throws exception if any error occur while calculating count. 
+		 	@throws {SiminovException} Throws exception if any error occur while calculating count. 
 		 */
         execute : select.execute
 

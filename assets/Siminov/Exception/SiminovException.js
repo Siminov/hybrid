@@ -24,7 +24,7 @@
 
 
 /**
-* This is general exception, which is thrown through Siminov APIs, if any exception occur while performing any tasks.
+	This is general exception, which is thrown through Siminov APIs, if any exception occur while performing any tasks.
 
 	@module Exception
 	@class SiminovException
@@ -40,26 +40,67 @@ function SiminovException(className, methodName, message) {
     var message = message;
 
 
+	/**
+	 	Get POJO class name.
+	 	
+	 	@method getClassName
+	 	@return POJO Class Name.
+	 */
     this.getClassName = function() {
         return className;
     }
 
+
+	/**
+	 	Set POJO class name.
+	 	
+	 	@method setClassName
+	 	@param className POJO Class Name.
+	 */
     this.setClassName = function(val) {
         className = val;
     }
 
+
+	/**
+	 	Get method Name.
+	 	
+	 	@method getMethodName
+	 	@return Name Of Method.
+	 */
     this.getMethodName = function() {
         return methodName;
     }
 
+
+	/**
+	 	Set method Name.
+	 	
+	 	@Method setMethodName
+	 	@param methodName Name Of Method.
+	 */
     this.setMethodName = function(val) {
         methodName = val;
     }
 
+
+	/**
+	 	Get message.
+
+		@method getMessage	 	
+	 	@return Message.
+	 */
     this.getMessage = function() {
         return message;
     }
 
+
+	/**
+	 	Set message.
+	 	
+	 	@method setMessage
+	 	@param message Message.
+	 */
     this.setMessage = function(val) {
         message = val;
     }

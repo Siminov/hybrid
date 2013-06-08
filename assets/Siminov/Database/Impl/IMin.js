@@ -140,7 +140,7 @@ function IMin(select) {
 		 	
 		 	@method execute
 		 	@return {Object} Return minimum.
-		 	@throws DatabaseException Throws exception if any error occur while calculating minimum. 
+		 	@throws {SiminovException} Throws exception if any error occur while calculating minimum. 
 		 */
         execute : select.execute
 

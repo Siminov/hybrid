@@ -139,7 +139,7 @@ function IMax(select) {
 		 	
 		 	@method execute
 		 	@return {Object} Return maximum.
-		 	@throws DatabaseException Throws exception if any error occur while calculating maximum. 
+		 	@throws {SiminovException} Throws exception if any error occur while calculating maximum. 
 		 */
         execute : select.execute
 

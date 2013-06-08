@@ -142,7 +142,7 @@ function ISum(select) {
 		 	
 		 	@method execute
 		 	@return {Object} Return sum.
-		 	@throws DatabaseException Throws exception if any error occur while calculating sum. 
+		 	@throws {SiminovException} Throws exception if any error occur while calculating sum. 
 		 */
         execute : select.execute
 

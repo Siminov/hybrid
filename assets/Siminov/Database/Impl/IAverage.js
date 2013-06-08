@@ -140,7 +140,7 @@ function IAverage(select) {
 	 
 			@method execute
 			@return {Object} Return average.
-	 		@throws DatabaseException Throws exception if any error occur while calculating average. 
+	 		@throws {SiminovException} Throws exception if any error occur while calculating average. 
 		*/
         execute : select.execute
 

@@ -34,6 +34,32 @@
 */
 function Database() {
 
+
+	
+	/**
+		It adds a record to any single table in a relational database.
+
+	   	<pre>
+	   	
+		Example: Make Liquor Object
+	
+			var beer = new Liquor();
+			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
+			beer.setDescription(beer_description));
+			beer.setHistory(beer_history));
+			beer.setLink(beer_link));
+			beer.setAlcholContent(beer_alchol_content));
+		  
+			try {
+				beer.save();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+
+	    </pre>
+	 
+	   	@throws {SiminovException} If any error occurs while saving tuples in database.
+	 */
 	this.save = function() {
 
         var datas = SIDatasHelper.toSI(this);
@@ -62,6 +88,27 @@ function Database() {
 	}
 
 
+
+	/**
+		It updates a record to any single table in a relational database.
+	
+		Example: Make Beer Object
+		
+			var beer = new Liquor();
+			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
+			beer.setDescription(beer_description));
+			beer.setHistory(beer_history));
+			beer.setLink(beer_link));
+			beer.setAlcholContent(beer_alchol_content));
+		 
+			try {
+				beer.update();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+
+	   	@throws DatabaseException If any error occurs while saving tuples in database.
+	 */
     this.update = function() {
 
         var datas = SIDatasHelper.toSI(this);
@@ -89,7 +136,32 @@ function Database() {
 
     }
 
-
+	
+	
+	/**
+		It finds out whether tuple exists in table or not.
+		IF NOT EXISTS:
+			adds a record to any single table in a relational database.
+		ELSE:
+			updates a record to any single table in a relational database.
+	   	
+		Example: Make Beer Object
+		
+			var beer = new Liquor();
+			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
+			beer.setDescription(beer_description));
+			beer.setHistory(beer_history));
+			beer.setLink(beer_link));
+			beer.setAlcholContent(beer_alchol_content));
+		  
+			try {
+				beer.saveOrUpdate();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+						
+	   	@throws {SiminovException} If any error occurs while saving tuples in database.
+	 */
     this.saveOrUpdate = function() {
 
         var datas = SIDatasHelper.toSI(this);
@@ -118,51 +190,273 @@ function Database() {
     }
 
 
+
+	/**
+	 	Fetch tuples from table.
+
+		Example:
+	
+		var liquors =  new Liquor().select()
+						.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+						.and(Liquor.ALCHOL_CONTENT).equalTo("90%")
+						.fetch();
+		
+	 	@return {ISelect} ISelect to provide extra information based on which tuples will be fetched from table.
+	 	@throws {SiminovException} If any error occur while fetching tuples from table.
+	 */
     this.select = function() {
         return new ISelect(new Select(this));
     }
 
+	
 
+	/**
+	 	Returns all tuples based on manual query from mapped table for invoked class object.
+	 
+		Example:
+			
+			var query = "SELECT * FROM LIQUOR";
+			
+			var liquors = null;
+			try {
+				liquors = new Liquor().select(query);
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+	 	@param query Manual query on which tuples need to be fetched.
+	 	@return Array Of Objects.
+	 	@throws SiminovException If any error occur while getting tuples from a single table.
+	 */
+	this.select = function(query) {
+	
+	}
+
+
+
+	/**
+		It deletes a record to any single table in a relational database.
+	
+		Example:
+		
+			var beer = new Liquor();
+			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
+			beer.setDescription(beer_description));
+			beer.setHistory(beer_history));
+			beer.setLink(beer_link));
+			beer.setAlcholContent(beer_alchol_content));
+		  
+			try {
+				beer.delete();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+					
+			OR
+					
+			try {
+				new Liquor().delete();
+			} catch(DatabaseException de) {
+				//Log It.
+			}
+			
+	   	@throws {SiminovException} If any error occurs while saving tuples in database.
+	 */
     this['delete'] = function() {
         return new IDelete(new Select(this));
     }
 
 
+
+	/**
+	 	Returns the average based on column name provided.
+	 	
+		Example:
+			var average = 0;
+			
+			try {
+				average = new Liquor().avg()
+							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+							.execute();
+		
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+		
+	 	@return {IAverage} IAverage to provide extra information based on which average will be calculated.
+	 	@throws {SiminovException} If any error occur while finding average.
+	 */
     this.avg = function() {
         return new IAverage(new Select(this));
     }
 
 
+
+	/**
+	 	Returns the count of rows based on information provided.
+	 	
+		Example:
+			var count = 0;
+			
+			try {
+				count = new Liquor().count().
+							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+							.execute();
+				
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+		
+	 	@return {ICount} ICount to provide extra information based on which count will be calculated.
+	 	@throws {SiminovException} If any error occur while find count.
+	 */
     this.count = function() {
         return new ICount(new Select(this));
     }
 
 
+
+	/**
+	 	Returns the minimum based on column name provided.
+	 	
+		Example:
+			var maximum = 0;
+			
+			try {
+				maximum = new Liquor().max()
+							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+							.execute();
+				
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+	 	@return {IMax} IMax to provide extra information based on which maximum will be calculated.
+	 	@throws {SiminovException} If any error occur while finding minimum.
+	 */
     this.max = function() {
         return new IMax(new Select(this));
     }
 
 
+
+	/**
+	 	Returns the minimum based on column name provided.
+	 	
+		Example:
+			var minimum = 0;
+			
+			try {
+				minimum = new Liquor().min()
+							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+							.execute();
+				
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+	 	@return {IMin} IMin to provide extra information based on which minimum will be calculated.
+	 	@throws {SiminovException} If any error occur while finding minimum.
+	 */
     this.min = function() {
         return new IMin(new Select(this));
     }
 
 
+
+	/**
+	 	Returns the sum based on column name provided.
+	 	
+		Example:
+			var sum = 0;
+			
+			try {
+				sum = new Liquor().sum()
+							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+							.execute();
+		
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+			
+	 	@return {ISum} ISum to provide extra information based on which sum will be calculated.
+	 	@throws {SiminovException} If any error occur while finding sum.
+	 */
     this.sum = function() {
         return new ISum(new Select(this));
     }
 
 
+
+	/**
+	 	Returns the total based on column name provided.
+	 	
+		Example:
+			var total = 0;
+			
+			try {
+				total = new Liquor().total()
+							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+							.execute();
+				
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	    
+	 	@return {ITotal} ITotal to provide extra information based on which total will be calculated.
+	 	@throws {SiminovException} If any error occur while finding total.
+	 */
     this.total = function() {
         return new ITotal(new Select(this));
     }
 
 
+
+	/**
+	 	Returns the group concat based on column name provided.
+	 	
+		Example:
+			var groupConcat = 0;
+			
+			try {
+				groupConcat = new Liquor().groupConcat()
+								.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+								.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+								.execute();
+								
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+		
+	 
+	 	@return {IGroupConcat} IGroupConcat to provide extra information based on which group concat will be calculated.
+	 	@throws SiminovException If any error occur while finding group concat.
+	 */
     this.groupConcat = function() {
         return new IGroupConcat(new Select(this));
     }
 
 
+
+	/**
+	 	Returns the mapped table name for invoked class object.
+	 
+		Example:
+			var tableName = null;
+			try {
+				tableName = new Liquor().getTableName();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+	 	@return {String} Mapped Table name.
+	 	@throws {SiminovException} If no mapped table found for invoked class object.
+	 */
     this.getTableName = function() {
 
         var adapter = new Adapter();
@@ -199,6 +493,22 @@ function Database() {
     }
 
 
+
+
+	/**
+	 	Returns all column names of mapped table.
+	 	
+		Example:
+			var columnNames = null;
+			try {
+				columnNames = new Liquor().getColumnNames();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	 		
+	 	@return {Array} All column names of mapped table.
+	 	@throws {SiminovException} If no mapped table found for invoked class object.
+	 */
     this.getColumnNames = function() {
 
         var adapter = new Adapter();
@@ -236,6 +546,22 @@ function Database() {
     }
 
 
+
+
+	/**
+	 	Returns all columns with there data types for invoked class object.
+	
+		Example:
+			var columnTypes = null;
+			try {
+				columnTypes = new Liquor().getColumnTypes();
+			} catch(DatabaseException de) {
+				//Log it.
+			}	
+	
+	 	@return {Dictionary} All columns with there data types.
+	 	@throws {SiminovException} If no mapped table found for invoked class object.
+	 */
     this.getColumnTypes = function() {
 
         var adapter = new Adapter();
@@ -281,6 +607,22 @@ function Database() {
     }
 
 
+
+
+	/**
+	 	Returns all primary keys of mapped table for invoked class object.
+	 	
+		Example:
+			var primaryKeys = null;
+			try {
+				primaryKeys = new Liquor().getPrimeryKeys();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+	 	@return {Array} All primary keys.
+	 	@throws {SiminovException} If not mapped table found for invoked class object.
+	 */
     this.getPrimaryKeys = function() {
 
         var adapter = new Adapter();
@@ -318,6 +660,22 @@ function Database() {
     }
 
 
+
+
+	/**
+	 	Returns all mandatory fields which are associated with mapped table for invoked class object.
+	 
+		Example:
+			var mandatoryFields = null;
+			try {
+				mandatoryFields = new Liquor().getMandatoryFields();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+
+	 	@return {Array} All mandatory fields for mapped table.
+	 	@throws SiminovException If no mapped table found for invoked class object.
+	 */
     this.getMandatoryFields = function() {
 
         var adapter = new Adapter();
@@ -355,6 +713,22 @@ function Database() {
     }
 
 
+
+	/**
+	 	Returns all unique fields which are associated with mapped table for invoked class object.
+	 
+		Example:
+			 			
+			var uniqueFields = null;
+			try {
+				uniqueFields = new Liquor().getUniqueFields();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	 		
+	 	@return {Array} All unique fields for mapped table.
+	 	@throws {SiminovException} If no mapped table found for invoked class object.
+	 */
     this.getUniqueFields = function() {
 
         var adapter = new Adapter();
@@ -392,6 +766,23 @@ function Database() {
     }
 
 
+
+
+	/**
+	 	Returns all foreign keys of mapped table for invoked class object.
+	 
+		Example:
+			 			
+			var foreignKeys = null;
+			try {
+				foreignKeys = new Liquor().getForeignKeys();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+	 	@return {Array} All foreign keys of mapped table.
+	 	@throws {SiminovException} If no mapped table found for invoked class object.
+	 */
     this.getForeignKeys = function() {
 
         var adapter = new Adapter();
@@ -429,6 +820,22 @@ function Database() {
     }
 
 
+
+
+	/**
+	 * Returns database descriptor object based on the POJO class called.
+
+		Example:
+		
+			try {
+				DatabaseDescriptor databaseDescriptor = new Liquor().getDatabaseDescriptor();
+			} catch(DatabaseException databaseException) {
+				//Log It.
+			}
+	
+	 * @return {DatabaseDescriptor} Database Descriptor Object.
+	 * @throws {SiminovException} If any error occur while getting database descriptor object.
+	 */
     this.getDatabaseDescriptor = function() {
 
         var resources = Resources.getInstance();
@@ -437,6 +844,22 @@ function Database() {
     }
 
 
+
+
+	/**
+	 	Returns the actual database mapping object mapped for invoked class object.
+	 
+		Example:
+			DatabaseMapping databaseMapping = null;
+			try {
+				databaseMapping = new Liquor().getDatabaseMapping();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+	 	@return {DatabaseMappingDescriptor} Database Mapping Descriptor Object
+	 	@throws {SiminovException} If database mapping object not mapped for invoked class object.
+	 */
     this.getDatabaseMappingDescriptor = function() {
 
         var resources = Resources.getInstance();

@@ -149,7 +149,7 @@ function IGroupConcat(select) {
 		 
 		 	@method execute
 			@return {Object} Return group concat.
-		 	@throws DatabaseException Throws exception if any error occur while calculating group concat. 
+		 	@throws {SiminovException} Throws exception if any error occur while calculating group concat. 
 		 */
         execute : select.execute
 

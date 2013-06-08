@@ -140,7 +140,7 @@ function ITotal(select) {
 		 	
 		 	@method execute
 		 	@return {Object} Return total.
-		 	@throws DatabaseException Throws exception if any error occur while calculating total. 
+		 	@throws {SiminovException} Throws exception if any error occur while calculating total. 
 		 */
         execute : select.execute
 

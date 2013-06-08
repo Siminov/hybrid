@@ -186,7 +186,7 @@ function ISelect(select) {
 		 	
 		 	@method fetch
 		 	@return {Object} Return array of model objects.
-		 	@throws DatabaseException Throws exception if any error occur while getting tuples from table. 
+		 	@throws {SiminovException} Throws exception if any error occur while getting tuples from table. 
 		 */
         fetch : select.fetch
 
