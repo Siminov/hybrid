@@ -40,6 +40,10 @@ var Resources = (function() {
 		
 		var databases = new Dictionary();
 		
+		/**
+	 		Get Application Descriptor object of application.
+	 		@return Application Descriptor.
+	 	*/
 	    this.getApplicationDescriptor = function() {
 
 	        var adapter = new Adapter();
@@ -55,6 +59,26 @@ var Resources = (function() {
 	
 	    }
 	
+		/**
+		 * Get iterator of all database descriptors provided in Application Descriptor file.
+			<p>
+				<pre>
+	Example: ApplicationDescriptor.xml
+		
+		{@code
+		<core>
+		
+			<database-descriptors>
+				<database-descriptor>DatabaseDescriptor.si.xml</database-descriptor>
+			</database-descriptors>
+	
+		</core>
+		}
+		
+				</pre>
+			</p>
+		 * @return Iterator which contains all database descriptor paths provided.
+		 */
 	    this.getDatabaseDescriptorPaths = function() {
 	
 	        var adapter = new Adapter();
@@ -69,7 +93,30 @@ var Resources = (function() {
 	        return databaseDescriptorPaths;
 	    }
 	
+		
+		/**
+		 * Get DatabaseDescriptor based on path provided as per defined in Application Descriptor file.
+			<p>
+				<pre>
+				
+	Example: ApplicationDescriptor.xml
+		
+		{@code
+		<core>
+		
+			<database-descriptors>
+				<database-descriptor>DatabaseDescriptor.xml</database-descriptor>
+			</database-descriptors>
 	
+		</core>
+		}
+		
+				</pre>
+			</p>
+		 
+		 * @param databaseDescriptorPath Iterator which contains all database descriptor paths provided.
+		 * @return
+		 */
 	    this.getDatabaseDescriptorBasedOnPath = function(path) {
 	
 	        var adapter = new Adapter();
@@ -87,6 +134,28 @@ var Resources = (function() {
 	
 	    }
 	
+		/**
+		 * Get Database Descriptor based on database descriptor name provided as per defined in Database Descriptor file.
+			<p>
+				<pre>
+				
+	Example: DatabaseDescriptor.xml
+		
+		{@code
+		<database-descriptor>
+		
+			<property name="database_name">SIMINOV-TEMPLATE</property>
+			
+		</database-descriptor>
+		}
+		
+				</pre>
+			</p>
+		 
+		 * 
+		 * @param databaseDescriptorName Database Descriptor object based on database descriptor name provided.
+		 * @return
+		 */
 	    this.getDatabaseDescriptorBasedOnName = function(databaseName) {
 	
 	        var adapter = new Adapter();
@@ -104,7 +173,11 @@ var Resources = (function() {
 	
 	    }
 	
-	
+		
+		/**
+		 * Get all Database Descriptors object.
+		 * @return Iterator which contains all Database Descriptors.
+		 */
 	    this.getDatabaseDescriptors = function() {
 	
 	        var adapter = new Adapter();
@@ -120,7 +193,12 @@ var Resources = (function() {
 	
 	    }
 	
-	
+		/**
+		 * Get Database Descriptor based on POJO class name provided.
+		 * 
+		 * @param className POJO class name.
+		 * @return Database Descriptor object in respect to POJO class name.
+		 */
 	    this.getDatabaseDescriptorBasedOnClassName = function(className) {
 	
 	        var adapter = new Adapter();
@@ -138,7 +216,13 @@ var Resources = (function() {
 	
 	    }
 	
-	
+		
+		/**
+		 * Get Database Descriptor based on table name provided.
+		 * 
+		 * @param tableName Name of table.
+		 * @return Database Descriptor object in respect to table name.
+		 */
 	    this.getDatabaseDescriptorBasedOnTableName = function(tableName) {
 	
 	        var adapter = new Adapter();
@@ -156,7 +240,8 @@ var Resources = (function() {
 	
 	    }
 	
-	
+		
+		
 		this.getDatabaseDescriptorNameBasedOnClassName = function(className) {
 
 	        var adapter = new Adapter();
@@ -214,7 +299,13 @@ var Resources = (function() {
 			
 		}
 		
-	
+		
+		/**
+		 * Get Database Mapping based on POJO class name provided.
+		 * 
+		 * @param className POJO class name.
+		 * @return Database Mapping object in respect to POJO class name.
+		 */	
 	    this.getDatabaseMappingDescriptorBasedOnClassName = function(className) {
 	
 	        var adapter = new Adapter();
@@ -232,7 +323,13 @@ var Resources = (function() {
 	
 	    }
 	
-	
+		
+		/**
+		 * Get Database Mapping based on table name provided.
+		 * 
+		 * @param tableName Name of table.
+		 * @return Database Descriptor object in respect to table name.
+		 */
 	    this.getDatabaseMappingDescriptorBasedOnTableName = function(tableName) {
 	
 	        var adapter = new Adapter();
@@ -283,6 +380,11 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+		 * Get all library paths based on Database Descriptor name.
+		 * @param databaseDescriptorName Name of Database Descriptor.
+		 * @return Iterator which contains all library paths based on Database Descriptor.
+		 */
 		this.getLibraryPathsBasedOnDatabaseDescriptorName = function(databaseDescriptorName) {
 		
 			var adapter = new Adapter();
@@ -317,6 +419,11 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+		 * Get all Library Descriptor objects based on Database Descriptor name.
+		 * @param databaseDescriptorName Name of Database Descriptor.
+		 * @return Iterator which contains all Library Descriptor objects based on Database Descriptor name.
+		 */
 		this.getLibrariesBasedOnDatabaseDescriptorName = function(databaseDescriptorName) {
 		
 			var adapter = new Adapter();
@@ -335,6 +442,11 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+		 * Get all Library Database Mapping objects based in library descriptor path.
+		 * @param libraryPath Library Descriptor path.
+		 * @return
+		 */
 		this.getLibraryDatabaseMappingDescriptorsBasedOnLibraryDescriptorPath = function(libraryDescriptorPath) {
 		
 			var adapter = new Adapter();
@@ -353,6 +465,10 @@ var Resources = (function() {
 		}
 	
 		
+		/**
+		 * Get Hybrid Descriptor.
+		 * @return Hybrid Descriptor.
+		 */
 		this.getHybridDescriptor = function() {
 		
 			var adapter = new Adapter();
@@ -369,6 +485,10 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+		 * Get All Adapters defined by Application.
+		 * @return All Adapters.
+		 */
 		this.getAdapters = function() {
 		
 			var adapter = new Adapter();
@@ -385,6 +505,10 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+		 * Get All Adapters defined in Libraries.
+		 * @return All Adapters.
+		 */
 		this.getLibrariesAdapters = function() {
 		
 			var adapter = new Adapter();
@@ -401,6 +525,10 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+		 * Get All Adapters Defined By Paths.
+		 * @return All Adapters.
+		 */
 		this.getAdaptersBasedOnPaths = function() {
 		
 			var adapter = new Adapter();
@@ -417,6 +545,11 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+		 * Get All Adapters based on library name.
+		 * @param libraryName Name of Library.
+		 * @return All Adapters.
+		 */
 		this.getLibraryAdaptersBasedOnName = function(libraryName) {
 		
 			var adapter = new Adapter();
@@ -435,6 +568,11 @@ var Resources = (function() {
 		}
 	
 	
+		/**
+		 * Get All Adapters based on library path.
+		 * @param libraryPath Path of Library.
+		 * @return All Adapters.
+		 */
 		this.getLibraryAdaptersBasedOnPath = function(libraryPath) {
 		
 			var adapter = new Adapter();
@@ -452,7 +590,12 @@ var Resources = (function() {
 		
 		}
 		
-			
+		
+		/**
+		 * Get Adapter based on Adapter Name.
+		 * @param adapterName Name of Adapter.
+		 * @return
+		 */
 		this.getAdapter = function(adapterName) {
 		
 			var adapter = new Adapter();
@@ -471,6 +614,11 @@ var Resources = (function() {
 		}	
 		
 		
+		/**
+		 * Get Adapter based on adapter path.
+		 * @param adapterPath Path of Adapter.
+		 * @return Adapter.
+		 */
 		this.getAdapterBasedOnPath = function(adapterPath) {
 		
 			var adapter = new Adapter();
@@ -489,6 +637,12 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+		 * Get Adapter based on library name and adapter name,
+		 * @param libraryName Name of Library.
+		 * @param adapterName Name of Adapter.
+		 * @return Adapter.
+		 */
 		this.getLibraryAdapterBasedOnName = function(libraryName, adapterName) {
 		
 			var adapter = new Adapter();
@@ -507,7 +661,13 @@ var Resources = (function() {
 			
 		}
 			
-			
+		
+		/**
+		 * Get Adapter based on library path and adapter path.
+		 * @param libraryPath Name of Library.
+		 * @param adapterPath Path of Adapter.
+		 * @return Adapter.
+		 */
 		this.getLibraryAdapterBasedOnPath = function(libraryPath, adapterPath) {
 		
 			var adapter = new Adapter();
@@ -527,6 +687,10 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+		 * Get All Handlers defined by Application.
+		 * @return All Handlers.
+		 */
 		this.getHandlers = function() {
 		
 			var adapter = new Adapter();
@@ -542,7 +706,13 @@ var Resources = (function() {
 			
 		}
 			
-			
+		
+		/**
+		 * Get Handler based on Adapter Name and Handler Name.
+		 * @param adapterName Name of Adapter.
+		 * @param handlerName Name of Handler.
+		 * @return Handler.
+		 */
 		this.getHandler = function(adapterName, handlerName) {
 		
 			var adapter = new Adapter();
