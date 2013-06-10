@@ -16,40 +16,35 @@
  **/
 
 /**
- * Exposes methods to GET and SET Application Descriptor information as per define in ApplicationDescriptor.si.xml file by application.
-	<p>
-		<pre>
+ 	Exposes methods to GET and SET Application Descriptor information as per define in ApplicationDescriptor.si.xml file by application.
 		
-Example:
-	<core>
-	
-		<property name="name">SIMINOV TEMPLATE</property>	
-		<property name="description">Siminov Template Application</property>
-		<property name="version">0.9</property>
-	
-		<property name="load_initially">true</property>
-	
-		<!-- DATABASE-DESCRIPTORS -->
-		<database-descriptors>
-			<database-descriptor>DatabaseDescriptor.si.xml</database-descriptor>
-		</database-descriptors>
-	
+	Example:
+		<siminov>
 		
-		<!-- SIMINOV EVENTS -->
-		<event-handlers>
-		    <event-handler>siminov.orm.template.events.SiminovEventHandler</event-handler>
-		    <event-handler>siminov.orm.template.events.DatabaseEventHandler</event-handler>
-		</event-handlers>
-			
-	</core>
-	}
-	
-		</pre>
-	</p>
+			<property name="name">SIMINOV HYBRID TEMPLATE</property>	
+			<property name="description">Siminov Hybrid Template Application</property>
+			<property name="version">0.9</property>
+		
+			<property name="load_initially">true</property>
+		
+			<!-- DATABASE-DESCRIPTORS -->
+			<database-descriptors>
+				<database-descriptor>DatabaseDescriptor.si.xml</database-descriptor>
+			</database-descriptors>
+		
+			<!-- SIMINOV EVENTS -->
+		 	<event-handlers>
+			    <event-handler>siminov.hybrid.template.events.SiminovEventHandler</event-handler>
+			    <event-handler>siminov.hybrid.template.events.DatabaseEventHandler</event-handler>
+			</event-handlers>
+				
+		</siminov>
 
- *
+	
+	@class ApplicationDescriptor
+	@constructor
+
  */
-
 function ApplicationDescriptor() {
 
     var properties = new Dictionary();
@@ -58,24 +53,30 @@ function ApplicationDescriptor() {
     var events = [];
 
 	/**
-	 * Get Application Descriptor Name as per defined in ApplicationDescriptor.si.xml file.
-	 * @return Application Descriptor Name.
+	 	Get Application Descriptor Name as per defined in ApplicationDescriptor.si.xml file.
+	 	
+	 	@method getName
+	 	@return Application Descriptor Name.
 	 */
 	this.getName = function() {
         return properties.get(Constants.APPLICATION_DESCRIPTOR_NAME);
     }
 
 	/**
-	 * Set Application Descriptor Name as per defined in ApplicationDescriptor.si.xml file.
-	 * @param name Name of Application Descriptor.
+	 	Set Application Descriptor Name as per defined in ApplicationDescriptor.si.xml file.
+	 	
+	 	@method setName
+		@param name Name of Application Descriptor.
 	 */
 	this.setName = function(name) {
         properties.add(Constants.APPLICATION_DESCRIPTOR_NAME, name);
     }
 
 	/**
-	 * Set Description of Application as per defined in ApplicationDescriptor.si.xml file.
-	 * @return Description of application.
+	 	Set Description of Application as per defined in ApplicationDescriptor.si.xml file.
+	 
+	 	@method getDescription
+		@return Description of application.
 	 */
     this.getDescription = function() {
         return properties.get(Constants.APPLICATION_DESCRIPTOR_DESCRIPTION);

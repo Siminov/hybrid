@@ -17,22 +17,58 @@
 
 
 
+/**
+	Log Siminov Messages.
+	
+	@class Log
+	@constructor
+*/
 function Log() {
 
 
 }
 
 
+
+/**
+ 	Log info messages.
+
+	@method logi 	
+ 	@static
+ 	@param className Class Name.
+ 	@param methodName Method Name.
+ 	@param message Message.
+ */
 Log.logi = function(className, methodName, message) {
     console.log("IMPORTANT - " + "CLASS-NAME: " + className + ", METHOD-NAME: " + methodName + ", MESSAGE: " + message);
 }
 
 
+
+/**
+ 	Log error messages.
+
+	@method loge 	
+ 	@static
+ 	@param className Class Name.
+ 	@param methodName Method Name.
+ 	@param message Message.
+ */
 Log.loge = function(className, methodName, message) {
     console.log("ERROR - " + "CLASS-NAME: " + className + ", METHOD-NAME: " + methodName + ", MESSAGE: " + message);
 }
 
 
+
+/**
+ 	Log debug messages.
+
+	@method logd 	
+ 	@static
+ 	@param className Class Name.
+ 	@param methodName Method Name.
+ 	@param message Message.
+ */
 Log.logd = function(className, methodName, message) {
     console.log("DEBUG - " + "CLASS-NAME: " + className + ", METHOD-NAME: " + methodName + ", MESSAGE: " + message);
 }
