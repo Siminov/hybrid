@@ -16,35 +16,31 @@
  **/
 
 /**
- * Exposes methods to GET and SET Library Descriptor information as per define in LibraryDescriptor.si.xml file by application.
-	<p>
-		<pre>
+ 	Exposes methods to GET and SET Library Descriptor information as per define in LibraryDescriptor.si.xml file by application.
 		
-Example:
-	{@code
-	<library>
-	
-		<property name="name">SIMINOV LIBRARY TEMPLATE</property>
-		<property name="description">Siminov Library Template</property>
-	
-		<!-- Database Mappings -->
-			<database-mappings>
-				<database-mapping path="Credential.si.xml" />
-			</database-mappings>
-	
-			 	<!-- OR -->
+	Example:
+
+		<library>
+		
+			<property name="name">SIMINOV LIBRARY TEMPLATE</property>
+			<property name="description">Siminov Library Template</property>
+		
+			<!-- Database Mappings -->
+				<database-mappings>
+					<database-mapping path="Credential.si.xml" />
+				</database-mappings>
+		
+				 	<!-- OR -->
+				 
+				<database-mappings>
+					<database-mapping path="siminov.orm.library.template.model.Credential" />
+				</database-mappings>
 			 
-			<database-mappings>
-				<database-mapping path="siminov.orm.library.template.model.Credential" />
-			</database-mappings>
-		 
-	</library>
-	}
-	
-		</pre>
-	</p>
-	
- *
+		</library>
+		
+		
+	@class LibraryDescriptor
+	@constructor
  */
 
 function LibraryDescriptor() {
@@ -54,32 +50,40 @@ function LibraryDescriptor() {
     var databaseMappingDescriptorPaths=[];
 
 	/**
-	 * Get library name.
-	 * @return
+	 	Get library name.
+	 	
+	 	@method getName
+	 	@return {String} Name of Library
 	 */
     this.getName = function() {
     	return properties.get(Constants.LIBRARY_DESCRIPTOR_NAME);
 	}
 	
 	/**
-	 * Set library name as per defined in LibraryDescriptor.si.xml
-	 * @param name
+	 	Set library name as per defined in LibraryDescriptor.si.xml
+	 
+	 	@method setName
+ 		@param name {String} Name of Library
 	 */
     this.setName = function(name) {
     	properties.add(Constants.LIBRARY_DESCRIPTOR_NAME, name);
 	}
 	
 	/**
-	 * Get descriptor as per defined in LibraryDescriptor.si.xml
-	 * @return
+	 	Get descriptor as per defined in LibraryDescriptor.si.xml
+	 	
+	 	@method getDescription
+	 	@return {String} Description of Library
 	 */
     this.getDescription = function() {
     	return properties.get(Constants.LIBRARY_DESCRIPTOR_DESCRIPTION);
 	}
 	
 	/**
-	 * Set description as per defined in LibraryDescritor.core.xml
-	 * @param descriptor
+	 	Set description as per defined in LibraryDescritor.core.xml
+	 
+	 	@method setDescription
+	 	@param descriptor {String} Description of Library
 	 */
     this.setDescription = function(description) {
     	properties.add(Constants.LIBRARY_DESCRIPTOR_DESCRIPTION, description);
@@ -108,30 +112,29 @@ function LibraryDescriptor() {
 
 	
 	/**
-	 * Get all database mapping paths as per defined in DatabaseDescriptor.si.xml file.
-	 * @return Array which contain all database mapping paths.
+	 	Get all database mapping paths as per defined in DatabaseDescriptor.si.xml file.
+	 
+	 	@method getDatabaseMappingDescriptorPaths
+	 	@return {Array} It contain all database mapping paths.
 	 */
     this.getDatabaseMappingDescriptorPaths = function() {
     	return databaseMappingDescriptorPaths;
 	}
 	
 	/**
-	 * Add database mapping path as per defined in DatabaseDescriptor.si.xml file.
-	 	<p>
-	 		<pre>
+	 	Add database mapping path as per defined in DatabaseDescriptor.si.xml file.
 	 		
-EXAMPLE:
-	<database-descriptor>
-		<database-mappings>
-			<database-mapping path="Liquor-Mappings/Liquor.xml" />
-			<database-mapping path="Liquor-Mappings/LiquorBrand.xml" />
-		</database-mappings>
-	</database-descriptor>
+		EXAMPLE:
+			<database-descriptor>
+				<database-mappings>
+					<database-mapping path="Liquor-Mappings/Liquor.xml" />
+					<database-mapping path="Liquor-Mappings/LiquorBrand.xml" />
+				</database-mappings>
+			</database-descriptor>
 	
-		</pre>
-	</p>
 	 
-	 * @param databaseMappingPath Database Mapping Path.
+	 	@method addDatabaseMappingDescriptorPath
+	 	@param databaseMappingPath {String} Database Mapping Path.
 	 */
     this.addDatabaseMappingDescriptorPath = function(databaseMappingDescriptorPath) {
     	databaseMappingDescriptorPaths.push(databaseMappingDescriptorPaths);
