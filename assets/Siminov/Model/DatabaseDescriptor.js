@@ -18,46 +18,32 @@
 
 
 /**
- * Exposes methods to GET and SET Database Descriptor information as per define in DatabaseDescriptor.si.xml file by application.
-	<p>
-		<pre>
-		
-Example:
-	{@code
-
-	<database-descriptor>
+ 	Exposes methods to GET and SET Database Descriptor information as per define in DatabaseDescriptor.si.xml file by application.
 	
-		<property name="database_name">SIMINOV-TEMPLATE</property>
-		<property name="description">Siminov Template Database Config</property>
-		<property name="is_locking_required">true</property>
-		<property name="external_storage">false</property>
-
-		<!-- Database Mappings -->
+		
+	Example:
+		<database-descriptor>
+		
+			<property name="database_name">SIMINOV-HYBRID-TEMPLATE</property>
+			<property name="description">Siminov Hybrid Template Database Config</property>
+			<property name="is_locking_required">true</property>
+			<property name="external_storage">false</property>
+		
 			<database-mappings>
 				<database-mapping path="Liquor-Mappings/Liquor.si.xml" />
 				<database-mapping path="Liquor-Mappings/LiquorBrand.si.xml" />
 			</database-mappings>
-	
-			 	<!-- OR -->
-
-			<database-mappings>
-				<database-mapping path="siminov.orm.template.model.Liquor" />
-				<database-mapping path="siminov.orm.template.model.LiquorBrand" />
-			</database-mappings>
 		
+		
+			<libraries>
+				<library>siminov.orm.library.template.resources</library>
+			</libraries>
+		
+		</database-descriptor>	
 
-		<!-- Libraries -->
-		<libraries>
-			<library>siminov.orm.library.template.resources</library>
-		</libraries>
-				
-	</database-descriptor>
+	@class DatabaseDescriptor
+	@constructor
 
-	}
-	
-		</pre>
-	</p>
-	
 */
 function DatabaseDescriptor() {
 
@@ -68,64 +54,80 @@ function DatabaseDescriptor() {
 
 
 	/**
-	 * Get database descriptor name as defined in DatabaseDescriptor.si.xml file.
-	 * @return Database Descriptor Name.
+	 	Get database descriptor name as defined in DatabaseDescriptor.si.xml file.
+	 
+	 	@method getDatabaseName
+	 	@return {String} Database Descriptor Name.
 	 */
     this.getDatabaseName = function() {
     	return properties.get(Constants.DATABASE_DESCRIPTOR_DATABASE_NAME);
    	}
    	
 	/**
-	 * Set database descriptor name as per defined in DatabaseDescriptor.si.xml file.
-	 * @param databaseName Database Descriptor Name.
+	 	Set database descriptor name as per defined in DatabaseDescriptor.si.xml file.
+	 
+	 	@method setDatabaseName
+	 	@param databaseName {String} Database Descriptor Name.
 	 */
     this.setDatabaseName = function(databaseName) {
     	properties.add(Constants.DATABASE_DESCRIPTOR_DATABASE_NAME, databaseName);
     }
     
 	/**
-	 * Get description as per defined in DatabaseDescriptor.si.xml file.
-	 * @return Description defined in DatabaseDescriptor.si.xml file.
+	 	Get description as per defined in DatabaseDescriptor.si.xml file.
+	 
+	 	@method getDescription
+	 	@return {String} Description defined in DatabaseDescriptor.si.xml file.
 	 */
     this.getDescription = function() {
     	return properties.get(Constants.DATABASE_DESCRIPTOR_DESCRIPTION);
     }
     
 	/**
-	 * Set description as per defined in DatabaseDescritor.xml file.
-	 * @param description Description defined in DatabaseDescriptor.si.xml file.
+	 	Set description as per defined in DatabaseDescritor.xml file.
+	 
+	 	@method setDescription
+	 	@param description {String} Description defined in DatabaseDescriptor.si.xml file.
 	 */
     this.setDescription = function(description) {
     	properties.add(Constants.DATABASE_DESCRIPTOR_DESCRIPTION, description);
     }
     
 	/**
-	 * Set database locking as per defined in DatabaseDescriptor.si.xml file.
-	 * @param isLockingRequired (true/false) database locking as per defined in DatabaseDescriptor.si.xml file.
+	 	Set database locking as per defined in DatabaseDescriptor.si.xml file.
+	 
+	 	@method setLockingRequired
+	 	@param isLockingRequired {Boolean} (true/false) database locking as per defined in DatabaseDescriptor.si.xml file.
 	 */
     this.setLockingRequired = function(lockingRequired) {
     	properties.add(Constants.DATABASE_DESCRIPTOR_IS_LOCKING_REQUIRED, lockingRequired);
 	}
 	
 	/**
-	 * Check whether database transactions to make multi-threading safe or not.
-	 * @return TRUE: If locking is required as per defined in DatabaseDescriptor.si.xml file, FALSE: If locking is not required as per defined in DatabaseDescriptor.si.xml file.
+	 	Check whether database transactions to make multi-threading safe or not.
+	 
+	 	@method isLockingRequired
+	 	@return {Boolean} (true/false) TRUE: If locking is required as per defined in DatabaseDescriptor.si.xml file, FALSE: If locking is not required as per defined in DatabaseDescriptor.si.xml file.
 	 */
     this.isLockingRequired = function() {
     	properties.get(Constants.DATABASE_DESCRIPTOR_IS_LOCKING_REQUIRED);
     }
     
 	/**
-	 * Set the external storage value as per defined in DatabaseDescriptor.si.xml file.
-	 * @param isExternalStorageEnable (true/false) External Storage Enable Or Not.
+	 	Set the external storage value as per defined in DatabaseDescriptor.si.xml file.
+	 
+	 	@method setExternalStorage
+	 	@param isExternalStorageEnable {Boolean} (true/false) External Storage Enable Or Not.
 	 */
     this.setExternalStorage = function(externalStorage) {
     	properties.add(Constants.DATABASE_DESCRIPTOR_EXTERNAL_STORAGE, externalStorage);
 	}
 	
 	/**
-	 * Check whether database needs to be stored on SDCard or not.
-	 * @return TRUE: If external_storage defined as true in DatabaseDescriptor.si.xml file, FALSE: If external_storage defined as false in DatabaseDescritor.xml file.
+	 	Check whether database needs to be stored on SDCard or not.
+	 
+	 	@method isExternalStorage
+	 	@return {Boolean} (true/false) TRUE: If external_storage defined as true in DatabaseDescriptor.si.xml file, FALSE: If external_storage defined as false in DatabaseDescritor.xml file.
 	 */
     this.isExternalStorage = function() {
     	return properties.get(Constants.DATABASE_DESCRIPTOR_EXTERNAL_STORAGE)
@@ -154,46 +156,48 @@ function DatabaseDescriptor() {
 
 	
 	/**
-	 * Get all database mapping paths as per defined in DatabaseDescriptor.si.xml file.
-	 * @return Array which contain all database mapping paths.
+	 	Get all database mapping paths as per defined in DatabaseDescriptor.si.xml file.
+	 
+	 	@method getDatabaseMappingDescriptorPaths
+	 	@return {Array} It contain all database mapping paths.
 	 */
     this.getDatabaseMappingDescriptorPaths = function() {
     	return databaseMappingPaths;
 	}
 	
 	/**
-	 * Add database mapping path as per defined in DatabaseDescriptor.si.xml file.
-	 	<p>
-	 		<pre>
+	 	Add database mapping path as per defined in DatabaseDescriptor.si.xml file.
 	 		
-EXAMPLE:
-	<database-descriptor>
-		<database-mappings>
-			<database-mapping path="Liquor-Mappings/Liquor.xml" />
-			<database-mapping path="Liquor-Mappings/LiquorBrand.xml" />
-		</database-mappings>
-	</database-descriptor>
+		EXAMPLE:
+			<database-descriptor>
+				<database-mappings>
+					<database-mapping path="Liquor-Mappings/Liquor.xml" />
+					<database-mapping path="Liquor-Mappings/LiquorBrand.xml" />
+				</database-mappings>
+			</database-descriptor>
 	
-		</pre>
-	</p>
-	 
-	 * @param databaseMappingPath Database Mapping Path.
+		@method addDatabaseMappingDescriptorPath
+	 	@param databaseMappingPath Database Mapping Path.
 	 */
     this.addDatabaseMappingDescriptorPath = function(databaseMappingPath) {
     	databaseMappingPaths.push(databaseMappingPath);
 	}
 	
 	/**
-	 * Get all library paths as per defined in DatabaseDescriptor.si.xml file.
-	 * @return Array which contains all library paths.
+	 	Get all library paths as per defined in DatabaseDescriptor.si.xml file.
+	 
+	 	@method getLibraryPaths
+	 	@return {Array} It contains all library paths.
 	 */
     this.getLibraryPaths = function() {
     	return libraries;
 	}
 	
 	/**
-	 * Add library path as per defined in DatabaseDescriptor.si.xml file.
-	 * @param libraryPath Library path defined in DatabaseDescriptor.si.xml file.
+	 	Add library path as per defined in DatabaseDescriptor.si.xml file.
+	 
+	 	@method addLibraryPath
+	 	@param libraryPath {String} Library path defined in DatabaseDescriptor.si.xml file.
 	 */
     this.addLibraryPath = function(libraryPath) {
     	libraries.push(libraryPath);
