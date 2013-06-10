@@ -122,49 +122,87 @@ function HybridDescriptor() {
 
     var libraries = [];
 
-		
+	
+	/**
+	 * Get all Properties defined in descriptor.
+	 * @return All Property Values.
+	 */
 	this.getProperties = function() {
 		return properties.values();
 	}
-
+	
+	/**
+	 * Get Property based on name provided.
+	 * @param name Name of Property.
+	 * @return Property value.
+	 */
 	this.getProperty = function(name) {
 		return properties.get(name);
 	}
-
+	
+	/**
+	 * Check whether Property exist or not.
+	 * @param name Name of Property.
+	 * @return true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
 	this.containProperty = function(name) {
 		return properties.exists(name);
 	}
-
+	
+	/**
+	 * Add Property in property pool.
+	 * @param name Name of Property.
+	 * @param value value of Property.
+	 */
 	this.addProperty = function(name, value) {
 		properties.add(name, value);
 	}
 	
+	/**
+	 * Remove Property from property pool.
+	 * @param name Name of Property.
+	 */
 	this.removeProperty = function(name) {
 		properties.remove(name);
 	}
-
-    this.getAdapter = function() {
-    	return adapters;
+	
+	/**
+	 * Get All Adapters. Defined in HybridDescriptor.si.xml file.
+	 * @return All Adapters.
+	 */
+	this.getAdapters = function() {
+	    	return adapters;
 	}
 	
-    this.addAdapter = function(adapter) {
-    	adapters.push(adapter);
-	}
-
-    this.getAdapterPaths = function() {
-    	return adapterPaths;
-	}
-	
-    this.addAdapterPath = function(adapterPath) {
-    	adapterPaths.push(adapterPath);
-	}
-
-    this.getLibraries = function() {
-    	return libraries;
+	/**
+	 * Get Adapter based on name.
+	 * @param adapterName Name of Adapter.
+	 * @return Adapter.
+	 */
+	    this.addAdapter = function(adapter) {
+	    	adapters.push(adapter);
 	}
 	
-    this.addLibrary = function(library) {
-    	libraries.push(library);
+	/**
+	 * Get Adapter based on adapter path.
+	 * @param adapterPath Path of Adapter File.
+	 * @return Adapter.
+	 */
+	this.getAdapterPaths = function() {
+	    	return adapterPaths;
+	}
+	
+	
+	    this.addAdapterPath = function(adapterPath) {
+	    	adapterPaths.push(adapterPath);
+	}
+	
+	    this.getLibraries = function() {
+	    	return libraries;
+	}
+	
+	    this.addLibrary = function(library) {
+	    	libraries.push(library);
 	}
 
 }
