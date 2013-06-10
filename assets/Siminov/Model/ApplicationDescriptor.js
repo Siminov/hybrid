@@ -56,7 +56,7 @@ function ApplicationDescriptor() {
 	 	Get Application Descriptor Name as per defined in ApplicationDescriptor.si.xml file.
 	 	
 	 	@method getName
-	 	@return Application Descriptor Name.
+	 	@return {String} Application Descriptor Name.
 	 */
 	this.getName = function() {
         return properties.get(Constants.APPLICATION_DESCRIPTOR_NAME);
@@ -66,7 +66,7 @@ function ApplicationDescriptor() {
 	 	Set Application Descriptor Name as per defined in ApplicationDescriptor.si.xml file.
 	 	
 	 	@method setName
-		@param name Name of Application Descriptor.
+		@param name {String} Name of Application Descriptor.
 	 */
 	this.setName = function(name) {
         properties.add(Constants.APPLICATION_DESCRIPTOR_NAME, name);
@@ -76,31 +76,37 @@ function ApplicationDescriptor() {
 	 	Set Description of Application as per defined in ApplicationDescriptor.si.xml file.
 	 
 	 	@method getDescription
-		@return Description of application.
+		@return {String} Description of application.
 	 */
     this.getDescription = function() {
         return properties.get(Constants.APPLICATION_DESCRIPTOR_DESCRIPTION);
     }
 
 	/**
-	 * Set Description of Application as per defined in ApplicationDescriptor.si.xml file.
-	 * @param description Description of application.
+	 	Set Description of Application as per defined in ApplicationDescriptor.si.xml file.
+	 
+	 	@method setDescription
+		@param description {String} Description of application.
 	 */
     this.setDescription = function(description) {
         properties.add(Constants.APPLICATION_DESCRIPTOR_DESCRIPTION, description);
     }
 
 	/**
-	 * Get Version of Application as per defined in ApplicationDescriptor.si.xml file.
-	 * @return Version of application.
+	 	Get Version of Application as per defined in ApplicationDescriptor.si.xml file.
+		
+		@method getVersion
+		@return {String} Version of application.
 	 */
     this.getVersion = function() {
         return properties.get(Constants.APPLICATION_DESCRIPTOR_VERSION);
     }
 
 	/**
-	 * Set Version of Application as per defined in ApplicationDescriptor.si.xml file.
-	 * @param version Version of application.
+	 	Set Version of Application as per defined in ApplicationDescriptor.si.xml file.
+	 
+	 	@method setVersion
+	 	@param version {String} Version of application.
 	 */
     this.setVersion = function(version) {
         properties.add(Constants.APPLICATION_DESCRIPTOR_VERSION, version);
@@ -108,7 +114,7 @@ function ApplicationDescriptor() {
 
 	/**
 	 * Set load initially to true or false.
-	 * @param initialLoad (true/false) defined by ApplicationDescriptor.si.xml file.
+	 * @param initialLoad {Boolean} (true/false) defined by ApplicationDescriptor.si.xml file.
 	 */
     this.setLoadInitially = function(loadInitially){
         properties.add(Constants.APPLICATION_DESCRIPTOR_LOAD_INITIALLY, loadInitially);
@@ -116,7 +122,7 @@ function ApplicationDescriptor() {
 
 	/**
 	 * It defines the behaviour of SIMINOV. (Should core load all database mapping at initialization or on demand).
-	 * @return TRUE: If load initially is set to true, FALSE: If load initially is set to false.
+	 * @return {Boolean} (true/false) TRUE: If load initially is set to true, FALSE: If load initially is set to false.
 	 */
     this.getLoadInitially = function() {
         return properties.get(Constants.APPLICATION_DESCRIPTOR_LOAD_INITIALLY);
@@ -145,32 +151,40 @@ function ApplicationDescriptor() {
 
 
 	/**
-	 * Add Database Descriptor path as per contained in ApplicationDescriptor.si.xml file.
-	 * @param databaseDescriptorPath DatabaseDescriptor path.
+	 	Add Database Descriptor path as per contained in ApplicationDescriptor.si.xml file.
+	 
+	 	@method addDatabaseDescriptorPath
+	 	@param databaseDescriptorPath {String} DatabaseDescriptor path.
 	 */
     this.addDatabaseDescriptorPath = function(databaseDescriptorPath) {
         databaseDescriptorPaths.push(databaseDescriptorPath);
     }
 
 	/**
-	 * Get all database descriptor paths as per contained in ApplicationDescriptor.si.xml file.
-	 * @return Array which contains all database descriptor paths.
+	 	Get all database descriptor paths as per contained in ApplicationDescriptor.si.xml file.
+		
+		@method getDatabaseDescriptorPaths
+		@return {Array} It which contains all database descriptor paths.
 	 */
     this.getDatabaseDescriptorPaths = function() {
         return databaseDescriptorPaths;
     }
 
 	/**
-	 * Get all event handlers as per defined in ApplicationDescriptor.si.xml file.
-	 * @return Array all event handlers defined in ApplicationDescriptor.si.xml file
+		Get all event handlers as per defined in ApplicationDescriptor.si.xml file.
+	 
+ 		@method getEvents
+ 		@return {Array} All event handlers defined in ApplicationDescriptor.si.xml file
 	 */
     this.getEvents = function() {
         return events;
     }
 
 	/**
-	 * Add event as per defined in ApplicationDescriptor.si.xml file.
-	 * @param event Event Handler class name.
+	 	Add event as per defined in ApplicationDescriptor.si.xml file.
+	 	
+	 	@method addEvent
+	 	@param event {String} Event Handler class name.
 	 */
     this.addEvent = function(event) {
         events.push(event);
