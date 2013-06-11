@@ -17,6 +17,12 @@
 
 
 
+/**
+	Get all properties a given function contain.
+	
+	@method properties
+	@return {Array} All function properties
+*/
 Object.defineProperty(
     Object.prototype, "properties", {
         value: function() {
@@ -32,6 +38,12 @@ Object.defineProperty(
 );
 
 
+/**
+	Check whether a give function contain provided property or not.
+	
+	@method containProperties
+	@return {Boolean} true/false; TRUE: If it contain property; FALSE: If it does not contain property.
+*/
 Object.defineProperty(
     Object.prototype, "containProperties", {
         value: function(property) {
@@ -49,6 +61,13 @@ Object.defineProperty(
 );
 
 
+
+/**
+	Get all GET properties a given function contain.
+	
+	@method getterProperties
+	@return {Array} All GET Properties
+*/
 Object.defineProperty(
     Object.prototype, "getterProperties", {
         value: function() {
@@ -67,6 +86,13 @@ Object.defineProperty(
 );
 
 
+
+/**
+	Get all SET properties a given function contain.
+
+	@method setterProperties
+	@return {Array} All SET Properties
+*/
 Object.defineProperty(
     Object.prototype, "setterProperties", {
         value: function() {
@@ -85,6 +111,12 @@ Object.defineProperty(
 );
 
 
+/**
+	Get name of given function.
+	
+	@method getObjectName
+	@return {String} Name of Function 
+*/
 Object.defineProperty(
     Object.prototype, "getObjectName", {
         value: function() {
@@ -98,22 +130,43 @@ Object.defineProperty(
 
 
 
+/**
+	It provide APIs to deal with class.
+	
+	@class FunctionUtils
+*/
 function FunctionUtils() {
 
 }
 
 
 
+/**
+	It is use to implement inherit parent properties in child.
+	
+	@method extend
+	@static
+*/
 FunctionUtils.extend = function (parent, child) {
     child.prototype = new parent();
     child.prototype.constructor = child;
 }
 
 
+
+/**
+	Create a instance of function.
+	
+	@method createFunctionInstance
+	@static
+	@return {Object} Function Instance
+*/
 FunctionUtils.createFunctionInstance = function(functionName) {
     var obj = FunctionUtils.createFunctionInstanceDescend(window, functionName);
     return new obj();
 }
+
+
 
 FunctionUtils.createFunctionInstanceDescend = function(obj, path) {
     var parts = path.split('.');
@@ -125,10 +178,27 @@ FunctionUtils.createFunctionInstanceDescend = function(obj, path) {
     return obj;
 }
 
+
+
+/**
+	Populate data in object by invoking API and passing parameters to it.
+	
+	@method invokeAndInflate
+	@static
+*/
 FunctionUtils.invokeAndInflate = function(object, functionName, parameterValues) {
 	object[functionName].apply(object, Array.prototype.slice.call(arguments, 2));
 }
 
+
+
+/**
+	Invoke API and get data from object.
+	
+	@method invokeAndFetch
+	@static
+	@return {Object} Return object from invoked API
+*/
 FunctionUtils.invokeAndFetch = function(object, functionName) {
     return object[functionName] ();
 }

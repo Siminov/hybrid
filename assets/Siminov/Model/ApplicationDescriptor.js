@@ -113,38 +113,79 @@ function ApplicationDescriptor() {
     }
 
 	/**
-	 * Set load initially to true or false.
-	 * @param initialLoad {Boolean} (true/false) defined by ApplicationDescriptor.si.xml file.
+	 	Set load initially to true or false.
+	 
+	 	@method setLoadInitially
+		@param initialLoad {Boolean} (true/false) defined by ApplicationDescriptor.si.xml file.
 	 */
     this.setLoadInitially = function(loadInitially){
         properties.add(Constants.APPLICATION_DESCRIPTOR_LOAD_INITIALLY, loadInitially);
     }
 
 	/**
-	 * It defines the behaviour of SIMINOV. (Should core load all database mapping at initialization or on demand).
-	 * @return {Boolean} (true/false) TRUE: If load initially is set to true, FALSE: If load initially is set to false.
+	 	It defines the behaviour of SIMINOV. (Should core load all database mapping at initialization or on demand).
+	 	
+	 	@method getLoadInitially
+	 	@return {Boolean} (true/false) TRUE: If load initially is set to true, FALSE: If load initially is set to false.
 	 */
     this.getLoadInitially = function() {
         return properties.get(Constants.APPLICATION_DESCRIPTOR_LOAD_INITIALLY);
     }
 
 	
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
 	this.getProperties = function() {
 		return properties.values();
 	}
 
+
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+		@return {String} Property value.
+	 */
 	this.getProperty = function(name) {
 		return properties.get(name);
 	}
 
+
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
 	this.containProperty = function(name) {
 		return properties.exists(name);
 	}
 
+
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
 	this.addProperty = function(name, value) {
 		properties.add(name, value);
 	}
 	
+
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method  removeProperty
+		@param name {String} Name of Property.
+	 */
 	this.removeProperty = function(name) {
 		properties.remove(name);
 	}

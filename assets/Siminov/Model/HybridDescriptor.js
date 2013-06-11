@@ -124,260 +124,669 @@ function HybridDescriptor() {
 
 	
 	/**
-	 * Get all Properties defined in descriptor.
-	 * @return All Property Values.
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
 	 */
 	this.getProperties = function() {
 		return properties.values();
 	}
 	
 	/**
-	 * Get Property based on name provided.
-	 * @param name Name of Property.
-	 * @return Property value.
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+	 	@return {String} Property value.
 	 */
 	this.getProperty = function(name) {
 		return properties.get(name);
 	}
 	
 	/**
-	 * Check whether Property exist or not.
-	 * @param name Name of Property.
-	 * @return true/false, TRUE if property exist, FALSE if property does not exist.
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
 	 */
 	this.containProperty = function(name) {
 		return properties.exists(name);
 	}
 	
 	/**
-	 * Add Property in property pool.
-	 * @param name Name of Property.
-	 * @param value value of Property.
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
 	 */
 	this.addProperty = function(name, value) {
 		properties.add(name, value);
 	}
 	
 	/**
-	 * Remove Property from property pool.
-	 * @param name Name of Property.
+	 	Remove Property from property pool.
+	 
+	 	@method removeProperty
+		@param name {String} Name of Property.
 	 */
 	this.removeProperty = function(name) {
 		properties.remove(name);
 	}
 	
 	/**
-	 * Get All Adapters. Defined in HybridDescriptor.si.xml file.
-	 * @return All Adapters.
+	 	Get All Adapters. Defined in HybridDescriptor.si.xml file.
+	 	
+	 	@method getAdapters
+	 	@return {Array} All Adapters.
 	 */
 	this.getAdapters = function() {
 	    	return adapters;
 	}
 	
 	/**
-	 * Get Adapter based on name.
-	 * @param adapterName Name of Adapter.
-	 * @return Adapter.
+	 	Get Adapter based on name.
+	 	
+	 	@method addAdapter
+	 	@param adapterName {String} Name of Adapter.
+	 	@return {Adapter} Adapter.
 	 */
-	    this.addAdapter = function(adapter) {
+	 this.addAdapter = function(adapter) {
 	    	adapters.push(adapter);
 	}
 	
 	/**
-	 * Get Adapter based on adapter path.
-	 * @param adapterPath Path of Adapter File.
-	 * @return Adapter.
+	 	Get Adapter based on adapter path.
+	 
+	 	@method getAdapterPaths
+	 	@return {Adapter} Adapter.
 	 */
 	this.getAdapterPaths = function() {
 	    	return adapterPaths;
 	}
 	
-	
-	    this.addAdapterPath = function(adapterPath) {
+
+	/**
+		Path of Adapter.
+		
+		@method addAdapterPath
+		@param Path of Adapter
+	*/	
+    this.addAdapterPath = function(adapterPath) {
 	    	adapterPaths.push(adapterPath);
 	}
 	
-	    this.getLibraries = function() {
+	/**
+		Get all Libraries.
+		
+		@method getLibraries
+		@return All Libraries
+	*/
+    this.getLibraries = function() {
 	    	return libraries;
 	}
 	
-	    this.addLibrary = function(library) {
+	/**
+		Add Library.
+		
+		@method addLibrary
+		@param Library
+	*/
+    this.addLibrary = function(library) {
 	    	libraries.push(library);
 	}
 
 }
 
 
+
+/**
+	Exposes methods to GET and SET Hybrid Descriptor Adapter information as per define in HybridDescriptor.si.xml file or standalone xml file in application.
+			
+	Example:
+
+		<adapter>
+			<property name="name">name_of_adapter</property>
+			<property name="description">description_about_adapter</property>
+			<property name="type">type_of_adapter</property>
+			<property name="map_to">map_to_class_name</property>
+			<property name="cache">should_be_cached_or_not</property>
+			
+			<handlers>
+			
+				<handler>
+					<property name="name">name_of_handler</property>
+					<property name="description">description_about_handler</property>
+					<property name="map_to">map_to_function_name</property>
+					
+					<parameters>
+						
+						<parameter>
+							<property name="name"></property>
+							<property name="description"></property>
+							<property name="type"></property>
+						</parameter>
+					
+					</parameter>
+					
+					<return>
+							<property name="type">return_data_type</property>
+							<property name="description">description_about_return_data</property>
+					</return>
+					
+				</handler>
+			
+			</handlers>
+			
+		</adapter>
+
+	@class HybridDescriptor.Adapter
+	@constructor
+				
+*/
 HybridDescriptor.Adapter = function() {
 
     var properties = new Dictionary();
 
     var handlers=[];
     
-
+	
+	/**
+	 * Get Name of Adapter.
+	 * @return Name of Adapter.
+	 */
     this.getName = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_NAME);
 	}
 	
+	/**
+	 * Set Name of Adapter.
+	 * @param name Name of Adapter.
+	 */
     this.setName = function(name) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_NAME, name);
 	}
 
+	/**
+	 * Get Description of Adapter.
+	 * @return Description of Adapter.
+	 */
     this.getDescription = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_DESCRIPTION);
 	}
 	
+	/**
+	 * Set Description of Adapter.
+	 * @param description Description of Adapter.
+	 */
     this.setDescription = function(description) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_DESCRIPTION, description);
 	}
 
+	/**
+	 * Get Type of Adapter.
+	 * @return Type of Adapter.
+	 */
     this.getType = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_TYPE);
 	}
 	
+	/**
+	 * Set Type of Adapter.
+	 * @param type Type of Adapter.
+	 */
     this.setType = function(type) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_TYPE, type);
 	}
 
+	/**
+	 * Get Map To Name.
+	 * @return Map To Name.
+	 */
     this.getMapTo = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_MAP_TO);
 	}
 	
+	/**
+	 * Set Map To Name.
+	 * @param mapTo Map To Name.
+	 */
     this.setMapTo = function(mapTo) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_MAP_TO, mapTo);
 	}
 
-    this.setCache = function(cache) {
-    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_CACHE, cache);
-	}
-	
+	/**
+	 * Check whether cache is enabled or disabled.
+	 * @return true/false; TRUE if cache enabled, FALSE if cache disabled.
+	 */
     this.isCache = function() {
         return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_CACHE);
 	}
 
-    this.getErrorHandler = function() {
-    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_ERROR_HANDLER);
+	/**
+	 * Set Cache value.
+	 * @param cache Cache Enabled or Disabled.
+	 */
+    this.setCache = function(cache) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_CACHE, cache);
 	}
-    
-    this.setErrorHandler = function(errorHandler) {
-    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_ERROR_HANDLER, errorHandler);
-	}
+	
 
+	/**
+	 	Get All Handler defined in descriptors.
+	 
+	 	@method getHandlers
+		@return {Array} All Handlers.
+	 */
     this.getHandlers = function() {
     	return handlers;
 	}
 	
+	/**
+	 	Add Handler.
+	 	
+	 	@method getHandlers
+	 	@param handler {Handler} Handler.
+	 */
     this.addHandler = function(handler) {
     	handlers.push(handler);
 	}
+
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
+	this.getProperties = function() {
+		return properties.values();
+	}
+	
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+	 	@return {String} Property value.
+	 */
+	this.getProperty = function(name) {
+		return properties.get(name);
+	}
+	
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
+	this.containProperty = function(name) {
+		return properties.exists(name);
+	}
+	
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
+	this.addProperty = function(name, value) {
+		properties.add(name, value);
+	}
+	
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method removeProperty
+		@param name {String} Name of Property.
+	 */
+	this.removeProperty = function(name) {
+		properties.remove(name);
+	}
+	
     
 } 
 
 
+/**
+ 	Exposes methods to GET and SET Hybrid Descriptor Adapter Handler information as per define in HybridDescriptor.si.xml file or in standalone adapter xml file in application.
+
+	@class HybridDescriptor.Adapter.Handler
+ */
 HybridDescriptor.Adapter.Handler = function() {
 
     var properties = new Dictionary();
 
     var parameters=[];
 
+
+	/**
+	 	Get Name of Handler.
+	 	
+	 	@method getName
+	 	@return {String} Name of Handler. 
+	 */
     this.getName = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_NAME);
 	}
 	
+	/**
+	 	Set Name of Handler.
+	 	
+	 	@method setName
+	 	@param name {String} Name of handler.
+	 */
     this.setName = function(name) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_NAME, name);
 	}
 
+
+	/**
+	 	Get Description about Handler.
+	 
+	 	@method getDescription
+		@return {String} Description about Handler.
+	 */
     this.getDescription = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_DESCRIPTION);
 	}
 	
+	/**
+	 	Set Description about Handler.
+	 
+	 	@method setDescription
+		@param description {String} Description about Handler.
+	 */
     this.setDescription = function(description) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_DESCRIPTION, description);
 	}
 
-    this.getType = function() {
-    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_TYPE);
-	}
-	
-    this.setType = function(type) {
-    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_TYPE, type);
-	}
-
+	/**
+	 	Get Map To Name.
+	 
+	 	@method getMapTo
+		@return {String} Map To Name.
+	 */
     this.getMapTo = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_MAP_TO);
 	}
 	
+	/**
+	 	Set Map To Name.
+	 
+	 	@method setMapTo
+		@param mapTo {String} Map To Name.
+	 */
     this.setMapTo = function(mapTo) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_MAP_TO, mapTo);
 	}
 
-    this.getErrorHandler = function() {
-    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_ERROR_HANDLER);
+
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
+	this.getProperties = function() {
+		return properties.values();
 	}
 	
-    this.setErrorHandler = function(errorHandler) {
-    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_ERROR_HANDLER, errorHandler);
-	}
-
-    this.getCallBackId = function() {
-    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_CALLBACK_ID);
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+	 	@return {String} Property value.
+	 */
+	this.getProperty = function(name) {
+		return properties.get(name);
 	}
 	
-    this.setCallBackId = function(callBackId) {
-    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_CALLBACK_ID, callBackId);
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
+	this.containProperty = function(name) {
+		return properties.exists(name);
 	}
-
-    this.getParameters = function() {
-    	return parameters;
+	
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
+	this.addProperty = function(name, value) {
+		properties.add(name, value);
 	}
-    
-    this.addParameter = function(parameter) {
-    	parameters.push(parameter);
+	
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method removeProperty
+		@param name {String} Name of Property.
+	 */
+	this.removeProperty = function(name) {
+		properties.remove(name);
 	}
+	
 
 } 
 
 
+/**
+ 	Exposes methods to GET and SET Parameter information as per define in HybridDescriptor.si.xml file or in standalone adapter xml file in application.
+ 	
+ 	@class HybridDescription.Adapter.Handler.Parameter
+ */
 HybridDescriptor.Adapter.Handler.Parameter = function() {
 
     var properties = new Dictionary();
 
+	/**
+	 	Get Name of Parameter.
+	 	
+	 	@method getDescription
+	 	@return {String} Name of Parameter.
+	 */
     this.getDescription = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_PARAMETER_DESCRIPTION);
 	}
 	
+	/**
+	 	Set Name of Parameter.
+	 	
+	 	@method setDescription
+	 	@param name {String} Name of Parameter.
+	 */
     this.setDescription = function(description) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_PARAMETER_DESCRIPTION, description);
 	}
 
+	/**
+	 	Get Type of Parameter.
+	 	
+	 	@method getType
+	 	@return {String} Type of Parameter.
+	 */
     this.getType = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_PARAMETER_TYPE);
 	}
 	
+	/**
+	 	Get Type of Parameter.
+	 	
+	 	@method setType
+	 	@param type {String} Type of Parameter.
+	 */
     this.setType = function(type) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_PARAMETER_TYPE, type);
 	}
+
+
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
+	this.getProperties = function() {
+		return properties.values();
+	}
+	
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+	 	@return {String} Property value.
+	 */
+	this.getProperty = function(name) {
+		return properties.get(name);
+	}
+	
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
+	this.containProperty = function(name) {
+		return properties.exists(name);
+	}
+	
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
+	this.addProperty = function(name, value) {
+		properties.add(name, value);
+	}
+	
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method removeProperty
+		@param name {String} Name of Property.
+	 */
+	this.removeProperty = function(name) {
+		properties.remove(name);
+	}
+
 } 
 
 
+/**
+ 	Exposes methods to GET and SET Return information as per define in HybridDescriptor.si.xml file or in standalone adapter xml file in application.
+ */
 HybridDescriptor.Adapter.Handler.Return = function() {
 
     var properties = new Dictionary();
 
+
+	/**
+	 	Get Description about Return.
+	 	
+	 	@method getDescription
+	 	@return {String} Description about Return.
+	 */
     this.getDescription = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_RETURN_DESCRIPTION);
 	}
 	
+	/**
+	 	Set Description about Return.
+	 	
+	 	@method setDescription
+	 	@param description {String} Description about Return.
+	 */
     this.setDescription = function(description) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_RETURN_DESCRIPTION, description);
 	}
 
+	/**
+	 	Get Type of Return.
+	 	
+	 	@method getType
+	 	@return {String} Type of Return.
+	 */
     this.getType = function() {
     	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_RETURN_TYPE);
 	}
 	
+	/**
+	 	Set Type of Return.
+	 	
+	 	@method setType
+	 	@param type {String} Type of Return.
+	 */
     this.setType = function(type) {
     	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_RETURN_TYPE, type);
 	}
+
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
+	this.getProperties = function() {
+		return properties.values();
+	}
+	
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+	 	@return {String} Property value.
+	 */
+	this.getProperty = function(name) {
+		return properties.get(name);
+	}
+	
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
+	this.containProperty = function(name) {
+		return properties.exists(name);
+	}
+	
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
+	this.addProperty = function(name, value) {
+		properties.add(name, value);
+	}
+	
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method removeProperty
+		@param name {String} Name of Property.
+	 */
+	this.removeProperty = function(name) {
+		properties.remove(name);
+	}
+
 } 

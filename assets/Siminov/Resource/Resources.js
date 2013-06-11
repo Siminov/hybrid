@@ -42,7 +42,9 @@ var Resources = (function() {
 		
 		/**
 	 		Get Application Descriptor object of application.
-	 		@return Application Descriptor.
+	 		
+	 		@method getApplicationDescriptor
+	 		@return {ApplicationDescriptor} Application Descriptor.
 	 	*/
 	    this.getApplicationDescriptor = function() {
 
@@ -60,24 +62,19 @@ var Resources = (function() {
 	    }
 	
 		/**
-		 * Get iterator of all database descriptors provided in Application Descriptor file.
-			<p>
-				<pre>
-	Example: ApplicationDescriptor.xml
+		 	Get iterator of all database descriptors provided in Application Descriptor file.
+
+			Example: ApplicationDescriptor.si.xml
+				<siminov>
+				
+					<database-descriptors>
+						<database-descriptor>DatabaseDescriptor.si.xml</database-descriptor>
+					</database-descriptors>
+			
+				</siminov>
 		
-		{@code
-		<core>
-		
-			<database-descriptors>
-				<database-descriptor>DatabaseDescriptor.si.xml</database-descriptor>
-			</database-descriptors>
-	
-		</core>
-		}
-		
-				</pre>
-			</p>
-		 * @return Iterator which contains all database descriptor paths provided.
+		 	@method getDatabaseDescriptorPaths 
+		 	@return {Array} It contains all database descriptor paths provided.
 		 */
 	    this.getDatabaseDescriptorPaths = function() {
 	
@@ -95,27 +92,24 @@ var Resources = (function() {
 	
 		
 		/**
-		 * Get DatabaseDescriptor based on path provided as per defined in Application Descriptor file.
-			<p>
-				<pre>
+		 	Get DatabaseDescriptor based on path provided as per defined in Application Descriptor file.
 				
-	Example: ApplicationDescriptor.xml
-		
-		{@code
-		<core>
-		
-			<database-descriptors>
-				<database-descriptor>DatabaseDescriptor.xml</database-descriptor>
-			</database-descriptors>
-	
-		</core>
-		}
+			Example: ApplicationDescriptor.si.xml
+				
+				<siminov>
+				
+					<database-descriptors>
+						<database-descriptor>DatabaseDescriptor.si.xml</database-descriptor>
+					</database-descriptors>
+			
+				</siminov>
 		
 				</pre>
 			</p>
 		 
-		 * @param databaseDescriptorPath Iterator which contains all database descriptor paths provided.
-		 * @return
+		 	@method getDatabaseDescriptorBasedOnPath
+		 	@param databaseDescriptorPath {Array} It which contains all database descriptor paths provided.
+		 	@return {String} Database Descriptor
 		 */
 	    this.getDatabaseDescriptorBasedOnPath = function(path) {
 	
@@ -135,26 +129,19 @@ var Resources = (function() {
 	    }
 	
 		/**
-		 * Get Database Descriptor based on database descriptor name provided as per defined in Database Descriptor file.
-			<p>
-				<pre>
+		 	Get Database Descriptor based on database descriptor name provided as per defined in Database Descriptor file.
 				
-	Example: DatabaseDescriptor.xml
-		
-		{@code
-		<database-descriptor>
-		
-			<property name="database_name">SIMINOV-TEMPLATE</property>
-			
-		</database-descriptor>
-		}
-		
-				</pre>
-			</p>
+			Example: DatabaseDescriptor.si.xml
+				
+				<database-descriptor>
+				
+					<property name="database_name">SIMINOV-HYBRID-TEMPLATE</property>
+					
+				</database-descriptor>
 		 
-		 * 
-		 * @param databaseDescriptorName Database Descriptor object based on database descriptor name provided.
-		 * @return
+		 	@method getDatabaseDescriptorBasedOnName 
+		 	@param databaseDescriptorName Database Descriptor object based on database descriptor name provided.
+		 	@return {DatabaseDescriptor} Database Descriptor
 		 */
 	    this.getDatabaseDescriptorBasedOnName = function(databaseName) {
 	
@@ -175,8 +162,10 @@ var Resources = (function() {
 	
 		
 		/**
-		 * Get all Database Descriptors object.
-		 * @return Iterator which contains all Database Descriptors.
+		 	Get all Database Descriptors object.
+		 	
+		 	@method getDatabaseDescriptors 
+		 	@return {Array} It which contains all Database Descriptors.
 		 */
 	    this.getDatabaseDescriptors = function() {
 	
@@ -194,10 +183,11 @@ var Resources = (function() {
 	    }
 	
 		/**
-		 * Get Database Descriptor based on POJO class name provided.
-		 * 
-		 * @param className POJO class name.
-		 * @return Database Descriptor object in respect to POJO class name.
+		 	Get Database Descriptor based on POJO class name provided.
+
+			@method getDatabaseDescriptorBasedOnClassName
+		 	@param className {String} POJO class name.
+		 	@return {DatabaseDescriptor} Database Descriptor object in respect to POJO class name.
 		 */
 	    this.getDatabaseDescriptorBasedOnClassName = function(className) {
 	
@@ -218,10 +208,11 @@ var Resources = (function() {
 	
 		
 		/**
-		 * Get Database Descriptor based on table name provided.
-		 * 
-		 * @param tableName Name of table.
-		 * @return Database Descriptor object in respect to table name.
+		 	Get Database Descriptor based on table name provided.
+
+			@method getDatabaseDescriptorBasedOnTableName
+		 	@param tableName {String} Name of table.
+		 	@return {DatabaseDescriptor} Database Descriptor object in respect to table name.
 		 */
 	    this.getDatabaseDescriptorBasedOnTableName = function(tableName) {
 	
@@ -241,7 +232,13 @@ var Resources = (function() {
 	    }
 	
 		
-		
+		/**
+		 	Get database descriptor name based on class name
+		 
+		 	@method getDatabaseDescriptorNameBasedOnClassName
+		 	@param className {String} Name of Class
+		 	@return {String} Database Descriptor Name
+		 */
 		this.getDatabaseDescriptorNameBasedOnClassName = function(className) {
 
 	        var adapter = new Adapter();
@@ -271,6 +268,13 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+		 	Get database descriptor name based on table name
+		 	
+		 	@method getDatabaseDescriptorNameBasedOnTableName
+		 	@param tableName {String} Name of Table
+		 	@return {String} Database Descriptor Name
+		 */
 		this.getDatabaseDescriptorNameBasedOnTableName = function(className) {
 		
 			var adapter = new Adapter();
@@ -301,10 +305,11 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get Database Mapping based on POJO class name provided.
-		 * 
-		 * @param className POJO class name.
-		 * @return Database Mapping object in respect to POJO class name.
+		 	Get Database Mapping based on POJO class name provided.
+
+			@method getDatabaseMappingDescriptorBasedOnClassName
+		 	@param className {String} POJO class name.
+		 	@return {DatabaseMappingDescriptor} Database Mapping object in respect to POJO class name.
 		 */	
 	    this.getDatabaseMappingDescriptorBasedOnClassName = function(className) {
 	
@@ -325,10 +330,11 @@ var Resources = (function() {
 	
 		
 		/**
-		 * Get Database Mapping based on table name provided.
-		 * 
-		 * @param tableName Name of table.
-		 * @return Database Descriptor object in respect to table name.
+		 	Get Database Mapping Descriptor based on table name provided.
+
+			@method getDatabaseMappingDescriptorBasedOnTableName
+		 	@param tableName {String} Name of table.
+		 	@return {DatabaseMappingDescriptor} Database Mapping Descriptor object in respect to table name.
 		 */
 	    this.getDatabaseMappingDescriptorBasedOnTableName = function(tableName) {
 	
@@ -348,6 +354,12 @@ var Resources = (function() {
 	    }
 	
 		
+		/**
+		 	Get all database mapping descriptors
+		 	
+		 	@method getDatabaseMappingDescriptors
+		 	@return {Array} Database Mapping Descriptors
+		 */
 		this.getDatabaseMappingDescriptors = function() {
 		
 			var adapter = new Adapter();
@@ -364,6 +376,12 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+			Get all library descriptor paths
+		
+			@method getLibraryDescriptorPaths
+			@return {Array} All Library Descriptor Paths
+		*/
 		this.getLibraryDescriptorPaths = function() {
 		
 			var adapter = new Adapter();
@@ -381,9 +399,11 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get all library paths based on Database Descriptor name.
-		 * @param databaseDescriptorName Name of Database Descriptor.
-		 * @return Iterator which contains all library paths based on Database Descriptor.
+		 	Get all library paths based on Database Descriptor name.
+		 	
+		 	@method getLibraryPathsBasedOnDatabaseDescriptorName
+		 	@param databaseDescriptorName {String} Name of Database Descriptor.
+		 	@return {Array} It contains all library paths based on Database Descriptor.
 		 */
 		this.getLibraryPathsBasedOnDatabaseDescriptorName = function(databaseDescriptorName) {
 		
@@ -403,6 +423,12 @@ var Resources = (function() {
 		}
 		
 		
+		/**
+			Get all library descriptors
+			
+			@method getLibraryDescriptors
+			@return {Array} All Library Descriptors
+		*/
 		this.getLibraryDescriptors = function() {
 		
 			var adapter = new Adapter();
@@ -420,9 +446,11 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get all Library Descriptor objects based on Database Descriptor name.
-		 * @param databaseDescriptorName Name of Database Descriptor.
-		 * @return Iterator which contains all Library Descriptor objects based on Database Descriptor name.
+		 	Get all Library Descriptor objects based on Database Descriptor name.
+		 
+		 	@method getLibrariesBasedOnDatabaseDescriptorName
+			@param databaseDescriptorName {String} Name of Database Descriptor.
+		 	@return {Array} It contains all Library Descriptor objects based on Database Descriptor name.
 		 */
 		this.getLibrariesBasedOnDatabaseDescriptorName = function(databaseDescriptorName) {
 		
@@ -442,10 +470,12 @@ var Resources = (function() {
 		}
 		
 		
-		/**
-		 * Get all Library Database Mapping objects based in library descriptor path.
-		 * @param libraryPath Library Descriptor path.
-		 * @return
+		/*
+		 	Get all Library Database Mapping objects based in library descriptor path.
+		 
+		 	@method getLibraryDatabaseMappingDescriptorsBasedOnLibraryDescriptorPath
+			@param libraryPath {String} Library Descriptor path.
+		 	@return {DatabaseMappingDescriptor} Library Database Mapping Descriptor
 		 */
 		this.getLibraryDatabaseMappingDescriptorsBasedOnLibraryDescriptorPath = function(libraryDescriptorPath) {
 		
@@ -466,8 +496,10 @@ var Resources = (function() {
 	
 		
 		/**
-		 * Get Hybrid Descriptor.
-		 * @return Hybrid Descriptor.
+		 	Get Hybrid Descriptor.
+		 	
+		 	@method getHybridDescriptor 
+		 	@return {HybridDescriptor} Hybrid Descriptor.
 		 */
 		this.getHybridDescriptor = function() {
 		
@@ -486,8 +518,10 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get All Adapters defined by Application.
-		 * @return All Adapters.
+		 	Get All Adapters defined by Application.
+		 	
+		 	@method getAdapters 
+		 	@return {Array} All Adapters.
 		 */
 		this.getAdapters = function() {
 		
@@ -506,8 +540,10 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get All Adapters defined in Libraries.
-		 * @return All Adapters.
+		 	Get All Adapters defined in Libraries.
+		 	
+		 	@method getLibrariesAdapters 
+		 	@return {Array} All Adapters.
 		 */
 		this.getLibrariesAdapters = function() {
 		
@@ -526,8 +562,10 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get All Adapters Defined By Paths.
-		 * @return All Adapters.
+		 	Get All Adapters Defined By Paths.
+		 	
+		 	@method getAdaptersBasedOnPaths
+		 	@return {Array} All Adapters.
 		 */
 		this.getAdaptersBasedOnPaths = function() {
 		
@@ -546,9 +584,11 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get All Adapters based on library name.
-		 * @param libraryName Name of Library.
-		 * @return All Adapters.
+		 	Get All Adapters based on library name.
+		 	
+		 	@method getLibraryAdaptersBasedOnName
+		 	@param libraryName {String} Name of Library.
+		 	@return {Array} All Adapters.
 		 */
 		this.getLibraryAdaptersBasedOnName = function(libraryName) {
 		
@@ -569,9 +609,11 @@ var Resources = (function() {
 	
 	
 		/**
-		 * Get All Adapters based on library path.
-		 * @param libraryPath Path of Library.
-		 * @return All Adapters.
+		 	Get All Adapters based on library path.
+		 	
+		 	@method getLibraryAdaptersBasedOnPath 
+		 	@param libraryPath Path of Library.
+		 	@return All Adapters.
 		 */
 		this.getLibraryAdaptersBasedOnPath = function(libraryPath) {
 		
@@ -592,9 +634,11 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get Adapter based on Adapter Name.
-		 * @param adapterName Name of Adapter.
-		 * @return
+		 	Get Adapter based on Adapter Name.
+		 	
+		 	@method getAdapter 
+		 	@param adapterName {String} Name of Adapter.
+		 	@return {Adapter} Adapter
 		 */
 		this.getAdapter = function(adapterName) {
 		
@@ -615,9 +659,11 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get Adapter based on adapter path.
-		 * @param adapterPath Path of Adapter.
-		 * @return Adapter.
+		 	Get Adapter based on adapter path.
+		 	
+		 	@method getAdapterBasedOnPath
+		 	@param adapterPath {String} Path of Adapter.
+		 	@return {Adapter} Adapter
 		 */
 		this.getAdapterBasedOnPath = function(adapterPath) {
 		
@@ -638,10 +684,12 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get Adapter based on library name and adapter name,
-		 * @param libraryName Name of Library.
-		 * @param adapterName Name of Adapter.
-		 * @return Adapter.
+		 	Get Adapter based on library name and adapter name,
+		 	
+		 	@method getLibraryAdapterBasedOnName 
+		 	@param libraryName {String} Name of Library.
+		 	@param adapterName {String} Name of Adapter.
+		 	@return {Adapter} Adapter.
 		 */
 		this.getLibraryAdapterBasedOnName = function(libraryName, adapterName) {
 		
@@ -663,10 +711,12 @@ var Resources = (function() {
 			
 		
 		/**
-		 * Get Adapter based on library path and adapter path.
-		 * @param libraryPath Name of Library.
-		 * @param adapterPath Path of Adapter.
-		 * @return Adapter.
+		 	Get Adapter based on library path and adapter path.
+		 	
+		 	@method getLibraryAdapterBasedOnPath
+		 	@param libraryPath {String} Name of Library.
+		 	@param adapterPath {String} Path of Adapter.
+		 	@return {Adapter} Adapter.
 		 */
 		this.getLibraryAdapterBasedOnPath = function(libraryPath, adapterPath) {
 		
@@ -688,8 +738,10 @@ var Resources = (function() {
 		
 		
 		/**
-		 * Get All Handlers defined by Application.
-		 * @return All Handlers.
+		 	Get All Handlers defined by Application.
+		 	
+		 	@method getHandlers 
+		 	@return {Array} All Handlers.
 		 */
 		this.getHandlers = function() {
 		
@@ -708,10 +760,12 @@ var Resources = (function() {
 			
 		
 		/**
-		 * Get Handler based on Adapter Name and Handler Name.
-		 * @param adapterName Name of Adapter.
-		 * @param handlerName Name of Handler.
-		 * @return Handler.
+		 	Get Handler based on Adapter Name and Handler Name.
+		 	
+		 	@method getHandler 
+		 	@param adapterName {String} Name of Adapter.
+		 	@param handlerName {String} Name of Handler.
+		 	@return {Handler} Handler.
 		 */
 		this.getHandler = function(adapterName, handlerName) {
 		
@@ -730,59 +784,6 @@ var Resources = (function() {
 			return handler[0];
 			
 		}	
-		
-		
-		this.getDatabases = function() {
-			return database.values();
-		}
-		
-		
-		this.getDatabaseBasedOnDatabaseDescriptorName = function(databaseDescriptorName) {
-			
-			if(this.containDatabaseBasedOnDatabaseDescriptorName(databaseDescriptorName)) {
-				return databases.get(databaseDescriptorName);
-			}
-			
-			return this.requireDatabase(databaseDescriptorName);
-
-		}
-		
-		
-		this.getDatabaseBasedOnDatabaseMappingDescriptorClassName = function(className) {
-			var databaseDescriptorName = getDatabaseDescriptorNameBasedOnClassName(className);
-			return getDatabaseBasedOnDatabaseDescriptorName(databaseDescriptorName);
-		}
-		
-		
-		this.getDatabaseBasedOnDatabaseMappingDescriptorTableName = function(tableName) {
-			var databaseDescriptorName = getDatabaseDescriptorNameBasedOnTableName(tableName);
-			return getDatabaseBasedOnDatabaseDescriptorName(databaseDescriptorName);						
-		}
-		
-		
-		this.containDatabaseBasedOnDatabaseDescriptorName = function(databaseDescriptorName) {
-			return databases.exists(databaseDescriptorName);
-		}
-		
-		this.addDatabase = function(databaseDescriptorName, database) {
-			databases.add(databaseDescriptorName, database);
-		}
-		
-		
-		this.requireDatabase = function(databaseDescriptorName) {
-		
-			if(this.containDatabaseBasedOnDatabaseDescriptorName(databaseDescriptorName)) {
-				return databases.get(databaseDescriptorName);
-			}
-		
-			var databaseDescriptor = this.getDatabaseDescriptorBasedOnName(databaseDescriptorName);
-			var database = DatabaseFactory.getInstance().getDatabase(databaseDescriptor);
-		
-			databases.add(databaseDescriptor.getDatabaseName(), database);
-		
-			return database;
-		
-		}
 		
 	}
 

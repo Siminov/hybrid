@@ -32,7 +32,8 @@
 	@module Collection 
  	@class StringBuilder
  	@constructor
- 	@param value {String} Array of characters. 
+ 	@param value {String} Array of characters.
+ 	 
 */
 function StringBuilder(value) {
 	var strings = new Array("");

@@ -365,26 +365,63 @@ DatabaseMappingDescriptor.Column = function() {
     }
     
     	
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
 	this.getProperties = function() {
 		return properties.values();
 	}
 
+
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+		@return {String} Property value.
+	 */
 	this.getProperty = function(name) {
 		return properties.get(name);
 	}
 
+
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
 	this.containProperty = function(name) {
 		return properties.exists(name);
 	}
 
+
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
 	this.addProperty = function(name, value) {
 		properties.add(name, value);
 	}
 	
+
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method  removeProperty
+		@param name {String} Name of Property.
+	 */
 	this.removeProperty = function(name) {
 		properties.remove(name);
 	}
-    
+
     
 }
 
@@ -657,25 +694,63 @@ DatabaseMappingDescriptor.Relationship = function() {
     }
 
 		
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
 	this.getProperties = function() {
 		return properties.values();
 	}
 
+
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+		@return {String} Property value.
+	 */
 	this.getProperty = function(name) {
 		return properties.get(name);
 	}
 
+
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
 	this.containProperty = function(name) {
 		return properties.exists(name);
 	}
 
+
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
 	this.addProperty = function(name, value) {
-		properties.add(key, value);
+		properties.add(name, value);
 	}
 	
+
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method  removeProperty
+		@param name {String} Name of Property.
+	 */
 	this.removeProperty = function(name) {
 		properties.remove(name);
 	}
+
 
 }
 
