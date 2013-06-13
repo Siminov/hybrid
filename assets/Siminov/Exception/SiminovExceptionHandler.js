@@ -21,6 +21,11 @@
 */
 function SiminovExceptionHandler() {
 
+	/**
+		Display error to user.
+		
+		@method display
+	*/
     this.display = function(data) {
         alert(data);
     }

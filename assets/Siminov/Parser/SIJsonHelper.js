@@ -24,6 +24,13 @@ function SIJsonHelper() {
 
 }
 
+
+/**
+	Convert JSON Data to SI.
+	
+	@method toSI
+	@static
+*/
 SIJsonHelper.toSI = function(datas) {
     Log.logd("SIJsonHelper", "toSI", datas);
 
@@ -92,6 +99,12 @@ SIJsonHelper.parseJson = function(dataProperty) {
 
 
 
+/**
+	Convert SI to JSON Data
+	
+	@method toJson
+	@static
+*/
 SIJsonHelper.toJson = function(datas) {
 
     var siDatas = datas.getHybridSiminovDatas();
