@@ -84,43 +84,32 @@ public class Siminov extends siminov.orm.Siminov {
 	 * </p>
 	 * 
 	 * 	EXAMPLE
-	 * 		There are two ways to make a call.
+	 * 	@code {
 	 * 
-			<pre> 
-	  			<ul>
-	  				<li> Call it from Application class.
 
-	public class Siminov extends Application {
-
-		public void onCreate() { 
-			super.onCreate();
+		 	public class Siminov extends DroidGap {
 	
-			initializeSiminov();
-		}
-		
-		private void initializeSiminov() {
-			siminov.hybrid.Siminov.initialize(this);
-		}
+				public void onCreate(Bundle savedInstanceState) { 
+			
+					super.onCreate(savedInstanceState);
+					super.init();
+					super.appView.getSettings().setJavaScriptEnabled(true);
+			
+					initializeSiminov();
+			
+					super.loadUrl("file:///android_asset/www/home.html");
+			
+				}
+			
+			
+				private void initializeSiminov() {
+					siminov.hybrid.Siminov.initialize(getApplicationContext(), this.appView);
+				}
+			
+			}
 
-	}
-					</li>
-					
-					<li> Call it from LAUNCHER Activity
-
-	public class SiminovActivity extends Activity {
-	
-		public void onCreate(Bundle savedInstanceState) {
-		
-		}
-
-		private void initializeSiminov() {
-			siminov.hybrid.Siminov.initialize(getApplicationContext())
-		}
-
-	}
-					</li>
-				</ul>
-			</pre>
+	 * }
+	 * 
 	 * @param context Application content.
 	 * @param webView WebView.
 	 * @exception If any exception occur while deploying application it will through DeploymentException, which is RuntimeException.
