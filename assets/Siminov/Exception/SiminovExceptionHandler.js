@@ -16,7 +16,9 @@
  **/
 
 
-
+/**
+	Any exception thrown from NATIVE-TO-WEB is handled and show to user. 
+*/
 function SiminovExceptionHandler() {
 
     this.display = function(data) {

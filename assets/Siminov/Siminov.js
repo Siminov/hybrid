@@ -26,6 +26,8 @@ function Siminov() {
 
 }
 
+
+
 Siminov.initialize = function() {
 
     var adapter = new Adapter();

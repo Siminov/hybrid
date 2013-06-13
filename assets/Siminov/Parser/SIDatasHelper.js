@@ -16,10 +16,23 @@
  **/
 
 
+
+/**
+	Exposes APIs to deal with Models, it convert si datas to models or models to si datas.
+	
+	@class SIDatasHelper
+*/
 function SIDatasHelper() {
 
 }
 
+
+/**
+	Convert SI Datas to Models.
+	
+	@method toModels
+	@static 
+*/
 SIDatasHelper.toModels = function(siDatas) {
 
     var models = [];
@@ -37,6 +50,13 @@ SIDatasHelper.toModels = function(siDatas) {
 }
 
 
+
+/**
+	Convert SI Data to Model
+	
+	@method toModel
+	@static
+*/
 SIDatasHelper.toModel = function(data) {
 
     var model = FunctionUtils.createFunctionInstance(data.getDataType());
@@ -106,6 +126,10 @@ SIDatasHelper.toModel = function(data) {
 }
 
 
+
+/**
+	Convert Model to SI Datas
+*/
 SIDatasHelper.toSI = function(object) {
 
     var datas = new HybridSiminovDatas();

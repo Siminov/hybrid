@@ -17,8 +17,19 @@
 
 
 
+/**
+	Any event triggered by Siminov is first handled by this function later it will deliver to appropriate Event APIs. 
+	
+	@module EventHandler
+*/
 function EventHandler() {
 
+
+	/**
+		Handle event triggered by Siminov.
+		
+		@method triggerEvent
+	*/
     this.triggerEvent = function(data) {
 
         var hybridSiminovDatas = SIJsonHelper.toSI(data);

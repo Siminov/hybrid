@@ -26,6 +26,7 @@
 
 
 /**
+	Exposes API to deal with conditions used in query.
 
 	@module Database
 	@class Clause

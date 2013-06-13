@@ -16,10 +16,36 @@
  **/
 
 
+/**
+ 	Exposes methods to deal with SIMINOV HYBRID FRAMEWORK.
+
+ 		Such As
+
+ 			1. Initialize: Entry point to the SIMINOV HYBRID.
+
+	@class Siminov
+ */
 function Siminov() {
 
 }
 
+
+
+
+/**
+ 	It is the entry point to the SIMINOV HYBRID FRAMEWORK.
+
+ 	When application starts it should call this method to activate SIMINOV HYBRID FRAMEWORK.
+
+	Siminov will initialize all databases, and do necessary processing.
+
+	EXAMPLE: 
+          document.addEventListener("deviceready", Siminov.initialize, false);
+
+	@method initialize
+	@static
+ 	@exception If any exception occur while deploying application it will through DeploymentException, which is RuntimeException.
+ */
 Siminov.initializeSiminov = function() {
 
     var adapter = new Adapter();

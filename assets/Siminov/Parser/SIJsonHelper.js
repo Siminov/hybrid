@@ -16,6 +16,10 @@
  **/
 
 
+
+/**
+	Exposes APIs to deal with SI Datas, it convert models to si datas or si datas to models
+*/
 function SIJsonHelper() {
 
 }

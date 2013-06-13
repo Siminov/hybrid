@@ -26,6 +26,7 @@
 
 
 /**
+	Exposes API to deal with conditions and other constraints used in query.
 
 	@module Database
 	@class Select
@@ -52,11 +53,26 @@ function Select(object) {
     var delimiter;
 
 
+	/**
+	 	Used to specify DISTINCT condition.
+	 	
+	 	@method distinct
+	 	@return {Object} Select Interface Implementation.
+	 */
     this.distinct = function(val) {
         distinct = val;
+        
+        return this;
     }
 
 
+	/**
+	 	Column name of which condition will be specified.
+	 	
+	 	@method where
+	 	@param column {String} Name of column.
+	 	@return {Object} Clause Interface Implementation.
+	 */
     this.where = function(column) {
         where = new Clause(this);
         where.addColumn(column);
@@ -65,30 +81,65 @@ function Select(object) {
     }
 
 
+	/**
+	 	Used to provide manually created Where clause, instead of using API's.
+	 	
+	 	@method whereClause
+	 	@param whereClause {String} Manually created where clause.
+	 	@return {Object} Select Interface Implementation.
+	 */
     this.whereClause = function(where) {
         whereClause = where;
         return this;
     }
 
 
+	/**
+	 	Used to specify AND condition between where clause.
+	 	
+	 	@method and
+	 	@param column {String} Name of column on which condition need to be specified.
+	 	@return {Object} Clause Interface Implementation.
+	 */
     this.add = function(column) {
         where.and(column);
         return where;
     }
 
 
+	/**
+	 	Used to specify OR condition between where clause.
+	 	
+	 	@method or
+	 	@param column {String} Name of column on which condition need to be specified.
+	 	@return {Object} Clause Interface Implementation.
+	 */
     this.or = function(column) {
         where.or(column);
         return where;
     }
 
 
+	/**
+	 	Used to specify ORDER BY keyword to sort the result-set.
+		
+		@method orderBy
+		@param columns {String} Name of columns which need to be sorted.
+	 	@return {oBJECT} Select Interface Implementation.
+	 */
     this.orderBy = function(columns) {
         orderBy = columns;
         return this;
     }
 
 
+	/**
+	 	Used to specify ORDER BY ASC keyword to sort the result-set in ascending order.
+	 	
+	 	@method ascendingOrderBy
+	 	@param columns {String} Name of columns which need to be sorted.
+	 	@return {Object} Select Interface Implementation.
+	 */
     this.ascendingOrderBy = function(columns) {
         orderBy = columns;
         whichOrderBy = Clause.ASC_ORDER_BY;
@@ -97,6 +148,13 @@ function Select(object) {
     }
 
 
+	/**
+	 	Used to specify ORDER BY DESC keyword to sort the result-set in descending order.
+	 	
+	 	@method descendingOrderBy
+	 	@param columns {String} Name of columns which need to be sorted.
+	 	@return {Object} Select Interface Implementation.
+	 */
     this.descendingOrderBy = function(columns) {
         orderBy = columns;
         whichOrderBy = Clause.DESC_ORDER_BY;
@@ -105,18 +163,39 @@ function Select(object) {
     }
 
 
+	/**
+	 	Used to specify the range of data need to fetch from table.
+	 	
+	 	@method limit
+	 	@param limit {String} LIMIT of data.
+	 	@return {Object} Select Interface Implementation.
+	 */
     this.limit = function(val) {
         limit = val;
         return this;
     }
 
 
+	/**
+	 	Used to specify GROUP BY statement in conjunction with the aggregate functions to group the result-set by one or more columns.
+	 	
+	 	@method groupBy
+	 	@param columns {Array} Name of columns.
+	 	@return {Object} Select Interface Implementation.
+	 */
     this.groupBy = function(columns) {
         groupBy = orderBy;
         return this;
     }
 
 
+	/**
+	 	Used to specify HAVING clause to SQL because the WHERE keyword could not be used with aggregate functions.
+	 	
+	 	@method having
+	 	@param column {String} Name of column on which condition need to be applied.
+	 	@return {Clause} Clause Interface Implementation.
+	 */
     this.having = function(column) {
         having = new Clause(this);
         having.addColumn(column);
@@ -125,18 +204,39 @@ function Select(object) {
     }
 
 
+	/**
+	 	Used to provide manually created Where clause, instead of using API's.
+	 	
+	 	@method havingClause
+	 	@param havingClause {String} Where clause.
+	 	@return {Object} Select Interface Implementation.
+	 */
     this.havingClause = function(val) {
         havingClause = val;
         return this;
     }
 
 
+	/**
+	 	Used to provide name of column only for which data will be fetched.
+	 	
+	 	@method column
+	 	@param column {String} Name of column.
+	 	@return {Object} Select Interface Implementation.
+	 */
     this.column = function(val) {
         column = val;
         return this;
     }
 
 
+	/**
+	 	Used to provide name of columns only for which data will be fetched.
+	 	
+	 	@method columns
+	 	@param column {Array} Name of columns.
+	 	@return {Object} Select Interface Implementation.
+	 */
     this.columns = function(val) {
         columns = val;
         return this;
@@ -149,6 +249,11 @@ function Select(object) {
     }
 
 
+	/**
+		Process the request specified by application.
+		
+		@method execute
+	*/
     this.execute = function() {
 
         var whereCondition = "";
@@ -213,6 +318,13 @@ function Select(object) {
     }
 
 
+	/**
+	 	Used to get tuples, this method should be called in last to get tuples from table.
+	 	
+	 	@method fetch
+	 	@return {Object} Return array of model objects.
+	 	@throws {SiminovException} Throws exception if any error occur while getting tuples from table. 
+	 */
     this.fetch = function() {
 
         var whereCondition = "";
