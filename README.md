@@ -3,7 +3,7 @@ Siminov Hybrid ORM (Object Relationship Mapping) - Android + PhoneGap
 
 A Hybrid Application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a hybrid application leverages best of both native and mobile web technologies.
 
-In Hybrid Environment, it is very difficult to map JavaScript/Java objects to relational database, but Siminov makes application developer life easy and simiple by mapping JavaScript/Java objects to relational database.
+In Hybrid Environment, it is very difficult to map JavaScript/Java objects to relational database, but Siminov makes application developer life easy and simple by mapping JavaScript/Java objects to relational database.
 
 Siminov can be used with PhoneGap. It enables application developers to build applications for mobile devices using JavaScript, HTML5 and CSS3, instead of device-specific languages such as Objective-C.
 
