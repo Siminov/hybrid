@@ -1,4 +1,4 @@
-Siminov Hybrid ORM (Object Relationship Mapping) - Android
+Siminov Hybrid ORM (Object Relationship Mapping) - Android + PhoneGap
 ===================================================
 
 A Hybrid Application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a hybrid application leverages best of both native and mobile web technologies.
