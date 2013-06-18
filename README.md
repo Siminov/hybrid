@@ -109,4 +109,4 @@ LICENSE
 
 
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/7a4fa4337bbaef7efea367892bcc7e12 "githalytics.com")](http://githalytics.com/Siminov/andiorm)
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/e33c820e69c79ca01d7a6187045be8d6 "githalytics.com")](http://githalytics.com/Siminov/android-hybrid)
