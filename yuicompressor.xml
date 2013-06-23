@@ -56,6 +56,9 @@
 	        <fileset dir="build/Siminov/Resource" includes="*.js" />
 	        <fileset dir="build/Siminov/Utils" includes="*.js" />
   	    </concat>
+  	    
+	    <delete dir="build/Siminov" />
+	    
 	    <echo message="Siminov Hybrid Compression Successful." />
         
    	</target>
