@@ -55,7 +55,6 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 
 	protected static AdapterResources adapterResources = AdapterResources.getInstance();
 
-	
 	@JavascriptInterface
 	public Object handleWebToNative(final String action) {
 		return handleWebToNative(action, null);
