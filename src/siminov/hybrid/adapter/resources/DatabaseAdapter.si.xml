@@ -119,6 +119,35 @@
 				
 		<handler>
             
+            <property name="name">SELECT-MANUAL</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">selectManual</property>
+            <property name="description">Select Manually Data From Table</property>
+
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Query</property>
+                    
+                </parameter>
+		
+        	</parameters>
+        
+           
+        </handler>
+                
+		<handler>
+            
             <property name="name">SELECT</property>
             <property name="type">SYNC</property>
             <property name="map_to">select</property>

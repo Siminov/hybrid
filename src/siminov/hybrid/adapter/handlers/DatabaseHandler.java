@@ -607,6 +607,55 @@ public class DatabaseHandler {
 		return data;
 	}
 
+	
+	public String selectManual(final String className, final String query) throws DatabaseException {
+		
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+
+		DatabaseBundle databaseBundle = hybridResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(className);
+		IDatabase database = databaseBundle.getDatabase();
+		
+		if(database == null) {
+			Log.loge(DatabaseHandler.class.getName(), "select", "No Database Instance Found For DATABASE-MAPPING: " + className);
+			throw new DeploymentException(DatabaseHandler.class.getName(), "select", "No Database Instance Found For DATABASE-MAPPING: " + className);
+		}
+		
+		
+		Iterator<Map<String, Object>> datas = database.executeFetchQuery(getDatabaseDescriptor(className), databaseMappingDescriptor, query);
+		Collection<Map<String, Object>> datasBundle = new LinkedList<Map<String,Object>>();
+		while(datas.hasNext()) {
+			datasBundle.add(datas.next());
+		}
+
+		HybridSiminovDatas jsSiminovDatas = parseData(databaseMappingDescriptor, datasBundle.iterator());
+		datas = datasBundle.iterator();
+		
+		Iterator<HybridSiminovData> siminovDatas = jsSiminovDatas.getHybridSiminovDatas();
+		while(siminovDatas.hasNext() && datas.hasNext()) {
+			
+			Map<String, Object> data = datas.next();
+			HybridSiminovData siminovData = siminovDatas.next();
+			
+			processOneToOneRelationship(siminovData);
+			processOneToManyRelationship(siminovData);
+
+			processManyToOneRelationship(siminovData, data);
+			processManyToManyRelationship(siminovData, data);
+			
+		}
+		
+		
+		String data = null;
+		try {
+			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+		} catch(SiminovException siminovException) {
+			Log.loge(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
+			throw new DatabaseException(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
+		}
+
+		return data;
+	}
+	
 	static HybridSiminovDatas lazyFetch(final DatabaseMappingDescriptor databaseMappingDescriptor, final boolean distinct, final String whereClause, final Iterator<String> columnNames, final Iterator<String> groupBy, final String having, final Iterator<String> orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
 		DatabaseBundle databaseBundle = hybridResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());

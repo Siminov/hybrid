@@ -209,6 +209,34 @@ function Database() {
 	 	@throws {SiminovException} If any error occur while fetching tuples from table.
 	 */
     this.select = function() {
+    
+    	if(arguments.length > 0) {
+
+		    var adapter = new Adapter();
+		    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+		    adapter.setHandlerName(Constants.SIMINOV_DATABASE_SELECT_MANUAL_HANDLER);
+		
+		    adapter.addParameter(className);
+		    adapter.addParameter(arguments[0]);
+		
+		    var data = adapter.invoke();
+		    var datas = SIJsonHelper.toSI(data);
+		    
+		    var models = SIDatasHelper.toModels(datas);
+			if(models != undefined && models != null && models.length > 0) {
+				for(var i = 0;i < models.length;i++) {
+					var model = models[i];
+					
+					if(model instanceof SiminovException) {
+						throw model;
+					}
+				}
+			}
+		
+		    return models;
+    		
+    	} 
+    
         return new ISelect(new Select(this));
     }
 

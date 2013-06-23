@@ -931,6 +931,18 @@ Constants.SIMINOV_DATABASE_DELETE_HANDLER = "DELETE";
 Constants.SIMINOV_DATABASE_SELECT_HANDLER = "SELECT";
 
 
+/**
+	Siminov Database Select Handler
+	
+	@property SIMINOV_DATABASE_SELECT_MANUAL_HANDLER
+	@type String
+	@static
+	@final
+	@readOnly
+*/
+Constants.SIMINOV_DATABASE_SELECT_MANUAL_HANDLER = "SELECT-MANUAL";
+
+
 /**	
 	Siminov Database Count Handler
 
