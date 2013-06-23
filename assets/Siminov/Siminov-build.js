@@ -46,7 +46,7 @@ function Siminov() {
 	@static
  	@exception If any exception occur while deploying application it will through DeploymentException, which is RuntimeException.
  */
-Siminov.initializeSiminov = function() {
+Siminov.initialize = function() {
 
     var adapter = new Adapter();
     adapter.setAdapterName(Constants.SIMINOV_ADAPTER);

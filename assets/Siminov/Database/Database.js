@@ -211,7 +211,7 @@ function Database() {
     this.select = function() {
     
     	if(arguments.length > 0) {
-
+    	
 		    var adapter = new Adapter();
 		    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
 		    adapter.setHandlerName(Constants.SIMINOV_DATABASE_SELECT_MANUAL_HANDLER);
@@ -234,38 +234,12 @@ function Database() {
 			}
 		
 		    return models;
-    		
-    	} 
+    	}
     
         return new ISelect(new Select(this));
     }
 
 	
-
-	/**
-	 	Returns all tuples based on manual query from mapped table for invoked class object.
-	 
-		Example:
-			
-			var query = "SELECT * FROM LIQUOR";
-			
-			var liquors = null;
-			try {
-				liquors = new Liquor().select(query);
-			} catch(DatabaseException de) {
-				//Log it.
-			}
-	
-		@method select
-	 	@param query Manual query on which tuples need to be fetched.
-	 	@return Array Of Objects.
-	 	@throws SiminovException If any error occur while getting tuples from a single table.
-	 */
-	this.select = function(query) {
-	
-	}
-
-
 
 	/**
 		It deletes a record to any single table in a relational database.

@@ -37,7 +37,7 @@
 */
 function StringBuilder(value) {
 	var strings = new Array("");
-	strings.append(value);
+	strings.push(value);
 	
 	/**
 		Append adds given characters at the end of the builder.
@@ -47,7 +47,7 @@ function StringBuilder(value) {
 	*/
 	this.append = function (value) {
 		if (value) {
-			this.strings.push(value);
+			strings.push(value);
 		}
 	}
 	
@@ -59,7 +59,7 @@ function StringBuilder(value) {
 		@method clear
 	*/
 	this.clear = function () {
-		this.strings.length = 1;
+		strings.length = 1;
 	}
 	
 	
@@ -70,7 +70,7 @@ function StringBuilder(value) {
 		@return {String} All Characters
 	*/
 	this.toString = function () {
-		return this.strings.join("");
+		return strings.join("");
 	}
 }
 
