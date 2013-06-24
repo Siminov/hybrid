@@ -567,7 +567,14 @@ public class Resources {
 	public DatabaseMappingDescriptor getDatabaseMappingDescriptorBasedOnClassName(final String className) {
 		
 		String nativeClassName = webNativeClassMapping.get(className);
-		return ormResources.getDatabaseMappingDescriptorBasedOnClassName(nativeClassName);
+		if(nativeClassName == null ||nativeClassName.length() <= 0) {
+			DatabaseMappingDescriptor databaseMappingDescriptor = ormResources.requiredDatabaseMappingDescriptorBasedOnClassName(className);
+			synchronizeMappings();
+			
+			return databaseMappingDescriptor;
+		}
+		
+		return ormResources.requiredDatabaseMappingDescriptorBasedOnClassName(nativeClassName);
 		
 	}
 	
@@ -619,9 +626,9 @@ public class Resources {
 			DatabaseMappingDescriptor databaseMappingDescriptor = databaseMappingDescriptors.next();
 			
 			String nativeClassName = databaseMappingDescriptor.getClassName();
-			String jsClassName = nativeClassName.substring(nativeClassName.lastIndexOf(".") + 1, nativeClassName.length());
+			String webClassName = nativeClassName.substring(nativeClassName.lastIndexOf(".") + 1, nativeClassName.length());
 			
-			webNativeClassMapping.put(jsClassName, nativeClassName);
+			webNativeClassMapping.put(webClassName, nativeClassName);
 			
 		}
 	}
@@ -661,8 +668,8 @@ public class Resources {
 		
 		hybridDatabaseDescriptor.addValue(externalStorage);
 		
-		HybridSiminovData jsDatabaseMappingDescriptorPaths = new HybridSiminovData();
-		jsDatabaseMappingDescriptorPaths.setDataType(HybridDatabaseDescriptor.DATABASE_MAPPING_DESCRIPTORS);
+		HybridSiminovData webDatabaseMappingDescriptorPaths = new HybridSiminovData();
+		webDatabaseMappingDescriptorPaths.setDataType(HybridDatabaseDescriptor.DATABASE_MAPPING_DESCRIPTORS);
 		
 		Iterator<String> databaseMappingDescriptors = databaseDescriptor.getDatabaseMappingPaths();
 		while(databaseMappingDescriptors.hasNext()) {
@@ -671,11 +678,11 @@ public class Resources {
 			databaseMappingDescriptorPath.setType(HybridDatabaseDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATH);
 			databaseMappingDescriptorPath.setValue(databaseMappingDescriptors.next());
 			
-			jsDatabaseMappingDescriptorPaths.addValue(databaseMappingDescriptorPath);
+			webDatabaseMappingDescriptorPaths.addValue(databaseMappingDescriptorPath);
 			
 		}
 		
-		hybridDatabaseDescriptor.addData(jsDatabaseMappingDescriptorPaths);
+		hybridDatabaseDescriptor.addData(webDatabaseMappingDescriptorPaths);
 		
 		HybridSiminovData hybridLibraries = new HybridSiminovData();
 		hybridLibraries.setDataType(HybridDatabaseDescriptor.LIBRARIES);
@@ -744,8 +751,8 @@ public class Resources {
 		while(indexs.hasNext()) {
 			
 			Index index = indexs.next();
-			HybridSiminovData jsIndex = generateHybridDatabaseMappingDescriptorIndex(index);
-			hybridIndexs.addData(jsIndex);
+			HybridSiminovData webIndex = generateHybridDatabaseMappingDescriptorIndex(index);
+			hybridIndexs.addData(webIndex);
 		}
 			
 		hybridDatabaseMappingDescriptor.addData(hybridIndexs);
@@ -1016,11 +1023,11 @@ public class Resources {
 		Iterator<String> libraries = hybridDescriptor.getLibraryPaths();
 		while(libraries.hasNext()) {
 			
-			HybridSiminovValue jsLibrary = new HybridSiminovValue();
-			jsLibrary.setType(siminov.hybrid.adapter.constants.HybridDescriptor.LIBRARY);
-			jsLibrary.setValue(libraries.next());
+			HybridSiminovValue webLibrary = new HybridSiminovValue();
+			webLibrary.setType(siminov.hybrid.adapter.constants.HybridDescriptor.LIBRARY);
+			webLibrary.setValue(libraries.next());
 			
-			hybridLibraries.addValue(jsLibrary);
+			hybridLibraries.addValue(webLibrary);
 			
 		}
 		

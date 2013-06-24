@@ -121,8 +121,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		}
 
 		if(returnData != null) {
-			String finalReturnData = returnData.toString();
-			return finalReturnData;
+			return returnData.toString();
 		}
 			
 		return generateHybridSiminovEmptyData();
