@@ -56,12 +56,12 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 	protected static AdapterResources adapterResources = AdapterResources.getInstance();
 
 	@JavascriptInterface
-	public Object handleWebToNative(final String action) {
+	public String handleWebToNative(final String action) {
 		return handleWebToNative(action, null);
 	}
 	
 	@JavascriptInterface
-	public Object handleWebToNative(final String action, final String data) {
+	public String handleWebToNative(final String action, final String data) {
 
 		HybridSiminovDataParser hybridSiminovDataParser = null; 
 		try {
@@ -121,7 +121,8 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		}
 
 		if(returnData != null) {
-			return returnData;
+			String finalReturnData = returnData.toString();
+			return finalReturnData;
 		}
 			
 		return generateHybridSiminovEmptyData();

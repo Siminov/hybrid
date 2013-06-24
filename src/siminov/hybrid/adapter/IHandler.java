@@ -30,7 +30,7 @@ public interface IHandler {
 	 * @param action Action Needs to be performed on Native.
 	 * @return Return Data By Native Handler API.
 	 */
-	public Object handleWebToNative(final String action);
+	public String handleWebToNative(final String action);
 	
 	
 	/**
@@ -39,7 +39,7 @@ public interface IHandler {
 	 * @param data Data to Native Handler.
 	 * @return
 	 */
-	public Object handleWebToNative(final String action, final String data);
+	public String handleWebToNative(final String action, final String data);
 	
 	
 	/**
