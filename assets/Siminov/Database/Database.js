@@ -31,6 +31,7 @@
 
 	@module Database	
 	@class Database	
+	@constructor
 */
 function Database() {
 

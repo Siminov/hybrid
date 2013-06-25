@@ -18,9 +18,17 @@
 
 
 /**
+	It contain all Events triggered by Siminov Framework.
+
+	@module Events	
+*/
+
+/**
 	Any event triggered by Siminov is first handled by this function later it will deliver to appropriate Event APIs. 
 	
-	@module EventHandler
+	@module Events
+	@class EventHandler
+	@constructor	
 */
 function EventHandler() {
 

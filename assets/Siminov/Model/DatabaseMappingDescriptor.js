@@ -15,6 +15,14 @@
  * limitations under the License.
  **/
 
+
+/**
+	It contain all Models as per required by Siminov Framework.
+
+	@module Model
+*/
+
+
 /**
  	Exposes methods to GET and SET Library Descriptor information as per define in DatabaseDescriptor.si.xml or LibraryDescriptor.si.xml  file by application.
 		
@@ -63,7 +71,8 @@
 			</table>
 		
 		</database-mapping>				
-	
+
+	@module Model	
 	@class DatabaseMappingDescriptor
 	@constructor
  */

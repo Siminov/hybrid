@@ -16,6 +16,13 @@
  **/
 
 
+/**
+	It contain all contain variables requried by Siminov Framework.
+	
+	@class Constants
+	@constructor
+	
+*/
 function Constants() {
 
 }

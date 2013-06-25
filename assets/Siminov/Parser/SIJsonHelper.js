@@ -18,7 +18,18 @@
 
 
 /**
-	Exposes APIs to deal with SI Datas, it convert models to si datas or si datas to models
+	It contain all parser classes required by  Siminov Framework.
+	
+	@module Parser
+*/
+
+
+/**
+	Exposes APIs to deal with SI Datas, it convert models to SI Datas or SI Datas to models
+	
+	@module Parser
+	@class SIJsonHelper
+	
 */
 function SIJsonHelper() {
 

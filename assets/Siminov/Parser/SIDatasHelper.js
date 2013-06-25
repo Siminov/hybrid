@@ -16,11 +16,19 @@
  **/
 
 
+/**
+	It contain all parser classes required by  Siminov Framework.
+	
+	@module Parser
+*/
 
 /**
 	Exposes APIs to deal with Models, it convert si datas to models or models to si datas.
 	
+	@module Parser
 	@class SIDatasHelper
+	@constructor
+	
 */
 function SIDatasHelper() {
 

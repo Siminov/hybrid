@@ -15,6 +15,14 @@
  * limitations under the License.
  **/
 
+
+/**
+	It contain all Models as per required by Siminov Framework.
+
+	@module Model
+*/
+
+
 /**
  	Exposes methods to GET and SET Application Descriptor information as per define in ApplicationDescriptor.si.xml file by application.
 		
@@ -40,7 +48,8 @@
 				
 		</siminov>
 
-	
+
+	@module Model	
 	@class ApplicationDescriptor
 	@constructor
 

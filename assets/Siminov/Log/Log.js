@@ -16,10 +16,16 @@
  **/
 
 
+/**
+	It provide Siminov Log features. 
+	
+	@module Log
+*/
 
 /**
 	Log Siminov Messages.
 	
+	@module Log
 	@class Log
 	@constructor
 */

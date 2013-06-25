@@ -32,6 +32,7 @@
 	@param className {String} Name of Class
 	@param methodName {String} Name of Method
 	@param message {String} Message
+
 */
 function SiminovException(className, methodName, message) {
 

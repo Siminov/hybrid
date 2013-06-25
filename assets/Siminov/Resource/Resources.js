@@ -17,6 +17,20 @@
 
 
 
+/**
+	It contain all class related to Siminov Framework resource.
+	
+	@module Resource
+*/
+
+/**
+	It handles and provides all resources needed by SIMINOV HYBRID.
+	
+	@module Resource
+	@class Resources
+	@constructor
+	
+*/
 var Resources = (function() {
 
 	var resources;

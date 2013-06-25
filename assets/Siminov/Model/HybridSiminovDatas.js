@@ -15,6 +15,14 @@
  * limitations under the License.
  **/
 
+
+/**
+	It contain all Models as per required by Siminov Framework.
+
+	@module Model
+*/
+
+
 /**
 	Exposes methods to GET and SET Siminov Hybrid Datas structure.
 		
@@ -29,7 +37,8 @@
 		    <data type="data_type" />
 		    
 		</siminov-hybrid-data>
-	
+
+	@module Model	
 	@class HybridSiminovDatas
  	@constructor
  	

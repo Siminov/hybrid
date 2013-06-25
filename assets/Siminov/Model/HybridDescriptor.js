@@ -15,8 +15,18 @@
  * limitations under the License.
  **/
 
-/**
 
+
+/**
+	It contain all Models as per required by Siminov Framework.
+
+	@module Model
+*/
+
+
+/**
+	Exposes methods to GET and SET Hybrid Descriptor information as per define in HybridDescriptor.si.xml file by application.
+	
 	<hybrid-descriptor>
 	
 	    <!-- Adapter -->
@@ -111,6 +121,11 @@
 	    </libraries>
 	    
 	</hybrid-descriptor>
+	
+	@module Model
+	@class HybridDescriptor
+	@constructor
+	
 */
 
 function HybridDescriptor() {

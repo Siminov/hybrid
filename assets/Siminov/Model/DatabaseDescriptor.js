@@ -16,6 +16,11 @@
  **/
 
 
+/**
+	It contain all Models as per required by Siminov Framework.
+
+	@module Model
+*/
 
 /**
  	Exposes methods to GET and SET Database Descriptor information as per define in DatabaseDescriptor.si.xml file by application.
@@ -41,6 +46,7 @@
 		
 		</database-descriptor>	
 
+	@module Model
 	@class DatabaseDescriptor
 	@constructor
 

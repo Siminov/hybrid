@@ -18,6 +18,12 @@
 
 
 /**
+	It provide Util class needed by Siminov Framework.
+	
+	@module Utils
+*/
+
+/**
 	Get all properties a given function contain.
 	
 	@method properties
@@ -133,7 +139,10 @@ Object.defineProperty(
 /**
 	It provide APIs to deal with class.
 	
+	@module Utils
 	@class FunctionUtils
+	@constructor
+	
 */
 function FunctionUtils() {
 

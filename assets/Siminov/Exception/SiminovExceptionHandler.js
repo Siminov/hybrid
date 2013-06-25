@@ -15,9 +15,19 @@
  * limitations under the License.
  **/
 
+/**
+	It contain Siminov defined exceptions.
+	
+	@module Exception
+*/
+
 
 /**
 	Any exception thrown from NATIVE-TO-WEB is handled and show to user. 
+	
+	@module Exception
+	@class SiminovExceptionHandler
+	@constructor	
 */
 function SiminovExceptionHandler() {
 

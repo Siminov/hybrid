@@ -30,6 +30,8 @@
 
 	@module Database
 	@class Select
+	@constructor
+	@param object {Select}
 */
 function Select(object) {
 

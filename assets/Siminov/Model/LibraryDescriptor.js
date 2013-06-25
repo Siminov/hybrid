@@ -15,6 +15,15 @@
  * limitations under the License.
  **/
 
+
+
+/**
+	It contain all Models as per required by Siminov Framework.
+
+	@module Model
+*/
+
+
 /**
  	Exposes methods to GET and SET Library Descriptor information as per define in LibraryDescriptor.si.xml file by application.
 		
@@ -38,7 +47,8 @@
 			 
 		</library>
 		
-		
+	
+	@module Model		
 	@class LibraryDescriptor
 	@constructor
  */

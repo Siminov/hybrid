@@ -24,6 +24,8 @@
  			1. Initialize: Entry point to the SIMINOV HYBRID.
 
 	@class Siminov
+	@constructor
+	
  */
 function Siminov() {
 

@@ -30,6 +30,7 @@
 
 	@module Database
 	@class Clause
+	@constructor {Select} Select Class Object.
 */
 function Clause(select) {
 
