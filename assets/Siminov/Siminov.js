@@ -48,10 +48,11 @@ function Siminov() {
 
 	EXAMPLE: 
           document.addEventListener("deviceready", Siminov.initialize, false);
-
+	
+	@Siminov
 	@method initialize
 	@static
- 	@exception If any exception occur while deploying application it will through DeploymentException, which is RuntimeException.
+	@constructor
  */
 Siminov.initialize = function() {
 
@@ -62,3 +63,20 @@ Siminov.initialize = function() {
     adapter.invoke();
 }
 
+
+/**
+	It shudown's Siminov Framework, and releases all resources acquired by Siminov.
+
+	@method shutdown
+	@static
+	@constructor
+*/
+Siminov.shutdown = function() {
+
+	var adapter = new Adapter();
+	
+    adapter.setAdapterName(Constants.SIMINOV_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_ADAPTER_SHUTDOWN_SIMINOV_HANDLER);
+
+    adapter.invoke();
+}

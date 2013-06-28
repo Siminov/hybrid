@@ -1169,6 +1169,17 @@ Constants.SIMINOV_ADAPTER = "SIMINOV";
 Constants.SIMINOV_ADAPTER_INITIALIZE_SIMINOV_HANDLER = "INITIALIZE-SIMINOV";
 
 
+/**
+	Siminov Adapter Shutdown Siminov Handler
+
+	@property SIMINOV_ADAPTER_SHUTDOWN_SIMINOV_HANDLER
+	@type String
+	@static
+	@final
+	@readOnly
+*/
+Constants.SIMINOV_ADAPTER_SHUTDOWN_SIMINOV_HANDLER = "SHUTDOWN-SIMINOV";
+
 
 //    JSON Builder
 

@@ -38,6 +38,15 @@
 	            	            
 	        </handler>
 	        
+	        <handler>
+	            
+	            <property name="name">SHUTDOWN-SIMINOV</property>
+	            <property name="map_to">shutdownSiminov</property>
+	            <property name="description">Shutdown Siminov</property>
+				<property name="type">SYNC</property>
+	            	            
+	        </handler>
+	        
 	    </handlers>
 	    	    
 	</adapter>

@@ -44,6 +44,7 @@ import siminov.orm.model.DatabaseMappingDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor.Column;
 import siminov.orm.model.DatabaseMappingDescriptor.Index;
 import siminov.orm.model.DatabaseMappingDescriptor.Relationship;
+import android.app.Activity;
 import android.webkit.WebView;
 
 /**
@@ -59,6 +60,7 @@ public class Resources {
 	private HybridDescriptor hybridDescriptor = null;
 	
 	private WebView webView = null;
+	private Activity webActivity = null;
 	
 	private EventHandler eventHandler = null;
 	
@@ -434,6 +436,22 @@ public class Resources {
 		this.webView = webView;
 	}
 
+	/**
+	 * Get Web Activity
+	 * @return Web Activity
+	 */
+	public Activity getWebActivity() {
+		return this.webActivity;
+	}
+	
+	/**
+	 * Set Web Activity
+	 * @param webActivity Web Activity
+	 */
+	public void setWebActivity(Activity webActivity) {
+		this.webActivity = webActivity;
+	}
+	
 	
 	/**
 	 * Check whether any event registered by application or not.

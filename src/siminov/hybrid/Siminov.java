@@ -31,20 +31,19 @@ import siminov.hybrid.model.LibraryDescriptor;
 import siminov.hybrid.parsers.HybridDescriptorParser;
 import siminov.hybrid.parsers.HybridLibraryDescriptorParser;
 import siminov.hybrid.resource.Resources;
+import siminov.orm.IInitializer;
 import siminov.orm.events.ISiminovEvents;
 import siminov.orm.exception.DeploymentException;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 import siminov.orm.model.ApplicationDescriptor;
-import android.content.Context;
-import android.webkit.WebView;
 
 /**
  * Exposes methods to deal with SIMINOV HYBRID FRAMEWORK.
  *	<p>
  *		Such As
  *		<p>
- *			1. Initialize: Entry point to the SIMINOV HYBRID.
+ *			1. Initializer: Entry point to the SIMINOV HYBRID.
  *		</p>
  *	
  *
@@ -70,6 +69,11 @@ public class Siminov extends siminov.orm.Siminov {
 		if(!isActive && !siminov.orm.Siminov.isActive) {
 			throw new DeploymentException(Siminov.class.getName(), "validateSiminov", "Siminov Not Active.");
 		}
+	}
+	
+	
+	public static IInitializer initialize() {
+		return new Initializer();
 	}
 	
 	
@@ -114,11 +118,7 @@ public class Siminov extends siminov.orm.Siminov {
 	 * @param webView WebView.
 	 * @exception If any exception occur while deploying application it will through DeploymentException, which is RuntimeException.
 	 */
-	public static void initialize(Context applicationContext, WebView webView) {
-		
-		ormResources.setApplicationContext(applicationContext);
-		hybridResources.setWebView(webView);
-		
+	static void start() {
 		
 		siminov.orm.Siminov.processApplicationDescriptor();
 		processEvents();
@@ -141,6 +141,26 @@ public class Siminov extends siminov.orm.Siminov {
 		
 	}
 
+
+	/**
+	 * It is used to stop all service started by SIMINOV.
+	 * <p>
+	 * When application shutdown they should call this. It do following services: 
+	 * <p>
+	 * 		<pre>
+	 * 			<ul>
+	 * 				<li> Close all database's opened by SIMINOV.
+	 * 				<li> Deallocate all resources held by SIMINOV.
+	 * 			</ul>
+	 *		</pre>
+	 *	</p>
+	 * 
+	 * @throws SiminovException If any error occur while shutting down SIMINOV.
+	 */
+	public static void shutdown() {
+		
+		siminov.orm.Siminov.shutdown();
+	}
 	
 	/**
 	 * It process HybridDescriptor.si.xml file defined in Application, and stores in Resources.

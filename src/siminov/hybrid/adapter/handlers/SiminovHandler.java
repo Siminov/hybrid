@@ -41,6 +41,7 @@ import siminov.hybrid.resource.Resources;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 import siminov.orm.utils.ClassUtils;
+import android.app.Activity;
 import android.webkit.JavascriptInterface;
 
 
@@ -170,14 +171,27 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 			invokeAction += "." + invokeHandler.getMapTo();
 		}
 		
+
+		final Adapter finalAdapter = adapter;
+		final Handler finalHandler = handler;
+		final String finalInvokeAction = invokeAction;
+		final String finalParameters = parameters;
 		
-		if(adapter.getMapTo() != null && adapter.getMapTo().length() > 0 && handler.getMapTo() != null && handler.getMapTo().length() > 0) {
-			hybridResources.getWebView().loadUrl("javascript: new " + adapter.getMapTo() + "()." + handler.getMapTo() + "('" + invokeAction + "', " + parameters + ");");
-		} else if(adapter.getMapTo() != null && adapter.getMapTo().length() > 0) {
-			hybridResources.getWebView().loadUrl("javascript:" + adapter.getMapTo() + "('" + invokeAction + "', " + parameters + ");");
-		} else if(handler.getMapTo() != null && handler.getMapTo().length() > 0) {
-			hybridResources.getWebView().loadUrl("javascript:" + handler.getMapTo() + "('" + invokeAction + "', " + parameters + ");");
-		}
+		Activity webActivity = hybridResources.getWebActivity();
+		webActivity.runOnUiThread(new Runnable() {
+			
+			public void run() {
+				
+				if(finalAdapter.getMapTo() != null && finalAdapter.getMapTo().length() > 0 && finalHandler.getMapTo() != null && finalHandler.getMapTo().length() > 0) {
+					hybridResources.getWebView().loadUrl("javascript: new " + finalAdapter.getMapTo() + "()." + finalHandler.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
+				} else if(finalAdapter.getMapTo() != null && finalAdapter.getMapTo().length() > 0) {
+					hybridResources.getWebView().loadUrl("javascript:" + finalAdapter.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
+				} else if(finalHandler.getMapTo() != null && finalHandler.getMapTo().length() > 0) {
+					hybridResources.getWebView().loadUrl("javascript:" + finalHandler.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
+				}
+			}
+		});
+
 		
 	}
 
@@ -352,6 +366,12 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		siminov.orm.Siminov.processDatabase();
 		siminov.hybrid.Siminov.siminovInitialized();
 		
+	}
+
+	
+	public void shutdownSiminov() {
+		
+		shutdown();	
 	}
 	
 }
