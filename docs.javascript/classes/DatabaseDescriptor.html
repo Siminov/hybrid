@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DatabaseDescriptor - Siminov Hybrid</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="Siminov Hybrid" src="..\yuidoc.assets\siminov-logo.gif" style="max-height: 65%;" title="Siminov Hybrid">
+        
+            Siminov Hybrid
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.9</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Adapter", "classes/ApplicationDescriptor", "classes/Clause", "classes/Constants", "classes/Database", "classes/DatabaseDescriptor", "classes/DatabaseMappingDescriptor", "classes/DatabaseMappingDescriptor.Column", "classes/DatabaseMappingDescriptor.Index", "classes/DatabaseMappingDescriptor.Relationship", "classes/Dictionary", "classes/EventHandler", "classes/FunctionUtils", "classes/HybridDescription.Adapter.Handler.Parameter", "classes/HybridDescriptor", "classes/HybridDescriptor.Adapter", "classes/HybridDescriptor.Adapter.Handler", "classes/HybridSiminovDatas", "classes/HybridSiminovDatas.HybridSiminovData", "classes/IAverage", "classes/IAverageClause", "classes/ICount", "classes/ICountClause", "classes/IDelete", "classes/IDeleteClause", "classes/IGroupConcat", "classes/IGroupConcatClause", "classes/IMax", "classes/IMaxClause", "classes/IMin", "classes/IMinClause", "classes/ISelect", "classes/ISelectClause", "classes/ISum", "classes/ISumClause", "classes/ITotal", "classes/ITotalClause", "classes/LibraryDescriptor", "classes/Log", "classes/Resources", "classes/Select", "classes/SIDatasHelper", "classes/SIJsonHelper", "classes/Siminov", "classes/SiminovException", "classes/SiminovExceptionHandler", "classes/StringBuilder", "modules/Adapter", "modules/Collection", "modules/Database", "modules/Events", "modules/Exception", "modules/Impl", "modules/Log", "modules/Model", "modules/Parser", "modules/Resource", "modules/Utils"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/Adapter.html">Adapter</a></li>
+                    
+                        <li><a href="../classes/ApplicationDescriptor.html">ApplicationDescriptor</a></li>
+                    
+                        <li><a href="../classes/Clause.html">Clause</a></li>
+                    
+                        <li><a href="../classes/Constants.html">Constants</a></li>
+                    
+                        <li><a href="../classes/Database.html">Database</a></li>
+                    
+                        <li><a href="../classes/DatabaseDescriptor.html">DatabaseDescriptor</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.html">DatabaseMappingDescriptor</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Column.html">DatabaseMappingDescriptor.Column</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Index.html">DatabaseMappingDescriptor.Index</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Relationship.html">DatabaseMappingDescriptor.Relationship</a></li>
+                    
+                        <li><a href="../classes/Dictionary.html">Dictionary</a></li>
+                    
+                        <li><a href="../classes/EventHandler.html">EventHandler</a></li>
+                    
+                        <li><a href="../classes/FunctionUtils.html">FunctionUtils</a></li>
+                    
+                        <li><a href="../classes/HybridDescription.Adapter.Handler.Parameter.html">HybridDescription.Adapter.Handler.Parameter</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.html">HybridDescriptor</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.Adapter.html">HybridDescriptor.Adapter</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.Adapter.Handler.html">HybridDescriptor.Adapter.Handler</a></li>
+                    
+                        <li><a href="../classes/HybridSiminovDatas.html">HybridSiminovDatas</a></li>
+                    
+                        <li><a href="../classes/HybridSiminovDatas.HybridSiminovData.html">HybridSiminovDatas.HybridSiminovData</a></li>
+                    
+                        <li><a href="../classes/IAverage.html">IAverage</a></li>
+                    
+                        <li><a href="../classes/IAverageClause.html">IAverageClause</a></li>
+                    
+                        <li><a href="../classes/ICount.html">ICount</a></li>
+                    
+                        <li><a href="../classes/ICountClause.html">ICountClause</a></li>
+                    
+                        <li><a href="../classes/IDelete.html">IDelete</a></li>
+                    
+                        <li><a href="../classes/IDeleteClause.html">IDeleteClause</a></li>
+                    
+                        <li><a href="../classes/IGroupConcat.html">IGroupConcat</a></li>
+                    
+                        <li><a href="../classes/IGroupConcatClause.html">IGroupConcatClause</a></li>
+                    
+                        <li><a href="../classes/IMax.html">IMax</a></li>
+                    
+                        <li><a href="../classes/IMaxClause.html">IMaxClause</a></li>
+                    
+                        <li><a href="../classes/IMin.html">IMin</a></li>
+                    
+                        <li><a href="../classes/IMinClause.html">IMinClause</a></li>
+                    
+                        <li><a href="../classes/ISelect.html">ISelect</a></li>
+                    
+                        <li><a href="../classes/ISelectClause.html">ISelectClause</a></li>
+                    
+                        <li><a href="../classes/ISum.html">ISum</a></li>
+                    
+                        <li><a href="../classes/ISumClause.html">ISumClause</a></li>
+                    
+                        <li><a href="../classes/ITotal.html">ITotal</a></li>
+                    
+                        <li><a href="../classes/ITotalClause.html">ITotalClause</a></li>
+                    
+                        <li><a href="../classes/LibraryDescriptor.html">LibraryDescriptor</a></li>
+                    
+                        <li><a href="../classes/Log.html">Log</a></li>
+                    
+                        <li><a href="../classes/Resources.html">Resources</a></li>
+                    
+                        <li><a href="../classes/Select.html">Select</a></li>
+                    
+                        <li><a href="../classes/SIDatasHelper.html">SIDatasHelper</a></li>
+                    
+                        <li><a href="../classes/SIJsonHelper.html">SIJsonHelper</a></li>
+                    
+                        <li><a href="../classes/Siminov.html">Siminov</a></li>
+                    
+                        <li><a href="../classes/SiminovException.html">SiminovException</a></li>
+                    
+                        <li><a href="../classes/SiminovExceptionHandler.html">SiminovExceptionHandler</a></li>
+                    
+                        <li><a href="../classes/StringBuilder.html">StringBuilder</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/Adapter.html">Adapter</a></li>
+                    
+                        <li><a href="../modules/Collection.html">Collection</a></li>
+                    
+                        <li><a href="../modules/Database.html">Database</a></li>
+                    
+                        <li><a href="../modules/Events.html">Events</a></li>
+                    
+                        <li><a href="../modules/Exception.html">Exception</a></li>
+                    
+                        <li><a href="../modules/Impl.html">Impl</a></li>
+                    
+                        <li><a href="../modules/Log.html">Log</a></li>
+                    
+                        <li><a href="../modules/Model.html">Model</a></li>
+                    
+                        <li><a href="../modules/Parser.html">Parser</a></li>
+                    
+                        <li><a href="../modules/Resource.html">Resource</a></li>
+                    
+                        <li><a href="../modules/Utils.html">Utils</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>DatabaseDescriptor <small>Class</small></h1>
+</div>
+
+<div class="well well-small">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l25"><code>assets\Siminov\Model\DatabaseDescriptor.js:25</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/Model.html">Model</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="well well-small">
+    <p>Exposes methods to GET and SET Database Descriptor information as per define in DatabaseDescriptor.si.xml file by application.</p>
+
+<pre class="code prettyprint"><code>Example:
+    &lt;database-descriptor&gt;
+
+        &lt;property name="database_name"&gt;SIMINOV-HYBRID-TEMPLATE&lt;/property&gt;
+        &lt;property name="description"&gt;Siminov Hybrid Template Database Config&lt;/property&gt;
+        &lt;property name="is_locking_required"&gt;true&lt;/property&gt;
+        &lt;property name="external_storage"&gt;false&lt;/property&gt;
+
+        &lt;database-mappings&gt;
+            &lt;database-mapping path="Liquor-Mappings/Liquor.si.xml" /&gt;
+            &lt;database-mapping path="Liquor-Mappings/LiquorBrand.si.xml" /&gt;
+        &lt;/database-mappings&gt;
+
+
+        &lt;libraries&gt;
+            &lt;library&gt;siminov.orm.library.template.resources&lt;/library&gt;
+        &lt;/libraries&gt;
+
+    &lt;/database-descriptor&gt;
+</code></pre>
+</div>
+
+
+
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
+
+        
+            <li><a data-toggle="tab" href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+
+    <div class="tab-content">
+        <div id="index" class="tab-pane active">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_addDatabaseMappingDescriptorPath" data-tablink="addDatabaseMappingDescriptorPath">addDatabaseMappingDescriptorPath</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_addLibraryPath" data-tablink="addLibraryPath">addLibraryPath</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_addProperty" data-tablink="addProperty">addProperty</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_containProperty" data-tablink="containProperty">containProperty</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getDatabaseMappingDescriptorPaths" data-tablink="getDatabaseMappingDescriptorPaths">getDatabaseMappingDescriptorPaths</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getDatabaseName" data-tablink="getDatabaseName">getDatabaseName</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getDescription" data-tablink="getDescription">getDescription</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getLibraryPaths" data-tablink="getLibraryPaths">getLibraryPaths</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getProperties" data-tablink="getProperties">getProperties</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getProperty" data-tablink="getProperty">getProperty</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_isExternalStorage" data-tablink="isExternalStorage">isExternalStorage</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_isLockingRequired" data-tablink="isLockingRequired">isLockingRequired</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_removeProperty" data-tablink="removeProperty">removeProperty</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_setDatabaseName" data-tablink="setDatabaseName">setDatabaseName</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_setDescription" data-tablink="setDescription">setDescription</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_setExternalStorage" data-tablink="setExternalStorage">setExternalStorage</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_setLockingRequired" data-tablink="setLockingRequired">setLockingRequired</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="tab-pane">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_addDatabaseMappingDescriptorPath" class="method item">
+    <h3 class="name"><code>addDatabaseMappingDescriptorPath</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>databaseMappingPath</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l211"><code>assets\Siminov\Model\DatabaseDescriptor.js:211</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Add database mapping path as per defined in DatabaseDescriptor.si.xml file.</p>
+
+<pre class="code prettyprint"><code>    EXAMPLE:
+        &lt;database-descriptor&gt;
+            &lt;database-mappings&gt;
+                &lt;database-mapping path="Liquor-Mappings/Liquor.xml" /&gt;
+                &lt;database-mapping path="Liquor-Mappings/LiquorBrand.xml" /&gt;
+            &lt;/database-mappings&gt;
+        &lt;/database-descriptor&gt;
+</code></pre>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">databaseMappingPath</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Database Mapping Path.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_addLibraryPath" class="method item">
+    <h3 class="name"><code>addLibraryPath</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>libraryPath</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l239"><code>assets\Siminov\Model\DatabaseDescriptor.js:239</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Add library path as per defined in DatabaseDescriptor.si.xml file.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">libraryPath</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Library path defined in DatabaseDescriptor.si.xml file.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_addProperty" class="method item">
+    <h3 class="name"><code>addProperty</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l178"><code>assets\Siminov\Model\DatabaseDescriptor.js:178</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Add Property in property pool.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of Property.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>value of Property.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_containProperty" class="method item">
+    <h3 class="name"><code>containProperty</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l166"><code>assets\Siminov\Model\DatabaseDescriptor.js:166</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Check whether Property exist or not.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of Property.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    true/false, TRUE if property exist, FALSE if property does not exist.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getDatabaseMappingDescriptorPaths" class="method item">
+    <h3 class="name"><code>getDatabaseMappingDescriptorPaths</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l201"><code>assets\Siminov\Model\DatabaseDescriptor.js:201</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get all database mapping paths as per defined in DatabaseDescriptor.si.xml file.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                    It contain all database mapping paths.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getDatabaseName" class="method item">
+    <h3 class="name"><code>getDatabaseName</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l62"><code>assets\Siminov\Model\DatabaseDescriptor.js:62</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get database descriptor name as defined in DatabaseDescriptor.si.xml file.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    Database Descriptor Name.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getDescription" class="method item">
+    <h3 class="name"><code>getDescription</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l82"><code>assets\Siminov\Model\DatabaseDescriptor.js:82</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get description as per defined in DatabaseDescriptor.si.xml file.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    Description defined in DatabaseDescriptor.si.xml file.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getLibraryPaths" class="method item">
+    <h3 class="name"><code>getLibraryPaths</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l229"><code>assets\Siminov\Model\DatabaseDescriptor.js:229</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get all library paths as per defined in DatabaseDescriptor.si.xml file.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                    It contains all library paths.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getProperties" class="method item">
+    <h3 class="name"><code>getProperties</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l143"><code>assets\Siminov\Model\DatabaseDescriptor.js:143</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get all Properties defined in descriptor.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                    All Property Values.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getProperty" class="method item">
+    <h3 class="name"><code>getProperty</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l154"><code>assets\Siminov\Model\DatabaseDescriptor.js:154</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get Property based on name provided.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of Property.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    Property value.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_isExternalStorage" class="method item">
+    <h3 class="name"><code>isExternalStorage</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l132"><code>assets\Siminov\Model\DatabaseDescriptor.js:132</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Check whether database needs to be stored on SDCard or not.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    (true/false) TRUE: If external<em>storage defined as true in DatabaseDescriptor.si.xml file, FALSE: If external</em>storage defined as false in DatabaseDescritor.xml file.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_isLockingRequired" class="method item">
+    <h3 class="name"><code>isLockingRequired</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l112"><code>assets\Siminov\Model\DatabaseDescriptor.js:112</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Check whether database transactions to make multi-threading safe or not.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    (true/false) TRUE: If locking is required as per defined in DatabaseDescriptor.si.xml file, FALSE: If locking is not required as per defined in DatabaseDescriptor.si.xml file.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_removeProperty" class="method item">
+    <h3 class="name"><code>removeProperty</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l190"><code>assets\Siminov\Model\DatabaseDescriptor.js:190</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Remove Property from property pool.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of Property.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setDatabaseName" class="method item">
+    <h3 class="name"><code>setDatabaseName</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>databaseName</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l72"><code>assets\Siminov\Model\DatabaseDescriptor.js:72</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set database descriptor name as per defined in DatabaseDescriptor.si.xml file.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">databaseName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Database Descriptor Name.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setDescription" class="method item">
+    <h3 class="name"><code>setDescription</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>description</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l92"><code>assets\Siminov\Model\DatabaseDescriptor.js:92</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set description as per defined in DatabaseDescritor.xml file.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">description</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Description defined in DatabaseDescriptor.si.xml file.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setExternalStorage" class="method item">
+    <h3 class="name"><code>setExternalStorage</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>isExternalStorageEnable</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l122"><code>assets\Siminov\Model\DatabaseDescriptor.js:122</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set the external storage value as per defined in DatabaseDescriptor.si.xml file.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">isExternalStorageEnable</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>(true/false) External Storage Enable Or Not.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setLockingRequired" class="method item">
+    <h3 class="name"><code>setLockingRequired</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>isLockingRequired</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseDescriptor.js.html#l102"><code>assets\Siminov\Model\DatabaseDescriptor.js:102</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set database locking as per defined in DatabaseDescriptor.si.xml file.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">isLockingRequired</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>(true/false) database locking as per defined in DatabaseDescriptor.si.xml file.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
