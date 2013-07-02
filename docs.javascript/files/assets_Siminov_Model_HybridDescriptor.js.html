@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>assets\Siminov\Model\HybridDescriptor.js - Siminov Hybrid</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="Siminov Hybrid" src="..\yuidoc.assets\siminov-logo.gif" style="max-height: 65%;" title="Siminov Hybrid">
+        
+            Siminov Hybrid
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.9</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Adapter", "classes/ApplicationDescriptor", "classes/Clause", "classes/Constants", "classes/Database", "classes/DatabaseDescriptor", "classes/DatabaseMappingDescriptor", "classes/DatabaseMappingDescriptor.Column", "classes/DatabaseMappingDescriptor.Index", "classes/DatabaseMappingDescriptor.Relationship", "classes/Dictionary", "classes/EventHandler", "classes/FunctionUtils", "classes/HybridDescription.Adapter.Handler.Parameter", "classes/HybridDescriptor", "classes/HybridDescriptor.Adapter", "classes/HybridDescriptor.Adapter.Handler", "classes/HybridSiminovDatas", "classes/HybridSiminovDatas.HybridSiminovData", "classes/IAverage", "classes/IAverageClause", "classes/ICount", "classes/ICountClause", "classes/IDelete", "classes/IDeleteClause", "classes/IGroupConcat", "classes/IGroupConcatClause", "classes/IMax", "classes/IMaxClause", "classes/IMin", "classes/IMinClause", "classes/ISelect", "classes/ISelectClause", "classes/ISum", "classes/ISumClause", "classes/ITotal", "classes/ITotalClause", "classes/LibraryDescriptor", "classes/Log", "classes/Resources", "classes/Select", "classes/SIDatasHelper", "classes/SIJsonHelper", "classes/Siminov", "classes/SiminovException", "classes/SiminovExceptionHandler", "classes/StringBuilder", "modules/Adapter", "modules/Collection", "modules/Database", "modules/Events", "modules/Exception", "modules/Impl", "modules/Log", "modules/Model", "modules/Parser", "modules/Resource", "modules/Utils"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/Adapter.html">Adapter</a></li>
+                    
+                        <li><a href="../classes/ApplicationDescriptor.html">ApplicationDescriptor</a></li>
+                    
+                        <li><a href="../classes/Clause.html">Clause</a></li>
+                    
+                        <li><a href="../classes/Constants.html">Constants</a></li>
+                    
+                        <li><a href="../classes/Database.html">Database</a></li>
+                    
+                        <li><a href="../classes/DatabaseDescriptor.html">DatabaseDescriptor</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.html">DatabaseMappingDescriptor</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Column.html">DatabaseMappingDescriptor.Column</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Index.html">DatabaseMappingDescriptor.Index</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Relationship.html">DatabaseMappingDescriptor.Relationship</a></li>
+                    
+                        <li><a href="../classes/Dictionary.html">Dictionary</a></li>
+                    
+                        <li><a href="../classes/EventHandler.html">EventHandler</a></li>
+                    
+                        <li><a href="../classes/FunctionUtils.html">FunctionUtils</a></li>
+                    
+                        <li><a href="../classes/HybridDescription.Adapter.Handler.Parameter.html">HybridDescription.Adapter.Handler.Parameter</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.html">HybridDescriptor</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.Adapter.html">HybridDescriptor.Adapter</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.Adapter.Handler.html">HybridDescriptor.Adapter.Handler</a></li>
+                    
+                        <li><a href="../classes/HybridSiminovDatas.html">HybridSiminovDatas</a></li>
+                    
+                        <li><a href="../classes/HybridSiminovDatas.HybridSiminovData.html">HybridSiminovDatas.HybridSiminovData</a></li>
+                    
+                        <li><a href="../classes/IAverage.html">IAverage</a></li>
+                    
+                        <li><a href="../classes/IAverageClause.html">IAverageClause</a></li>
+                    
+                        <li><a href="../classes/ICount.html">ICount</a></li>
+                    
+                        <li><a href="../classes/ICountClause.html">ICountClause</a></li>
+                    
+                        <li><a href="../classes/IDelete.html">IDelete</a></li>
+                    
+                        <li><a href="../classes/IDeleteClause.html">IDeleteClause</a></li>
+                    
+                        <li><a href="../classes/IGroupConcat.html">IGroupConcat</a></li>
+                    
+                        <li><a href="../classes/IGroupConcatClause.html">IGroupConcatClause</a></li>
+                    
+                        <li><a href="../classes/IMax.html">IMax</a></li>
+                    
+                        <li><a href="../classes/IMaxClause.html">IMaxClause</a></li>
+                    
+                        <li><a href="../classes/IMin.html">IMin</a></li>
+                    
+                        <li><a href="../classes/IMinClause.html">IMinClause</a></li>
+                    
+                        <li><a href="../classes/ISelect.html">ISelect</a></li>
+                    
+                        <li><a href="../classes/ISelectClause.html">ISelectClause</a></li>
+                    
+                        <li><a href="../classes/ISum.html">ISum</a></li>
+                    
+                        <li><a href="../classes/ISumClause.html">ISumClause</a></li>
+                    
+                        <li><a href="../classes/ITotal.html">ITotal</a></li>
+                    
+                        <li><a href="../classes/ITotalClause.html">ITotalClause</a></li>
+                    
+                        <li><a href="../classes/LibraryDescriptor.html">LibraryDescriptor</a></li>
+                    
+                        <li><a href="../classes/Log.html">Log</a></li>
+                    
+                        <li><a href="../classes/Resources.html">Resources</a></li>
+                    
+                        <li><a href="../classes/Select.html">Select</a></li>
+                    
+                        <li><a href="../classes/SIDatasHelper.html">SIDatasHelper</a></li>
+                    
+                        <li><a href="../classes/SIJsonHelper.html">SIJsonHelper</a></li>
+                    
+                        <li><a href="../classes/Siminov.html">Siminov</a></li>
+                    
+                        <li><a href="../classes/SiminovException.html">SiminovException</a></li>
+                    
+                        <li><a href="../classes/SiminovExceptionHandler.html">SiminovExceptionHandler</a></li>
+                    
+                        <li><a href="../classes/StringBuilder.html">StringBuilder</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/Adapter.html">Adapter</a></li>
+                    
+                        <li><a href="../modules/Collection.html">Collection</a></li>
+                    
+                        <li><a href="../modules/Database.html">Database</a></li>
+                    
+                        <li><a href="../modules/Events.html">Events</a></li>
+                    
+                        <li><a href="../modules/Exception.html">Exception</a></li>
+                    
+                        <li><a href="../modules/Impl.html">Impl</a></li>
+                    
+                        <li><a href="../modules/Log.html">Log</a></li>
+                    
+                        <li><a href="../modules/Model.html">Model</a></li>
+                    
+                        <li><a href="../modules/Parser.html">Parser</a></li>
+                    
+                        <li><a href="../modules/Resource.html">Resource</a></li>
+                    
+                        <li><a href="../modules/Utils.html">Utils</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>assets\Siminov\Model\HybridDescriptor.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/** 
+ * [SIMINOV FRAMEWORK]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
+
+
+/**
+	It contain all Models as per required by Siminov Framework.
+
+	@module Model
+*/
+
+
+/**
+	Exposes methods to GET and SET Hybrid Descriptor information as per define in HybridDescriptor.si.xml file by application.
+	
+	&lt;hybrid-descriptor&gt;
+	
+	    &lt;!-- Adapter --&gt;
+	    &lt;adapter&gt;
+	        
+	        &lt;!-- General Adapter Properties --&gt;
+	        	&lt;!-- Mandatory Field --&gt;
+	        &lt;property name=&quot;name&quot;&gt;adapter_name&lt;/property&gt;
+	        	
+	        	&lt;!-- Optional Field --&gt;
+	        &lt;property name=&quot;description&quot;&gt;adapter_description&lt;/property&gt;
+	        
+	        	&lt;!-- Mandatory Field --&gt;
+	        &lt;property name=&quot;type&quot;&gt;WEB-TO-NATIVE|NATIVE-TO-WEB&lt;/property&gt;
+	        
+	        	&lt;!-- Optional Field --&gt;
+	        &lt;property name=&quot;map_to&quot;&gt;name_of_adapter_class&lt;/property&gt;
+	
+	        	&lt;!-- Optional Field (DEFAULT: FALSE)--&gt;
+	        &lt;property name=&quot;cache&quot;&gt;true/false&lt;/property&gt;
+	
+	        	&lt;!-- Optional Error Handler --&gt;
+	        &lt;property name=&quot;error_handler&quot;&gt;error_handler_id&lt;/property&gt;
+	        
+	        &lt;!-- Handlers --&gt;
+	        	&lt;!-- Handler --&gt;
+	        &lt;handlers&gt;
+	            
+		        &lt;handler&gt;
+		            
+		            &lt;!-- General Handler Properties --&gt;
+		            	&lt;!-- Mandatory Field --&gt;
+		            &lt;property name=&quot;name&quot;&gt;handler_name&lt;/property&gt;
+		            
+		            	&lt;!-- Optional Field --&gt;
+		            &lt;property name=&quot;type&quot;&gt;SYNC|ASYNC&lt;/property&gt;
+		            
+		            	&lt;!-- Optional Field --&gt;
+		            &lt;property name=&quot;callback_id&quot;&gt;callback_adapter_name&lt;/property&gt;
+		
+		            	&lt;!-- Mandatory Field --&gt;
+		            &lt;property name=&quot;map_to&quot;&gt;name_of_handler_method&lt;/property&gt;	            
+	
+		            	&lt;!-- Optional Field --&gt;
+		            &lt;property name=&quot;description&quot;&gt;handler_description&lt;/property&gt;	            
+	
+			       		&lt;!-- Optional Error Handler --&gt;
+			       	&lt;property name=&quot;error_handler&quot;&gt;error_handler_id&lt;/property&gt;
+			            	            
+		            	            	           
+		            &lt;!-- Parameters --&gt;
+		            &lt;parameters&gt;
+		                &lt;!-- Parameter --&gt;
+		                &lt;parameter&gt;
+		                    
+		                    	&lt;!-- Mandatory Field --&gt;
+		                    &lt;property name=&quot;type&quot;&gt;parameter_type&lt;/property&gt;
+		                    
+		                    	&lt;!-- Optional Field --&gt;
+		                    &lt;property name=&quot;description&quot;&gt;description_of_parameter&lt;/property&gt;
+		                    
+		                &lt;/parameter&gt;
+		                
+		            &lt;/parameters&gt;
+		            
+		            &lt;return&gt;
+		                
+		                	&lt;!-- Mandatory Field --&gt;
+		                &lt;property name=&quot;type&quot;&gt;return_type&lt;/property&gt;
+		                
+		                	&lt;!-- Optional Field --&gt;
+		                &lt;property name=&quot;description&quot;&gt;return_data_description&lt;/property&gt;
+		                
+		            &lt;/return&gt;
+		            
+		        &lt;/handler&gt;
+		            
+	        &lt;/handlers&gt;
+	
+	    &lt;/adapter&gt;
+	    
+	
+	    &lt;!-- Adapter Paths --&gt;
+	    &lt;adapter path=&quot;adapter_path&quot; /&gt;
+	    
+	
+	    &lt;!-- Library Needed Under This HybridDescriptor --&gt;
+	    &lt;libraries&gt;
+	        
+	        &lt;library&gt;full_path_of_library_descriptor_file&lt;/library&gt;
+	        
+	    &lt;/libraries&gt;
+	    
+	&lt;/hybrid-descriptor&gt;
+	
+	@module Model
+	@class HybridDescriptor
+	@constructor
+	
+*/
+
+function HybridDescriptor() {
+
+    var properties = new Dictionary();
+
+    var adapters = [];
+    var adapterPaths = [];
+
+    var libraries = [];
+
+	
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
+	this.getProperties = function() {
+		return properties.values();
+	}
+	
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+	 	@return {String} Property value.
+	 */
+	this.getProperty = function(name) {
+		return properties.get(name);
+	}
+	
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
+	this.containProperty = function(name) {
+		return properties.exists(name);
+	}
+	
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
+	this.addProperty = function(name, value) {
+		properties.add(name, value);
+	}
+	
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method removeProperty
+		@param name {String} Name of Property.
+	 */
+	this.removeProperty = function(name) {
+		properties.remove(name);
+	}
+	
+	/**
+	 	Get All Adapters. Defined in HybridDescriptor.si.xml file.
+	 	
+	 	@method getAdapters
+	 	@return {Array} All Adapters.
+	 */
+	this.getAdapters = function() {
+	    	return adapters;
+	}
+	
+	/**
+	 	Get Adapter based on name.
+	 	
+	 	@method addAdapter
+	 	@param adapterName {String} Name of Adapter.
+	 	@return {Adapter} Adapter.
+	 */
+	 this.addAdapter = function(adapter) {
+	    	adapters.push(adapter);
+	}
+	
+	/**
+	 	Get Adapter based on adapter path.
+	 
+	 	@method getAdapterPaths
+	 	@return {Adapter} Adapter.
+	 */
+	this.getAdapterPaths = function() {
+	    	return adapterPaths;
+	}
+	
+
+	/**
+		Path of Adapter.
+		
+		@method addAdapterPath
+		@param Path of Adapter
+	*/	
+    this.addAdapterPath = function(adapterPath) {
+	    	adapterPaths.push(adapterPath);
+	}
+	
+	/**
+		Get all Libraries.
+		
+		@method getLibraries
+		@return All Libraries
+	*/
+    this.getLibraries = function() {
+	    	return libraries;
+	}
+	
+	/**
+		Add Library.
+		
+		@method addLibrary
+		@param Library
+	*/
+    this.addLibrary = function(library) {
+	    	libraries.push(library);
+	}
+
+}
+
+
+
+/**
+	Exposes methods to GET and SET Hybrid Descriptor Adapter information as per define in HybridDescriptor.si.xml file or standalone xml file in application.
+			
+	Example:
+
+		&lt;adapter&gt;
+			&lt;property name=&quot;name&quot;&gt;name_of_adapter&lt;/property&gt;
+			&lt;property name=&quot;description&quot;&gt;description_about_adapter&lt;/property&gt;
+			&lt;property name=&quot;type&quot;&gt;type_of_adapter&lt;/property&gt;
+			&lt;property name=&quot;map_to&quot;&gt;map_to_class_name&lt;/property&gt;
+			&lt;property name=&quot;cache&quot;&gt;should_be_cached_or_not&lt;/property&gt;
+			
+			&lt;handlers&gt;
+			
+				&lt;handler&gt;
+					&lt;property name=&quot;name&quot;&gt;name_of_handler&lt;/property&gt;
+					&lt;property name=&quot;description&quot;&gt;description_about_handler&lt;/property&gt;
+					&lt;property name=&quot;map_to&quot;&gt;map_to_function_name&lt;/property&gt;
+					
+					&lt;parameters&gt;
+						
+						&lt;parameter&gt;
+							&lt;property name=&quot;name&quot;&gt;&lt;/property&gt;
+							&lt;property name=&quot;description&quot;&gt;&lt;/property&gt;
+							&lt;property name=&quot;type&quot;&gt;&lt;/property&gt;
+						&lt;/parameter&gt;
+					
+					&lt;/parameter&gt;
+					
+					&lt;return&gt;
+							&lt;property name=&quot;type&quot;&gt;return_data_type&lt;/property&gt;
+							&lt;property name=&quot;description&quot;&gt;description_about_return_data&lt;/property&gt;
+					&lt;/return&gt;
+					
+				&lt;/handler&gt;
+			
+			&lt;/handlers&gt;
+			
+		&lt;/adapter&gt;
+
+	@class HybridDescriptor.Adapter
+	@constructor
+				
+*/
+HybridDescriptor.Adapter = function() {
+
+    var properties = new Dictionary();
+
+    var handlers=[];
+    
+	
+	/**
+	 * Get Name of Adapter.
+	 * @return Name of Adapter.
+	 */
+    this.getName = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_NAME);
+	}
+	
+	/**
+	 * Set Name of Adapter.
+	 * @param name Name of Adapter.
+	 */
+    this.setName = function(name) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_NAME, name);
+	}
+
+	/**
+	 * Get Description of Adapter.
+	 * @return Description of Adapter.
+	 */
+    this.getDescription = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_DESCRIPTION);
+	}
+	
+	/**
+	 * Set Description of Adapter.
+	 * @param description Description of Adapter.
+	 */
+    this.setDescription = function(description) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_DESCRIPTION, description);
+	}
+
+	/**
+	 * Get Type of Adapter.
+	 * @return Type of Adapter.
+	 */
+    this.getType = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_TYPE);
+	}
+	
+	/**
+	 * Set Type of Adapter.
+	 * @param type Type of Adapter.
+	 */
+    this.setType = function(type) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_TYPE, type);
+	}
+
+	/**
+	 * Get Map To Name.
+	 * @return Map To Name.
+	 */
+    this.getMapTo = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_MAP_TO);
+	}
+	
+	/**
+	 * Set Map To Name.
+	 * @param mapTo Map To Name.
+	 */
+    this.setMapTo = function(mapTo) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_MAP_TO, mapTo);
+	}
+
+	/**
+	 * Check whether cache is enabled or disabled.
+	 * @return true/false; TRUE if cache enabled, FALSE if cache disabled.
+	 */
+    this.isCache = function() {
+        return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_CACHE);
+	}
+
+	/**
+	 * Set Cache value.
+	 * @param cache Cache Enabled or Disabled.
+	 */
+    this.setCache = function(cache) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_CACHE, cache);
+	}
+	
+
+	/**
+	 	Get All Handler defined in descriptors.
+	 
+	 	@method getHandlers
+		@return {Array} All Handlers.
+	 */
+    this.getHandlers = function() {
+    	return handlers;
+	}
+	
+	/**
+	 	Add Handler.
+	 	
+	 	@method getHandlers
+	 	@param handler {Handler} Handler.
+	 */
+    this.addHandler = function(handler) {
+    	handlers.push(handler);
+	}
+
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
+	this.getProperties = function() {
+		return properties.values();
+	}
+	
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+	 	@return {String} Property value.
+	 */
+	this.getProperty = function(name) {
+		return properties.get(name);
+	}
+	
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
+	this.containProperty = function(name) {
+		return properties.exists(name);
+	}
+	
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
+	this.addProperty = function(name, value) {
+		properties.add(name, value);
+	}
+	
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method removeProperty
+		@param name {String} Name of Property.
+	 */
+	this.removeProperty = function(name) {
+		properties.remove(name);
+	}
+	
+    
+} 
+
+
+/**
+ 	Exposes methods to GET and SET Hybrid Descriptor Adapter Handler information as per define in HybridDescriptor.si.xml file or in standalone adapter xml file in application.
+
+	@class HybridDescriptor.Adapter.Handler
+ */
+HybridDescriptor.Adapter.Handler = function() {
+
+    var properties = new Dictionary();
+
+    var parameters=[];
+
+
+	/**
+	 	Get Name of Handler.
+	 	
+	 	@method getName
+	 	@return {String} Name of Handler. 
+	 */
+    this.getName = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_NAME);
+	}
+	
+	/**
+	 	Set Name of Handler.
+	 	
+	 	@method setName
+	 	@param name {String} Name of handler.
+	 */
+    this.setName = function(name) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_NAME, name);
+	}
+
+
+	/**
+	 	Get Description about Handler.
+	 
+	 	@method getDescription
+		@return {String} Description about Handler.
+	 */
+    this.getDescription = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_DESCRIPTION);
+	}
+	
+	/**
+	 	Set Description about Handler.
+	 
+	 	@method setDescription
+		@param description {String} Description about Handler.
+	 */
+    this.setDescription = function(description) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_DESCRIPTION, description);
+	}
+
+	/**
+	 	Get Map To Name.
+	 
+	 	@method getMapTo
+		@return {String} Map To Name.
+	 */
+    this.getMapTo = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_MAP_TO);
+	}
+	
+	/**
+	 	Set Map To Name.
+	 
+	 	@method setMapTo
+		@param mapTo {String} Map To Name.
+	 */
+    this.setMapTo = function(mapTo) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_MAP_TO, mapTo);
+	}
+
+
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
+	this.getProperties = function() {
+		return properties.values();
+	}
+	
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+	 	@return {String} Property value.
+	 */
+	this.getProperty = function(name) {
+		return properties.get(name);
+	}
+	
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
+	this.containProperty = function(name) {
+		return properties.exists(name);
+	}
+	
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
+	this.addProperty = function(name, value) {
+		properties.add(name, value);
+	}
+	
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method removeProperty
+		@param name {String} Name of Property.
+	 */
+	this.removeProperty = function(name) {
+		properties.remove(name);
+	}
+	
+
+} 
+
+
+/**
+ 	Exposes methods to GET and SET Parameter information as per define in HybridDescriptor.si.xml file or in standalone adapter xml file in application.
+ 	
+ 	@class HybridDescription.Adapter.Handler.Parameter
+ */
+HybridDescriptor.Adapter.Handler.Parameter = function() {
+
+    var properties = new Dictionary();
+
+	/**
+	 	Get Name of Parameter.
+	 	
+	 	@method getDescription
+	 	@return {String} Name of Parameter.
+	 */
+    this.getDescription = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_PARAMETER_DESCRIPTION);
+	}
+	
+	/**
+	 	Set Name of Parameter.
+	 	
+	 	@method setDescription
+	 	@param name {String} Name of Parameter.
+	 */
+    this.setDescription = function(description) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_PARAMETER_DESCRIPTION, description);
+	}
+
+	/**
+	 	Get Type of Parameter.
+	 	
+	 	@method getType
+	 	@return {String} Type of Parameter.
+	 */
+    this.getType = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_PARAMETER_TYPE);
+	}
+	
+	/**
+	 	Get Type of Parameter.
+	 	
+	 	@method setType
+	 	@param type {String} Type of Parameter.
+	 */
+    this.setType = function(type) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_PARAMETER_TYPE, type);
+	}
+
+
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
+	this.getProperties = function() {
+		return properties.values();
+	}
+	
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+	 	@return {String} Property value.
+	 */
+	this.getProperty = function(name) {
+		return properties.get(name);
+	}
+	
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
+	this.containProperty = function(name) {
+		return properties.exists(name);
+	}
+	
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
+	this.addProperty = function(name, value) {
+		properties.add(name, value);
+	}
+	
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method removeProperty
+		@param name {String} Name of Property.
+	 */
+	this.removeProperty = function(name) {
+		properties.remove(name);
+	}
+
+} 
+
+
+/**
+ 	Exposes methods to GET and SET Return information as per define in HybridDescriptor.si.xml file or in standalone adapter xml file in application.
+ */
+HybridDescriptor.Adapter.Handler.Return = function() {
+
+    var properties = new Dictionary();
+
+
+	/**
+	 	Get Description about Return.
+	 	
+	 	@method getDescription
+	 	@return {String} Description about Return.
+	 */
+    this.getDescription = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_RETURN_DESCRIPTION);
+	}
+	
+	/**
+	 	Set Description about Return.
+	 	
+	 	@method setDescription
+	 	@param description {String} Description about Return.
+	 */
+    this.setDescription = function(description) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_RETURN_DESCRIPTION, description);
+	}
+
+	/**
+	 	Get Type of Return.
+	 	
+	 	@method getType
+	 	@return {String} Type of Return.
+	 */
+    this.getType = function() {
+    	return properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_RETURN_TYPE);
+	}
+	
+	/**
+	 	Set Type of Return.
+	 	
+	 	@method setType
+	 	@param type {String} Type of Return.
+	 */
+    this.setType = function(type) {
+    	properties.add(Constants.HYBRID_DESCRIPTOR_ADAPTER_RETURN_TYPE, type);
+	}
+
+	/**
+	 	Get all Properties defined in descriptor.
+	 
+	 	@method getProperties
+		@return {Array} All Property Values.
+	 */
+	this.getProperties = function() {
+		return properties.values();
+	}
+	
+	/**
+	 	Get Property based on name provided.
+	 
+	 	@method getProperty
+		@param name {String} Name of Property.
+	 	@return {String} Property value.
+	 */
+	this.getProperty = function(name) {
+		return properties.get(name);
+	}
+	
+	/**
+	 	Check whether Property exist or not.
+	 
+	 	@method containProperty
+		@param name {String} Name of Property.
+	 	@return {Boolean} true/false, TRUE if property exist, FALSE if property does not exist.
+	 */
+	this.containProperty = function(name) {
+		return properties.exists(name);
+	}
+	
+	/**
+	 	Add Property in property pool.
+	 
+	 	@method addProperty
+		@param name {String} Name of Property.
+	 	@param value {String} value of Property.
+	 */
+	this.addProperty = function(name, value) {
+		properties.add(name, value);
+	}
+	
+	/**
+	 	Remove Property from property pool.
+	 
+	 	@method removeProperty
+		@param name {String} Name of Property.
+	 */
+	this.removeProperty = function(name) {
+		properties.remove(name);
+	}
+
+} 
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
