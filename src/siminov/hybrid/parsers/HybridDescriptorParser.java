@@ -29,7 +29,6 @@ import siminov.hybrid.Constants;
 import siminov.hybrid.model.HybridDescriptor;
 import siminov.hybrid.model.HybridDescriptor.Adapter;
 import siminov.orm.exception.DeploymentException;
-import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 import siminov.orm.parsers.SiminovSAXDefaultHandler;
 import siminov.orm.resource.Resources;
