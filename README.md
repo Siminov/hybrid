@@ -27,16 +27,19 @@ Siminov provides a easy set of defined descriptors which can be broadly classifi
 	|- LibraryDescriptor.si.xml
 	|- DatabaseMappingDescriptor.si.xml.
 
-###### 2. Use With PhoneGap
+###### 2. Synchronous Database Operations
+All Database operations in Siminov Hybrid Framework are Synchronous, because it use communication channel provided by Native Platform. This is an advantage over Phonegap where all database operations are asynchronous.
+
+###### 3. Use With PhoneGap
 Easy to use with PhoneGap, It provides Object Relationship Mapping between JavaScript Class and Database 
 
-###### 2. Handle Application Initialization
+###### 4. Handle Application Initialization
 All resources required by application are created and managed by siminov orm. (Eg: Creating Database, Deploying Application).
 
-###### 3. Handle Multiple Schema's
+###### 5. Handle Multiple Schema's
 It also supports multiple schema's if required by application.
 
-###### 4. Events Notifier
+###### 6. Events Notifier
 It provides event notifiers which gets triggered based on particular action
 
 	Eaxmple: 
@@ -46,7 +49,7 @@ It provides event notifiers which gets triggered based on particular action
 	|- Table Create and Dropped
 	|- Index Created and Dropped
 	
-###### 5. Database API's
+###### 7. Database API's
 
 	|- Database Create and Drop
 	|- Table Create and Drop
@@ -57,7 +60,7 @@ It provides event notifiers which gets triggered based on particular action
 	|- Save Or Update
 	|- Delete
 	
-###### 6. Aggregation API's
+###### 8. Aggregation API's
 	
 	|- Count
 	|- Average
@@ -67,7 +70,7 @@ It provides event notifiers which gets triggered based on particular action
 	|- Maximum
 	|- Group Concat
 	
-###### 7. Database Transaction API's
+###### 9. Database Transaction API's
 
 	|- Begin Transaction
 	|- Commit Transaction
@@ -75,13 +78,13 @@ It provides event notifiers which gets triggered based on particular action
 	
 	
 
-###### 8. Database Encryption (SQLCipher)
+###### 10. Database Encryption (SQLCipher)
 Data Secuirty plays important role when we talk about database. It protect your database from desctructive forces and the unwanted actions of unauthorized users.
 
 Siminov provides implementation for SQLCipher to protect application database from any unauthorized users.
 
 
-###### 9. Handling Libraries
+###### 11. Handling Libraries
 An android library project is a development project that holds shared android source code and resources. Other android application projects can reference the library project and, at build time, include its compiled sources in their .apk files.
 
 Siminov provides mechanism to configure ORM for your library projects.
