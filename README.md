@@ -27,11 +27,12 @@ Siminov provides a easy set of defined descriptors which can be broadly classifi
 	|- LibraryDescriptor.si.xml
 	|- DatabaseMappingDescriptor.si.xml.
 
-###### 2. Synchronous Database Operations
+###### 2. Use With PhoneGap
+Easy to use with PhoneGap, It provides Object Relationship Mapping between JavaScript Class and Database 
+
+###### 3. Synchronous Database Operations
 All Database operations in Siminov Hybrid Framework are Synchronous, because it use communication channel provided by Native Platform. This is an advantage over Phonegap where all database operations are asynchronous.
 
-###### 3. Use With PhoneGap
-Easy to use with PhoneGap, It provides Object Relationship Mapping between JavaScript Class and Database 
 
 ###### 4. Handle Application Initialization
 All resources required by application are created and managed by siminov orm. (Eg: Creating Database, Deploying Application).
