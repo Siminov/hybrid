@@ -135,15 +135,15 @@ public class HybridDescriptorParser extends SiminovSAXDefaultHandler implements 
 		try {
 			adapterStream = getClass().getClassLoader().getResourceAsStream(libraryPackageName.replace(".", "/") + "/" + adapterPath);
 		} catch(Exception exception) {
-			Log.logd(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + exception.getMessage());
-			throw new DeploymentException(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + exception.getMessage());
+			Log.logd(getClass().getName(), "Constructor", "IOException caught while getting input stream of hybrid descriptor, " + exception.getMessage());
+			throw new DeploymentException(getClass().getName(), "Constructor", "IOException caught while getting input stream of hybrid descriptor, " + exception.getMessage());
 		}
 		
 		try {
 			parseMessage(adapterStream);
 		} catch(Exception exception) {
-			Log.loge(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
-			throw new DeploymentException(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
+			Log.loge(getClass().getName(), "Constructor", "Exception caught while parsing HYBRID-DESCRIPTOR, " + exception.getMessage());
+			throw new DeploymentException(getClass().getName(), "Constructor", "Exception caught while parsing HYBRID-DESCRIPTOR, " + exception.getMessage());
 		}
 	}
 	
