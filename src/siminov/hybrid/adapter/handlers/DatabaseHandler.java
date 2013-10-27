@@ -117,9 +117,16 @@ public class DatabaseHandler {
 			
 		processManyToOneRelationship(jsSiminovData, columnNames, columnValues);
 		processManyToManyRelationship(jsSiminovData, columnNames, columnValues);
-		
 
-		String query = queryBuilder.formSaveBindQuery(tableName, columnNames.iterator());
+		
+		/*
+		 * Add Parameters
+		 */
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_SAVE_BIND_QUERY_TABLE_NAME_PARAMETER, tableName);
+		parameters.put(IQueryBuilder.FORM_SAVE_BIND_QUERY_COLUMN_NAMES_PARAMETER, columnNames.iterator());
+
+		String query = queryBuilder.formSaveBindQuery(parameters);
 		database.executeBindQuery(databaseDescriptor, databaseMappingDescriptor, query, columnValues.iterator());
 
 		
@@ -269,7 +276,17 @@ public class DatabaseHandler {
 		processManyToManyRelationship(jsSiminovData, columnNames, columnValues);
 		
 		
-		String query = queryBuilder.formUpdateBindQuery(tableName, columnNames.iterator(), whereClause.toString());
+
+		/*
+		 * Add Parameters
+		 */
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_UPDATE_BIND_QUERY_TABLE_NAME_PARAMETER, tableName);
+		parameters.put(IQueryBuilder.FORM_UPDATE_BIND_QUERY_COLUMN_NAMES_PARAMETER, columnNames.iterator());
+		parameters.put(IQueryBuilder.FORM_UPDATE_BIND_QUERY_WHERE_CLAUSE_PARAMETER, whereClause.toString());
+
+		
+		String query = queryBuilder.formUpdateBindQuery(parameters);
 
 		Iterator<Object> values = columnValues.iterator();
 		database.executeBindQuery(databaseDescriptor, databaseMappingDescriptor, query, values);
@@ -510,7 +527,15 @@ public class DatabaseHandler {
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		
-		String query = queryBuilder.formDeleteQuery(databaseMappingDescriptor.getTableName(), whereClause.toString());
+		/*
+		 * Add Parameters
+		 */
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_DELETE_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_DELETE_QUERY_WHERE_CLAUSE_PARAMETER, whereClause.toString());
+		
+		
+		String query = queryBuilder.formDeleteQuery(parameters);
 		database.executeQuery(databaseDescriptor, databaseMappingDescriptor, query);
 
 	}
@@ -572,7 +597,23 @@ public class DatabaseHandler {
 		}
 
 		
-		Iterator<Map<String, Object>> datas = database.executeFetchQuery(getDatabaseDescriptor(className), databaseMappingDescriptor, queryBuilder.formSelectQuery(databaseMappingDescriptor.getTableName(), false, whereClause, columnNameCollection.iterator(), groupByCollection.iterator(), havingClause, orderByCollection.iterator(), null, limit));
+		
+		/*
+		 * Add Parameters
+		 */
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_DISTINCT_PARAMETER, false);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_COLUMN_NAMES_PARAMETER, columnNameCollection.iterator());
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_GROUP_BYS_PARAMETER, groupByCollection.iterator());
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_HAVING_PARAMETER, havingClause);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_ORDER_BYS_PARAMETER, orderByCollection.iterator());
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHICH_ORDER_BY_PARAMETER, null);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_LIMIT_PARAMETER, limit);
+
+		
+		Iterator<Map<String, Object>> datas = database.executeFetchQuery(getDatabaseDescriptor(className), databaseMappingDescriptor, queryBuilder.formSelectQuery(parameters));
 		Collection<Map<String, Object>> datasBundle = new LinkedList<Map<String,Object>>();
 		while(datas.hasNext()) {
 			datasBundle.add(datas.next());
@@ -666,8 +707,24 @@ public class DatabaseHandler {
 			Log.loge(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 			throw new DeploymentException(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 		}
+
 		
-		return parseData(databaseMappingDescriptor, database.executeFetchQuery(getDatabaseDescriptor(databaseMappingDescriptor.getClassName()), databaseMappingDescriptor, queryBuilder.formSelectQuery(databaseMappingDescriptor.getTableName(), false, whereClause, columnNames, groupBy, having, orderBy, null, limit)));
+		
+		/*
+		 * Add Parameters
+		 */
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_DISTINCT_PARAMETER, false);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_COLUMN_NAMES_PARAMETER, columnNames);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_GROUP_BYS_PARAMETER, groupBy);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_HAVING_PARAMETER, having);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_ORDER_BYS_PARAMETER, orderBy);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHICH_ORDER_BY_PARAMETER, null);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_LIMIT_PARAMETER, limit);
+
+		return parseData(databaseMappingDescriptor, database.executeFetchQuery(getDatabaseDescriptor(databaseMappingDescriptor.getClassName()), databaseMappingDescriptor, queryBuilder.formSelectQuery(parameters)));
 	
 	}
 	
@@ -785,7 +842,20 @@ public class DatabaseHandler {
 		}
 
 		
-		String query = queryBuilder.formCountQuery(databaseMappingDescriptor.getTableName(), null, false, whereClause, null, null);
+		/*
+		 * Add Parameters
+		 */
+		
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_COLUMN_PARAMETER, null);
+		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_DISTINCT_PARAMETER, false);
+		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
+		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_GROUP_BYS_PARAMETER, null);
+		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_HAVING_PARAMETER, null);
+		
+		
+		String query = queryBuilder.formCountQuery(parameters);
 
 		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
@@ -868,7 +938,19 @@ public class DatabaseHandler {
 			}
 		}
 		
-		String query = queryBuilder.formAvgQuery(databaseMappingDescriptor.getTableName(), columnName, whereClause, groupBys.iterator(), having);
+
+		/*
+		 * Add Parameters
+		 */
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_AVG_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_AVG_QUERY_COLUMN_PARAMETER, columnName);
+		parameters.put(IQueryBuilder.FORM_AVG_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
+		parameters.put(IQueryBuilder.FORM_AVG_QUERY_GROUP_BYS_PARAMETER, groupBys.iterator());
+		parameters.put(IQueryBuilder.FORM_AVG_QUERY_HAVING_PARAMETER, having);
+
+		
+		String query = queryBuilder.formAvgQuery(parameters);
 
 		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
@@ -950,7 +1032,19 @@ public class DatabaseHandler {
 			}
 		}
 		
-		String query = queryBuilder.formSumQuery(databaseMappingDescriptor.getTableName(), columnName, whereClause, groupBys.iterator(), having);
+		
+		/*
+		 * Add Parameters
+		 */
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_SUM_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_SUM_QUERY_COLUMN_PARAMETER, columnName);
+		parameters.put(IQueryBuilder.FORM_SUM_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
+		parameters.put(IQueryBuilder.FORM_SUM_QUERY_GROUP_BYS_PARAMETER, groupBys.iterator());
+		parameters.put(IQueryBuilder.FORM_SUM_QUERY_HAVING_PARAMETER, having);
+		
+		
+		String query = queryBuilder.formSumQuery(parameters);
 
 		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
@@ -1032,7 +1126,19 @@ public class DatabaseHandler {
 			}
 		}
 		
-		String query = queryBuilder.formTotalQuery(databaseMappingDescriptor.getTableName(), columnName, whereClause, groupBys.iterator(), having);
+		
+		/*
+		 * Add Parameters
+		 */
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_TOTAL_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_TOTAL_QUERY_COLUMN_PARAMETER, columnName);
+		parameters.put(IQueryBuilder.FORM_TOTAL_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
+		parameters.put(IQueryBuilder.FORM_TOTAL_QUERY_GROUP_BYS_PARAMETER, groupBys.iterator());
+		parameters.put(IQueryBuilder.FORM_TOTAL_QUERY_HAVING_PARAMETER, having);
+		
+		
+		String query = queryBuilder.formTotalQuery(parameters);
 
 		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
@@ -1114,7 +1220,20 @@ public class DatabaseHandler {
 			}
 		}
 		
-		String query = queryBuilder.formMinQuery(databaseMappingDescriptor.getTableName(), columnName, whereClause, groupBys.iterator(), having);
+		
+		/*
+		 * Add Parameters
+		 */
+		
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_MIN_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_MIN_QUERY_COLUMN_PARAMETER, columnName);
+		parameters.put(IQueryBuilder.FORM_MIN_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
+		parameters.put(IQueryBuilder.FORM_MIN_QUERY_GROUP_BYS_PARAMETER, groupBys.iterator());
+		parameters.put(IQueryBuilder.FORM_MIN_QUERY_HAVING_PARAMETER, having);
+		
+
+		String query = queryBuilder.formMinQuery(parameters);
 
 		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
@@ -1197,7 +1316,19 @@ public class DatabaseHandler {
 			}
 		}
 		
-		String query = queryBuilder.formMaxQuery(databaseMappingDescriptor.getTableName(), columnName, whereClause, groupBys.iterator(), having);
+		
+		/*
+		 * Add Parameters
+		 */
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_MAX_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_MAX_QUERY_COLUMN_PARAMETER, columnName);
+		parameters.put(IQueryBuilder.FORM_MAX_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
+		parameters.put(IQueryBuilder.FORM_MAX_QUERY_GROUP_BYS_PARAMETER, groupBys.iterator());
+		parameters.put(IQueryBuilder.FORM_MAX_QUERY_HAVING_PARAMETER, having);
+		
+
+		String query = queryBuilder.formMaxQuery(parameters);
 
 		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
@@ -1280,7 +1411,21 @@ public class DatabaseHandler {
 			}
 		}
 		
-		String query = queryBuilder.formGroupConcatQuery(databaseMappingDescriptor.getTableName(), columnName, delimiter, whereClause, groupBys.iterator(), having);
+		
+		/*
+		 * Add Parameters
+		 */
+		
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_COLUMN_PARAMETER, columnName);
+		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_WHERE_CLAUSE_PARAMETER, delimiter);
+		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_GROUP_BYS_PARAMETER, whereClause);
+		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_HAVING_PARAMETER, groupBys.iterator());
+		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_DELIMITER_PARAMETER, having);
+		
+
+		String query = queryBuilder.formGroupConcatQuery(parameters);
 
 		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
