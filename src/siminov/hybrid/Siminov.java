@@ -28,8 +28,8 @@ import siminov.hybrid.events.SiminovEventHandler;
 import siminov.hybrid.model.HybridDescriptor;
 import siminov.hybrid.model.HybridDescriptor.Adapter;
 import siminov.hybrid.model.LibraryDescriptor;
-import siminov.hybrid.parsers.HybridDescriptorParser;
-import siminov.hybrid.parsers.HybridLibraryDescriptorParser;
+import siminov.hybrid.reader.HybridDescriptorReader;
+import siminov.hybrid.reader.HybridLibraryDescriptorReader;
 import siminov.hybrid.resource.Resources;
 import siminov.orm.IInitializer;
 import siminov.orm.events.ISiminovEvents;
@@ -167,7 +167,7 @@ public class Siminov extends siminov.orm.Siminov {
 	 */
 	protected static void processHybridDescriptor() {
 		
-		HybridDescriptorParser hybridDescriptorParser = new HybridDescriptorParser();
+		HybridDescriptorReader hybridDescriptorParser = new HybridDescriptorReader();
 		
 		HybridDescriptor jsDescriptor = hybridDescriptorParser.getJSDescriptor();
 		if(jsDescriptor == null) {
@@ -198,10 +198,10 @@ public class Siminov extends siminov.orm.Siminov {
 			/*
 			 * Parse LibraryDescriptor.
 			 */
-			HybridLibraryDescriptorParser libraryDescriptorParser = null;
+			HybridLibraryDescriptorReader libraryDescriptorParser = null;
 			
 			try {
-				libraryDescriptorParser = new HybridLibraryDescriptorParser(libraryPath);
+				libraryDescriptorParser = new HybridLibraryDescriptorReader(libraryPath);
 			} catch(SiminovException ce) {
 				Log.loge(Siminov.class.getName(), "processLibraries", "SiminovException caught while parsing library descriptor, LIBRARY-NAME: " + libraryPath + ", " + ce.getMessage());
 				throw new DeploymentException(Siminov.class.getName(), "processLibraries", ce.getMessage());
@@ -240,7 +240,7 @@ public class Siminov extends siminov.orm.Siminov {
 		HybridDescriptor jsDescriptor = hybridResources.getHybridDescriptor();
 		while(adapterPaths.hasNext()) {
 			String adapterPath = adapterPaths.next();
-			HybridDescriptorParser hybridDescriptorParser = new HybridDescriptorParser(adapterPath);
+			HybridDescriptorReader hybridDescriptorParser = new HybridDescriptorReader(adapterPath);
 			
 			Iterator<Adapter> adapters = hybridDescriptorParser.getJSDescriptor().getAdapters();
 			while(adapters.hasNext()) {
@@ -256,7 +256,7 @@ public class Siminov extends siminov.orm.Siminov {
 		Iterator<String> libraryAdapterPaths = libraryDescriptor.getAdapterPaths();
 		while(libraryAdapterPaths.hasNext()) {
 			String libraryAdapterPath = libraryAdapterPaths.next();
-			HybridDescriptorParser hybridDescriptorParser = new HybridDescriptorParser(libraryPackageName, libraryAdapterPath);
+			HybridDescriptorReader hybridDescriptorParser = new HybridDescriptorReader(libraryPackageName, libraryAdapterPath);
 			
 			Iterator<Adapter> adapters = hybridDescriptorParser.getJSDescriptor().getAdapters();
 			while(adapters.hasNext()) {
