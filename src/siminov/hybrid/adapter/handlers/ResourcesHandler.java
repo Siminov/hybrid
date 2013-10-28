@@ -28,7 +28,7 @@ import siminov.hybrid.model.HybridDescriptor.Adapter.Handler;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.parsers.HybridSiminovDataBuilder;
+import siminov.hybrid.reader.HybridSiminovDataBuilder;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.model.ApplicationDescriptor;
 import siminov.orm.model.DatabaseDescriptor;

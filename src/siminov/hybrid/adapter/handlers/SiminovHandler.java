@@ -35,8 +35,8 @@ import siminov.hybrid.model.HybridDescriptor.Adapter.Handler.Parameter;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.parsers.HybridSiminovDataBuilder;
-import siminov.hybrid.parsers.HybridSiminovDataParser;
+import siminov.hybrid.reader.HybridSiminovDataBuilder;
+import siminov.hybrid.reader.HybridSiminovDataReader;
 import siminov.hybrid.resource.Resources;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
@@ -64,9 +64,9 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 	@JavascriptInterface
 	public String handleWebToNative(final String action, final String data) {
 
-		HybridSiminovDataParser hybridSiminovDataParser = null; 
+		HybridSiminovDataReader hybridSiminovDataParser = null; 
 		try {
-			hybridSiminovDataParser = new HybridSiminovDataParser(data);
+			hybridSiminovDataParser = new HybridSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
 			Log.loge(AdapterHandler.class.getName(), "handleJSToNative", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
 		}

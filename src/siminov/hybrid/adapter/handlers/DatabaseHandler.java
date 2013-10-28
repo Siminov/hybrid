@@ -30,8 +30,8 @@ import java.util.Map;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.parsers.HybridSiminovDataBuilder;
-import siminov.hybrid.parsers.HybridSiminovDataParser;
+import siminov.hybrid.reader.HybridSiminovDataBuilder;
+import siminov.hybrid.reader.HybridSiminovDataReader;
 import siminov.orm.Constants;
 import siminov.orm.database.DatabaseBundle;
 import siminov.orm.database.design.IDatabase;
@@ -2045,11 +2045,11 @@ public class DatabaseHandler {
 	
 	private HybridSiminovDatas parseHybridSiminovDatas(String data) throws DatabaseException {
 		
-		HybridSiminovDataParser jsSiminovDataParser = null; 
+		HybridSiminovDataReader jsSiminovDataParser = null; 
 		data = URLDecoder.decode(data);
 		
 		try {
-			jsSiminovDataParser = new HybridSiminovDataParser(data);
+			jsSiminovDataParser = new HybridSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "parseHybridSiminovDatas", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "parseHybridSiminovDatas", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
