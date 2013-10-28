@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>assets\Siminov\Utils\FunctionUtils.js - Siminov Hybrid</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="Siminov Hybrid" src="..\yuidoc.assets\siminov-logo.gif" style="max-height: 65%;" title="Siminov Hybrid">
+        
+            Siminov Hybrid
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.9</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Adapter", "classes/ApplicationDescriptor", "classes/Clause", "classes/Constants", "classes/Database", "classes/DatabaseDescriptor", "classes/DatabaseMappingDescriptor", "classes/DatabaseMappingDescriptor.Column", "classes/DatabaseMappingDescriptor.Index", "classes/DatabaseMappingDescriptor.Relationship", "classes/Dictionary", "classes/EventHandler", "classes/FunctionUtils", "classes/HybridDescription.Adapter.Handler.Parameter", "classes/HybridDescriptor", "classes/HybridDescriptor.Adapter", "classes/HybridDescriptor.Adapter.Handler", "classes/HybridSiminovDatas", "classes/HybridSiminovDatas.HybridSiminovData", "classes/IAverage", "classes/IAverageClause", "classes/ICount", "classes/ICountClause", "classes/IDelete", "classes/IDeleteClause", "classes/IGroupConcat", "classes/IGroupConcatClause", "classes/IMax", "classes/IMaxClause", "classes/IMin", "classes/IMinClause", "classes/ISelect", "classes/ISelectClause", "classes/ISum", "classes/ISumClause", "classes/ITotal", "classes/ITotalClause", "classes/LibraryDescriptor", "classes/Log", "classes/Resources", "classes/Select", "classes/SIDatasHelper", "classes/SIJsonHelper", "classes/Siminov", "classes/SiminovException", "classes/SiminovExceptionHandler", "classes/StringBuilder", "modules/Adapter", "modules/Collection", "modules/Database", "modules/Events", "modules/Exception", "modules/Impl", "modules/Log", "modules/Model", "modules/Parser", "modules/Resource", "modules/Utils"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/Adapter.html">Adapter</a></li>
+                    
+                        <li><a href="../classes/ApplicationDescriptor.html">ApplicationDescriptor</a></li>
+                    
+                        <li><a href="../classes/Clause.html">Clause</a></li>
+                    
+                        <li><a href="../classes/Constants.html">Constants</a></li>
+                    
+                        <li><a href="../classes/Database.html">Database</a></li>
+                    
+                        <li><a href="../classes/DatabaseDescriptor.html">DatabaseDescriptor</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.html">DatabaseMappingDescriptor</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Column.html">DatabaseMappingDescriptor.Column</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Index.html">DatabaseMappingDescriptor.Index</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Relationship.html">DatabaseMappingDescriptor.Relationship</a></li>
+                    
+                        <li><a href="../classes/Dictionary.html">Dictionary</a></li>
+                    
+                        <li><a href="../classes/EventHandler.html">EventHandler</a></li>
+                    
+                        <li><a href="../classes/FunctionUtils.html">FunctionUtils</a></li>
+                    
+                        <li><a href="../classes/HybridDescription.Adapter.Handler.Parameter.html">HybridDescription.Adapter.Handler.Parameter</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.html">HybridDescriptor</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.Adapter.html">HybridDescriptor.Adapter</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.Adapter.Handler.html">HybridDescriptor.Adapter.Handler</a></li>
+                    
+                        <li><a href="../classes/HybridSiminovDatas.html">HybridSiminovDatas</a></li>
+                    
+                        <li><a href="../classes/HybridSiminovDatas.HybridSiminovData.html">HybridSiminovDatas.HybridSiminovData</a></li>
+                    
+                        <li><a href="../classes/IAverage.html">IAverage</a></li>
+                    
+                        <li><a href="../classes/IAverageClause.html">IAverageClause</a></li>
+                    
+                        <li><a href="../classes/ICount.html">ICount</a></li>
+                    
+                        <li><a href="../classes/ICountClause.html">ICountClause</a></li>
+                    
+                        <li><a href="../classes/IDelete.html">IDelete</a></li>
+                    
+                        <li><a href="../classes/IDeleteClause.html">IDeleteClause</a></li>
+                    
+                        <li><a href="../classes/IGroupConcat.html">IGroupConcat</a></li>
+                    
+                        <li><a href="../classes/IGroupConcatClause.html">IGroupConcatClause</a></li>
+                    
+                        <li><a href="../classes/IMax.html">IMax</a></li>
+                    
+                        <li><a href="../classes/IMaxClause.html">IMaxClause</a></li>
+                    
+                        <li><a href="../classes/IMin.html">IMin</a></li>
+                    
+                        <li><a href="../classes/IMinClause.html">IMinClause</a></li>
+                    
+                        <li><a href="../classes/ISelect.html">ISelect</a></li>
+                    
+                        <li><a href="../classes/ISelectClause.html">ISelectClause</a></li>
+                    
+                        <li><a href="../classes/ISum.html">ISum</a></li>
+                    
+                        <li><a href="../classes/ISumClause.html">ISumClause</a></li>
+                    
+                        <li><a href="../classes/ITotal.html">ITotal</a></li>
+                    
+                        <li><a href="../classes/ITotalClause.html">ITotalClause</a></li>
+                    
+                        <li><a href="../classes/LibraryDescriptor.html">LibraryDescriptor</a></li>
+                    
+                        <li><a href="../classes/Log.html">Log</a></li>
+                    
+                        <li><a href="../classes/Resources.html">Resources</a></li>
+                    
+                        <li><a href="../classes/Select.html">Select</a></li>
+                    
+                        <li><a href="../classes/SIDatasHelper.html">SIDatasHelper</a></li>
+                    
+                        <li><a href="../classes/SIJsonHelper.html">SIJsonHelper</a></li>
+                    
+                        <li><a href="../classes/Siminov.html">Siminov</a></li>
+                    
+                        <li><a href="../classes/SiminovException.html">SiminovException</a></li>
+                    
+                        <li><a href="../classes/SiminovExceptionHandler.html">SiminovExceptionHandler</a></li>
+                    
+                        <li><a href="../classes/StringBuilder.html">StringBuilder</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/Adapter.html">Adapter</a></li>
+                    
+                        <li><a href="../modules/Collection.html">Collection</a></li>
+                    
+                        <li><a href="../modules/Database.html">Database</a></li>
+                    
+                        <li><a href="../modules/Events.html">Events</a></li>
+                    
+                        <li><a href="../modules/Exception.html">Exception</a></li>
+                    
+                        <li><a href="../modules/Impl.html">Impl</a></li>
+                    
+                        <li><a href="../modules/Log.html">Log</a></li>
+                    
+                        <li><a href="../modules/Model.html">Model</a></li>
+                    
+                        <li><a href="../modules/Parser.html">Parser</a></li>
+                    
+                        <li><a href="../modules/Resource.html">Resource</a></li>
+                    
+                        <li><a href="../modules/Utils.html">Utils</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>assets\Siminov\Utils\FunctionUtils.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/** 
+ * [SIMINOV FRAMEWORK]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
+
+
+/**
+	It provide Util class needed by Siminov Framework.
+	
+	@module Utils
+*/
+
+/**
+	Get all properties a given function contain.
+	
+	@method properties
+	@return {Array} All function properties
+*/
+Object.defineProperty(
+    Object.prototype, &quot;properties&quot;, {
+        value: function() {
+            var result = [];
+            for (var property in this) {
+                if (this.hasOwnProperty(property))
+                    result.push(property);
+            }
+
+            return result;
+        }
+    }
+);
+
+
+/**
+	Check whether a give function contain provided property or not.
+	
+	@method containProperties
+	@return {Boolean} true/false; TRUE: If it contain property; FALSE: If it does not contain property.
+*/
+Object.defineProperty(
+    Object.prototype, &quot;containProperties&quot;, {
+        value: function(property) {
+            var properties = this.properties();
+
+            for(var i = 0;i &lt; properties.length;i++) {
+                if(properties[i] === property) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+);
+
+
+
+/**
+	Get all GET properties a given function contain.
+	
+	@method getterProperties
+	@return {Array} All GET Properties
+*/
+Object.defineProperty(
+    Object.prototype, &quot;getterProperties&quot;, {
+        value: function() {
+            var properties = this.properties();
+            var getterProperties = [];
+
+            for(var i = 0;i &lt; properties.length;i++) {
+                if(properties[i].indexOf(&quot;get&quot;) == 0 || properties[i].indexOf(&quot;is&quot;) == 0) {
+                    getterProperties.push(properties[i]);
+                }
+            }
+
+            return getterProperties;
+        }
+    }
+);
+
+
+
+/**
+	Get all SET properties a given function contain.
+
+	@method setterProperties
+	@return {Array} All SET Properties
+*/
+Object.defineProperty(
+    Object.prototype, &quot;setterProperties&quot;, {
+        value: function() {
+            var properties = this.properties();
+            var setterProperties = [];
+
+            for(var i = 0;i &lt; properties.length;i++) {
+                if(properties[i].indexOf(&quot;set&quot;) === 0) {
+                    setterProperties.push(properties[i]);
+                }
+            }
+
+            return setterProperties;
+        }
+    }
+);
+
+
+/**
+	Get name of given function.
+	
+	@method getObjectName
+	@return {String} Name of Function 
+*/
+Object.defineProperty(
+    Object.prototype, &quot;getObjectName&quot;, {
+        value: function() {
+            var funcNameRegex = /function (.{1,})\(/;
+            var results = (funcNameRegex).exec((this).constructor.toString());
+
+            return (results &amp;&amp; results.length &gt; 1) ? results[1] : &quot;&quot;;
+        }
+    }
+);
+
+
+
+/**
+	It provide APIs to deal with class.
+	
+	@module Utils
+	@class FunctionUtils
+	@constructor
+	
+*/
+function FunctionUtils() {
+
+}
+
+
+
+/**
+	It is use to implement inherit parent properties in child.
+	
+	@method extend
+	@static
+*/
+FunctionUtils.extend = function (parent, child) {
+    child.prototype = new parent();
+    child.prototype.constructor = child;
+}
+
+
+
+/**
+	Create a instance of function.
+	
+	@method createFunctionInstance
+	@static
+	@return {Object} Function Instance
+*/
+FunctionUtils.createFunctionInstance = function(functionName) {
+    var obj = FunctionUtils.createFunctionInstanceDescend(window, functionName);
+    return new obj();
+}
+
+
+
+FunctionUtils.createFunctionInstanceDescend = function(obj, path) {
+    var parts = path.split(&#x27;.&#x27;);
+
+    for(var i = 0; i &lt; parts.length; i++) {
+        obj = obj[parts[i]];
+    }
+
+    return obj;
+}
+
+
+
+/**
+	Populate data in object by invoking API and passing parameters to it.
+	
+	@method invokeAndInflate
+	@static
+*/
+FunctionUtils.invokeAndInflate = function(object, functionName, parameterValues) {
+	object[functionName].apply(object, Array.prototype.slice.call(arguments, 2));
+}
+
+
+
+/**
+	Invoke API and get data from object.
+	
+	@method invokeAndFetch
+	@static
+	@return {Object} Return object from invoked API
+*/
+FunctionUtils.invokeAndFetch = function(object, functionName) {
+    return object[functionName] ();
+}
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

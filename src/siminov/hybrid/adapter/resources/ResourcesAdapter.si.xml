@@ -1,0 +1,719 @@
+<!-- 
+/** 
+ * [SIMINOV FRAMEWORK]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
+
+ -->
+
+<adapter>
+    
+    <property name="name">RESOURCES</property>
+    <property name="description">Resources Hybrid Handler</property>
+    <property name="type">WEB-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.ResourcesHandler</property>
+	<property name="cache">true</property>
+
+	
+	<handlers>
+
+	    <!-- ORM BASED HANDLERS -->
+	    
+        <handler>
+            
+            <property name="name">GET-APPLICATION-DESCRIPTOR</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getApplicationDescriptor</property>
+            <property name="description">Get Application Descriptor</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Application Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">GET-DATABASE-DESCRIPTOR-PATHS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseDescriptorPaths</property>
+            <property name="description">Get Database Descriptor Paths</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Descriptor Paths</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-DATABASE-DESCRIPTOR-BASED-ON-PATH</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseDescriptorBasedOnPath</property>
+            <property name="description">Get Database Descriptor Based On Path</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Database Descriptor Path</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        
+        <handler>
+            
+            <property name="name">GET-DATABASE-DESCRIPTOR-BASED-ON-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseDescriptorBasedOnName</property>
+            <property name="description">Get Database Descriptor Based On Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Database Descriptor Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        
+        <handler>
+            
+            <property name="name">GET-DATABASE-DESCRIPTORS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseDescriptors</property>
+            <property name="description">Get Database Descriptors</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Descriptors</property>
+	                
+	      	</return>
+            
+        </handler>
+        	
+        <handler>
+            
+            <property name="name">GET-DATABASE-DESCRIPTOR-BASED-ON-CLASS-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseDescriptorBasedOnClassName</property>
+            <property name="description">Get Database Descriptor Based On Class Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Database Mapping Descriptor Class Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">GET-DATABASE-DESCRIPTOR-BASED-ON-TABLE-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseDescriptorBasedOnTableName</property>
+            <property name="description">Get Database Descriptor Based On Table Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Database Mapping Descriptor Table Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        
+        <handler>
+            
+            <property name="name">GET-DATABASE-DESCRIPTOR-NAME-BASED-ON-CLASS-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseDescriptorNameBasedOnClassName</property>
+            <property name="description">Get Database Descriptor Name Based On Class Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Database Mapping Descriptor Class Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Descriptor Name</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        
+        <handler>
+            
+            <property name="name">GET-DATABASE-DESCRIPTOR-NAME-BASED-ON-TABLE-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseDescriptorNameBasedOnTableName</property>
+            <property name="description">Get Database Descriptor Name Based On Table Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Database Mapping Descriptor Table Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Descriptor Name</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-DATABASE-MAPPING-DESCRIPTOR-BASED-ON-CLASS-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseMappingDescriptorBasedOnClassName</property>
+            <property name="description">Get Database Mapping Descriptor Based On Class Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Database Mapping Descriptor Class Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Mapping Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-DATABASE-MAPPING-DESCRIPTOR-BASED-ON-TABLE-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseMappingDescriptorBasedOnTableName</property>
+            <property name="description">Get Database Mapping Descriptor Based On Table Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Database Mapping Descriptor Table Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Mapping Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">GET-DATABASE-MAPPING-DESCRIPTORS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseMappingDescriptors</property>
+            <property name="description">Get Database Mapping Descriptors</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Mapping Descriptors</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-LIBRARY-DESCRIPTOR-PATHS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getLibraryDescriptorPaths</property>
+            <property name="description">Get Library Descriptor Paths</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Library Descriptor Paths</property>
+	                
+	      	</return>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">GET-LIBRARY-PATHS-BASED-ON-DATABASE-DESCRIPTOR-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getLibraryPathsBasedOnDatabaseDescriptorName</property>
+            <property name="description">Get Library Paths Based On Database Descriptor Name</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Library Descriptor Paths</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-LIBRARY-DESCRIPTORS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getLibraryDescriptors</property>
+            <property name="description">Get LibraryDescriptors</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">LibraryDescriptors</property>
+	                
+	      	</return>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">GET-LIBRARIES-BASED-ON-DATABASE-DESCRIPTOR-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getLibrariesBasedOnDatabaseDescriptorName</property>
+            <property name="description">Get Library Descriptors Based On Database Descriptor Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Database Mapping Descriptor Table Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Mapping Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-LIBRARY-DATABASE-MAPPING-DESCRIPTORS-BASED-ON-LIBRARY-DESCRIPTOR-PATH</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getLibraryDatabaseMappingDescriptorsBasedOnLibraryDescriptorPath</property>
+            <property name="description">Get Library Database Mappings Based On Library Descriptor Path</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Library Database Mapping Descriptors</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Database Mapping Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        
+        <!-- HYBRID BASED HANDLERS -->
+        <handler>
+            
+            <property name="name">GET-HYBRID-DESCRIPTOR</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getHybridDescriptor</property>
+            <property name="description">Get Hybrid Descriptor</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Hybrid Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>
+		
+        <handler>
+            
+            <property name="name">GET-ADAPTERS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getAdapters</property>
+            <property name="description">Get Adapters</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Adapters</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-LIBRARIES-ADAPTERS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getLibrariesAdapters</property>
+            <property name="description">Get Libraries Adapters</property>
+
+            <return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Libraries Adapters</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-ADAPTERS-BASED-ON-PATHS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getAdaptersBasedOnPaths</property>
+            <property name="description">Get Adapters Based On Paths</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Adapters</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-LIBRARY-ADAPTERS-BASED-ON-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getLibraryAdaptersBasedOnName</property>
+            <property name="description">Get Library Adapters Based On Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Library Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Adapters</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-LIBRARY-ADAPTERS-BASED-ON-PATH</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getLibraryAdaptersBasedOnPath</property>
+            <property name="description">Get Library Adapters Based On Path</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Library Path</property>
+                	
+            	</parameter>
+			
+			</parameters>
+            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Adapters</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-ADAPTER</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getAdapterBasedOnName</property>
+            <property name="description">Get Adapter</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Adapter Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Adapter</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        
+        <handler>
+            
+            <property name="name">GET-ADAPTER-BASED-ON-PATH</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getAdapterBasedOnPath</property>
+            <property name="description">Get Adapter Based On Path</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Adapter Path</property>
+                	
+            	</parameter>
+			
+			</parameters>
+            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Adapter</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">GET-LIBRARY-ADAPTER-BASED-ON-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getLibraryAdapterBasedOnName</property>
+            <property name="description">Get Library Adapter Based On Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Library Name</property>
+                	
+            	</parameter>
+			
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Adapter Name</property>
+                	
+            	</parameter>
+                
+			</parameters>
+            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Adapter</property>
+	                
+	      	</return>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">GET-LIBRARY-ADAPTER-BASED-ON-PATH</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getLibraryAdapterBasedOnPath</property>
+            <property name="description">Get Library Adapter Based On Path</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Library Path</property>
+                	
+            	</parameter>
+			
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Adapter Path</property>
+                	
+            	</parameter>
+                
+			</parameters>
+            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Adapter</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+        
+        <handler>
+            
+            <property name="name">GET-HANDLERS</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getHandlers</property>
+            <property name="description">Get Handlers</property>
+
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Handlers</property>
+	                
+	      	</return>
+            
+        </handler>
+        
+
+        <handler>
+            
+            <property name="name">GET-HANDLER</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getHandler</property>
+            <property name="description">Get Handler</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Adapter Name</property>
+                	
+            	</parameter>
+
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Handler Name</property>
+                	
+            	</parameter>
+                			
+			</parameters>
+            
+            
+			<return>
+	        
+			    	<property name="type">java.lang.String</property>
+	                <property name="description">Handler</property>
+	                
+	      	</return>
+            
+        </handler>
+
+	</handlers>
+	
+</adapter>

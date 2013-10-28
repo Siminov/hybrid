@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DatabaseMappingDescriptor - Siminov Hybrid</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="Siminov Hybrid" src="..\yuidoc.assets\siminov-logo.gif" style="max-height: 65%;" title="Siminov Hybrid">
+        
+            Siminov Hybrid
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.9</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Adapter", "classes/ApplicationDescriptor", "classes/Clause", "classes/Constants", "classes/Database", "classes/DatabaseDescriptor", "classes/DatabaseMappingDescriptor", "classes/DatabaseMappingDescriptor.Column", "classes/DatabaseMappingDescriptor.Index", "classes/DatabaseMappingDescriptor.Relationship", "classes/Dictionary", "classes/EventHandler", "classes/FunctionUtils", "classes/HybridDescription.Adapter.Handler.Parameter", "classes/HybridDescriptor", "classes/HybridDescriptor.Adapter", "classes/HybridDescriptor.Adapter.Handler", "classes/HybridSiminovDatas", "classes/HybridSiminovDatas.HybridSiminovData", "classes/IAverage", "classes/IAverageClause", "classes/ICount", "classes/ICountClause", "classes/IDelete", "classes/IDeleteClause", "classes/IGroupConcat", "classes/IGroupConcatClause", "classes/IMax", "classes/IMaxClause", "classes/IMin", "classes/IMinClause", "classes/ISelect", "classes/ISelectClause", "classes/ISum", "classes/ISumClause", "classes/ITotal", "classes/ITotalClause", "classes/LibraryDescriptor", "classes/Log", "classes/Resources", "classes/Select", "classes/SIDatasHelper", "classes/SIJsonHelper", "classes/Siminov", "classes/SiminovException", "classes/SiminovExceptionHandler", "classes/StringBuilder", "modules/Adapter", "modules/Collection", "modules/Database", "modules/Events", "modules/Exception", "modules/Impl", "modules/Log", "modules/Model", "modules/Parser", "modules/Resource", "modules/Utils"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/Adapter.html">Adapter</a></li>
+                    
+                        <li><a href="../classes/ApplicationDescriptor.html">ApplicationDescriptor</a></li>
+                    
+                        <li><a href="../classes/Clause.html">Clause</a></li>
+                    
+                        <li><a href="../classes/Constants.html">Constants</a></li>
+                    
+                        <li><a href="../classes/Database.html">Database</a></li>
+                    
+                        <li><a href="../classes/DatabaseDescriptor.html">DatabaseDescriptor</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.html">DatabaseMappingDescriptor</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Column.html">DatabaseMappingDescriptor.Column</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Index.html">DatabaseMappingDescriptor.Index</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Relationship.html">DatabaseMappingDescriptor.Relationship</a></li>
+                    
+                        <li><a href="../classes/Dictionary.html">Dictionary</a></li>
+                    
+                        <li><a href="../classes/EventHandler.html">EventHandler</a></li>
+                    
+                        <li><a href="../classes/FunctionUtils.html">FunctionUtils</a></li>
+                    
+                        <li><a href="../classes/HybridDescription.Adapter.Handler.Parameter.html">HybridDescription.Adapter.Handler.Parameter</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.html">HybridDescriptor</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.Adapter.html">HybridDescriptor.Adapter</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.Adapter.Handler.html">HybridDescriptor.Adapter.Handler</a></li>
+                    
+                        <li><a href="../classes/HybridSiminovDatas.html">HybridSiminovDatas</a></li>
+                    
+                        <li><a href="../classes/HybridSiminovDatas.HybridSiminovData.html">HybridSiminovDatas.HybridSiminovData</a></li>
+                    
+                        <li><a href="../classes/IAverage.html">IAverage</a></li>
+                    
+                        <li><a href="../classes/IAverageClause.html">IAverageClause</a></li>
+                    
+                        <li><a href="../classes/ICount.html">ICount</a></li>
+                    
+                        <li><a href="../classes/ICountClause.html">ICountClause</a></li>
+                    
+                        <li><a href="../classes/IDelete.html">IDelete</a></li>
+                    
+                        <li><a href="../classes/IDeleteClause.html">IDeleteClause</a></li>
+                    
+                        <li><a href="../classes/IGroupConcat.html">IGroupConcat</a></li>
+                    
+                        <li><a href="../classes/IGroupConcatClause.html">IGroupConcatClause</a></li>
+                    
+                        <li><a href="../classes/IMax.html">IMax</a></li>
+                    
+                        <li><a href="../classes/IMaxClause.html">IMaxClause</a></li>
+                    
+                        <li><a href="../classes/IMin.html">IMin</a></li>
+                    
+                        <li><a href="../classes/IMinClause.html">IMinClause</a></li>
+                    
+                        <li><a href="../classes/ISelect.html">ISelect</a></li>
+                    
+                        <li><a href="../classes/ISelectClause.html">ISelectClause</a></li>
+                    
+                        <li><a href="../classes/ISum.html">ISum</a></li>
+                    
+                        <li><a href="../classes/ISumClause.html">ISumClause</a></li>
+                    
+                        <li><a href="../classes/ITotal.html">ITotal</a></li>
+                    
+                        <li><a href="../classes/ITotalClause.html">ITotalClause</a></li>
+                    
+                        <li><a href="../classes/LibraryDescriptor.html">LibraryDescriptor</a></li>
+                    
+                        <li><a href="../classes/Log.html">Log</a></li>
+                    
+                        <li><a href="../classes/Resources.html">Resources</a></li>
+                    
+                        <li><a href="../classes/Select.html">Select</a></li>
+                    
+                        <li><a href="../classes/SIDatasHelper.html">SIDatasHelper</a></li>
+                    
+                        <li><a href="../classes/SIJsonHelper.html">SIJsonHelper</a></li>
+                    
+                        <li><a href="../classes/Siminov.html">Siminov</a></li>
+                    
+                        <li><a href="../classes/SiminovException.html">SiminovException</a></li>
+                    
+                        <li><a href="../classes/SiminovExceptionHandler.html">SiminovExceptionHandler</a></li>
+                    
+                        <li><a href="../classes/StringBuilder.html">StringBuilder</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/Adapter.html">Adapter</a></li>
+                    
+                        <li><a href="../modules/Collection.html">Collection</a></li>
+                    
+                        <li><a href="../modules/Database.html">Database</a></li>
+                    
+                        <li><a href="../modules/Events.html">Events</a></li>
+                    
+                        <li><a href="../modules/Exception.html">Exception</a></li>
+                    
+                        <li><a href="../modules/Impl.html">Impl</a></li>
+                    
+                        <li><a href="../modules/Log.html">Log</a></li>
+                    
+                        <li><a href="../modules/Model.html">Model</a></li>
+                    
+                        <li><a href="../modules/Parser.html">Parser</a></li>
+                    
+                        <li><a href="../modules/Resource.html">Resource</a></li>
+                    
+                        <li><a href="../modules/Utils.html">Utils</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>DatabaseMappingDescriptor <small>Class</small></h1>
+</div>
+
+<div class="well well-small">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l26"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:26</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/Model.html">Model</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="well well-small">
+    <p>Exposes methods to GET and SET Library Descriptor information as per define in DatabaseDescriptor.si.xml or LibraryDescriptor.si.xml  file by application.</p>
+
+<pre class="code prettyprint"><code>Example:
+
+    &lt;database-mapping&gt;
+
+        &lt;table table_name="LIQUOR" class_name="Liquor"&gt;
+
+            &lt;column variable_name="liquorType" column_name="LIQUOR_TYPE"&gt;
+                &lt;property name="type"&gt;String&lt;/property&gt;
+                &lt;property name="primary_key"&gt;true&lt;/property&gt;
+                &lt;property name="not_null"&gt;true&lt;/property&gt;
+                &lt;property name="unique"&gt;true&lt;/property&gt;
+            &lt;/column&gt;       
+
+            &lt;column variable_name="description" column_name="DESCRIPTION"&gt;
+                &lt;property name="type"&gt;String&lt;/property&gt;
+            &lt;/column&gt;
+
+            &lt;column variable_name="history" column_name="HISTORY"&gt;
+                &lt;property name="type"&gt;String&lt;/property&gt;
+            &lt;/column&gt;
+
+            &lt;column variable_name="link" column_name="LINK"&gt;
+                &lt;property name="type"&gt;String&lt;/property&gt;
+                &lt;property name="default"&gt;www.wikipedia.org&lt;/property&gt;
+            &lt;/column&gt;
+
+            &lt;column variable_name="alcholContent" column_name="ALCHOL_CONTENT"&gt;
+                &lt;property name="type"&gt;String&lt;/property&gt;
+            &lt;/column&gt;
+
+            &lt;index name="LIQUOR_INDEX_BASED_ON_LINK" unique="true"&gt;
+                &lt;column&gt;HISTORY&lt;/column&gt;
+            &lt;/index&gt;
+
+            &lt;relationships&gt;
+
+                &lt;one-to-many refer="liquorBrands" refer_to="LiquorBrand" on_update="cascade" on_delete="cascade"&gt;
+                    &lt;property name="load"&gt;true&lt;/property&gt;
+                &lt;/one-to-many&gt;      
+
+            &lt;/relationships&gt;
+
+        &lt;/table&gt;
+
+    &lt;/database-mapping&gt;
+</code></pre>
+</div>
+
+
+
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
+
+        
+            <li><a data-toggle="tab" href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+
+    <div class="tab-content">
+        <div id="index" class="tab-pane active">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_addColumn" data-tablink="addColumn">addColumn</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_addIndex" data-tablink="addIndex">addIndex</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_addRelationship" data-tablink="addRelationship">addRelationship</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getClassName" data-tablink="getClassName">getClassName</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getColumns" data-tablink="getColumns">getColumns</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getIndexes" data-tablink="getIndexes">getIndexes</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getRelationship" data-tablink="getRelationship">getRelationship</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getTableName" data-tablink="getTableName">getTableName</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_setClassName" data-tablink="setClassName">setClassName</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_setTableName" data-tablink="setTableName">setTableName</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="tab-pane">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_addColumn" class="method item">
+    <h3 class="name"><code>addColumn</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>column</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l139"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:139</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Add column to DatabaseMapping object.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">column</code>
+                        <span class="type">Column</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Column object.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_addIndex" class="method item">
+    <h3 class="name"><code>addIndex</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>index</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l159"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:159</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Add index to DatabaseMapping object.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">index</code>
+                        <span class="type">Index</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Index object.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_addRelationship" class="method item">
+    <h3 class="name"><code>addRelationship</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>relationship</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l179"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:179</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Add relationship object.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">relationship</code>
+                        <span class="type">Relationship</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Relationship object.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_getClassName" class="method item">
+    <h3 class="name"><code>getClassName</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l109"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:109</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get Function class name.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    POJO class name.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getColumns" class="method item">
+    <h3 class="name"><code>getColumns</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l129"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:129</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get all columns.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                    All columns.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getIndexes" class="method item">
+    <h3 class="name"><code>getIndexes</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l149"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:149</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get all indexes.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                    It contain all indexes.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getRelationship" class="method item">
+    <h3 class="name"><code>getRelationship</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l169"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:169</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get iterator of relationship objects.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                    Relationship objects.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getTableName" class="method item">
+    <h3 class="name"><code>getTableName</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l89"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:89</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get table name.</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    Name of table.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_setClassName" class="method item">
+    <h3 class="name"><code>setClassName</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>className</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l119"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:119</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set Function class name as per defined in DatabaseMapping.core.xml file.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">className</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>POJO class name.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setTableName" class="method item">
+    <h3 class="name"><code>setTableName</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>tableName</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/assets_Siminov_Model_DatabaseMappingDescriptor.js.html#l99"><code>assets\Siminov\Model\DatabaseMappingDescriptor.js:99</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set table name as per defined in DatabaseMapping.core.xml file.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">tableName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of table.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

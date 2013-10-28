@@ -1,0 +1,180 @@
+<!-- 
+/** 
+ * [SIMINOV FRAMEWORK]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
+ -->
+
+
+<!-- Design of HybridDescriptor.si.xml -->
+ 
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hybird-descriptor>
+	
+
+    <adapters>
+        
+	    <!-- Adapter -->
+	    <adapter>
+	        
+	        <!-- General Adapter Properties -->
+	        	<!-- Mandatory Field -->
+	        <property name="name">adapter_name</property>
+	        	
+	        	<!-- Optional Field -->
+	        <property name="description">adapter_description</property>
+	        
+	        	<!-- Mandatory Field -->
+	        <property name="type">WEB-TO-NATIVE|NATIVE-TO-WEB</property>
+	        
+	        	<!-- Optional Field -->
+	        <property name="map_to">name_of_adapter_class</property>
+	
+	        	<!-- Optional Field (DEFAULT: FALSE)-->
+	        <property name="cache">true/false</property>
+	        
+	        <!-- Handlers -->
+	        	<!-- Handler -->
+	        <handlers>
+	            
+		        <handler>
+		            
+		            <!-- General Handler Properties -->
+		            	<!-- Mandatory Field -->
+		            <property name="name">handler_name</property>
+		            
+		            	<!-- Optional Field -->
+		            <property name="description">handler_description</property>	            
+			            	            
+		            	<!-- Mandatory Field -->
+		            <property name="map_to">name_of_handler_method</property>	            
+		            
+		            		            	            	           
+		            <!-- Parameters -->
+		            <parameters>
+		                
+		                <!-- Parameter -->
+		                <parameter>
+		                    
+		                    	<!-- Mandatory Field -->
+		                    <property name="name">name_of_parameter</property>
+		                    
+		                    	<!-- Mandatory Field -->
+		                    <property name="type">parameter_type</property>
+		                    
+		                    	<!-- Optional Field -->
+		                    <property name="description">description_of_parameter</property>
+		                    
+		                </parameter>
+		                
+		            </parameters>
+		            
+		            <return>
+		                
+		                	<!-- Mandatory Field -->
+		                <property name="type">return_type</property>
+		                
+		                	<!-- Optional Field -->
+		                <property name="description">return_data_description</property>
+		                
+		            </return>
+		            
+		        </handler>
+		            
+	        </handlers>
+	
+	    </adapter>
+
+	    
+        <!-- Adapter Paths -->
+	    <adapter path="adapter_path" />
+	    	        
+    </adapters>
+    
+
+    <!-- Library Needed Under This HybridDescriptor -->
+    <libraries>
+        
+        <library>full_path_of_library_descriptor_file</library>
+        
+    </libraries>
+    
+</hybird-descriptor>
+
+
+<!-- 
+
+HybridDescriptor.si.xml is one which describes properties required to map Web TO Native and vice-versa.
+
+
+HybridDescriptor Elements:
+
+	i. Adapter: Adapter allows Web and Native to work together that normally could not because of incompatible Technologies. Adapter basically maps Javascript to Native and vice-versa.
+	
+		-> name* : Name of Adapter. It is mandatory field.
+		
+		-> description: Description about Adapter. It is Optional field.
+		
+		-> type: Type of Adapter. It is Mandatory field. 
+			
+			i. WEB-TO-NATIVE: It says this adapter maps JavaScript functions to Native functions.
+			ii. NATIVE-TO-WEB: It says this adapter maps Native functions to JavaScript functions.
+			
+		-> map_to: Name of Class (Web/Native) mapped to this adapter. It is not mandatory field.
+		
+		-> cache:  true/false: It says that adapter mapped to Class needs to be cached or not. It is Optional field. Default is false.
+		
+
+		i.> i. Hander: Handler is one which handle request from WEB-TO-NATIVE or NATIVE-TO-WEB. 
+		
+			-> name* : Name of Handler. It is Mandatory field.
+			
+			-> description: Description about handler. It is Optional field.
+			
+			-> map_to*: Name of handler function which handles request from WEB-TO-NATIVE or NATIVE-TO-WEB.
+			
+			
+			i.> i.> i. Parameter: Parameters are bacially arguments passed to handler.
+			
+						-> name* : Name of Parameter. It is Mandatory field.
+						
+						-> description: Description about Parameter. It is Optional field.
+						
+						-> type* : Type of Parameter. It is Mandatory field.
+
+		
+			i.> i.> ii. Return: Return defines about data returned from handler.
+			
+						-> type* : Type of Returned Data. It is Mandatory field.
+						
+						-> description: Description about Return Data.
+
+
+
+	Note*: Adapter can be define in HybridDescriptor.si.xml file or can be defined in seprate xml file.
+		
+		-> If you define Adapter in HybridDescriptor.si.xml file then define it in adapters TAG.
+		
+		-> If you define Adapter in seprate xml file then specify Adapter file path in HybridDescriptor.si.xml file.
+		
+		
+	ii. Libraries: Library Descriptor Paths Needed Under This Database Descriptor.
+
+		- Provide full package name under which LibraryDescriptor.si.xml file is placed.
+	
+							
+							

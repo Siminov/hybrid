@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>assets\Siminov\Database\Database.js - Siminov Hybrid</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="Siminov Hybrid" src="..\yuidoc.assets\siminov-logo.gif" style="max-height: 65%;" title="Siminov Hybrid">
+        
+            Siminov Hybrid
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.9</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Adapter", "classes/ApplicationDescriptor", "classes/Clause", "classes/Constants", "classes/Database", "classes/DatabaseDescriptor", "classes/DatabaseMappingDescriptor", "classes/DatabaseMappingDescriptor.Column", "classes/DatabaseMappingDescriptor.Index", "classes/DatabaseMappingDescriptor.Relationship", "classes/Dictionary", "classes/EventHandler", "classes/FunctionUtils", "classes/HybridDescription.Adapter.Handler.Parameter", "classes/HybridDescriptor", "classes/HybridDescriptor.Adapter", "classes/HybridDescriptor.Adapter.Handler", "classes/HybridSiminovDatas", "classes/HybridSiminovDatas.HybridSiminovData", "classes/IAverage", "classes/IAverageClause", "classes/ICount", "classes/ICountClause", "classes/IDelete", "classes/IDeleteClause", "classes/IGroupConcat", "classes/IGroupConcatClause", "classes/IMax", "classes/IMaxClause", "classes/IMin", "classes/IMinClause", "classes/ISelect", "classes/ISelectClause", "classes/ISum", "classes/ISumClause", "classes/ITotal", "classes/ITotalClause", "classes/LibraryDescriptor", "classes/Log", "classes/Resources", "classes/Select", "classes/SIDatasHelper", "classes/SIJsonHelper", "classes/Siminov", "classes/SiminovException", "classes/SiminovExceptionHandler", "classes/StringBuilder", "modules/Adapter", "modules/Collection", "modules/Database", "modules/Events", "modules/Exception", "modules/Impl", "modules/Log", "modules/Model", "modules/Parser", "modules/Resource", "modules/Utils"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/Adapter.html">Adapter</a></li>
+                    
+                        <li><a href="../classes/ApplicationDescriptor.html">ApplicationDescriptor</a></li>
+                    
+                        <li><a href="../classes/Clause.html">Clause</a></li>
+                    
+                        <li><a href="../classes/Constants.html">Constants</a></li>
+                    
+                        <li><a href="../classes/Database.html">Database</a></li>
+                    
+                        <li><a href="../classes/DatabaseDescriptor.html">DatabaseDescriptor</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.html">DatabaseMappingDescriptor</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Column.html">DatabaseMappingDescriptor.Column</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Index.html">DatabaseMappingDescriptor.Index</a></li>
+                    
+                        <li><a href="../classes/DatabaseMappingDescriptor.Relationship.html">DatabaseMappingDescriptor.Relationship</a></li>
+                    
+                        <li><a href="../classes/Dictionary.html">Dictionary</a></li>
+                    
+                        <li><a href="../classes/EventHandler.html">EventHandler</a></li>
+                    
+                        <li><a href="../classes/FunctionUtils.html">FunctionUtils</a></li>
+                    
+                        <li><a href="../classes/HybridDescription.Adapter.Handler.Parameter.html">HybridDescription.Adapter.Handler.Parameter</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.html">HybridDescriptor</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.Adapter.html">HybridDescriptor.Adapter</a></li>
+                    
+                        <li><a href="../classes/HybridDescriptor.Adapter.Handler.html">HybridDescriptor.Adapter.Handler</a></li>
+                    
+                        <li><a href="../classes/HybridSiminovDatas.html">HybridSiminovDatas</a></li>
+                    
+                        <li><a href="../classes/HybridSiminovDatas.HybridSiminovData.html">HybridSiminovDatas.HybridSiminovData</a></li>
+                    
+                        <li><a href="../classes/IAverage.html">IAverage</a></li>
+                    
+                        <li><a href="../classes/IAverageClause.html">IAverageClause</a></li>
+                    
+                        <li><a href="../classes/ICount.html">ICount</a></li>
+                    
+                        <li><a href="../classes/ICountClause.html">ICountClause</a></li>
+                    
+                        <li><a href="../classes/IDelete.html">IDelete</a></li>
+                    
+                        <li><a href="../classes/IDeleteClause.html">IDeleteClause</a></li>
+                    
+                        <li><a href="../classes/IGroupConcat.html">IGroupConcat</a></li>
+                    
+                        <li><a href="../classes/IGroupConcatClause.html">IGroupConcatClause</a></li>
+                    
+                        <li><a href="../classes/IMax.html">IMax</a></li>
+                    
+                        <li><a href="../classes/IMaxClause.html">IMaxClause</a></li>
+                    
+                        <li><a href="../classes/IMin.html">IMin</a></li>
+                    
+                        <li><a href="../classes/IMinClause.html">IMinClause</a></li>
+                    
+                        <li><a href="../classes/ISelect.html">ISelect</a></li>
+                    
+                        <li><a href="../classes/ISelectClause.html">ISelectClause</a></li>
+                    
+                        <li><a href="../classes/ISum.html">ISum</a></li>
+                    
+                        <li><a href="../classes/ISumClause.html">ISumClause</a></li>
+                    
+                        <li><a href="../classes/ITotal.html">ITotal</a></li>
+                    
+                        <li><a href="../classes/ITotalClause.html">ITotalClause</a></li>
+                    
+                        <li><a href="../classes/LibraryDescriptor.html">LibraryDescriptor</a></li>
+                    
+                        <li><a href="../classes/Log.html">Log</a></li>
+                    
+                        <li><a href="../classes/Resources.html">Resources</a></li>
+                    
+                        <li><a href="../classes/Select.html">Select</a></li>
+                    
+                        <li><a href="../classes/SIDatasHelper.html">SIDatasHelper</a></li>
+                    
+                        <li><a href="../classes/SIJsonHelper.html">SIJsonHelper</a></li>
+                    
+                        <li><a href="../classes/Siminov.html">Siminov</a></li>
+                    
+                        <li><a href="../classes/SiminovException.html">SiminovException</a></li>
+                    
+                        <li><a href="../classes/SiminovExceptionHandler.html">SiminovExceptionHandler</a></li>
+                    
+                        <li><a href="../classes/StringBuilder.html">StringBuilder</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/Adapter.html">Adapter</a></li>
+                    
+                        <li><a href="../modules/Collection.html">Collection</a></li>
+                    
+                        <li><a href="../modules/Database.html">Database</a></li>
+                    
+                        <li><a href="../modules/Events.html">Events</a></li>
+                    
+                        <li><a href="../modules/Exception.html">Exception</a></li>
+                    
+                        <li><a href="../modules/Impl.html">Impl</a></li>
+                    
+                        <li><a href="../modules/Log.html">Log</a></li>
+                    
+                        <li><a href="../modules/Model.html">Model</a></li>
+                    
+                        <li><a href="../modules/Parser.html">Parser</a></li>
+                    
+                        <li><a href="../modules/Resource.html">Resource</a></li>
+                    
+                        <li><a href="../modules/Utils.html">Utils</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>assets\Siminov\Database\Database.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/** 
+ * [SIMINOV FRAMEWORK]
+ * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
+
+/**
+	Exposes classes which deal with database.
+	A Siminov Database Abstraction Layer is an application programming interface which unifies the communication between a computer application and database such as SQLite.
+	Siminov Database Layer reduce the amount of work by providing a consistent API to the developer and hide the database specifics behind this interface as much as possible.
+	
+	@module Database
+*/
+
+
+/**
+	Exposes methods to deal with database.
+	It has methods to create, delete, and perform other common database management tasks.
+
+	@module Database	
+	@class Database	
+	@constructor
+*/
+function Database() {
+
+
+	
+	/**
+		It adds a record to any single table in a relational database.
+
+	   	&lt;pre&gt;
+	   	
+		Example: Make Liquor Object
+	
+			var beer = new Liquor();
+			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
+			beer.setDescription(beer_description));
+			beer.setHistory(beer_history));
+			beer.setLink(beer_link));
+			beer.setAlcholContent(beer_alchol_content));
+		  
+			try {
+				beer.save();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+
+	    &lt;/pre&gt;
+
+		@method save	 
+	   	@throws {SiminovException} If any error occurs while saving tuples in database.
+	 */
+	this.save = function() {
+
+        var datas = SIDatasHelper.toSI(this);
+        var json = SIJsonHelper.toJson(datas);
+
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+        adapter.setHandlerName(Constants.SIMINOV_DATABASE_SAVE_HANDLER);
+
+        adapter.addParameter(encodeURI(json));
+
+        var data = adapter.invoke();
+        if(data != undefined &amp;&amp; data != null) {
+
+            var siminovDatas = SIJsonHelper.toSI(data);
+            var exceptions = SIDatasHelper.toModels(siminovDatas);
+
+            if(exceptions != undefined &amp;&amp; exceptions != null &amp;&amp; exceptions.length &gt; 0) {
+                var exception = exceptions[0];
+                if(exception != undefined &amp;&amp; exception != null) {
+                    throw exception;
+                }
+            }
+        }
+
+	}
+
+
+
+	/**
+		It updates a record to any single table in a relational database.
+	
+		Example: Make Beer Object
+		
+			var beer = new Liquor();
+			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
+			beer.setDescription(beer_description));
+			beer.setHistory(beer_history));
+			beer.setLink(beer_link));
+			beer.setAlcholContent(beer_alchol_content));
+		 
+			try {
+				beer.update();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+
+		@method update
+	   	@throws DatabaseException If any error occurs while saving tuples in database.
+	 */
+    this.update = function() {
+
+        var datas = SIDatasHelper.toSI(this);
+        var json = SIJsonHelper.toJson(datas);
+
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+        adapter.setHandlerName(Constants.SIMINOV_DATABASE_UPDATE_HANDLER);
+
+        adapter.addParameter(encodeURI(json));
+
+        var data = adapter.invoke();
+        if(data != undefined &amp;&amp; data != null) {
+
+            var siminovDatas = SIJsonHelper.toSI(data);
+            var exceptions = SIDatasHelper.toModels(siminovDatas);
+
+            if(exceptions != undefined &amp;&amp; exceptions != null &amp;&amp; exceptions.length &gt; 0) {
+                var exception = exceptions[0];
+                if(exception != undefined &amp;&amp; exception != null) {
+                    throw exception;
+                }
+            }
+        }
+
+    }
+
+	
+	
+	/**
+		It finds out whether tuple exists in table or not.
+		IF NOT EXISTS:
+			adds a record to any single table in a relational database.
+		ELSE:
+			updates a record to any single table in a relational database.
+	   	
+		Example: Make Beer Object
+		
+			var beer = new Liquor();
+			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
+			beer.setDescription(beer_description));
+			beer.setHistory(beer_history));
+			beer.setLink(beer_link));
+			beer.setAlcholContent(beer_alchol_content));
+		  
+			try {
+				beer.saveOrUpdate();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+
+		@method saveOrUpdate						
+	   	@throws {SiminovException} If any error occurs while saving tuples in database.
+	 */
+    this.saveOrUpdate = function() {
+
+        var datas = SIDatasHelper.toSI(this);
+        var json = SIJsonHelper.toJson(datas);
+
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+        adapter.setHandlerName(Constants.SIMINOV_DATABASE_SAVE_OR_UPDATE_HANDLER);
+
+        adapter.addParameter(encodeURI(json));
+
+        var data = adapter.invoke();
+        if(data != undefined &amp;&amp; data != null) {
+
+            var siminovDatas = SIJsonHelper.toSI(data);
+            var exceptions = SIDatasHelper.toModels(siminovDatas);
+	
+	       if(exceptions != undefined &amp;&amp; exceptions != null &amp;&amp; exceptions.length &gt; 0) {
+                var exception = exceptions[0];
+                if(exception != undefined &amp;&amp; exception != null) {
+                    throw exception;
+                }
+            }
+        }
+
+    }
+
+
+
+	/**
+	 	Fetch tuples from table.
+
+		Example:
+	
+		var liquors =  new Liquor().select()
+						.where(Liquor.LIQUOR_TYPE).equalTo(&quot;RUM&quot;)
+						.and(Liquor.ALCHOL_CONTENT).equalTo(&quot;90%&quot;)
+						.fetch();
+		
+		@method select
+	 	@return {ISelect} ISelect to provide extra information based on which tuples will be fetched from table.
+	 	@throws {SiminovException} If any error occur while fetching tuples from table.
+	 */
+    this.select = function() {
+    
+    	if(arguments.length &gt; 0) {
+    	
+		    var adapter = new Adapter();
+		    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+		    adapter.setHandlerName(Constants.SIMINOV_DATABASE_SELECT_MANUAL_HANDLER);
+		
+		    adapter.addParameter(className);
+		    adapter.addParameter(arguments[0]);
+		
+		    var data = adapter.invoke();
+		    var datas = SIJsonHelper.toSI(data);
+		    
+		    var models = SIDatasHelper.toModels(datas);
+			if(models != undefined &amp;&amp; models != null &amp;&amp; models.length &gt; 0) {
+				for(var i = 0;i &lt; models.length;i++) {
+					var model = models[i];
+					
+					if(model instanceof SiminovException) {
+						throw model;
+					}
+				}
+			}
+		
+		    return models;
+    	}
+    
+        return new ISelect(new Select(this));
+    }
+
+	
+
+	/**
+		It deletes a record to any single table in a relational database.
+	
+		Example:
+		
+			var beer = new Liquor();
+			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
+			beer.setDescription(beer_description));
+			beer.setHistory(beer_history));
+			beer.setLink(beer_link));
+			beer.setAlcholContent(beer_alchol_content));
+		  
+			try {
+				beer.delete();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+					
+			OR
+					
+			try {
+				new Liquor().delete();
+			} catch(DatabaseException de) {
+				//Log It.
+			}
+			
+		@method delete	
+	   	@throws {SiminovException} If any error occurs while saving tuples in database.
+	 */
+    this[&#x27;delete&#x27;] = function() {
+        return new IDelete(new Select(this));
+    }
+
+
+
+	/**
+	 	Returns the average based on column name provided.
+	 	
+		Example:
+			var average = 0;
+			
+			try {
+				average = new Liquor().avg()
+							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Liquor.LIQUOR_TYPE).equalTo(&quot;RUM&quot;)
+							.execute();
+		
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+		
+		@method avg
+	 	@return {IAverage} IAverage to provide extra information based on which average will be calculated.
+	 	@throws {SiminovException} If any error occur while finding average.
+	 */
+    this.avg = function() {
+        return new IAverage(new Select(this));
+    }
+
+
+
+	/**
+	 	Returns the count of rows based on information provided.
+	 	
+		Example:
+			var count = 0;
+			
+			try {
+				count = new Liquor().count().
+							.where(Liquor.LIQUOR_TYPE).equalTo(&quot;RUM&quot;)
+							.execute();
+				
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+		
+		@method count
+	 	@return {ICount} ICount to provide extra information based on which count will be calculated.
+	 	@throws {SiminovException} If any error occur while find count.
+	 */
+    this.count = function() {
+        return new ICount(new Select(this));
+    }
+
+
+
+	/**
+	 	Returns the minimum based on column name provided.
+	 	
+		Example:
+			var maximum = 0;
+			
+			try {
+				maximum = new Liquor().max()
+							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Liquor.LIQUOR_TYPE).equalTo(&quot;RUM&quot;)
+							.execute();
+				
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+		@method max
+	 	@return {IMax} IMax to provide extra information based on which maximum will be calculated.
+	 	@throws {SiminovException} If any error occur while finding minimum.
+	 */
+    this.max = function() {
+        return new IMax(new Select(this));
+    }
+
+
+
+	/**
+	 	Returns the minimum based on column name provided.
+	 	
+		Example:
+			var minimum = 0;
+			
+			try {
+				minimum = new Liquor().min()
+							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Liquor.LIQUOR_TYPE).equalTo(&quot;RUM&quot;)
+							.execute();
+				
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+		@method min
+	 	@return {IMin} IMin to provide extra information based on which minimum will be calculated.
+	 	@throws {SiminovException} If any error occur while finding minimum.
+	 */
+    this.min = function() {
+        return new IMin(new Select(this));
+    }
+
+
+
+	/**
+	 	Returns the sum based on column name provided.
+	 	
+		Example:
+			var sum = 0;
+			
+			try {
+				sum = new Liquor().sum()
+							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Liquor.LIQUOR_TYPE).equalTo(&quot;RUM&quot;)
+							.execute();
+		
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+			
+		@method sum	
+	 	@return {ISum} ISum to provide extra information based on which sum will be calculated.
+	 	@throws {SiminovException} If any error occur while finding sum.
+	 */
+    this.sum = function() {
+        return new ISum(new Select(this));
+    }
+
+
+
+	/**
+	 	Returns the total based on column name provided.
+	 	
+		Example:
+			var total = 0;
+			
+			try {
+				total = new Liquor().total()
+							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Liquor.LIQUOR_TYPE).equalTo(&quot;RUM&quot;)
+							.execute();
+				
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	    
+	    @method total
+	 	@return {ITotal} ITotal to provide extra information based on which total will be calculated.
+	 	@throws {SiminovException} If any error occur while finding total.
+	 */
+    this.total = function() {
+        return new ITotal(new Select(this));
+    }
+
+
+
+	/**
+	 	Returns the group concat based on column name provided.
+	 	
+		Example:
+			var groupConcat = 0;
+			
+			try {
+				groupConcat = new Liquor().groupConcat()
+								.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+								.where(Liquor.LIQUOR_TYPE).equalTo(&quot;RUM&quot;)
+								.execute();
+								
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+		
+	 	@method groupConcat
+	 	@return {IGroupConcat} IGroupConcat to provide extra information based on which group concat will be calculated.
+	 	@throws SiminovException If any error occur while finding group concat.
+	 */
+    this.groupConcat = function() {
+        return new IGroupConcat(new Select(this));
+    }
+
+
+
+	/**
+	 	Returns the mapped table name for invoked class object.
+	 
+		Example:
+			var tableName = null;
+			try {
+				tableName = new Liquor().getTableName();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+		@method getTableName
+	 	@return {String} Mapped Table name.
+	 	@throws {SiminovException} If no mapped table found for invoked class object.
+	 */
+    this.getTableName = function() {
+
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+        adapter.setHandlerName(Constants.SIMINOV_DATABASE_GET_TABLE_NAME_HANDLER);
+
+        adapter.addParameter(this.getObjectName());
+
+        var data = adapter.invoke();
+
+        var hybridData = SIJsonHelper.toSI(data);
+        if(hybridData != undefined) {
+            var datas = hybridData.getHybridSiminovDatas();
+            if(datas != undefined) {
+                for(var i = 0;i &lt; datas.length;i++) {
+                    if(datas[i] != undefined) {
+                    	var type = datas[i].getDataType();
+                    	
+                    	if(type != undefined &amp;&amp; type != null) {
+                    		var exception = SIJsonHelper.toModel(datas[i]);
+                    		if(exception != undefined &amp;&amp; exception != null) {
+	                    		throw exception;	
+                    		}
+                    	} else {
+	                        return datas[i].getDataValue();
+                    	}
+                    }
+                }
+            }
+        }
+
+        return undefined;
+
+    }
+
+
+
+
+	/**
+	 	Returns all column names of mapped table.
+	 	
+		Example:
+			var columnNames = null;
+			try {
+				columnNames = new Liquor().getColumnNames();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	 		
+		@method getColumnNames
+	 	@return {Array} All column names of mapped table.
+	 	@throws {SiminovException} If no mapped table found for invoked class object.
+	 */
+    this.getColumnNames = function() {
+
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+        adapter.setHandlerName(Constants.SIMINOV_DATABASE_GET_COLUMN_NAMES_HANDLER);
+
+        adapter.addParameter(this.getObjectName());
+
+        var data = adapter.invoke();
+
+        var hybridData = SIJsonHelper.toSI(data);
+        var columnNames = [];
+
+        if(hybridData != undefined) {
+            var datas = hybridData.getHybridSiminovDatas();
+            if(datas != undefined) {
+                for(var i = 0;i &lt; datas.length;i++) {
+                    if(datas[i] != undefined) {
+                    	var type = datas[i].getDataType();
+                    	
+                    	if(type != undefined &amp;&amp; type != null) {
+                    		var exception = SIJsonHelper.toModel(datas[i]);
+                    		if(exception != undefined &amp;&amp; exception != null) {
+	                    		throw exception;	
+                    		}
+                    	} else {
+	                        columnNames[columnNames.length] = datas[i].getDataValue();
+                    	}
+                    }
+                }
+            }
+        }
+
+        return columnNames;
+    }
+
+
+
+
+	/**
+	 	Returns all columns with there data types for invoked class object.
+	
+		Example:
+			var columnTypes = null;
+			try {
+				columnTypes = new Liquor().getColumnTypes();
+			} catch(DatabaseException de) {
+				//Log it.
+			}	
+	
+		@method getColumnTypes
+	 	@return {Dictionary} All columns with there data types.
+	 	@throws {SiminovException} If no mapped table found for invoked class object.
+	 */
+    this.getColumnTypes = function() {
+
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+        adapter.setHandlerName(Constants.SIMINOV_DATABASE_GET_COLUMN_TYPES_HANDLER);
+
+        adapter.addParameter(this.getObjectName());
+
+        var data = adapter.invoke();
+
+        var hybridData = SIJsonHelper.toSI(data);
+        var columnTypes = new Dictionary();
+
+        if(hybridData != undefined) {
+            var datas = hybridData.getHybridSiminovDatas();
+            if(datas != undefined) {
+
+                for(var i = 0;i &lt; datas.length;i++) {
+					var type = datas[i].getDataType();
+                    	
+                	if(type != undefined &amp;&amp; type != null) {
+                		var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}
+                	} else {
+	                    var values = datas[i].getValues();
+	                    if(values != undefined) {
+	
+	                        for(var j = 0;j &lt; values.length;j++) {
+	                            var value = values[j];
+	
+	                            columnTypes.add(value.getType(), value.getValue());
+	                        }
+	                    }
+                	}
+                }
+            }
+        }
+
+        return columnTypes;
+
+    }
+
+
+
+
+	/**
+	 	Returns all primary keys of mapped table for invoked class object.
+	 	
+		Example:
+			var primaryKeys = null;
+			try {
+				primaryKeys = new Liquor().getPrimeryKeys();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+		@method getPrimaryKeys
+	 	@return {Array} All primary keys.
+	 	@throws {SiminovException} If not mapped table found for invoked class object.
+	 */
+    this.getPrimaryKeys = function() {
+
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+        adapter.setHandlerName(Constants.SIMINOV_DATABASE_GET_PRIMARY_KEYS_HANDLER);
+
+        adapter.addParameter(this.getObjectName());
+
+        var data = adapter.invoke();
+
+        var hybridData = SIJsonHelper.toSI(data);
+        var primaryKeys = [];
+
+        if(hybridData != undefined) {
+            var datas = hybridData.getHybridSiminovDatas();
+            if(datas != undefined) {
+
+                for(var i = 0;i &lt; datas.length;i++) {
+                	var type = datas[i].getDataType();
+                    	
+                	if(type != undefined &amp;&amp; type != null) {
+                		var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}
+                	} else {
+                        primaryKeys[i] = datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+
+        return primaryKeys;
+
+    }
+
+
+
+
+	/**
+	 	Returns all mandatory fields which are associated with mapped table for invoked class object.
+	 
+		Example:
+			var mandatoryFields = null;
+			try {
+				mandatoryFields = new Liquor().getMandatoryFields();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+
+		@method getMandatoryFields
+	 	@return {Array} All mandatory fields for mapped table.
+	 	@throws SiminovException If no mapped table found for invoked class object.
+	 */
+    this.getMandatoryFields = function() {
+
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+        adapter.setHandlerName(Constants.SIMINOV_DATABASE_GET_MANDATORY_FIELDS_HANDLER);
+
+        adapter.addParameter(this.getObjectName());
+
+        var data = adapter.invoke();
+
+        var hybridData = SIJsonHelper.toSI(data);
+        var mandatoryFields = [];
+
+        if(hybridData != undefined) {
+            var datas = hybridData.getHybridSiminovDatas();
+            if(datas != undefined) {
+
+                for(var i = 0;i &lt; datas.length;i++) {
+                	var type = datas[i].getDataType();
+                    	
+                	if(type != undefined &amp;&amp; type != null) {
+                		var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}
+                	} else {
+	                    mandatoryFields[i] = datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+
+        return mandatoryFields;
+
+    }
+
+
+
+	/**
+	 	Returns all unique fields which are associated with mapped table for invoked class object.
+	 
+		Example:
+			 			
+			var uniqueFields = null;
+			try {
+				uniqueFields = new Liquor().getUniqueFields();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+
+		@method getUniqueFields	 		
+	 	@return {Array} All unique fields for mapped table.
+	 	@throws {SiminovException} If no mapped table found for invoked class object.
+	 */
+    this.getUniqueFields = function() {
+
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+        adapter.setHandlerName(Constants.SIMINOV_DATABASE_GET_UNIQUE_FIELDS_HANDLER);
+
+        adapter.addParameter(this.getObjectName());
+
+        var data = adapter.invoke();
+
+        var hybridData = SIJsonHelper.toSI(data);
+        var uniqueFields = [];
+
+        if(hybridData != undefined) {
+            var datas = hybridData.getHybridSiminovDatas();
+            if(datas != undefined) {
+
+                for(var i = 0;i &lt; datas.length;i++) {
+                	var type = datas[i].getDataType();
+                    	
+                	if(type != undefined &amp;&amp; type != null) {
+                		var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}
+                	} else {
+	                    uniqueFields[i] = datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+
+        return uniqueFields;
+
+    }
+
+
+
+
+	/**
+	 	Returns all foreign keys of mapped table for invoked class object.
+	 
+		Example:
+			 			
+			var foreignKeys = null;
+			try {
+				foreignKeys = new Liquor().getForeignKeys();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+		@method getForeignKeys
+	 	@return {Array} All foreign keys of mapped table.
+	 	@throws {SiminovException} If no mapped table found for invoked class object.
+	 */
+    this.getForeignKeys = function() {
+
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+        adapter.setHandlerName(Constants.SIMINOV_DATABASE_GET_FOREIGN_KEYS_HANDLER);
+
+        adapter.addParameter(this.getObjectName());
+
+        var data = adapter.invoke();
+
+        var hybridData = SIJsonHelper.toSI(data);
+        var foreignKeys = [];
+
+        if(hybridData != undefined) {
+            var datas = hybridData.getHybridSiminovDatas();
+            if(datas != undefined) {
+
+                for(var i = 0;i &lt; datas.length;i++) {
+                	var type = datas[i].getDataType();
+                    	
+                	if(type != undefined &amp;&amp; type != null) {
+                		var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}
+                	} else {
+	                    foreignKeys[i] = datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+
+        return foreignKeys;
+
+    }
+
+
+
+
+	/**
+	 	Returns database descriptor object based on the POJO class called.
+
+		Example:
+		
+			try {
+				DatabaseDescriptor databaseDescriptor = new Liquor().getDatabaseDescriptor();
+			} catch(DatabaseException databaseException) {
+				//Log It.
+			}
+	
+		@method getDatabaseDescriptor
+	 	@return {DatabaseDescriptor} Database Descriptor Object.
+	 	@throws {SiminovException} If any error occur while getting database descriptor object.
+	 */
+    this.getDatabaseDescriptor = function() {
+
+        var resources = Resources.getInstance();
+        return resources.getDatabaseDescriptorBasedOnClassName(this.getObjectName());
+
+    }
+
+
+
+
+	/**
+	 	Returns the actual database mapping object mapped for invoked class object.
+	 
+		Example:
+			DatabaseMapping databaseMapping = null;
+			try {
+				databaseMapping = new Liquor().getDatabaseMapping();
+			} catch(DatabaseException de) {
+				//Log it.
+			}
+	
+		@method getDatabaseMappingDescriptor
+	 	@return {DatabaseMappingDescriptor} Database Mapping Descriptor Object
+	 	@throws {SiminovException} If database mapping object not mapped for invoked class object.
+	 */
+    this.getDatabaseMappingDescriptor = function() {
+
+        var resources = Resources.getInstance();
+        return resources.getDatabaseMappingDescriptorBasedOnClassName(this.getObjectName());
+
+    }
+
+}
+
+
+
+Database.select = function(className, distinct, whereClause, columnNames, groupBy, having, orderBy, whichOrderBy, limit) {
+
+    var adapter = new Adapter();
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_SELECT_HANDLER);
+
+    adapter.addParameter(className);
+    adapter.addParameter(distinct);
+    adapter.addParameter(whereClause);
+    adapter.addParameter(columnNames);
+    adapter.addParameter(groupBy);
+    adapter.addParameter(having);
+    adapter.addParameter(orderBy);
+    adapter.addParameter(whichOrderBy);
+    adapter.addParameter(limit);
+
+    var data = adapter.invoke();
+    var datas = SIJsonHelper.toSI(data);
+    
+    var models = SIDatasHelper.toModels(datas);
+	if(models != undefined &amp;&amp; models != null &amp;&amp; models.length &gt; 0) {
+		for(var i = 0;i &lt; models.length;i++) {
+			var model = models[i];
+			
+			if(model instanceof SiminovException) {
+				throw model;
+			}
+		}
+	}
+
+    return models;
+
+}
+
+
+
+Database.count = function(className, column, distinct, whereClause, groupBy, having) {
+
+    var adapter = new Adapter();
+
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_COUNT_HANDLER);
+
+    adapter.addParameter(className);
+    adapter.addParameter(column);
+    adapter.addParameter(distinct);
+    adapter.addParameter(whereClause);
+    adapter.addParameter(groupBy);
+    adapter.addParameter(having);
+
+
+    var data = adapter.invoke();
+
+    var hybridData = SIJsonHelper.toSI(data);
+    if(hybridData != undefined) {
+        var datas = hybridData.getHybridSiminovDatas();
+        if(datas != undefined) {
+            for(var i = 0;i &lt; datas.length;i++) {
+                if(datas[i] != undefined) {
+                	var type = datas[i].getDataType();
+                	
+                	if(type != undefined &amp;&amp; type != null) {
+						var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}                	
+                	} else {
+	                    return datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+
+
+Database.avg = function(className, column, whereClause, groupBy, hanving) {
+
+    var adapter = new Adapter();
+
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_AVERAGE_HANDLER);
+
+    adapter.addParameter(className);
+    adapter.addParameter(column);
+    adapter.addParameter(whereClause);
+    adapter.addParameter(groupBy);
+    adapter.addParameter(having);
+
+
+    var data = adapter.invoke();
+
+    var hybridData = SIJsonHelper.toSI(data);
+    if(hybridData != undefined) {
+        var datas = hybridData.getHybridSiminovDatas();
+        if(datas != undefined) {
+            for(var i = 0;i &lt; datas.length;i++) {
+                if(datas[i] != undefined) {
+                	var type = datas[i].getDataType();
+                	
+                	if(type != undefined &amp;&amp; type != null) {
+						var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}                	
+                	} else {
+	                    return datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+    }
+
+    return 0;
+
+}
+
+
+Database.min = function(className, column, whereClause, groupBy, having) {
+
+    var adapter = new Adapter();
+
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_MIN_HANDLER);
+
+    adapter.addParameter(className);
+    adapter.addParameter(column);
+    adapter.addParameter(whereClause);
+    adapter.addParameter(groupBy);
+    adapter.addParameter(having);
+
+
+    var data = adapter.invoke();
+
+    var hybridData = SIJsonHelper.toSI(data);
+    if(hybridData != undefined) {
+        var datas = hybridData.getHybridSiminovDatas();
+        if(datas != undefined) {
+            for(var i = 0;i &lt; datas.length;i++) {
+                if(datas[i] != undefined) {
+                    var type = datas[i].getDataType();
+                	
+                	if(type != undefined &amp;&amp; type != null) {
+						var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}                	
+                	} else {
+	                    return datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+    }
+
+    return 0;
+
+}
+
+
+Database.max = function(className, column, whereClause, groupBy, having) {
+
+    var adapter = new Adapter();
+
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_MAX_HANDLER);
+
+    adapter.addParameter(className);
+    adapter.addParameter(column);
+    adapter.addParameter(whereClause);
+    adapter.addParameter(groupBy);
+    adapter.addParameter(having);
+
+
+    var data = adapter.invoke();
+
+    var hybridData = SIJsonHelper.toSI(data);
+    if(hybridData != undefined) {
+        var datas = hybridData.getHybridSiminovDatas();
+        if(datas != undefined) {
+            for(var i = 0;i &lt; datas.length;i++) {
+                if(datas[i] != undefined) {
+                    var type = datas[i].getDataType();
+                	
+                	if(type != undefined &amp;&amp; type != null) {
+						var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}                	
+                	} else {
+	                    return datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+    }
+
+    return 0;
+
+}
+
+
+Database.sum = function(className, column, whereClause, groupBy, having) {
+
+    var adapter = new Adapter();
+
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_SUM_HANDLER);
+
+    adapter.addParameter(className);
+    adapter.addParameter(column);
+    adapter.addParameter(whereClause);
+    adapter.addParameter(groupBy);
+    adapter.addParameter(having);
+
+
+    var data = adapter.invoke();
+
+    var hybridData = SIJsonHelper.toSI(data);
+    if(hybridData != undefined) {
+        var datas = hybridData.getHybridSiminovDatas();
+        if(datas != undefined) {
+            for(var i = 0;i &lt; datas.length;i++) {
+                if(datas[i] != undefined) {
+                    var type = datas[i].getDataType();
+                	
+                	if(type != undefined &amp;&amp; type != null) {
+						var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}                	
+                	} else {
+	                    return datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+    }
+
+    return 0;
+
+}
+
+
+Database.total = function(className, column, whereClause, groupBy, having) {
+
+    var adapter = new Adapter();
+
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_TOTAL_HANDLER);
+
+    adapter.addParameter(className);
+    adapter.addParameter(column);
+    adapter.addParameter(whereClause);
+    adapter.addParameter(groupBy);
+    adapter.addParameter(having);
+
+
+    var data = adapter.invoke();
+
+    var hybridData = SIJsonHelper.toSI(data);
+    if(hybridData != undefined) {
+        var datas = hybridData.getHybridSiminovDatas();
+        if(datas != undefined) {
+            for(var i = 0;i &lt; datas.length;i++) {
+                if(datas[i] != undefined) {
+                    var type = datas[i].getDataType();
+                	
+                	if(type != undefined &amp;&amp; type != null) {
+						var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}                	
+                	} else {
+	                    return datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+    }
+
+    return 0;
+
+}
+
+
+Database.groupConcat = function(className, column, delimiter, whereClause, groupBy, having) {
+
+    var adapter = new Adapter();
+
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_GROUP_CONCAT_HANDLER);
+
+    adapter.addParameter(className);
+    adapter.addParameter(delimiter);
+    adapter.addParameter(column);
+    adapter.addParameter(whereClause);
+    adapter.addParameter(groupBy);
+    adapter.addParameter(having);
+
+
+    var data = adapter.invoke();
+
+    var hybridData = SIJsonHelper.toSI(data);
+    if(hybridData != undefined) {
+        var datas = hybridData.getHybridSiminovDatas();
+        if(datas != undefined) {
+            for(var i = 0;i &lt; datas.length;i++) {
+                if(datas[i] != undefined) {
+                    var type = datas[i].getDataType();
+                	
+                	if(type != undefined &amp;&amp; type != null) {
+						var exception = SIJsonHelper.toModel(datas[i]);
+                		if(exception != undefined &amp;&amp; exception != null) {
+                    		throw exception;	
+                		}                	
+                	} else {
+	                    return datas[i].getDataValue();
+                	}
+                }
+            }
+        }
+    }
+
+    return 0;
+
+}
+
+
+
+Database[&#x27;delete&#x27;] = function(className, whereClause, data) {
+
+    var adapter = new Adapter();
+
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_DELETE_HANDLER);
+
+
+    adapter.addParameter(className);
+    adapter.addParameter(whereClause);
+    adapter.addParameter(data);
+
+    var data = adapter.invoke();
+    if(data != undefined &amp;&amp; data != null) {
+
+        var siminovDatas = SIJsonHelper.toSI(data);
+        var exceptions = SIDatasHelper.toModels(siminovDatas);
+
+        if(exceptions != undefined &amp;&amp; exceptions != null &amp;&amp; exceptions.length &gt; 0) {
+            var exception = exceptions[0];
+            if(exception != undefined &amp;&amp; exception != null) {
+                throw exception;
+            }
+        }
+    }
+
+}
+
+
+
+Database.beginTransaction = function(databaseDescriptor) {
+
+    var adapter = new Adapter();
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_BEGIN_TRANSACTION_HANDLER);
+
+    adapter.addParameter(databaseDescriptor.getDatabaseName());
+
+    var data = adapter.invoke();
+    if(data != undefined &amp;&amp; data != null) {
+
+        var siminovDatas = SIJsonHelper.toSI(data);
+        var exceptions = SIDatasHelper.toModels(siminovDatas);
+
+        if(exceptions != undefined &amp;&amp; exceptions != null &amp;&amp; exceptions.length &gt; 0) {
+            var exception = exceptions[0];
+            if(exception != undefined &amp;&amp; exception != null) {
+                throw exception;
+            }
+        }
+    }
+
+}
+
+
+Database.commitTransaction = function(databaseDescriptor) {
+
+    var adapter = new Adapter();
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_COMMIT_TRANSACTION_HANDLER);
+
+    adapter.addParameter(databaseDescriptor.getDatabaseName());
+
+    var data = adapter.invoke();
+    if(data != undefined &amp;&amp; data != null) {
+
+        var siminovDatas = SIJsonHelper.toSI(data);
+        var exceptions = SIDatasHelper.toModels(siminovDatas);
+
+        if(exceptions != undefined &amp;&amp; exceptions != null &amp;&amp; exceptions.length &gt; 0) {
+            var exception = exceptions[0];
+            if(exception != undefined &amp;&amp; exception != null) {
+                throw exception;
+            }
+        }
+    }
+
+}
+
+
+Database.endTransaction = function(databaseDescriptor) {
+
+    var adapter = new Adapter();
+    adapter.setAdapterName(Constants.SIMINOV_DATABASE_ADAPTER);
+    adapter.setHandlerName(Constants.SIMINOV_DATABASE_END_TRANSACTION_HANDLER);
+
+    adapter.addParameter(databaseDescriptor.getDatabaseName());
+
+    var data = adapter.invoke();
+    if(data != undefined &amp;&amp; data != null) {
+
+        var siminovDatas = SIJsonHelper.toSI(data);
+        var exceptions = SIDatasHelper.toModels(siminovDatas);
+
+        if(exceptions != undefined &amp;&amp; exceptions != null &amp;&amp; exceptions.length &gt; 0) {
+            var exception = exceptions[0];
+            if(exception != undefined &amp;&amp; exception != null) {
+                throw exception;
+            }
+        }
+    }
+
+}
+
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

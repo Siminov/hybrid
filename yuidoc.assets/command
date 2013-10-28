@@ -1,0 +1,3 @@
+Command line to generate JavaScript document.
+
+-> yuidoc -c yuidoc.json .
