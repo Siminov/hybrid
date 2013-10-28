@@ -26,7 +26,7 @@ import siminov.hybrid.adapter.constants.HybridEventHandler;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.parsers.HybridSiminovDataBuilder;
+import siminov.hybrid.reader.HybridSiminovDataBuilder;
 import siminov.hybrid.resource.Resources;
 import siminov.orm.events.IDatabaseEvents;
 import siminov.orm.exception.SiminovException;
