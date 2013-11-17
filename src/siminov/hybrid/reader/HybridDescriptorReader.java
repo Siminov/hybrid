@@ -119,34 +119,6 @@ public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements 
 		parse(adapterPath);
 	}
 	
-	public HybridDescriptorReader(String libraryPackageName, String adapterPath) {
-		
-		Context context = resources.getApplicationContext();
-		if(context == null) {
-			Log.loge(getClass().getName(), "Constructor", "Invalid context found.");
-			throw new DeploymentException(getClass().getName(), "Constructor", "Invalid context found.");
-		}
-
-		/*
-		 * Parse Adapter.
-		 */
-		InputStream adapterStream = null;
-		
-		try {
-			adapterStream = getClass().getClassLoader().getResourceAsStream(libraryPackageName.replace(".", "/") + "/" + adapterPath);
-		} catch(Exception exception) {
-			Log.logd(getClass().getName(), "Constructor", "IOException caught while getting input stream of hybrid descriptor, " + exception.getMessage());
-			throw new DeploymentException(getClass().getName(), "Constructor", "IOException caught while getting input stream of hybrid descriptor, " + exception.getMessage());
-		}
-		
-		try {
-			parseMessage(adapterStream);
-		} catch(Exception exception) {
-			Log.loge(getClass().getName(), "Constructor", "Exception caught while parsing HYBRID-DESCRIPTOR, " + exception.getMessage());
-			throw new DeploymentException(getClass().getName(), "Constructor", "Exception caught while parsing HYBRID-DESCRIPTOR, " + exception.getMessage());
-		}
-	}
-	
 	private void parse(String fileName) {
 
 		Context context = resources.getApplicationContext();
@@ -161,7 +133,11 @@ public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements 
 		InputStream applicationDescriptorStream = null;
 		
 		try {
-			applicationDescriptorStream = context.getAssets().open(fileName);
+
+			applicationDescriptorStream = getClass().getClassLoader().getResourceAsStream(fileName);
+			if(applicationDescriptorStream == null) {
+				applicationDescriptorStream = context.getAssets().open(fileName);
+			}
 		} catch(IOException ioException) {
 			Log.logd(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + ioException.getMessage());
 			
@@ -200,15 +176,7 @@ public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements 
 			
 			returnData = new Adapter.Handler.Return();
 			isReturn = true;
-		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_ADAPTER_PATH)) {
-			String path = attributes.getValue(HYBRID_DESCRIPTOR_ADAPTER_ADAPTER_PATH);
-			if(path != null && path.length() > 0) {
-				hybridDescriptor.addAdapterPath(path);
-			}
-		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_LIBRARY)) {
-			String library = attributes.getValue(HYBRID_DESCRIPTOR_LIBRARY_PATH);
-			hybridDescriptor.addLibraryPath(library);
-		}
+		} 
 		
 	}
 	
@@ -250,6 +218,8 @@ public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements 
 			
 			returnData = null;
 			isReturn = false;
+		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_ADAPTER)) {
+			hybridDescriptor.addAdapterPath(tempValue);
 		}
 	}
 	
@@ -272,7 +242,7 @@ public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements 
 		}
 	}
 
-	public HybridDescriptor getJSDescriptor() {
+	public HybridDescriptor getHybridDescriptor() {
 		return this.hybridDescriptor;
 	}
 	
