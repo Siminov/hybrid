@@ -90,9 +90,6 @@ public class HybridDescriptor {
 	private Map<String, Adapter> adaptersBasedOnName = new HashMap<String, Adapter>();
 	private Map<String, Adapter> adaptersBasedOnPath = new HashMap<String, Adapter>();
 
-	private Map<String, LibraryDescriptor> librariesBasedOnPath = new HashMap<String, LibraryDescriptor>();
-	private Map<String, LibraryDescriptor> librariesBasedOnName = new HashMap<String, LibraryDescriptor>();
-	
 	
 	/**
 	 * Get all Properties defined in descriptor.
@@ -272,119 +269,7 @@ public class HybridDescriptor {
 		removeAdapterBasedOnName(adapter.getName());
 	}
 	
-	/**
-	 * Get All Libraries defined in HybridDescriptor.si.xml file.
-	 * @return All Library Paths.
-	 */
-	public Iterator<String> getLibraryPaths() {
-		return this.librariesBasedOnPath.keySet().iterator();
-	}
-	
-	/**
-	 * Add Library Path.
-	 * @param libraryPath Path of library.
-	 */
-	public void addLibraryPath(final String libraryPath) {
-		this.librariesBasedOnPath.put(libraryPath, null);
-	}
-	
-	/**
-	 * Get All Library Descriptor defined in HybridDescriptor.si.xml file.
-	 * @return All LibraryDescriptors.
-	 */
-	public Iterator<LibraryDescriptor> getLibraries() {
-		return this.librariesBasedOnName.values().iterator();
-	}
-	
-	/**
-	 * Get Library Descriptor based on library name.
-	 * @param libraryName Name of Library.
-	 * @return Library Descriptor.
-	 */
-	public LibraryDescriptor getLibraryDescriptorBasedOnName(final String libraryName) {
-		return this.librariesBasedOnName.get(libraryName);
-	}
-	
-	/**
-	 * get Library Descriptor based on library path. 
-	 * @param libraryPath Path of Library.
-	 * @return Library Descriptor.
-	 */
-	public LibraryDescriptor getLibraryDescriptorBasedOnPath(final String libraryPath) {
-		return this.librariesBasedOnPath.get(libraryPath);
-	}
-	
-	/**
-	 * Add Library Descriptor based on library path.
-	 * @param libraryPath Path of Library.
-	 * @param libraryDescriptor LibraryDescriptor.
-	 */
-	public void addLibrary(final String libraryPath, final LibraryDescriptor libraryDescriptor) {
-		this.librariesBasedOnPath.put(libraryPath, libraryDescriptor);
-		this.librariesBasedOnName.put(libraryDescriptor.getName(), libraryDescriptor);
-	}
-	
-	/**
-	 * Check whether library exist or not based on name.
-	 * @param libraryName Name of Library.
-	 * @return true/false; TRUE if library exist, FALSE if library does not exist.
-	 */
-	public boolean containLibraryBasedOnName(final String libraryName) {
-		return this.librariesBasedOnName.containsKey(libraryName);
-	}
-	
-	/**
-	 * Check whether library exist or not based on library path.
-	 * @param libraryPath Path of Library.
-	 * @return true/false; TRUE if library exist, FALSE if library does not exist.
-	 */
-	public boolean containLibraryBasedOnPath(final String libraryPath) {
-		return this.librariesBasedOnPath.containsKey(libraryPath);
-	}
-	
-	/**
-	 * Remove Library based on library name.
-	 * @param libraryName Name of library.
-	 */
-	public void removeLibraryBasedOnName(final String libraryName) {
-		Iterator<String> libraryPaths = this.librariesBasedOnPath.keySet().iterator();
-		
-		String keyMatched = null;
-		boolean found = false;
-		while(libraryPaths.hasNext()) {
-			String libraryPath = libraryPaths.next();
-			
-			LibraryDescriptor libraryDescriptor = this.librariesBasedOnPath.get(libraryPath);
-			if(libraryDescriptor.getName().equalsIgnoreCase(libraryName)) {
-				keyMatched = libraryPath;
-				found = true;
-				break;
-			}
-		}
-		
-		if(found) {
-			removeAdapterBasedOnPath(keyMatched);
-		}
-	}
-	
-	/**
-	 * Remove Library based on path.
-	 * @param libraryPath Path of Library.
-	 */
-	public void removeLibraryBasedOnPath(final String libraryPath) {
-		LibraryDescriptor libraryDescriptor = this.librariesBasedOnPath.get(libraryPath);
-		
-		this.librariesBasedOnName.remove(libraryDescriptor.getName());
-		this.librariesBasedOnPath.remove(libraryPath);
-	}
-	
-	/**
-	 * Remove Library based on Library Descriptor
-	 * @param libraryDescriptor Library Descriptor.
-	 */
-	public void removeLibrary(final LibraryDescriptor libraryDescriptor) {
-		removeLibraryBasedOnName(libraryDescriptor.getName());
-	}
+
 	
 	/**
 	 * Exposes methods to GET and SET Hybrid Descriptor Adapter information as per define in HybridDescriptor.si.xml file or standalone xml file in application.
