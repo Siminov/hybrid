@@ -18,6 +18,7 @@
 
 package siminov.hybrid;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -29,14 +30,17 @@ import siminov.hybrid.model.HybridDescriptor;
 import siminov.hybrid.model.HybridDescriptor.Adapter;
 import siminov.hybrid.model.LibraryDescriptor;
 import siminov.hybrid.reader.HybridDescriptorReader;
-import siminov.hybrid.reader.HybridLibraryDescriptorReader;
+import siminov.hybrid.reader.LibraryDescriptorReader;
 import siminov.hybrid.resource.Resources;
+import siminov.orm.Constants;
 import siminov.orm.IInitializer;
 import siminov.orm.events.ISiminovEvents;
 import siminov.orm.exception.DeploymentException;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 import siminov.orm.model.ApplicationDescriptor;
+import siminov.orm.model.DatabaseDescriptor;
+import siminov.orm.utils.LibraryHelper;
 
 /**
  * Exposes methods to deal with SIMINOV HYBRID FRAMEWORK.
@@ -121,22 +125,21 @@ public class Siminov extends siminov.orm.Siminov {
 	static void start() {
 		
 		siminov.orm.Siminov.processApplicationDescriptor();
-		processEvents();
-		
-		
-		siminov.orm.Siminov.processDatabaseDescriptors();
-		siminov.orm.Siminov.processLibraries();
-		siminov.orm.Siminov.processDatabaseMappingDescriptors();
 
 		
+		siminov.orm.Siminov.processDatabaseDescriptors();
+		processHybridDescriptor();
+		processLibraries();
+
+		
+		processEvents();
+
+		
+		siminov.orm.Siminov.processDatabaseMappingDescriptors();
 		hybridResources.synchronizeMappings();
 
 		
-		processHybridDescriptor();
-		processLibraries();
 		processAdapters();
-
-		
 		processHybridServices();
 		
 	}
@@ -167,106 +170,96 @@ public class Siminov extends siminov.orm.Siminov {
 	 */
 	protected static void processHybridDescriptor() {
 		
-		HybridDescriptorReader hybridDescriptorParser = new HybridDescriptorReader();
+		HybridDescriptorReader hybridDescriptorReader = new HybridDescriptorReader();
 		
-		HybridDescriptor jsDescriptor = hybridDescriptorParser.getJSDescriptor();
-		if(jsDescriptor == null) {
-			Log.logd(Siminov.class.getName(), "processHybridDescriptor", "Invalid JS Descriptor Found.");
-			throw new DeploymentException(Siminov.class.getName(), "processHybridDescriptor", "Invalid JS Descriptor Found.");
+		HybridDescriptor hybridDescriptor = hybridDescriptorReader.getHybridDescriptor();
+		if(hybridDescriptor == null) {
+			Log.logd(Siminov.class.getName(), "processHybridDescriptor", "Invalid Hybrid Descriptor Found.");
+			throw new DeploymentException(Siminov.class.getName(), "processHybridDescriptor", "Invalid Hybrid Descriptor Found.");
 		}
 		
-		/*
-		 * Add Siminov - JS Library
-		 */
-		jsDescriptor.addLibraryPath(Constants.HYBRID_DESCRIPTOR_SIMINOV_HYBRID_LIBRARY_PATH);
-		
-		hybridResources.setHybridDescriptor(jsDescriptor);
+
+		hybridResources.setHybridDescriptor(hybridDescriptor);
 	}
 
 	
 	/**
-	 * It process all LibraryDescriptor.si.xml files defined in Application, and stores in Resources.
+	 * It process all LibraryDescriptor.si.xml files defined by application, and stores in Resources.
 	 */
 	protected static void processLibraries() {
 		
-		HybridDescriptor jsDescriptor = hybridResources.getHybridDescriptor();
-		Iterator<String> libraryPaths = jsDescriptor.getLibraryPaths();
-
-		while(libraryPaths.hasNext()) {
-			String libraryPath = libraryPaths.next();
+		ApplicationDescriptor applicationDescriptor = ormResources.getApplicationDescriptor();
+		
+		LibraryHelper libraryHelper = new LibraryHelper();
+		Iterator<String> libraries = libraryHelper.getLibraries();
+		
+		while(libraries.hasNext()) {
 			
+			String library = libraries.next();
+
 			/*
 			 * Parse LibraryDescriptor.
 			 */
-			HybridLibraryDescriptorReader libraryDescriptorParser = null;
+			LibraryDescriptorReader libraryDescriptorReader = new LibraryDescriptorReader(library);
+			LibraryDescriptor libraryDescriptor = libraryDescriptorReader.getLibraryDescriptor();
 			
-			try {
-				libraryDescriptorParser = new HybridLibraryDescriptorReader(libraryPath);
-			} catch(SiminovException ce) {
-				Log.loge(Siminov.class.getName(), "processLibraries", "SiminovException caught while parsing library descriptor, LIBRARY-NAME: " + libraryPath + ", " + ce.getMessage());
-				throw new DeploymentException(Siminov.class.getName(), "processLibraries", ce.getMessage());
+
+			/*
+			 * Map Database Mapping Descriptors
+			 */
+			Iterator<String> databaseMappingDescriptors = libraryDescriptor.getDatabaseMappingPaths();
+			while(databaseMappingDescriptors.hasNext()) {
+
+				String libraryDatabaseMappingDescriptorPath = databaseMappingDescriptors.next();
+				
+				String databaseDescriptorName = libraryDatabaseMappingDescriptorPath.substring(0, libraryDatabaseMappingDescriptorPath.indexOf(Constants.LIBRARY_DESCRIPTOR_DATABASE_MAPPING_SEPRATOR));
+				String databaseMappingDescriptor = libraryDatabaseMappingDescriptorPath.substring(libraryDatabaseMappingDescriptorPath.indexOf(Constants.LIBRARY_DESCRIPTOR_DATABASE_MAPPING_SEPRATOR) + 1, libraryDatabaseMappingDescriptorPath.length());
+				
+				
+				Iterator<DatabaseDescriptor> databaseDescriptors = applicationDescriptor.getDatabaseDescriptors();
+				while(databaseDescriptors.hasNext()) {
+					
+					DatabaseDescriptor databaseDescriptor = databaseDescriptors.next();
+					if(databaseDescriptor.getDatabaseName().equalsIgnoreCase(databaseDescriptorName)) {
+						databaseDescriptor.addDatabaseMappingPath(library + File.separator + databaseMappingDescriptor);
+					}
+				}
 			}
 			
-			jsDescriptor.addLibrary(libraryPath, libraryDescriptorParser.getLibraryDescriptor());
+			
+			/*
+			 * Map Adapters
+			 */
+			HybridDescriptor hybridDescriptor = hybridResources.getHybridDescriptor();
+			Iterator<String> adapterPaths = libraryDescriptor.getAdapterPaths();
+
+			while(adapterPaths.hasNext()) {
+				
+				String libraryAdapterPath = adapterPaths.next();
+				hybridDescriptor.addAdapterPath(library + File.separator + libraryAdapterPath);
+			}
 		}
-		
 	}
 	
 	
-	/**
-	 * It process all Adapters defined within HybridDescriptor.si.xml or in standalone xml file in Application, and stores in Resources.
-	 */
 	protected static void processAdapters() {
 		
-		HybridDescriptor jsDescriptor = hybridResources.getHybridDescriptor();
-		
-		Iterator<String> libraryPaths = jsDescriptor.getLibraryPaths();
-		Iterator<String> adapterPaths = jsDescriptor.getAdapterPaths();
-		
-		while(libraryPaths.hasNext()) {
-			String libraryPath = libraryPaths.next();
-			LibraryDescriptor libraryDescriptor = jsDescriptor.getLibraryDescriptorBasedOnPath(libraryPath);
+		HybridDescriptor hybridDescriptor = hybridResources.getHybridDescriptor();
+		Iterator<String> adapterPaths = hybridDescriptor.getAdapterPaths();
 
-			processAdapters(libraryPath, libraryDescriptor);
-		}
-
-		
-		processAdapters(adapterPaths);
-	}
-
-	
-	private static void processAdapters(final Iterator<String> adapterPaths) {
-		
-		HybridDescriptor jsDescriptor = hybridResources.getHybridDescriptor();
 		while(adapterPaths.hasNext()) {
 			String adapterPath = adapterPaths.next();
 			HybridDescriptorReader hybridDescriptorParser = new HybridDescriptorReader(adapterPath);
 			
-			Iterator<Adapter> adapters = hybridDescriptorParser.getJSDescriptor().getAdapters();
+			Iterator<Adapter> adapters = hybridDescriptorParser.getHybridDescriptor().getAdapters();
 			while(adapters.hasNext()) {
 				Adapter adapter = adapters.next();
-				jsDescriptor.addAdapter(adapterPath, adapter);				
+				hybridDescriptor.addAdapter(adapterPath, adapter);				
 			}
 		}
 	}
 	
 	
-	private static void processAdapters(final String libraryPackageName, final LibraryDescriptor libraryDescriptor) {
-		
-		Iterator<String> libraryAdapterPaths = libraryDescriptor.getAdapterPaths();
-		while(libraryAdapterPaths.hasNext()) {
-			String libraryAdapterPath = libraryAdapterPaths.next();
-			HybridDescriptorReader hybridDescriptorParser = new HybridDescriptorReader(libraryPackageName, libraryAdapterPath);
-			
-			Iterator<Adapter> adapters = hybridDescriptorParser.getJSDescriptor().getAdapters();
-			while(adapters.hasNext()) {
-				Adapter adapter = adapters.next();
-				libraryDescriptor.addAdapter(libraryAdapterPath, adapter);				
-			}
-		}
-	}
-
-
 	/**
 	 * It process all Events defined in ApplicationDescriptor.si.xml file in Application, and stores in Resources.
 	 */
@@ -316,9 +309,9 @@ public class Siminov extends siminov.orm.Siminov {
 		ISiminovEvents coreEventHandler = ormResources.getSiminovEventHandler();
 		if(ormResources.getSiminovEventHandler() != null) {
 			if(siminov.orm.Siminov.firstTimeProcessed) {
-				coreEventHandler.firstTimeSiminovInitialized();
+				coreEventHandler.onFirstTimeSiminovInitialized();
 			} else {
-				coreEventHandler.siminovInitialized();
+				coreEventHandler.onSiminovInitialized();
 			}
 		} 
 
