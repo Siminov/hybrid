@@ -28,10 +28,10 @@
 
 	<adapters>
 	    
-	    <adapter path="SiminovAdapter.si.xml" />
-	    <adapter path="EventHandler.si.xml"></adapter>
-		<adapter path="DatabaseAdapter.si.xml" />	    
-		<adapter path="ResourcesAdapter.si.xml" />
+	    <adapter>SiminovAdapter.si.xml</adapter>
+	    <adapter>EventHandler.si.xml</adapter>
+		<adapter>DatabaseAdapter.si.xml</adapter>	    
+		<adapter>ResourcesAdapter.si.xml</adapter>
 		
 	</adapters>
 		 
