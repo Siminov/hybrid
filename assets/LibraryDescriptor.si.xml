@@ -37,7 +37,7 @@
 	<!-- Optional Field -->
 		<!-- Database Mappings -->
 	<database-mappings>
-		<database-mapping path="full_path_of_database_mapping_descriptor_file" />
+		<database-mapping>name_of_database_descriptor.full_path_of_database_mapping_descriptor_file</database-mapping>
 	</database-mappings>
 	 
 	
@@ -46,7 +46,7 @@
 	<!-- Optional Field -->
 		<!-- Hybrid Adapters -->
 	<adapters>
-	    <adapter path="full_path_of_hybrid_adapter_file"></adapter>
+	    <adapter>full_path_of_hybrid_adapter_file</adapter>
 	</adapters>
 	
 	
@@ -70,6 +70,8 @@ Type Of Properties:
 
 	ii. Database Mapping Paths Needed Under This Library Descriptor.	 
 		
+		- Name of database descriptor associated to.
+
 		- Provide full database mapping descriptor file path if you have used xml format to define ORM.
 
 		- Provide full class path of database mapping descriptor POJO class if you have used annotation to define ORM.
