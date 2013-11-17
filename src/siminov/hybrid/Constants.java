@@ -48,11 +48,6 @@ public interface Constants {
 	public String HYBRID_DESCRIPTOR_ADAPTER_ADAPTER = "adapter";
 	
 	/**
-	 * HybridDescriptor.si.xml file Adapter Path TAG.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_ADAPTER_PATH = "path";
-	
-	/**
 	 * HybridDescriptor.si.xml file Adapter property NAME.
 	 */
 	public String HYBRID_DESCRIPTOR_ADAPTER_NAME = "name";
@@ -150,22 +145,6 @@ public interface Constants {
 	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN_DESCRIPTION = "description";
 	
 	
-	/**
-	 * HybridDescriptor.si.xml file Libraries TAG.
-	 */
-	public String HYBRID_DESCRIPTOR_LIBRARIES = "libraries";
-	
-	/**
-	 * HybridDescriptor.si.xml file Library TAG.
-	 */
-	public String HYBRID_DESCRIPTOR_LIBRARY = "library";
-	
-	/**
-	 * HybridDescriptor.si.xml file Library property PATH.
-	 */
-	public String HYBRID_DESCRIPTOR_LIBRARY_PATH = "path";
-	
-	
 	//SiminovDataFormat
 	
 	/**
@@ -208,36 +187,8 @@ public interface Constants {
 	 */
 	public String HYBRID_SIMINOV_DATA_JSON_CDATA_SECTION = "#cdata-section";
 	
-	//Siminov - Hybrid Library Path
-	
-	/**
-	 * Siminov Hybrid LibraryDescriptor.si.xml file path.
-	 */
-	public String HYBRID_DESCRIPTOR_SIMINOV_HYBRID_LIBRARY_PATH = "siminov.hybrid.adapter.resources";
-
 	
 	//HYBRID-Library Descriptor
-	
-	/**
-	 * LibraryDescriptor.si.xml file Name.
-	 */
-	public String HYBRID_LIBRARY_DESCRIPTOR_FILE_NAME = "LibraryDescriptor.si.xml";
-	
-	/**
-	 * LibraryDescriptor.si.xml file Property TAG. 
-	 */
-	public String HYBRID_LIBRARY_DESCRIPTOR_PROPERTY = "property";
-	
-	
-	/**
-	 * LibraryDescriptor.si.xml file property NAME.
-	 */
-	public String HYBRID_LIBRARY_DESCRIPTOR_NAME = "name";
-	
-	/**
-	 * LibraryDescriptor.si.xml file property DESCRIPTION.
-	 */
-	public String HYBRID_LIBRARY_DESCRIPTOR_DESCRIPTION = "description";
 	
 	/**
 	 * LibraryDescriptor.si.xml file Adapters TAG.
@@ -249,12 +200,7 @@ public interface Constants {
 	 */
 	public String HYBRID_LIBRARY_DESCRIPTOR_ADAPTER = "adapter";
 	
-	/**
-	 * LibraryDescriptor.si.xml file Adapter property PATH.
-	 */
-	public String HYBRID_LIBRARY_DESCRIPTOR_ADAPTER_PATH = "path";
-	
-	
+
 	//Siminov Adapter Handler.
 	
 	/**
