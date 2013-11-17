@@ -47,7 +47,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 	/**
 	 * Handle Database Created Event, and redirect to application databaseCreated event API.
 	 */
-	public void databaseCreated(DatabaseDescriptor databaseDescriptor) {
+	public void onDatabaseCreated(DatabaseDescriptor databaseDescriptor) {
 		
 		if(!hybridResources.doesEventsRegistered()) {
 			return;
@@ -56,7 +56,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		IDatabaseEvents databaseEvents = eventHandler.getDatabaseEvents();
 		if(databaseEvents != null) {
-			databaseEvents.databaseCreated(databaseDescriptor);
+			databaseEvents.onDatabaseCreated(databaseDescriptor);
 		}
 
 		
@@ -121,7 +121,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 	/**
 	 * Handle Database Dropped Event, and redirect to application databaseDropped event API.
 	 */
-	public void databaseDropped(DatabaseDescriptor databaseDescriptor) {
+	public void onDatabaseDropped(DatabaseDescriptor databaseDescriptor) {
 
 		if(!hybridResources.doesEventsRegistered()) {
 			return;
@@ -130,7 +130,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		IDatabaseEvents databaseEvents = eventHandler.getDatabaseEvents();
 		if(databaseEvents != null) {
-			databaseEvents.databaseDropped(databaseDescriptor);
+			databaseEvents.onDatabaseDropped(databaseDescriptor);
 		}
 
 		
@@ -194,7 +194,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 	/**
 	 * Handle Table Created Event, and redirect to application tableCreated event API.
 	 */
-	public void tableCreated(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor) {
+	public void onTableCreated(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor) {
 	
 		if(!hybridResources.doesEventsRegistered()) {
 			return;
@@ -203,7 +203,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		IDatabaseEvents databaseEvents = eventHandler.getDatabaseEvents();
 		if(databaseEvents != null) {
-			databaseEvents.tableCreated(databaseDescriptor, databaseMappingDescriptor);
+			databaseEvents.onTableCreated(databaseDescriptor, databaseMappingDescriptor);
 		}
 
 		
@@ -273,7 +273,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 	/**
 	 * Handle Table Dropped Event, and redirect to application tableDropped event API.
 	 */
-	public void tableDropped(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor) {
+	public void onTableDropped(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor) {
 		
 		if(!hybridResources.doesEventsRegistered()) {
 			return;
@@ -282,7 +282,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		IDatabaseEvents databaseEvents = eventHandler.getDatabaseEvents();
 		if(databaseEvents != null) {
-			databaseEvents.tableDropped(databaseDescriptor, databaseMappingDescriptor);
+			databaseEvents.onTableDropped(databaseDescriptor, databaseMappingDescriptor);
 		}
 
 		
@@ -351,7 +351,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 	/**
 	 * Handle Index Created Event, and redirect to application indexCreated event API.
 	 */
-	public void indexCreated(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor, Index index) {
+	public void onIndexCreated(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor, Index index) {
 		
 		if(!hybridResources.doesEventsRegistered()) {
 			return;
@@ -360,7 +360,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		IDatabaseEvents databaseEvents = eventHandler.getDatabaseEvents();
 		if(databaseEvents != null) {
-			databaseEvents.indexCreated(databaseDescriptor, databaseMappingDescriptor, index);
+			databaseEvents.onIndexCreated(databaseDescriptor, databaseMappingDescriptor, index);
 		}
 
 		
@@ -431,7 +431,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 	/**
 	 * Handle Index Dropped Event, and redirect to application indexDropped event API.
 	 */
-	public void indexDropped(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor, Index index) {
+	public void onIndexDropped(DatabaseDescriptor databaseDescriptor, DatabaseMappingDescriptor databaseMappingDescriptor, Index index) {
 
 		if(!hybridResources.doesEventsRegistered()) {
 			return;
@@ -440,7 +440,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		IDatabaseEvents databaseEvents = eventHandler.getDatabaseEvents();
 		if(databaseEvents != null) {
-			databaseEvents.indexDropped(databaseDescriptor, databaseMappingDescriptor, index);
+			databaseEvents.onIndexDropped(databaseDescriptor, databaseMappingDescriptor, index);
 		}
 
 		
