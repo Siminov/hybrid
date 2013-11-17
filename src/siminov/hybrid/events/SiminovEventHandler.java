@@ -44,7 +44,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 	/**
 	 * Handle event if Siminov is initialized for first time, and redirect to application firstTimeSiminovInitialized event API.
 	 */
-	public void firstTimeSiminovInitialized() {
+	public void onFirstTimeSiminovInitialized() {
 
 		if(!hybridResources.doesEventsRegistered()) {
 			return;
@@ -53,7 +53,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 
 		ISiminovEvents siminovEvents = eventHandler.getSiminovEvent();
 		if(siminovEvents != null) {
-			siminovEvents.firstTimeSiminovInitialized();
+			siminovEvents.onFirstTimeSiminovInitialized();
 		}
 		
 	
@@ -106,7 +106,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 	/**
 	 * Handle event if Siminov is initialized, and redirect to application siminovInitialized event API.
 	 */
-	public void siminovInitialized() {
+	public void onSiminovInitialized() {
 
 		if(!hybridResources.doesEventsRegistered()) {
 			return;
@@ -115,7 +115,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		
 		ISiminovEvents siminovEvents = eventHandler.getSiminovEvent();
 		if(siminovEvents != null) {
-			siminovEvents.siminovInitialized();
+			siminovEvents.onSiminovInitialized();
 		}
 
 		
@@ -168,7 +168,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 	/**
 	 * Handle event if Siminov is stopped, and redirect to application siminovStopped event API.
 	 */
-	public void siminovStopped() {
+	public void onSiminovStopped() {
 		
 		if(!hybridResources.doesEventsRegistered()) {
 			return;
@@ -177,7 +177,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		
 		ISiminovEvents siminovEvents = eventHandler.getSiminovEvent();
 		if(siminovEvents != null) {
-			siminovEvents.siminovStopped();
+			siminovEvents.onSiminovStopped();
 		}
 
 		
