@@ -37,8 +37,6 @@ import siminov.hybrid.model.HybridDescriptor.Adapter.Handler.Parameter;
 import siminov.hybrid.model.HybridDescriptor.Adapter.Handler.Return;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.model.LibraryDescriptor;
-import siminov.orm.database.DatabaseBundle;
 import siminov.orm.model.DatabaseDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor.Column;
@@ -111,42 +109,9 @@ public class Resources {
 	 * @return All Adapters.
 	 */
 	public Iterator<Adapter> getAdapters() {
-		
-		Iterator<Adapter> adapters = hybridDescriptor.getAdapters();
-		Iterator<Adapter> libraryAdapters = getLibrariesAdapters();
-
-		Collection<Adapter> allAdapters = new ArrayList<Adapter>();
-		while(adapters.hasNext()) {
-			allAdapters.add(adapters.next());
-		}
-		
-		while(libraryAdapters.hasNext()) {
-			allAdapters.add(libraryAdapters.next());
-		}
-		
-		return allAdapters.iterator();
+		return hybridDescriptor.getAdapters();
 	}
 	
-	/**
-	 * Get All Adapters defined in Libraries.
-	 * @return All Adapters.
-	 */
-	public Iterator<Adapter> getLibrariesAdapters() {
-		
-		Iterator<LibraryDescriptor> libraries = hybridDescriptor.getLibraries();
-		Collection<Adapter> adapters = new ArrayList<Adapter>();
-		
-		while(libraries.hasNext()) {
-			LibraryDescriptor libraryDescriptor = libraries.next();
-			Iterator<Adapter> libraryAdapters = libraryDescriptor.getAdapters();
-			
-			while(libraryAdapters.hasNext()) {
-				adapters.add(libraryAdapters.next());
-			}
-		}
-		
-		return adapters.iterator();
-	}
 	
 	/**
 	 * Get All Adapters Defined By Paths.
@@ -165,23 +130,6 @@ public class Resources {
 		return adapters.iterator();
 	}
 	
-	/**
-	 * Get All Adapters based on library name.
-	 * @param libraryName Name of Library.
-	 * @return All Adapters.
-	 */
-	public Iterator<Adapter> getLibraryAdaptersBasedOnName(final String libraryName) {
-		return hybridDescriptor.getLibraryDescriptorBasedOnName(libraryName).getAdapters();
-	}
-	
-	/**
-	 * Get All Adapters based on library path.
-	 * @param libraryPath Path of Library.
-	 * @return All Adapters.
-	 */
-	public Iterator<Adapter> getLibraryAdaptersBasedOnPath(final String libraryPath) {
-		return hybridDescriptor.getLibraryDescriptorBasedOnPath(libraryPath).getAdapters();
-	}
 
 	/**
 	 * Get Adapter based on Adapter Name.
@@ -192,16 +140,6 @@ public class Resources {
 		boolean contain = hybridDescriptor.containAdapterBasedOnName(adapterName);
 		if(contain) {
 			return hybridDescriptor.getAdapterBasedOnName(adapterName);
-		}
-		
-		Iterator<LibraryDescriptor> libraries = hybridDescriptor.getLibraries();
-		while(libraries.hasNext()) {
-			LibraryDescriptor libraryDescriptor = libraries.next();
-			contain = libraryDescriptor.containAdapterBasedOnName(adapterName);
-			
-			if(contain) {
-				return libraryDescriptor.getAdapterBasedOnName(adapterName);
-			}
 		}
 		
 		return null;
@@ -237,41 +175,6 @@ public class Resources {
 		return null;
 	}
 	
-	/**
-	 * Get Adapter based on library name and adapter name,
-	 * @param libraryName Name of Library.
-	 * @param adapterName Name of Adapter.
-	 * @return Adapter.
-	 */
-	public Adapter getLibraryAdapterBasedOnName(final String libraryName, final String adapterName) {
-
-		LibraryDescriptor libraryDescriptor = hybridDescriptor.getLibraryDescriptorBasedOnName(libraryName);
-		boolean contain = libraryDescriptor.containAdapterBasedOnName(adapterName);
-		
-		if(contain) {
-			return libraryDescriptor.getAdapterBasedOnName(adapterName);
-		}
-		
-		return null;
-	}
-
-	/**
-	 * Get Adapter based on library path and adapter path.
-	 * @param libraryPath Name of Library.
-	 * @param adapterPath Path of Adapter.
-	 * @return Adapter.
-	 */
-	public Adapter getLibraryAdapterBasedOnPath(final String libraryPath, final String adapterPath) {
-		
-		LibraryDescriptor libraryDescriptor = hybridDescriptor.getLibraryDescriptorBasedOnPath(libraryPath);
-		boolean contain = libraryDescriptor.containAdapterBasedOnPath(adapterPath);
-		
-		if(contain) {
-			return libraryDescriptor.getAdapterBasedOnPath(adapterPath);
-		}
-		
-		return null;
-	}
 	
 	/**
 	 * Check whether adapter exist or not based on adapter name.
@@ -279,20 +182,10 @@ public class Resources {
 	 * @return true/false; TRUE if adapter exist, FALSE if adapter does not exist.
 	 */
 	public boolean containAdapterBasedOnName(final String adapterName) {
+		
 		boolean contain = hybridDescriptor.containAdapterBasedOnName(adapterName);
 		if(contain) {
 			return contain;
-		}
-		
-		Iterator<String> libraryPaths = hybridDescriptor.getLibraryPaths();
-		while(libraryPaths.hasNext()) {
-			String libraryPath = libraryPaths.next();
-			LibraryDescriptor libraryDescriptor = hybridDescriptor.getLibraryDescriptorBasedOnPath(libraryPath);
-			
-			contain = containAdapterBasedOnLibraryName(libraryDescriptor.getName(), adapterName);
-			if(contain) {
-				return contain;
-			}
 		}
 		
 		return false;
@@ -307,45 +200,6 @@ public class Resources {
 		return hybridDescriptor.containAdapterBasedOnPath(adapterPath);
 	}
 	
-	/**
-	 * Check whether adapter exist based on library name and adapter name.
-	 * @param libraryName Name of Library.
-	 * @param adapterName Name of Adapter.
-	 * @return true/false; TRUE if adapter exist, FALSE if adapter does not exist.
-	 */
-	public boolean containAdapterBasedOnLibraryName(final String libraryName, final String adapterName) {
-		LibraryDescriptor libraryDescriptor = hybridDescriptor.getLibraryDescriptorBasedOnName(libraryName);
-		return libraryDescriptor.containAdapterBasedOnName(adapterName);
-	}
-
-	/**
-	 * Check whether adapter exist or not based on library path and adapter path.
-	 * @param libraryPath Path of Library.
-	 * @param adapterPath Path of Adapter.
-	 * @return true/false; TRUE if adapter exist, FALSE if adapter does not exist.
-	 */
-	public boolean containAdapterBasedOnLibraryPath(final String libraryPath, final String adapterPath) {
-		LibraryDescriptor libraryDescriptor = hybridDescriptor.getLibraryDescriptorBasedOnPath(libraryPath);
-		return libraryDescriptor.containAdapterBasedOnPath(adapterPath);
-	}
-	
-	/**
-	 * Check whether Library exist based on library name.
-	 * @param libraryName Name of Library.
-	 * @return true/false; TRUE if library exist, FALSE if library does not exist.
-	 */
-	public boolean containLibraryBasedOnName(final String libraryName) {
-		return hybridDescriptor.containLibraryBasedOnName(libraryName);
-	}
-
-	/**
-	 * Check whether Library exist based on library path.
-	 * @param libraryPath Path of Library.
-	 * @return true/false; TRUE if library exist, FALSE if library does not exist.
-	 */
-	public boolean containLibraryBasedOnPath(final String libraryPath) {
-		return hybridDescriptor.containLibraryBasedOnPath(libraryPath);
-	}
 	
 	/**
 	 * Get All Handlers defined by Application.
@@ -515,27 +369,6 @@ public class Resources {
 	 */
 
 	/**
-	 * Get Database Bundle based on database mapping descriptor class name as per Web model.
-	 * @param className Name of Web Model Class.
-	 * @return Database Bundle.
-	 */
-	public DatabaseBundle getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(final String className) {
-		
-		String nativeClassName = webNativeClassMapping.get(className);
-		return ormResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(nativeClassName);
-		
-	}
-	
-	/**
-	 * Get Database Bundle based on database mapping descriptor table name.
-	 * @param tableName Name of Table.
-	 * @return Database Bundle.
-	 */
-	public DatabaseBundle getDatabaseBundleBasedOnDatabaseMappingDescriptorTableName(final String tableName) {
-		return ormResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorTableName(tableName);
-	}
-	
-	/**
 	 * Get Database Descriptor based on Web model class name.
 	 * @param className Name of Web Model Class.
 	 * @return Database Descriptor.
@@ -676,7 +509,7 @@ public class Resources {
 		
 		HybridSiminovValue isLockingRequired = new HybridSiminovValue();
 		isLockingRequired.setType(HybridDatabaseDescriptor.IS_LOCKING_REQUIRED);
-		isLockingRequired.setValue(Boolean.toString(databaseDescriptor.isLockingRequired()));
+		isLockingRequired.setValue(Boolean.toString(databaseDescriptor.isTransactionSafe()));
 		
 		hybridDatabaseDescriptor.addValue(isLockingRequired);
 		
@@ -701,21 +534,6 @@ public class Resources {
 		}
 		
 		hybridDatabaseDescriptor.addData(webDatabaseMappingDescriptorPaths);
-		
-		HybridSiminovData hybridLibraries = new HybridSiminovData();
-		hybridLibraries.setDataType(HybridDatabaseDescriptor.LIBRARIES);
-		
-		Iterator<String> libraries = databaseDescriptor.getLibraryPaths();
-		while(libraries.hasNext()) {
-			
-			HybridSiminovValue library = new HybridSiminovValue();
-			library.setType(HybridDatabaseDescriptor.LIBRARY_PATH);
-			library.setValue(libraries.next());
-			
-			hybridLibraries.addValue(library);
-		}
-		
-		hybridDatabaseDescriptor.addData(hybridLibraries);
 		
 		return hybridDatabaseDescriptor;
 	}
@@ -1033,23 +851,6 @@ public class Resources {
 		}
 		
 		hybridWebDescriptor.addData(hybridAdapterPaths);
-		
-		
-		HybridSiminovData hybridLibraries = new HybridSiminovData();
-		hybridLibraries.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.LIBRARIES);
-		
-		Iterator<String> libraries = hybridDescriptor.getLibraryPaths();
-		while(libraries.hasNext()) {
-			
-			HybridSiminovValue webLibrary = new HybridSiminovValue();
-			webLibrary.setType(siminov.hybrid.adapter.constants.HybridDescriptor.LIBRARY);
-			webLibrary.setValue(libraries.next());
-			
-			hybridLibraries.addValue(webLibrary);
-			
-		}
-		
-		hybridWebDescriptor.addData(hybridLibraries);
 		
 		hybridWebDescriptor.addData(hybridAdapters);
 
