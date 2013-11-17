@@ -93,7 +93,7 @@ public class DatabaseHandler {
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
 		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(className);
 		
-		DatabaseBundle databaseBundle = hybridResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(className);
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
@@ -223,22 +223,22 @@ public class DatabaseHandler {
 		
 	}
 	
-	private static final void update(HybridSiminovData jsSiminovData) throws DatabaseException {
+	private static final void update(HybridSiminovData hybridSiminovData) throws DatabaseException {
 		
-		String className = jsSiminovData.getDataType();
-		Iterator<HybridSiminovValue> jsValues = jsSiminovData.getValues();
+		String className = hybridSiminovData.getDataType();
+		Iterator<HybridSiminovValue> hybridSiminovValue = hybridSiminovData.getValues();
 		
-		Map<String, HybridSiminovValue> jsSiminovValues = new HashMap<String, HybridSiminovValue>();
-		while(jsValues.hasNext()) {
-			HybridSiminovValue jsSiminovValue = jsValues.next();
-			jsSiminovValues.put(jsSiminovValue.getType(), jsSiminovValue);
+		Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
+		while(hybridSiminovValue.hasNext()) {
+			HybridSiminovValue jsSiminovValue = hybridSiminovValue.next();
+			hybridSiminovValues.put(jsSiminovValue.getType(), jsSiminovValue);
 		}
 		
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
 		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(className);
 
-		DatabaseBundle databaseBundle = hybridResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(className);
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
@@ -254,7 +254,7 @@ public class DatabaseHandler {
 			Column column = columns.next();
 			
 			String columnName = column.getColumnName();
-			Object columnValue = jsSiminovValues.get(column.getVariableName()).getValue();
+			Object columnValue = hybridSiminovValues.get(column.getVariableName()).getValue();
 			
 			columnNames.add(columnName);
 			columnValues.add(columnValue);
@@ -269,11 +269,11 @@ public class DatabaseHandler {
 		}
 
 		
-		processManyToOneRelationship(jsSiminovData, whereClause);
-		processManyToManyRelationship(jsSiminovData, whereClause);
+		processManyToOneRelationship(hybridSiminovData, whereClause);
+		processManyToManyRelationship(hybridSiminovData, whereClause);
 
-		processManyToOneRelationship(jsSiminovData, columnNames, columnValues);
-		processManyToManyRelationship(jsSiminovData, columnNames, columnValues);
+		processManyToOneRelationship(hybridSiminovData, columnNames, columnValues);
+		processManyToManyRelationship(hybridSiminovData, columnNames, columnValues);
 		
 		
 
@@ -313,7 +313,7 @@ public class DatabaseHandler {
 			if(relationshipType.equalsIgnoreCase(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_ONE_TO_ONE)) {
 				
 				HybridSiminovData referedData = null;
-				Iterator<HybridSiminovData> datas = jsSiminovData.getDatas();
+				Iterator<HybridSiminovData> datas = hybridSiminovData.getDatas();
 				while(datas.hasNext()) {
 					
 					HybridSiminovData data = datas.next();
@@ -333,28 +333,28 @@ public class DatabaseHandler {
 				saveOrUpdate(referedData);
 			} else if(relationshipType.equalsIgnoreCase(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_ONE_TO_MANY)) {
 				
-				Iterator<HybridSiminovData> datas = jsSiminovData.getDatas();
+				Iterator<HybridSiminovData> datas = hybridSiminovData.getDatas();
 				while(datas.hasNext()) {
 					
 					HybridSiminovData data = datas.next();
 					
 					String mappedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
-						data.addData(jsSiminovData);
+						data.addData(hybridSiminovData);
 						saveOrUpdate(data);
 					}
 				}
 				
 			} else if(relationshipType.equalsIgnoreCase(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_MANY_TO_MANY)) {
 				
-				Iterator<HybridSiminovData> datas = jsSiminovData.getDatas();
+				Iterator<HybridSiminovData> datas = hybridSiminovData.getDatas();
 				while(datas.hasNext()) {
 					
 					HybridSiminovData data = datas.next();
 					
 					String mappedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
-						data.addData(jsSiminovData);
+						data.addData(hybridSiminovData);
 						saveOrUpdate(data);
 					}
 				}
@@ -522,7 +522,7 @@ public class DatabaseHandler {
 		
 		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
 		
-		DatabaseBundle databaseBundle = hybridResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
@@ -564,8 +564,10 @@ public class DatabaseHandler {
 	public String select(final String className, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 
-		DatabaseBundle databaseBundle = hybridResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(className);
+		
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
@@ -652,8 +654,9 @@ public class DatabaseHandler {
 	public String selectManual(final String className, final String query) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 
-		DatabaseBundle databaseBundle = hybridResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(className);
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabase database = databaseBundle.getDatabase();
 		
 		if(database == null) {
@@ -699,7 +702,9 @@ public class DatabaseHandler {
 	
 	static HybridSiminovDatas lazyFetch(final DatabaseMappingDescriptor databaseMappingDescriptor, final boolean distinct, final String whereClause, final Iterator<String> columnNames, final Iterator<String> groupBy, final String having, final Iterator<String> orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
-		DatabaseBundle databaseBundle = hybridResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
@@ -736,7 +741,7 @@ public class DatabaseHandler {
 	 */
 	public void beginTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
-		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseDescriptorName(databaseDescriptorName);
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptorName);
 		IDatabase database = databaseBundle.getDatabase();
 
 		if(database == null) {
@@ -756,7 +761,7 @@ public class DatabaseHandler {
 	 */
 	public void commitTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
-		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseDescriptorName(databaseDescriptorName);
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptorName);
 		IDatabase database = databaseBundle.getDatabase();
 
 		if(database == null) {
@@ -776,7 +781,7 @@ public class DatabaseHandler {
 	 */
 	public void endTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
-		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseDescriptorName(databaseDescriptorName);
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptorName);
 		IDatabase database = databaseBundle.getDatabase();
 
 		if(database == null) {
@@ -831,7 +836,7 @@ public class DatabaseHandler {
 	static int count(final DatabaseMappingDescriptor databaseMappingDescriptor, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -920,7 +925,7 @@ public class DatabaseHandler {
 	private static final int avg(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = hybridResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -1015,7 +1020,7 @@ public class DatabaseHandler {
 	private static final int sum(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = hybridResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -1109,7 +1114,7 @@ public class DatabaseHandler {
 	private static final int total(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -1203,7 +1208,7 @@ public class DatabaseHandler {
 	private static final int min(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -1299,7 +1304,7 @@ public class DatabaseHandler {
 	private static final int max(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -1394,7 +1399,7 @@ public class DatabaseHandler {
 	private static String groupConcat(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResources.getDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());
+		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabase database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
