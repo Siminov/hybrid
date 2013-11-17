@@ -358,166 +358,16 @@ public class ResourcesHandler {
 	
 	
 	/**
-	 * Handle Get Library Descriptors Paths Request From Web.
-	 * @return Library Descriptors Paths.
-	 * @throws SiminovException If any error occur while getting Library Descriptor Paths.
-	 */
-	public String getLibraryDescriptorPaths() throws SiminovException {
-		
-		Iterator<String> libraryDescriptorPaths = ormResources.getLibraryPaths();
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		HybridSiminovData hybridLibraryDescriptorPaths = new HybridSiminovData();
-		hybridLibraryDescriptorPaths.setDataType(HybridLibraryDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATHS);
-		
-		while(libraryDescriptorPaths.hasNext()) {
-			
-			HybridSiminovValue libraryDescriptorPath = new HybridSiminovValue();
-			libraryDescriptorPath.setType(HybridLibraryDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATH);
-			libraryDescriptorPath.setValue(libraryDescriptorPaths.next());
-
-			hybridLibraryDescriptorPaths.addValue(libraryDescriptorPath);
-			
-		}
-		
-		hybridSiminovDatas.addHybridSiminovData(hybridLibraryDescriptorPaths);
-		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-	
-	/**
-	 * Handle Get Library Paths Based On Database Descriptor Name Request From Web.
-	 * @param databaseDescriptorName Name of Database Descriptor.
-	 * @return Library Paths
-	 * @throws SiminovException If any error occur while getting library paths.
-	 */
-	public String getLibraryPathsBasedOnDatabaseDescriptorName(final String databaseDescriptorName) throws SiminovException {
-	
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnName(databaseDescriptorName); 
-		Iterator<String> libraryDescriptorPaths = databaseDescriptor.getLibraryPaths();
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		HybridSiminovData hybridLibraryDescriptorPaths = new HybridSiminovData();
-		hybridLibraryDescriptorPaths.setDataType(HybridLibraryDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATHS);
-		
-		while(libraryDescriptorPaths.hasNext()) {
-			
-			HybridSiminovValue libraryDescriptorPath = new HybridSiminovValue();
-			libraryDescriptorPath.setType(HybridLibraryDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATH);
-			libraryDescriptorPath.setValue(libraryDescriptorPaths.next());
-
-			hybridLibraryDescriptorPaths.addValue(libraryDescriptorPath);
-			
-		}
-		
-		hybridSiminovDatas.addHybridSiminovData(hybridLibraryDescriptorPaths);
-		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-
-	/**
-	 * Handle Get Library Descriptors Request From Web.
-	 * @return Library Descriptors.
-	 * @throws SiminovException If any error occur while getting Library Descriptors.
-	 */
-	public String getLibraryDescriptors() throws SiminovException {
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		
-		Iterator<LibraryDescriptor> libraryDescriptors = ormResources.getLibraries();
-		while(libraryDescriptors.hasNext()) {
-			hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridLibraryDescriptor(libraryDescriptors.next()));
-		}
-
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-	
-	/**
-	 * Handle Get Libraries Based On Database Descriptor Name Request From Web.
-	 * @param databaseDescriptorName Name of Database Descriptor.
-	 * @return Libraries.
-	 * @throws SiminovException If any occur while getting libraries.
-	 */
-	public String getLibrariesBasedOnDatabaseDescriptorName(final String databaseDescriptorName) throws SiminovException {
-	
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnName(databaseDescriptorName);
-		Iterator<LibraryDescriptor> libraryDescriptors = databaseDescriptor.getLibraryDescriptors();
-
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		
-		while(libraryDescriptors.hasNext()) {
-			hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridLibraryDescriptor(libraryDescriptors.next()));
-		}
-
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-	
-	/**
-	 * Handle Get Library Database Mapping Descriptors Based On Library Descriptor Path Request From Web.
-	 * @param libraryDescriptorPath Library Descriptor Path.
-	 * @return Library Database Mapping Descriptors.
-	 * @throws SiminovException If any error occur while getting Library Database Mapping Descriptors.
-	 */
-	public String getLibraryDatabaseMappingDescriptorsBasedOnLibraryDescriptorPath(final String libraryDescriptorPath) throws SiminovException {
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		Iterator<DatabaseMappingDescriptor> libraryDatabaseMappingDescriptors = ormResources.getLibraryDatabaseMappingDescriptorsBasedOnLibraryDescriptorPath(libraryDescriptorPath);
-		
-		while(libraryDatabaseMappingDescriptors.hasNext()) {
-			hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseMappingDescriptor(libraryDatabaseMappingDescriptors.next()));
-		}
-
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-	
-	/**
 	 * Handle Remove Database Based On Database Descriptor Name Request From Web.
 	 * @param databaseDescriptorName Name of Database Descriptor.
 	 * @throws SiminovException If any error occur while removing Database.
 	 */
 	public void removeDatabaseBasedOnDatabaseDescriptorName(final String databaseDescriptorName) throws SiminovException {
 		
-		ormResources.removeDatabaseBundleBasedOnDatabaseDescriptorName(databaseDescriptorName);
+		ormResources.removeDatabaseBundle(databaseDescriptorName);
 		
 	}
 	
-	
-	/**
-	 * Handle Remove Database Based On Database Mapping Descriptor Class Name.
-	 * @param databaseMappingDescriptorClassName Name of Database Mapping Descriptor Class Name.
-	 * @throws SiminovException If any error occur while removing Database Mapping Descriptor Class Name.
-	 */
-	public void removeDatabaseBasedOnDatabaseMappingDescriptorClassName(final String databaseMappingDescriptorClassName) throws SiminovException {
-		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(databaseMappingDescriptorClassName);
-		
-		ormResources.removeDatabaseBundleBasedOnDatabaseMappingDescriptorClassName(databaseMappingDescriptor.getClassName());
-		
-	}
-	
-	
-	/**
-	 * Handle Remove Database Based On Database Mapping Descriptor Table Name Request From Web.
-	 * @param databaseMappingDescriptorTableName Name of Table.
-	 * @throws SiminovException If any error occur while removing Database.
-	 */
-	public void removeDatabaseBasedOnDatabaseMappingDescriptorTableName(final String databaseMappingDescriptorTableName) throws SiminovException {
-		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnTableName(databaseMappingDescriptorTableName);
-		
-		ormResources.removeDatabaseBundleBasedOnDatabaseMappingDescriptorTableName(databaseMappingDescriptor.getTableName());
-
-	}
 	
 	
 	/**
@@ -561,29 +411,6 @@ public class ResourcesHandler {
 	
 	
 	/**
-	 * Handle Get Library Adapters Request From Web.
-	 * @return Library Adapters.
-	 * @throws SiminovException If any error occur while getting Library Adapters.
-	 */
-	public String getLibrariesAdapters() throws SiminovException {
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		HybridSiminovData hybridAdapters = new HybridSiminovData();
-		hybridAdapters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTERS);
-		
-		Iterator<Adapter> adapters = hybridResources.getLibrariesAdapters();
-		while(adapters.hasNext()) {
-			hybridAdapters.addData(hybridResources.generateHybridAdapter(adapters.next()));
-		}
-		
-		hybridSiminovDatas.addHybridSiminovData(hybridAdapters);
-		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-	
-	/**
 	 * Handle Get Adapters Based On Paths Request From Web.
 	 * @return Adapter Paths
 	 * @throws SiminovException If any error occur while getting adapter paths.
@@ -595,54 +422,6 @@ public class ResourcesHandler {
 		hybridAdapters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTERS);
 		
 		Iterator<Adapter> adapters = hybridResources.getAdaptersBasedOnPaths();
-		while(adapters.hasNext()) {
-			hybridAdapters.addData(hybridResources.generateHybridAdapter(adapters.next()));
-		}
-		
-		hybridSiminovDatas.addHybridSiminovData(hybridAdapters);
-		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-	
-	/**
-	 * Handle Get Library Adapters Based On Library Name Request From Web. 
-	 * @param libraryName Name of Library.
-	 * @return Library Adapters 
-	 * @throws SiminovException If any error occur while getting Library Adapters.
-	 */
-	public String getLibraryAdaptersBasedOnName(final String libraryName)  throws SiminovException {
-	
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		HybridSiminovData hybridAdapters = new HybridSiminovData();
-		hybridAdapters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTERS);
-		
-		Iterator<Adapter> adapters = hybridResources.getLibraryAdaptersBasedOnName(libraryName);
-		while(adapters.hasNext()) {
-			hybridAdapters.addData(hybridResources.generateHybridAdapter(adapters.next()));
-		}
-		
-		hybridSiminovDatas.addHybridSiminovData(hybridAdapters);
-		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-	
-	/**
-	 * Handle Get Library Adapters Based On Library Path Request From Web.
-	 * @param libraryPath Library Path
-	 * @return Library Adapters.
-	 * @throws SiminovException If any error occur while getting Library Adapters.
-	 */
-	public String getLibraryAdaptersBasedOnPath(final String libraryPath)  throws SiminovException {
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		HybridSiminovData hybridAdapters = new HybridSiminovData();
-		hybridAdapters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTERS);
-		
-		Iterator<Adapter> adapters = hybridResources.getLibraryAdaptersBasedOnPath(libraryPath);
 		while(adapters.hasNext()) {
 			hybridAdapters.addData(hybridResources.generateHybridAdapter(adapters.next()));
 		}
@@ -687,40 +466,6 @@ public class ResourcesHandler {
 
 	
 	/**
-	 * Handle Get Library Adapter Based On Name Request From Web.
-	 * @param libraryName Name of Library.
-	 * @param adapterName Name of Adapter.
-	 * @return Library Adapter.
-	 * @throws SiminovException If any error occur while getting Library Adapter.
-	 */
-	public String getLibraryAdapterBasedOnName(final String libraryName, final String adapterName) throws SiminovException {
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridAdapter(hybridResources.getLibraryAdapterBasedOnName(libraryName, adapterName)));
-		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
-		
-	}
-
-	
-	/**
-	 * Handle Get Library Adapter Based On Path Request From Web.
-	 * @param libraryPath Library Path
-	 * @param adapterPath Adapter Path
-	 * @return Library Adapter.
-	 * @throws SiminovException If any error occur while getting Library Adapter.
-	 */
-	public String getLibraryAdapterBasedOnPath(final String libraryPath, final String adapterPath) throws SiminovException {
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridAdapter(hybridResources.getLibraryAdapterBasedOnPath(libraryPath, adapterPath)));
-		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
-		
-	}
-
-	
-	/**
 	 * Handle Check Adapter Based On Adapter Name Request From Web.
 	 * @param adapterName Name of Adapter.
 	 * @return true/false
@@ -739,52 +484,6 @@ public class ResourcesHandler {
 	 */
 	public boolean containAdapterBasedOnPath(final String adapterPath) throws SiminovException {
 		return hybridResources.containAdapterBasedOnPath(adapterPath);
-	}
-
-	
-	/**
-	 * Handle Check Adapter Based On Library Name Request From Web.
-	 * @param libraryName Name of Library.
-	 * @param adapterName Name of Adapter.
-	 * @return true/false
-	 * @throws SiminovException If any error occur while checking Adapter exist or not.
-	 */
-	public boolean containAdapterBasedOnLibraryName(final String libraryName, final String adapterName) throws SiminovException {
-		return hybridResources.containAdapterBasedOnLibraryName(libraryName, adapterName);
-	}
-
-	
-	/**
-	 * Handle Check Adapter Based On Library Path Request From Web.
-	 * @param libraryPath Library Path
-	 * @param adapterPath Adapter Path
-	 * @return true/false
-	 * @throws SiminovException If any error occur while checking Adapter exist or not.
-	 */
-	public boolean containAdapterBasedOnLibraryPath(final String libraryPath, final String adapterPath) throws SiminovException {
-		return hybridResources.containAdapterBasedOnLibraryPath(libraryPath, adapterPath);
-	}
-
-	
-	/**
-	 * Handle Check Library Based On Library Name Request From Web.
-	 * @param libraryName Name of Library.
-	 * @return true/false
-	 * @throws SiminovException If any error occur while checking Library exist or not.
-	 */
-	public boolean containLibraryBasedOnName(final String libraryName) throws SiminovException {
-		return hybridResources.containLibraryBasedOnName(libraryName);
-	}
-
-	
-	/**
-	 * Handle Check Library Based On Library Path Request From Web.
-	 * @param libraryPath Library Path.
-	 * @return true/false
-	 * @throws SiminovException If any error occur while checking Library exist or not.
-	 */
-	public boolean containLibraryBasedOnPath(final String libraryPath) throws SiminovException {
-		return hybridResources.containLibraryBasedOnPath(libraryPath);
 	}
 
 	
