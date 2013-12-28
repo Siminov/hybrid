@@ -24,8 +24,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import siminov.hybrid.model.HybridDescriptor.Adapter;
-
 
 /**
  * Exposes methods to GET and SET Library Descriptor information as per define in LibraryDescriptor.si.xml file by application.
@@ -53,95 +51,95 @@ Example:
  */
 public class LibraryDescriptor extends siminov.orm.model.LibraryDescriptor {
 
-	private Collection<String> adapterPaths = new ConcurrentLinkedQueue<String> ();
+	private Collection<String> adapterDescriptorPaths = new ConcurrentLinkedQueue<String> ();
 
-	private Map<String, Adapter> adaptersBasedOnPath = new ConcurrentHashMap<String, Adapter>();
-	private Map<String, Adapter> adaptersBasedOnName = new ConcurrentHashMap<String, Adapter>();
+	private Map<String, AdapterDescriptor> adapterDescriptorsBasedOnPath = new ConcurrentHashMap<String, AdapterDescriptor>();
+	private Map<String, AdapterDescriptor> adapterDescriptorsBasedOnName = new ConcurrentHashMap<String, AdapterDescriptor>();
 	
 	/**
-	 * Get All Adapter Paths.
-	 * @return All Adapter Paths.
+	 * Get All Adapter Descriptor Paths.
+	 * @return All Adapter Descriptor Paths.
 	 */
-	public Iterator<String> getAdapterPaths() {
-		return this.adapterPaths.iterator();
+	public Iterator<String> getAdapterDescriptorPaths() {
+		return this.adapterDescriptorPaths.iterator();
 	}
 	
 	/**
-	 * Get All Adapters.
-	 * @return All Adapters.
+	 * Get All Adapter Descriptors.
+	 * @return All Adapter Descriptors.
 	 */
-	public Iterator<Adapter> getAdapters() {
-		return this.adaptersBasedOnName.values().iterator();
+	public Iterator<AdapterDescriptor> getAdapterDescriptors() {
+		return this.adapterDescriptorsBasedOnName.values().iterator();
 	}
 	
 	/**
-	 * Get Adapter Based on adapter Name.
-	 * @param adapterName Name of Adapter.
-	 * @return Adapter.
+	 * Get Adapter Descriptor Based on adapter descriptor name.
+	 * @param adapterDescriptorName Name of Adapter Descriptor.
+	 * @return Adapter Descriptor.
 	 */
-	public Adapter getAdapterBasedOnName(String adapterName) {
-		return this.adaptersBasedOnName.get(adapterName);
+	public AdapterDescriptor getAdapterDescriptorBasedOnName(String adapterDescriptorName) {
+		return this.adapterDescriptorsBasedOnName.get(adapterDescriptorName);
 	}
 	
 	/**
-	 * Get Adapter Based on adapter path.
-	 * @param adapterPath Path of Adapter.
-	 * @return Adapter.
+	 * Get Adapter Descriptor Based on adapter descriptor path.
+	 * @param adapterDescriptorPath Path of Adapter Descriptor.
+	 * @return Adapter Descriptor.
 	 */
-	public Adapter getAdapterBasedOnPath(String adapterPath) {
-		return this.adaptersBasedOnPath.get(adapterPath);
+	public AdapterDescriptor getAdapterDescriptorBasedOnPath(String adapterDescriptorPath) {
+		return this.adapterDescriptorsBasedOnPath.get(adapterDescriptorPath);
 	}
 	
 	/**
-	 * Add Adapter Path.
-	 * @param adapterPath Path of Adapter.
+	 * Add Adapter Descriptor Path.
+	 * @param adapterDescriptorPath Path of Adapter Descriptor.
 	 */
-	public void addAdapterPath(String adapterPath) {
-		this.adapterPaths.add(adapterPath);
+	public void addAdapterDescriptorPath(String adapterDescriptorPath) {
+		this.adapterDescriptorPaths.add(adapterDescriptorPath);
 	}
 
 	/**
-	 * Add Adapter based on adapter path.
-	 * @param adapterPath Path of Adapter.
-	 * @param adapter Adapter.
+	 * Add Adapter Descriptor based on adapter descriptor path.
+	 * @param adapterDescriptorPath Path of Adapter Descriptor.
+	 * @param adapterDescriptor Adapter Descriptor.
 	 */
-	public void addAdapter(String adapterPath, Adapter adapter) {
-		this.adaptersBasedOnPath.put(adapterPath, adapter);
-		this.adaptersBasedOnName.put(adapter.getName(), adapter);
+	public void addAdapterDescriptor(String adapterDescriptorPath, AdapterDescriptor adapterDescriptor) {
+		this.adapterDescriptorsBasedOnPath.put(adapterDescriptorPath, adapterDescriptor);
+		this.adapterDescriptorsBasedOnName.put(adapterDescriptor.getName(), adapterDescriptor);
 	}
 	
 	/**
-	 * Check whether Adapter exist based on adapter path.
-	 * @param adapterPath Path of Adapter.
-	 * @return true/false; TRUE if adapter exist, FALSE if adapter does not exist.
+	 * Check whether Adapter Descriptor exist based on adapter descriptor path.
+	 * @param adapterDescriptorPath Path of Adapter Descriptor.
+	 * @return true/false; TRUE if adapter descriptor exist, FALSE if adapter descriptor does not exist.
 	 */
-	public boolean containAdapterBasedOnPath(String adapterPath) {
-		return this.adaptersBasedOnPath.containsKey(adapterPath);
+	public boolean containAdapterDescriptorBasedOnPath(String adapterDescriptorPath) {
+		return this.adapterDescriptorsBasedOnPath.containsKey(adapterDescriptorPath);
 	}
 	
 	/**
-	 * Check whether Adapter exist based on adapter name.
-	 * @param adapterName Name of Adapter.
-	 * @return true/false; TRUE if adapter exist, FALSE if adapter does not exist.
+	 * Check whether Adapter Descriptor exist based on adapter name.
+	 * @param adapterDescriptorName Name of Adapter Descriptor.
+	 * @return true/false; TRUE if adapter descriptor exist, FALSE if adapter descriptor does not exist.
 	 */
-	public boolean containAdapterBasedOnName(String adapterName) {
-		return this.adaptersBasedOnName.containsKey(adapterName);
+	public boolean containAdapterDescriptorBasedOnName(String adapterDescriptorName) {
+		return this.adapterDescriptorsBasedOnName.containsKey(adapterDescriptorName);
 	}
 	
 	/**
-	 * Remove Adapter based on adapter name.
-	 * @param adapterName Name of Adapter.
+	 * Remove Adapter Descriptor based on adapter descriptor name.
+	 * @param adapterDescriptorName Name of Adapter Descriptor.
 	 */
-	public void removeAdapterBasedOnName(String adapterName) {
-		Iterator<String> libraryPaths = this.adaptersBasedOnPath.keySet().iterator();
+	public void removeAdapterDescriptorBasedOnName(String adapterDescriptorName) {
+		Iterator<String> libraryPaths = this.adapterDescriptorsBasedOnPath.keySet().iterator();
 		
 		boolean found = false;
 		String keyMatched = null;
 		while(libraryPaths.hasNext()) {
 			String libraryPath = libraryPaths.next();
 			
-			Adapter adapter = this.adaptersBasedOnPath.get(libraryPath);
-			if(adapter.getName().equalsIgnoreCase(adapterName)) {
+			AdapterDescriptor adapterDescriptor = this.adapterDescriptorsBasedOnPath.get(libraryPath);
+			if(adapterDescriptor.getName().equalsIgnoreCase(adapterDescriptorName)) {
 				keyMatched = libraryPath;
 				found = true;
 				break;
@@ -154,22 +152,22 @@ public class LibraryDescriptor extends siminov.orm.model.LibraryDescriptor {
 	}
 	
 	/**
-	 * Remove Adapter based on adapter path.
-	 * @param adapterPath Path of Adapter.
+	 * Remove Adapter Descriptor based on adapter descriptor path.
+	 * @param adapterPath Path of Adapter Descriptor.
 	 */
 	public void removeAdapterBasedOnPath(String adapterPath) {
-		Adapter adapater = this.adaptersBasedOnPath.get(adapterPath);
+		AdapterDescriptor adapaterDescriptor = this.adapterDescriptorsBasedOnPath.get(adapterPath);
 
-		this.adaptersBasedOnName.remove(adapater.getName());
-		this.adaptersBasedOnPath.remove(adapterPath);
+		this.adapterDescriptorsBasedOnName.remove(adapaterDescriptor.getName());
+		this.adapterDescriptorsBasedOnPath.remove(adapterPath);
 	}
 	
 	/**
-	 * Remove Adapter.
-	 * @param adapter Adapter.
+	 * Remove Adapter Descriptor.
+	 * @param adapterDescriptor Adapter Descriptor.
 	 */
-	public void removeAdapater(Adapter adapter) {
-		removeAdapterBasedOnName(adapter.getName());
+	public void removeAdapater(AdapterDescriptor adapterDescriptor) {
+		removeAdapterDescriptorBasedOnName(adapterDescriptor.getName());
 	}
 	
 }
