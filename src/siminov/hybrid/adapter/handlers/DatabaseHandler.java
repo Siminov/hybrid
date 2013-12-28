@@ -30,8 +30,8 @@ import java.util.Map;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.reader.HybridSiminovDataBuilder;
 import siminov.hybrid.reader.HybridSiminovDataReader;
+import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.Constants;
 import siminov.orm.database.DatabaseBundle;
 import siminov.orm.database.design.IDatabase;
@@ -641,7 +641,7 @@ public class DatabaseHandler {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -691,7 +691,7 @@ public class DatabaseHandler {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -822,7 +822,7 @@ public class DatabaseHandler {
 
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "count", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "count", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -912,7 +912,7 @@ public class DatabaseHandler {
 
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "avg", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "avg", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1007,7 +1007,7 @@ public class DatabaseHandler {
 
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "sum", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "sum", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1101,7 +1101,7 @@ public class DatabaseHandler {
 
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "total", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "total", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1195,7 +1195,7 @@ public class DatabaseHandler {
 
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "min", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "min", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1290,7 +1290,7 @@ public class DatabaseHandler {
 
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "avg", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "avg", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1386,7 +1386,7 @@ public class DatabaseHandler {
 
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "groupConcat", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "groupConcat", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1470,7 +1470,7 @@ public class DatabaseHandler {
 
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "getTableName", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getTableName", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1511,7 +1511,7 @@ public class DatabaseHandler {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "getTableName", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getTableName", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1650,7 +1650,7 @@ public class DatabaseHandler {
 		
 		String returnData = null;
 		try {
-			returnData = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);		
+			returnData = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);		
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "getColumnTypes", "SiminovException caught while building json output, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getColumnTypes", "SiminovException caught while building json output, " + siminovException.getMessage());
@@ -1687,7 +1687,7 @@ public class DatabaseHandler {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "getPrimaryKeys", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getPrimaryKeys", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1783,7 +1783,7 @@ public class DatabaseHandler {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "getMandatoryFields", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getMandatoryFields", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1883,7 +1883,7 @@ public class DatabaseHandler {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "getUniqueFields", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getUniqueFields", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -1988,7 +1988,7 @@ public class DatabaseHandler {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "getForeignKeys", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getForeignKeys", "SiminovException caught while building json, " + siminovException.getMessage());
@@ -2425,7 +2425,7 @@ public class DatabaseHandler {
 				if(whereClause.length() <= 0) {
 					whereClause.append(foreignKey + "='" + columnValue.toString() + "'"); 
 				} else {
-					whereClause.append(", " + foreignKey + "='" + columnValue.toString() + "'");  
+					whereClause.append(" AND " + foreignKey + "='" + columnValue.toString() + "'");  
 				}
 			}
 

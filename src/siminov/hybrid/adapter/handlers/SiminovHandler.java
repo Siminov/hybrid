@@ -29,15 +29,15 @@ import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.AdapterResources;
 import siminov.hybrid.adapter.IHandler;
 import siminov.hybrid.adapter.constants.HybridSiminovException;
-import siminov.hybrid.model.HybridDescriptor.Adapter;
-import siminov.hybrid.model.HybridDescriptor.Adapter.Handler;
-import siminov.hybrid.model.HybridDescriptor.Adapter.Handler.Parameter;
+import siminov.hybrid.model.AdapterDescriptor;
+import siminov.hybrid.model.AdapterDescriptor.Handler;
+import siminov.hybrid.model.AdapterDescriptor.Handler.Parameter;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.reader.HybridSiminovDataBuilder;
 import siminov.hybrid.reader.HybridSiminovDataReader;
 import siminov.hybrid.resource.Resources;
+import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 import siminov.orm.utils.ClassUtils;
@@ -82,11 +82,11 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 			parameterValues.add(dataValue);
 		}
 		
-		String adapterName = action.substring(0, action.indexOf("."));
+		String adapterDescriptorName = action.substring(0, action.indexOf("."));
 		String handlerName = action.substring(action.indexOf(".") + 1, action.length());
 
-		Adapter adapter = hybridResources.getAdapter(adapterName);
-		Adapter.Handler handler = hybridResources.getHandler(adapterName, handlerName);
+		AdapterDescriptor adapterDescriptor = hybridResources.getAdapterDescriptor(adapterDescriptorName);
+		AdapterDescriptor.Handler handler = hybridResources.getHandler(adapterDescriptorName, handlerName);
 		
 		Iterator<Parameter> parameters = handler.getParameters();
 		Class<?>[] parameterTypes = getParameterTypes(parameters);
@@ -101,13 +101,13 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		Object adapterInstanceObject = null;
 		Method handlerInstanceObject = null;
 		
-		boolean cache = adapter.isCache();
+		boolean cache = adapterDescriptor.isCache();
 		if(cache) {
-			adapterInstanceObject = adapterResources.requireAdapterInstance(adapterName);
-			handlerInstanceObject = (Method) adapterResources.requireHandlerInstance(adapterName, handlerName, parameterTypes);
+			adapterInstanceObject = adapterResources.requireAdapterInstance(adapterDescriptorName);
+			handlerInstanceObject = (Method) adapterResources.requireHandlerInstance(adapterDescriptorName, handlerName, parameterTypes);
 		} else {
-			adapterInstanceObject = adapterResources.getAdapterInstance(adapterName);
-			handlerInstanceObject = (Method) adapterResources.getHandlerInstance(adapterName, handlerName, parameterTypes);
+			adapterInstanceObject = adapterResources.getAdapterInstance(adapterDescriptorName);
+			handlerInstanceObject = (Method) adapterResources.getHandlerInstance(adapterDescriptorName, handlerName, parameterTypes);
 		}
 
 
@@ -132,7 +132,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 	@JavascriptInterface
 	public void handleNativeToWeb(final String action, final String...data) {
 
-		Adapter adapter = hybridResources.getAdapter(Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER);
+		AdapterDescriptor adapterDescriptor = hybridResources.getAdapterDescriptor(Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER);
 		Handler handler = hybridResources.getHandler(Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER, Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER_HANDLER);
 		
 		String parameters = "";
@@ -147,32 +147,32 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 			}
 		}
 		
-		String adapterName = "";
+		String adapterDescriptorName = "";
 		String handlerName = "";
 		
 		
 		int indexOfHandler = action.indexOf(".");
 		if(indexOfHandler > 0) {
-			adapterName = action.substring(0, indexOfHandler);
+			adapterDescriptorName = action.substring(0, indexOfHandler);
 			handlerName = action.substring(action.indexOf(".") + 1, action.length());
 		} else {
-			adapterName = action;
+			adapterDescriptorName = action;
 		}
 		
 		String invokeAction = "";
 		
-		if(hybridResources.containAdapterBasedOnName(adapterName)) {
-			Adapter invokeAdapter = hybridResources.getAdapter(adapterName);
-			invokeAction = invokeAdapter.getMapTo();
+		if(hybridResources.containAdapterBasedOnName(adapterDescriptorName)) {
+			AdapterDescriptor invokeAdapterDescriptor = hybridResources.getAdapterDescriptor(adapterDescriptorName);
+			invokeAction = invokeAdapterDescriptor.getMapTo();
 		}
 		
 		if(handlerName != null && handlerName.length() > 0 && hybridResources.containHandler(handlerName)) {
-			Adapter.Handler invokeHandler = hybridResources.getHandler(adapterName, handlerName);
+			AdapterDescriptor.Handler invokeHandler = hybridResources.getHandler(adapterDescriptorName, handlerName);
 			invokeAction += "." + invokeHandler.getMapTo();
 		}
 		
 
-		final Adapter finalAdapter = adapter;
+		final AdapterDescriptor finalAdapter = adapterDescriptor;
 		final Handler finalHandler = handler;
 		final String finalInvokeAction = invokeAction;
 		final String finalParameters = parameters;
@@ -308,7 +308,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		String data = null;
 		
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(SiminovHandler.class.getName(), "generateHybridSiminovException", "SiminovException caught while generating empty siminov js data: " + siminovException.getMessage());
 			return "{\"siminov-hybrid-data\":{}}";
@@ -350,7 +350,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "generateHybridSiminovException", "SiminovException caught while building json, " + siminovException.getMessage());
 		}

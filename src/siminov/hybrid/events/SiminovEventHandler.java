@@ -26,8 +26,8 @@ import siminov.hybrid.adapter.constants.HybridEventHandler;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.reader.HybridSiminovDataBuilder;
 import siminov.hybrid.resource.Resources;
+import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.events.ISiminovEvents;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
@@ -87,7 +87,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(SiminovEventHandler.class.getName(), "firstTimeSiminovInitialized", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
@@ -149,7 +149,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(SiminovEventHandler.class.getName(), "siminovInitialized", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
@@ -211,7 +211,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		
 		String data = null;
 		try {
-			data = HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.loge(SiminovEventHandler.class.getName(), "siminovStopped", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
