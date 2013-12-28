@@ -26,10 +26,10 @@
 <hybird-descriptor>
 	
 
-    <adapters>
+    <adapter-descriptors>
         
 	    <!-- Adapter -->
-	    <adapter>
+	    <adapter-descriptor>
 	        
 	        <!-- General Adapter Properties -->
 	        	<!-- Mandatory Field -->
@@ -97,13 +97,13 @@
 		            
 	        </handlers>
 	
-	    </adapter>
+	    </adapter-descriptor>
 
 	    
         <!-- Adapter Paths -->
-	    <adapter>adapter_path</adapter>
+	    <adapter-descriptor>adapter_path</adapter-descriptor>
 	    	        
-    </adapters>
+    </adapter-descriptors>
     
 </hybird-descriptor>
 
