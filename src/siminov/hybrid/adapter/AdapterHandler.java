@@ -18,7 +18,7 @@
 package siminov.hybrid.adapter;
 
 import siminov.hybrid.Constants;
-import siminov.hybrid.model.HybridDescriptor.Adapter;
+import siminov.hybrid.model.AdapterDescriptor;
 import siminov.hybrid.resource.Resources;
 import siminov.orm.utils.ClassUtils;
 import android.webkit.WebView;
@@ -37,8 +37,8 @@ public class AdapterHandler {
 	
 	private AdapterHandler() {
 		
-		Adapter adapter = resources.getAdapter(Constants.HYBRID_SIMINOV_WEB_TO_NATIVE_ADAPTER);
-		register((IHandler) ClassUtils.createClassInstance(adapter.getMapTo()));
+		AdapterDescriptor adapterDescriptor = resources.getAdapterDescriptor(Constants.HYBRID_SIMINOV_WEB_TO_NATIVE_ADAPTER);
+		register((IHandler) ClassUtils.createClassInstance(adapterDescriptor.getMapTo()));
 
 		resources.setAdapterHandler(adapterHandler);
 	
@@ -64,9 +64,9 @@ public class AdapterHandler {
 	 */
 	public void register(IHandler handler) {
 		
-		Adapter adapter = resources.getAdapter(Constants.HYBRID_SIMINOV_WEB_TO_NATIVE_ADAPTER);
+		AdapterDescriptor adapterDescriptor = resources.getAdapterDescriptor(Constants.HYBRID_SIMINOV_WEB_TO_NATIVE_ADAPTER);
 		
-		String adapterName = adapter.getName();
+		String adapterName = adapterDescriptor.getName();
 		WebView webView = resources.getWebView();
 
 		this.handler = handler;

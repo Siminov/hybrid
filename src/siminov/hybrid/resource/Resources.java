@@ -30,11 +30,11 @@ import siminov.hybrid.adapter.constants.HybridDatabaseDescriptor;
 import siminov.hybrid.adapter.constants.HybridDatabaseMappingDescriptor;
 import siminov.hybrid.adapter.constants.HybridLibraryDescriptor;
 import siminov.hybrid.events.EventHandler;
+import siminov.hybrid.model.AdapterDescriptor;
+import siminov.hybrid.model.AdapterDescriptor.Handler;
+import siminov.hybrid.model.AdapterDescriptor.Handler.Parameter;
+import siminov.hybrid.model.AdapterDescriptor.Handler.Return;
 import siminov.hybrid.model.HybridDescriptor;
-import siminov.hybrid.model.HybridDescriptor.Adapter;
-import siminov.hybrid.model.HybridDescriptor.Adapter.Handler;
-import siminov.hybrid.model.HybridDescriptor.Adapter.Handler.Parameter;
-import siminov.hybrid.model.HybridDescriptor.Adapter.Handler.Return;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
 import siminov.orm.model.DatabaseDescriptor;
@@ -105,71 +105,71 @@ public class Resources {
 	
 	
 	/**
-	 * Get All Adapters defined by Application.
-	 * @return All Adapters.
+	 * Get All Adapter Descriptors defined by Application.
+	 * @return All Adapter Descriptors.
 	 */
-	public Iterator<Adapter> getAdapters() {
-		return hybridDescriptor.getAdapters();
+	public Iterator<AdapterDescriptor> getAdapterDescriptors() {
+		return hybridDescriptor.getAdapterDescriptors();
 	}
 	
 	
 	/**
-	 * Get All Adapters Defined By Paths.
-	 * @return All Adapters.
+	 * Get All Adapter Descriptors Defined By Paths.
+	 * @return All Adapter Descriptors.
 	 */
-	public Iterator<Adapter> getAdaptersBasedOnPaths() {
+	public Iterator<AdapterDescriptor> getAdapterDescriptorsBasedOnPaths() {
 		
-		Iterator<String> adapterPaths = hybridDescriptor.getAdapterPaths();
-		Collection<Adapter> adapters = new ArrayList<Adapter>();
+		Iterator<String> adapterDescriptorPaths = hybridDescriptor.getAdapterDescriptorPaths();
+		Collection<AdapterDescriptor> adapterDescriptors = new ArrayList<AdapterDescriptor>();
 		
-		while(adapterPaths.hasNext()) {
-			String adapterPath = adapterPaths.next();
-			adapters.add(hybridDescriptor.getAdapterBasedOnPath(adapterPath));
+		while(adapterDescriptorPaths.hasNext()) {
+			String adapterDescriptorPath = adapterDescriptorPaths.next();
+			adapterDescriptors.add(hybridDescriptor.getAdapterBasedOnPath(adapterDescriptorPath));
 		}
 		
-		return adapters.iterator();
+		return adapterDescriptors.iterator();
 	}
 	
 
 	/**
-	 * Get Adapter based on Adapter Name.
-	 * @param adapterName Name of Adapter.
-	 * @return
+	 * Get Adapter Descriptor based on Adapter Descriptor Name.
+	 * @param adapterDescriptorName Name of Adapter Descriptor.
+	 * @return Adapter Descriptor
 	 */
-	public Adapter getAdapter(final String adapterName) {
-		boolean contain = hybridDescriptor.containAdapterBasedOnName(adapterName);
+	public AdapterDescriptor getAdapterDescriptor(final String adapterDescriptorName) {
+		boolean contain = hybridDescriptor.containAdapterDescriptorBasedOnName(adapterDescriptorName);
 		if(contain) {
-			return hybridDescriptor.getAdapterBasedOnName(adapterName);
+			return hybridDescriptor.getAdapterDescriptorBasedOnName(adapterDescriptorName);
 		}
 		
 		return null;
 	}
 	
 	/**
-	 * Get Adapter based on Adapter Name.
-	 * @param adapterName Name of Adapter.
-	 * @return Adapter.
+	 * Get Adapter Descriptor based on Adapter Descriptor Name.
+	 * @param adapterDescriptorName Name of Adapter Descriptor.
+	 * @return Adapter Descriptor.
 	 */
-	public Adapter getAdapterBasedOnName(final String adapterName) {
+	public AdapterDescriptor getAdapterBasedOnName(final String adapterDescriptorName) {
 		
-		boolean contain = hybridDescriptor.containAdapterBasedOnName(adapterName);
+		boolean contain = hybridDescriptor.containAdapterDescriptorBasedOnName(adapterDescriptorName);
 		if(contain) {
-			return hybridDescriptor.getAdapterBasedOnName(adapterName);
+			return hybridDescriptor.getAdapterDescriptorBasedOnName(adapterDescriptorName);
 		}
 		
 		return null;
 	}
 	
 	/**
-	 * Get Adapter based on adapter path.
-	 * @param adapterPath Path of Adapter.
-	 * @return Adapter.
+	 * Get Adapter Descriptor based on adapter descriptor path.
+	 * @param adapterDescriptorPath Path of Adapter Descriptor.
+	 * @return Adapter Descriptor.
 	 */
-	public Adapter getAdapterBasedOnPath(final String adapterPath) {
+	public AdapterDescriptor getAdapterBasedOnPath(final String adapterDescriptorPath) {
 		
-		boolean contain = hybridDescriptor.containAdapterBasedOnPath(adapterPath);
+		boolean contain = hybridDescriptor.containAdapterDescriptorBasedOnPath(adapterDescriptorPath);
 		if(contain) {
-			return hybridDescriptor.getAdapterBasedOnPath(adapterPath);
+			return hybridDescriptor.getAdapterBasedOnPath(adapterDescriptorPath);
 		}
 		
 		return null;
@@ -177,13 +177,13 @@ public class Resources {
 	
 	
 	/**
-	 * Check whether adapter exist or not based on adapter name.
-	 * @param adapterName Name of adapter.
-	 * @return true/false; TRUE if adapter exist, FALSE if adapter does not exist.
+	 * Check whether adapter descriptor exist or not based on adapter descriptor name.
+	 * @param adapterDescriptorName Name of adapter descriptor.
+	 * @return true/false; TRUE if adapter descriptor exist, FALSE if adapter descriptor does not exist.
 	 */
-	public boolean containAdapterBasedOnName(final String adapterName) {
+	public boolean containAdapterBasedOnName(final String adapterDescriptorName) {
 		
-		boolean contain = hybridDescriptor.containAdapterBasedOnName(adapterName);
+		boolean contain = hybridDescriptor.containAdapterDescriptorBasedOnName(adapterDescriptorName);
 		if(contain) {
 			return contain;
 		}
@@ -192,12 +192,12 @@ public class Resources {
 	}
 	
 	/**
-	 * Check whether adapter exist or not based on adapter path.
-	 * @param adapterPath Path of Adapter.
-	 * @return true/false; TRUE if adapter exist, FALSE if adapter does not exist.
+	 * Check whether adapter descriptor exist or not based on adapter descriptor path.
+	 * @param adapterDescriptorPath Path of Adapter Descriptor.
+	 * @return true/false; TRUE if adapter descriptor exist, FALSE if adapter descriptor does not exist.
 	 */
-	public boolean containAdapterBasedOnPath(final String adapterPath) {
-		return hybridDescriptor.containAdapterBasedOnPath(adapterPath);
+	public boolean containAdapterBasedOnPath(final String adapterDescriptorPath) {
+		return hybridDescriptor.containAdapterDescriptorBasedOnPath(adapterDescriptorPath);
 	}
 	
 	
@@ -209,10 +209,10 @@ public class Resources {
 		
 		Collection<Handler> handlers = new ArrayList<Handler>();
 		
-		Iterator<Adapter> adapters = getAdapters();
-		while(adapters.hasNext()) {
-			Adapter adapter = adapters.next();
-			Iterator<Handler> adapterHandlers = adapter.getHandlers();
+		Iterator<AdapterDescriptor> adapterDescriptors = getAdapterDescriptors();
+		while(adapterDescriptors.hasNext()) {
+			AdapterDescriptor adapterDescriptor = adapterDescriptors.next();
+			Iterator<Handler> adapterHandlers = adapterDescriptor.getHandlers();
 			
 			while(adapterHandlers.hasNext()) {
 				handlers.add(adapterHandlers.next());
@@ -224,17 +224,17 @@ public class Resources {
 
 	/**
 	 * Get Handler based on Adapter Name and Handler Name.
-	 * @param adapterName Name of Adapter.
+	 * @param adapterDescriptorName Name of Adapter.
 	 * @param handlerName Name of Handler.
 	 * @return Handler.
 	 */
-	public Handler getHandler(final String adapterName, final String handlerName) {
+	public Handler getHandler(final String adapterDescriptorName, final String handlerName) {
 		
-		Adapter adapter = getAdapter(adapterName);
-		boolean contain = adapter.containHandler(handlerName);
+		AdapterDescriptor adapterDescriptor = getAdapterDescriptor(adapterDescriptorName);
+		boolean contain = adapterDescriptor.containHandler(handlerName);
 		
 		if(contain) {
-			return adapter.getHandler(handlerName);
+			return adapterDescriptor.getHandler(handlerName);
 		}
 		
 		return null;
@@ -247,10 +247,10 @@ public class Resources {
 	 */
 	public boolean containHandler(final String handlerName) {
 		
-		Iterator<Adapter> adapters = getAdapters();
-		while(adapters.hasNext()) {
-			Adapter adapter = adapters.next();
-			Iterator<Handler> handlers = adapter.getHandlers();
+		Iterator<AdapterDescriptor> adapterDescriptors = getAdapterDescriptors();
+		while(adapterDescriptors.hasNext()) {
+			AdapterDescriptor adapterDescriptor = adapterDescriptors.next();
+			Iterator<Handler> handlers = adapterDescriptor.getHandlers();
 			
 			while(handlers.hasNext()) {
 				Handler handler = handlers.next();
@@ -265,13 +265,13 @@ public class Resources {
 	
 	/**
 	 * Check whether Handler exist or not based on adapter name and handler name.
-	 * @param adapterName Name of Adapter.
+	 * @param adapterDescriptorName Name of Adapter.
 	 * @param handlerName Name of Handler.
 	 * @return true/false; TRUE if handler exist, FALSE if handler does not exist.
 	 */
-	public boolean containHandler(final String adapterName, final String handlerName) {
-		Adapter adapter = getAdapter(adapterName);
-		return adapter.containHandler(handlerName);
+	public boolean containHandler(final String adapterDescriptorName, final String handlerName) {
+		AdapterDescriptor adapterDescriptor = getAdapterDescriptor(adapterDescriptorName);
+		return adapterDescriptor.containHandler(handlerName);
 	}
 	
 	/**
@@ -833,24 +833,24 @@ public class Resources {
 		HybridSiminovData hybridAdapters = new HybridSiminovData();
 		hybridAdapters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTERS);
 		
-		Iterator<Adapter> adapters = hybridDescriptor.getAdapters();
-		while(adapters.hasNext()) {
-			hybridAdapters.addData(generateHybridAdapter(adapters.next()));
+		Iterator<AdapterDescriptor> adapterDescriptors = hybridDescriptor.getAdapterDescriptors();
+		while(adapterDescriptors.hasNext()) {
+			hybridAdapters.addData(generateHybridAdapterDescriptor(adapterDescriptors.next()));
 		}
 
-		HybridSiminovData hybridAdapterPaths = new HybridSiminovData();
-		hybridAdapterPaths.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_PATHS);
+		HybridSiminovData hybridAdapterDescriptorPaths = new HybridSiminovData();
+		hybridAdapterDescriptorPaths.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_PATHS);
 		
-		Iterator<String> adapterPaths = hybridDescriptor.getAdapterPaths();
-		while(adapterPaths.hasNext()) {
+		Iterator<String> adapterDescriptorPaths = hybridDescriptor.getAdapterDescriptorPaths();
+		while(adapterDescriptorPaths.hasNext()) {
 			
 			HybridSiminovValue hybridAdapterPath = new HybridSiminovValue();
 			hybridAdapterPath.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_PATH);
-			hybridAdapterPath.setValue(adapterPaths.next());
+			hybridAdapterPath.setValue(adapterDescriptorPaths.next());
 			
 		}
 		
-		hybridWebDescriptor.addData(hybridAdapterPaths);
+		hybridWebDescriptor.addData(hybridAdapterDescriptorPaths);
 		
 		hybridWebDescriptor.addData(hybridAdapters);
 
@@ -861,55 +861,55 @@ public class Resources {
 	
 	/**
 	 * Generate Hybrid Adapter.
-	 * @param adapter Adapter.
+	 * @param adapterDescriptor Adapter.
 	 * @return Hybrid Adapter.
 	 */
-	public HybridSiminovData generateHybridAdapter(final Adapter adapter) {
+	public HybridSiminovData generateHybridAdapterDescriptor(final AdapterDescriptor adapterDescriptor) {
 		
-		HybridSiminovData hybridAdapter = new HybridSiminovData();
-		hybridAdapter.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER);
+		HybridSiminovData hybridAdapterDescriptor = new HybridSiminovData();
+		hybridAdapterDescriptor.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER);
 		
 		
 		HybridSiminovValue adapterName = new HybridSiminovValue();
 		adapterName.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_NAME);
-		adapterName.setValue(adapter.getName());
+		adapterName.setValue(adapterDescriptor.getName());
 		
-		hybridAdapter.addValue(adapterName);
+		hybridAdapterDescriptor.addValue(adapterName);
 		
 
-		HybridSiminovValue adapterDescription = new HybridSiminovValue();
-		adapterDescription.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_DESCRIPTION);
-		adapterDescription.setValue(adapter.getDescription());
+		HybridSiminovValue adapterDescriptorDescription = new HybridSiminovValue();
+		adapterDescriptorDescription.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_DESCRIPTION);
+		adapterDescriptorDescription.setValue(adapterDescriptor.getDescription());
 		
-		hybridAdapter.addValue(adapterDescription);
+		hybridAdapterDescriptor.addValue(adapterDescriptorDescription);
 		
 		
-		HybridSiminovValue adapterMapTo = new HybridSiminovValue();
-		adapterMapTo.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_MAP_TO);
-		adapterMapTo.setValue(adapter.getMapTo());
+		HybridSiminovValue adapterDescriptorMapTo = new HybridSiminovValue();
+		adapterDescriptorMapTo.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_MAP_TO);
+		adapterDescriptorMapTo.setValue(adapterDescriptor.getMapTo());
 		
-		hybridAdapter.addValue(adapterMapTo);
+		hybridAdapterDescriptor.addValue(adapterDescriptorMapTo);
 		
 		
 		HybridSiminovValue cache = new HybridSiminovValue();
 		cache.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_CACHE);
-		cache.setValue(Boolean.toString(adapter.isCache()));
+		cache.setValue(Boolean.toString(adapterDescriptor.isCache()));
 		
-		hybridAdapter.addValue(cache);
+		hybridAdapterDescriptor.addValue(cache);
 		
 		
 		HybridSiminovData hybridHandlers = new HybridSiminovData();
 		hybridHandlers.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLERS);
 		
-		Iterator<Handler> handlers = adapter.getHandlers();
+		Iterator<Handler> handlers = adapterDescriptor.getHandlers();
 		while(handlers.hasNext()) {
 			hybridHandlers.addData(generateHybridHandler(handlers.next()));
 		}
 		
 
-		hybridAdapter.addData(hybridHandlers);
+		hybridAdapterDescriptor.addData(hybridHandlers);
 		
-		return hybridAdapter;
+		return hybridAdapterDescriptor;
 	}
 
 	

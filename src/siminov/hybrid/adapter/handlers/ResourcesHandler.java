@@ -21,19 +21,17 @@ package siminov.hybrid.adapter.handlers;
 import java.util.Iterator;
 
 import siminov.hybrid.adapter.constants.HybridApplicationDescriptor;
-import siminov.hybrid.adapter.constants.HybridLibraryDescriptor;
+import siminov.hybrid.model.AdapterDescriptor;
+import siminov.hybrid.model.AdapterDescriptor.Handler;
 import siminov.hybrid.model.HybridDescriptor;
-import siminov.hybrid.model.HybridDescriptor.Adapter;
-import siminov.hybrid.model.HybridDescriptor.Adapter.Handler;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.reader.HybridSiminovDataBuilder;
+import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.model.ApplicationDescriptor;
 import siminov.orm.model.DatabaseDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor;
-import siminov.orm.model.LibraryDescriptor;
 
 /**
  * It handles all request related to resources.
@@ -129,7 +127,7 @@ public class ResourcesHandler {
 		
 		hybridSiminovDatas.addHybridSiminovData(hybridApplicationDescriptor);
 
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 	}
 
 	
@@ -156,7 +154,7 @@ public class ResourcesHandler {
 		
 		hybridDatabaseDescriptorPaths.addHybridSiminovData(hybridSiminovData);
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridDatabaseDescriptorPaths);
+		return HybridSiminovDataWritter.jsonBuidler(hybridDatabaseDescriptorPaths);
 	}
 
 	
@@ -173,7 +171,7 @@ public class ResourcesHandler {
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor));
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 	
@@ -191,7 +189,7 @@ public class ResourcesHandler {
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor));
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 
@@ -211,7 +209,7 @@ public class ResourcesHandler {
 			hybridDatabaseDescriptors.addHybridSiminovData(hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor));
 		}
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridDatabaseDescriptors);
+		return HybridSiminovDataWritter.jsonBuidler(hybridDatabaseDescriptors);
 
 	}
 
@@ -229,7 +227,7 @@ public class ResourcesHandler {
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor));
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 
@@ -254,7 +252,7 @@ public class ResourcesHandler {
 		
 		hybridSiminovDatas.addHybridSiminovData(siminovData);
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 
@@ -279,7 +277,7 @@ public class ResourcesHandler {
 		
 		hybridSiminovDatas.addHybridSiminovData(siminovData);
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 	
@@ -297,7 +295,7 @@ public class ResourcesHandler {
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor));
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 	
@@ -315,7 +313,7 @@ public class ResourcesHandler {
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptor));
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 
@@ -333,7 +331,7 @@ public class ResourcesHandler {
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptor));
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 	
@@ -352,7 +350,7 @@ public class ResourcesHandler {
 			hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseMappingDescriptor(databaseMappingDescriptors.next()));
 		}
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 	
@@ -382,7 +380,7 @@ public class ResourcesHandler {
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDescriptor(hybridDescriptor));
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 	
@@ -398,22 +396,22 @@ public class ResourcesHandler {
 		HybridSiminovData jsAdapters = new HybridSiminovData();
 		jsAdapters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTERS);
 		
-		Iterator<Adapter> adapters = hybridResources.getAdapters();
-		while(adapters.hasNext()) {
-			jsAdapters.addData(hybridResources.generateHybridAdapter(adapters.next()));
+		Iterator<AdapterDescriptor> adapterDescriptors = hybridResources.getAdapterDescriptors();
+		while(adapterDescriptors.hasNext()) {
+			jsAdapters.addData(hybridResources.generateHybridAdapterDescriptor(adapterDescriptors.next()));
 		}
 		
 		jsSiminovDatas.addHybridSiminovData(jsAdapters);
 		
-		return HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		
 	}
 	
 	
 	/**
-	 * Handle Get Adapters Based On Paths Request From Web.
-	 * @return Adapter Paths
-	 * @throws SiminovException If any error occur while getting adapter paths.
+	 * Handle Get Adapter Descriptors Based On Paths Request From Web.
+	 * @return Adapter Descriptor Paths
+	 * @throws SiminovException If any error occur while getting adapter descriptor paths.
 	 */
 	public String getAdaptersBasedOnPaths() throws SiminovException {
 		
@@ -421,69 +419,69 @@ public class ResourcesHandler {
 		HybridSiminovData hybridAdapters = new HybridSiminovData();
 		hybridAdapters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTERS);
 		
-		Iterator<Adapter> adapters = hybridResources.getAdaptersBasedOnPaths();
-		while(adapters.hasNext()) {
-			hybridAdapters.addData(hybridResources.generateHybridAdapter(adapters.next()));
+		Iterator<AdapterDescriptor> adapterDescriptors = hybridResources.getAdapterDescriptorsBasedOnPaths();
+		while(adapterDescriptors.hasNext()) {
+			hybridAdapters.addData(hybridResources.generateHybridAdapterDescriptor(adapterDescriptors.next()));
 		}
 		
 		hybridSiminovDatas.addHybridSiminovData(hybridAdapters);
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 	
 	
 	/**
-	 * Handle Get Adapter Based On Name Request From Web. 
-	 * @param adapterName Name of Adapter.
-	 * @return Adapter.
-	 * @throws SiminovException If any error occur while getting Adapter.
+	 * Handle Get Adapter Descriptor Based On Name Request From Web. 
+	 * @param adapterDescriptorName Name of Adapter Descriptor.
+	 * @return Adapter Descriptor.
+	 * @throws SiminovException If any error occur while getting Adapter Descriptor.
 	 */
-	public String getAdapterBasedOnName(final String adapterName) throws SiminovException {
+	public String getAdapterBasedOnName(final String adapterDescriptorName) throws SiminovException {
 
 		HybridSiminovDatas jsSiminovDatas = new HybridSiminovDatas();
-		jsSiminovDatas.addHybridSiminovData(hybridResources.generateHybridAdapter(hybridResources.getAdapterBasedOnName(adapterName)));
+		jsSiminovDatas.addHybridSiminovData(hybridResources.generateHybridAdapterDescriptor(hybridResources.getAdapterBasedOnName(adapterDescriptorName)));
 		
-		return HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		
 	}
 	
 	
 	/**
-	 * Handle Get Adapter Based On Path Request From Web.
-	 * @param adapterPath Adapter Path
-	 * @return Adapter.
-	 * @throws SiminovException If any error occur while getting Adapter.
+	 * Handle Get Adapter Descriptor Based On Path Request From Web.
+	 * @param adapterDescriptorPath Adapter Descriptor Path 
+	 * @return Adapter Descriptor.
+	 * @throws SiminovException If any error occur while getting Adapter Descriptor.
 	 */
-	public String getAdapterBasedOnPath(final String adapterPath) throws SiminovException {
+	public String getAdapterBasedOnPath(final String adapterDescriptorPath) throws SiminovException {
 
 		HybridSiminovDatas jsSiminovDatas = new HybridSiminovDatas();
-		jsSiminovDatas.addHybridSiminovData(hybridResources.generateHybridAdapter(hybridResources.getAdapterBasedOnPath(adapterPath)));
+		jsSiminovDatas.addHybridSiminovData(hybridResources.generateHybridAdapterDescriptor(hybridResources.getAdapterBasedOnPath(adapterDescriptorPath)));
 		
-		return HybridSiminovDataBuilder.jsonBuidler(jsSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		
 	}
 
 	
 	/**
-	 * Handle Check Adapter Based On Adapter Name Request From Web.
-	 * @param adapterName Name of Adapter.
+	 * Handle Check Adapter Descriptor Based On Adapter Descriptor Name Request From Web.
+	 * @param adapterDescriptorName Name of Adapter Descriptor.
 	 * @return true/false
 	 * @throws SiminovException If any error occur while checking Adapter exist or not.
 	 */
-	public boolean containAdapterBasedOnName(final String adapterName) throws SiminovException {
-		return hybridResources.containAdapterBasedOnName(adapterName);
+	public boolean containAdapterBasedOnName(final String adapterDescriptorName) throws SiminovException {
+		return hybridResources.containAdapterBasedOnName(adapterDescriptorName);
 	}
 
 	
 	/**
-	 * Handle Check Adapter Based On Path Request From Web.
-	 * @param adapterPath Adapter Path
+	 * Handle Check Adapter Descriptor Based On Path Request From Web.
+	 * @param adapterDescriptorPath Adapter Descriptor Path
 	 * @return true/false
 	 * @throws SiminovException If any error occur while checking Adapter exist or not.
 	 */
-	public boolean containAdapterBasedOnPath(final String adapterPath) throws SiminovException {
-		return hybridResources.containAdapterBasedOnPath(adapterPath);
+	public boolean containAdapterBasedOnPath(final String adapterDescriptorPath) throws SiminovException {
+		return hybridResources.containAdapterBasedOnPath(adapterDescriptorPath);
 	}
 
 	
@@ -505,37 +503,37 @@ public class ResourcesHandler {
 		
 		hybridSiminovDatas.addHybridSiminovData(hybridHandlers);
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 	
 	
 	/**
-	 * Handle Get Handler Based On Adapter Name And Handler Name Request From Web.
-	 * @param adapterName Name of Adapter.
+	 * Handle Get Handler Based On Adapter Descriptor Name And Handler Name Request From Web.
+	 * @param adapterDescriptorName Name of Adapter Descriptor.
 	 * @param handlerName Name of Handler.
 	 * @return Handler
 	 * @throws SiminovException If any error occur while getting Handler.
 	 */
-	public String getHandler(final String adapterName, final String handlerName) throws SiminovException {
+	public String getHandler(final String adapterDescriptorName, final String handlerName) throws SiminovException {
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridHandler(hybridResources.getHandler(adapterName, handlerName)));
+		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridHandler(hybridResources.getHandler(adapterDescriptorName, handlerName)));
 		
-		return HybridSiminovDataBuilder.jsonBuidler(hybridSiminovDatas);
+		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
 	
 	
 	/**
-	 * Handle Check Handler Based On Adapter Name And Handler Name Request From Web.
-	 * @param adapterName Name of Adapter.
+	 * Handle Check Handler Based On Adapter Descriptor Name And Handler Name Request From Web.
+	 * @param adapterDescriptorName Name of Adapter Descriptor.
 	 * @param handlerName Name of Handler.
 	 * @return true/false
 	 * @throws SiminovException If any error occur while checking Handler exist or not.
 	 */
-	public boolean containHander(final String adapterName, final String handlerName) throws SiminovException {
-		return hybridResources.containHandler(adapterName, handlerName);
+	public boolean containHander(final String adapterDescriptorName, final String handlerName) throws SiminovException {
+		return hybridResources.containHandler(adapterDescriptorName, handlerName);
 	}
 	
 	

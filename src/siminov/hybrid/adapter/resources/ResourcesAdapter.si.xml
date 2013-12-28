@@ -337,15 +337,15 @@
 		
         <handler>
             
-            <property name="name">GET-ADAPTERS</property>
+            <property name="name">GET-ADAPTER-DESCRIPTORS</property>
             <property name="type">SYNC</property>
-            <property name="map_to">getAdapters</property>
-            <property name="description">Get Adapters</property>
+            <property name="map_to">getAdapterDescriptors</property>
+            <property name="description">Get Adapter Descriptors</property>
 
 			<return>
 	        
 			    	<property name="type">java.lang.String</property>
-	                <property name="description">Adapters</property>
+	                <property name="description">Adapter Descriptors</property>
 	                
 	      	</return>
             
@@ -353,15 +353,15 @@
         
         <handler>
             
-            <property name="name">GET-LIBRARIES-ADAPTERS</property>
+            <property name="name">GET-LIBRARIES-ADAPTER-DESCRIPTORS</property>
             <property name="type">SYNC</property>
-            <property name="map_to">getLibrariesAdapters</property>
-            <property name="description">Get Libraries Adapters</property>
+            <property name="map_to">getLibrariesAdapterDescriptors</property>
+            <property name="description">Get Libraries Adapter Descriptors</property>
 
             <return>
 	        
 			    	<property name="type">java.lang.String</property>
-	                <property name="description">Libraries Adapters</property>
+	                <property name="description">Libraries Adapter Descriptors</property>
 	                
 	      	</return>
             
@@ -369,15 +369,15 @@
         
         <handler>
             
-            <property name="name">GET-ADAPTERS-BASED-ON-PATHS</property>
+            <property name="name">GET-ADAPTER-DESCRIPTORS-BASED-ON-PATHS</property>
             <property name="type">SYNC</property>
-            <property name="map_to">getAdaptersBasedOnPaths</property>
+            <property name="map_to">getAdapterDescriptorsBasedOnPaths</property>
             <property name="description">Get Adapters Based On Paths</property>
 
 			<return>
 	        
 			    	<property name="type">java.lang.String</property>
-	                <property name="description">Adapters</property>
+	                <property name="description">Adapter Descriptors</property>
 	                
 	      	</return>
             
@@ -385,17 +385,17 @@
         
         <handler>
             
-            <property name="name">GET-ADAPTER</property>
+            <property name="name">GET-ADAPTER-DESCRIPTOR</property>
             <property name="type">SYNC</property>
-            <property name="map_to">getAdapterBasedOnName</property>
-            <property name="description">Get Adapter</property>
+            <property name="map_to">getAdapterDescriptorBasedOnName</property>
+            <property name="description">Get Adapter Descriptor</property>
 
             <parameters>
             
                 <parameter>
                 
                 	<property name="type">java.lang.String</property>
-                	<property name="description">Adapter Name</property>
+                	<property name="description">Adapter Descriptor Name</property>
                 	
             	</parameter>
 			
@@ -404,7 +404,7 @@
 			<return>
 	        
 			    	<property name="type">java.lang.String</property>
-	                <property name="description">Adapter</property>
+	                <property name="description">Adapter Descriptor</property>
 	                
 	      	</return>
             
@@ -413,17 +413,17 @@
         
         <handler>
             
-            <property name="name">GET-ADAPTER-BASED-ON-PATH</property>
+            <property name="name">GET-ADAPTER-DESCRIPTOR-BASED-ON-PATH</property>
             <property name="type">SYNC</property>
-            <property name="map_to">getAdapterBasedOnPath</property>
-            <property name="description">Get Adapter Based On Path</property>
+            <property name="map_to">getAdapterDescriptorBasedOnPath</property>
+            <property name="description">Get Adapter Descriptor Based On Path</property>
 
             <parameters>
             
                 <parameter>
                 
                 	<property name="type">java.lang.String</property>
-                	<property name="description">Adapter Path</property>
+                	<property name="description">Adapter Descriptor Path</property>
                 	
             	</parameter>
 			
@@ -432,7 +432,7 @@
 			<return>
 	        
 			    	<property name="type">java.lang.String</property>
-	                <property name="description">Adapter</property>
+	                <property name="description">Adapter Descriptor</property>
 	                
 	      	</return>
             

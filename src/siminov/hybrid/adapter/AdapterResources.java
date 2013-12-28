@@ -21,8 +21,8 @@ package siminov.hybrid.adapter;
 import java.util.HashMap;
 import java.util.Map;
 
-import siminov.hybrid.model.HybridDescriptor.Adapter;
-import siminov.hybrid.model.HybridDescriptor.Adapter.Handler;
+import siminov.hybrid.model.AdapterDescriptor;
+import siminov.hybrid.model.AdapterDescriptor.Handler;
 import siminov.hybrid.resource.Resources;
 import siminov.orm.utils.ClassUtils;
 
@@ -57,13 +57,13 @@ public class AdapterResources {
 	
 
 	/**
-	 * Returns Adapter mapped class instance based on adapter name.
-	 * @param adapterName Name of Adapter.
+	 * Returns Adapter Descriptor mapped class instance based on adapter descriptor name.
+	 * @param adapterDescriptorName Name of Adapter Descriptor.
 	 * @return Adapter Class Instance.
 	 */
-	public Object getAdapterInstance(String adapterName) {
-		Adapter adapter = resources.getAdapter(adapterName);
-		String mapTo = adapter.getMapTo();
+	public Object getAdapterInstance(String adapterDescriptorName) {
+		AdapterDescriptor adapterDescriptor = resources.getAdapterDescriptor(adapterDescriptorName);
+		String mapTo = adapterDescriptor.getMapTo();
 		
 		return ClassUtils.createClassInstance(mapTo);
 	}
@@ -89,35 +89,35 @@ public class AdapterResources {
 	
 	/**
 	 * Returns Handler mapped method instance based on adapter name, handler name and its handler parameter types.
-	 * @param adapterName Name of Adapter.
+	 * @param adapterDescriptorName Name of Adapter.
 	 * @param handlerName Name of Handler.
 	 * @param handlerParameterTypes Type of Parameters.
 	 * @return Handler Method Instance.
 	 */
-	public Object getHandlerInstance(String adapterName, String handlerName, Class<?>...handlerParameterTypes) {
+	public Object getHandlerInstance(String adapterDescriptorName, String handlerName, Class<?>...handlerParameterTypes) {
 
-		Adapter adapter = resources.getAdapter(adapterName);
-		Handler handler = adapter.getHandler(handlerName);
+		AdapterDescriptor adapterDescriptor = resources.getAdapterDescriptor(adapterDescriptorName);
+		Handler handler = adapterDescriptor.getHandler(handlerName);
 		
-		return ClassUtils.createMethodObject(adapter.getMapTo(), handler.getMapTo(), handlerParameterTypes);
+		return ClassUtils.createMethodBasedOnClassName(adapterDescriptor.getMapTo(), handler.getMapTo(), handlerParameterTypes);
 	}
 	
 	
 	/**
 	 * Returns Handler mapped method instance based on adapter name, handler name and its handler parameter types. If instance is not cached it will create new instance for handler.
-	 * @param adapterName Name of Adapter.
+	 * @param adapterDescriptorName Name of Adapter.
 	 * @param handlerName Name of Handler.
 	 * @param handlerParameterTypes Type of Parameters.
 	 * @return
 	 */
-	public Object requireHandlerInstance(String adapterName, String handlerName, Class<?>...handlerParameterTypes) {
+	public Object requireHandlerInstance(String adapterDescriptorName, String handlerName, Class<?>...handlerParameterTypes) {
 		
 		boolean contain = handlers.containsKey(handlerName);
 		if(contain) {
 			return handlers.get(handlerName);
 		}
 		
-		Object handler = getHandlerInstance(adapterName, handlerName, handlerParameterTypes);
+		Object handler = getHandlerInstance(adapterDescriptorName, handlerName, handlerParameterTypes);
 		handlers.put(handlerName, handler);
 		
 		return handler;

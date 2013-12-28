@@ -26,8 +26,8 @@ import java.util.Iterator;
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.events.DatabaseEventHandler;
 import siminov.hybrid.events.SiminovEventHandler;
+import siminov.hybrid.model.AdapterDescriptor;
 import siminov.hybrid.model.HybridDescriptor;
-import siminov.hybrid.model.HybridDescriptor.Adapter;
 import siminov.hybrid.model.LibraryDescriptor;
 import siminov.hybrid.reader.HybridDescriptorReader;
 import siminov.hybrid.reader.LibraryDescriptorReader;
@@ -139,7 +139,7 @@ public class Siminov extends siminov.orm.Siminov {
 		hybridResources.synchronizeMappings();
 
 		
-		processAdapters();
+		processAdapterDescriptors();
 		processHybridServices();
 		
 	}
@@ -231,30 +231,30 @@ public class Siminov extends siminov.orm.Siminov {
 			 * Map Adapters
 			 */
 			HybridDescriptor hybridDescriptor = hybridResources.getHybridDescriptor();
-			Iterator<String> adapterPaths = libraryDescriptor.getAdapterPaths();
+			Iterator<String> adapterDescriptorPaths = libraryDescriptor.getAdapterDescriptorPaths();
 
-			while(adapterPaths.hasNext()) {
+			while(adapterDescriptorPaths.hasNext()) {
 				
-				String libraryAdapterPath = adapterPaths.next();
-				hybridDescriptor.addAdapterPath(library + File.separator + libraryAdapterPath);
+				String libraryAdapterPath = adapterDescriptorPaths.next();
+				hybridDescriptor.addAdapterDescriptorPath(library + File.separator + libraryAdapterPath);
 			}
 		}
 	}
 	
 	
-	protected static void processAdapters() {
+	protected static void processAdapterDescriptors() {
 		
 		HybridDescriptor hybridDescriptor = hybridResources.getHybridDescriptor();
-		Iterator<String> adapterPaths = hybridDescriptor.getAdapterPaths();
+		Iterator<String> adapterDescriptorPaths = hybridDescriptor.getAdapterDescriptorPaths();
 
-		while(adapterPaths.hasNext()) {
-			String adapterPath = adapterPaths.next();
-			HybridDescriptorReader hybridDescriptorParser = new HybridDescriptorReader(adapterPath);
+		while(adapterDescriptorPaths.hasNext()) {
+			String adapterDescriptorPath = adapterDescriptorPaths.next();
+			HybridDescriptorReader hybridDescriptorParser = new HybridDescriptorReader(adapterDescriptorPath);
 			
-			Iterator<Adapter> adapters = hybridDescriptorParser.getHybridDescriptor().getAdapters();
-			while(adapters.hasNext()) {
-				Adapter adapter = adapters.next();
-				hybridDescriptor.addAdapter(adapterPath, adapter);				
+			Iterator<AdapterDescriptor> adapterDescriptors = hybridDescriptorParser.getHybridDescriptor().getAdapterDescriptors();
+			while(adapterDescriptors.hasNext()) {
+				AdapterDescriptor adapterDescriptor = adapterDescriptors.next();
+				hybridDescriptor.addAdapterDescriptor(adapterDescriptorPath, adapterDescriptor);				
 			}
 		}
 	}
