@@ -72,7 +72,7 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 
 	private String libraryName = null;
 	
-	private String tempValue = null;
+	private StringBuilder tempValue = new StringBuilder();
 	private LibraryDescriptor libraryDescriptor = new LibraryDescriptor();
 	
 	private String propertyName = "";
@@ -113,6 +113,8 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 	
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		
+		tempValue = new StringBuilder();
+		
 		if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_LIBRARY)) {
 			libraryDescriptor = new LibraryDescriptor();
 		} else if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_PROPERTY)) {
@@ -121,23 +123,24 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 	}
 	
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		tempValue = new String(ch,start,length);
+		String value = new String(ch,start,length);
 		
-		if(tempValue == null || tempValue.length() <= 0) {
+		if(value == null || value.length() <= 0 || value.equalsIgnoreCase(NEW_LINE)) {
 			return;
 		}
 		
-		tempValue.trim();
+		value = value.trim();
+		tempValue.append(value);
 	}
 
 	public void endElement(String uri, String localName, String qName) throws SAXException {
 		
 		if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_PROPERTY)) {
-			libraryDescriptor.addProperty(propertyName, tempValue);
+			libraryDescriptor.addProperty(propertyName, tempValue.toString());
 		} else if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_DATABASE_MAPPING)) {
-			libraryDescriptor.addDatabaseMappingPath(tempValue);
+			libraryDescriptor.addDatabaseMappingPath(tempValue.toString());
 		} else if(localName.equalsIgnoreCase(HYBRID_LIBRARY_DESCRIPTOR_ADAPTER)) {
-			libraryDescriptor.addAdapterPath(tempValue);
+			libraryDescriptor.addAdapterDescriptorPath(tempValue.toString());
 		}
 		
 		super.endElement(uri, localName, qName);

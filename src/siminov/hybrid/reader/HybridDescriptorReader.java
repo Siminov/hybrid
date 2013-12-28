@@ -26,8 +26,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 import siminov.hybrid.Constants;
+import siminov.hybrid.model.AdapterDescriptor;
 import siminov.hybrid.model.HybridDescriptor;
-import siminov.hybrid.model.HybridDescriptor.Adapter;
 import siminov.orm.exception.DeploymentException;
 import siminov.orm.log.Log;
 import siminov.orm.reader.SiminovSAXDefaultHandler;
@@ -94,17 +94,17 @@ Example:
  */
 public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements Constants {
 
-	private String tempValue = null;
+	private StringBuilder tempValue = new StringBuilder();
 	private Resources resources = Resources.getInstance();
 	
 	private HybridDescriptor hybridDescriptor = new HybridDescriptor();
 	
-	private Adapter adapter = null;
-	private Adapter.Handler handler = null;
-	private Adapter.Handler.Parameter parameter = null;
-	private Adapter.Handler.Return returnData = null;
+	private AdapterDescriptor adapterDescriptor = null;
+	private AdapterDescriptor.Handler handler = null;
+	private AdapterDescriptor.Handler.Parameter parameter = null;
+	private AdapterDescriptor.Handler.Return returnData = null;
 	
-	private boolean isAdapter = false;
+	private boolean isAdapterDescriptor = false;
 	private boolean isHandler = false;
 	private boolean isParameter = false;
 	private boolean isReturn = false;
@@ -156,38 +156,39 @@ public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements 
 	
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
-		tempValue = "";
+		tempValue = new StringBuilder();
 
 		if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_PROPERTY)) {
 			initializeProperty(attributes);
 		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_ADAPTER)) {
 			
-			adapter = new Adapter();
-			isAdapter = true;
+			adapterDescriptor = new AdapterDescriptor();
+			isAdapterDescriptor = true;
 		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_HANDLER)) {
 			
-			handler = new Adapter.Handler();
+			handler = new AdapterDescriptor.Handler();
 			isHandler = true;
 		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER)) {
 			
-			parameter = new Adapter.Handler.Parameter();
+			parameter = new AdapterDescriptor.Handler.Parameter();
 			isParameter = true;
 		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN)) {
 			
-			returnData = new Adapter.Handler.Return();
+			returnData = new AdapterDescriptor.Handler.Return();
 			isReturn = true;
 		} 
 		
 	}
 	
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		tempValue = new String(ch,start,length);
+		String value = new String(ch,start,length);
 		
-		if(tempValue == null || tempValue.length() <= 0) {
+		if(value == null || value.length() <= 0 || value.equalsIgnoreCase(siminov.orm.Constants.NEW_LINE)) {
 			return;
 		}
 		
-		tempValue.trim();
+		value = value.trim();
+		tempValue.append(value);
 	}
 
 	public void endElement(String uri, String localName, String qName) throws SAXException {
@@ -196,13 +197,13 @@ public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements 
 			processProperty();
 		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_ADAPTER)) {
 
-			hybridDescriptor.addAdapter(adapter);
+			hybridDescriptor.addAdapterDescriptor(adapterDescriptor);
 			
-			adapter = null;
-			isAdapter = false;
+			adapterDescriptor = null;
+			isAdapterDescriptor = false;
 		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_HANDLER)) {
 			
-			adapter.addHandler(handler);
+			adapterDescriptor.addHandler(handler);
 			
 			handler = null;
 			isHandler = false;
@@ -219,7 +220,7 @@ public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements 
 			returnData = null;
 			isReturn = false;
 		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_ADAPTER)) {
-			hybridDescriptor.addAdapterPath(tempValue);
+			hybridDescriptor.addAdapterDescriptorPath(tempValue.toString());
 		}
 	}
 	
@@ -230,15 +231,15 @@ public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements 
 	private void processProperty() {
 		
 		if(isReturn) {
-			returnData.addProperty(propertyName, tempValue);
+			returnData.addProperty(propertyName, tempValue.toString());
 		} else if(isParameter) {
-			parameter.addProperty(propertyName, tempValue);
+			parameter.addProperty(propertyName, tempValue.toString());
 		} else if(isHandler) {
-			handler.addProperty(propertyName, tempValue);
-		} else if(isAdapter) {
-			adapter.addProperty(propertyName, tempValue);
+			handler.addProperty(propertyName, tempValue.toString());
+		} else if(isAdapterDescriptor) {
+			adapterDescriptor.addProperty(propertyName, tempValue.toString());
 		} else {
-			hybridDescriptor.addProperty(propertyName, tempValue);
+			hybridDescriptor.addProperty(propertyName, tempValue.toString());
 		}
 	}
 
