@@ -1,0 +1,61 @@
+1. siminov.hybrid.parsers package renamed to siminov.hybrid.reader
+
+2. Resource.java
+	- Removed unnecessarily library APIs.
+	
+3. HybridLibraryDescriptor.java
+	- Renamed HybridLibraryDescriptor class name to LibraryDescriptor.
+	
+4. HybridDescriptorReader.java
+	- Changes based on removing of reading library configuration.
+	
+5. ResourcesHandler.java
+	- Removed unnecessarily APIs.
+	
+6. DatabaseHandler.java
+	- Changes based on new database bundle implementation.		
+	
+7. HybridDescriptor.java
+	- Removed library APIs from class, based on new library architecture.
+	
+8. SiminovEventHandler.java
+	- Renamed api based on new Siminov API names.
+	
+9. DatabaseEventHandler.java
+	- Changes based on database bundle implementation.
+	
+10. ResourcesAdapter.si.xml
+	- Removed unnecessarily adapters.
+	
+11. LibraryDescriptor.si.xml
+	- Removed path attribute from adapter tag.
+	
+12. Siminov.java
+	- Changes according to new library architecture.
+	
+13. Constants.java
+	- Changes according to new library architecture.
+	
+14. LibraryDescriptor.si.xml
+	- Changes according to new library architecture.
+	
+15. HybridDescriptor.si.xml
+	- Removed library configuration from hybrid descriptor configuration.						
+   	- Renamed adapter tag to adapter-descriptor.
+   
+16. Siminov.java, AdapterHandler.java, AdapterResources.java, ResourceHandler.java, ResourceAdapter.si.xml, Resource.java
+	- Renamed Hybrid Adapter Class to AdapterDescriptor					
+
+17. DatabaseHandler.java, SiminovHandler.java, DatabaseEventHandler.java, SiminovEventHandler.java
+	- Renamed HybridSiminovDataBuilder class to HybridSiminovDataWritter
+
+18. AdapterDescriptor.java, HybridDescriptor.java, LibraryDescriptor.java
+	- Implemented IDescriptor interface.
+	
+19. HybridDescriptorReader.java, LibraryDescriptorReader.java
+	- Improved descriptor parsing by ignoring space and new line.
+	
+20. Writter Package
+	- Created new writter package			
+		
+	
