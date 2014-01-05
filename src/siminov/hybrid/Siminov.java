@@ -40,7 +40,6 @@ import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 import siminov.orm.model.ApplicationDescriptor;
 import siminov.orm.model.DatabaseDescriptor;
-import siminov.orm.utils.LibraryHelper;
 
 /**
  * Exposes methods to deal with SIMINOV HYBRID FRAMEWORK.
@@ -189,9 +188,9 @@ public class Siminov extends siminov.orm.Siminov {
 	protected static void processLibraries() {
 		
 		ApplicationDescriptor applicationDescriptor = ormResources.getApplicationDescriptor();
+		applicationDescriptor.addLibrary(siminov.hybrid.Constants.HYBRID_LIBRARY_DESCRIPTOR_FILE_PATH);
 		
-		LibraryHelper libraryHelper = new LibraryHelper();
-		Iterator<String> libraries = libraryHelper.getLibraries();
+		Iterator<String> libraries = applicationDescriptor.getLibraries();
 		
 		while(libraries.hasNext()) {
 			
@@ -221,7 +220,7 @@ public class Siminov extends siminov.orm.Siminov {
 					
 					DatabaseDescriptor databaseDescriptor = databaseDescriptors.next();
 					if(databaseDescriptor.getDatabaseName().equalsIgnoreCase(databaseDescriptorName)) {
-						databaseDescriptor.addDatabaseMappingPath(library + File.separator + databaseMappingDescriptor);
+						databaseDescriptor.addDatabaseMappingDescriptorPath(library.replace(".", "/") + File.separator + databaseMappingDescriptor);
 					}
 				}
 			}
@@ -236,7 +235,7 @@ public class Siminov extends siminov.orm.Siminov {
 			while(adapterDescriptorPaths.hasNext()) {
 				
 				String libraryAdapterPath = adapterDescriptorPaths.next();
-				hybridDescriptor.addAdapterDescriptorPath(library + File.separator + libraryAdapterPath);
+				hybridDescriptor.addAdapterDescriptorPath(library.replace(".", "/") + File.separator + libraryAdapterPath);
 			}
 		}
 	}

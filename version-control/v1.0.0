@@ -58,4 +58,14 @@
 20. Writter Package
 	- Created new writter package			
 		
+
+21. siminov.orm.annotation
+	- Removed annotation from ORM. 
+	- Looking to future cross platform app deployment we have planned to remove annotation because it is not supported in many platforms.
+		
+22. Database 
+	- Created a new Database class which supports both Inheritance and Composition.		
 	
+23. LibraryHelper
+	- Deleted Library Helper class because many platform will not support of getting all class names of application.
+			

@@ -522,7 +522,7 @@ public class Resources {
 		HybridSiminovData webDatabaseMappingDescriptorPaths = new HybridSiminovData();
 		webDatabaseMappingDescriptorPaths.setDataType(HybridDatabaseDescriptor.DATABASE_MAPPING_DESCRIPTORS);
 		
-		Iterator<String> databaseMappingDescriptors = databaseDescriptor.getDatabaseMappingPaths();
+		Iterator<String> databaseMappingDescriptors = databaseDescriptor.getDatabaseMappingDescriptorPaths();
 		while(databaseMappingDescriptors.hasNext()) {
 			
 			HybridSiminovValue databaseMappingDescriptorPath = new HybridSiminovValue();

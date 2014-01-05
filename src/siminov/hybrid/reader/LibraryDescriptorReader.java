@@ -78,36 +78,31 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 	private String propertyName = "";
 	
 	public LibraryDescriptorReader(final String libraryName) {
+
 		if(libraryName == null || libraryName.length() <= 0) {
 			Log.loge(getClass().getName(), "Constructor", "Invalid Library Name Found.");
 			throw new DeploymentException(getClass().getName(), "Constructor", "Invalid Library Name Found.");
 		}
 		
 		this.libraryName = libraryName;
+		this.libraryName = this.libraryName.replace(".", "/");
 		
 		
-		Context context = Resources.getInstance().getApplicationContext();
-		if(context == null) {
-			Log.loge(getClass().getName(), "Constructor", "Invalid Application Context Found.");
-			throw new DeploymentException(getClass().getName(), "Constructor", "Invalid Application Context Found.");
-		}
-
 		InputStream libraryDescriptorStream = null;
-		libraryDescriptorStream = getClass().getClassLoader().getResourceAsStream(libraryName + File.separator + LIBRARY_DESCRIPTOR_FILE_NAME);
+		libraryDescriptorStream = getClass().getClassLoader().getResourceAsStream(this.libraryName + File.separator + siminov.orm.Constants.LIBRARY_DESCRIPTOR_FILE_NAME);
 
 		if(libraryDescriptorStream == null) {
-			Log.loge(getClass().getName(), "Constructor", "Invalid Library Descriptor Stream Found, LIBRARY-NAME: " + libraryName + ", PATH: " + libraryName + File.separator + LIBRARY_DESCRIPTOR_FILE_NAME);
-			throw new DeploymentException(getClass().getName(), "Constructor", "Invalid Library Descriptor Stream Found, LIBRARY-NAME: " + libraryName + ", PATH: " + libraryName + File.separator + LIBRARY_DESCRIPTOR_FILE_NAME);
+			Log.loge(getClass().getName(), "Constructor", "Invalid Library Descriptor Stream Found, LIBRARY-NAME: " + this.libraryName + File.separator + siminov.orm.Constants.LIBRARY_DESCRIPTOR_FILE_NAME);
+			throw new DeploymentException(getClass().getName(), "Constructor", "Invalid Library Descriptor Stream Found, LIBRARY-NAME: " + this.libraryName + File.separator + siminov.orm.Constants.LIBRARY_DESCRIPTOR_FILE_NAME);
 		}
 		
 		try {
 			parseMessage(libraryDescriptorStream);
 		} catch(Exception exception) {
-			Log.loge(getClass().getName(), "Constructor", "Exception caught while parsing LIBRARY-DESCRIPTOR: " + libraryName + ", " + exception.getMessage());
-			throw new DeploymentException(getClass().getName(), "Constructor", "Exception caught while parsing LIBRARY-DESCRIPTOR: " + libraryName + ", " + exception.getMessage());
+			Log.loge(getClass().getName(), "Constructor", "Exception caught while parsing LIBRARY-DESCRIPTOR: " + this.libraryName + ", " + exception.getMessage());
+			throw new DeploymentException(getClass().getName(), "Constructor", "Exception caught while parsing LIBRARY-DESCRIPTOR: " + this.libraryName + ", " + exception.getMessage());
 		}
 		
-
 		doValidation();
 	}
 	

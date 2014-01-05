@@ -230,4 +230,6 @@ public interface Constants {
 	 */
 	public String HYBRID_SIMINOV_EVENT_HANDLER_TRIGGER_EVENT_HANDLER = "TRIGGER-EVENT";
 	
+	public String HYBRID_LIBRARY_DESCRIPTOR_FILE_PATH = "siminov.hybrid.adapter.resources";
+	
 }
