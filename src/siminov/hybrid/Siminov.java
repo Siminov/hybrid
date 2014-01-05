@@ -75,7 +75,7 @@ public class Siminov extends siminov.orm.Siminov {
 	}
 	
 	
-	public static IInitializer initialize() {
+	public static IInitializer initializer() {
 		return new Initializer();
 	}
 	
