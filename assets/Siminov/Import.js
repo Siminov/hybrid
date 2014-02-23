@@ -50,8 +50,8 @@ document.write('<script type="text/javascript" src="Siminov/Utils/FunctionUtils.
 /*
     Parser Layer Import
  */
-document.write('<script type="text/javascript" src="Siminov/Parser/SIDatasHelper.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Parser/SIJsonHelper.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/ReaderWriter/SIDatasHelper.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/ReaderWriter/SIJsonHelper.js"></script>');
 
 
 /*
@@ -74,32 +74,32 @@ document.write('<script type="text/javascript" src="Siminov/Database/Database.js
 document.write('<script type="text/javascript" src="Siminov/Database/Select.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Database/Clause.js"></script>');
 
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/IAverage.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/IAverageClause.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/IAverage.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/IAverageClause.js"></script>');
 
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/IDelete.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/IDeleteClause.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/IDelete.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/IDeleteClause.js"></script>');
 
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/ICount.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/ICountClause.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/ICount.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/ICountClause.js"></script>');
 
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/IGroupConcat.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/IGroupConcatClause.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/IGroupConcat.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/IGroupConcatClause.js"></script>');
 
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/IMax.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/IMaxClause.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/IMax.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/IMaxClause.js"></script>');
 
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/IMin.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/IMinClause.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/IMin.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/IMinClause.js"></script>');
 
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/ISelect.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/ISelectClause.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/ISelect.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/ISelectClause.js"></script>');
 
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/ISum.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/ISumClause.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/ISum.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/ISumClause.js"></script>');
 
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/ITotal.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Database/Impl/ITotalClause.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/ITotal.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Database/Design/ITotalClause.js"></script>');
 
 
 
