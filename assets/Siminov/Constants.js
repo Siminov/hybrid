@@ -386,6 +386,39 @@ Constants.HYBRID_DESCRIPTOR_ADAPTER_RETURN_TYPE = "type";
 Constants.HYBRID_DESCRIPTOR_ADAPTER_RETURN_DESCRIPTION = "description";
 
 
+//	ServiceDescriptor.si.xml
+
+Constants.SERVICE_DESCRIPTOR_NAME = "name";
+
+Constants.SERVICE_DESCRIPTOR_DESCRIPTION = "description";
+
+Constants.SERVICE_DESCRIPTOR_PROTOCOL = "protocol";
+
+Constants.SERVICE_DESCRIPTOR_INSTANCE = "instance";
+
+Constants.SERVICE_DESCRIPTOR_PORT = "port";
+
+Constants.SERVICE_DESCRIPTOR_CONTEXT = "context";
+
+
+Constants.SERVICE_DESCRIPTOR_API_NAME = "name";
+
+Constants.SERVICE_DESCRIPTOR_API_TYPE = "type";
+
+Constants.SERVICE_DESCRIPTOR_API_API = "api";
+
+Constants.SERVICE_DESCRIPTOR_API_MODE = "mode";
+
+Constants.SERVICE_DESCRIPTOR_API_DATA_STREAM = "data-stream";
+
+
+//Sync Descriptor.si.xml
+Constants.SYNC_DESCRIPTOR_NAME = "name";
+
+Constants.SYNC_DESCRIPTOR_REFRESH_INTERVAL = "interval";
+
+
+
 //    Siminov Event Handler
 
 
@@ -1252,3 +1285,13 @@ Constants.SIMINOV_HYBRID_DATA_VALUE = "value";
 Constants.SIMINOV_HYBRID_DATA_TEXT = "#text";
 
 
+
+// Siminov Service 
+
+Constants.SIMINOV_SERVICE_ADAPTER = "SERIVCE";
+
+Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER = "INVOKE";
+
+Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_PARAMETER = "SERVICE";
+
+Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_API_PARAMETER = "API";
