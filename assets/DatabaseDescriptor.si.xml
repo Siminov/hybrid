@@ -50,15 +50,6 @@
 		<database-mapping path="full_path_of_database_mapping_descriptor_file" />
 	</database-mappings>
 
-
-
-	<!-- Libraries Needed Under This Database Descriptor -->
-	
-		<!-- Optional Field -->
-	<libraries>
-		<library>full_path_of_library_descriptor_file</library>
-	</libraries>
-	
 </database-descriptor>
 
 
