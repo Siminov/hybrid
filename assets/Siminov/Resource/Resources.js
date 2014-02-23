@@ -52,8 +52,6 @@ var Resources = (function() {
 
 	function Resources() {
 		
-		var databases = new Dictionary();
-		
 		/**
 	 		Get Application Descriptor object of application.
 	 		
@@ -72,107 +70,8 @@ var Resources = (function() {
 	        var applicationDescriptor = SIDatasHelper.toModels(datas);
 	
 	        return applicationDescriptor[0];
-	
 	    }
 	
-		/**
-		 	Get iterator of all database descriptors provided in Application Descriptor file.
-
-			Example: ApplicationDescriptor.si.xml
-				<siminov>
-				
-					<database-descriptors>
-						<database-descriptor>DatabaseDescriptor.si.xml</database-descriptor>
-					</database-descriptors>
-			
-				</siminov>
-		
-		 	@method getDatabaseDescriptorPaths 
-		 	@return {Array} It contains all database descriptor paths provided.
-		 */
-	    this.getDatabaseDescriptorPaths = function() {
-	
-	        var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_DATABASE_DESCRIPTOR_PATHS_HANDLER);
-	
-	        var data = adapter.invoke();
-	
-	        var datas = SIJsonHelper.toSI(data);
-	        var databaseDescriptorPaths = SIDatasHelper.toModels(datas);
-	
-	        return databaseDescriptorPaths;
-	    }
-	
-		
-		/**
-		 	Get DatabaseDescriptor based on path provided as per defined in Application Descriptor file.
-				
-			Example: ApplicationDescriptor.si.xml
-				
-				<siminov>
-				
-					<database-descriptors>
-						<database-descriptor>DatabaseDescriptor.si.xml</database-descriptor>
-					</database-descriptors>
-			
-				</siminov>
-		
-				</pre>
-			</p>
-		 
-		 	@method getDatabaseDescriptorBasedOnPath
-		 	@param databaseDescriptorPath {Array} It which contains all database descriptor paths provided.
-		 	@return {String} Database Descriptor
-		 */
-	    this.getDatabaseDescriptorBasedOnPath = function(path) {
-	
-	        var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_DATABASE_DESCRIPTOR_BASED_ON_PATH_HANDLER);
-	
-	        adapter.addParameter(path);
-	
-	        var data = adapter.invoke();
-	
-	        var datas = SIJsonHelper.toSI(data);
-	        var databaseDescriptor = SIDatasHelper.toModels(datas);
-	
-	        return databaseDescriptor[0];
-	
-	    }
-	
-		/**
-		 	Get Database Descriptor based on database descriptor name provided as per defined in Database Descriptor file.
-				
-			Example: DatabaseDescriptor.si.xml
-				
-				<database-descriptor>
-				
-					<property name="database_name">SIMINOV-HYBRID-TEMPLATE</property>
-					
-				</database-descriptor>
-		 
-		 	@method getDatabaseDescriptorBasedOnName 
-		 	@param databaseDescriptorName Database Descriptor object based on database descriptor name provided.
-		 	@return {DatabaseDescriptor} Database Descriptor
-		 */
-	    this.getDatabaseDescriptorBasedOnName = function(databaseName) {
-	
-	        var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_DATABASE_DESCRIPTOR_BASED_ON_NAME_HANDLER);
-	
-	        adapter.addParameter(databaseName);
-	
-	        var data = adapter.invoke();
-	
-	        var datas = SIJsonHelper.toSI(data);
-	        var databaseDescriptor = SIDatasHelper.toModels(datas);
-	
-	        return databaseDescriptor[0];
-	
-	    }
 	
 		
 		/**
@@ -196,128 +95,62 @@ var Resources = (function() {
 	
 	    }
 	
-		/**
-		 	Get Database Descriptor based on POJO class name provided.
 
-			@method getDatabaseDescriptorBasedOnClassName
-		 	@param className {String} POJO class name.
-		 	@return {DatabaseDescriptor} Database Descriptor object in respect to POJO class name.
-		 */
-	    this.getDatabaseDescriptorBasedOnClassName = function(className) {
-	
-	        var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_DATABASE_DESCRIPTOR_BASED_ON_CLASS_NAME_HANDLER);
-	
-	        adapter.addParameter(className);
-	
-	        var data = adapter.invoke();
-	
-	        var datas = SIJsonHelper.toSI(data);
-	        var databaseDescriptor = SIDatasHelper.toModels(datas);
-	
-	        return databaseDescriptor[0];
-	
-	    }
-	
-		
 		/**
-		 	Get Database Descriptor based on table name provided.
-
-			@method getDatabaseDescriptorBasedOnTableName
-		 	@param tableName {String} Name of table.
-		 	@return {DatabaseDescriptor} Database Descriptor object in respect to table name.
-		 */
-	    this.getDatabaseDescriptorBasedOnTableName = function(tableName) {
-	
-	        var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_DATABASE_DESCRIPTOR_BASED_ON_TABLE_NAME_HANDLER);
-	
-	        adapter.addParameter(tableName);
-	
-	        var data = adapter.invoke();
-	
-	        var datas = SIJsonHelper.toSI(data);
-	        var databaseDescriptor = SIDatasHelper.toModels(datas);
-	
-	        return databaseDescriptor[0];
-	
-	    }
-	
-		
-		/**
-		 	Get database descriptor name based on class name
-		 
-		 	@method getDatabaseDescriptorNameBasedOnClassName
-		 	@param className {String} Name of Class
-		 	@return {String} Database Descriptor Name
-		 */
-		this.getDatabaseDescriptorNameBasedOnClassName = function(className) {
-
-	        var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_DATABASE_DESCRIPTOR_NAME_BASED_ON_CLASS_NAME_HANDLER);
-	
-	        adapter.addParameter(tableName);
-	
-	        var data = adapter.invoke();
-						
-		 	var hybridSiminovDatas = SIJsonHelper.toSI(data);
-			if(hybridSiminovDatas != undefined && hybridSiminovDatas != null) {
-				var datas = datas.getHybridSiminovDatas();
-				if(datas != undefined && datas != null && datas.length > 0) {
-					var data = datas[0];
+		 	Get Database Descriptor based on database descriptor name provided as per defined in Database Descriptor file.
+				
+			Example: DatabaseDescriptor.si.xml
+				
+				<database-descriptor>
+				
+					<property name="database_name">SIMINOV-HYBRID-TEMPLATE</property>
 					
-					if(data != undefined && data != null) {
-						var values = data.getValues();
-						
-						if(values != undefined && values != null && values.length > 0) {
-							return value[0].getValue();
-						}
-					}
-				} 
-			}
-			
-		}
-		
-		
-		/**
-		 	Get database descriptor name based on table name
-		 	
-		 	@method getDatabaseDescriptorNameBasedOnTableName
-		 	@param tableName {String} Name of Table
-		 	@return {String} Database Descriptor Name
+				</database-descriptor>
+		 
+		 	@method getDatabaseDescriptor
+		 	@param databaseDescriptorName Database Descriptor object based on database descriptor name provided.
+		 	@return {DatabaseDescriptor} Database Descriptor
 		 */
-		this.getDatabaseDescriptorNameBasedOnTableName = function(className) {
+	    this.getDatabaseDescriptor = function(databaseName) {
+	
+	        var adapter = new Adapter();
+	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
+	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_DATABASE_DESCRIPTOR_BASED_ON_NAME_HANDLER);
+	
+	        adapter.addParameter(databaseName);
+	
+	        var data = adapter.invoke();
+	
+	        var datas = SIJsonHelper.toSI(data);
+	        var databaseDescriptor = SIDatasHelper.toModels(datas);
+	
+	        return databaseDescriptor[0];
+	
+	    }
+	
+
+		/**
+		 	Get all database mapping descriptors
+		 	
+		 	@method getDatabaseMappingDescriptors
+		 	@return {Array} Database Mapping Descriptors
+		 */
+		this.getDatabaseMappingDescriptors = function() {
 		
 			var adapter = new Adapter();
 	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_DATABASE_DESCRIPTOR_NAME_BASED_ON_TABLE_NAME_HANDLER);
-	
-	        adapter.addParameter(tableName);
-	
+	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_DATABASE_MAPPING_DESCRIPTORS_HANDLER);
+	        
 	        var data = adapter.invoke();
-						
-		 	var hybridSiminovDatas = SIJsonHelper.toSI(data);
-			if(hybridSiminovDatas != undefined && hybridSiminovDatas != null) {
-				var datas = datas.getHybridSiminovDatas();
-				if(datas != undefined && datas != null && datas.length > 0) {
-					var data = datas[0];
-					
-					if(data != undefined && data != null) {
-						var values = data.getValues();
-						
-						if(values != undefined && values != null && values.length > 0) {
-							return value[0].getValue();
-						}
-					}
-				} 
-			}
+	        
+	        var datas = SIJsonHelper.toSI(data);
+			var databaseMappingDescriptors = SIDatasHelper.toModels(datas);
 			
+			return databaseMappingDescriptors;
+		
 		}
 		
-		
+
 		/**
 		 	Get Database Mapping based on POJO class name provided.
 
@@ -368,74 +201,6 @@ var Resources = (function() {
 	    }
 	
 		
-		/**
-		 	Get all database mapping descriptors
-		 	
-		 	@method getDatabaseMappingDescriptors
-		 	@return {Array} Database Mapping Descriptors
-		 */
-		this.getDatabaseMappingDescriptors = function() {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_DATABASE_MAPPING_DESCRIPTORS_HANDLER);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var databaseMappingDescriptors = SIDatasHelper.toModels(datas);
-			
-			return databaseMappingDescriptors;
-		
-		}
-		
-		
-		/**
-			Get all library descriptor paths
-		
-			@method getLibraryDescriptorPaths
-			@return {Array} All Library Descriptor Paths
-		*/
-		this.getLibraryDescriptorPaths = function() {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_LIBRARY_DESCRIPTOR_PATHS_HANDLER);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var libraryDescriptorPaths = SIDatasHelper.toModels(datas);
-			
-			return libraryDescriptorPaths;
-		
-		}
-		
-		
-		/**
-		 	Get all library paths based on Database Descriptor name.
-		 	
-		 	@method getLibraryPathsBasedOnDatabaseDescriptorName
-		 	@param databaseDescriptorName {String} Name of Database Descriptor.
-		 	@return {Array} It contains all library paths based on Database Descriptor.
-		 */
-		this.getLibraryPathsBasedOnDatabaseDescriptorName = function(databaseDescriptorName) {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_LIBRARY_PATHS_BASED_ON_DATABASE_DESCRIPTOR_NAME_HANDLER);
-	        
-	        adapter.addParameter(databaseDescriptorName);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var libraryDescriptorPaths = SIDatasHelper.toModels(datas);
-			
-			return libraryDescriptorPaths;
-		
-		}
-		
 		
 		/**
 			Get all library descriptors
@@ -457,57 +222,12 @@ var Resources = (function() {
 			return libraryDescriptors;
 			
 		}
-		
-		
-		/**
-		 	Get all Library Descriptor objects based on Database Descriptor name.
-		 
-		 	@method getLibrariesBasedOnDatabaseDescriptorName
-			@param databaseDescriptorName {String} Name of Database Descriptor.
-		 	@return {Array} It contains all Library Descriptor objects based on Database Descriptor name.
-		 */
-		this.getLibrariesBasedOnDatabaseDescriptorName = function(databaseDescriptorName) {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_LIBRARIES_BASED_ON_DATABASE_DESCRIPTOR_NAME_HANDLER);
-	        
-	        adapter.addParameter(databaseDescriptorName);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var libraryDescriptors = SIDatasHelper.toModels(datas);
-			
-			return libraryDescriptors;
+
+
+		this.getLibraryDescriptor = function(libraryName) {
 			
 		}
-		
-		
-		/*
-		 	Get all Library Database Mapping objects based in library descriptor path.
-		 
-		 	@method getLibraryDatabaseMappingDescriptorsBasedOnLibraryDescriptorPath
-			@param libraryPath {String} Library Descriptor path.
-		 	@return {DatabaseMappingDescriptor} Library Database Mapping Descriptor
-		 */
-		this.getLibraryDatabaseMappingDescriptorsBasedOnLibraryDescriptorPath = function(libraryDescriptorPath) {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_LIBRARY_DATABASE_MAPPING_DESCRIPTORS_BASED_ON_LIBRARY_DESCRIPTOR_PATH_HANDLER);
-	        
-	        adapter.addParameter(libraryDescriptorPath);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var libraryDescriptors = SIDatasHelper.toModels(datas);
-			
-			return libraryDescriptors;
-			
-		}
-	
+				
 		
 		/**
 		 	Get Hybrid Descriptor.
@@ -554,100 +274,6 @@ var Resources = (function() {
 		
 		
 		/**
-		 	Get All Adapters defined in Libraries.
-		 	
-		 	@method getLibrariesAdapters 
-		 	@return {Array} All Adapters.
-		 */
-		this.getLibrariesAdapters = function() {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_LIBRARIES_ADAPTERS_HANDLER);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var libraryAdapters = SIDatasHelper.toModels(datas);
-			
-			return libraryAdapters;
-			
-		}
-		
-		
-		/**
-		 	Get All Adapters Defined By Paths.
-		 	
-		 	@method getAdaptersBasedOnPaths
-		 	@return {Array} All Adapters.
-		 */
-		this.getAdaptersBasedOnPaths = function() {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_ADAPTERS_BASED_ON_PATHS_HANDLER);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var adapters = SIDatasHelper.toModels(datas);
-			
-			return adapters;
-		
-		}
-		
-		
-		/**
-		 	Get All Adapters based on library name.
-		 	
-		 	@method getLibraryAdaptersBasedOnName
-		 	@param libraryName {String} Name of Library.
-		 	@return {Array} All Adapters.
-		 */
-		this.getLibraryAdaptersBasedOnName = function(libraryName) {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_LIBRARY_ADAPTERS_BASED_ON_NAME_HANDLER);
-	        
-	        adapter.addParameter(libraryName);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var adapters = SIDatasHelper.toModels(datas);
-			
-			return adapters;
-			
-		}
-	
-	
-		/**
-		 	Get All Adapters based on library path.
-		 	
-		 	@method getLibraryAdaptersBasedOnPath 
-		 	@param libraryPath Path of Library.
-		 	@return All Adapters.
-		 */
-		this.getLibraryAdaptersBasedOnPath = function(libraryPath) {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_LIBRARY_ADAPTERS_BASED_ON_PATH_HANDLER);
-	        
-	        adapter.addParameter(libraryPath);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var adapters = SIDatasHelper.toModels(datas);
-			
-			return adapters;
-		
-		}
-		
-		
-		/**
 		 	Get Adapter based on Adapter Name.
 		 	
 		 	@method getAdapter 
@@ -670,85 +296,6 @@ var Resources = (function() {
 			return adapter[0];
 			
 		}	
-		
-		
-		/**
-		 	Get Adapter based on adapter path.
-		 	
-		 	@method getAdapterBasedOnPath
-		 	@param adapterPath {String} Path of Adapter.
-		 	@return {Adapter} Adapter
-		 */
-		this.getAdapterBasedOnPath = function(adapterPath) {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_ADAPTER_BASED_ON_PATH_HANDLER);
-	        
-	        adapter.addParameter(adapterPath);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var adapter = SIDatasHelper.toModels(datas);
-			
-			return adapter[0];
-			
-		}
-		
-		
-		/**
-		 	Get Adapter based on library name and adapter name,
-		 	
-		 	@method getLibraryAdapterBasedOnName 
-		 	@param libraryName {String} Name of Library.
-		 	@param adapterName {String} Name of Adapter.
-		 	@return {Adapter} Adapter.
-		 */
-		this.getLibraryAdapterBasedOnName = function(libraryName, adapterName) {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_LIBRARY_ADAPTER_BASED_ON_NAME_HANDLER);
-	        
-	        adapter.addParameter(libraryName);
-	        adapter.addParameter(adapterName);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var adapter = SIDatasHelper.toModels(datas);
-			
-			return adapter[0];
-			
-		}
-			
-		
-		/**
-		 	Get Adapter based on library path and adapter path.
-		 	
-		 	@method getLibraryAdapterBasedOnPath
-		 	@param libraryPath {String} Name of Library.
-		 	@param adapterPath {String} Path of Adapter.
-		 	@return {Adapter} Adapter.
-		 */
-		this.getLibraryAdapterBasedOnPath = function(libraryPath, adapterPath) {
-		
-			var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SIMINOV_RESOURCES_ADAPTER);
-	        adapter.setHandlerName(Constants.SIMINOV_RESOURCES_GET_LIBRARY_ADAPTER_BASED_ON_PATH_HANDLER);
-	        
-	        adapter.addParameter(libraryPath);
-	        adapter.addParameter(adapterPath);
-	        
-	        var data = adapter.invoke();
-	        
-	        var datas = SIJsonHelper.toSI(data);
-			var adapter = SIDatasHelper.toModels(datas);
-			
-			return adapter[0];
-			
-		}
 		
 		
 		/**
@@ -798,7 +345,6 @@ var Resources = (function() {
 			return handler[0];
 			
 		}	
-		
 	}
 
 		
