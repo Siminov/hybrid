@@ -55,8 +55,8 @@ function DatabaseDescriptor() {
 
     var properties = new Dictionary();
 
-    var databaseMappingPaths = [];
-    var libraries = [];
+    var databaseMappingPaths = new  Array();
+    var libraries = new Array();
 
 
 	/**

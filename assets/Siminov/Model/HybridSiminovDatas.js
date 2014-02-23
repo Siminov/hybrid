@@ -45,7 +45,7 @@
  */
 function HybridSiminovDatas() {
 
-    var hybridSiminovDatas = [];
+    var hybridSiminovDatas = new Array();
 
 	
 	/**
@@ -89,8 +89,8 @@ HybridSiminovDatas.HybridSiminovData = function() {
     var dataType;
     var dataValue;
 
-    var values = [];
-    var datas = [];
+    var values = new Array();
+    var datas = new Array();
 
 	
 	/**

@@ -58,8 +58,8 @@ function ApplicationDescriptor() {
 
     var properties = new Dictionary();
 
-	var databaseDescriptorPaths = [];
-    var events = [];
+	var databaseDescriptorPaths = new Array();
+    var events = new Array();
 
 	/**
 	 	Get Application Descriptor Name as per defined in ApplicationDescriptor.si.xml file.
@@ -239,5 +239,4 @@ function ApplicationDescriptor() {
     this.addEvent = function(event) {
         events.push(event);
     }
-
 }

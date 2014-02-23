@@ -82,9 +82,9 @@ function DatabaseMappingDescriptor() {
 
     var tableName, className;
 
-    var columns = [];
-    var indexes = [];
-    var relationships = [];
+    var columns = new Array();
+    var indexes = new Array();
+    var relationships = new Array();
 
 	/**
 	 	Get table name.
@@ -454,7 +454,7 @@ DatabaseMappingDescriptor.Index = function() {
     var name;
     var unique = false;
 
-    var columns = [];
+    var columns = new Array();
 
     /**
      	Get index name.
@@ -759,7 +759,5 @@ DatabaseMappingDescriptor.Relationship = function() {
 	this.removeProperty = function(name) {
 		properties.remove(name);
 	}
-
-
 }
 

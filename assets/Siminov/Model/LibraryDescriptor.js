@@ -57,7 +57,7 @@ function LibraryDescriptor() {
 
     var properties = new Dictionary();
 
-    var databaseMappingDescriptorPaths=[];
+    var databaseMappingDescriptorPaths = new Array();
 
 	/**
 	 	Get library name.
