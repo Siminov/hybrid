@@ -1,0 +1,47 @@
+
+<adapter>
+    
+    <property name="name">SERVICE</property>
+    <property name="description">Siminov Connect Service</property>
+    <property name="type">WEB-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.ServiceHandler</property>
+	<property name="cache">true</property>
+	
+    <handlers>
+        
+        <handler>
+            
+            <property name="name">INVOKE</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">invoke</property>
+            <property name="description">Invoke Service</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Service Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">API Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Inline Resources</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+        </handler>
+
+	</handlers>
+</adapter>

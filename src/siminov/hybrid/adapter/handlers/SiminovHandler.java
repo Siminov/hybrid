@@ -363,9 +363,8 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 	
 	public void initializeSiminov() {
 
-		siminov.orm.Siminov.processDatabase();
+		siminov.connect.Siminov.processDatabase();
 		siminov.hybrid.Siminov.siminovInitialized();
-		
 	}
 
 	
@@ -373,5 +372,4 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		
 		shutdown();	
 	}
-	
 }

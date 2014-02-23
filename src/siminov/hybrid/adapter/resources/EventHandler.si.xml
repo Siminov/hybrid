@@ -26,7 +26,7 @@
 	    
 	    <property name="name">EVENT-HANDLER</property>
 	    <property name="description">Siminov Event Handler</property>
-	    <property name="type">NATIVE-TO-JS</property>
+	    <property name="type">NATIVE-TO-WEB</property>
 	    <property name="map_to">EventHandler</property>
 	    		
 	    <handlers>

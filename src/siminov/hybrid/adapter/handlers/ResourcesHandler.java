@@ -132,69 +132,6 @@ public class ResourcesHandler {
 
 	
 	/**
-	 * Handle Get Database Descriptor Paths Request From Web.
-	 * @return Database Descriptor Paths.
-	 * @throws SiminovException If any error occur while getting Database Descriptor Paths.
-	 */
-	public String getDatabaseDescriptorPaths() throws SiminovException {
-		
-		Iterator<String> databaseDescriptorPaths = ormResources.getDatabaseDescriptorPaths();
-		
-		HybridSiminovDatas hybridDatabaseDescriptorPaths = new HybridSiminovDatas();
-		HybridSiminovData hybridSiminovData = new HybridSiminovData();
-		hybridSiminovData.setDataType(HybridApplicationDescriptor.DATABASE_DESCRIPTORS);
-		
-		while(databaseDescriptorPaths.hasNext()) {
-
-			HybridSiminovValue hybridDatabaseDescriptorPath = new HybridSiminovValue();
-			hybridDatabaseDescriptorPath.setValue(databaseDescriptorPaths.next());
-			
-			hybridSiminovData.addValue(hybridDatabaseDescriptorPath);
-		}
-		
-		hybridDatabaseDescriptorPaths.addHybridSiminovData(hybridSiminovData);
-		
-		return HybridSiminovDataWritter.jsonBuidler(hybridDatabaseDescriptorPaths);
-	}
-
-	
-	/**
-	 * Handle Get Database Descriptor Based On Database Descriptor Path Request From Web.
-	 * @param databaseDescriptorPath Database Descriptor Path.
-	 * @return Database Descriptor
-	 * @throws SiminovException If any error occur while getting Database Descriptor.
-	 */
-	public String getDatabaseDescriptorBasedOnPath(final String databaseDescriptorPath) throws SiminovException {
-		
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnPath(databaseDescriptorPath);
-
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor));
-		
-		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-	
-	/**
-	 * Handle Get Database Descriptor Based On Database Descriptor Name Request From Web.
-	 * @param databaseDescriptorName Database Descriptor Name.
-	 * @return Database Descriptor.
-	 * @throws SiminovException If any error occur while getting Database Descriptor.
-	 */
-	public String getDatabaseDescriptorBasedOnName(final String databaseDescriptorName) throws SiminovException {
-		
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnName(databaseDescriptorName);
-
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor));
-		
-		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
-		
-	}
-
-	
-	/**
 	 * Handle Get Database Descriptors Request From Web.
 	 * @return Database Descriptors.
 	 * @throws SiminovException If any error occur while getting Database Descriptors.
@@ -213,92 +150,6 @@ public class ResourcesHandler {
 
 	}
 
-	
-	/**
-	 * Handle Get Database Descriptor Based On Web Class Name Request From Web.
-	 * @param className Web Model Class Name.
-	 * @return Database Descriptor.
-	 * @throws SiminovException If any error occur while getting Database Descriptor.
-	 */
-	public String getDatabaseDescriptorBasedOnClassName(final String className) throws SiminovException {
-		
-		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(className);
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor));
-		
-		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
-		
-	}
-
-	
-	/**
-	 * Handle Get Database Descriptor Name Based On Web Model Class Name Request From Web.
-	 * @param className Web Model Class Name.
-	 * @return Database Descriptor Name.
-	 * @throws SiminovException If any error occur while getting Database Descriptor.
-	 */
-	public String getDatabaseDescriptorNameBasedOnClassName(final String className) throws SiminovException {
-		
-		String databaseDescriptorName = hybridResources.getDatabaseDescriptorNameBasedOnClassName(className);
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		HybridSiminovData siminovData = new HybridSiminovData();
-		
-		HybridSiminovValue name = new HybridSiminovValue();
-		name.setValue(databaseDescriptorName);
-		
-		siminovData.addValue(name);
-		
-		hybridSiminovDatas.addHybridSiminovData(siminovData);
-		
-		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
-		
-	}
-
-	
-	/**
-	 * Handle Get Database Descriptor Name Based On Table Name Request From Web.
-	 * @param tableName Name of Table.
-	 * @return Database Descriptor Name.
-	 * @throws SiminovException If any error occur while getting Database Descriptor Name.
-	 */
-	public String getDatabaseDescriptorNameBasedOnTableName(final String tableName) throws SiminovException {
-		
-		String databaseDescriptorName = hybridResources.getDatabaseDescriptorNameBasedOnTableName(tableName);
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		HybridSiminovData siminovData = new HybridSiminovData();
-		
-		HybridSiminovValue name = new HybridSiminovValue();
-		name.setValue(databaseDescriptorName);
-		
-		siminovData.addValue(name);
-		
-		hybridSiminovDatas.addHybridSiminovData(siminovData);
-		
-		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-	
-	/**
-	 * Handle Get Database Descriptor Based On Table Name Request From Web.
-	 * @param tableName Name of Table.
-	 * @return Database Descriptor Name.
-	 * @throws SiminovException If any error occur while getting Database Descriptor Name.
-	 */
-	public String getDatabaseDescriptorBasedOnTableName(final String tableName) throws SiminovException {
-		
-		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnTableName(tableName);
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor));
-		
-		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
 	
 	/**
 	 * Handle Get Database Mapping Descriptor Based On Web Model Class Name.
@@ -356,19 +207,6 @@ public class ResourcesHandler {
 	
 	
 	/**
-	 * Handle Remove Database Based On Database Descriptor Name Request From Web.
-	 * @param databaseDescriptorName Name of Database Descriptor.
-	 * @throws SiminovException If any error occur while removing Database.
-	 */
-	public void removeDatabaseBasedOnDatabaseDescriptorName(final String databaseDescriptorName) throws SiminovException {
-		
-		ormResources.removeDatabaseBundle(databaseDescriptorName);
-		
-	}
-	
-	
-	
-	/**
 	 * Handle Get Hybrid Descriptor Request From Web.
 	 * @return Hybrid Descriptor
 	 * @throws SiminovException If any error occur while getting Hybrid Descriptor.
@@ -409,83 +247,6 @@ public class ResourcesHandler {
 	
 	
 	/**
-	 * Handle Get Adapter Descriptors Based On Paths Request From Web.
-	 * @return Adapter Descriptor Paths
-	 * @throws SiminovException If any error occur while getting adapter descriptor paths.
-	 */
-	public String getAdaptersBasedOnPaths() throws SiminovException {
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		HybridSiminovData hybridAdapters = new HybridSiminovData();
-		hybridAdapters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTERS);
-		
-		Iterator<AdapterDescriptor> adapterDescriptors = hybridResources.getAdapterDescriptorsBasedOnPaths();
-		while(adapterDescriptors.hasNext()) {
-			hybridAdapters.addData(hybridResources.generateHybridAdapterDescriptor(adapterDescriptors.next()));
-		}
-		
-		hybridSiminovDatas.addHybridSiminovData(hybridAdapters);
-		
-		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
-		
-	}
-	
-	
-	/**
-	 * Handle Get Adapter Descriptor Based On Name Request From Web. 
-	 * @param adapterDescriptorName Name of Adapter Descriptor.
-	 * @return Adapter Descriptor.
-	 * @throws SiminovException If any error occur while getting Adapter Descriptor.
-	 */
-	public String getAdapterBasedOnName(final String adapterDescriptorName) throws SiminovException {
-
-		HybridSiminovDatas jsSiminovDatas = new HybridSiminovDatas();
-		jsSiminovDatas.addHybridSiminovData(hybridResources.generateHybridAdapterDescriptor(hybridResources.getAdapterBasedOnName(adapterDescriptorName)));
-		
-		return HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
-		
-	}
-	
-	
-	/**
-	 * Handle Get Adapter Descriptor Based On Path Request From Web.
-	 * @param adapterDescriptorPath Adapter Descriptor Path 
-	 * @return Adapter Descriptor.
-	 * @throws SiminovException If any error occur while getting Adapter Descriptor.
-	 */
-	public String getAdapterBasedOnPath(final String adapterDescriptorPath) throws SiminovException {
-
-		HybridSiminovDatas jsSiminovDatas = new HybridSiminovDatas();
-		jsSiminovDatas.addHybridSiminovData(hybridResources.generateHybridAdapterDescriptor(hybridResources.getAdapterBasedOnPath(adapterDescriptorPath)));
-		
-		return HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
-		
-	}
-
-	
-	/**
-	 * Handle Check Adapter Descriptor Based On Adapter Descriptor Name Request From Web.
-	 * @param adapterDescriptorName Name of Adapter Descriptor.
-	 * @return true/false
-	 * @throws SiminovException If any error occur while checking Adapter exist or not.
-	 */
-	public boolean containAdapterBasedOnName(final String adapterDescriptorName) throws SiminovException {
-		return hybridResources.containAdapterBasedOnName(adapterDescriptorName);
-	}
-
-	
-	/**
-	 * Handle Check Adapter Descriptor Based On Path Request From Web.
-	 * @param adapterDescriptorPath Adapter Descriptor Path
-	 * @return true/false
-	 * @throws SiminovException If any error occur while checking Adapter exist or not.
-	 */
-	public boolean containAdapterBasedOnPath(final String adapterDescriptorPath) throws SiminovException {
-		return hybridResources.containAdapterBasedOnPath(adapterDescriptorPath);
-	}
-
-	
-	/**
 	 * Handle Get Handlers Request From Web.
 	 * @return Handlers
 	 * @throws SiminovException If any error occur while getting Handlers.
@@ -523,29 +284,4 @@ public class ResourcesHandler {
 		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		
 	}
-	
-	
-	/**
-	 * Handle Check Handler Based On Adapter Descriptor Name And Handler Name Request From Web.
-	 * @param adapterDescriptorName Name of Adapter Descriptor.
-	 * @param handlerName Name of Handler.
-	 * @return true/false
-	 * @throws SiminovException If any error occur while checking Handler exist or not.
-	 */
-	public boolean containHander(final String adapterDescriptorName, final String handlerName) throws SiminovException {
-		return hybridResources.containHandler(adapterDescriptorName, handlerName);
-	}
-	
-	
-	/**
-	 * Handle Check Handler Based On Handler Name Request From Web.
-	 * @param handlerName Name of Handler.
-	 * @return Handler.
-	 * @throws SiminovException If any error occur while getting Handler.
-	 */
-	public boolean containHandler(final String handlerName) throws SiminovException {
-		return hybridResources.containHandler(handlerName);
-	}
-	
 }
-
