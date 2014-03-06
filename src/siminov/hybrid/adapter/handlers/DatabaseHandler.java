@@ -2050,17 +2050,17 @@ public class DatabaseHandler {
 	
 	private HybridSiminovDatas parseHybridSiminovDatas(String data) throws DatabaseException {
 		
-		HybridSiminovDataReader jsSiminovDataParser = null; 
+		HybridSiminovDataReader hybridSiminovDataParser = null; 
 		data = URLDecoder.decode(data);
 		
 		try {
-			jsSiminovDataParser = new HybridSiminovDataReader(data);
+			hybridSiminovDataParser = new HybridSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
 			Log.loge(DatabaseHandler.class.getName(), "parseHybridSiminovDatas", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "parseHybridSiminovDatas", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
 		}
 
-		return jsSiminovDataParser.getDatas();
+		return hybridSiminovDataParser.getDatas();
 	}
 	
 	private static DatabaseDescriptor getDatabaseDescriptor(final String className) throws DatabaseException {
