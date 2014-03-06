@@ -175,13 +175,11 @@ public class Siminov extends siminov.connect.Siminov {
 	 * It process all LibraryDescriptor.si.xml files defined by application, and stores in Resources.
 	 */
 	protected static void processLibraries() {
-
-		siminov.connect.Siminov.processLibraries();
-		
 		
 		ApplicationDescriptor applicationDescriptor = ormResources.getApplicationDescriptor();
 		applicationDescriptor.addLibrary(siminov.hybrid.Constants.HYBRID_LIBRARY_DESCRIPTOR_FILE_PATH);
-		
+
+
 		Iterator<String> libraries = applicationDescriptor.getLibraries();
 		
 		while(libraries.hasNext()) {
@@ -226,8 +224,8 @@ public class Siminov extends siminov.connect.Siminov {
 
 			while(adapterDescriptorPaths.hasNext()) {
 				
-				String libraryAdapterPath = adapterDescriptorPaths.next();
-				hybridDescriptor.addAdapterDescriptorPath(library.replace(".", "/") + File.separator + libraryAdapterPath);
+				String adapterDescriptorPath = adapterDescriptorPaths.next();
+				hybridDescriptor.addAdapterDescriptorPath(library.replace(".", "/") + File.separator + adapterDescriptorPath);
 			}
 		}
 	}
