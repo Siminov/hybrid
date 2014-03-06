@@ -32,7 +32,8 @@
 	    <adapter>EventHandler.si.xml</adapter>
 		<adapter>DatabaseAdapter.si.xml</adapter>	    
 		<adapter>ResourcesAdapter.si.xml</adapter>
-		
+		<adapter>ServiceAdapter.si.xml</adapter>
+			
 	</adapters>
 		 
 </library>
