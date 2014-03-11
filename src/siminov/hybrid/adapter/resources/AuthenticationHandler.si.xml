@@ -1,0 +1,88 @@
+
+<adapter>
+    
+    <property name="name">AUTHENTICATION</property>
+    <property name="description">Siminov Connect Authentication</property>
+    <property name="type">WEB-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.AuthenticationHandler</property>
+	<property name="cache">true</property>
+	
+    <handlers>
+        
+        <handler>
+            
+            <property name="name">IS-ANY-ACTIVE-ACCOUNT</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">isAnyActiveAccount</property>
+            <property name="description">Flag Indicating Any Active Account Exists Or Not</property>
+
+	         <return>
+	             
+	             <type>java.lang.String</type>
+	             <description>Siminov Data Format</description>
+	             
+	         </return>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">GET-ACTIVE-ACCOUNT</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getActiveAccount</property>
+            <property name="description">Get Active Account If Any</property>
+
+	         <return>
+	             
+	             <type>java.lang.String</type>
+	             <description>Siminov Data Format</description>
+	             
+	         </return>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">GET-ACCOUNT</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getAccounts</property>
+            <property name="description">Get Accounts</property>
+
+	         <return>
+	             
+	             <type>java.lang.String</type>
+	             <description>Siminov Data Format</description>
+	             
+	         </return>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">GET-AUTHENTICATE</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getAuthenticate</property>
+            <property name="description">Get Authenticate</property>
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Siminov Data Format</property>
+                    
+                </parameter>
+                
+        	</parameters>
+        	
+            <return>
+	             
+	             <type>java.lang.String</type>
+	             <description>Siminov Data Format</description>
+	             
+	         </return>
+            
+        </handler>
+        
+	</handlers>
+</adapter>

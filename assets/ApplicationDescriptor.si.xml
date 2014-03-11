@@ -51,6 +51,70 @@
 	</database-descriptors>
 		
 
+   	<!-- Services -->
+    <service-descriptors>
+  		
+  			<!-- Service -->
+        <service-descriptor>full_path_of_service</service-descriptor>
+    
+    </service-descriptors>
+
+    
+	
+    <!-- Sync Handlers -->
+    	<!-- Sync Handler -->
+    <sync-descriptors>
+        
+        <sync-descriptor>
+            
+           		<!-- Mandatory Field -->
+     		<property name="name">name_of_sync_handler</property>
+			
+     			<!-- Optional Field -->
+     		<property name="sync_interval">sync_interval_in_millisecond</property>
+     				
+     			<!-- Optional Field -->
+     				<!-- Default: SCREEN -->
+			<property name="type">INTERVAL|SCREEN</property>
+			
+     		<!-- Services -->
+     			<!-- Service -->
+     		<services>
+     		    
+     		    <service>name_of_service.name_of_api</service>
+     		    
+     		</services>
+        </sync-descriptor>
+        
+    </sync-descriptors>
+    
+
+    <!-- Authentication -->
+    <authentication-descriptor>
+        
+        	<!-- Mandatory Field -->
+        <property name="type">type_of_authentication</property>
+		
+    </authentication-descriptor>
+
+    
+    <!-- Push Notification -->
+    <notification-descriptor>
+        
+        	<!-- Optional Field -->
+        <property name="name_of_property">value_of_property</property>
+
+    </notification-descriptor>
+    
+	
+	<adapter-descriptors>
+        
+        <!-- Adapter Paths -->
+	    <adapter-descriptor>adapter_path</adapter-descriptor>
+	    	        
+    </adapter-descriptors>
+		
+	
 	<!-- Library Descriptors Used By Application (zero-to-many) -->
 		<!-- Optional Field's -->
 	<libraries>
@@ -125,4 +189,59 @@ Application Descriptor Elements:
 						Specify full Java class path and name in ApplicationDescriptor.si.xml, no need to define for JavaScript because Siminov will automatically accume same name for it.
 				
 
+
+	i. Adapter: Adapter allows Web and Native to work together that normally could not because of incompatible Technologies. Adapter basically maps Javascript to Native and vice-versa.
+	
+		-> name* : Name of Adapter. It is mandatory field.
+		
+		-> description: Description about Adapter. It is Optional field.
+		
+		-> type: Type of Adapter. It is Mandatory field. 
+			
+			i. WEB-TO-NATIVE: It says this adapter maps JavaScript functions to Native functions.
+			ii. NATIVE-TO-WEB: It says this adapter maps Native functions to JavaScript functions.
+			
+		-> map_to: Name of Class (Web/Native) mapped to this adapter. It is not mandatory field.
+		
+		-> cache:  true/false: It says that adapter mapped to Class needs to be cached or not. It is Optional field. Default is false.
+		
+
+		i.> i. Hander: Handler is one which handle request from WEB-TO-NATIVE or NATIVE-TO-WEB. 
+		
+			-> name* : Name of Handler. It is Mandatory field.
+			
+			-> description: Description about handler. It is Optional field.
+			
+			-> map_to*: Name of handler function which handles request from WEB-TO-NATIVE or NATIVE-TO-WEB.
+			
+			
+			i.> i.> i. Parameter: Parameters are bacially arguments passed to handler.
+			
+						-> name* : Name of Parameter. It is Mandatory field.
+						
+						-> description: Description about Parameter. It is Optional field.
+						
+						-> type* : Type of Parameter. It is Mandatory field.
+
+		
+			i.> i.> ii. Return: Return defines about data returned from handler.
+			
+						-> type* : Type of Returned Data. It is Mandatory field.
+						
+						-> description: Description about Return Data.
+
+
+
+	Note*: Adapter can be define in HybridDescriptor.si.xml file or can be defined in seprate xml file.
+		
+		-> If you define Adapter in HybridDescriptor.si.xml file then define it in adapters TAG.
+		
+		-> If you define Adapter in seprate xml file then specify Adapter file path in HybridDescriptor.si.xml file.
+		
+							
+							
+
 -->
+
+
+

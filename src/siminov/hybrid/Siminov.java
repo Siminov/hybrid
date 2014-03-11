@@ -136,6 +136,9 @@ public class Siminov extends siminov.connect.Siminov {
 		
 		processDatabaseMappingDescriptors();
 
+
+		processConnectDescriptor();
+		
 		
 		processAdapterDescriptors();
 		processHybridServices();
@@ -243,14 +246,10 @@ public class Siminov extends siminov.connect.Siminov {
 	}
 	
 	
-	protected static void processKonnectDescriptor() {
-		siminov.connect.Siminov.processKonnectDescriptor();
+	protected static void processConnectDescriptor() {
+		siminov.connect.Siminov.processConnectDescriptor();
 	}
 	
-	
-	protected static void processServices() {
-		siminov.connect.Siminov.processServices();
-	}
 	
 	
 	/**
