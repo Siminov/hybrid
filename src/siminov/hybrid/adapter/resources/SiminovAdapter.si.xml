@@ -18,9 +18,9 @@
 
  -->
 
-<adapters>
+<adapter-descriptors>
     
-	<adapter>
+	<adapter-descriptor>
 	    
 	    <property name="name">SIMINOV</property>
 	    <property name="description">Siminov Hybrid Handler</property>
@@ -49,10 +49,10 @@
 	        
 	    </handlers>
 	    	    
-	</adapter>
+	</adapter-descriptor>
 	
 	
-	<adapter>
+	<adapter-descriptor>
 	    
 	    <property name="name">SIMINOV-NATIVE-TO-WEB</property>
 	    <property name="description">Siminov Hybrid Handler</property>
@@ -90,10 +90,10 @@
 	    
 	    </handlers>
 
-	</adapter>
+	</adapter-descriptor>
 
 	
-	<adapter>
+	<adapter-descriptor>
     
 	    <property name="name">SIMINOV-EXCEPTION-HANDLER</property>
 	    <property name="description">Siminov Exception Handler</property>
@@ -124,6 +124,6 @@
 
 	    </handlers>
 
-	</adapter>
+	</adapter-descriptor>
 		
-</adapters>
+</adapter-descriptors>

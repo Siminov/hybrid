@@ -19,7 +19,7 @@
 
  -->
 
-<adapter>
+<adapter-descriptor>
     
     <property name="name">DATABASE</property>
     <property name="description">Database Hybrid Handler</property>
@@ -889,4 +889,4 @@
         																		
     </handlers>
     
-</adapter>
+</adapter-descriptor>

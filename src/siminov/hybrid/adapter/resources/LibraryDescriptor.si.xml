@@ -19,21 +19,21 @@
 
  -->
 
-<library>
+<library-descriptor>
 
 	<property name="name">SIMINOV-HYBRID</property>
 	
 	<!-- Optional Field -->
 	<property name="description">Siminov Hybrid</property>
 
-	<adapters>
+	<adapter-descriptors>
 	    
-	    <adapter>SiminovAdapter.si.xml</adapter>
-	    <adapter>EventHandler.si.xml</adapter>
-		<adapter>DatabaseAdapter.si.xml</adapter>	    
-		<adapter>ResourcesAdapter.si.xml</adapter>
-		<adapter>ServiceAdapter.si.xml</adapter>
+	    <adapter-descriptor>SiminovAdapter.si.xml</adapter-descriptor>
+	    <adapter-descriptor>EventHandler.si.xml</adapter-descriptor>
+		<adapter-descriptor>DatabaseAdapter.si.xml</adapter-descriptor>	    
+		<adapter-descriptor>ResourcesAdapter.si.xml</adapter-descriptor>
+		<adapter-descriptor>ServiceAdapter.si.xml</adapter-descriptor>
 			
-	</adapters>
+	</adapter-descriptors>
 		 
-</library>
+</library-descriptor>

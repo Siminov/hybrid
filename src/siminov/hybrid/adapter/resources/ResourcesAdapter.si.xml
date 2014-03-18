@@ -19,7 +19,7 @@
 
  -->
 
-<adapter>
+<adapter-descriptor>
     
     <property name="name">RESOURCES</property>
     <property name="description">Resources Hybrid Handler</property>
@@ -139,22 +139,6 @@
         <!-- HYBRID BASED HANDLERS -->
         <handler>
             
-            <property name="name">GET-HYBRID-DESCRIPTOR</property>
-            <property name="type">SYNC</property>
-            <property name="map_to">getHybridDescriptor</property>
-            <property name="description">Get Hybrid Descriptor</property>
-
-			<return>
-	        
-			    	<property name="type">java.lang.String</property>
-	                <property name="description">Hybrid Descriptor</property>
-	                
-	      	</return>
-            
-        </handler>
-		
-        <handler>
-            
             <property name="name">GET-HANDLERS</property>
             <property name="type">SYNC</property>
             <property name="map_to">getHandlers</property>
@@ -207,4 +191,4 @@
 
 	</handlers>
 	
-</adapter>
+</adapter-descriptor>

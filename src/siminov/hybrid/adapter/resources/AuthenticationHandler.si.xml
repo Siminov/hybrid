@@ -1,5 +1,5 @@
 
-<adapter>
+<adapter-descriptor>
     
     <property name="name">AUTHENTICATION</property>
     <property name="description">Siminov Connect Authentication</property>
@@ -85,4 +85,4 @@
         </handler>
         
 	</handlers>
-</adapter>
+</adapter-descriptor>
