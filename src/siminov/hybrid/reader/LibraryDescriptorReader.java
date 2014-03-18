@@ -110,7 +110,7 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 		
 		tempValue = new StringBuilder();
 		
-		if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_LIBRARY)) {
+		if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_LIBRARY_DESCRIPTOR)) {
 			libraryDescriptor = new LibraryDescriptor();
 		} else if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_PROPERTY)) {
 			initializeProperty(attributes);
@@ -132,7 +132,7 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 		
 		if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_PROPERTY)) {
 			libraryDescriptor.addProperty(propertyName, tempValue.toString());
-		} else if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_DATABASE_MAPPING)) {
+		} else if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_DATABASE_MAPPING_DESCRIPTOR)) {
 			libraryDescriptor.addDatabaseMappingPath(tempValue.toString());
 		} else if(localName.equalsIgnoreCase(HYBRID_LIBRARY_DESCRIPTOR_ADAPTER)) {
 			libraryDescriptor.addAdapterDescriptorPath(tempValue.toString());

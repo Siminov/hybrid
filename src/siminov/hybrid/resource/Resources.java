@@ -34,7 +34,7 @@ import siminov.hybrid.model.AdapterDescriptor;
 import siminov.hybrid.model.AdapterDescriptor.Handler;
 import siminov.hybrid.model.AdapterDescriptor.Handler.Parameter;
 import siminov.hybrid.model.AdapterDescriptor.Handler.Return;
-import siminov.hybrid.model.HybridDescriptor;
+import siminov.hybrid.model.ApplicationDescriptor;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
 import siminov.orm.model.DatabaseDescriptor;
@@ -55,7 +55,7 @@ public class Resources {
 	private static Resources hybridResources = null;
 	private siminov.orm.resource.Resources ormResources = null;
 	
-	private HybridDescriptor hybridDescriptor = null;
+	private ApplicationDescriptor applicationDescriptor = null;
 	
 	private WebView webView = null;
 	private Activity webActivity = null;
@@ -90,16 +90,16 @@ public class Resources {
 	 * Get Hybrid Descriptor.
 	 * @return Hybrid Descriptor.
 	 */
-	public HybridDescriptor getHybridDescriptor() {
-		return this.hybridDescriptor;
+	public ApplicationDescriptor getApplicationDescriptor() {
+		return this.applicationDescriptor;
 	}
 	
 	/**
 	 * Set Hybrid Descriptor.
-	 * @param hybridDescriptor Hybrid Descriptor.
+	 * @param applicationDescriptor Hybrid Descriptor.
 	 */
-	public void setHybridDescriptor(HybridDescriptor hybridDescriptor) {
-		this.hybridDescriptor = hybridDescriptor;
+	public void setApplicationDescriptor(ApplicationDescriptor applicationDescriptor) {
+		this.applicationDescriptor = applicationDescriptor;
 	}
 
 	
@@ -109,7 +109,7 @@ public class Resources {
 	 * @return All Adapter Descriptors.
 	 */
 	public Iterator<AdapterDescriptor> getAdapterDescriptors() {
-		return hybridDescriptor.getAdapterDescriptors();
+		return applicationDescriptor.getAdapterDescriptors();
 	}
 	
 	
@@ -119,12 +119,12 @@ public class Resources {
 	 */
 	public Iterator<AdapterDescriptor> getAdapterDescriptorsBasedOnPaths() {
 		
-		Iterator<String> adapterDescriptorPaths = hybridDescriptor.getAdapterDescriptorPaths();
+		Iterator<String> adapterDescriptorPaths = applicationDescriptor.getAdapterDescriptorPaths();
 		Collection<AdapterDescriptor> adapterDescriptors = new ArrayList<AdapterDescriptor>();
 		
 		while(adapterDescriptorPaths.hasNext()) {
 			String adapterDescriptorPath = adapterDescriptorPaths.next();
-			adapterDescriptors.add(hybridDescriptor.getAdapterBasedOnPath(adapterDescriptorPath));
+			adapterDescriptors.add(applicationDescriptor.getAdapterBasedOnPath(adapterDescriptorPath));
 		}
 		
 		return adapterDescriptors.iterator();
@@ -137,9 +137,9 @@ public class Resources {
 	 * @return Adapter Descriptor
 	 */
 	public AdapterDescriptor getAdapterDescriptor(final String adapterDescriptorName) {
-		boolean contain = hybridDescriptor.containAdapterDescriptorBasedOnName(adapterDescriptorName);
+		boolean contain = applicationDescriptor.containAdapterDescriptorBasedOnName(adapterDescriptorName);
 		if(contain) {
-			return hybridDescriptor.getAdapterDescriptorBasedOnName(adapterDescriptorName);
+			return applicationDescriptor.getAdapterDescriptorBasedOnName(adapterDescriptorName);
 		}
 		
 		return null;
@@ -152,9 +152,9 @@ public class Resources {
 	 */
 	public AdapterDescriptor getAdapterBasedOnName(final String adapterDescriptorName) {
 		
-		boolean contain = hybridDescriptor.containAdapterDescriptorBasedOnName(adapterDescriptorName);
+		boolean contain = applicationDescriptor.containAdapterDescriptorBasedOnName(adapterDescriptorName);
 		if(contain) {
-			return hybridDescriptor.getAdapterDescriptorBasedOnName(adapterDescriptorName);
+			return applicationDescriptor.getAdapterDescriptorBasedOnName(adapterDescriptorName);
 		}
 		
 		return null;
@@ -167,9 +167,9 @@ public class Resources {
 	 */
 	public AdapterDescriptor getAdapterBasedOnPath(final String adapterDescriptorPath) {
 		
-		boolean contain = hybridDescriptor.containAdapterDescriptorBasedOnPath(adapterDescriptorPath);
+		boolean contain = applicationDescriptor.containAdapterDescriptorBasedOnPath(adapterDescriptorPath);
 		if(contain) {
-			return hybridDescriptor.getAdapterBasedOnPath(adapterDescriptorPath);
+			return applicationDescriptor.getAdapterBasedOnPath(adapterDescriptorPath);
 		}
 		
 		return null;
@@ -183,7 +183,7 @@ public class Resources {
 	 */
 	public boolean containAdapterBasedOnName(final String adapterDescriptorName) {
 		
-		boolean contain = hybridDescriptor.containAdapterDescriptorBasedOnName(adapterDescriptorName);
+		boolean contain = applicationDescriptor.containAdapterDescriptorBasedOnName(adapterDescriptorName);
 		if(contain) {
 			return contain;
 		}
@@ -197,7 +197,7 @@ public class Resources {
 	 * @return true/false; TRUE if adapter descriptor exist, FALSE if adapter descriptor does not exist.
 	 */
 	public boolean containAdapterBasedOnPath(final String adapterDescriptorPath) {
-		return hybridDescriptor.containAdapterDescriptorBasedOnPath(adapterDescriptorPath);
+		return applicationDescriptor.containAdapterDescriptorBasedOnPath(adapterDescriptorPath);
 	}
 	
 	
@@ -820,46 +820,6 @@ public class Resources {
 
 	
 	/**
-	 * Generate Hybrid Descriptor.
-	 * @param hybridDescriptor Hybrid Descriptor.
-	 * @return Web Hybrid Descriptor.
-	 */
-	public HybridSiminovData generateHybridDescriptor(final HybridDescriptor hybridDescriptor) {
-		
-		HybridSiminovData hybridWebDescriptor = new HybridSiminovData();
-		hybridWebDescriptor.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HRBRID_DESCRIPTOR);
-		
-		
-		HybridSiminovData hybridAdapters = new HybridSiminovData();
-		hybridAdapters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTERS);
-		
-		Iterator<AdapterDescriptor> adapterDescriptors = hybridDescriptor.getAdapterDescriptors();
-		while(adapterDescriptors.hasNext()) {
-			hybridAdapters.addData(generateHybridAdapterDescriptor(adapterDescriptors.next()));
-		}
-
-		HybridSiminovData hybridAdapterDescriptorPaths = new HybridSiminovData();
-		hybridAdapterDescriptorPaths.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_PATHS);
-		
-		Iterator<String> adapterDescriptorPaths = hybridDescriptor.getAdapterDescriptorPaths();
-		while(adapterDescriptorPaths.hasNext()) {
-			
-			HybridSiminovValue hybridAdapterPath = new HybridSiminovValue();
-			hybridAdapterPath.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_PATH);
-			hybridAdapterPath.setValue(adapterDescriptorPaths.next());
-			
-		}
-		
-		hybridWebDescriptor.addData(hybridAdapterDescriptorPaths);
-		
-		hybridWebDescriptor.addData(hybridAdapters);
-
-		return hybridWebDescriptor;
-		
-	}
-	
-	
-	/**
 	 * Generate Hybrid Adapter.
 	 * @param adapterDescriptor Adapter.
 	 * @return Hybrid Adapter.
@@ -1001,6 +961,4 @@ public class Resources {
 
 		return hybridHandler;
 	}
-
-	
 }
