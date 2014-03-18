@@ -26,10 +26,10 @@ import java.util.Iterator;
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.events.DatabaseEventHandler;
 import siminov.hybrid.events.SiminovEventHandler;
-import siminov.hybrid.model.AdapterDescriptor;
-import siminov.hybrid.model.HybridDescriptor;
+import siminov.hybrid.model.ApplicationDescriptor;
 import siminov.hybrid.model.LibraryDescriptor;
-import siminov.hybrid.reader.HybridDescriptorReader;
+import siminov.hybrid.reader.AdapterDescriptorReader;
+import siminov.hybrid.reader.ApplicationDescriptorReader;
 import siminov.hybrid.reader.LibraryDescriptorReader;
 import siminov.hybrid.resource.Resources;
 import siminov.orm.Constants;
@@ -38,7 +38,6 @@ import siminov.orm.events.ISiminovEvents;
 import siminov.orm.exception.DeploymentException;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
-import siminov.orm.model.ApplicationDescriptor;
 import siminov.orm.model.DatabaseDescriptor;
 
 /**
@@ -127,7 +126,6 @@ public class Siminov extends siminov.connect.Siminov {
 		processApplicationDescriptor();
 		
 		processDatabaseDescriptors();
-		processHybridDescriptor();
 		processLibraries();
 
 		
@@ -137,9 +135,6 @@ public class Siminov extends siminov.connect.Siminov {
 		processDatabaseMappingDescriptors();
 
 
-		processConnectDescriptor();
-		
-		
 		processAdapterDescriptors();
 		processHybridServices();
 	}
@@ -166,7 +161,18 @@ public class Siminov extends siminov.connect.Siminov {
 	}
 	
 	protected static void processApplicationDescriptor() {
-		siminov.connect.Siminov.processApplicationDescriptor();
+		
+		ApplicationDescriptorReader applicationDescriptorParser = new ApplicationDescriptorReader();
+		
+		ApplicationDescriptor applicationDescriptor = applicationDescriptorParser.getApplicationDescriptor();
+		if(applicationDescriptor == null) {
+			Log.logd(Siminov.class.getName(), "processApplicationDescriptor", "Invalid Application Descriptor Found.");
+			throw new DeploymentException(Siminov.class.getName(), "processApplicationDescriptor", "Invalid Application Descriptor Found.");
+		}
+		
+		ormResources.setApplicationDescriptor(applicationDescriptor);		
+		connectResources.setApplicationDescriptor(applicationDescriptor);
+		hybridResources.setApplicationDescriptor(applicationDescriptor);
 	}
 
 	
@@ -179,7 +185,7 @@ public class Siminov extends siminov.connect.Siminov {
 	 */
 	protected static void processLibraries() {
 		
-		ApplicationDescriptor applicationDescriptor = ormResources.getApplicationDescriptor();
+		ApplicationDescriptor applicationDescriptor = hybridResources.getApplicationDescriptor();
 		applicationDescriptor.addLibrary(siminov.hybrid.Constants.HYBRID_LIBRARY_DESCRIPTOR_FILE_PATH);
 
 
@@ -222,13 +228,12 @@ public class Siminov extends siminov.connect.Siminov {
 			/*
 			 * Map Adapters
 			 */
-			HybridDescriptor hybridDescriptor = hybridResources.getHybridDescriptor();
 			Iterator<String> adapterDescriptorPaths = libraryDescriptor.getAdapterDescriptorPaths();
 
 			while(adapterDescriptorPaths.hasNext()) {
 				
 				String adapterDescriptorPath = adapterDescriptorPaths.next();
-				hybridDescriptor.addAdapterDescriptorPath(library.replace(".", "/") + File.separator + adapterDescriptorPath);
+				applicationDescriptor.addAdapterDescriptorPath(library.replace(".", "/") + File.separator + adapterDescriptorPath);
 			}
 		}
 	}
@@ -246,44 +251,17 @@ public class Siminov extends siminov.connect.Siminov {
 	}
 	
 	
-	protected static void processConnectDescriptor() {
-		siminov.connect.Siminov.processConnectDescriptor();
-	}
-	
-	
-	
-	/**
-	 * It process HybridDescriptor.si.xml file defined in Application, and stores in Resources.
-	 */
-	protected static void processHybridDescriptor() {
-		
-		HybridDescriptorReader hybridDescriptorReader = new HybridDescriptorReader();
-		
-		HybridDescriptor hybridDescriptor = hybridDescriptorReader.getHybridDescriptor();
-		if(hybridDescriptor == null) {
-			Log.logd(Siminov.class.getName(), "processHybridDescriptor", "Invalid Hybrid Descriptor Found.");
-			throw new DeploymentException(Siminov.class.getName(), "processHybridDescriptor", "Invalid Hybrid Descriptor Found.");
-		}
-		
-
-		hybridResources.setHybridDescriptor(hybridDescriptor);
-	}
-
 	
 	protected static void processAdapterDescriptors() {
 		
-		HybridDescriptor hybridDescriptor = hybridResources.getHybridDescriptor();
-		Iterator<String> adapterDescriptorPaths = hybridDescriptor.getAdapterDescriptorPaths();
+		ApplicationDescriptor applicationDescriptor = hybridResources.getApplicationDescriptor();
+		Iterator<String> adapterDescriptorPaths = applicationDescriptor.getAdapterDescriptorPaths();
 
 		while(adapterDescriptorPaths.hasNext()) {
 			String adapterDescriptorPath = adapterDescriptorPaths.next();
-			HybridDescriptorReader hybridDescriptorParser = new HybridDescriptorReader(adapterDescriptorPath);
-			
-			Iterator<AdapterDescriptor> adapterDescriptors = hybridDescriptorParser.getHybridDescriptor().getAdapterDescriptors();
-			while(adapterDescriptors.hasNext()) {
-				AdapterDescriptor adapterDescriptor = adapterDescriptors.next();
-				hybridDescriptor.addAdapterDescriptor(adapterDescriptorPath, adapterDescriptor);				
-			}
+
+			AdapterDescriptorReader adapterDescriptorParser = new AdapterDescriptorReader(adapterDescriptorPath);
+			applicationDescriptor.addAdapterDescriptor(adapterDescriptorPath, adapterDescriptorParser.getAdapterDescriptor());				
 		}
 	}
 	
@@ -293,7 +271,7 @@ public class Siminov extends siminov.connect.Siminov {
 	 */
 	protected static void processEvents() {
 		
-		ApplicationDescriptor applicationDescriptor = ormResources.getApplicationDescriptor();
+		ApplicationDescriptor applicationDescriptor = hybridResources.getApplicationDescriptor();
 		
 		Collection<String> siminovEvents = new ArrayList<String>();
 		Iterator<String> events = applicationDescriptor.getEvents();

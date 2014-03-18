@@ -23,7 +23,6 @@ import java.util.Iterator;
 import siminov.hybrid.adapter.constants.HybridApplicationDescriptor;
 import siminov.hybrid.model.AdapterDescriptor;
 import siminov.hybrid.model.AdapterDescriptor.Handler;
-import siminov.hybrid.model.HybridDescriptor;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
@@ -205,22 +204,6 @@ public class ResourcesHandler {
 		
 	}
 	
-	
-	/**
-	 * Handle Get Hybrid Descriptor Request From Web.
-	 * @return Hybrid Descriptor
-	 * @throws SiminovException If any error occur while getting Hybrid Descriptor.
-	 */
-	public String getHybridDescriptor() throws SiminovException {
-	
-		HybridDescriptor hybridDescriptor = hybridResources.getHybridDescriptor();
-		
-		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridDescriptor(hybridDescriptor));
-		
-		return HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
-		
-	}
 	
 	
 	/**
