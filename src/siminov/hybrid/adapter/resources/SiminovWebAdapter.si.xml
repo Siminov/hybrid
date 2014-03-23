@@ -1,0 +1,40 @@
+<adapter-descriptor>
+    
+    <property name="name">SIMINOV-NATIVE-TO-WEB</property>
+    <property name="description">Siminov Hybrid Handler</property>
+    <property name="type">NATIVE-TO-WEB</property>
+    <property name="map_to">Adapter</property>
+    
+    <handlers>
+        
+        <handler>
+            
+            <property name="name">HANDLE-NATIVE-TO-WEB</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">handle</property>
+            <property name="description">Handle Call From Native To Hybrid</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Action</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Data</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+        </handler>
+    
+    </handlers>
+
+</adapter-descriptor>
+

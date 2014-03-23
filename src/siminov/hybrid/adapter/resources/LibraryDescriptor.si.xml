@@ -28,7 +28,9 @@
 
 	<adapter-descriptors>
 	    
-	    <adapter-descriptor>SiminovAdapter.si.xml</adapter-descriptor>
+	    <adapter-descriptor>SiminovNativeAdapter.si.xml</adapter-descriptor>
+	    <adapter-descriptor>SiminovWebAdapter.si.xml</adapter-descriptor>
+	    <adapter-descriptor>SiminovExceptionAdapter.si.xml</adapter-descriptor>
 	    <adapter-descriptor>EventHandler.si.xml</adapter-descriptor>
 		<adapter-descriptor>DatabaseAdapter.si.xml</adapter-descriptor>	    
 		<adapter-descriptor>ResourcesAdapter.si.xml</adapter-descriptor>

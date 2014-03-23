@@ -24,8 +24,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import siminov.connect.connection.ConnectionRequest;
+import siminov.connect.connection.ConnectionResponse;
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.AdapterResources;
+import siminov.hybrid.adapter.constants.HybridConnectionRequest;
+import siminov.hybrid.adapter.constants.HybridConnectionResponse;
 import siminov.hybrid.adapter.constants.HybridDatabaseDescriptor;
 import siminov.hybrid.adapter.constants.HybridDatabaseMappingDescriptor;
 import siminov.hybrid.adapter.constants.HybridLibraryDescriptor;
@@ -37,11 +41,14 @@ import siminov.hybrid.model.AdapterDescriptor.Handler.Return;
 import siminov.hybrid.model.ApplicationDescriptor;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
+import siminov.orm.exception.SiminovException;
+import siminov.orm.log.Log;
 import siminov.orm.model.DatabaseDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor.Column;
 import siminov.orm.model.DatabaseMappingDescriptor.Index;
 import siminov.orm.model.DatabaseMappingDescriptor.Relationship;
+import siminov.orm.utils.Utils;
 import android.app.Activity;
 import android.webkit.WebView;
 
@@ -960,5 +967,113 @@ public class Resources {
 		}
 
 		return hybridHandler;
+	}
+	
+	public HybridSiminovData generateHybridConnectionRequest(final ConnectionRequest connectionRequest) {
+		
+		HybridSiminovData hybridConnectionRequest = new HybridSiminovData();
+		hybridConnectionRequest.setDataType(HybridConnectionRequest.CONNECTION_REQUEST);
+		
+		HybridSiminovData hybridUrl = new HybridSiminovData();
+		hybridUrl.setDataType(HybridConnectionRequest.URL);
+		hybridUrl.setDataValue(connectionRequest.getUrl());
+		
+		hybridConnectionRequest.addData(hybridUrl);
+		
+		
+		HybridSiminovData hybridProtocol = new HybridSiminovData();
+		hybridProtocol.setDataType(HybridConnectionRequest.PROTOCOL);
+		hybridProtocol.setDataValue(connectionRequest.getProtocol());
+		
+		hybridConnectionRequest.addData(hybridProtocol);
+		
+		
+		HybridSiminovData hybridType = new HybridSiminovData();
+		hybridType.setDataType(HybridConnectionRequest.TYPE);
+		hybridType.setDataValue(connectionRequest.getType());
+		
+		hybridConnectionRequest.addData(hybridType);
+		
+		HybridSiminovData hybridDataStream = new HybridSiminovData();
+		hybridDataStream.setDataType(HybridConnectionRequest.DATA_STREAM);
+		hybridDataStream.setDataValue(new String(connectionRequest.getDataStream()));
+		
+		hybridConnectionRequest.addData(hybridDataStream);
+
+		
+		HybridSiminovData hybridQueryParameters = new HybridSiminovData();
+		hybridQueryParameters.setDataType(HybridConnectionRequest.QUERY_PARAMETERS);
+
+		
+		Iterator<String> queryParameters = connectionRequest.getQueryParameters();
+		while(queryParameters.hasNext()) {
+
+			String queryParameterKey = queryParameters.next();
+			String queryParamtereValue = connectionRequest.getQueryParameter(queryParameterKey);
+			
+			HybridSiminovData hybridQueryParameter = new HybridSiminovData();
+			hybridQueryParameter.setDataType(queryParameterKey);
+			hybridQueryParameter.setDataValue(queryParamtereValue);
+			
+			hybridQueryParameters.addData(hybridQueryParameter);
+		}
+		
+		hybridConnectionRequest.addData(hybridQueryParameters);
+		
+		
+		HybridSiminovData hybridHeaderParameters = new HybridSiminovData();
+		hybridHeaderParameters.setDataType(HybridConnectionRequest.HEADER_PARAMETERS);
+
+		
+		Iterator<String> headerParameters = connectionRequest.getQueryParameters();
+		while(headerParameters.hasNext()) {
+
+			String headerParameterKey = headerParameters.next();
+			String headerParamtereValue = connectionRequest.getQueryParameter(headerParameterKey);
+			
+			HybridSiminovData hybridHeaderParameter = new HybridSiminovData();
+			hybridHeaderParameter.setDataType(headerParameterKey);
+			hybridHeaderParameter.setDataValue(headerParamtereValue);
+			
+			hybridHeaderParameters.addData(hybridHeaderParameter);
+		}
+		
+		hybridConnectionRequest.addData(hybridHeaderParameters);
+
+		return hybridConnectionRequest;
+	}
+
+
+	public HybridSiminovData generateHybridConnectionRequest(final ConnectionResponse connectionResponse) {
+		
+		HybridSiminovData hybridConnectionResponse = new HybridSiminovData();
+		hybridConnectionResponse.setDataType(HybridConnectionResponse.CONNECTION_RESPONSE);
+		
+		HybridSiminovData hybridStatusCode = new HybridSiminovData();
+		hybridStatusCode.setDataType(HybridConnectionResponse.STATUS_CODE);
+		hybridStatusCode.setDataValue(String.valueOf(connectionResponse.getStatusCode()));
+		
+		hybridConnectionResponse.addData(hybridStatusCode);
+		
+		
+		HybridSiminovData hybridStatusMessage = new HybridSiminovData();
+		hybridStatusMessage.setDataType(HybridConnectionResponse.STATUS_MESSAGE);
+		hybridStatusMessage.setDataValue(connectionResponse.getStatusMessage());
+		
+		hybridConnectionResponse.addData(hybridStatusMessage);
+		
+		
+		HybridSiminovData hybridResponse = new HybridSiminovData();
+		hybridResponse.setDataType(HybridConnectionResponse.RESPONSE);
+		
+		try {
+			hybridResponse.setDataValue(Utils.toString(connectionResponse.getResponse()));
+		} catch(SiminovException se) {
+			Log.loge(Resources.class.getName(), "generateHybridConnectionRequest", "Siminov Exception caught while converting connection response input stream to string, " + se.getMessage());
+		}
+		
+		hybridConnectionResponse.addData(hybridResponse);
+		
+		return hybridConnectionResponse;
 	}
 }

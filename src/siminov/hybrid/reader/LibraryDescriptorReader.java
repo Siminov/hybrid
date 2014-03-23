@@ -30,8 +30,6 @@ import siminov.hybrid.model.LibraryDescriptor;
 import siminov.orm.exception.DeploymentException;
 import siminov.orm.log.Log;
 import siminov.orm.reader.SiminovSAXDefaultHandler;
-import siminov.orm.resource.Resources;
-import android.content.Context;
 
 /**
  * Exposes methods to parse Library Descriptor information as per define in LibraryDescriptor.si.xml file by application.
@@ -134,7 +132,7 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 			libraryDescriptor.addProperty(propertyName, tempValue.toString());
 		} else if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_DATABASE_MAPPING_DESCRIPTOR)) {
 			libraryDescriptor.addDatabaseMappingPath(tempValue.toString());
-		} else if(localName.equalsIgnoreCase(HYBRID_LIBRARY_DESCRIPTOR_ADAPTER)) {
+		} else if(localName.equalsIgnoreCase(HYBRID_LIBRARY_DESCRIPTOR_ADAPTER_DESCRIPTOR)) {
 			libraryDescriptor.addAdapterDescriptorPath(tempValue.toString());
 		}
 		

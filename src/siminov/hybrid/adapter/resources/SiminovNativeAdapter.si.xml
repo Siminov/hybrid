@@ -1,0 +1,31 @@
+<adapter-descriptor>
+    
+    <property name="name">SIMINOV</property>
+    <property name="description">Siminov Hybrid Handler</property>
+    <property name="type">WEB-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.SiminovHandler</property>
+    		
+    <handlers>
+        
+        <handler>
+            
+            <property name="name">INITIALIZE-SIMINOV</property>
+            <property name="map_to">initializeSiminov</property>
+            <property name="description">Initialize Siminov</property>
+			<property name="type">SYNC</property>
+            	            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">SHUTDOWN-SIMINOV</property>
+            <property name="map_to">shutdownSiminov</property>
+            <property name="description">Shutdown Siminov</property>
+			<property name="type">SYNC</property>
+            	            
+        </handler>
+        
+    </handlers>
+    	    
+</adapter-descriptor>
+

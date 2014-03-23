@@ -66,7 +66,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridEventHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_DATABASE_CREATED);
+		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_ON_DATABASE_CREATED);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -140,7 +140,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridEventHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_DATABASE_DROPPED);
+		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_ON_DATABASE_DROPPED);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -213,7 +213,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridEventHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_TABLE_CREATED);
+		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_ON_TABLE_CREATED);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -292,7 +292,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridEventHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_TABLE_DROPPED);
+		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_ON_TABLE_DROPPED);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -370,7 +370,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridEventHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_INDEX_CREATED);
+		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_ON_INDEX_CREATED);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -450,7 +450,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridEventHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_INDEX_DROPPED);
+		triggeredEvent.setDataValue(HybridEventHandler.IDATABASE_EVENT_ON_INDEX_DROPPED);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		

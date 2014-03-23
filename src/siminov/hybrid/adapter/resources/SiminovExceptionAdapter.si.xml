@@ -1,0 +1,33 @@
+<adapter-descriptor>
+   
+    <property name="name">SIMINOV-EXCEPTION-HANDLER</property>
+    <property name="description">Siminov Exception Handler</property>
+    <property name="type">NATIVE-TO-WEB</property>
+    <property name="map_to">SiminovExcpetionHandler</property>
+
+    <handlers>
+
+        <handler>
+
+            <property name="name">DISPLAY</property>
+            <property name="map_to">display</property>
+            <property name="description">Display Exception</property>
+
+            <parameters>
+
+                <parameter>
+
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Data</property>
+
+                </parameter>
+
+        	</parameters>
+
+        </handler>
+
+
+    </handlers>
+
+</adapter-descriptor>
+	

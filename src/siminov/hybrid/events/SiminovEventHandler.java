@@ -63,7 +63,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridEventHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridEventHandler.ISIMINOV_EVENT_FIRST_TIME_SIMINOV_INITIALIZED);
+		triggeredEvent.setDataValue(HybridEventHandler.ISIMINOV_EVENT_ON_FIRST_TIME_SIMINOV_INITIALIZED);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -125,7 +125,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridEventHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridEventHandler.ISIMINOV_EVENT_SIMINOV_INITIALIZED);
+		triggeredEvent.setDataValue(HybridEventHandler.ISIMINOV_EVENT_ON_SIMINOV_INITIALIZED);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -187,7 +187,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridEventHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridEventHandler.ISIMINOV_EVENT_SIMINOV_STOPPED);
+		triggeredEvent.setDataValue(HybridEventHandler.ISIMINOV_EVENT_ON_SIMINOV_STOPPED);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		

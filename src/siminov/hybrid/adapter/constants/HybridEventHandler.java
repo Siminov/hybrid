@@ -30,48 +30,48 @@ public interface HybridEventHandler {
 	/**
 	 * Web First Time Siminov Initialized Event API.
 	 */
-	public String ISIMINOV_EVENT_FIRST_TIME_SIMINOV_INITIALIZED = "firstTimeSiminovInitialized";
+	public String ISIMINOV_EVENT_ON_FIRST_TIME_SIMINOV_INITIALIZED = "onFirstTimeSiminovInitialized";
 
 	/**
 	 * Web Siminov Initialized Event API.
 	 */
-	public String ISIMINOV_EVENT_SIMINOV_INITIALIZED = "siminovInitialized";
+	public String ISIMINOV_EVENT_ON_SIMINOV_INITIALIZED = "onSiminovInitialized";
 
 	/**
 	 * Web Siminov Stopped Event API.
 	 */
-	public String ISIMINOV_EVENT_SIMINOV_STOPPED = "siminovStopped";
+	public String ISIMINOV_EVENT_ON_SIMINOV_STOPPED = "onSiminovStopped";
 	
 	
 	/**
 	 * Web Database Created Event API.
 	 */
-	public String IDATABASE_EVENT_DATABASE_CREATED = "databaseCreated";
+	public String IDATABASE_EVENT_ON_DATABASE_CREATED = "onDatabaseCreated";
 
 	/**
 	 * Web Database Dropped Event API.
 	 */
-	public String IDATABASE_EVENT_DATABASE_DROPPED = "databaseDropped";
+	public String IDATABASE_EVENT_ON_DATABASE_DROPPED = "onDatabaseDropped";
 	
 	/**
 	 * Web Table Created Event API.
 	 */
-	public String IDATABASE_EVENT_TABLE_CREATED = "tableCreated";
+	public String IDATABASE_EVENT_ON_TABLE_CREATED = "onTableCreated";
 	
 	/**
 	 * Web Table Dropped Event API.
 	 */
-	public String IDATABASE_EVENT_TABLE_DROPPED = "tableDropped";
+	public String IDATABASE_EVENT_ON_TABLE_DROPPED = "onTableDropped";
 
 	/**
 	 * Web Index Created Event API.
 	 */
-	public String IDATABASE_EVENT_INDEX_CREATED = "indexCreated";
+	public String IDATABASE_EVENT_ON_INDEX_CREATED = "onIndexCreated";
 	
 	/**
 	 * Web Index Dropped Event API.
 	 */
-	public String IDATABASE_EVENT_INDEX_DROPPED = "indexDropped";
+	public String IDATABASE_EVENT_ON_INDEX_DROPPED = "onIndexDropped";
 	
 	
 	/**

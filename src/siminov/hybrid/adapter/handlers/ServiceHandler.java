@@ -50,6 +50,7 @@ public class ServiceHandler {
 		
 		
 		IService genericService = new GenericService();
+		
 		genericService.setService(service);
 		genericService.setApi(api);
 		

@@ -193,12 +193,12 @@ public interface Constants {
 	/**
 	 * LibraryDescriptor.si.xml file Adapters TAG.
 	 */
-	public String HYBRID_LIBRARY_DESCRIPTOR_HYBRID_ADAPTER = "adapters";
+	public String HYBRID_LIBRARY_DESCRIPTOR_HYBRID_ADAPTER_DESCRIPTORS = "adapter-descriptors";
 	
 	/**
 	 * LibraryDescriptor.si.xml file Adapter TAG.
 	 */
-	public String HYBRID_LIBRARY_DESCRIPTOR_ADAPTER = "adapter";
+	public String HYBRID_LIBRARY_DESCRIPTOR_ADAPTER_DESCRIPTOR = "adapter-descriptor";
 	
 
 	//Siminov Adapter Handler.
@@ -242,6 +242,11 @@ public interface Constants {
 	
 	public String SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_INLINE_RESOURCES = "INLINE_RESOURCES";
 
+
+	public String HYBRID_SIMINOV_SERVICE_HANDLER_ADAPTER = "ServiceHandler";
+
+	public String HYBRID_SIMINOV_SERVICE_HANDLER_TRIGGER_EVENT_HANDLER = "handle";
+	
 	
 	/*
 	 * Authenticate Handler Constants
