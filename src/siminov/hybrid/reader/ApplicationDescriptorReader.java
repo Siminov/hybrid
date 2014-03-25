@@ -6,7 +6,7 @@ import java.io.InputStream;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-import siminov.connect.model.AuthenticationDescriptor;
+import siminov.connect.model.AuthorizationDescriptor;
 import siminov.connect.model.NotificationDescriptor;
 import siminov.connect.model.SyncDescriptor;
 import siminov.hybrid.Constants;
@@ -29,7 +29,7 @@ public class ApplicationDescriptorReader extends SiminovSAXDefaultHandler implem
 	
 	private SyncDescriptor syncDescriptor = null;
 
-	private AuthenticationDescriptor authenticationDescriptor = null;
+	private AuthorizationDescriptor authorizationDescriptor = null;
 
 	private NotificationDescriptor notificationDescriptor = null;	
 	
@@ -75,9 +75,9 @@ public class ApplicationDescriptorReader extends SiminovSAXDefaultHandler implem
 			applicationDescriptor = new ApplicationDescriptor();
 		} else if(localName.equalsIgnoreCase(APPLICATION_DESCRIPTOR_PROPERTY)) {
 			initializeProperty(attributes);
-		} else if(localName.equalsIgnoreCase(APPLICATION_DESCRIPTOR_AUTHENTICATION_DESCRIPTOR)) {
+		} else if(localName.equalsIgnoreCase(APPLICATION_DESCRIPTOR_AUTHORIZATION_DESCRIPTOR)) {
 
-			authenticationDescriptor = new AuthenticationDescriptor();
+			authorizationDescriptor = new AuthorizationDescriptor();
 			isAuthenticationDescriptor = true;
 		} else if(localName.equalsIgnoreCase(SYNC_DESCRIPTOR)) {
 
@@ -126,8 +126,8 @@ public class ApplicationDescriptorReader extends SiminovSAXDefaultHandler implem
 			applicationDescriptor.addLibrary(tempValue.toString());
 		} else if(localName.equalsIgnoreCase(APPLICATION_DESCRIPTOR_SERVICE_DESCRIPTOR)) {
 			applicationDescriptor.addServiceDescriptorPath(tempValue.toString());
-		} else if(localName.equalsIgnoreCase(APPLICATION_DESCRIPTOR_AUTHENTICATION_DESCRIPTOR)) {
-			applicationDescriptor.setAuthenticationDescriptor(authenticationDescriptor);
+		} else if(localName.equalsIgnoreCase(APPLICATION_DESCRIPTOR_AUTHORIZATION_DESCRIPTOR)) {
+			applicationDescriptor.setAuthorizationDescriptor(authorizationDescriptor);
 			isAuthenticationDescriptor = false;
 		} else if(localName.equalsIgnoreCase(SYNC_DESCRIPTOR)) {
 			//applicationDescriptor.addSyncDescriptor(syncDescriptor);
@@ -149,7 +149,7 @@ public class ApplicationDescriptorReader extends SiminovSAXDefaultHandler implem
 		if(isNotificationDescriptor) {
 			notificationDescriptor.addProperty(propertyName, tempValue.toString());
 		} else if(isAuthenticationDescriptor) {
-			authenticationDescriptor.addProperty(propertyName, tempValue.toString());
+			authorizationDescriptor.addProperty(propertyName, tempValue.toString());
 		} else if(isSyncDesriptor) {
 			syncDescriptor.addProperty(propertyName, tempValue.toString());
 		} else {
