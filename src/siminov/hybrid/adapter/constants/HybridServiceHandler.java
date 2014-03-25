@@ -6,8 +6,6 @@ public interface HybridServiceHandler {
 
 	public String ISERVICE_API_HANDLER = "ISERVICE_API_HANDLER";
 	
-	public String ISERVICE_API_HANDLER_PARAMETER = "ISERVICE_API_HANDLER_PARAMETER";
-	
 	public String ISERVICE_ON_SERVICE_START = "onServiceStart";
 
 	public String ISERVICE_ON_SERVICE_QUEUE = "onServiceQueue";
