@@ -1,0 +1,40 @@
+
+<adapter-descriptor>
+    
+    <property name="name">SERVICE-EVENT-HANDLER</property>
+    <property name="description">Siminov Service Event Handler</property>
+    <property name="type">NATIVE-TO-WEB</property>
+    <property name="map_to">ServiceEventHandler</property>
+    		
+    <handlers>
+        
+        <handler>
+            
+            <property name="name">TRIGGER-EVENT</property>
+            <property name="map_to">triggerEvent</property>
+            <property name="description">Trigger Event</property>
+			<property name="type">SYNC</property>
+
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Event</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Data</property>
+                    
+                </parameter>
+                
+        	</parameters>
+				            	            
+        </handler>
+        
+    </handlers>
+	    	    
+</adapter-descriptor>
