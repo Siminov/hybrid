@@ -34,7 +34,7 @@ import siminov.hybrid.reader.HybridSiminovDataReader;
 import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.Constants;
 import siminov.orm.database.DatabaseBundle;
-import siminov.orm.database.design.IDatabase;
+import siminov.orm.database.design.IDatabaseImpl;
 import siminov.orm.database.design.IQueryBuilder;
 import siminov.orm.exception.DatabaseException;
 import siminov.orm.exception.DeploymentException;
@@ -94,7 +94,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(className);
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		String tableName = databaseMappingDescriptor.getTableName();
@@ -239,7 +239,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(className);
 
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		
@@ -523,7 +523,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		
@@ -568,7 +568,7 @@ public class DatabaseHandler {
 
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
@@ -657,7 +657,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		
 		if(database == null) {
 			Log.loge(DatabaseHandler.class.getName(), "select", "No Database Instance Found For DATABASE-MAPPING: " + className);
@@ -705,7 +705,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
@@ -742,7 +742,7 @@ public class DatabaseHandler {
 	public void beginTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptorName);
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 
 		if(database == null) {
 			Log.loge(DatabaseHandler.class.getName(), "beginTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
@@ -762,7 +762,7 @@ public class DatabaseHandler {
 	public void commitTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptorName);
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 
 		if(database == null) {
 			Log.loge(DatabaseHandler.class.getName(), "commitTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
@@ -782,7 +782,7 @@ public class DatabaseHandler {
 	public void endTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptorName);
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 
 		if(database == null) {
 			Log.loge(DatabaseHandler.class.getName(), "endTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
@@ -838,7 +838,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
@@ -927,7 +927,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
@@ -1022,7 +1022,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
@@ -1116,7 +1116,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
@@ -1210,7 +1210,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
@@ -1306,7 +1306,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
@@ -1401,7 +1401,7 @@ public class DatabaseHandler {
 		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
-		IDatabase database = databaseBundle.getDatabase();
+		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {

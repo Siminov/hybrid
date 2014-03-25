@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import siminov.connect.authentication.Credential;
-import siminov.connect.authentication.CredentialManager;
-import siminov.connect.exception.AuthenticationException;
-import siminov.connect.exception.ServiceException;
+import org.apache.http.auth.AuthenticationException;
+
+import siminov.connect.authorization.AuthorizationFactory;
+import siminov.connect.authorization.design.ICredential;
+import siminov.connect.authorization.design.ICredentialManager;
+import siminov.connect.exception.AuthorizationException;
 import siminov.hybrid.Constants;
 import siminov.hybrid.adapter.constants.HybridCredential;
 import siminov.hybrid.model.HybridSiminovDatas;
@@ -20,32 +22,31 @@ import siminov.orm.log.Log;
 
 public class AuthenticationHandler {
 
-	private CredentialManager credentailManager = CredentialManager.getInstance();
+	private ICredentialManager credentialManager = AuthorizationFactory.getInstance().getAuthorizationProvider();
 	
-	public String isAnyActiveAccount() throws AuthenticationException {
+	public String isAnyActiveAccount() throws AuthorizationException {
 
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		HybridSiminovData hybridSiminovData = new HybridSiminovData();
 		
-		hybridSiminovData.setDataValue(String.valueOf(credentailManager.isAnyActiveAccount()));
+		hybridSiminovData.setDataValue(String.valueOf(credentialManager.isAnyActiveCredential()));
 		
 		String data = null;
 		try {
 			HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException se) {
 			Log.loge(AuthenticationException.class.getName(), "isAnyActiveAccount", "SiminovException caught while generating json response, " + se.getMessage());
-			throw new AuthenticationException(AuthenticationException.class.getName(), "isAnyActiveAccount", se.getMessage());
+			throw new AuthorizationException(AuthenticationException.class.getName(), "isAnyActiveAccount", se.getMessage());
 		}
 		
 		return data;
 	}
 	
-	public String getActiveAccount() throws AuthenticationException {
+	public String getActiveAccount() throws AuthorizationException {
 		
-		CredentialManager credentialManager = CredentialManager.getInstance();
-		Credential credential = credentialManager.getActiveAccount();
+		ICredential credential = credentialManager.getActiveCredential();
 		
-		Collection<Credential> credentials = new ArrayList<Credential>();
+		Collection<ICredential> credentials = new ArrayList<ICredential>();
 		if(credential != null) {
 			credentials.add(credential);
 		}
@@ -53,20 +54,19 @@ public class AuthenticationHandler {
 		return generateHybridCredential(credentials.iterator());
 	}
 	
-	public String getAccounts() throws AuthenticationException {
+	public String getAccounts() throws AuthorizationException {
 
-		CredentialManager credentialManager = CredentialManager.getInstance();
-		Iterator<Credential> credentials = credentialManager.getAccounts();
+		Iterator<ICredential> credentials = credentialManager.getCredentials();
 		
 		return generateHybridCredential(credentials);
 	}
 	
-	private String generateHybridCredential(Iterator<Credential> credentials) throws AuthenticationException {
+	private String generateHybridCredential(Iterator<ICredential> credentials) throws AuthorizationException {
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		while(credentials.hasNext()) {
 			
-			Credential credential = credentials.next();
+			ICredential credential = credentials.next();
 			
 			HybridSiminovData credentialHybridData = new HybridSiminovData();
 			credentialHybridData.setDataType(HybridCredential.CREDENTIAL);
@@ -90,7 +90,7 @@ public class AuthenticationHandler {
 			 */
 			HybridSiminovData isActiveHybridData = new HybridSiminovData();
 			isActiveHybridData.setDataType(HybridCredential.IS_ACTIVE);
-			isActiveHybridData.setDataValue(String.valueOf(credential.getActive()));
+			isActiveHybridData.setDataValue(String.valueOf(credential.isActive()));
 			
 			hybridSiminovDatas.addHybridSiminovData(credentialHybridData);
 			
@@ -121,13 +121,13 @@ public class AuthenticationHandler {
 			HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException se) {
 			Log.loge(AuthenticationException.class.getName(), "generateHybridCredential", "SiminovException caught while generating json response, " + se.getMessage());
-			throw new AuthenticationException(AuthenticationException.class.getName(), "generateHybridCredential", se.getMessage());
+			throw new AuthorizationException(AuthenticationException.class.getName(), "generateHybridCredential", se.getMessage());
 		}
 		
 		return data;
 	}
 	
-	public String getAuthenticate(String data) throws AuthenticationException {
+	public String getAuthenticate(String data) throws AuthorizationException {
 		
 		HybridSiminovDataReader hybridSiminovDataParser = null; 
 		data = URLDecoder.decode(data);
@@ -136,7 +136,7 @@ public class AuthenticationHandler {
 			hybridSiminovDataParser = new HybridSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
 			Log.loge(AuthenticationHandler.class.getName(), "getAuthenticate", "SiminovException caught while parsing siminov hybrid core data, " + siminovException.getMessage());
-			throw new AuthenticationException(AuthenticationHandler.class.getName(), "getAuthenticate", "SiminovException caught while parsing siminov hybrid core data, " + siminovException.getMessage());
+			throw new AuthorizationException(AuthenticationHandler.class.getName(), "getAuthenticate", "SiminovException caught while parsing siminov hybrid core data, " + siminovException.getMessage());
 		}
 
 
