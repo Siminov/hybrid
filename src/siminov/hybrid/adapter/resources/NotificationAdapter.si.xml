@@ -1,0 +1,32 @@
+
+<adapter-descriptor>
+    
+    <property name="name">NOTIFICATION</property>
+    <property name="description">Siminov Connect Notification</property>
+    <property name="type">WEB-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.NotificationHandler</property>
+	<property name="cache">true</property>
+	
+    <handlers>
+        
+        <handler>
+            
+            <property name="name">DO-REGISTRATION</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">doRegistration</property>
+            <property name="description">Do Registration</property>
+            
+        </handler>
+
+        <handler>
+            
+            <property name="name">DO-UNREGISTRATION</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">doUnregistration</property>
+            <property name="description">Do Unregistration</property>
+            
+        </handler>
+        
+	</handlers>
+	
+</adapter-descriptor>

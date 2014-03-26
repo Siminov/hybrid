@@ -24,8 +24,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import siminov.connect.connection.ConnectionRequest;
-import siminov.connect.connection.ConnectionResponse;
+import siminov.connect.design.connection.IConnectionRequest;
+import siminov.connect.design.connection.IConnectionResponse;
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.AdapterResources;
 import siminov.hybrid.adapter.constants.HybridConnectionRequest;
@@ -969,7 +969,7 @@ public class Resources {
 		return hybridHandler;
 	}
 	
-	public HybridSiminovData generateHybridConnectionRequest(final ConnectionRequest connectionRequest) {
+	public HybridSiminovData generateHybridConnectionRequest(final IConnectionRequest connectionRequest) {
 		
 		HybridSiminovData hybridConnectionRequest = new HybridSiminovData();
 		hybridConnectionRequest.setDataType(HybridConnectionRequest.CONNECTION_REQUEST);
@@ -1044,7 +1044,7 @@ public class Resources {
 	}
 
 
-	public HybridSiminovData generateHybridConnectionRequest(final ConnectionResponse connectionResponse) {
+	public HybridSiminovData generateHybridConnectionRequest(final IConnectionResponse connectionResponse) {
 		
 		HybridSiminovData hybridConnectionResponse = new HybridSiminovData();
 		hybridConnectionResponse.setDataType(HybridConnectionResponse.CONNECTION_RESPONSE);

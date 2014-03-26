@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import siminov.connect.design.service.IService;
 import siminov.connect.exception.ServiceException;
-import siminov.connect.service.design.IService;
 import siminov.hybrid.Constants;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;

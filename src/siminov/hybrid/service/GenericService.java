@@ -1,12 +1,12 @@
 package siminov.hybrid.service;
 
-import siminov.connect.connection.ConnectionRequest;
-import siminov.connect.connection.ConnectionResponse;
+import siminov.connect.design.connection.IConnectionRequest;
+import siminov.connect.design.connection.IConnectionResponse;
+import siminov.connect.design.service.IService;
 import siminov.connect.exception.ServiceException;
 import siminov.connect.model.ServiceDescriptor;
 import siminov.connect.model.ServiceDescriptor.API;
 import siminov.connect.service.Service;
-import siminov.connect.service.design.IService;
 import siminov.hybrid.Constants;
 import siminov.hybrid.adapter.Adapter;
 import siminov.hybrid.adapter.constants.HybridServiceHandler;
@@ -321,7 +321,7 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onServiceApiInvoke(ConnectionRequest connectionRequest) {
+	public void onServiceApiInvoke(IConnectionRequest connectionRequest) {
 
 		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
 		Resources hybridResources = Resources.getInstance();
@@ -384,7 +384,7 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onServiceApiFinish(ConnectionResponse connectionResponse) {
+	public void onServiceApiFinish(IConnectionResponse connectionResponse) {
 
 		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
 		Resources hybridResources = Resources.getInstance();
