@@ -72,6 +72,39 @@ public interface HybridEventHandler {
 	 * Web Index Dropped Event API.
 	 */
 	public String IDATABASE_EVENT_ON_INDEX_DROPPED = "onIndexDropped";
+
+	
+	public String INOTIFICATION_EVENT_ON_REGISTRATION = "onRegistration";
+	
+	
+	public String INOTIFICATION_EVENT_ON_UNREGISTRATION = "onUnregistration";
+	
+	
+	public String INOTIFICATION_EVENT_ON_NOTIFICATION = "onNotification";
+	
+	
+	public String INOTIFICATION_EVENT_ON_ERROR = "onError";
+	
+	
+	public String IAUTHENTICATION_EVENT_ON_AUTHENTICATION_START = "onAuthenticationStart";
+	
+	
+	public String IAUTHENTICATION_EVENT_ON_AUTHENTICATION_FINISH = "onAuthenticationFinish";
+	
+	
+	public String IAUTHENTICATION_EVENT_ON_AUTHENTICATION_TERMINATE = "onAuthenticationTerminate";
+
+	
+	public String ISYNC_EVENT_ON_SYNC_STARTED = "onSyncStarted";
+	
+	
+	public String ISYNC_EVENT_ON_SYNC_QUEUED = "onSyncQueued";
+	
+	
+	public String ISYNC_EVENT_ON_SYNC_REMOVED = "onSyncRemoved";
+	
+	
+	public String ISYNC_EVENT_ON_SYNC_TERMINATED = "onSyncTerminated";
 	
 	
 	/**

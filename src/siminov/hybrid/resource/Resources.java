@@ -26,6 +26,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import siminov.connect.design.connection.IConnectionRequest;
 import siminov.connect.design.connection.IConnectionResponse;
+import siminov.connect.design.notification.IMessage;
+import siminov.connect.design.notification.IRegistration;
+import siminov.connect.exception.NotificationException;
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.AdapterResources;
 import siminov.hybrid.adapter.constants.HybridConnectionRequest;
@@ -33,6 +36,9 @@ import siminov.hybrid.adapter.constants.HybridConnectionResponse;
 import siminov.hybrid.adapter.constants.HybridDatabaseDescriptor;
 import siminov.hybrid.adapter.constants.HybridDatabaseMappingDescriptor;
 import siminov.hybrid.adapter.constants.HybridLibraryDescriptor;
+import siminov.hybrid.adapter.constants.HybridMessage;
+import siminov.hybrid.adapter.constants.HybridNotificationException;
+import siminov.hybrid.adapter.constants.HybridRegistration;
 import siminov.hybrid.events.EventHandler;
 import siminov.hybrid.model.AdapterDescriptor;
 import siminov.hybrid.model.AdapterDescriptor.Handler;
@@ -1075,5 +1081,62 @@ public class Resources {
 		hybridConnectionResponse.addValue(hybridResponse);
 		
 		return hybridConnectionResponse;
+	}
+	
+	public HybridSiminovData generateHybridRegistration(final IRegistration registration) {
+		
+		HybridSiminovData hybridRegistration = new HybridSiminovData();
+		hybridRegistration.setDataType(HybridRegistration.REGISTRATION);
+		
+		HybridSiminovValue hybridRegistrationId = new HybridSiminovValue();
+		hybridRegistrationId.setType(HybridRegistration.REGISTRATION_ID);
+		hybridRegistrationId.setValue(registration.getRegistrationId());
+
+		hybridRegistration.addValue(hybridRegistrationId);
+		
+		return hybridRegistration;
+	}
+	
+	public HybridSiminovData generateHybridMessage(final IMessage message) {
+
+		HybridSiminovData hybridMessage = new HybridSiminovData();
+		hybridMessage.setDataType(HybridMessage.MESSAGE);
+		
+		HybridSiminovValue hybridMsg = new HybridSiminovValue();
+		hybridMsg.setType(HybridMessage.MSG);
+		hybridMsg.setValue(message.getMessage());
+		
+		hybridMessage.addValue(hybridMsg);
+		
+		return hybridMessage;
+	}
+	
+	
+	public HybridSiminovData generateHybridNotificationException(final NotificationException notificationException) {
+
+		HybridSiminovData hybridNotificationException = new HybridSiminovData();
+		hybridNotificationException.setDataType(HybridNotificationException.NOTIFICATION_EXCEPTION);
+		
+		HybridSiminovValue hybridClassName = new HybridSiminovValue();
+		hybridClassName.setType(HybridNotificationException.CLASS_NAME);
+		hybridClassName.setValue(notificationException.getClassName());
+		
+		hybridNotificationException.addValue(hybridClassName);
+		
+		
+		HybridSiminovValue hybridMethodName = new HybridSiminovValue();
+		hybridMethodName.setType(HybridNotificationException.METHOD_NAME);
+		hybridMethodName.setValue(notificationException.getMessage());
+		
+		hybridNotificationException.addValue(hybridMethodName);
+
+		
+		HybridSiminovValue hybridMessage = new HybridSiminovValue();
+		hybridMessage.setType(HybridNotificationException.MESSAGE);
+		hybridMessage.setValue(notificationException.getMessage());
+		
+		hybridNotificationException.addValue(hybridMessage);
+
+		return hybridNotificationException;
 	}
 }

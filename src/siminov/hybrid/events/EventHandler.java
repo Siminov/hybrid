@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import siminov.connect.events.IAuthenticationEvents;
+import siminov.connect.events.INotificationEvents;
+import siminov.connect.events.ISyncEvents;
 import siminov.orm.events.IDatabaseEvents;
 import siminov.orm.events.ISiminovEvents;
 import siminov.orm.log.Log;
@@ -40,6 +43,9 @@ public class EventHandler {
 	
 	private ISiminovEvents siminovEvents = null;
 	private IDatabaseEvents databaseEvents = null;
+	private INotificationEvents notificationEvents = null;
+	private IAuthenticationEvents authenticationEvents = null;
+	private ISyncEvents syncEvents = null;
 	
 	
 	private EventHandler() {
@@ -132,8 +138,8 @@ public class EventHandler {
 			
 			if(object instanceof ISiminovEvents) {
 				siminovEvents = (ISiminovEvents) object;
+				break;
 			}
-			
 		}
 		
 
@@ -180,12 +186,144 @@ public class EventHandler {
 			
 			if(object instanceof IDatabaseEvents) {
 				databaseEvents = (IDatabaseEvents) object;
+				break;
 			}
-			
 		}
 		
 
 		return databaseEvents;
 	}
+
 	
+	public INotificationEvents getNotificationEvent() {
+		
+		if(notificationEvents != null) {
+			return notificationEvents;
+		}
+		
+		
+		Iterator<String> events = this.events.iterator();
+		while(events.hasNext()) {
+			String event = events.next();
+
+			Class<?> classObject = null;
+			try {
+				classObject = Class.forName(event);
+			} catch(Exception exception) {
+				Log.logd(ClassUtils.class.getName(), "getNotificationEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
+			}
+			
+			if(classObject == null) {
+				continue;
+			}
+			
+			Object object = null;
+			try {
+				object = classObject.newInstance();
+			} catch(Exception exception) {
+				Log.logd(ClassUtils.class.getName(), "getNotificationEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
+			}
+
+			if(object == null) {
+				continue;
+			}
+			
+			if(object instanceof INotificationEvents) {
+				notificationEvents = (INotificationEvents) object;
+				break;
+			}
+		}
+		
+
+		return notificationEvents;
+	}
+
+	
+	
+	public IAuthenticationEvents getAuthenticationEvent() {
+		
+		if(authenticationEvents != null) {
+			return authenticationEvents;
+		}
+		
+		
+		Iterator<String> events = this.events.iterator();
+		while(events.hasNext()) {
+			String event = events.next();
+
+			Class<?> classObject = null;
+			try {
+				classObject = Class.forName(event);
+			} catch(Exception exception) {
+				Log.logd(ClassUtils.class.getName(), "getAuthenticationEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
+			}
+			
+			if(classObject == null) {
+				continue;
+			}
+			
+			Object object = null;
+			try {
+				object = classObject.newInstance();
+			} catch(Exception exception) {
+				Log.logd(ClassUtils.class.getName(), "getAuthenticationEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
+			}
+
+			if(object == null) {
+				continue;
+			}
+			
+			if(object instanceof IAuthenticationEvents) {
+				authenticationEvents = (IAuthenticationEvents) object;
+				break;
+			}
+		}
+		
+
+		return authenticationEvents;
+	}
+
+
+	public ISyncEvents getSyncEvent() {
+		
+		if(syncEvents != null) {
+			return syncEvents;
+		}
+		
+		
+		Iterator<String> events = this.events.iterator();
+		while(events.hasNext()) {
+			String event = events.next();
+
+			Class<?> classObject = null;
+			try {
+				classObject = Class.forName(event);
+			} catch(Exception exception) {
+				Log.logd(ClassUtils.class.getName(), "getSyncEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
+			}
+			
+			if(classObject == null) {
+				continue;
+			}
+			
+			Object object = null;
+			try {
+				object = classObject.newInstance();
+			} catch(Exception exception) {
+				Log.logd(ClassUtils.class.getName(), "getSyncEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
+			}
+
+			if(object == null) {
+				continue;
+			}
+			
+			if(object instanceof ISyncEvents) {
+				syncEvents = (ISyncEvents) object;
+				break;
+			}
+		}
+		
+
+		return syncEvents;
+	}
 }

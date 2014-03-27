@@ -36,7 +36,8 @@
 		<adapter-descriptor>ResourcesAdapter.si.xml</adapter-descriptor>
 		<adapter-descriptor>ServiceAdapter.si.xml</adapter-descriptor>
 		<adapter-descriptor>ServiceEventHandlerAdapter.si.xml</adapter-descriptor>
-					
+		<adapter-descriptor>NotificationAdapter.si.xml</adapter-descriptor>
+							
 	</adapter-descriptors>
 		 
 </library-descriptor>
