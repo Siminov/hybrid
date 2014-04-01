@@ -55,7 +55,7 @@ public class ServiceHandler {
 		genericService.setApi(api);
 		
 		for(String inlineResource: inlineResources.keySet()) {
-			genericService.addInlineResource(inlineResource, inlineResources.get(inlineResource));
+			genericService.addResource(inlineResource, inlineResources.get(inlineResource));
 		}
 		
 		genericService.invoke();

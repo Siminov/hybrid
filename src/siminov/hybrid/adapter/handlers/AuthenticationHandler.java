@@ -100,15 +100,19 @@ public class AuthenticationHandler {
 			HybridSiminovData inlineResourcesHybridData = new HybridSiminovData();
 			inlineResourcesHybridData.setDataType(HybridCredential.INLINE_RESOURCES);
 			
-			Iterator<String> inlineResourceKeys = credential.getInlineResources();
+			Iterator<String> inlineResourceKeys = credential.getResources();
 			while(inlineResourceKeys.hasNext()) {
 				
 				String inlineResourceKey = inlineResourceKeys.next();
-				String inlineResourceValue = credential.getInlineResource(inlineResourceKey);
+				Object inlineResourceValue = credential.getResource(inlineResourceKey);
+				
+				if(inlineResourceValue instanceof Object) {
+					continue;
+				}
 				
 				HybridSiminovData inlineResourceHybridData = new HybridSiminovData();
 				inlineResourceHybridData.setDataType(inlineResourceKey);
-				inlineResourceHybridData.setDataValue(inlineResourceValue);
+				inlineResourceHybridData.setDataValue((String) inlineResourceValue);
 				
 				inlineResourcesHybridData.addData(inlineResourceHybridData);
 			}

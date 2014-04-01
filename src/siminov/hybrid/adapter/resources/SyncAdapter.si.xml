@@ -1,0 +1,34 @@
+
+<adapter-descriptor>
+    
+    <property name="name">SYNC</property>
+    <property name="description">Siminov Connect Sync</property>
+    <property name="type">WEB-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.SyncHandler</property>
+	<property name="cache">true</property>
+	
+    <handlers>
+        
+        <handler>
+            
+            <property name="name">HANDLE</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">handle</property>
+            <property name="description">Handle Sync Request</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">java.lang.String</property>
+                    <property name="description">Hybrid Sync Request</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+        </handler>
+
+	</handlers>
+	
+</adapter-descriptor>
