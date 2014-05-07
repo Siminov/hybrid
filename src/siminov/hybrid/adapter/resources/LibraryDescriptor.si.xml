@@ -38,7 +38,8 @@
 		<adapter-descriptor>ServiceEventHandlerAdapter.si.xml</adapter-descriptor>
 		<adapter-descriptor>NotificationAdapter.si.xml</adapter-descriptor>
 		<adapter-descriptor>SyncAdapter.si.xml</adapter-descriptor>
-									
+		<adapter-descriptor>AuthorizationAdapter.si.xml</adapter-descriptor>
+											
 	</adapter-descriptors>
 		 
 </library-descriptor>

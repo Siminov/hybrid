@@ -8,5 +8,5 @@ public interface HybridSyncRequest {
 	public String NAME = "name";
 
 	
-	public String INLINE_RESOURCES = "inlineResources";
+	public String RESOURCES = "resources";
 }

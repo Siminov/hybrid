@@ -34,18 +34,18 @@ public class ServiceHandler {
 		HybridSiminovData serviceHybridData = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_PARAMETER);
 		HybridSiminovData apiHybridData = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_API_PARAMETER);
 	
-		HybridSiminovData inlineResourcesHybridDatas = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_INLINE_RESOURCES);
-		Iterator<HybridSiminovData>	inlineResourcesHybridData = inlineResourcesHybridDatas.getDatas();
+		HybridSiminovData resourcesHybridDatas = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_RESOURCES);
+		Iterator<HybridSiminovData>	resourcesHybridData = resourcesHybridDatas.getDatas();
 				
 				
 		String service = serviceHybridData.getDataValue();
 		String api = apiHybridData.getDataValue();
 		
-		Map<String, String> inlineResources = new HashMap<String, String>();
-		while(inlineResourcesHybridData.hasNext()) {
+		Map<String, String> resources = new HashMap<String, String>();
+		while(resourcesHybridData.hasNext()) {
 			
-			HybridSiminovData inlineResourceHybridData = inlineResourcesHybridData.next();
-			inlineResources.put(inlineResourceHybridData.getDataType(), inlineResourceHybridData.getDataValue());
+			HybridSiminovData resourceHybridData = resourcesHybridData.next();
+			resources.put(resourceHybridData.getDataType(), resourceHybridData.getDataValue());
 		}
 		
 		
@@ -54,8 +54,8 @@ public class ServiceHandler {
 		genericService.setService(service);
 		genericService.setApi(api);
 		
-		for(String inlineResource: inlineResources.keySet()) {
-			genericService.addResource(inlineResource, inlineResources.get(inlineResource));
+		for(String resource: resources.keySet()) {
+			genericService.addResource(resource, resources.get(resource));
 		}
 		
 		genericService.invoke();

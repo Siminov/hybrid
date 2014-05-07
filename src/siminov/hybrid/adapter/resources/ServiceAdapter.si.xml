@@ -35,7 +35,7 @@
                 <parameter>
                     
                     <property name="type">java.lang.String</property>
-                    <property name="description">Inline Resources</property>
+                    <property name="description">Resources</property>
                     
                 </parameter>
                 

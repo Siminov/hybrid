@@ -10,5 +10,5 @@ public interface HybridCredential {
 
 	public String IS_ACTIVE = "IS_ACTIVE";
 	
-	public String INLINE_RESOURCES = "INLINE_RESOURCES";
+	public String RESOURCES = "RESOURCES";
 }

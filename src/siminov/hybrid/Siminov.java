@@ -136,7 +136,8 @@ public class Siminov extends siminov.connect.Siminov {
 
 		
 		processDatabaseMappingDescriptors();
-
+		processSyncDescriptors();
+		
 
 		processAdapterDescriptors();
 		processHybridServices();
@@ -249,6 +250,15 @@ public class Siminov extends siminov.connect.Siminov {
 	}
 
 	
+	protected static void processSyncDescriptors() {
+		siminov.connect.Siminov.processSyncDescriptors();
+	}
+
+	
+	protected static void processServices() {
+		siminov.connect.Siminov.processServices();
+	}
+	
 	protected static void processDatabase() {
 		siminov.connect.Siminov.processDatabase();
 	}
@@ -314,6 +324,8 @@ public class Siminov extends siminov.connect.Siminov {
 	 * It Triggers Events that SIMINOV HYBRID FRAMEWORK is initialized properly. 
 	 */
 	protected static void siminovInitialized() {
+		
+		processServices();
 		
 		isActive = true;
 		siminov.orm.Siminov.isActive = true;

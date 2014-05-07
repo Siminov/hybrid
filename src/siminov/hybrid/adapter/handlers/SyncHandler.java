@@ -41,12 +41,12 @@ public class SyncHandler {
 		syncRequest.setName(hybridName.getValue());
 		
 		
-		HybridSiminovData hybridInlineResources = hybridSyncRequest.getHybridSiminovDataBasedOnDataType(HybridSyncRequest.INLINE_RESOURCES);
-		Iterator<HybridSiminovValue> hybridInlineResourceValues = hybridInlineResources.getValues();
+		HybridSiminovData hybridResources = hybridSyncRequest.getHybridSiminovDataBasedOnDataType(HybridSyncRequest.RESOURCES);
+		Iterator<HybridSiminovValue> hybridResourceValues = hybridResources.getValues();
 		
-		while(hybridInlineResourceValues.hasNext()) {
+		while(hybridResourceValues.hasNext()) {
 
-			HybridSiminovValue hybridSiminovValue = hybridInlineResourceValues.next();
+			HybridSiminovValue hybridSiminovValue = hybridResourceValues.next();
 			syncRequest.addResource(hybridSiminovValue.getType(), hybridSiminovValue.getValue());
 		}
 
