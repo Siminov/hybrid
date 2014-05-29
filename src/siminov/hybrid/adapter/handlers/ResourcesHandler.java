@@ -20,6 +20,7 @@ package siminov.hybrid.adapter.handlers;
 
 import java.util.Iterator;
 
+import siminov.hybrid.adapter.IAdapter;
 import siminov.hybrid.adapter.constants.HybridApplicationDescriptor;
 import siminov.hybrid.model.AdapterDescriptor;
 import siminov.hybrid.model.AdapterDescriptor.Handler;
@@ -36,7 +37,7 @@ import siminov.orm.model.DatabaseMappingDescriptor;
  * It handles all request related to resources.
  * LIKE: Application Descriptor, Database Descriptor, Library Descriptor, Database Mapping Descriptor, Hybrid Descriptor.
  */
-public class ResourcesHandler {
+public class ResourcesHandler implements IAdapter {
 
 	private static siminov.orm.resource.Resources ormResources = siminov.orm.resource.Resources.getInstance();
 	private static siminov.hybrid.resource.Resources hybridResources = siminov.hybrid.resource.Resources.getInstance(); 

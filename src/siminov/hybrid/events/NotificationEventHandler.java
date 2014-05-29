@@ -80,7 +80,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onRegistration", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onRegistration", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -149,7 +149,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onUnregistration", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onUnregistration", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -218,7 +218,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onNotification", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onNotification", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -287,7 +287,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onError", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onError", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		

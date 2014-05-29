@@ -8,6 +8,7 @@ import java.util.Map;
 import siminov.connect.design.service.IService;
 import siminov.connect.exception.ServiceException;
 import siminov.hybrid.Constants;
+import siminov.hybrid.adapter.IAdapter;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.reader.HybridSiminovDataReader;
@@ -15,7 +16,7 @@ import siminov.hybrid.service.GenericService;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
-public class ServiceHandler {
+public class ServiceHandler implements IAdapter {
 
 	public void invoke(String data) throws ServiceException {
 
@@ -25,7 +26,7 @@ public class ServiceHandler {
 		try {
 			hybridSiminovDataParser = new HybridSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
-			Log.loge(ServiceHandler.class.getName(), "invoke", "SiminovException caught while parsing siminov hybrid core data, " + siminovException.getMessage());
+			Log.error(ServiceHandler.class.getName(), "invoke", "SiminovException caught while parsing siminov hybrid core data, " + siminovException.getMessage());
 			throw new ServiceException(ServiceHandler.class.getName(), "invoke", "SiminovException caught while parsing siminov hybrid core data, " + siminovException.getMessage());
 		}
 

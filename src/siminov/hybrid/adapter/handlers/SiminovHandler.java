@@ -25,8 +25,9 @@ import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 import siminov.hybrid.Constants;
+import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
-import siminov.hybrid.adapter.AdapterResources;
+import siminov.hybrid.adapter.IAdapter;
 import siminov.hybrid.adapter.IHandler;
 import siminov.hybrid.adapter.constants.HybridSiminovException;
 import siminov.hybrid.model.AdapterDescriptor;
@@ -49,12 +50,12 @@ import android.webkit.JavascriptInterface;
  * This actually deals with Request Handling Between WEB-TO-NATIVE and NATIVE-TO-WEB.
  *
  */
-public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
+public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, IHandler {
 
 	protected siminov.orm.resource.Resources ormResources = siminov.orm.resource.Resources.getInstance();
 	protected Resources hybridResources = Resources.getInstance();
 
-	protected static AdapterResources adapterResources = AdapterResources.getInstance();
+	protected AdapterFactory adapterResources = AdapterFactory.getInstance();
 
 	@JavascriptInterface
 	public String handleWebToNative(final String action) {
@@ -68,7 +69,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		try {
 			hybridSiminovDataParser = new HybridSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
-			Log.loge(AdapterHandler.class.getName(), "handleJSToNative", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
+			Log.error(AdapterHandler.class.getName(), "handleJSToNative", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
 		}
 		
 		HybridSiminovDatas hybridSiminovDatas = hybridSiminovDataParser.getDatas();
@@ -94,7 +95,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		try {
 			parameterObjects = createAndInflateParameter(parameterTypes, parameterValues.iterator());
 		} catch(SiminovException siminovException) {
-			Log.loge(AdapterHandler.class.getName(), "", "SiminovException caught while create and inflate parameters, " + siminovException.getMessage());
+			Log.error(AdapterHandler.class.getName(), "", "SiminovException caught while create and inflate parameters, " + siminovException.getMessage());
 		}
 		
 
@@ -116,7 +117,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		try {
 			returnData = ClassUtils.invokeMethod(adapterInstanceObject, handlerInstanceObject, parameterObjects);
 		} catch(SiminovException siminovException) {
-			Log.loge(AdapterHandler.class.getName(), "", "SiminovException caught while invoking handler, " + siminovException.getMessage());
+			Log.error(AdapterHandler.class.getName(), "", "SiminovException caught while invoking handler, " + siminovException.getMessage());
 
 			return generateHybridSiminovException(siminovException.getClassName(), siminovException.getMethodName(), siminovException.getMessage());
 		}
@@ -310,7 +311,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovHandler.class.getName(), "generateHybridSiminovException", "SiminovException caught while generating empty siminov js data: " + siminovException.getMessage());
+			Log.error(SiminovHandler.class.getName(), "generateHybridSiminovException", "SiminovException caught while generating empty siminov js data: " + siminovException.getMessage());
 			return "{\"siminov-hybrid-data\":{}}";
 		}
 		
@@ -352,7 +353,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "generateHybridSiminovException", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "generateHybridSiminovException", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
 		return data;

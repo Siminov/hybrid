@@ -38,7 +38,7 @@ public class AdapterDescriptorReader extends SiminovSAXDefaultHandler implements
 
 		Context context = resources.getApplicationContext();
 		if(context == null) {
-			Log.loge(getClass().getName(), "Constructor", "Invalid context found.");
+			Log.error(getClass().getName(), "Constructor", "Invalid context found.");
 			throw new DeploymentException(getClass().getName(), "Constructor", "Invalid context found.");
 		}
 
@@ -54,7 +54,7 @@ public class AdapterDescriptorReader extends SiminovSAXDefaultHandler implements
 				applicationDescriptorStream = context.getAssets().open(fileName);
 			}
 		} catch(IOException ioException) {
-			Log.logd(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + ioException.getMessage());
+			Log.debug(getClass().getName(), "Constructor", "IOException caught while getting input stream of application descriptor, " + ioException.getMessage());
 
 			//Ignore If Hybrid Descriptor Not Defined.
 
@@ -64,7 +64,7 @@ public class AdapterDescriptorReader extends SiminovSAXDefaultHandler implements
 		try {
 			parseMessage(applicationDescriptorStream);
 		} catch(Exception exception) {
-			Log.loge(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
+			Log.error(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
 			throw new DeploymentException(getClass().getName(), "Constructor", "Exception caught while parsing APPLICATION-DESCRIPTOR, " + exception.getMessage());
 		}
 	}

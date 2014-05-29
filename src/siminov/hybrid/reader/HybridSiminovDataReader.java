@@ -58,7 +58,7 @@ public class HybridSiminovDataReader implements Constants {
 					try {
 						jsonObject = datas.getJSONObject(i);
 					} catch(Exception exception) {
-						Log.loge(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while geeting json object from datas, " + exception.getMessage());
+						Log.error(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while geeting json object from datas, " + exception.getMessage());
 						throw new SiminovException(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while geeting json object from datas, " + exception.getMessage());
 					}
 					
@@ -67,7 +67,7 @@ public class HybridSiminovDataReader implements Constants {
 				}
 			}
 		} catch(SiminovException siminovException) {
-			Log.loge(HybridSiminovDataReader.class.getName(), "Constructor", "Exception caught while parsing data tag, " + siminovException.getMessage());
+			Log.error(HybridSiminovDataReader.class.getName(), "Constructor", "Exception caught while parsing data tag, " + siminovException.getMessage());
 			throw siminovException;
 		}
 	}
@@ -95,7 +95,7 @@ public class HybridSiminovDataReader implements Constants {
 				try {
 					values = data.getJSONArray(HYBRID_SIMINOV_DATA_VALUE);
 				} catch(Exception exception) {
-					Log.loge(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while getting values array, " + exception.getMessage());
+					Log.error(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while getting values array, " + exception.getMessage());
 					throw new SiminovException(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while getting values array, " + exception.getMessage());
 				}
 			} else if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_DATA)) {
@@ -103,7 +103,7 @@ public class HybridSiminovDataReader implements Constants {
 				try {
 					innerDatas = data.getJSONArray(HYBRID_SIMINOV_DATA_DATA);
 				} catch(Exception exception) {
-					Log.loge(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while getting datas array, " + exception.getMessage());
+					Log.error(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while getting datas array, " + exception.getMessage());
 					throw new SiminovException(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while getting datas array, " + exception.getMessage());
 				}
 			}
@@ -122,7 +122,7 @@ public class HybridSiminovDataReader implements Constants {
 					try {
 						jsonObject = innerDatas.getJSONObject(i);
 					} catch(Exception exception) {
-						Log.loge(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while geeting json object from datas, " + exception.getMessage());
+						Log.error(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while geeting json object from datas, " + exception.getMessage());
 						throw new SiminovException(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while geeting json object from datas, " + exception.getMessage());
 					}
 					
@@ -131,7 +131,7 @@ public class HybridSiminovDataReader implements Constants {
 				}
 			}
 		} catch(SiminovException siminovException) {
-			Log.loge(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while parsing data tag, " + siminovException.getMessage());
+			Log.error(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while parsing data tag, " + siminovException.getMessage());
 			throw siminovException;
 		}
 		
@@ -151,7 +151,7 @@ public class HybridSiminovDataReader implements Constants {
 			try {
 				jsonObject = values.getJSONObject(i);
 			} catch(Exception exception) {
-				Log.loge(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while geeting json object from values, " + exception.getMessage());
+				Log.error(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while geeting json object from values, " + exception.getMessage());
 				throw new SiminovException(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while geeting json object from values, " + exception.getMessage());
 			}
 
@@ -183,7 +183,7 @@ public class HybridSiminovDataReader implements Constants {
 		try {
 			return jsonObject.get(name);
 		} catch(Exception exception) {
-			Log.loge(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting value, " + exception.getMessage());
+			Log.error(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting value, " + exception.getMessage());
 			throw new SiminovException(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting value, " + exception.getMessage());
 		}
 	}
@@ -193,7 +193,7 @@ public class HybridSiminovDataReader implements Constants {
 		try {
 			return jsonObject.getJSONObject(name);
 		} catch(Exception exception) {
-			Log.loge(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting json object, " + exception.getMessage());
+			Log.error(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting json object, " + exception.getMessage());
 			throw new SiminovException(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting json object, " + exception.getMessage());
 		}
 	}
@@ -203,7 +203,7 @@ public class HybridSiminovDataReader implements Constants {
 		try {
 			return jsonObject.getJSONArray(name);
 		} catch(Exception exception) {
-			Log.loge(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting json array, " + exception.getMessage());
+			Log.error(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting json array, " + exception.getMessage());
 			throw new SiminovException(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting json array, " + exception.getMessage());
 		}
 	}
@@ -217,7 +217,7 @@ public class HybridSiminovDataReader implements Constants {
 		try {
 			return new JSONObject(data);
 		} catch(Exception exception) {
-			Log.loge(Utils.class.getName(), "toJSON", "Exception caught while converting string to json object, " + exception.getMessage());
+			Log.error(Utils.class.getName(), "toJSON", "Exception caught while converting string to json object, " + exception.getMessage());
 			throw new SiminovCriticalException(Utils.class.getName(), "toJSON", "Exception caught while converting string to json object, " + exception.getMessage());
 		}
 		

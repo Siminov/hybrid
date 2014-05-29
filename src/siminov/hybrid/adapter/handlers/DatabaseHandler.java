@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
+import siminov.hybrid.adapter.IAdapter;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
@@ -51,7 +52,7 @@ import siminov.orm.resource.Resources;
  * It handles all request related to database.
  * LIKE: save, update, saveOrUpdate, delete.
  */
-public class DatabaseHandler {
+public class DatabaseHandler implements IAdapter {
 
 	private static Resources ormResources = Resources.getInstance();
 	private static siminov.hybrid.resource.Resources hybridResources = siminov.hybrid.resource.Resources.getInstance();
@@ -69,7 +70,7 @@ public class DatabaseHandler {
 		
 	}
 	
-	private static final void save(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
+	public static final void save(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> jsDatas = jsSiminovDatas.getHybridSiminovDatas();
 		while(jsDatas.hasNext()) {
@@ -78,7 +79,7 @@ public class DatabaseHandler {
 		
 	}
 
-	private static final void save(HybridSiminovData jsSiminovData) throws DatabaseException {
+	public static final void save(HybridSiminovData jsSiminovData) throws DatabaseException {
 		
 		String className = jsSiminovData.getDataType();
 		Iterator<HybridSiminovValue> jsValues = jsSiminovData.getValues();
@@ -90,8 +91,8 @@ public class DatabaseHandler {
 		}
 		
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
-		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
@@ -214,7 +215,7 @@ public class DatabaseHandler {
 		
 	}
 
-	private static final void update(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
+	public static final void update(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> jsDatas = jsSiminovDatas.getHybridSiminovDatas();
 		while(jsDatas.hasNext()) {
@@ -223,7 +224,7 @@ public class DatabaseHandler {
 		
 	}
 	
-	private static final void update(HybridSiminovData hybridSiminovData) throws DatabaseException {
+	public static final void update(HybridSiminovData hybridSiminovData) throws DatabaseException {
 		
 		String className = hybridSiminovData.getDataType();
 		Iterator<HybridSiminovValue> hybridSiminovValue = hybridSiminovData.getValues();
@@ -235,8 +236,8 @@ public class DatabaseHandler {
 		}
 		
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
-		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
@@ -376,7 +377,7 @@ public class DatabaseHandler {
 		
 	}
 	
-	private static final void saveOrUpdate(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
+	public static final void saveOrUpdate(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> jsDatas = jsSiminovDatas.getHybridSiminovDatas();
 		
@@ -386,7 +387,7 @@ public class DatabaseHandler {
 		}
 	}
 
-	private static final void saveOrUpdate(HybridSiminovData jsSiminovData) throws DatabaseException {
+	public static final void saveOrUpdate(HybridSiminovData jsSiminovData) throws DatabaseException {
 
 		String className = jsSiminovData.getDataType();
 		Iterator<HybridSiminovValue> jsValues = jsSiminovData.getValues();
@@ -398,7 +399,7 @@ public class DatabaseHandler {
 		}
 		
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 		
 		StringBuilder whereClause = new StringBuilder();
 		Iterator<DatabaseMappingDescriptor.Column> columns = databaseMappingDescriptor.getColumns();
@@ -461,13 +462,13 @@ public class DatabaseHandler {
 			return;
 		}
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 		
 		delete(databaseMappingDescriptor, whereClause);
 
 	}
 
-	static final void delete(final HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
+	public static final void delete(final HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> jsDatas = jsSiminovDatas.getHybridSiminovDatas();
 		
@@ -483,7 +484,7 @@ public class DatabaseHandler {
 				jsSiminovValues.put(jsSiminovValue.getType(), jsSiminovValue);
 			}
 			
-			DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+			DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 			
 			StringBuilder whereClause = new StringBuilder();
 			
@@ -518,9 +519,9 @@ public class DatabaseHandler {
 		}
 	}
 
-	static final void delete(final DatabaseMappingDescriptor databaseMappingDescriptor, final String whereClause) throws DatabaseException {
+	public static final void delete(final DatabaseMappingDescriptor databaseMappingDescriptor, final String whereClause) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = hybridResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
@@ -564,15 +565,33 @@ public class DatabaseHandler {
 	public String select(final String className, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
+		select(databaseMappingDescriptor, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
 
+		HybridSiminovDatas hybridSiminovDatas = select(databaseMappingDescriptor, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
+		
+		String data = null;
+		try {
+			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
+		} catch(SiminovException siminovException) {
+			Log.error(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
+			throw new DatabaseException(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
+		}
+
+		return data;
+	}
+
+	
+	public static final HybridSiminovDatas select(final DatabaseMappingDescriptor databaseMappingDescriptor, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
+
+		String className = databaseMappingDescriptor.getClassName();
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 		
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "select", "No Database Instance Found For DATABASE-MAPPING: " + className);
+			Log.error(DatabaseHandler.class.getName(), "select", "No Database Instance Found For DATABASE-MAPPING: " + className);
 			throw new DeploymentException(DatabaseHandler.class.getName(), "select", "No Database Instance Found For DATABASE-MAPPING: " + className);
 		}
 		
@@ -621,10 +640,10 @@ public class DatabaseHandler {
 			datasBundle.add(datas.next());
 		}
 
-		HybridSiminovDatas jsSiminovDatas = parseData(databaseMappingDescriptor, datasBundle.iterator());
+		HybridSiminovDatas hybridSiminovDatas = parseData(databaseMappingDescriptor, datasBundle.iterator());
 		datas = datasBundle.iterator();
 		
-		Iterator<HybridSiminovData> siminovDatas = jsSiminovDatas.getHybridSiminovDatas();
+		Iterator<HybridSiminovData> siminovDatas = hybridSiminovDatas.getHybridSiminovDatas();
 		while(siminovDatas.hasNext() && datas.hasNext()) {
 			
 			Map<String, Object> data = datas.next();
@@ -635,21 +654,13 @@ public class DatabaseHandler {
 
 			processManyToOneRelationship(siminovData, data);
 			processManyToManyRelationship(siminovData, data);
-			
 		}
 		
-		
-		String data = null;
-		try {
-			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
-		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
-			throw new DatabaseException(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
-		}
 
-		return data;
+		return hybridSiminovDatas;
 	}
 
+		
 	
 	public String selectManual(final String className, final String query) throws DatabaseException {
 		
@@ -660,7 +671,7 @@ public class DatabaseHandler {
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "select", "No Database Instance Found For DATABASE-MAPPING: " + className);
+			Log.error(DatabaseHandler.class.getName(), "select", "No Database Instance Found For DATABASE-MAPPING: " + className);
 			throw new DeploymentException(DatabaseHandler.class.getName(), "select", "No Database Instance Found For DATABASE-MAPPING: " + className);
 		}
 		
@@ -693,14 +704,14 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
 		return data;
 	}
 	
-	static HybridSiminovDatas lazyFetch(final DatabaseMappingDescriptor databaseMappingDescriptor, final boolean distinct, final String whereClause, final Iterator<String> columnNames, final Iterator<String> groupBy, final String having, final Iterator<String> orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
+	public static HybridSiminovDatas lazyFetch(final DatabaseMappingDescriptor databaseMappingDescriptor, final boolean distinct, final String whereClause, final Iterator<String> columnNames, final Iterator<String> groupBy, final String having, final Iterator<String> orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -709,7 +720,7 @@ public class DatabaseHandler {
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 			throw new DeploymentException(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 		}
 
@@ -745,7 +756,7 @@ public class DatabaseHandler {
 		IDatabaseImpl database = databaseBundle.getDatabase();
 
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "beginTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
+			Log.error(DatabaseHandler.class.getName(), "beginTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
 			throw new DeploymentException(DatabaseHandler.class.getName(), "beginTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
 		}
 		
@@ -765,7 +776,7 @@ public class DatabaseHandler {
 		IDatabaseImpl database = databaseBundle.getDatabase();
 
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "commitTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
+			Log.error(DatabaseHandler.class.getName(), "commitTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
 			throw new DeploymentException(DatabaseHandler.class.getName(), "commitTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
 		}
 
@@ -785,14 +796,14 @@ public class DatabaseHandler {
 		IDatabaseImpl database = databaseBundle.getDatabase();
 
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "endTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
+			Log.error(DatabaseHandler.class.getName(), "endTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
 			throw new DeploymentException(DatabaseHandler.class.getName(), "endTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
 		}
 		
 		try {
 			database.executeMethod(Constants.SQLITE_DATABASE_END_TRANSACTION, null);
 		} catch(DatabaseException databaseException) {
-			Log.loge(DatabaseHandler.class.getName(), "endTransaction", "DatabaseException caught while executing end transaction method, " + databaseException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "endTransaction", "DatabaseException caught while executing end transaction method, " + databaseException.getMessage());
 		}
 	}
 	
@@ -824,7 +835,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "count", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "count", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "count", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -833,16 +844,16 @@ public class DatabaseHandler {
 	}
 	
 	
-	static int count(final DatabaseMappingDescriptor databaseMappingDescriptor, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
+	public static int count(final DatabaseMappingDescriptor databaseMappingDescriptor, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "count", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "count", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 			throw new DeploymentException(DatabaseHandler.class.getName(), "count", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 		}
 
@@ -899,7 +910,7 @@ public class DatabaseHandler {
 	 */
 	public String avg(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		int avg = avg(databaseMappingDescriptor, columnName, whereClause, groupBy, having);
 
@@ -914,7 +925,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "avg", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "avg", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "avg", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -922,16 +933,16 @@ public class DatabaseHandler {
 
 	}
 	
-	private static final int avg(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	public static final int avg(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "avg", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "avg", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 			throw new DeploymentException(DatabaseHandler.class.getName(), "avg", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 		}
 
@@ -994,7 +1005,7 @@ public class DatabaseHandler {
 	 */
 	public String sum(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		int sum =  sum(databaseMappingDescriptor, columnName, whereClause, groupBy, having);
 		
@@ -1009,7 +1020,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "sum", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "sum", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "sum", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1017,16 +1028,16 @@ public class DatabaseHandler {
 
 	}
 	
-	private static final int sum(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	public static final int sum(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "sum", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "sum", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 			throw new DeploymentException(DatabaseHandler.class.getName(), "sum", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 		}
 
@@ -1088,7 +1099,7 @@ public class DatabaseHandler {
 	 */
 	public String total(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		int total = total(databaseMappingDescriptor, columnName, whereClause, groupBy, having);
 		
@@ -1103,7 +1114,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "total", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "total", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "total", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1111,16 +1122,16 @@ public class DatabaseHandler {
 
 	}
 	
-	private static final int total(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	public static final int total(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "total", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "total", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 			throw new DeploymentException(DatabaseHandler.class.getName(), "total", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 		}
 
@@ -1182,7 +1193,7 @@ public class DatabaseHandler {
 	 */
 	public String min(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		int min = min(databaseMappingDescriptor, columnName, whereClause, groupBy, having);
 		
@@ -1197,7 +1208,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "min", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "min", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "min", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1205,16 +1216,16 @@ public class DatabaseHandler {
 
 	}
 	
-	private static final int min(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	public static final int min(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "min", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "min", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 			throw new DeploymentException(DatabaseHandler.class.getName(), "min", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 		}
 
@@ -1277,7 +1288,7 @@ public class DatabaseHandler {
 	 */
 	public String max(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		int max = max(databaseMappingDescriptor, columnName, whereClause, groupBy, having);
 
@@ -1292,7 +1303,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "avg", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "avg", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "avg", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1301,16 +1312,16 @@ public class DatabaseHandler {
 	}
 	
 
-	private static final int max(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	public static final int max(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "max", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "max", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 			throw new DeploymentException(DatabaseHandler.class.getName(), "max", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 		}
 
@@ -1373,7 +1384,7 @@ public class DatabaseHandler {
 	 */
 	public String groupConcat(final String className, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		String groupConcat = groupConcat(databaseMappingDescriptor, columnName, delimiter, whereClause, groupBy, having);
 		
@@ -1388,7 +1399,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "groupConcat", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "groupConcat", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "groupConcat", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1396,16 +1407,16 @@ public class DatabaseHandler {
 
 	}
 	
-	private static String groupConcat(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	public static String groupConcat(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = ormResources.getDatabaseDescriptorBasedOnClassName(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResources.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.loge(DatabaseHandler.class.getName(), "groupConcat", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "groupConcat", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 			throw new DeploymentException(DatabaseHandler.class.getName(), "groupConcat", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
 		}
 
@@ -1457,7 +1468,7 @@ public class DatabaseHandler {
 	 */
 	public String getTableName(final String className) throws DatabaseException {
 	
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		String tableName = getTableName(databaseMappingDescriptor);
 		
@@ -1472,7 +1483,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "getTableName", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "getTableName", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getTableName", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1493,7 +1504,7 @@ public class DatabaseHandler {
 	 */
 	public String getColumnNames(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		Iterator<String> columnNames = getColumnNames(databaseMappingDescriptor);
 		
@@ -1513,7 +1524,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "getTableName", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "getTableName", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getTableName", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1521,7 +1532,7 @@ public class DatabaseHandler {
 		
 	}
 	
-	private static final Iterator<String> getColumnNames(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final Iterator<String> getColumnNames(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
 		Iterator<DatabaseMappingDescriptor.Column> columns = databaseMappingDescriptor.getColumns();
 
@@ -1585,13 +1596,13 @@ public class DatabaseHandler {
 	 */
 	public String getColumnTypes(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		return getColumnType(databaseMappingDescriptor);
 		
 	}
 	
-	private static final String getColumnType(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final String getColumnType(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
 		Map<String, Object> columnTypes = new HashMap<String, Object> ();
 		Iterator<DatabaseMappingDescriptor.Column> columns = databaseMappingDescriptor.getColumns();
@@ -1652,7 +1663,7 @@ public class DatabaseHandler {
 		try {
 			returnData = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);		
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "getColumnTypes", "SiminovException caught while building json output, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "getColumnTypes", "SiminovException caught while building json output, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getColumnTypes", "SiminovException caught while building json output, " + siminovException.getMessage());
 		}
 		
@@ -1669,7 +1680,7 @@ public class DatabaseHandler {
 	 */
 	public String getPrimaryKeys(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		Iterator<String> primaryKeys = getPrimaryKeys(databaseMappingDescriptor);
 		
@@ -1689,7 +1700,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "getPrimaryKeys", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "getPrimaryKeys", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getPrimaryKeys", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1697,7 +1708,7 @@ public class DatabaseHandler {
 
 	}
 	
-	private static final Iterator<String> getPrimaryKeys(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final Iterator<String> getPrimaryKeys(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
 		Iterator<Column> columns = databaseMappingDescriptor.getColumns();
 		Collection<String> primaryKeys = new ArrayList<String>();
@@ -1765,7 +1776,7 @@ public class DatabaseHandler {
 	 */
 	public String getMandatoryFields(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		Iterator<String> mandatoryFields = getMandatoryFields(databaseMappingDescriptor);
 		
@@ -1785,7 +1796,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "getMandatoryFields", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "getMandatoryFields", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getMandatoryFields", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1793,7 +1804,7 @@ public class DatabaseHandler {
 
 	}
 	
-	private static final Iterator<String> getMandatoryFields(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final Iterator<String> getMandatoryFields(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
 		Iterator<Column> columns = databaseMappingDescriptor.getColumns();
 		Collection<String> mandatoryFields = new ArrayList<String>();
@@ -1865,7 +1876,7 @@ public class DatabaseHandler {
 	 */
 	public String getUniqueFields(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		Iterator<String> uniqueFields = getUniqueFields(databaseMappingDescriptor);
 		
@@ -1885,7 +1896,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "getUniqueFields", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "getUniqueFields", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getUniqueFields", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1893,7 +1904,7 @@ public class DatabaseHandler {
 
 	}
 	
-	private static final Iterator<String> getUniqueFields(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final Iterator<String> getUniqueFields(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
 		Iterator<Column> columns = databaseMappingDescriptor.getColumns();
 		Collection<String> uniqueFields = new ArrayList<String>();
@@ -1970,7 +1981,7 @@ public class DatabaseHandler {
 	 */
 	public String getForeignKeys(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 
 		Iterator<String> foreignKeys = getForeignKeys(databaseMappingDescriptor);
 		
@@ -1990,7 +2001,7 @@ public class DatabaseHandler {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(jsSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "getForeignKeys", "SiminovException caught while building json, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "getForeignKeys", "SiminovException caught while building json, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "getForeignKeys", "SiminovException caught while building json, " + siminovException.getMessage());
 		}
 
@@ -1998,7 +2009,7 @@ public class DatabaseHandler {
 
 	}
 	
-	private static final Iterator<String> getForeignKeys(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final Iterator<String> getForeignKeys(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
 		Collection<String> foreignKeys = new LinkedList<String>();
 		
@@ -2056,18 +2067,18 @@ public class DatabaseHandler {
 		try {
 			hybridSiminovDataParser = new HybridSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "parseHybridSiminovDatas", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "parseHybridSiminovDatas", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
 			throw new DatabaseException(DatabaseHandler.class.getName(), "parseHybridSiminovDatas", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
 		}
 
 		return hybridSiminovDataParser.getDatas();
 	}
 	
-	private static DatabaseDescriptor getDatabaseDescriptor(final String className) throws DatabaseException {
+	public static final DatabaseDescriptor getDatabaseDescriptor(final String className) throws DatabaseException {
 		return hybridResources.getDatabaseDescriptorBasedOnClassName(className);
 	}
 
-	private static DatabaseMappingDescriptor getDatabaseMappingDescriptor(final String className) throws DatabaseException {
+	public static final DatabaseMappingDescriptor getDatabaseMappingDescriptor(final String className) throws DatabaseException {
 		return hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
 	}
 	
@@ -2077,13 +2088,13 @@ public class DatabaseHandler {
 	private static HybridSiminovDatas parseData(final DatabaseMappingDescriptor databaseMappingDescriptor, Iterator<Map<String, Object>> values) throws DatabaseException {
 		
 		Collection<Map<String, Object>> tuples = new LinkedList<Map<String, Object>>();
-		HybridSiminovDatas jsSiminovDatas = new HybridSiminovDatas();
+		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		
 		while(values.hasNext()) {
 			Map<String, Object> value = values.next();
 			
-			HybridSiminovData jsSiminovData = new HybridSiminovData();
-			jsSiminovData.setDataType(hybridResources.getMappedWebClassName(databaseMappingDescriptor.getClassName()));
+			HybridSiminovData hybridSiminovData = new HybridSiminovData();
+			hybridSiminovData.setDataType(hybridResources.getMappedWebClassName(databaseMappingDescriptor.getClassName()));
 			
 			Iterator<String> keys = value.keySet().iterator();
 			while(keys.hasNext()) {
@@ -2097,29 +2108,29 @@ public class DatabaseHandler {
 				
 				Object object = value.get(columnName);
 				
-				HybridSiminovValue jsSiminovValue = new HybridSiminovValue();
-				jsSiminovValue.setType(variableName);
+				HybridSiminovValue hybridSiminovValue = new HybridSiminovValue();
+				hybridSiminovValue.setType(variableName);
 
 				if(object instanceof String) {
-					jsSiminovValue.setValue((String) object);
+					hybridSiminovValue.setValue((String) object);
 				} else if(object instanceof Long) {
-					jsSiminovValue.setValue(((Long) object).toString());
+					hybridSiminovValue.setValue(((Long) object).toString());
 				} else if(object instanceof Float) {
-					jsSiminovValue.setValue(((Float) object).toString());
+					hybridSiminovValue.setValue(((Float) object).toString());
 				} else if(object instanceof Blob) {
-					jsSiminovValue.setValue(((Blob) object).toString());
+					hybridSiminovValue.setValue(((Blob) object).toString());
 				}
 
-				jsSiminovData.addValue(jsSiminovValue);
+				hybridSiminovData.addValue(hybridSiminovValue);
 			}
 			
-			jsSiminovDatas.addHybridSiminovData(jsSiminovData);
+			hybridSiminovDatas.addHybridSiminovData(hybridSiminovData);
 			tuples.add(value);
 		}
 		
 		values = tuples.iterator();
 		
-		return jsSiminovDatas;
+		return hybridSiminovDatas;
 	}
 
 	
@@ -2149,7 +2160,7 @@ public class DatabaseHandler {
 			}
 
 			if(referedHybridSiminovData == null) {
-				Log.loge(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+				Log.error(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
 				throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
 			}
 			
@@ -2203,7 +2214,7 @@ public class DatabaseHandler {
 			}
 
 			if(referedHybridSiminovData == null) {
-				Log.loge(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+				Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
 				throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
 			}
 			
@@ -2257,7 +2268,7 @@ public class DatabaseHandler {
 			}
 
 			if(referedHybridSiminovData == null) {
-				Log.loge(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+				Log.error(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
 				throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
 			}
 			
@@ -2315,7 +2326,7 @@ public class DatabaseHandler {
 			}
 
 			if(referedHybridSiminovData == null) {
-				Log.loge(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+				Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
 			}
 			
 			processManyToManyRelationship(referedHybridSiminovData, whereClause);
@@ -2505,7 +2516,7 @@ public class DatabaseHandler {
 			
 
 			if(referedObject == null) {
-				Log.loge(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+				Log.error(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
 				throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
 			}
 
@@ -2572,12 +2583,11 @@ public class DatabaseHandler {
 			
 
 			if(referedObject == null) {
-				Log.loge(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+				Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
 				throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
 			}
 
 			jsSiminovData.addData(referedObject);
 		}
 	}
-	
 }

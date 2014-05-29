@@ -18,21 +18,25 @@
 
 package siminov.hybrid.resource;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import siminov.connect.design.authorization.ICredential;
 import siminov.connect.design.connection.IConnectionRequest;
 import siminov.connect.design.connection.IConnectionResponse;
 import siminov.connect.design.notification.IMessage;
 import siminov.connect.design.notification.IRegistration;
+import siminov.connect.exception.AuthorizationException;
 import siminov.connect.exception.NotificationException;
+import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
-import siminov.hybrid.adapter.AdapterResources;
 import siminov.hybrid.adapter.constants.HybridConnectionRequest;
 import siminov.hybrid.adapter.constants.HybridConnectionResponse;
+import siminov.hybrid.adapter.constants.HybridCredential;
 import siminov.hybrid.adapter.constants.HybridDatabaseDescriptor;
 import siminov.hybrid.adapter.constants.HybridDatabaseMappingDescriptor;
 import siminov.hybrid.adapter.constants.HybridLibraryDescriptor;
@@ -76,7 +80,7 @@ public class Resources {
 	private EventHandler eventHandler = null;
 	
 	private AdapterHandler adapterHandler = null;
-	private AdapterResources adapterResources = null;
+	private AdapterFactory adapterFactory = null;
 
 	private Map<String, String> webNativeClassMapping = new ConcurrentHashMap<String, String>();
 	
@@ -99,6 +103,7 @@ public class Resources {
 		return hybridResources;
 	}
 
+	
 	/**
 	 * Get Hybrid Descriptor.
 	 * @return Hybrid Descriptor.
@@ -364,16 +369,16 @@ public class Resources {
 	 * Get Adapter Resources.
 	 * @return Adapter Resources.
 	 */
-	public AdapterResources getAdapterResources() {
-		return this.adapterResources;
+	public AdapterFactory getAdapterFactory() {
+		return this.adapterFactory;
 	}
 	
 	/**
 	 * Set Adapter Resources.
-	 * @param adapterResources Adapter Resources.
+	 * @param adapterFactory Adapter Resources.
 	 */
-	public void setAdapterResources(final AdapterResources adapterResources) {
-		this.adapterResources = adapterResources;
+	public void setAdapterFactory(final AdapterFactory adapterFactory) {
+		this.adapterFactory = adapterFactory;
 	}
 
 
@@ -386,7 +391,9 @@ public class Resources {
 	 * @param className Name of Web Model Class.
 	 * @return Database Descriptor.
 	 */
-	public DatabaseDescriptor getDatabaseDescriptorBasedOnClassName(final String className) {
+	public DatabaseDescriptor getDatabaseDescriptorBasedOnClassName(String className) {
+
+		className = className.substring(className.lastIndexOf(".") + 1, className.length());
 
 		String nativeClassName = webNativeClassMapping.get(className);
 		return ormResources.getDatabaseDescriptorBasedOnClassName(nativeClassName);
@@ -398,8 +405,10 @@ public class Resources {
 	 * @param className Name of Web Model Class.
 	 * @return Database Descriptor Name.
 	 */
-	public String getDatabaseDescriptorNameBasedOnClassName(final String className) {
+	public String getDatabaseDescriptorNameBasedOnClassName(String className) {
 	
+		className = className.substring(className.lastIndexOf(".") + 1, className.length());
+
 		String nativeClassName = webNativeClassMapping.get(className);
 		return ormResources.getDatabaseDescriptorNameBasedOnClassName(nativeClassName);
 		
@@ -428,8 +437,10 @@ public class Resources {
 	 * @param className Name of Web Model Class.
 	 * @return Database Mapping Descriptor.
 	 */
-	public DatabaseMappingDescriptor getDatabaseMappingDescriptorBasedOnClassName(final String className) {
+	public DatabaseMappingDescriptor getDatabaseMappingDescriptorBasedOnClassName(String className) {
 		
+		className = className.substring(className.lastIndexOf(".") + 1, className.length());
+
 		String nativeClassName = webNativeClassMapping.get(className);
 		if(nativeClassName == null ||nativeClassName.length() <= 0) {
 			DatabaseMappingDescriptor databaseMappingDescriptor = ormResources.requiredDatabaseMappingDescriptorBasedOnClassName(className);
@@ -456,7 +467,8 @@ public class Resources {
 	 * @param hybridClassName Web Model Class Name.
 	 * @return Native Model Class Name.
 	 */
-	public String getMappedNativeClassName(final String hybridClassName) {
+	public String getMappedNativeClassName(String hybridClassName) {
+		hybridClassName = hybridClassName.substring(hybridClassName.lastIndexOf(".") + 1, hybridClassName.length());
 		return webNativeClassMapping.get(hybridClassName);
 	}
 	
@@ -1073,9 +1085,9 @@ public class Resources {
 		hybridResponse.setType(HybridConnectionResponse.RESPONSE);
 		
 		try {
-			hybridResponse.setValue(Utils.toString(connectionResponse.getResponse()));
+			hybridResponse.setValue(URLEncoder.encode(Utils.toString(connectionResponse.getResponse())));
 		} catch(SiminovException se) {
-			Log.logd(Resources.class.getName(), "generateHybridConnectionRequest", "Siminov Exception caught while converting connection response input stream to string, " + se.getMessage());
+			Log.debug(Resources.class.getName(), "generateHybridConnectionRequest", "Siminov Exception caught while converting connection response input stream to string, " + se.getMessage());
 		}
 		
 		hybridConnectionResponse.addValue(hybridResponse);
@@ -1138,5 +1150,35 @@ public class Resources {
 		hybridNotificationException.addValue(hybridMessage);
 
 		return hybridNotificationException;
+	}
+	
+	
+	public HybridSiminovData generateHybridCredential(ICredential credential) throws AuthorizationException {
+		
+		HybridSiminovData credentialHybridData = new HybridSiminovData();
+		credentialHybridData.setDataType(HybridCredential.CREDENTIAL);
+		
+		/*
+		 * Inflate Account Id
+		 */
+		HybridSiminovData accountIdHybridData = new HybridSiminovData();
+		accountIdHybridData.setDataType(HybridCredential.ACCOUNT_ID);
+		accountIdHybridData.setDataValue(credential.getAccountId());
+		
+		/*
+		 * Inflate Token
+		 */
+		HybridSiminovData tokenHybridData = new HybridSiminovData();
+		tokenHybridData.setDataType(HybridCredential.TOKEN);
+		tokenHybridData.setDataValue(credential.getToken());
+		
+		/*
+		 * Inflate Is Active
+		 */
+		HybridSiminovData isActiveHybridData = new HybridSiminovData();
+		isActiveHybridData.setDataType(HybridCredential.IS_ACTIVE);
+		isActiveHybridData.setDataValue(String.valueOf(credential.isActive()));
+			
+		return credentialHybridData;
 	}
 }

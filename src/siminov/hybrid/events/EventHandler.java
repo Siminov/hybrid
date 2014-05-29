@@ -118,7 +118,7 @@ public class EventHandler {
 			try {
 				classObject = Class.forName(event);
 			} catch(Exception exception) {
-				Log.logd(ClassUtils.class.getName(), "getSiminovEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
+				Log.debug(ClassUtils.class.getName(), "getSiminovEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
 			}
 			
 			if(classObject == null) {
@@ -129,7 +129,7 @@ public class EventHandler {
 			try {
 				object = classObject.newInstance();
 			} catch(Exception exception) {
-				Log.logd(ClassUtils.class.getName(), "getSiminovEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
+				Log.debug(ClassUtils.class.getName(), "getSiminovEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
 			}
 
 			if(object == null) {
@@ -166,7 +166,7 @@ public class EventHandler {
 			try {
 				classObject = Class.forName(event);
 			} catch(Exception exception) {
-				Log.loge(ClassUtils.class.getName(), "getDatabaseEvents", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
+				Log.debug(ClassUtils.class.getName(), "getDatabaseEvents", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
 			}
 			
 			if(classObject == null) {
@@ -177,7 +177,7 @@ public class EventHandler {
 			try {
 				object = classObject.newInstance();
 			} catch(Exception exception) {
-				Log.logd(ClassUtils.class.getName(), "getDatabaseEvents", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
+				Log.debug(ClassUtils.class.getName(), "getDatabaseEvents", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
 			}
 
 			if(object == null) {
@@ -210,7 +210,7 @@ public class EventHandler {
 			try {
 				classObject = Class.forName(event);
 			} catch(Exception exception) {
-				Log.logd(ClassUtils.class.getName(), "getNotificationEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
+				Log.debug(ClassUtils.class.getName(), "getNotificationEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
 			}
 			
 			if(classObject == null) {
@@ -221,7 +221,7 @@ public class EventHandler {
 			try {
 				object = classObject.newInstance();
 			} catch(Exception exception) {
-				Log.logd(ClassUtils.class.getName(), "getNotificationEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
+				Log.debug(ClassUtils.class.getName(), "getNotificationEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
 			}
 
 			if(object == null) {
@@ -255,7 +255,7 @@ public class EventHandler {
 			try {
 				classObject = Class.forName(event);
 			} catch(Exception exception) {
-				Log.logd(ClassUtils.class.getName(), "getAuthenticationEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
+				Log.debug(ClassUtils.class.getName(), "getAuthenticationEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
 			}
 			
 			if(classObject == null) {
@@ -266,7 +266,7 @@ public class EventHandler {
 			try {
 				object = classObject.newInstance();
 			} catch(Exception exception) {
-				Log.logd(ClassUtils.class.getName(), "getAuthenticationEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
+				Log.debug(ClassUtils.class.getName(), "getAuthenticationEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
 			}
 
 			if(object == null) {
@@ -299,7 +299,7 @@ public class EventHandler {
 			try {
 				classObject = Class.forName(event);
 			} catch(Exception exception) {
-				Log.logd(ClassUtils.class.getName(), "getSyncEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
+				Log.debug(ClassUtils.class.getName(), "getSyncEvent", "Exception caught while creating class object, CLASS-NAME: " + event + ", " + exception.getMessage());
 			}
 			
 			if(classObject == null) {
@@ -310,7 +310,7 @@ public class EventHandler {
 			try {
 				object = classObject.newInstance();
 			} catch(Exception exception) {
-				Log.logd(ClassUtils.class.getName(), "getSyncEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
+				Log.debug(ClassUtils.class.getName(), "getSyncEvent", "Exception caught while creating new instance of class, CLASS-NAME: " + event + ", " + exception.getMessage());
 			}
 
 			if(object == null) {

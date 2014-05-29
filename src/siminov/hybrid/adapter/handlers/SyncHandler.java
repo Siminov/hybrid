@@ -6,6 +6,7 @@ import java.util.Iterator;
 import siminov.connect.design.sync.ISyncRequest;
 import siminov.connect.exception.SyncException;
 import siminov.connect.sync.SyncRequest;
+import siminov.hybrid.adapter.IAdapter;
 import siminov.hybrid.adapter.constants.HybridSyncRequest;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
@@ -14,7 +15,7 @@ import siminov.hybrid.reader.HybridSiminovDataReader;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
-public class SyncHandler {
+public class SyncHandler implements IAdapter {
 
 	public void handle(String data) throws SyncException {
 		
@@ -24,7 +25,7 @@ public class SyncHandler {
 		try {
 			hybridSiminovDataParser = new HybridSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseHandler.class.getName(), "handle", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
+			Log.error(DatabaseHandler.class.getName(), "handle", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
 		}
 		
 		

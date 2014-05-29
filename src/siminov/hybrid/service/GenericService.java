@@ -68,7 +68,7 @@ public class GenericService extends Service {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onServiceStart", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onServiceStart", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -128,7 +128,7 @@ public class GenericService extends Service {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onServiceQueue", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onServiceQueue", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -188,7 +188,7 @@ public class GenericService extends Service {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onServicePause", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onServicePause", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -248,7 +248,7 @@ public class GenericService extends Service {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onServiceResume", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onServiceResume", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -308,7 +308,7 @@ public class GenericService extends Service {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onServicePause", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onServicePause", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -371,7 +371,7 @@ public class GenericService extends Service {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onServiceApiInvoke", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onServiceApiInvoke", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -423,7 +423,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_API_INVOKE);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_API_FINISH);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 
@@ -434,7 +434,7 @@ public class GenericService extends Service {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onServiceApiFinish", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onServiceApiFinish", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -494,7 +494,7 @@ public class GenericService extends Service {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "onServicePause", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "onServicePause", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -513,7 +513,8 @@ public class GenericService extends Service {
 		try {
 			classObject = Class.forName(apiHandler);
 		} catch(Exception exception) {
-			Log.logd(ClassUtils.class.getName(), "getNativeHandlerEvent", "Exception caught while creating service native handler object, API-HANDLER: " + apiHandler + ", " + exception.getMessage());
+			Log.debug(ClassUtils.class.getName(), "getNativeHandlerEvent", "Exception caught while creating service native handler object, API-HANDLER: " + apiHandler + ", " + exception.getMessage());
+			return null;
 		}
 		
 
@@ -521,7 +522,8 @@ public class GenericService extends Service {
 		try {
 			object = classObject.newInstance();
 		} catch(Exception exception) {
-			Log.logd(ClassUtils.class.getName(), "getNativeHandlerEvent", "Exception caught while creating service native handler object, API-HANDLER: " + apiHandler + ", " + exception.getMessage());
+			Log.debug(ClassUtils.class.getName(), "getNativeHandlerEvent", "Exception caught while creating service native handler object, API-HANDLER: " + apiHandler + ", " + exception.getMessage());
+			return null;
 		}
 
 		return (IService) object;

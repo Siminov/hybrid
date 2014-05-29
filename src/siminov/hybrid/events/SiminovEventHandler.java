@@ -89,7 +89,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "firstTimeSiminovInitialized", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "firstTimeSiminovInitialized", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -151,7 +151,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "siminovInitialized", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "siminovInitialized", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -213,7 +213,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(SiminovEventHandler.class.getName(), "siminovStopped", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(SiminovEventHandler.class.getName(), "siminovStopped", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		

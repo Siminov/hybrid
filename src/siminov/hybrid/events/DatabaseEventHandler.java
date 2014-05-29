@@ -103,7 +103,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseEventHandler.class.getName(), "databaseCreated", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(DatabaseEventHandler.class.getName(), "databaseCreated", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -177,7 +177,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseEventHandler.class.getName(), "databaseDropped", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(DatabaseEventHandler.class.getName(), "databaseDropped", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -256,7 +256,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseEventHandler.class.getName(), "tableCreated", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(DatabaseEventHandler.class.getName(), "tableCreated", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -334,7 +334,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseEventHandler.class.getName(), "tableDrpped", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(DatabaseEventHandler.class.getName(), "tableDrpped", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -414,7 +414,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseEventHandler.class.getName(), "indexCreated", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(DatabaseEventHandler.class.getName(), "indexCreated", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
@@ -494,7 +494,7 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
-			Log.loge(DatabaseEventHandler.class.getName(), "indexDropped", "SiminovException caught while generating json: " + siminovException.getMessage());
+			Log.error(DatabaseEventHandler.class.getName(), "indexDropped", "SiminovException caught while generating json: " + siminovException.getMessage());
 		}
 		
 		
