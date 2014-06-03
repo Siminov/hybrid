@@ -1,5 +1,7 @@
 package siminov.hybrid.service;
 
+import java.util.Iterator;
+
 import siminov.connect.design.connection.IConnectionRequest;
 import siminov.connect.design.connection.IConnectionResponse;
 import siminov.connect.design.service.IService;
@@ -427,7 +429,26 @@ public class GenericService extends Service {
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridConnectionRequest(connectionResponse));
+		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridConnectionResponse(connectionResponse));
+		
+		
+		//Event Resources
+		HybridSiminovData serviceResources = new HybridSiminovData();
+		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
+		
+		Iterator<String> resources = getResources();
+		while(resources.hasNext()) {
+			String resourceName = resources.next();
+			Object resourceValue = getResource(resourceName);
+			
+			HybridSiminovData serviceResource = new HybridSiminovData();
+			serviceResource.setDataType(resourceName);
+			serviceResource.setDataValue(resourceValue.toString());
+			
+			serviceResources.addData(serviceResource);
+		}
+
+		hybridSiminovDatas.addHybridSiminovData(serviceResources);
 		
 		
 		String data = null;

@@ -32,6 +32,8 @@ import siminov.connect.design.notification.IMessage;
 import siminov.connect.design.notification.IRegistration;
 import siminov.connect.exception.AuthorizationException;
 import siminov.connect.exception.NotificationException;
+import siminov.connect.model.ServiceDescriptor.API.HeaderParameter;
+import siminov.connect.model.ServiceDescriptor.API.QueryParameter;
 import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.constants.HybridConnectionRequest;
@@ -1020,40 +1022,74 @@ public class Resources {
 
 		
 		HybridSiminovData hybridQueryParameters = new HybridSiminovData();
-		hybridQueryParameters.setDataType(HybridConnectionRequest.QUERY_PARAMETERS);
+		hybridQueryParameters.setDataType(HybridConnectionRequest.QUERY_PARAMETERS_TYPE);
 
 		
 		Iterator<String> queryParameters = connectionRequest.getQueryParameters();
 		while(queryParameters.hasNext()) {
 
 			String queryParameterKey = queryParameters.next();
-			String queryParamtereValue = connectionRequest.getQueryParameter(queryParameterKey);
+			QueryParameter queryParameter = connectionRequest.getQueryParameter(queryParameterKey);
 			
-			HybridSiminovValue hybridQueryParameter = new HybridSiminovValue();
-			hybridQueryParameter.setType(queryParameterKey);
-			hybridQueryParameter.setValue(queryParamtereValue);
+			HybridSiminovData hybridQueryParameter = new HybridSiminovData();
+			hybridQueryParameter.setDataType(HybridConnectionRequest.QUERY_PARAMETER_TYPE);
 			
-			hybridQueryParameters.addValue(hybridQueryParameter);
+			/*
+			 * Hybrid Query Parameter Name
+			 */
+			HybridSiminovValue hybridQueryParameterName = new HybridSiminovValue();
+			hybridQueryParameterName.setType(HybridConnectionRequest.QUERY_PARAMETER_NAME);
+			hybridQueryParameterName.setValue(queryParameter.getName());
+			
+			hybridQueryParameter.addValue(hybridQueryParameterName);
+
+			/*
+			 * Hybrid Query Parameter Value
+			 */
+			HybridSiminovValue hybridQueryParameterValue = new HybridSiminovValue();
+			hybridQueryParameterValue.setType(HybridConnectionRequest.QUERY_PARAMETER_VALUE);
+			hybridQueryParameterValue.setValue(queryParameter.getValue());
+			
+			hybridQueryParameter.addValue(hybridQueryParameterValue);
+			
+			hybridQueryParameters.addData(hybridQueryParameter);
 		}
 		
 		hybridConnectionRequest.addData(hybridQueryParameters);
 		
 		
 		HybridSiminovData hybridHeaderParameters = new HybridSiminovData();
-		hybridHeaderParameters.setDataType(HybridConnectionRequest.HEADER_PARAMETERS);
+		hybridHeaderParameters.setDataType(HybridConnectionRequest.HEADER_PARAMETERS_TYPE);
 
 		
-		Iterator<String> headerParameters = connectionRequest.getQueryParameters();
+		Iterator<String> headerParameters = connectionRequest.getHeaderParameters();
 		while(headerParameters.hasNext()) {
 
 			String headerParameterKey = headerParameters.next();
-			String headerParamtereValue = connectionRequest.getQueryParameter(headerParameterKey);
+			HeaderParameter headerParameter = connectionRequest.getHeaderParameter(headerParameterKey);
 			
-			HybridSiminovValue hybridHeaderParameter = new HybridSiminovValue();
-			hybridHeaderParameter.setType(headerParameterKey);
-			hybridHeaderParameter.setValue(headerParamtereValue);
+			HybridSiminovData hybridHeaderParameter = new HybridSiminovData();
+			hybridHeaderParameter.setDataType(HybridConnectionRequest.HEADER_PARAMETER_TYPE);
 			
-			hybridHeaderParameters.addValue(hybridHeaderParameter);
+			/*
+			 * Hybrid Header Parameter Name
+			 */
+			HybridSiminovValue hybridHeaderParameterName = new HybridSiminovValue();
+			hybridHeaderParameterName.setType(HybridConnectionRequest.HEADER_PARAMETER_NAME);
+			hybridHeaderParameterName.setValue(headerParameter.getName());
+			
+			hybridHeaderParameter.addValue(hybridHeaderParameterName);
+
+			/*
+			 * Hybrid Query Parameter Value
+			 */
+			HybridSiminovValue hybridQueryParameterValue = new HybridSiminovValue();
+			hybridQueryParameterValue.setType(HybridConnectionRequest.QUERY_PARAMETER_NAME);
+			hybridQueryParameterValue.setValue(headerParameter.getName());
+			
+			hybridHeaderParameter.addValue(hybridQueryParameterValue);
+			
+			hybridQueryParameters.addData(hybridHeaderParameter);
 		}
 		
 		hybridConnectionRequest.addData(hybridHeaderParameters);
@@ -1062,7 +1098,7 @@ public class Resources {
 	}
 
 
-	public HybridSiminovData generateHybridConnectionRequest(final IConnectionResponse connectionResponse) {
+	public HybridSiminovData generateHybridConnectionResponse(final IConnectionResponse connectionResponse) {
 		
 		HybridSiminovData hybridConnectionResponse = new HybridSiminovData();
 		hybridConnectionResponse.setDataType(HybridConnectionResponse.CONNECTION_RESPONSE);

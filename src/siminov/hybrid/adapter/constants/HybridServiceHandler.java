@@ -21,4 +21,8 @@ public interface HybridServiceHandler {
 	public String ISERVICE_ON_SERVICE_API_FINISH = "onServiceApiFinish";
 	
 	public String ISERVICE_ON_SERVICE_TERMINATE = "onServiceTerminate";
+	
+	public String ISERVICE_RESOURCES = "RESOURCES";
+	
+	public String ISERVICE_RESOURCE = "RESOURCE";
 }
