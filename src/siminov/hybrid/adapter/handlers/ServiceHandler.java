@@ -5,8 +5,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import siminov.connect.design.service.IService;
 import siminov.connect.exception.ServiceException;
+import siminov.connect.service.NameValuePair;
+import siminov.connect.service.design.IService;
 import siminov.hybrid.Constants;
 import siminov.hybrid.adapter.IAdapter;
 import siminov.hybrid.model.HybridSiminovDatas;
@@ -56,7 +57,7 @@ public class ServiceHandler implements IAdapter {
 		genericService.setApi(api);
 		
 		for(String resource: resources.keySet()) {
-			genericService.addResource(resource, resources.get(resource));
+			genericService.addResource(new NameValuePair(resource, resources.get(resource)));
 		}
 		
 		genericService.invoke();

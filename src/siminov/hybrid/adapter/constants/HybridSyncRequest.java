@@ -7,6 +7,5 @@ public interface HybridSyncRequest {
 	
 	public String NAME = "name";
 
-	
-	public String RESOURCES = "resources";
+	public String RESOURCES = "Array";
 }

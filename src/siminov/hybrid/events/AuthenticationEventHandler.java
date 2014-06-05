@@ -1,6 +1,6 @@
 package siminov.hybrid.events;
 
-import siminov.connect.design.authorization.ICredential;
+import siminov.connect.authorization.design.ICredential;
 import siminov.connect.events.IAuthenticationEvents;
 import siminov.connect.exception.AuthorizationException;
 

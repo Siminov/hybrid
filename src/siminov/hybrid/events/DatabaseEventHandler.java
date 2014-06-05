@@ -114,8 +114,6 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		adapter.addParameter(data);
 		
 		adapter.invoke();
-
-		
 	}
 
 	/**

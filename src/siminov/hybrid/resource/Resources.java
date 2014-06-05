@@ -25,15 +25,16 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import siminov.connect.design.authorization.ICredential;
-import siminov.connect.design.connection.IConnectionRequest;
-import siminov.connect.design.connection.IConnectionResponse;
-import siminov.connect.design.notification.IMessage;
-import siminov.connect.design.notification.IRegistration;
+import siminov.connect.authorization.design.ICredential;
+import siminov.connect.connection.design.IConnectionRequest;
+import siminov.connect.connection.design.IConnectionResponse;
 import siminov.connect.exception.AuthorizationException;
 import siminov.connect.exception.NotificationException;
 import siminov.connect.model.ServiceDescriptor.API.HeaderParameter;
 import siminov.connect.model.ServiceDescriptor.API.QueryParameter;
+import siminov.connect.notification.design.IMessage;
+import siminov.connect.notification.design.IRegistration;
+import siminov.connect.sync.design.ISyncRequest;
 import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.constants.HybridConnectionRequest;
@@ -45,6 +46,7 @@ import siminov.hybrid.adapter.constants.HybridLibraryDescriptor;
 import siminov.hybrid.adapter.constants.HybridMessage;
 import siminov.hybrid.adapter.constants.HybridNotificationException;
 import siminov.hybrid.adapter.constants.HybridRegistration;
+import siminov.hybrid.adapter.constants.HybridSyncRequest;
 import siminov.hybrid.events.EventHandler;
 import siminov.hybrid.model.AdapterDescriptor;
 import siminov.hybrid.model.AdapterDescriptor.Handler;
@@ -1216,5 +1218,21 @@ public class Resources {
 		isActiveHybridData.setDataValue(String.valueOf(credential.isActive()));
 			
 		return credentialHybridData;
+	}
+	
+	
+	public HybridSiminovData generateHybridSyncRequest(ISyncRequest syncRequest) {
+		
+		HybridSiminovData hybridSyncRequest = new HybridSiminovData();
+		hybridSyncRequest.setDataType(HybridSyncRequest.SYNC_REQUEST);
+		
+		HybridSiminovValue hybridUrl = new HybridSiminovValue();
+		hybridUrl.setType(HybridSyncRequest.NAME);
+		hybridUrl.setValue(syncRequest.getName());
+		
+		hybridSyncRequest.addValue(hybridUrl);
+		
+		
+		return hybridSyncRequest;
 	}
 }

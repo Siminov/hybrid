@@ -2,7 +2,7 @@ package siminov.hybrid.adapter.handlers;
 
 import org.apache.http.auth.AuthenticationException;
 
-import siminov.connect.design.authorization.ICredential;
+import siminov.connect.authorization.design.ICredential;
 import siminov.connect.exception.AuthorizationException;
 import siminov.connect.model.AuthorizationDescriptor;
 import siminov.hybrid.adapter.IAdapter;

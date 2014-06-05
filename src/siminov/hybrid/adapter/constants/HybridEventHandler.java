@@ -106,7 +106,7 @@ public interface HybridEventHandler {
 	
 	public String ISYNC_EVENT_ON_SYNC_TERMINATED = "onSyncTerminated";
 	
-	
+
 	/**
 	 * Web Events.
 	 */

@@ -2,11 +2,10 @@ package siminov.hybrid.events;
 
 import java.util.Iterator;
 
-import siminov.connect.design.notification.IMessage;
-import siminov.connect.design.notification.IRegistration;
 import siminov.connect.events.INotificationEvents;
 import siminov.connect.exception.NotificationException;
-import siminov.connect.notification.Message;
+import siminov.connect.notification.design.IMessage;
+import siminov.connect.notification.design.IRegistration;
 import siminov.hybrid.Constants;
 import siminov.hybrid.adapter.Adapter;
 import siminov.hybrid.adapter.constants.HybridEventHandler;

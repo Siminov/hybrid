@@ -3,9 +3,10 @@ package siminov.hybrid.adapter.handlers;
 import java.net.URLDecoder;
 import java.util.Iterator;
 
-import siminov.connect.design.sync.ISyncRequest;
 import siminov.connect.exception.SyncException;
+import siminov.connect.service.NameValuePair;
 import siminov.connect.sync.SyncRequest;
+import siminov.connect.sync.design.ISyncRequest;
 import siminov.hybrid.adapter.IAdapter;
 import siminov.hybrid.adapter.constants.HybridSyncRequest;
 import siminov.hybrid.model.HybridSiminovDatas;
@@ -48,7 +49,7 @@ public class SyncHandler implements IAdapter {
 		while(hybridResourceValues.hasNext()) {
 
 			HybridSiminovValue hybridSiminovValue = hybridResourceValues.next();
-			syncRequest.addResource(hybridSiminovValue.getType(), hybridSiminovValue.getValue());
+			syncRequest.addResource(new NameValuePair(hybridSiminovValue.getType(), hybridSiminovValue.getValue()));
 		}
 
 		
