@@ -66,6 +66,24 @@ public class GenericService extends Service {
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
+		//Add Resources
+		HybridSiminovData serviceResources = new HybridSiminovData();
+		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
+		
+		
+		Iterator<NameValuePair> resources = getResources();
+		while(resources.hasNext()) {
+			NameValuePair resource = resources.next();
+			
+			HybridSiminovData serviceResource = new HybridSiminovData();
+			serviceResource.setDataType(resource.getName());
+			serviceResource.setDataValue(resource.getValue().toString());
+			
+			serviceResources.addData(serviceResource);
+		}
+
+		hybridSiminovDatas.addHybridSiminovData(serviceResources);
+
 		
 		String data = null;
 		try {
@@ -126,6 +144,24 @@ public class GenericService extends Service {
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
+		//Add Resources
+		HybridSiminovData serviceResources = new HybridSiminovData();
+		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
+		
+		
+		Iterator<NameValuePair> resources = getResources();
+		while(resources.hasNext()) {
+			NameValuePair resource = resources.next();
+			
+			HybridSiminovData serviceResource = new HybridSiminovData();
+			serviceResource.setDataType(resource.getName());
+			serviceResource.setDataValue(resource.getValue().toString());
+			
+			serviceResources.addData(serviceResource);
+		}
+
+		hybridSiminovDatas.addHybridSiminovData(serviceResources);
+
 		
 		String data = null;
 		try {
@@ -187,6 +223,25 @@ public class GenericService extends Service {
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
 		
+		//Add Resources
+		HybridSiminovData serviceResources = new HybridSiminovData();
+		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
+		
+		
+		Iterator<NameValuePair> resources = getResources();
+		while(resources.hasNext()) {
+			NameValuePair resource = resources.next();
+			
+			HybridSiminovData serviceResource = new HybridSiminovData();
+			serviceResource.setDataType(resource.getName());
+			serviceResource.setDataValue(resource.getValue().toString());
+			
+			serviceResources.addData(serviceResource);
+		}
+
+		hybridSiminovDatas.addHybridSiminovData(serviceResources);
+
+
 		String data = null;
 		try {
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
@@ -246,6 +301,24 @@ public class GenericService extends Service {
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
+		//Add Resources
+		HybridSiminovData serviceResources = new HybridSiminovData();
+		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
+		
+		
+		Iterator<NameValuePair> resources = getResources();
+		while(resources.hasNext()) {
+			NameValuePair resource = resources.next();
+			
+			HybridSiminovData serviceResource = new HybridSiminovData();
+			serviceResource.setDataType(resource.getName());
+			serviceResource.setDataValue(resource.getValue().toString());
+			
+			serviceResources.addData(serviceResource);
+		}
+
+		hybridSiminovDatas.addHybridSiminovData(serviceResources);
+
 		
 		String data = null;
 		try {
@@ -306,6 +379,24 @@ public class GenericService extends Service {
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
+		//Add Resources
+		HybridSiminovData serviceResources = new HybridSiminovData();
+		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
+		
+		
+		Iterator<NameValuePair> resources = getResources();
+		while(resources.hasNext()) {
+			NameValuePair resource = resources.next();
+			
+			HybridSiminovData serviceResource = new HybridSiminovData();
+			serviceResource.setDataType(resource.getName());
+			serviceResource.setDataValue(resource.getValue().toString());
+			
+			serviceResources.addData(serviceResource);
+		}
+
+		hybridSiminovDatas.addHybridSiminovData(serviceResources);
+
 		
 		String data = null;
 		try {
@@ -368,6 +459,24 @@ public class GenericService extends Service {
 		hybridSiminovDatas.addHybridSiminovData(hybridAPIHandler);
 		
 		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridConnectionRequest(connectionRequest));
+
+		//Add Resources
+		HybridSiminovData serviceResources = new HybridSiminovData();
+		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
+		
+		
+		Iterator<NameValuePair> resources = getResources();
+		while(resources.hasNext()) {
+			NameValuePair resource = resources.next();
+			
+			HybridSiminovData serviceResource = new HybridSiminovData();
+			serviceResource.setDataType(resource.getName());
+			serviceResource.setDataValue(resource.getValue().toString());
+			
+			serviceResources.addData(serviceResource);
+		}
+
+		hybridSiminovDatas.addHybridSiminovData(serviceResources);
 
 		
 		String data = null;
@@ -510,6 +619,24 @@ public class GenericService extends Service {
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
+		//Add Resources
+		HybridSiminovData serviceResources = new HybridSiminovData();
+		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
+		
+		
+		Iterator<NameValuePair> resources = getResources();
+		while(resources.hasNext()) {
+			NameValuePair resource = resources.next();
+			
+			HybridSiminovData serviceResource = new HybridSiminovData();
+			serviceResource.setDataType(resource.getName());
+			serviceResource.setDataValue(resource.getValue().toString());
+			
+			serviceResources.addData(serviceResource);
+		}
+
+		hybridSiminovDatas.addHybridSiminovData(serviceResources);
+
 		
 		String data = null;
 		try {
