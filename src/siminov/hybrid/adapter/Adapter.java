@@ -96,7 +96,6 @@ public class Adapter {
 		} else {
 			handler.handleNativeToWeb(adapterName + "." + handlerName, parameters.toArray(new String[parameters.size()]));
 		}
-		
 	}
 	
 }

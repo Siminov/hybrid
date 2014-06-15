@@ -3,7 +3,6 @@ package siminov.hybrid.events;
 import java.util.Iterator;
 
 import siminov.connect.events.ISyncEvents;
-import siminov.connect.service.design.IService;
 import siminov.connect.sync.design.ISyncRequest;
 import siminov.hybrid.Constants;
 import siminov.hybrid.adapter.Adapter;
@@ -15,7 +14,6 @@ import siminov.hybrid.resource.Resources;
 import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
-import siminov.orm.utils.ClassUtils;
 
 public class SyncEventHandler implements ISyncEvents {
 
@@ -24,7 +22,7 @@ public class SyncEventHandler implements ISyncEvents {
 	
 	public void onSyncStarted(ISyncRequest syncRequest) {
 
-		/*ISyncEvents syncEvents = eventHandler.getSyncEvent();
+		ISyncEvents syncEvents = eventHandler.getSyncEvent();
 		if(syncEvents != null) {
 			syncEvents.onSyncStarted(syncRequest);
 		}
@@ -60,14 +58,13 @@ public class SyncEventHandler implements ISyncEvents {
 		
 		
 		//Parameters
-		HybridSiminovData jsDatabaseDescriptor = hybridResources.generateHybridDatabaseDescriptor(databaseDescriptor);
+		HybridSiminovData hybridSyncRequest = hybridResources.generateHybridSyncRequest(syncRequest);
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);
-		parameteres.addData(jsDatabaseDescriptor);
+		parameteres.addData(hybridSyncRequest);
 		
 		hybridSiminovDatas.addHybridSiminovData(parameteres);
-		
 		
 		String data = null;
 		try {
@@ -83,7 +80,7 @@ public class SyncEventHandler implements ISyncEvents {
 		
 		adapter.addParameter(data);
 		
-		adapter.invoke();*/
+		adapter.invoke();
 	}
 
 	public void onSyncQueued(ISyncRequest syncRequest) {
@@ -96,27 +93,5 @@ public class SyncEventHandler implements ISyncEvents {
 
 	public void onSyncTerminated(ISyncRequest syncRequest) {
 		System.out.print("");
-	}
-	
-	private ISyncEvents getNativeSyncEventHandler(String apiHandler) {
-		
-		Class<?> classObject = null;
-		try {
-			classObject = Class.forName(apiHandler);
-		} catch(Exception exception) {
-			Log.debug(ClassUtils.class.getName(), "getNativeHandlerEvent", "Exception caught while creating service native handler object, API-HANDLER: " + apiHandler + ", " + exception.getMessage());
-			return null;
-		}
-		
-
-		Object object = null;
-		try {
-			object = classObject.newInstance();
-		} catch(Exception exception) {
-			Log.debug(ClassUtils.class.getName(), "getNativeHandlerEvent", "Exception caught while creating service native handler object, API-HANDLER: " + apiHandler + ", " + exception.getMessage());
-			return null;
-		}
-
-		return (ISyncEvents) object;
 	}
 }

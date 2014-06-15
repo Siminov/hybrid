@@ -1,7 +1,9 @@
 package siminov.hybrid.adapter.handlers;
 
 import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import siminov.connect.exception.SyncException;
 import siminov.connect.service.NameValuePair;
@@ -38,22 +40,25 @@ public class SyncHandler implements IAdapter {
 		ISyncRequest syncRequest = new SyncRequest();
 		
 		HybridSiminovData hybridSyncRequest = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(HybridSyncRequest.SYNC_REQUEST);
+		HybridSiminovData resourcesHybridDatas = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(HybridSyncRequest.RESOURCES);
+		Iterator<HybridSiminovData>	resourcesHybridData = resourcesHybridDatas.getDatas();
 		
 		HybridSiminovValue hybridName = hybridSyncRequest.getValueBasedOnType(HybridSyncRequest.NAME);
 		syncRequest.setName(hybridName.getValue());
 		
 		
-		HybridSiminovData hybridResources = hybridSyncRequest.getHybridSiminovDataBasedOnDataType(HybridSyncRequest.RESOURCES);
-		Iterator<HybridSiminovValue> hybridResourceValues = hybridResources.getValues();
+		Map<String, String> resources = new HashMap<String, String>();
+		while(resourcesHybridData.hasNext()) {
+			
+			HybridSiminovData resourceHybridData = resourcesHybridData.next();
+			resources.put(resourceHybridData.getDataType(), resourceHybridData.getDataValue());
+		}
 		
-		while(hybridResourceValues.hasNext()) {
-
-			HybridSiminovValue hybridSiminovValue = hybridResourceValues.next();
-			syncRequest.addResource(new NameValuePair(hybridSiminovValue.getType(), hybridSiminovValue.getValue()));
+		for(String resource: resources.keySet()) {
+			syncRequest.addResource(new NameValuePair(resource, resources.get(resource)));
 		}
 
-		
-		siminov.connect.sync.SyncHandler syncHandler = siminov.connect.sync.SyncHandler.getInstance();
+		siminov.hybrid.sync.SyncHandler syncHandler = siminov.hybrid.sync.SyncHandler.getInstance();
 		syncHandler.handle(syncRequest);
 	}
 }

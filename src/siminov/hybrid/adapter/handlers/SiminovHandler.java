@@ -69,7 +69,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 		try {
 			hybridSiminovDataParser = new HybridSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
-			Log.error(AdapterHandler.class.getName(), "handleJSToNative", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
+			Log.error(AdapterHandler.class.getName(), "handleJSToNative", "SiminovException caught while parsing siminov hybrid data, " + siminovException.getMessage());
 		}
 		
 		HybridSiminovDatas hybridSiminovDatas = hybridSiminovDataParser.getDatas();

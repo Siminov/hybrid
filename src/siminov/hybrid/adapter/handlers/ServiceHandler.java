@@ -1,9 +1,7 @@
 package siminov.hybrid.adapter.handlers;
 
 import java.net.URLDecoder;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import siminov.connect.exception.ServiceException;
 import siminov.connect.service.NameValuePair;
@@ -12,6 +10,7 @@ import siminov.hybrid.Constants;
 import siminov.hybrid.adapter.IAdapter;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
+import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
 import siminov.hybrid.reader.HybridSiminovDataReader;
 import siminov.hybrid.service.GenericService;
 import siminov.orm.exception.SiminovException;
@@ -33,31 +32,33 @@ public class ServiceHandler implements IAdapter {
 
 		HybridSiminovDatas hybridSiminovDatas = hybridSiminovDataParser.getDatas();
 		
-		HybridSiminovData serviceHybridData = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_PARAMETER);
-		HybridSiminovData apiHybridData = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_API_PARAMETER);
-	
-		HybridSiminovData resourcesHybridDatas = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_RESOURCES);
-		Iterator<HybridSiminovData>	resourcesHybridData = resourcesHybridDatas.getDatas();
-				
-				
-		String service = serviceHybridData.getDataValue();
-		String api = apiHybridData.getDataValue();
+		HybridSiminovData hybridService = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE);
 		
-		Map<String, String> resources = new HashMap<String, String>();
-		while(resourcesHybridData.hasNext()) {
-			
-			HybridSiminovData resourceHybridData = resourcesHybridData.next();
-			resources.put(resourceHybridData.getDataType(), resourceHybridData.getDataValue());
-		}
+		HybridSiminovValue hybridServiceName = hybridService.getValueBasedOnType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_NAME);
+		HybridSiminovValue hybridAPIName = hybridService.getValueBasedOnType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_API_NAME);
+		
+		HybridSiminovData hybridResources = hybridService.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES);
 		
 		
 		IService genericService = new GenericService();
 		
-		genericService.setService(service);
-		genericService.setApi(api);
+		genericService.setService(hybridServiceName.getValue());
+		genericService.setApi(hybridAPIName.getValue());
+
 		
-		for(String resource: resources.keySet()) {
-			genericService.addResource(new NameValuePair(resource, resources.get(resource)));
+		if(hybridResources != null) {
+			
+			Iterator<HybridSiminovValue> hybridResourceValues = hybridResources.getValues();
+			while(hybridResourceValues.hasNext()) {
+				
+				HybridSiminovValue hybridResource = hybridResourceValues.next();
+				
+				String hybridResourceName = hybridResource.getType();
+				Object hybridResourceValue = hybridResource.getValue();
+				hybridResourceValue = URLDecoder.decode(hybridResourceValue.toString());
+				
+				genericService.addResource(new NameValuePair(hybridResourceName, hybridResourceValue));
+			}
 		}
 		
 		genericService.invoke();

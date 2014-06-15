@@ -34,6 +34,7 @@ import siminov.connect.model.ServiceDescriptor.API.HeaderParameter;
 import siminov.connect.model.ServiceDescriptor.API.QueryParameter;
 import siminov.connect.notification.design.IMessage;
 import siminov.connect.notification.design.IRegistration;
+import siminov.connect.service.NameValuePair;
 import siminov.connect.sync.design.ISyncRequest;
 import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
@@ -1199,24 +1200,30 @@ public class Resources {
 		/*
 		 * Inflate Account Id
 		 */
-		HybridSiminovData accountIdHybridData = new HybridSiminovData();
-		accountIdHybridData.setDataType(HybridCredential.ACCOUNT_ID);
-		accountIdHybridData.setDataValue(credential.getAccountId());
+		HybridSiminovValue accountIdHybridValue = new HybridSiminovValue();
+		accountIdHybridValue.setType(HybridCredential.ACCOUNT_ID);
+		accountIdHybridValue.setValue(credential.getAccountId());
+
+		credentialHybridData.addValue(accountIdHybridValue);
 		
 		/*
 		 * Inflate Token
 		 */
-		HybridSiminovData tokenHybridData = new HybridSiminovData();
-		tokenHybridData.setDataType(HybridCredential.TOKEN);
-		tokenHybridData.setDataValue(credential.getToken());
+		HybridSiminovValue tokenHybridValue = new HybridSiminovValue();
+		tokenHybridValue.setType(HybridCredential.TOKEN);
+		tokenHybridValue.setValue(credential.getToken());
+		
+		credentialHybridData.addValue(tokenHybridValue);
 		
 		/*
 		 * Inflate Is Active
 		 */
-		HybridSiminovData isActiveHybridData = new HybridSiminovData();
-		isActiveHybridData.setDataType(HybridCredential.IS_ACTIVE);
-		isActiveHybridData.setDataValue(String.valueOf(credential.isActive()));
+		HybridSiminovValue isActiveHybridValue = new HybridSiminovValue();
+		isActiveHybridValue.setType(HybridCredential.IS_ACTIVE);
+		isActiveHybridValue.setValue(String.valueOf(credential.isActive()));
 			
+		credentialHybridData.addValue(isActiveHybridValue);
+		
 		return credentialHybridData;
 	}
 	
@@ -1232,7 +1239,34 @@ public class Resources {
 		
 		hybridSyncRequest.addValue(hybridUrl);
 		
+
+		/*HybridSiminovData hybridResources = new HybridSiminovData();
+		hybridResources.setDataType(HybridSyncRequest.RESOURCES_ARRAY);
 		
+		Iterator<NameValuePair> resources = syncRequest.getResources();
+		while(resources.hasNext()) {
+			NameValuePair resource = resources.next();
+			
+			HybridSiminovData hybridResource = new HybridSiminovData();
+			hybridResource.setDataType(HybridSyncRequest.RESOURCE_TYPE);
+			
+			HybridSiminovValue hybridResourceName = new HybridSiminovValue();
+			hybridResourceName.setType(HybridSyncRequest.RESOURCE_NAME);
+			hybridResourceName.setValue(resource.getName());
+
+			hybridResource.addValue(hybridResourceName);
+			
+			HybridSiminovValue hybridResourceValue = new HybridSiminovValue();
+			hybridResourceValue.setType(HybridSyncRequest.RESOURCE_VALUE);
+			hybridResourceValue.setValue(resource.getValue().toString());
+			
+			hybridResource.addValue(hybridResourceValue);
+			
+			hybridResources.addData(hybridResource);
+		}
+		
+
+		hybridSyncRequest.addData(hybridResources);*/
 		return hybridSyncRequest;
 	}
 }

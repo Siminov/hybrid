@@ -12,8 +12,6 @@ public interface HybridConnectionRequest {
 
 	public String DATA_STREAM = "dataStream";
 
-	public String QUERY_PARAMETERS = "queryParameter";
-	
 	public String QUERY_PARAMETERS_TYPE = "Array";
 	
 	public String QUERY_PARAMETER_TYPE = "ServiceDescriptor.API.QueryParameter";
@@ -21,8 +19,6 @@ public interface HybridConnectionRequest {
 	public String QUERY_PARAMETER_NAME = "name";
 	
 	public String QUERY_PARAMETER_VALUE = "value";
-	
-	public String HEADER_PARAMETERS = "headerParameter";
 	
 	public String HEADER_PARAMETERS_TYPE = "Array";
 
