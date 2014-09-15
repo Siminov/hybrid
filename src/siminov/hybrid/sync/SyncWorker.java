@@ -83,7 +83,7 @@ public class SyncWorker implements IWorker {
 				 */
 				ISyncEvents syncEventHandler = resources.getSyncEventHandler();
 				if(syncEventHandler != null) {
-					syncEventHandler.onSyncStarted(syncRequest);
+					syncEventHandler.onStart(syncRequest);
 				}
 				
 				
@@ -123,7 +123,7 @@ public class SyncWorker implements IWorker {
 				 * Fire Sync Started Event
 				 */
 				if(syncEventHandler != null) {
-					syncEventHandler.onSyncRemoved(syncRequest);
+					syncEventHandler.onFinish(syncRequest);
 				}
 				
 				
@@ -150,7 +150,7 @@ public class SyncWorker implements IWorker {
 		 */
 		ISyncEvents syncEventHandler = resources.getSyncEventHandler();
 		if(syncEventHandler != null) {
-			syncEventHandler.onSyncQueued(syncRequest);
+			syncEventHandler.onQueue(syncRequest);
 		}
 		
 		

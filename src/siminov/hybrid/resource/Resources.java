@@ -34,7 +34,6 @@ import siminov.connect.model.ServiceDescriptor.API.HeaderParameter;
 import siminov.connect.model.ServiceDescriptor.API.QueryParameter;
 import siminov.connect.notification.design.IMessage;
 import siminov.connect.notification.design.IRegistration;
-import siminov.connect.service.NameValuePair;
 import siminov.connect.sync.design.ISyncRequest;
 import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
@@ -60,7 +59,7 @@ import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 import siminov.orm.model.DatabaseDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor;
-import siminov.orm.model.DatabaseMappingDescriptor.Column;
+import siminov.orm.model.DatabaseMappingDescriptor.Attribute;
 import siminov.orm.model.DatabaseMappingDescriptor.Index;
 import siminov.orm.model.DatabaseMappingDescriptor.Relationship;
 import siminov.orm.utils.Utils;
@@ -597,11 +596,11 @@ public class Resources {
 		HybridSiminovData hybridColumns = new HybridSiminovData();
 		hybridColumns.setDataType(HybridDatabaseMappingDescriptor.COLUMNS);
 		
-		Iterator<Column> columns = databaseMappingDescriptor.getColumns();
-		while(columns.hasNext()) {
+		Iterator<Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		while(attributes.hasNext()) {
 			
-			Column column = columns.next();
-			HybridSiminovData hybridColumn = generateHybridDatabaseMappingDescriptorColumn(column);
+			Attribute attribute = attributes.next();
+			HybridSiminovData hybridColumn = generateHybridDatabaseMappingDescriptorColumn(attribute);
 			hybridColumns.addData(hybridColumn);
 			
 		}
@@ -643,66 +642,66 @@ public class Resources {
 	
 	/**
 	 * Generate Hybrid Database Mapping Descriptor Column.
-	 * @param column Database Mapping Descriptor Column.
+	 * @param attribute Database Mapping Descriptor Column.
 	 * @return Hybrid Siminov Data.
 	 */
-	public HybridSiminovData generateHybridDatabaseMappingDescriptorColumn(final Column column) {
+	public HybridSiminovData generateHybridDatabaseMappingDescriptorColumn(final Attribute attribute) {
 		
 		HybridSiminovData hybridColumn = new HybridSiminovData();
 		hybridColumn.setDataType(HybridDatabaseMappingDescriptor.COLUMN);
 		
 		HybridSiminovValue variableName = new HybridSiminovValue();
 		variableName.setType(HybridDatabaseMappingDescriptor.VARIABLE_NAME);
-		variableName.setValue(column.getVariableName());
+		variableName.setValue(attribute.getVariableName());
 		
 		hybridColumn.addValue(variableName);
 		
 		
 		HybridSiminovValue columnName = new HybridSiminovValue();
 		columnName.setType(HybridDatabaseMappingDescriptor.COLUMN_NAME);
-		columnName.setValue(column.getColumnName());
+		columnName.setValue(attribute.getColumnName());
 		
 		hybridColumn.addValue(columnName);
 		
 		
 		HybridSiminovValue type = new HybridSiminovValue();
 		type.setType(HybridDatabaseMappingDescriptor.TYPE);
-		type.setValue(column.getType());
+		type.setValue(attribute.getType());
 		
 		hybridColumn.addValue(type);
 		
 		
 		HybridSiminovValue primaryKey = new HybridSiminovValue();
 		primaryKey.setType(HybridDatabaseMappingDescriptor.PRIMARY_KEY);
-		primaryKey.setValue(Boolean.toString(column.isPrimaryKey()));
+		primaryKey.setValue(Boolean.toString(attribute.isPrimaryKey()));
 		
 		hybridColumn.addValue(primaryKey);
 		
 		
 		HybridSiminovValue notNull = new HybridSiminovValue();
 		notNull.setType(HybridDatabaseMappingDescriptor.NOT_NULL);
-		notNull.setValue(Boolean.toString(column.isNotNull()));
+		notNull.setValue(Boolean.toString(attribute.isNotNull()));
 		
 		hybridColumn.addValue(notNull);
 		
 		
 		HybridSiminovValue unique = new HybridSiminovValue();
 		unique.setType(HybridDatabaseMappingDescriptor.UNIQUE);
-		unique.setValue(Boolean.toString(column.isUnique()));
+		unique.setValue(Boolean.toString(attribute.isUnique()));
 		
 		hybridColumn.addValue(unique);
 		
 		
 		HybridSiminovValue check = new HybridSiminovValue();
 		check.setType(HybridDatabaseMappingDescriptor.CHECK);
-		check.setValue(column.getCheck());
+		check.setValue(attribute.getCheck());
 		
 		hybridColumn.addValue(check);
 		
 		
 		HybridSiminovValue defaultValue = new HybridSiminovValue();
 		defaultValue.setType(HybridDatabaseMappingDescriptor.DEFAULT);
-		defaultValue.setValue(column.getDefaultValue());
+		defaultValue.setValue(attribute.getDefaultValue());
 		
 		hybridColumn.addValue(defaultValue);
 

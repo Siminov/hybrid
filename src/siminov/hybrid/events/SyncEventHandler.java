@@ -20,11 +20,11 @@ public class SyncEventHandler implements ISyncEvents {
 	private Resources hybridResources = Resources.getInstance();
 	private EventHandler eventHandler = EventHandler.getInstance();
 	
-	public void onSyncStarted(ISyncRequest syncRequest) {
+	public void onStart(ISyncRequest syncRequest) {
 
 		ISyncEvents syncEvents = eventHandler.getSyncEvent();
 		if(syncEvents != null) {
-			syncEvents.onSyncStarted(syncRequest);
+			syncEvents.onStart(syncRequest);
 		}
 		
 		
@@ -83,11 +83,11 @@ public class SyncEventHandler implements ISyncEvents {
 		adapter.invoke();
 	}
 
-	public void onSyncQueued(ISyncRequest syncRequest) {
+	public void onQueue(ISyncRequest syncRequest) {
 
 		ISyncEvents syncEvents = eventHandler.getSyncEvent();
 		if(syncEvents != null) {
-			syncEvents.onSyncQueued(syncRequest);
+			syncEvents.onQueue(syncRequest);
 		}
 		
 		
@@ -146,11 +146,11 @@ public class SyncEventHandler implements ISyncEvents {
 		adapter.invoke();
 	}
 
-	public void onSyncRemoved(ISyncRequest syncRequest) {
+	public void onFinish(ISyncRequest syncRequest) {
 
 		ISyncEvents syncEvents = eventHandler.getSyncEvent();
 		if(syncEvents != null) {
-			syncEvents.onSyncRemoved(syncRequest);
+			syncEvents.onFinish(syncRequest);
 		}
 		
 		
@@ -209,11 +209,11 @@ public class SyncEventHandler implements ISyncEvents {
 		adapter.invoke();
 	}
 
-	public void onSyncTerminated(ISyncRequest syncRequest) {
+	public void onTerminate(ISyncRequest syncRequest) {
 
 		ISyncEvents syncEvents = eventHandler.getSyncEvent();
 		if(syncEvents != null) {
-			syncEvents.onSyncTerminated(syncRequest);
+			syncEvents.onTerminate(syncRequest);
 		}
 		
 		

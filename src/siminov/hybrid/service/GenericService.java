@@ -24,7 +24,7 @@ import siminov.orm.utils.ClassUtils;
 
 public class GenericService extends Service {
 
-	public void onServiceStart() {
+	public void onStart() {
 		
 		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
 		
@@ -43,7 +43,7 @@ public class GenericService extends Service {
 		 */
 		IService service = getNativeHandler(apiHandler);
 		if(service != null) {
-			service.onServiceStart();
+			service.onStart();
 		}
 		
 		
@@ -102,7 +102,7 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onServiceQueue() {
+	public void onQueue() {
 
 		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
 		
@@ -121,7 +121,7 @@ public class GenericService extends Service {
 		 */
 		IService service = getNativeHandler(apiHandler);
 		if(service != null) {
-			service.onServiceQueue();
+			service.onQueue();
 		}
 		
 		
@@ -180,7 +180,7 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onServicePause() {
+	public void onPause() {
 
 		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
 		
@@ -199,7 +199,7 @@ public class GenericService extends Service {
 		 */
 		IService service = getNativeHandler(apiHandler);
 		if(service != null) {
-			service.onServicePause();
+			service.onPause();
 		}
 		
 		
@@ -259,7 +259,7 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onServiceResume() {
+	public void onResume() {
 
 		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
 		
@@ -278,7 +278,7 @@ public class GenericService extends Service {
 		 */
 		IService service = getNativeHandler(apiHandler);
 		if(service != null) {
-			service.onServiceResume();
+			service.onResume();
 		}
 		
 		
@@ -337,7 +337,7 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onServiceFinish() {
+	public void onFinish() {
 
 		siminov.connect.resource.Resources conncetResources = siminov.connect.resource.Resources.getInstance();
 		
@@ -356,7 +356,7 @@ public class GenericService extends Service {
 		 */
 		IService service = getNativeHandler(apiHandler);
 		if(service != null) {
-			service.onServiceFinish();
+			service.onFinish();
 		}
 		
 		
@@ -415,7 +415,7 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onServiceApiInvoke(IConnectionRequest connectionRequest) {
+	public void onApiInvoke(IConnectionRequest connectionRequest) {
 
 		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
 		Resources hybridResources = Resources.getInstance();
@@ -435,7 +435,7 @@ public class GenericService extends Service {
 		 */
 		IService service = getNativeHandler(apiHandler);
 		if(service != null) {
-			service.onServiceApiInvoke(connectionRequest);
+			service.onApiInvoke(connectionRequest);
 		}
 		
 		
@@ -496,7 +496,7 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onServiceApiFinish(IConnectionResponse connectionResponse) {
+	public void onApiFinish(IConnectionResponse connectionResponse) {
 
 		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
 		Resources hybridResources = Resources.getInstance();
@@ -516,7 +516,7 @@ public class GenericService extends Service {
 		 */
 		IService service = getNativeHandler(apiHandler);
 		if(service != null) {
-			service.onServiceApiFinish(connectionResponse);
+			service.onApiFinish(connectionResponse);
 		}
 		
 		
@@ -577,7 +577,7 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onServiceTerminate(ServiceException serviceException) {
+	public void onTerminate(ServiceException serviceException) {
 
 		siminov.connect.resource.Resources conncetResources = siminov.connect.resource.Resources.getInstance();
 		
@@ -596,7 +596,7 @@ public class GenericService extends Service {
 		 */
 		IService service = getNativeHandler(apiHandler);
 		if(service != null) {
-			service.onServiceFinish();
+			service.onFinish();
 		}
 		
 		
@@ -675,5 +675,9 @@ public class GenericService extends Service {
 		}
 
 		return (IService) object;
+	}
+
+	public void onRestart() {
+		
 	}
 }
