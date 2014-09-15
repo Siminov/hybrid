@@ -43,7 +43,7 @@ import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 import siminov.orm.model.DatabaseDescriptor;
 import siminov.orm.model.DatabaseMappingDescriptor;
-import siminov.orm.model.DatabaseMappingDescriptor.Column;
+import siminov.orm.model.DatabaseMappingDescriptor.Attribute;
 import siminov.orm.model.DatabaseMappingDescriptor.Relationship;
 import siminov.orm.resource.Resources;
 
@@ -103,12 +103,12 @@ public class DatabaseHandler implements IAdapter {
 		Collection<String> columnNames = new LinkedList<String>();
 		Collection<Object> columnValues = new LinkedList<Object>();
 
-		Iterator<DatabaseMappingDescriptor.Column> columns = databaseMappingDescriptor.getColumns();
-		while(columns.hasNext()) {
-			Column column = columns.next();
+		Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		while(attributes.hasNext()) {
+			Attribute attribute = attributes.next();
 			
-			String columnName = column.getColumnName();
-			Object columnValue = jsSiminovValues.get(column.getVariableName()).getValue();
+			String columnName = attribute.getColumnName();
+			Object columnValue = jsSiminovValues.get(attribute.getVariableName()).getValue();
 			
 			columnNames.add(columnName);
 			columnValues.add(columnValue);
@@ -250,17 +250,17 @@ public class DatabaseHandler implements IAdapter {
 		Collection<String> columnNames = new LinkedList<String>();
 		Collection<Object> columnValues = new LinkedList<Object>();
 
-		Iterator<DatabaseMappingDescriptor.Column> columns = databaseMappingDescriptor.getColumns();
-		while(columns.hasNext()) {
-			Column column = columns.next();
+		Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		while(attributes.hasNext()) {
+			Attribute attribute = attributes.next();
 			
-			String columnName = column.getColumnName();
-			Object columnValue = hybridSiminovValues.get(column.getVariableName()).getValue();
+			String columnName = attribute.getColumnName();
+			Object columnValue = hybridSiminovValues.get(attribute.getVariableName()).getValue();
 			
 			columnNames.add(columnName);
 			columnValues.add(columnValue);
 			
-			if(column.isPrimaryKey()) {
+			if(attribute.isPrimaryKey()) {
 				if(whereClause.length() == 0) {
 					whereClause.append(columnName + "= '" + columnValue + "'");
 				} else {
@@ -402,14 +402,14 @@ public class DatabaseHandler implements IAdapter {
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 		
 		StringBuilder whereClause = new StringBuilder();
-		Iterator<DatabaseMappingDescriptor.Column> columns = databaseMappingDescriptor.getColumns();
-		while(columns.hasNext()) {
-			Column column = columns.next();
+		Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		while(attributes.hasNext()) {
+			Attribute attribute = attributes.next();
 			
-			if(column.isPrimaryKey()) {
+			if(attribute.isPrimaryKey()) {
 
-				String columnName = column.getColumnName();
-				Object columnValue = jsSiminovValues.get(column.getVariableName()).getValue();
+				String columnName = attribute.getColumnName();
+				Object columnValue = jsSiminovValues.get(attribute.getVariableName()).getValue();
 
 				if(whereClause.length() <= 0) {
 					whereClause.append(columnName + "= '" + columnValue + "'");
@@ -491,17 +491,17 @@ public class DatabaseHandler implements IAdapter {
 			Collection<String> columnNames = new LinkedList<String>();
 			Collection<Object> columnValues = new LinkedList<Object>();
 	
-			Iterator<DatabaseMappingDescriptor.Column> columns = databaseMappingDescriptor.getColumns();
-			while(columns.hasNext()) {
-				Column column = columns.next();
+			Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
+			while(attributes.hasNext()) {
+				Attribute attribute = attributes.next();
 				
-				String columnName = column.getColumnName();
-				Object columnValue = jsSiminovValues.get(column.getVariableName()).getValue();
+				String columnName = attribute.getColumnName();
+				Object columnValue = jsSiminovValues.get(attribute.getVariableName()).getValue();
 				
 				columnNames.add(columnName);
 				columnValues.add(columnValue);
 				
-				if(column.isPrimaryKey()) {
+				if(attribute.isPrimaryKey()) {
 					if(whereClause.length() == 0) {
 						whereClause.append(columnName + "= '" + columnValue + "'");
 					} else {
@@ -634,7 +634,7 @@ public class DatabaseHandler implements IAdapter {
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_LIMIT_PARAMETER, limit);
 
 		
-		Iterator<Map<String, Object>> datas = database.executeFetchQuery(getDatabaseDescriptor(className), databaseMappingDescriptor, queryBuilder.formSelectQuery(parameters));
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(getDatabaseDescriptor(className), databaseMappingDescriptor, queryBuilder.formSelectQuery(parameters));
 		Collection<Map<String, Object>> datasBundle = new LinkedList<Map<String,Object>>();
 		while(datas.hasNext()) {
 			datasBundle.add(datas.next());
@@ -676,7 +676,7 @@ public class DatabaseHandler implements IAdapter {
 		}
 		
 		
-		Iterator<Map<String, Object>> datas = database.executeFetchQuery(getDatabaseDescriptor(className), databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(getDatabaseDescriptor(className), databaseMappingDescriptor, query);
 		Collection<Map<String, Object>> datasBundle = new LinkedList<Map<String,Object>>();
 		while(datas.hasNext()) {
 			datasBundle.add(datas.next());
@@ -740,7 +740,7 @@ public class DatabaseHandler implements IAdapter {
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHICH_ORDER_BY_PARAMETER, null);
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_LIMIT_PARAMETER, limit);
 
-		return parseData(databaseMappingDescriptor, database.executeFetchQuery(getDatabaseDescriptor(databaseMappingDescriptor.getClassName()), databaseMappingDescriptor, queryBuilder.formSelectQuery(parameters)));
+		return parseData(databaseMappingDescriptor, database.executeSelectQuery(getDatabaseDescriptor(databaseMappingDescriptor.getClassName()), databaseMappingDescriptor, queryBuilder.formSelectQuery(parameters)));
 	
 	}
 	
@@ -873,7 +873,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		String query = queryBuilder.formCountQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -968,7 +968,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		String query = queryBuilder.formAvgQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1062,7 +1062,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		String query = queryBuilder.formSumQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1156,7 +1156,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		String query = queryBuilder.formTotalQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1251,7 +1251,7 @@ public class DatabaseHandler implements IAdapter {
 
 		String query = queryBuilder.formMinQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1346,7 +1346,7 @@ public class DatabaseHandler implements IAdapter {
 
 		String query = queryBuilder.formMaxQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1443,7 +1443,7 @@ public class DatabaseHandler implements IAdapter {
 
 		String query = queryBuilder.formGroupConcatQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeFetchQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1534,11 +1534,11 @@ public class DatabaseHandler implements IAdapter {
 	
 	public static final Iterator<String> getColumnNames(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
-		Iterator<DatabaseMappingDescriptor.Column> columns = databaseMappingDescriptor.getColumns();
+		Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
 
 		Collection<String> columnNames = new ArrayList<String>();
-		while(columns.hasNext()) {
-			columnNames.add(columns.next().getColumnName());
+		while(attributes.hasNext()) {
+			columnNames.add(attributes.next().getColumnName());
 		}
 
 		/*
@@ -1555,13 +1555,13 @@ public class DatabaseHandler implements IAdapter {
 				oneToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
 			}
 
-			Iterator<Column> parentColumns = referedDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					columnNames.add(columns.next().getColumnName());
+					columnNames.add(attributes.next().getColumnName());
 				}
 			}
 		}
@@ -1570,13 +1570,13 @@ public class DatabaseHandler implements IAdapter {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
 			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
 			
-			Iterator<Column> parentColumns = parentDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					columnNames.add(columns.next().getColumnName());
+					columnNames.add(attributes.next().getColumnName());
 				}
 			}
 		}
@@ -1605,11 +1605,11 @@ public class DatabaseHandler implements IAdapter {
 	public static final String getColumnType(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
 		Map<String, Object> columnTypes = new HashMap<String, Object> ();
-		Iterator<DatabaseMappingDescriptor.Column> columns = databaseMappingDescriptor.getColumns();
+		Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
 		
-		while(columns.hasNext()) {
-			Column column = columns.next();
-			columnTypes.put(column.getColumnName(), column.getType());
+		while(attributes.hasNext()) {
+			Attribute attribute = attributes.next();
+			columnTypes.put(attribute.getColumnName(), attribute.getType());
 		}
 		
 		/*
@@ -1627,13 +1627,13 @@ public class DatabaseHandler implements IAdapter {
 			}
 
 			
-			Iterator<Column> parentColumns = referedDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					columnTypes.put(column.getColumnName(), column.getType());
+					columnTypes.put(attribute.getColumnName(), attribute.getType());
 				}
 			}
 		}
@@ -1642,13 +1642,13 @@ public class DatabaseHandler implements IAdapter {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
 			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
 			
-			Iterator<Column> parentColumns = parentDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					columnTypes.put(column.getColumnName(), column.getType());
+					columnTypes.put(attribute.getColumnName(), attribute.getType());
 				}
 			}
 		}
@@ -1710,15 +1710,15 @@ public class DatabaseHandler implements IAdapter {
 	
 	public static final Iterator<String> getPrimaryKeys(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
-		Iterator<Column> columns = databaseMappingDescriptor.getColumns();
+		Iterator<Attribute> attributes = databaseMappingDescriptor.getAttributes();
 		Collection<String> primaryKeys = new ArrayList<String>();
 
-		while(columns.hasNext()) {
-			Column column = columns.next();
+		while(attributes.hasNext()) {
+			Attribute attribute = attributes.next();
 			
-			boolean isPrimary = column.isPrimaryKey();
+			boolean isPrimary = attribute.isPrimaryKey();
 			if(isPrimary) {
-				primaryKeys.add(column.getColumnName());
+				primaryKeys.add(attribute.getColumnName());
 			}
 		}
 
@@ -1737,13 +1737,13 @@ public class DatabaseHandler implements IAdapter {
 			}
 
 			
-			Iterator<Column> parentColumns = referedDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					primaryKeys.add(column.getColumnName());
+					primaryKeys.add(attribute.getColumnName());
 				}
 			}
 		}
@@ -1752,13 +1752,13 @@ public class DatabaseHandler implements IAdapter {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
 			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
 			
-			Iterator<Column> parentColumns = parentDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					primaryKeys.add(column.getColumnName());
+					primaryKeys.add(attribute.getColumnName());
 				}
 			}
 		}
@@ -1806,14 +1806,14 @@ public class DatabaseHandler implements IAdapter {
 	
 	public static final Iterator<String> getMandatoryFields(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
-		Iterator<Column> columns = databaseMappingDescriptor.getColumns();
+		Iterator<Attribute> attributes = databaseMappingDescriptor.getAttributes();
 		Collection<String> mandatoryFields = new ArrayList<String>();
 		
-		while(columns.hasNext()) {
-			Column column = columns.next();
+		while(attributes.hasNext()) {
+			Attribute attribute = attributes.next();
 			
-			if(column.isNotNull()) {
-				mandatoryFields.add(column.getColumnName());
+			if(attribute.isNotNull()) {
+				mandatoryFields.add(attribute.getColumnName());
 			}
 		}
 		
@@ -1833,14 +1833,14 @@ public class DatabaseHandler implements IAdapter {
 			}
 
 			
-			Iterator<Column> parentColumns = referedDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					if(column.isNotNull()) {
-						mandatoryFields.add(column.getColumnName());
+					if(attribute.isNotNull()) {
+						mandatoryFields.add(attribute.getColumnName());
 					}
 				}
 			}
@@ -1850,14 +1850,14 @@ public class DatabaseHandler implements IAdapter {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
 			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
 			
-			Iterator<Column> parentColumns = parentDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					if(column.isNotNull()) {
-						mandatoryFields.add(column.getColumnName());
+					if(attribute.isNotNull()) {
+						mandatoryFields.add(attribute.getColumnName());
 					}
 				}
 			}
@@ -1906,15 +1906,15 @@ public class DatabaseHandler implements IAdapter {
 	
 	public static final Iterator<String> getUniqueFields(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		
-		Iterator<Column> columns = databaseMappingDescriptor.getColumns();
+		Iterator<Attribute> attributes = databaseMappingDescriptor.getAttributes();
 		Collection<String> uniqueFields = new ArrayList<String>();
 		
-		while(columns.hasNext()) {
-			Column column = columns.next();
+		while(attributes.hasNext()) {
+			Attribute attribute = attributes.next();
 			
-			boolean isUnique = column.isUnique();
+			boolean isUnique = attribute.isUnique();
 			if(isUnique) {
-				uniqueFields.add(column.getColumnName());
+				uniqueFields.add(attribute.getColumnName());
 			}
 		}
 		
@@ -1933,16 +1933,16 @@ public class DatabaseHandler implements IAdapter {
 			}
 
 			
-			Iterator<Column> parentColumns = referedDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
 
-					boolean isUnique = column.isUnique();
+					boolean isUnique = attribute.isUnique();
 					if(isUnique) {
-						uniqueFields.add(column.getColumnName());
+						uniqueFields.add(attribute.getColumnName());
 					}
 				}
 			}
@@ -1952,16 +1952,16 @@ public class DatabaseHandler implements IAdapter {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
 			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
 			
-			Iterator<Column> parentColumns = parentDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
 
-					boolean isUnique = column.isUnique();
+					boolean isUnique = attribute.isUnique();
 					if(isUnique) {
-						uniqueFields.add(column.getColumnName());
+						uniqueFields.add(attribute.getColumnName());
 					}
 				}
 			}
@@ -2028,13 +2028,13 @@ public class DatabaseHandler implements IAdapter {
 			}
 
 			
-			Iterator<Column> parentColumns = referedDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					foreignKeys.add(column.getColumnName());
+					foreignKeys.add(attribute.getColumnName());
 				}
 			}
 		}
@@ -2043,13 +2043,13 @@ public class DatabaseHandler implements IAdapter {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
 			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
 			
-			Iterator<Column> parentColumns = parentDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					foreignKeys.add(column.getColumnName());
+					foreignKeys.add(attribute.getColumnName());
 				}
 			}
 		}
@@ -2100,11 +2100,11 @@ public class DatabaseHandler implements IAdapter {
 			while(keys.hasNext()) {
 				
 				String columnName = keys.next();
-				if(!databaseMappingDescriptor.containsColumnBasedOnColumnName(columnName)) {
+				if(!databaseMappingDescriptor.containsAttributeBasedOnColumnName(columnName)) {
 					continue;
 				}
 				
-				String variableName = databaseMappingDescriptor.getColumnBasedOnColumnName(columnName).getVariableName();
+				String variableName = databaseMappingDescriptor.getAttributeBasedOnColumnName(columnName).getVariableName();
 				
 				Object object = value.get(columnName);
 				
@@ -2174,14 +2174,14 @@ public class DatabaseHandler implements IAdapter {
 				jsSiminovValues.put(jsSiminovValue.getType(), jsSiminovValue);
 			}
 			
-			Iterator<Column> parentColumns = referedDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					columnNames.add(column.getColumnName());
-					columnValues.add(jsSiminovValues.get(column.getVariableName()).getValue());
+					columnNames.add(attribute.getColumnName());
+					columnValues.add(jsSiminovValues.get(attribute.getVariableName()).getValue());
 				}
 			}
 		}
@@ -2228,14 +2228,14 @@ public class DatabaseHandler implements IAdapter {
 				jsSiminovValues.put(jsSiminovValue.getType(), jsSiminovValue);
 			}
 			
-			Iterator<Column> parentColumns = referedDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					columnNames.add(column.getColumnName());
-					columnValues.add(jsSiminovValues.get(column.getVariableName()).getValue());
+					columnNames.add(attribute.getColumnName());
+					columnValues.add(jsSiminovValues.get(attribute.getVariableName()).getValue());
 				}
 			}
 		}
@@ -2282,17 +2282,17 @@ public class DatabaseHandler implements IAdapter {
 				jsSiminovValues.put(jsSiminovValue.getType(), jsSiminovValue);
 			}
 			
-			Iterator<Column> parentColumns = referedDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					String columnValue = jsSiminovValues.get(column.getVariableName()).getValue();
+					String columnValue = jsSiminovValues.get(attribute.getVariableName()).getValue();
 					if(whereClause.length() <= 0) {
-						whereClause.append(column.getColumnName() + "= '" + columnValue + "'");
+						whereClause.append(attribute.getColumnName() + "= '" + columnValue + "'");
 					} else {
-						whereClause.append(" AND " + column.getColumnName() + "= '" + columnValue + "'");
+						whereClause.append(" AND " + attribute.getColumnName() + "= '" + columnValue + "'");
 					}
 				}
 			}
@@ -2339,17 +2339,17 @@ public class DatabaseHandler implements IAdapter {
 				jsSiminovValues.put(jsSiminovValue.getType(), jsSiminovValue);
 			}
 			
-			Iterator<Column> parentColumns = referedDatabaseMappingDescriptor.getColumns();
-			while(parentColumns.hasNext()) {
-				Column column = parentColumns.next();
+			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			while(parentAttributes.hasNext()) {
+				Attribute attribute = parentAttributes.next();
 				
-				boolean isPrimary = column.isPrimaryKey();
+				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					String columnValue = jsSiminovValues.get(column.getVariableName()).getValue();
+					String columnValue = jsSiminovValues.get(attribute.getVariableName()).getValue();
 					if(whereClause.length() <= 0) {
-						whereClause.append(column.getColumnName() + "= '" + columnValue + "'");
+						whereClause.append(attribute.getColumnName() + "= '" + columnValue + "'");
 					} else {
-						whereClause.append(" AND " + column.getColumnName() + "= '" + columnValue + "'");
+						whereClause.append(" AND " + attribute.getColumnName() + "= '" + columnValue + "'");
 					}
 				}
 			}
@@ -2426,11 +2426,11 @@ public class DatabaseHandler implements IAdapter {
 			Iterator<String> foreignKeys = getPrimaryKeys(databaseMappingDescriptor);
 			while(foreignKeys.hasNext()) {
 				String foreignKey = foreignKeys.next();
-				Column column = databaseMappingDescriptor.getColumnBasedOnColumnName(foreignKey);
+				Attribute attribute = databaseMappingDescriptor.getAttributeBasedOnColumnName(foreignKey);
 				
 				Object columnValue = null;
 				
-				HybridSiminovValue value = jsSiminovData.getValueBasedOnType(column.getVariableName());
+				HybridSiminovValue value = jsSiminovData.getValueBasedOnType(attribute.getVariableName());
 				columnValue = value.getValue();
 
 				if(whereClause.length() <= 0) {
@@ -2483,8 +2483,8 @@ public class DatabaseHandler implements IAdapter {
 				Iterator<String> foreignKeys = getPrimaryKeys(referedDatabaseMappingDescriptor);
 				while(foreignKeys.hasNext()) {
 					String foreignKey = foreignKeys.next();
-					Column column = referedDatabaseMappingDescriptor.getColumnBasedOnColumnName(foreignKey);
-					Object columnValue = data.get(column.getColumnName());
+					Attribute attribute = referedDatabaseMappingDescriptor.getAttributeBasedOnColumnName(foreignKey);
+					Object columnValue = data.get(attribute.getColumnName());
 
 					if(whereClause.length() <= 0) {
 						whereClause.append(foreignKey + "='" + columnValue.toString() + "'"); 
@@ -2500,9 +2500,9 @@ public class DatabaseHandler implements IAdapter {
 				Iterator<String> foreignKeys = getPrimaryKeys(referedDatabaseMappingDescriptor);
 				while(foreignKeys.hasNext()) {
 					String foreignKey = foreignKeys.next();
-					Column column = referedDatabaseMappingDescriptor.getColumnBasedOnColumnName(foreignKey);
+					Attribute attribute = referedDatabaseMappingDescriptor.getAttributeBasedOnColumnName(foreignKey);
 
-					Object columnValue = data.get(column.getColumnName());
+					Object columnValue = data.get(attribute.getColumnName());
 					if(columnValue == null) {
 						continue;
 					}
@@ -2550,8 +2550,8 @@ public class DatabaseHandler implements IAdapter {
 				Iterator<String> foreignKeys = getPrimaryKeys(referedDatabaseMappingDescriptor);
 				while(foreignKeys.hasNext()) {
 					String foreignKey = foreignKeys.next();
-					Column column = referedDatabaseMappingDescriptor.getColumnBasedOnColumnName(foreignKey);
-					Object columnValue = data.get(column.getColumnName());
+					Attribute attribute = referedDatabaseMappingDescriptor.getAttributeBasedOnColumnName(foreignKey);
+					Object columnValue = data.get(attribute.getColumnName());
 
 					if(whereClause.length() <= 0) {
 						whereClause.append(foreignKey + "='" + columnValue.toString() + "'"); 
@@ -2567,9 +2567,9 @@ public class DatabaseHandler implements IAdapter {
 				Iterator<String> foreignKeys = getPrimaryKeys(referedDatabaseMappingDescriptor);
 				while(foreignKeys.hasNext()) {
 					String foreignKey = foreignKeys.next();
-					Column column = referedDatabaseMappingDescriptor.getColumnBasedOnColumnName(foreignKey);
+					Attribute attribute = referedDatabaseMappingDescriptor.getAttributeBasedOnColumnName(foreignKey);
 
-					Object columnValue = data.get(column.getColumnName());
+					Object columnValue = data.get(attribute.getColumnName());
 					if(columnValue == null) {
 						continue;
 					}
