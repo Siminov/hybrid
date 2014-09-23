@@ -6,7 +6,6 @@ function ApplicationDescriptor() {
 	var serviceDescriptorPaths = new Array();
 
 	var syncDescriptors = new Array();
-	var authenticationDescriptor;
 	var notificationDescriptor;
 	
 	this.getProperties = function() {
@@ -43,14 +42,6 @@ function ApplicationDescriptor() {
 	
 	this.addSyncDescriptor = function(syncDescriptor) {
 		syncDescriptors.push(syncDescriptor);		
-	}
-	
-	this.getAuthenticationDescriptor = function() {
-		return authenticationDescriptor;		
-	}
-	
-	this.setAuthenticationDescriptor = function(ad) {
-		authenticationDescriptor = ad;
 	}
 }
 

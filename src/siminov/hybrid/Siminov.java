@@ -24,7 +24,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import siminov.hybrid.adapter.AdapterHandler;
-import siminov.hybrid.events.AuthenticationEventHandler;
 import siminov.hybrid.events.DatabaseEventHandler;
 import siminov.hybrid.events.NotificationEventHandler;
 import siminov.hybrid.events.SiminovEventHandler;
@@ -305,7 +304,6 @@ public class Siminov extends siminov.connect.Siminov {
 		
 		applicationDescriptor.addEvent(SiminovEventHandler.class.getName());
 		applicationDescriptor.addEvent(DatabaseEventHandler.class.getName());
-		applicationDescriptor.addEvent(AuthenticationEventHandler.class.getName());
 		applicationDescriptor.addEvent(SyncEventHandler.class.getName());
 		applicationDescriptor.addEvent(NotificationEventHandler.class.getName());
 	}

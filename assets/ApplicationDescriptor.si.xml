@@ -89,15 +89,6 @@
     </sync-descriptors>
     
 
-    <!-- Authentication -->
-    <authentication-descriptor>
-        
-        	<!-- Mandatory Field -->
-        <property name="type">type_of_authentication</property>
-		
-    </authentication-descriptor>
-
-    
     <!-- Push Notification -->
     <notification-descriptor>
         

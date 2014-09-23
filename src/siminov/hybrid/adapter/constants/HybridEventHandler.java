@@ -86,15 +86,6 @@ public interface HybridEventHandler {
 	public String INOTIFICATION_EVENT_ON_ERROR = "onError";
 	
 	
-	public String IAUTHENTICATION_EVENT_ON_AUTHENTICATION_START = "onAuthenticationStart";
-	
-	
-	public String IAUTHENTICATION_EVENT_ON_AUTHENTICATION_FINISH = "onAuthenticationFinish";
-	
-	
-	public String IAUTHENTICATION_EVENT_ON_AUTHENTICATION_TERMINATE = "onAuthenticationTerminate";
-
-	
 	public String ISYNC_EVENT_ON_SYNC_STARTED = "onSyncStarted";
 	
 	

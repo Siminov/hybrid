@@ -25,10 +25,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import siminov.connect.authorization.design.ICredential;
 import siminov.connect.connection.design.IConnectionRequest;
 import siminov.connect.connection.design.IConnectionResponse;
-import siminov.connect.exception.AuthorizationException;
 import siminov.connect.exception.NotificationException;
 import siminov.connect.model.ServiceDescriptor.API.HeaderParameter;
 import siminov.connect.model.ServiceDescriptor.API.QueryParameter;
@@ -39,7 +37,6 @@ import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.constants.HybridConnectionRequest;
 import siminov.hybrid.adapter.constants.HybridConnectionResponse;
-import siminov.hybrid.adapter.constants.HybridCredential;
 import siminov.hybrid.adapter.constants.HybridDatabaseDescriptor;
 import siminov.hybrid.adapter.constants.HybridDatabaseMappingDescriptor;
 import siminov.hybrid.adapter.constants.HybridLibraryDescriptor;
@@ -1188,42 +1185,6 @@ public class Resources {
 		hybridNotificationException.addValue(hybridMessage);
 
 		return hybridNotificationException;
-	}
-	
-	
-	public HybridSiminovData generateHybridCredential(ICredential credential) throws AuthorizationException {
-		
-		HybridSiminovData credentialHybridData = new HybridSiminovData();
-		credentialHybridData.setDataType(HybridCredential.CREDENTIAL);
-		
-		/*
-		 * Inflate Account Id
-		 */
-		HybridSiminovValue accountIdHybridValue = new HybridSiminovValue();
-		accountIdHybridValue.setType(HybridCredential.ACCOUNT_ID);
-		accountIdHybridValue.setValue(credential.getAccountId());
-
-		credentialHybridData.addValue(accountIdHybridValue);
-		
-		/*
-		 * Inflate Token
-		 */
-		HybridSiminovValue tokenHybridValue = new HybridSiminovValue();
-		tokenHybridValue.setType(HybridCredential.TOKEN);
-		tokenHybridValue.setValue(credential.getToken());
-		
-		credentialHybridData.addValue(tokenHybridValue);
-		
-		/*
-		 * Inflate Is Active
-		 */
-		HybridSiminovValue isActiveHybridValue = new HybridSiminovValue();
-		isActiveHybridValue.setType(HybridCredential.IS_ACTIVE);
-		isActiveHybridValue.setValue(String.valueOf(credential.isActive()));
-			
-		credentialHybridData.addValue(isActiveHybridValue);
-		
-		return credentialHybridData;
 	}
 	
 	
