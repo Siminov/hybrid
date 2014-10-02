@@ -31,7 +31,7 @@ import android.webkit.WebView;
 public class Initializer implements IInitializer {
 
 	private ResourceManager ormResourceManager = ResourceManager.getInstance();
-	private siminov.hybrid.resource.Resources hybridResources = siminov.hybrid.resource.Resources.getInstance(); 
+	private siminov.hybrid.resource.ResourceManager hybridResourceManager = siminov.hybrid.resource.ResourceManager.getInstance(); 
 	
 	private List<Object> parameters = new ArrayList<Object> ();
 	
@@ -62,8 +62,8 @@ public class Initializer implements IInitializer {
 		
 		ormResourceManager.setApplicationContext(context);
 
-		hybridResources.setWebView(webView);
-		hybridResources.setWebActivity(activity);
+		hybridResourceManager.setWebView(webView);
+		hybridResourceManager.setWebActivity(activity);
 		
 		Siminov.start();
 		
