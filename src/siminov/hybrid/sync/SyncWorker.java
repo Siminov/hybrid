@@ -115,14 +115,14 @@ public class SyncWorker implements IWorker {
 					String service = services.next();
 					
 					String serviceName = service.substring(0, service.indexOf(Constants.SYNC_DESCRIPTOR_SERVICE_SEPARATOR));
-					String apiName = service.substring(service.indexOf(Constants.SYNC_DESCRIPTOR_SERVICE_SEPARATOR) + 1, service.length());
+					String requestName = service.substring(service.indexOf(Constants.SYNC_DESCRIPTOR_SERVICE_SEPARATOR) + 1, service.length());
 
 					
 					ServiceDescriptor serviceDescriptor = resourceManager.requiredServiceDescriptorBasedOnName(serviceName);
 					
 					IService genericService = new GenericService();
 					genericService.setService(serviceName);
-					genericService.setApi(apiName);
+					genericService.setRequest(requestName);
 					
 					genericService.setServiceDescriptor(serviceDescriptor);
 

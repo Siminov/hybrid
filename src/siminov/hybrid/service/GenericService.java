@@ -23,7 +23,7 @@ import siminov.connect.connection.design.IConnectionRequest;
 import siminov.connect.connection.design.IConnectionResponse;
 import siminov.connect.exception.ServiceException;
 import siminov.connect.model.ServiceDescriptor;
-import siminov.connect.model.ServiceDescriptor.API;
+import siminov.connect.model.ServiceDescriptor.Request;
 import siminov.connect.service.NameValuePair;
 import siminov.connect.service.Service;
 import siminov.connect.service.design.IService;
@@ -33,7 +33,7 @@ import siminov.hybrid.adapter.constants.HybridServiceHandler;
 import siminov.hybrid.events.SiminovEventHandler;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
-import siminov.hybrid.resource.Resources;
+import siminov.hybrid.resource.ResourceManager;
 import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
@@ -52,8 +52,8 @@ public class GenericService extends Service {
 		}
 		
 
-		API api = serviceDescriptor.getApi(getApi());
-		String apiHandler = api.getHandler();
+		Request request = serviceDescriptor.getRequest(getRequest());
+		String apiHandler = request.getHandler();
 
 		/*
 		 * Invoke Native Handler
@@ -130,8 +130,8 @@ public class GenericService extends Service {
 		}
 		
 
-		API api = serviceDescriptor.getApi(getApi());
-		String apiHandler = api.getHandler();
+		Request request = serviceDescriptor.getRequest(getRequest());
+		String apiHandler = request.getHandler();
 
 		/*
 		 * Invoke Native Handler
@@ -208,8 +208,8 @@ public class GenericService extends Service {
 		}
 		
 
-		API api = serviceDescriptor.getApi(getApi());
-		String apiHandler = api.getHandler();
+		Request request = serviceDescriptor.getRequest(getRequest());
+		String apiHandler = request.getHandler();
 
 		/*
 		 * Invoke Native Handler
@@ -287,8 +287,8 @@ public class GenericService extends Service {
 		}
 		
 
-		API api = serviceDescriptor.getApi(getApi());
-		String apiHandler = api.getHandler();
+		Request request = serviceDescriptor.getRequest(getRequest());
+		String apiHandler = request.getHandler();
 
 		/*
 		 * Invoke Native Handler
@@ -365,8 +365,8 @@ public class GenericService extends Service {
 		}
 		
 
-		API api = serviceDescriptor.getApi(getApi());
-		String apiHandler = api.getHandler();
+		Request request = serviceDescriptor.getRequest(getRequest());
+		String apiHandler = request.getHandler();
 
 		/*
 		 * Invoke Native Handler
@@ -432,10 +432,10 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onApiInvoke(IConnectionRequest connectionRequest) {
+	public void onRequestInvoke(IConnectionRequest connectionRequest) {
 
 		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
-		Resources hybridResources = Resources.getInstance();
+		ResourceManager hybridResourceManager = ResourceManager.getInstance();
 		
 		ServiceDescriptor serviceDescriptor = getServiceDescriptor();
 		if(serviceDescriptor == null) {
@@ -444,15 +444,15 @@ public class GenericService extends Service {
 		}
 		
 
-		API api = serviceDescriptor.getApi(getApi());
-		String apiHandler = api.getHandler();
+		Request request = serviceDescriptor.getRequest(getRequest());
+		String apiHandler = request.getHandler();
 
 		/*
 		 * Invoke Native Handler
 		 */
 		IService service = getNativeHandler(apiHandler);
 		if(service != null) {
-			service.onApiInvoke(connectionRequest);
+			service.onRequestInvoke(connectionRequest);
 		}
 		
 		
@@ -475,7 +475,7 @@ public class GenericService extends Service {
 
 		hybridSiminovDatas.addHybridSiminovData(hybridAPIHandler);
 		
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridConnectionRequest(connectionRequest));
+		hybridSiminovDatas.addHybridSiminovData(hybridResourceManager.generateHybridConnectionRequest(connectionRequest));
 
 		//Add Resources
 		HybridSiminovData serviceResources = new HybridSiminovData();
@@ -513,10 +513,10 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
-	public void onApiFinish(IConnectionResponse connectionResponse) {
+	public void onRequestFinish(IConnectionResponse connectionResponse) {
 
 		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
-		Resources hybridResources = Resources.getInstance();
+		ResourceManager hybridResourceManager = ResourceManager.getInstance();
 		
 		ServiceDescriptor serviceDescriptor = getServiceDescriptor();
 		if(serviceDescriptor == null) {
@@ -525,15 +525,15 @@ public class GenericService extends Service {
 		}
 		
 
-		API api = serviceDescriptor.getApi(getApi());
-		String apiHandler = api.getHandler();
+		Request request = serviceDescriptor.getRequest(getRequest());
+		String apiHandler = request.getHandler();
 
 		/*
 		 * Invoke Native Handler
 		 */
 		IService service = getNativeHandler(apiHandler);
 		if(service != null) {
-			service.onApiFinish(connectionResponse);
+			service.onRequestFinish(connectionResponse);
 		}
 		
 		
@@ -556,7 +556,7 @@ public class GenericService extends Service {
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 
-		hybridSiminovDatas.addHybridSiminovData(hybridResources.generateHybridConnectionResponse(connectionResponse));
+		hybridSiminovDatas.addHybridSiminovData(hybridResourceManager.generateHybridConnectionResponse(connectionResponse));
 		
 		
 		//Event Resources
@@ -605,8 +605,8 @@ public class GenericService extends Service {
 		}
 		
 
-		API api = serviceDescriptor.getApi(getApi());
-		String apiHandler = api.getHandler();
+		Request request = serviceDescriptor.getRequest(getRequest());
+		String apiHandler = request.getHandler();
 
 		/*
 		 * Invoke Native Handler
