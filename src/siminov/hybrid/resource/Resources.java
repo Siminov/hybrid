@@ -1,6 +1,6 @@
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 
 package siminov.hybrid.resource;
@@ -71,7 +72,7 @@ import android.webkit.WebView;
 public class Resources {
 
 	private static Resources hybridResources = null;
-	private siminov.orm.resource.Resources ormResources = null;
+	private siminov.orm.resource.ResourceManager ormResourceManager = null;
 	
 	private ApplicationDescriptor applicationDescriptor = null;
 	
@@ -86,7 +87,7 @@ public class Resources {
 	private Map<String, String> webNativeClassMapping = new ConcurrentHashMap<String, String>();
 	
 	private Resources() {
-		ormResources = siminov.orm.resource.Resources.getInstance();
+		ormResourceManager = siminov.orm.resource.ResourceManager.getInstance();
 		eventHandler = EventHandler.getInstance();
 	}
 	
@@ -397,7 +398,7 @@ public class Resources {
 		className = className.substring(className.lastIndexOf(".") + 1, className.length());
 
 		String nativeClassName = webNativeClassMapping.get(className);
-		return ormResources.getDatabaseDescriptorBasedOnClassName(nativeClassName);
+		return ormResourceManager.getDatabaseDescriptorBasedOnClassName(nativeClassName);
 		
 	}
 	
@@ -411,7 +412,7 @@ public class Resources {
 		className = className.substring(className.lastIndexOf(".") + 1, className.length());
 
 		String nativeClassName = webNativeClassMapping.get(className);
-		return ormResources.getDatabaseDescriptorNameBasedOnClassName(nativeClassName);
+		return ormResourceManager.getDatabaseDescriptorNameBasedOnClassName(nativeClassName);
 		
 	}
 	
@@ -421,7 +422,7 @@ public class Resources {
 	 * @return Database Descriptor Name.
 	 */
 	public String getDatabaseDescriptorNameBasedOnTableName(final String tableName) {
-		return ormResources.getDatabaseDescriptorNameBasedOnTableName(tableName);
+		return ormResourceManager.getDatabaseDescriptorNameBasedOnTableName(tableName);
 	}
 
 	/**
@@ -430,7 +431,7 @@ public class Resources {
 	 * @return Database Descriptor.
 	 */
 	public DatabaseDescriptor getDatabaseDescriptorBasedOnTableName(final String tableName) {
-		return ormResources.getDatabaseDescriptorBasedOnTableName(tableName);
+		return ormResourceManager.getDatabaseDescriptorBasedOnTableName(tableName);
 	}
 	
 	/**
@@ -444,13 +445,13 @@ public class Resources {
 
 		String nativeClassName = webNativeClassMapping.get(className);
 		if(nativeClassName == null ||nativeClassName.length() <= 0) {
-			DatabaseMappingDescriptor databaseMappingDescriptor = ormResources.requiredDatabaseMappingDescriptorBasedOnClassName(className);
+			DatabaseMappingDescriptor databaseMappingDescriptor = ormResourceManager.requiredDatabaseMappingDescriptorBasedOnClassName(className);
 			synchronizeMappings();
 			
 			return databaseMappingDescriptor;
 		}
 		
-		return ormResources.requiredDatabaseMappingDescriptorBasedOnClassName(nativeClassName);
+		return ormResourceManager.requiredDatabaseMappingDescriptorBasedOnClassName(nativeClassName);
 		
 	}
 	
@@ -460,7 +461,7 @@ public class Resources {
 	 * @return Database Mapping Descriptor.
 	 */
 	public DatabaseMappingDescriptor getDatabaseMappingDescriptorBasedOnTableName(final String tableName) {
-		return ormResources.getDatabaseMappingDescriptorBasedOnTableName(tableName);
+		return ormResourceManager.getDatabaseMappingDescriptorBasedOnTableName(tableName);
 	}
 
 	/**
@@ -498,7 +499,7 @@ public class Resources {
 	 */
 	public void synchronizeMappings() {
 
-		Iterator<DatabaseMappingDescriptor> databaseMappingDescriptors = ormResources.getDatabaseMappingDescriptors();
+		Iterator<DatabaseMappingDescriptor> databaseMappingDescriptors = ormResourceManager.getDatabaseMappingDescriptors();
 		while(databaseMappingDescriptors.hasNext()) {
 			DatabaseMappingDescriptor databaseMappingDescriptor = databaseMappingDescriptors.next();
 			
