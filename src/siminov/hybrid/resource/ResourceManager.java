@@ -29,8 +29,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import siminov.connect.connection.design.IConnectionRequest;
 import siminov.connect.connection.design.IConnectionResponse;
 import siminov.connect.exception.NotificationException;
-import siminov.connect.model.ServiceDescriptor.API.HeaderParameter;
-import siminov.connect.model.ServiceDescriptor.API.QueryParameter;
+import siminov.connect.model.ServiceDescriptor.Request.HeaderParameter;
+import siminov.connect.model.ServiceDescriptor.Request.QueryParameter;
 import siminov.connect.notification.design.IMessage;
 import siminov.connect.notification.design.IRegistration;
 import siminov.connect.sync.design.ISyncRequest;
@@ -69,9 +69,9 @@ import android.webkit.WebView;
  * <p>
  * Such As: Provides HybridDescriptor, AdapterDescriptor.
  */
-public class Resources {
+public class ResourceManager {
 
-	private static Resources hybridResources = null;
+	private static ResourceManager hybridResources = null;
 	private siminov.orm.resource.ResourceManager ormResourceManager = null;
 	
 	private ApplicationDescriptor applicationDescriptor = null;
@@ -86,7 +86,7 @@ public class Resources {
 
 	private Map<String, String> webNativeClassMapping = new ConcurrentHashMap<String, String>();
 	
-	private Resources() {
+	private ResourceManager() {
 		ormResourceManager = siminov.orm.resource.ResourceManager.getInstance();
 		eventHandler = EventHandler.getInstance();
 	}
@@ -96,10 +96,10 @@ public class Resources {
 	 * 
 	 * @return Resources instance.
 	 */
-	public static Resources getInstance() {
+	public static ResourceManager getInstance() {
 		
 		if(hybridResources == null) {
-			hybridResources = new Resources();
+			hybridResources = new ResourceManager();
 		}
 		
 		return hybridResources;
@@ -1123,7 +1123,7 @@ public class Resources {
 		try {
 			hybridResponse.setValue(URLEncoder.encode(Utils.toString(connectionResponse.getResponse())));
 		} catch(SiminovException se) {
-			Log.debug(Resources.class.getName(), "generateHybridConnectionRequest", "Siminov Exception caught while converting connection response input stream to string, " + se.getMessage());
+			Log.debug(ResourceManager.class.getName(), "generateHybridConnectionRequest", "Siminov Exception caught while converting connection response input stream to string, " + se.getMessage());
 		}
 		
 		hybridConnectionResponse.addValue(hybridResponse);
