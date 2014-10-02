@@ -1,3 +1,20 @@
+/** 
+ * [SIMINOV FRAMEWORK]
+ * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
 package siminov.hybrid.reader;
 
 import java.io.IOException;
@@ -12,7 +29,7 @@ import siminov.hybrid.model.ApplicationDescriptor;
 import siminov.orm.exception.DeploymentException;
 import siminov.orm.log.Log;
 import siminov.orm.reader.SiminovSAXDefaultHandler;
-import siminov.orm.resource.Resources;
+import siminov.orm.resource.ResourceManager;
 import android.content.Context;
 
 
@@ -20,7 +37,7 @@ public class ApplicationDescriptorReader extends SiminovSAXDefaultHandler implem
 
 	private ApplicationDescriptor applicationDescriptor = null;
 	
-	private Resources resources = Resources.getInstance();
+	private ResourceManager resourceManager = ResourceManager.getInstance();
 
 	private StringBuilder tempValue = new StringBuilder();
 	private String propertyName = null;
@@ -31,7 +48,7 @@ public class ApplicationDescriptorReader extends SiminovSAXDefaultHandler implem
 
 	public ApplicationDescriptorReader() {
 		
-		Context context = resources.getApplicationContext();
+		Context context = resourceManager.getApplicationContext();
 		if(context == null) {
 			Log.error(getClass().getName(), "Constructor", "Invalid Application Context found.");
 			throw new DeploymentException(getClass().getName(), "Constructor", "Invalid Application Context found.");

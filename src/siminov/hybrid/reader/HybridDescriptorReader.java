@@ -1,7 +1,6 @@
 /** 
-
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 
 package siminov.hybrid.reader;
@@ -31,7 +31,7 @@ import siminov.hybrid.model.HybridDescriptor;
 import siminov.orm.exception.DeploymentException;
 import siminov.orm.log.Log;
 import siminov.orm.reader.SiminovSAXDefaultHandler;
-import siminov.orm.resource.Resources;
+import siminov.orm.resource.ResourceManager;
 import android.content.Context;
 
 
@@ -95,7 +95,7 @@ Example:
 public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements Constants {
 
 	private StringBuilder tempValue = new StringBuilder();
-	private Resources resources = Resources.getInstance();
+	private ResourceManager resourceManager = ResourceManager.getInstance();
 	
 	private HybridDescriptor hybridDescriptor = new HybridDescriptor();
 	
@@ -121,7 +121,7 @@ public class HybridDescriptorReader extends SiminovSAXDefaultHandler implements 
 	
 	private void parse(String fileName) {
 
-		Context context = resources.getApplicationContext();
+		Context context = resourceManager.getApplicationContext();
 		if(context == null) {
 			Log.error(getClass().getName(), "Constructor", "Invalid context found.");
 			throw new DeploymentException(getClass().getName(), "Constructor", "Invalid context found.");
