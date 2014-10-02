@@ -48,22 +48,33 @@
             
         </handler>
 
-        <handler>
+		<handler>
             
-            <property name="name">GET-DATABASE-DESCRIPTORS</property>
+            <property name="name">GET-DATABASE-DESCRIPTOR</property>
             <property name="type">SYNC</property>
-            <property name="map_to">getDatabaseDescriptors</property>
-            <property name="description">Get Database Descriptors</property>
+            <property name="map_to">getDatabaseDescriptor</property>
+            <property name="description">Get Database Descriptor</property>
 
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">java.lang.String</property>
+                	<property name="description">Database Descriptor Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
 			<return>
 	        
 			    	<property name="type">java.lang.String</property>
-	                <property name="description">Database Descriptors</property>
+	                <property name="description">Database Descriptor</property>
 	                
 	      	</return>
             
-        </handler>
-            
+        </handler>        
+        
         <handler>
             
             <property name="name">GET-DATABASE-MAPPING-DESCRIPTOR-BASED-ON-CLASS-NAME</property>
@@ -117,78 +128,7 @@
 	      	</return>
             
         </handler>
-
-        <handler>
-            
-            <property name="name">GET-DATABASE-MAPPING-DESCRIPTORS</property>
-            <property name="type">SYNC</property>
-            <property name="map_to">getDatabaseMappingDescriptors</property>
-            <property name="description">Get Database Mapping Descriptors</property>
-
-			<return>
-	        
-			    	<property name="type">java.lang.String</property>
-	                <property name="description">Database Mapping Descriptors</property>
-	                
-	      	</return>
-            
-        </handler>
         
-        
-        
-        <!-- HYBRID BASED HANDLERS -->
-        <handler>
-            
-            <property name="name">GET-HANDLERS</property>
-            <property name="type">SYNC</property>
-            <property name="map_to">getHandlers</property>
-            <property name="description">Get Handlers</property>
-
-			<return>
-	        
-			    	<property name="type">java.lang.String</property>
-	                <property name="description">Handlers</property>
-	                
-	      	</return>
-            
-        </handler>
-        
-
-        <handler>
-            
-            <property name="name">GET-HANDLER</property>
-            <property name="type">SYNC</property>
-            <property name="map_to">getHandler</property>
-            <property name="description">Get Handler</property>
-
-            <parameters>
-            
-                <parameter>
-                
-                	<property name="type">java.lang.String</property>
-                	<property name="description">Adapter Name</property>
-                	
-            	</parameter>
-
-                <parameter>
-                
-                	<property name="type">java.lang.String</property>
-                	<property name="description">Handler Name</property>
-                	
-            	</parameter>
-                			
-			</parameters>
-            
-            
-			<return>
-	        
-			    	<property name="type">java.lang.String</property>
-	                <property name="description">Handler</property>
-	                
-	      	</return>
-            
-        </handler>
-
 	</handlers>
 	
 </adapter-descriptor>
