@@ -1,6 +1,6 @@
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 
 package siminov.hybrid.adapter.handlers;
@@ -39,7 +40,7 @@ import siminov.orm.model.DatabaseMappingDescriptor;
  */
 public class ResourcesHandler implements IAdapter {
 
-	private static siminov.orm.resource.Resources ormResources = siminov.orm.resource.Resources.getInstance();
+	private static siminov.orm.resource.ResourceManager ormResourceManager = siminov.orm.resource.ResourceManager.getInstance();
 	private static siminov.hybrid.resource.Resources hybridResources = siminov.hybrid.resource.Resources.getInstance(); 
 
 	
@@ -51,7 +52,7 @@ public class ResourcesHandler implements IAdapter {
 	 */
 	public String getApplicationDescriptor() throws SiminovException {
 		
-		ApplicationDescriptor applicationDescriptor = ormResources.getApplicationDescriptor();
+		ApplicationDescriptor applicationDescriptor = ormResourceManager.getApplicationDescriptor();
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		HybridSiminovData hybridApplicationDescriptor = new HybridSiminovData();
@@ -138,7 +139,7 @@ public class ResourcesHandler implements IAdapter {
 	 */
 	public String getDatabaseDescriptors() throws SiminovException {
 		
-		Iterator<DatabaseDescriptor> databaseDescriptors = ormResources.getDatabaseDescriptors();
+		Iterator<DatabaseDescriptor> databaseDescriptors = ormResourceManager.getDatabaseDescriptors();
 		
 		HybridSiminovDatas hybridDatabaseDescriptors = new HybridSiminovDatas();
 		while(databaseDescriptors.hasNext()) {
@@ -194,7 +195,7 @@ public class ResourcesHandler implements IAdapter {
 	 */
 	public String getDatabaseMappingDescriptors() throws SiminovException {
 		
-		Iterator<DatabaseMappingDescriptor> databaseMappingDescriptors = ormResources.getDatabaseMappingDescriptors();
+		Iterator<DatabaseMappingDescriptor> databaseMappingDescriptors = ormResourceManager.getDatabaseMappingDescriptors();
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		while(databaseMappingDescriptors.hasNext()) {

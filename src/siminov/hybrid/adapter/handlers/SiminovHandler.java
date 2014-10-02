@@ -1,6 +1,6 @@
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 package siminov.hybrid.adapter.handlers;
 
@@ -52,7 +53,7 @@ import android.webkit.JavascriptInterface;
  */
 public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, IHandler {
 
-	protected siminov.orm.resource.Resources ormResources = siminov.orm.resource.Resources.getInstance();
+	protected siminov.orm.resource.ResourceManager ormResourceManager = siminov.orm.resource.ResourceManager.getInstance();
 	protected Resources hybridResources = Resources.getInstance();
 
 	protected AdapterFactory adapterResources = AdapterFactory.getInstance();
