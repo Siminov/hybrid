@@ -56,7 +56,7 @@ import siminov.orm.resource.ResourceManager;
 public class DatabaseHandler implements IAdapter {
 
 	private static ResourceManager ormResourceManager = ResourceManager.getInstance();
-	private static siminov.hybrid.resource.Resources hybridResources = siminov.hybrid.resource.Resources.getInstance();
+	private static siminov.hybrid.resource.ResourceManager hybridResourceManager = siminov.hybrid.resource.ResourceManager.getInstance();
 
 	
 	/**
@@ -158,7 +158,7 @@ public class DatabaseHandler implements IAdapter {
 					
 					HybridSiminovData data = datas.next();
 					
-					String mappedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
+					String mappedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
 						referedData = data;
 						break;
@@ -178,7 +178,7 @@ public class DatabaseHandler implements IAdapter {
 					
 					HybridSiminovData data = datas.next();
 					
-					String mappedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
+					String mappedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
 						data.addData(jsSiminovData);
 						saveOrUpdate(data);
@@ -192,7 +192,7 @@ public class DatabaseHandler implements IAdapter {
 					
 					HybridSiminovData data = datas.next();
 					
-					String mappedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
+					String mappedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
 						data.addData(jsSiminovData);
 						saveOrUpdate(data);
@@ -320,7 +320,7 @@ public class DatabaseHandler implements IAdapter {
 					
 					HybridSiminovData data = datas.next();
 					
-					String mappedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
+					String mappedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
 						referedData = data;
 						break;
@@ -340,7 +340,7 @@ public class DatabaseHandler implements IAdapter {
 					
 					HybridSiminovData data = datas.next();
 					
-					String mappedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
+					String mappedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
 						data.addData(hybridSiminovData);
 						saveOrUpdate(data);
@@ -354,7 +354,7 @@ public class DatabaseHandler implements IAdapter {
 					
 					HybridSiminovData data = datas.next();
 					
-					String mappedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
+					String mappedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
 						data.addData(hybridSiminovData);
 						saveOrUpdate(data);
@@ -2076,11 +2076,11 @@ public class DatabaseHandler implements IAdapter {
 	}
 	
 	public static final DatabaseDescriptor getDatabaseDescriptor(final String className) throws DatabaseException {
-		return hybridResources.getDatabaseDescriptorBasedOnClassName(className);
+		return hybridResourceManager.getDatabaseDescriptorBasedOnClassName(className);
 	}
 
 	public static final DatabaseMappingDescriptor getDatabaseMappingDescriptor(final String className) throws DatabaseException {
-		return hybridResources.getDatabaseMappingDescriptorBasedOnClassName(className);
+		return hybridResourceManager.getDatabaseMappingDescriptorBasedOnClassName(className);
 	}
 	
 	/**
@@ -2095,7 +2095,7 @@ public class DatabaseHandler implements IAdapter {
 			Map<String, Object> value = values.next();
 			
 			HybridSiminovData hybridSiminovData = new HybridSiminovData();
-			hybridSiminovData.setDataType(hybridResources.getMappedWebClassName(databaseMappingDescriptor.getClassName()));
+			hybridSiminovData.setDataType(hybridResourceManager.getMappedWebClassName(databaseMappingDescriptor.getClassName()));
 			
 			Iterator<String> keys = value.keySet().iterator();
 			while(keys.hasNext()) {
@@ -2152,7 +2152,7 @@ public class DatabaseHandler implements IAdapter {
 			Iterator<HybridSiminovData> datas = siminovData.getDatas();
 			while(datas.hasNext()) {
 				HybridSiminovData data = datas.next();
-				String referedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
+				String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 				
 				if(referedClassName.equalsIgnoreCase(referedDatabaseMappingDescriptor.getClassName())) {
 					referedHybridSiminovData = data;
@@ -2206,7 +2206,7 @@ public class DatabaseHandler implements IAdapter {
 			Iterator<HybridSiminovData> datas = siminovData.getDatas();
 			while(datas.hasNext()) {
 				HybridSiminovData data = datas.next();
-				String referedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
+				String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 				
 				if(referedClassName.equalsIgnoreCase(referedDatabaseMappingDescriptor.getClassName())) {
 					referedHybridSiminovData = data;
@@ -2260,7 +2260,7 @@ public class DatabaseHandler implements IAdapter {
 			Iterator<HybridSiminovData> datas = siminovData.getDatas();
 			while(datas.hasNext()) {
 				HybridSiminovData data = datas.next();
-				String referedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
+				String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 				
 				if(referedClassName.equalsIgnoreCase(referedDatabaseMappingDescriptor.getClassName())) {
 					referedHybridSiminovData = data;
@@ -2318,7 +2318,7 @@ public class DatabaseHandler implements IAdapter {
 			Iterator<HybridSiminovData> datas = siminovData.getDatas();
 			while(datas.hasNext()) {
 				HybridSiminovData data = datas.next();
-				String referedClassName = hybridResources.getMappedNativeClassName(data.getDataType());
+				String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 				
 				if(referedClassName.equalsIgnoreCase(referedDatabaseMappingDescriptor.getClassName())) {
 					referedHybridSiminovData = data;
@@ -2473,7 +2473,7 @@ public class DatabaseHandler implements IAdapter {
 			}
 
 			HybridSiminovData referedObject = new HybridSiminovData();
-			referedObject.setDataType(hybridResources.getMappedWebClassName(referedDatabaseMappingDescriptor.getClassName()));
+			referedObject.setDataType(hybridResourceManager.getMappedWebClassName(referedDatabaseMappingDescriptor.getClassName()));
 			
 			processManyToOneRelationship(referedObject, data);
 
@@ -2540,7 +2540,7 @@ public class DatabaseHandler implements IAdapter {
 			}
 
 			HybridSiminovData referedObject = new HybridSiminovData();
-			referedObject.setDataType(hybridResources.getMappedWebClassName(referedDatabaseMappingDescriptor.getClassName()));
+			referedObject.setDataType(hybridResourceManager.getMappedWebClassName(referedDatabaseMappingDescriptor.getClassName()));
 			
 			processManyToManyRelationship(referedObject, data);
 

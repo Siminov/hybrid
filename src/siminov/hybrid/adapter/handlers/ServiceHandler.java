@@ -60,7 +60,7 @@ public class ServiceHandler implements IAdapter {
 		IService genericService = new GenericService();
 		
 		genericService.setService(hybridServiceName.getValue());
-		genericService.setApi(hybridAPIName.getValue());
+		genericService.setRequest(hybridAPIName.getValue());
 
 		
 		if(hybridResources != null) {

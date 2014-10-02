@@ -38,7 +38,7 @@ import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
 import siminov.hybrid.reader.HybridSiminovDataReader;
-import siminov.hybrid.resource.Resources;
+import siminov.hybrid.resource.ResourceManager;
 import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
@@ -54,7 +54,7 @@ import android.webkit.JavascriptInterface;
 public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, IHandler {
 
 	protected siminov.orm.resource.ResourceManager ormResourceManager = siminov.orm.resource.ResourceManager.getInstance();
-	protected Resources hybridResources = Resources.getInstance();
+	protected ResourceManager hybridResourceManager = ResourceManager.getInstance();
 
 	protected AdapterFactory adapterResources = AdapterFactory.getInstance();
 
@@ -87,8 +87,8 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 		String adapterDescriptorName = action.substring(0, action.indexOf("."));
 		String handlerName = action.substring(action.indexOf(".") + 1, action.length());
 
-		AdapterDescriptor adapterDescriptor = hybridResources.getAdapterDescriptor(adapterDescriptorName);
-		AdapterDescriptor.Handler handler = hybridResources.getHandler(adapterDescriptorName, handlerName);
+		AdapterDescriptor adapterDescriptor = hybridResourceManager.getAdapterDescriptor(adapterDescriptorName);
+		AdapterDescriptor.Handler handler = hybridResourceManager.getHandler(adapterDescriptorName, handlerName);
 		
 		Iterator<Parameter> parameters = handler.getParameters();
 		Class<?>[] parameterTypes = getParameterTypes(parameters);
@@ -134,8 +134,8 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 	@JavascriptInterface
 	public void handleNativeToWeb(final String action, final String...data) {
 
-		AdapterDescriptor adapterDescriptor = hybridResources.getAdapterDescriptor(Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER);
-		Handler handler = hybridResources.getHandler(Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER, Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER_HANDLER);
+		AdapterDescriptor adapterDescriptor = hybridResourceManager.getAdapterDescriptor(Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER);
+		Handler handler = hybridResourceManager.getHandler(Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER, Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER_HANDLER);
 		
 		String parameters = "";
 		if(data != null && data.length > 0) {
@@ -163,13 +163,13 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 		
 		String invokeAction = "";
 		
-		if(hybridResources.containAdapterBasedOnName(adapterDescriptorName)) {
-			AdapterDescriptor invokeAdapterDescriptor = hybridResources.getAdapterDescriptor(adapterDescriptorName);
+		if(hybridResourceManager.containAdapterBasedOnName(adapterDescriptorName)) {
+			AdapterDescriptor invokeAdapterDescriptor = hybridResourceManager.getAdapterDescriptor(adapterDescriptorName);
 			invokeAction = invokeAdapterDescriptor.getMapTo();
 		}
 		
-		if(handlerName != null && handlerName.length() > 0 && hybridResources.containHandler(handlerName)) {
-			AdapterDescriptor.Handler invokeHandler = hybridResources.getHandler(adapterDescriptorName, handlerName);
+		if(handlerName != null && handlerName.length() > 0 && hybridResourceManager.containHandler(handlerName)) {
+			AdapterDescriptor.Handler invokeHandler = hybridResourceManager.getHandler(adapterDescriptorName, handlerName);
 			invokeAction += "." + invokeHandler.getMapTo();
 		}
 		
@@ -179,17 +179,17 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 		final String finalInvokeAction = invokeAction;
 		final String finalParameters = parameters;
 		
-		Activity webActivity = hybridResources.getWebActivity();
+		Activity webActivity = hybridResourceManager.getWebActivity();
 		webActivity.runOnUiThread(new Runnable() {
 			
 			public void run() {
 				
 				if(finalAdapter.getMapTo() != null && finalAdapter.getMapTo().length() > 0 && finalHandler.getMapTo() != null && finalHandler.getMapTo().length() > 0) {
-					hybridResources.getWebView().loadUrl("javascript: new " + finalAdapter.getMapTo() + "()." + finalHandler.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
+					hybridResourceManager.getWebView().loadUrl("javascript: new " + finalAdapter.getMapTo() + "()." + finalHandler.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
 				} else if(finalAdapter.getMapTo() != null && finalAdapter.getMapTo().length() > 0) {
-					hybridResources.getWebView().loadUrl("javascript:" + finalAdapter.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
+					hybridResourceManager.getWebView().loadUrl("javascript:" + finalAdapter.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
 				} else if(finalHandler.getMapTo() != null && finalHandler.getMapTo().length() > 0) {
-					hybridResources.getWebView().loadUrl("javascript:" + finalHandler.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
+					hybridResourceManager.getWebView().loadUrl("javascript:" + finalHandler.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
 				}
 			}
 		});
