@@ -25,7 +25,7 @@ import java.util.Map;
 
 import siminov.hybrid.model.AdapterDescriptor;
 import siminov.hybrid.model.AdapterDescriptor.Handler;
-import siminov.hybrid.resource.Resources;
+import siminov.hybrid.resource.ResourceManager;
 import siminov.orm.utils.ClassUtils;
 
 /**
@@ -36,12 +36,12 @@ public class AdapterFactory {
 	private Map<String, IAdapter> adapters = new HashMap<String, IAdapter>();
 	private Map<String, Method> handlers = new HashMap<String, Method>();
 	
-	private Resources resources = Resources.getInstance();
+	private ResourceManager resourceManager = ResourceManager.getInstance();
 	
 	private static AdapterFactory adapterFactory = null;
 	
 	private AdapterFactory() {
-		resources.setAdapterFactory(adapterFactory);
+		resourceManager.setAdapterFactory(adapterFactory);
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class AdapterFactory {
 	 * @return Adapter Class Instance.
 	 */
 	public IAdapter getAdapterInstance(String adapterDescriptorName) {
-		AdapterDescriptor adapterDescriptor = resources.getAdapterDescriptor(adapterDescriptorName);
+		AdapterDescriptor adapterDescriptor = resourceManager.getAdapterDescriptor(adapterDescriptorName);
 		String mapTo = adapterDescriptor.getMapTo();
 		
 		return (IAdapter) ClassUtils.createClassInstance(mapTo);
@@ -98,7 +98,7 @@ public class AdapterFactory {
 	 */
 	public Method getHandlerInstance(String adapterDescriptorName, String handlerName, Class<?>...handlerParameterTypes) {
 
-		AdapterDescriptor adapterDescriptor = resources.getAdapterDescriptor(adapterDescriptorName);
+		AdapterDescriptor adapterDescriptor = resourceManager.getAdapterDescriptor(adapterDescriptorName);
 		Handler handler = adapterDescriptor.getHandler(handlerName);
 		
 		return ClassUtils.createMethodBasedOnClassName(adapterDescriptor.getMapTo(), handler.getMapTo(), handlerParameterTypes);
