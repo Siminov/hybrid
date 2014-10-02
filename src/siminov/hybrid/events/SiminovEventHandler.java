@@ -27,7 +27,7 @@ import siminov.hybrid.adapter.constants.HybridEventHandler;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.resource.Resources;
+import siminov.hybrid.resource.ResourceManager;
 import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.events.ISiminovEvents;
 import siminov.orm.exception.SiminovException;
@@ -39,7 +39,7 @@ import siminov.orm.log.Log;
  */
 public class SiminovEventHandler implements ISiminovEvents {
 
-	private Resources hybridResources = Resources.getInstance();
+	private ResourceManager hybridResourceManager = ResourceManager.getInstance();
 	private EventHandler eventHandler = EventHandler.getInstance();
 
 	/**
@@ -47,7 +47,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 	 */
 	public void onFirstTimeSiminovInitialized() {
 
-		if(!hybridResources.doesEventsRegistered()) {
+		if(!hybridResourceManager.doesEventsRegistered()) {
 			return;
 		}
 		
@@ -73,7 +73,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());
@@ -109,7 +109,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 	 */
 	public void onSiminovInitialized() {
 
-		if(!hybridResources.doesEventsRegistered()) {
+		if(!hybridResourceManager.doesEventsRegistered()) {
 			return;
 		}
 
@@ -135,7 +135,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());
@@ -171,7 +171,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 	 */
 	public void onSiminovStopped() {
 		
-		if(!hybridResources.doesEventsRegistered()) {
+		if(!hybridResourceManager.doesEventsRegistered()) {
 			return;
 		}
 
@@ -197,7 +197,7 @@ public class SiminovEventHandler implements ISiminovEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());

@@ -27,14 +27,14 @@ import siminov.hybrid.adapter.constants.HybridEventHandler;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.resource.Resources;
+import siminov.hybrid.resource.ResourceManager;
 import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
 public class SyncEventHandler implements ISyncEvents {
 
-	private Resources hybridResources = Resources.getInstance();
+	private ResourceManager hybridResourceManager = ResourceManager.getInstance();
 	private EventHandler eventHandler = EventHandler.getInstance();
 	
 	public void onStart(ISyncRequest syncRequest) {
@@ -60,7 +60,7 @@ public class SyncEventHandler implements ISyncEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());
@@ -75,7 +75,7 @@ public class SyncEventHandler implements ISyncEvents {
 		
 		
 		//Parameters
-		HybridSiminovData hybridSyncRequest = hybridResources.generateHybridSyncRequest(syncRequest);
+		HybridSiminovData hybridSyncRequest = hybridResourceManager.generateHybridSyncRequest(syncRequest);
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);
@@ -123,7 +123,7 @@ public class SyncEventHandler implements ISyncEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());
@@ -138,7 +138,7 @@ public class SyncEventHandler implements ISyncEvents {
 		
 		
 		//Parameters
-		HybridSiminovData hybridSyncRequest = hybridResources.generateHybridSyncRequest(syncRequest);
+		HybridSiminovData hybridSyncRequest = hybridResourceManager.generateHybridSyncRequest(syncRequest);
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);
@@ -186,7 +186,7 @@ public class SyncEventHandler implements ISyncEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());
@@ -201,7 +201,7 @@ public class SyncEventHandler implements ISyncEvents {
 		
 		
 		//Parameters
-		HybridSiminovData hybridSyncRequest = hybridResources.generateHybridSyncRequest(syncRequest);
+		HybridSiminovData hybridSyncRequest = hybridResourceManager.generateHybridSyncRequest(syncRequest);
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);
@@ -249,7 +249,7 @@ public class SyncEventHandler implements ISyncEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());
@@ -264,7 +264,7 @@ public class SyncEventHandler implements ISyncEvents {
 		
 		
 		//Parameters
-		HybridSiminovData hybridSyncRequest = hybridResources.generateHybridSyncRequest(syncRequest);
+		HybridSiminovData hybridSyncRequest = hybridResourceManager.generateHybridSyncRequest(syncRequest);
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);

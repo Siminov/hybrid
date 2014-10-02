@@ -29,20 +29,20 @@ import siminov.hybrid.adapter.constants.HybridEventHandler;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
-import siminov.hybrid.resource.Resources;
+import siminov.hybrid.resource.ResourceManager;
 import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
 public class NotificationEventHandler implements INotificationEvents {
 
-	private Resources hybridResources = Resources.getInstance();
+	private ResourceManager hybridResourceManager = ResourceManager.getInstance();
 	private EventHandler eventHandler = EventHandler.getInstance();
 
 	
 	public void onRegistration(IRegistration registration) {
 		
-		if(!hybridResources.doesEventsRegistered()) {
+		if(!hybridResourceManager.doesEventsRegistered()) {
 			return;
 		}
 		
@@ -68,7 +68,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());
@@ -82,7 +82,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		hybridSiminovDatas.addHybridSiminovData(events);
 
 		//Parameters
-		HybridSiminovData hybridRegistration = hybridResources.generateHybridRegistration(registration);
+		HybridSiminovData hybridRegistration = hybridResourceManager.generateHybridRegistration(registration);
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);
@@ -111,7 +111,7 @@ public class NotificationEventHandler implements INotificationEvents {
 
 	public void onUnregistration(IRegistration registration) {
 
-		if(!hybridResources.doesEventsRegistered()) {
+		if(!hybridResourceManager.doesEventsRegistered()) {
 			return;
 		}
 		
@@ -137,7 +137,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());
@@ -151,7 +151,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		hybridSiminovDatas.addHybridSiminovData(events);
 
 		//Parameters
-		HybridSiminovData hybridRegistration = hybridResources.generateHybridRegistration(registration);
+		HybridSiminovData hybridRegistration = hybridResourceManager.generateHybridRegistration(registration);
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);
@@ -180,7 +180,7 @@ public class NotificationEventHandler implements INotificationEvents {
 
 	public void onNotification(IMessage message) {
 
-		if(!hybridResources.doesEventsRegistered()) {
+		if(!hybridResourceManager.doesEventsRegistered()) {
 			return;
 		}
 		
@@ -206,7 +206,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());
@@ -220,7 +220,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		hybridSiminovDatas.addHybridSiminovData(events);
 
 		//Parameters
-		HybridSiminovData hybridMessage = hybridResources.generateHybridMessage(message);
+		HybridSiminovData hybridMessage = hybridResourceManager.generateHybridMessage(message);
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);
@@ -249,7 +249,7 @@ public class NotificationEventHandler implements INotificationEvents {
 
 	public void onError(NotificationException notificationException) {
 		
-		if(!hybridResources.doesEventsRegistered()) {
+		if(!hybridResourceManager.doesEventsRegistered()) {
 			return;
 		}
 		
@@ -275,7 +275,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		HybridSiminovData events = new HybridSiminovData();
 		events.setDataType(HybridEventHandler.EVENTS);
 		
-		Iterator<String> appEvents = hybridResources.getEvents();
+		Iterator<String> appEvents = hybridResourceManager.getEvents();
 		while(appEvents.hasNext()) {
 			String event = appEvents.next();
 			event = event.substring(event.lastIndexOf(".") + 1, event.length());
@@ -289,7 +289,7 @@ public class NotificationEventHandler implements INotificationEvents {
 		hybridSiminovDatas.addHybridSiminovData(events);
 
 		//Parameters
-		HybridSiminovData hybridNotificationException = hybridResources.generateHybridNotificationException(notificationException);
+		HybridSiminovData hybridNotificationException = hybridResourceManager.generateHybridNotificationException(notificationException);
 		
 		HybridSiminovData parameteres = new HybridSiminovData();
 		parameteres.setDataType(HybridEventHandler.EVENT_PARAMETERS);
