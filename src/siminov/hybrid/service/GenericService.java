@@ -1,3 +1,20 @@
+/** 
+ * [SIMINOV FRAMEWORK]
+ * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
 package siminov.hybrid.service;
 
 import java.util.Iterator;
@@ -26,11 +43,11 @@ public class GenericService extends Service {
 
 	public void onStart() {
 		
-		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
+		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
 		
 		ServiceDescriptor serviceDescriptor = getServiceDescriptor();
 		if(serviceDescriptor == null) {
-			serviceDescriptor = connectResources.requiredServiceDescriptorBasedOnName(getService());
+			serviceDescriptor = connectResourceManager.requiredServiceDescriptorBasedOnName(getService());
 			setServiceDescriptor(serviceDescriptor);
 		}
 		
@@ -104,11 +121,11 @@ public class GenericService extends Service {
 
 	public void onQueue() {
 
-		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
+		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
 		
 		ServiceDescriptor serviceDescriptor = getServiceDescriptor();
 		if(serviceDescriptor == null) {
-			serviceDescriptor = connectResources.requiredServiceDescriptorBasedOnName(getService());
+			serviceDescriptor = connectResourceManager.requiredServiceDescriptorBasedOnName(getService());
 			setServiceDescriptor(serviceDescriptor);
 		}
 		
@@ -182,11 +199,11 @@ public class GenericService extends Service {
 
 	public void onPause() {
 
-		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
+		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
 		
 		ServiceDescriptor serviceDescriptor = getServiceDescriptor();
 		if(serviceDescriptor == null) {
-			serviceDescriptor = connectResources.requiredServiceDescriptorBasedOnName(getService());
+			serviceDescriptor = connectResourceManager.requiredServiceDescriptorBasedOnName(getService());
 			setServiceDescriptor(serviceDescriptor);
 		}
 		
@@ -261,11 +278,11 @@ public class GenericService extends Service {
 
 	public void onResume() {
 
-		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
+		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
 		
 		ServiceDescriptor serviceDescriptor = getServiceDescriptor();
 		if(serviceDescriptor == null) {
-			serviceDescriptor = connectResources.requiredServiceDescriptorBasedOnName(getService());
+			serviceDescriptor = connectResourceManager.requiredServiceDescriptorBasedOnName(getService());
 			setServiceDescriptor(serviceDescriptor);
 		}
 		
@@ -339,11 +356,11 @@ public class GenericService extends Service {
 
 	public void onFinish() {
 
-		siminov.connect.resource.Resources conncetResources = siminov.connect.resource.Resources.getInstance();
+		siminov.connect.resource.ResourceManager conncetResourceManager = siminov.connect.resource.ResourceManager.getInstance();
 		
 		ServiceDescriptor serviceDescriptor = getServiceDescriptor();
 		if(serviceDescriptor == null) {
-			serviceDescriptor = conncetResources.requiredServiceDescriptorBasedOnName(getService());
+			serviceDescriptor = conncetResourceManager.requiredServiceDescriptorBasedOnName(getService());
 			setServiceDescriptor(serviceDescriptor);
 		}
 		
@@ -417,12 +434,12 @@ public class GenericService extends Service {
 
 	public void onApiInvoke(IConnectionRequest connectionRequest) {
 
-		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
+		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
 		Resources hybridResources = Resources.getInstance();
 		
 		ServiceDescriptor serviceDescriptor = getServiceDescriptor();
 		if(serviceDescriptor == null) {
-			serviceDescriptor = connectResources.requiredServiceDescriptorBasedOnName(getService());
+			serviceDescriptor = connectResourceManager.requiredServiceDescriptorBasedOnName(getService());
 			setServiceDescriptor(serviceDescriptor);
 		}
 		
@@ -498,12 +515,12 @@ public class GenericService extends Service {
 
 	public void onApiFinish(IConnectionResponse connectionResponse) {
 
-		siminov.connect.resource.Resources connectResources = siminov.connect.resource.Resources.getInstance();
+		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
 		Resources hybridResources = Resources.getInstance();
 		
 		ServiceDescriptor serviceDescriptor = getServiceDescriptor();
 		if(serviceDescriptor == null) {
-			serviceDescriptor = connectResources.requiredServiceDescriptorBasedOnName(getService());
+			serviceDescriptor = connectResourceManager.requiredServiceDescriptorBasedOnName(getService());
 			setServiceDescriptor(serviceDescriptor);
 		}
 		
@@ -579,11 +596,11 @@ public class GenericService extends Service {
 
 	public void onTerminate(ServiceException serviceException) {
 
-		siminov.connect.resource.Resources conncetResources = siminov.connect.resource.Resources.getInstance();
+		siminov.connect.resource.ResourceManager conncetResourceManager = siminov.connect.resource.ResourceManager.getInstance();
 		
 		ServiceDescriptor serviceDescriptor = getServiceDescriptor();
 		if(serviceDescriptor == null) {
-			serviceDescriptor = conncetResources.requiredServiceDescriptorBasedOnName(getService());
+			serviceDescriptor = conncetResourceManager.requiredServiceDescriptorBasedOnName(getService());
 			setServiceDescriptor(serviceDescriptor);
 		}
 		
