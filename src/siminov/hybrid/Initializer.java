@@ -1,6 +1,6 @@
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  * limitations under the License.
  **/
 
+
 package siminov.hybrid;
 
 import java.util.ArrayList;
@@ -22,14 +23,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import siminov.orm.IInitializer;
-import siminov.orm.resource.Resources;
+import siminov.orm.resource.ResourceManager;
 import android.app.Activity;
 import android.content.Context;
 import android.webkit.WebView;
 
 public class Initializer implements IInitializer {
 
-	private Resources ormResources = Resources.getInstance();
+	private ResourceManager ormResourceManager = ResourceManager.getInstance();
 	private siminov.hybrid.resource.Resources hybridResources = siminov.hybrid.resource.Resources.getInstance(); 
 	
 	private List<Object> parameters = new ArrayList<Object> ();
@@ -59,7 +60,7 @@ public class Initializer implements IInitializer {
 			
 		}
 		
-		ormResources.setApplicationContext(context);
+		ormResourceManager.setApplicationContext(context);
 
 		hybridResources.setWebView(webView);
 		hybridResources.setWebActivity(activity);

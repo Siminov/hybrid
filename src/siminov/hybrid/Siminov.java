@@ -1,6 +1,6 @@
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 
 package siminov.hybrid;
@@ -173,8 +174,8 @@ public class Siminov extends siminov.connect.Siminov {
 			throw new DeploymentException(Siminov.class.getName(), "processApplicationDescriptor", "Invalid Application Descriptor Found.");
 		}
 		
-		ormResources.setApplicationDescriptor(applicationDescriptor);		
-		connectResources.setApplicationDescriptor(applicationDescriptor);
+		ormResourceManager.setApplicationDescriptor(applicationDescriptor);		
+		connectResourceManager.setApplicationDescriptor(applicationDescriptor);
 		hybridResources.setApplicationDescriptor(applicationDescriptor);
 	}
 
@@ -328,8 +329,8 @@ public class Siminov extends siminov.connect.Siminov {
 		isActive = true;
 		siminov.orm.Siminov.isActive = true;
 		
-		ISiminovEvents coreEventHandler = ormResources.getSiminovEventHandler();
-		if(ormResources.getSiminovEventHandler() != null) {
+		ISiminovEvents coreEventHandler = ormResourceManager.getSiminovEventHandler();
+		if(ormResourceManager.getSiminovEventHandler() != null) {
 			if(siminov.orm.Siminov.firstTimeProcessed) {
 				coreEventHandler.onFirstTimeSiminovInitialized();
 			} else {
