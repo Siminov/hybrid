@@ -27,7 +27,7 @@ public interface HybridSyncRequest {
 	
 	public String RESOURCES_ARRAY = "Array";
 
-	public String RESOURCE_TYPE = "NameValuePair";
+	public String RESOURCE_TYPE = "Dictionary";
 
 	public String RESOURCE_NAME = "name";
 	

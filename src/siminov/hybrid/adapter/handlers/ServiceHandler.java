@@ -21,7 +21,6 @@ import java.net.URLDecoder;
 import java.util.Iterator;
 
 import siminov.connect.exception.ServiceException;
-import siminov.connect.service.NameValuePair;
 import siminov.connect.service.design.IService;
 import siminov.hybrid.Constants;
 import siminov.hybrid.adapter.IAdapter;
@@ -74,7 +73,7 @@ public class ServiceHandler implements IAdapter {
 				Object hybridResourceValue = hybridResource.getValue();
 				hybridResourceValue = URLDecoder.decode(hybridResourceValue.toString());
 				
-				genericService.addResource(new NameValuePair(hybridResourceName, hybridResourceValue));
+				genericService.addResource(hybridResourceName, hybridResourceValue);
 			}
 		}
 		

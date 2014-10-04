@@ -21,7 +21,6 @@ import java.net.URLDecoder;
 import java.util.Iterator;
 
 import siminov.connect.exception.SyncException;
-import siminov.connect.service.NameValuePair;
 import siminov.connect.sync.SyncRequest;
 import siminov.connect.sync.design.ISyncRequest;
 import siminov.hybrid.adapter.IAdapter;
@@ -70,7 +69,7 @@ public class SyncHandler implements IAdapter {
 				Object hybridResourceValue = hybridResource.getValue();
 				hybridResourceValue = URLDecoder.decode(hybridResourceValue.toString());
 				
-				syncRequest.addResource(new NameValuePair(hybridResourceName, hybridResourceValue));
+				syncRequest.addResource(hybridResourceName, hybridResourceValue);
 			}
 		}
 

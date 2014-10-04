@@ -22,12 +22,12 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import siminov.connect.Constants;
+import siminov.connect.IRequest;
 import siminov.connect.IWorker;
 import siminov.connect.events.ISyncEvents;
 import siminov.connect.model.ServiceDescriptor;
 import siminov.connect.model.SyncDescriptor;
 import siminov.connect.resource.ResourceManager;
-import siminov.connect.service.NameValuePair;
 import siminov.connect.service.design.IService;
 import siminov.connect.sync.design.ISyncRequest;
 import siminov.hybrid.service.GenericService;
@@ -85,7 +85,6 @@ public class SyncWorker implements IWorker {
 		return syncWorkerThread.isAlive();
 	}
 	
-	
 	private class SyncWorkerThread extends Thread {
 		
 		public void run() {
@@ -126,9 +125,12 @@ public class SyncWorker implements IWorker {
 					
 					genericService.setServiceDescriptor(serviceDescriptor);
 
-					Iterator<NameValuePair> resources = syncRequest.getResources();
+					Iterator<String> resources = syncRequest.getResources();
 					while(resources.hasNext()) {
-						genericService.addResource(resources.next());
+						String resourceName = resources.next();
+						Object resourceValue = syncRequest.getResource(resourceName);
+						
+						genericService.addResource(resourceName, resourceValue);
 					}
 					
 					
@@ -153,9 +155,10 @@ public class SyncWorker implements IWorker {
 	}
 	
 
-	public void addRequest(final ISyncRequest syncRequest) {
+	public void addRequest(final IRequest request) {
 		
-		if(containRequest(syncRequest)) {
+		ISyncRequest syncRequest = (ISyncRequest) request;
+		if(containsRequest(syncRequest)) {
 			return;
 		}
 		
@@ -176,11 +179,11 @@ public class SyncWorker implements IWorker {
 		}
 	}
 	
-	public boolean containRequest(final ISyncRequest refreshRequest) {
+	public boolean containsRequest(final IRequest refreshRequest) {
 		return this.syncRequests.contains(refreshRequest);
 	}
 	
-	public void removeRequest(final ISyncRequest refreshRequest) {
+	public void removeRequest(final IRequest refreshRequest) {
 		this.syncRequests.remove(refreshRequest);
 	}
 }

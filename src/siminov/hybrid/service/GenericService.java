@@ -24,7 +24,6 @@ import siminov.connect.connection.design.IConnectionResponse;
 import siminov.connect.exception.ServiceException;
 import siminov.connect.model.ServiceDescriptor;
 import siminov.connect.model.ServiceDescriptor.Request;
-import siminov.connect.service.NameValuePair;
 import siminov.connect.service.Service;
 import siminov.connect.service.design.IService;
 import siminov.hybrid.Constants;
@@ -88,13 +87,14 @@ public class GenericService extends Service {
 		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
 		
 		
-		Iterator<NameValuePair> resources = getResources();
+		Iterator<String> resources = getResources();
 		while(resources.hasNext()) {
-			NameValuePair resource = resources.next();
+			String resourceName = resources.next();
+			String resourceValue = (String) getResource(resourceName);
 			
 			HybridSiminovData serviceResource = new HybridSiminovData();
-			serviceResource.setDataType(resource.getName());
-			serviceResource.setDataValue(resource.getValue().toString());
+			serviceResource.setDataType(resourceName);
+			serviceResource.setDataValue(resourceValue);
 			
 			serviceResources.addData(serviceResource);
 		}
@@ -166,13 +166,14 @@ public class GenericService extends Service {
 		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
 		
 		
-		Iterator<NameValuePair> resources = getResources();
+		Iterator<String> resources = getResources();
 		while(resources.hasNext()) {
-			NameValuePair resource = resources.next();
+			String resourceName = resources.next();
+			String resourceValue = (String) getResource(resourceName);
 			
 			HybridSiminovData serviceResource = new HybridSiminovData();
-			serviceResource.setDataType(resource.getName());
-			serviceResource.setDataValue(resource.getValue().toString());
+			serviceResource.setDataType(resourceName);
+			serviceResource.setDataValue(resourceValue);
 			
 			serviceResources.addData(serviceResource);
 		}
@@ -245,13 +246,14 @@ public class GenericService extends Service {
 		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
 		
 		
-		Iterator<NameValuePair> resources = getResources();
+		Iterator<String> resources = getResources();
 		while(resources.hasNext()) {
-			NameValuePair resource = resources.next();
+			String resourceName = resources.next();
+			String resourceValue = (String) getResource(resourceName);
 			
 			HybridSiminovData serviceResource = new HybridSiminovData();
-			serviceResource.setDataType(resource.getName());
-			serviceResource.setDataValue(resource.getValue().toString());
+			serviceResource.setDataType(resourceName);
+			serviceResource.setDataValue(resourceValue);
 			
 			serviceResources.addData(serviceResource);
 		}
@@ -323,13 +325,14 @@ public class GenericService extends Service {
 		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
 		
 		
-		Iterator<NameValuePair> resources = getResources();
+		Iterator<String> resources = getResources();
 		while(resources.hasNext()) {
-			NameValuePair resource = resources.next();
+			String resourceName = resources.next();
+			String resourceValue = (String) getResource(resourceName);
 			
 			HybridSiminovData serviceResource = new HybridSiminovData();
-			serviceResource.setDataType(resource.getName());
-			serviceResource.setDataValue(resource.getValue().toString());
+			serviceResource.setDataType(resourceName);
+			serviceResource.setDataValue(resourceValue);
 			
 			serviceResources.addData(serviceResource);
 		}
@@ -401,13 +404,14 @@ public class GenericService extends Service {
 		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
 		
 		
-		Iterator<NameValuePair> resources = getResources();
+		Iterator<String> resources = getResources();
 		while(resources.hasNext()) {
-			NameValuePair resource = resources.next();
+			String resourceName = resources.next();
+			String resourceValue = (String) getResource(resourceName);
 			
 			HybridSiminovData serviceResource = new HybridSiminovData();
-			serviceResource.setDataType(resource.getName());
-			serviceResource.setDataValue(resource.getValue().toString());
+			serviceResource.setDataType(resourceName);
+			serviceResource.setDataValue(resourceValue);
 			
 			serviceResources.addData(serviceResource);
 		}
@@ -482,13 +486,14 @@ public class GenericService extends Service {
 		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
 		
 		
-		Iterator<NameValuePair> resources = getResources();
+		Iterator<String> resources = getResources();
 		while(resources.hasNext()) {
-			NameValuePair resource = resources.next();
+			String resourceName = resources.next();
+			String resourceValue = (String) getResource(resourceName);
 			
 			HybridSiminovData serviceResource = new HybridSiminovData();
-			serviceResource.setDataType(resource.getName());
-			serviceResource.setDataValue(resource.getValue().toString());
+			serviceResource.setDataType(resourceName);
+			serviceResource.setDataValue(resourceValue);
 			
 			serviceResources.addData(serviceResource);
 		}
@@ -563,13 +568,14 @@ public class GenericService extends Service {
 		HybridSiminovData serviceResources = new HybridSiminovData();
 		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
 		
-		Iterator<NameValuePair> resources = getResources();
+		Iterator<String> resources = getResources();
 		while(resources.hasNext()) {
-			NameValuePair resource = resources.next();
+			String resourceName = resources.next();
+			String resourceValue = (String) getResource(resourceName);
 			
 			HybridSiminovData serviceResource = new HybridSiminovData();
-			serviceResource.setDataType(resource.getName());
-			serviceResource.setDataValue(resource.getValue().toString());
+			serviceResource.setDataType(resourceName);
+			serviceResource.setDataValue(resourceValue);
 			
 			serviceResources.addData(serviceResource);
 		}
@@ -641,13 +647,14 @@ public class GenericService extends Service {
 		serviceResources.setDataType(HybridServiceHandler.ISERVICE_RESOURCES);
 		
 		
-		Iterator<NameValuePair> resources = getResources();
+		Iterator<String> resources = getResources();
 		while(resources.hasNext()) {
-			NameValuePair resource = resources.next();
+			String resourceName = resources.next();
+			String resourceValue = (String) getResource(resourceName);
 			
 			HybridSiminovData serviceResource = new HybridSiminovData();
-			serviceResource.setDataType(resource.getName());
-			serviceResource.setDataValue(resource.getValue().toString());
+			serviceResource.setDataType(resourceName);
+			serviceResource.setDataValue(resourceValue);
 			
 			serviceResources.addData(serviceResource);
 		}
@@ -692,9 +699,5 @@ public class GenericService extends Service {
 		}
 
 		return (IService) object;
-	}
-
-	public void onRestart() {
-		
 	}
 }
