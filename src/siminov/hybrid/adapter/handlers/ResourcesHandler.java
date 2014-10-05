@@ -23,8 +23,6 @@ import java.util.Iterator;
 
 import siminov.hybrid.adapter.IAdapter;
 import siminov.hybrid.adapter.constants.HybridApplicationDescriptor;
-import siminov.hybrid.model.AdapterDescriptor;
-import siminov.hybrid.model.AdapterDescriptor.Handler;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;

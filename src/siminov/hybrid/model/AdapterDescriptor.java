@@ -85,7 +85,7 @@ public class AdapterDescriptor implements IDescriptor {
 	 * @return Name of Adapter.
 	 */
 	public String getName() {
-		return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_NAME);
+		return this.properties.get(Constants.ADAPTER_DESCRIPTOR_PROPERTY_NAME);
 	}
 	
 	/**
@@ -93,7 +93,7 @@ public class AdapterDescriptor implements IDescriptor {
 	 * @param name Name of Adapter.
 	 */
 	public void setName(final String name) {
-		this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_NAME, name);
+		this.properties.put(Constants.ADAPTER_DESCRIPTOR_PROPERTY_NAME, name);
 	}
 	
 	/**
@@ -101,7 +101,7 @@ public class AdapterDescriptor implements IDescriptor {
 	 * @return Description of Adapter.
 	 */
 	public String getDescription() {
-		return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_DESCRIPTION);
+		return this.properties.get(Constants.ADAPTER_DESCRIPTOR_PROPERTY_DESCRIPTION);
 	}
 	
 	/**
@@ -109,7 +109,7 @@ public class AdapterDescriptor implements IDescriptor {
 	 * @param description Description of Adapter.
 	 */
 	public void setDescription(final String description) {
-		this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_DESCRIPTION, description);
+		this.properties.put(Constants.ADAPTER_DESCRIPTOR_PROPERTY_DESCRIPTION, description);
 	}
 	
 	/**
@@ -117,7 +117,7 @@ public class AdapterDescriptor implements IDescriptor {
 	 * @return Type of Adapter.
 	 */
 	public String getType() {
-		return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_TYPE);
+		return this.properties.get(Constants.ADAPTER_DESCRIPTOR_PROPERTY_TYPE);
 	}
 	
 	/**
@@ -125,7 +125,7 @@ public class AdapterDescriptor implements IDescriptor {
 	 * @param type Type of Adapter.
 	 */
 	public void setType(final String type) {
-		this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_TYPE, type);
+		this.properties.put(Constants.ADAPTER_DESCRIPTOR_PROPERTY_TYPE, type);
 	}
 	
 	/**
@@ -133,7 +133,7 @@ public class AdapterDescriptor implements IDescriptor {
 	 * @return Map To Name.
 	 */
 	public String getMapTo() {
-		return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_MAP_TO);
+		return this.properties.get(Constants.ADAPTER_DESCRIPTOR_PROPERTY_MAP_TO);
 	}
 	
 	/**
@@ -141,7 +141,7 @@ public class AdapterDescriptor implements IDescriptor {
 	 * @param mapTo Map To Name.
 	 */
 	public void setMapTo(final String mapTo) {
-		this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_MAP_TO, mapTo);
+		this.properties.put(Constants.ADAPTER_DESCRIPTOR_PROPERTY_MAP_TO, mapTo);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class AdapterDescriptor implements IDescriptor {
 	 * @return true/false; TRUE if cache enabled, FALSE if cache disabled.
 	 */
 	public boolean isCache() {
-		String cache = this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_CACHE);
+		String cache = this.properties.get(Constants.ADAPTER_DESCRIPTOR_PROPERTY_CACHE);
 		
 		if(cache != null && cache.length() > 0 && cache.equalsIgnoreCase("true")) {
 			return true;
@@ -163,7 +163,7 @@ public class AdapterDescriptor implements IDescriptor {
 	 * @param cache Cache Enabled or Disabled.
 	 */
 	public void setCache(final boolean cache) {
-		this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_CACHE);
+		this.properties.get(Constants.ADAPTER_DESCRIPTOR_PROPERTY_CACHE);
 	}
 
 	/**
@@ -260,7 +260,7 @@ public class AdapterDescriptor implements IDescriptor {
 		 * @return Name of Handler. 
 		 */
 		public String getName() {
-			return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_NAME);
+			return this.properties.get(Constants.ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_NAME);
 		}
 		
 		/**
@@ -268,7 +268,7 @@ public class AdapterDescriptor implements IDescriptor {
 		 * @param name Name of handler.
 		 */
 		public void setName(final String name) {
-			this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_NAME, name);
+			this.properties.put(Constants.ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_NAME, name);
 		}
 		
 		/**
@@ -276,7 +276,7 @@ public class AdapterDescriptor implements IDescriptor {
 		 * @return Map To Name.
 		 */
 		public String getMapTo() {
-			return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_MAP_TO);
+			return this.properties.get(Constants.ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_MAP_TO);
 		}
 		
 		/**
@@ -284,7 +284,7 @@ public class AdapterDescriptor implements IDescriptor {
 		 * @param mapTo Map To Name.
 		 */
 		public void setMapTo(final String mapTo) {
-			this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_MAP_TO, mapTo);
+			this.properties.put(Constants.ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_MAP_TO, mapTo);
 		}
 		
 		/**
@@ -292,7 +292,7 @@ public class AdapterDescriptor implements IDescriptor {
 		 * @return Description about Handler.
 		 */
 		public String getDescription() {
-			return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_DESCRIPTION);
+			return this.properties.get(Constants.ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_DESCRIPTION);
 		}
 		
 		/**
@@ -300,7 +300,7 @@ public class AdapterDescriptor implements IDescriptor {
 		 * @param description Description about Handler.
 		 */
 		public void setDescription(final String description) {
-			this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_DESCRIPTION, description);
+			this.properties.put(Constants.ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_DESCRIPTION, description);
 		}
 		
 		/**
@@ -391,7 +391,7 @@ public class AdapterDescriptor implements IDescriptor {
 			 * @return Name of Parameter.
 			 */
 			public String getName() {
-				return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER_NAME);
+				return this.properties.get(Constants.ADAPTER_DESCRIPTOR_HANDLER_PARAMETER_PROPERTY_NAME);
 			}
 			
 			/**
@@ -399,7 +399,7 @@ public class AdapterDescriptor implements IDescriptor {
 			 * @param name Name of Parameter.
 			 */
 			public void setName(final String name) {
-				this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER_NAME, name);
+				this.properties.put(Constants.ADAPTER_DESCRIPTOR_HANDLER_PARAMETER_PROPERTY_NAME, name);
 			}
 			
 			/**
@@ -407,7 +407,7 @@ public class AdapterDescriptor implements IDescriptor {
 			 * @return Type of Parameter.
 			 */
 			public String getType() {
-				return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER_TYPE);
+				return this.properties.get(Constants.ADAPTER_DESCRIPTOR_HANDLER_PARAMETER_PROPERTY_TYPE);
 			}
 			
 			/**
@@ -415,7 +415,7 @@ public class AdapterDescriptor implements IDescriptor {
 			 * @param type Type of Parameter.
 			 */
 			public void setType(final String type) {
-				this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER_TYPE, type);
+				this.properties.put(Constants.ADAPTER_DESCRIPTOR_HANDLER_PARAMETER_PROPERTY_TYPE, type);
 			}
 			
 			/**
@@ -423,7 +423,7 @@ public class AdapterDescriptor implements IDescriptor {
 			 * @return Description about Parameter.
 			 */
 			public String getDescription() {
-				return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER_DESCRIPTION);
+				return this.properties.get(Constants.ADAPTER_DESCRIPTOR_HANDLER_PARAMETER_PROPERTY_DESCRIPTION);
 			}
 			
 			/**
@@ -431,7 +431,7 @@ public class AdapterDescriptor implements IDescriptor {
 			 * @param description Description about Parameter.
 			 */
 			public void setDescription(final String description) {
-				this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER_DESCRIPTION, description);
+				this.properties.put(Constants.ADAPTER_DESCRIPTOR_HANDLER_PARAMETER_PROPERTY_DESCRIPTION, description);
 			}
 			
 			/**
@@ -494,7 +494,7 @@ public class AdapterDescriptor implements IDescriptor {
 			 * @return Type of Return.
 			 */
 			public String getType() {
-				return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN_TYPE);
+				return this.properties.get(Constants.ADAPTER_DESCRIPTOR_HANDLER_RETURN_PROPERTY_TYPE);
 			}
 			
 			/**
@@ -502,7 +502,7 @@ public class AdapterDescriptor implements IDescriptor {
 			 * @param type Type of Return.
 			 */
 			public void setType(final String type) {
-				this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN_TYPE, type);
+				this.properties.put(Constants.ADAPTER_DESCRIPTOR_HANDLER_RETURN_PROPERTY_TYPE, type);
 			}
 			
 			/**
@@ -510,7 +510,7 @@ public class AdapterDescriptor implements IDescriptor {
 			 * @return Description about Return.
 			 */
 			public String getDescription() {
-				return this.properties.get(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN_DESCRIPTION);
+				return this.properties.get(Constants.ADAPTER_DESCRIPTOR_HANDLER_RETURN_PROPERTY_DESCRIPTION);
 			}
 			
 			/**
@@ -518,7 +518,7 @@ public class AdapterDescriptor implements IDescriptor {
 			 * @param description Description about Return.
 			 */
 			public void setDescription(final String description) {
-				this.properties.put(Constants.HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN_DESCRIPTION, description);
+				this.properties.put(Constants.ADAPTER_DESCRIPTOR_HANDLER_RETURN_PROPERTY_DESCRIPTION, description);
 			}
 			
 			/**

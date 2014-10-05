@@ -134,8 +134,8 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 	@JavascriptInterface
 	public void handleNativeToWeb(final String action, final String...data) {
 
-		AdapterDescriptor adapterDescriptor = hybridResourceManager.getAdapterDescriptor(Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER);
-		Handler handler = hybridResourceManager.getHandler(Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER, Constants.HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER_HANDLER);
+		AdapterDescriptor adapterDescriptor = hybridResourceManager.getAdapterDescriptor(Constants.NATIVE_TO_WEB_ADAPTER);
+		Handler handler = hybridResourceManager.getHandler(Constants.NATIVE_TO_WEB_ADAPTER, Constants.NATIVE_TO_WEB_ADAPTER_HANDLER);
 		
 		String parameters = "";
 		if(data != null && data.length > 0) {

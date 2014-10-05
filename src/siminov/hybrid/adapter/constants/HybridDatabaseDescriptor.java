@@ -44,7 +44,7 @@ public interface HybridDatabaseDescriptor {
 	/**
 	 * Web Database Descriptor Is Locking Required.
 	 */
-	public String IS_LOCKING_REQUIRED = "lockingRequired";
+	public String IS_TRANSACTION_SAFE = "transactionSafe";
 	
 	/**
 	 * Web Database Descriptor External Storage.

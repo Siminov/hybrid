@@ -33,9 +33,9 @@ public interface HybridServiceHandler {
 	
 	public String ISERVICE_ON_SERVICE_FINISH = "onServiceFinish";
 	
-	public String ISERVICE_ON_SERVICE_API_INVOKE = "onServiceApiInvoke";
+	public String ISERVICE_ON_SERVICE_API_INVOKE = "onServiceRequestInvoke";
 	
-	public String ISERVICE_ON_SERVICE_API_FINISH = "onServiceApiFinish";
+	public String ISERVICE_ON_SERVICE_API_FINISH = "onServiceRequestFinish";
 	
 	public String ISERVICE_ON_SERVICE_TERMINATE = "onServiceTerminate";
 	

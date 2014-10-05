@@ -535,7 +535,7 @@ public class ResourceManager {
 		hybridDatabaseDescriptor.addValue(databaseDescription);
 		
 		HybridSiminovValue isLockingRequired = new HybridSiminovValue();
-		isLockingRequired.setType(HybridDatabaseDescriptor.IS_LOCKING_REQUIRED);
+		isLockingRequired.setType(HybridDatabaseDescriptor.IS_TRANSACTION_SAFE);
 		isLockingRequired.setValue(Boolean.toString(databaseDescriptor.isTransactionSafe()));
 		
 		hybridDatabaseDescriptor.addValue(isLockingRequired);

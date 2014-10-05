@@ -190,7 +190,7 @@ public class Siminov extends siminov.connect.Siminov {
 	protected static void processLibraries() {
 		
 		ApplicationDescriptor applicationDescriptor = hybridResourceManager.getApplicationDescriptor();
-		applicationDescriptor.addLibrary(siminov.hybrid.Constants.HYBRID_LIBRARY_DESCRIPTOR_FILE_PATH);
+		applicationDescriptor.addLibrary(siminov.hybrid.Constants.LIBRARY_DESCRIPTOR_FILE_PATH);
 
 
 		Iterator<String> libraries = applicationDescriptor.getLibraries();

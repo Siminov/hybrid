@@ -38,7 +38,7 @@ public class AdapterHandler {
 	
 	private AdapterHandler() {
 		
-		AdapterDescriptor adapterDescriptor = resourceManager.getAdapterDescriptor(Constants.HYBRID_SIMINOV_WEB_TO_NATIVE_ADAPTER);
+		AdapterDescriptor adapterDescriptor = resourceManager.getAdapterDescriptor(Constants.WEB_TO_NATIVE_ADAPTER);
 		register((IHandler) ClassUtils.createClassInstance(adapterDescriptor.getMapTo()));
 
 		resourceManager.setAdapterHandler(adapterHandler);
@@ -65,7 +65,7 @@ public class AdapterHandler {
 	 */
 	public void register(IHandler handler) {
 		
-		AdapterDescriptor adapterDescriptor = resourceManager.getAdapterDescriptor(Constants.HYBRID_SIMINOV_WEB_TO_NATIVE_ADAPTER);
+		AdapterDescriptor adapterDescriptor = resourceManager.getAdapterDescriptor(Constants.WEB_TO_NATIVE_ADAPTER);
 		
 		String adapterName = adapterDescriptor.getName();
 		WebView webView = resourceManager.getWebView();

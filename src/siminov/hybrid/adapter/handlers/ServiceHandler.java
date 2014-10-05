@@ -48,12 +48,12 @@ public class ServiceHandler implements IAdapter {
 
 		HybridSiminovDatas hybridSiminovDatas = hybridSiminovDataParser.getDatas();
 		
-		HybridSiminovData hybridService = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE);
+		HybridSiminovData hybridService = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(Constants.ADAPTER_INVOKE_HANDLER_SERVICE);
 		
-		HybridSiminovValue hybridServiceName = hybridService.getValueBasedOnType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_NAME);
-		HybridSiminovValue hybridAPIName = hybridService.getValueBasedOnType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_API_NAME);
+		HybridSiminovValue hybridServiceName = hybridService.getValueBasedOnType(Constants.ADAPTER_INVOKE_HANDLER_SERVICE_NAME);
+		HybridSiminovValue hybridAPIName = hybridService.getValueBasedOnType(Constants.ADAPTER_INVOKE_HANDLER_SERVICE_API_NAME);
 		
-		HybridSiminovData hybridResources = hybridService.getHybridSiminovDataBasedOnDataType(Constants.SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES);
+		HybridSiminovData hybridResources = hybridService.getHybridSiminovDataBasedOnDataType(Constants.ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES);
 		
 		
 		IService genericService = new GenericService();

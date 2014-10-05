@@ -111,8 +111,8 @@ public class GenericService extends Service {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.SERVICE_EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -190,8 +190,8 @@ public class GenericService extends Service {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.SERVICE_EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -270,8 +270,8 @@ public class GenericService extends Service {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.SERVICE_EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -349,8 +349,8 @@ public class GenericService extends Service {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.SERVICE_EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -428,8 +428,8 @@ public class GenericService extends Service {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.SERVICE_EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -510,8 +510,8 @@ public class GenericService extends Service {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.SERVICE_EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -592,8 +592,8 @@ public class GenericService extends Service {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.SERVICE_EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -671,8 +671,8 @@ public class GenericService extends Service {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.SERVICE_EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		

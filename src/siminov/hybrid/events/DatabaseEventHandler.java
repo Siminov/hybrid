@@ -109,8 +109,8 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -181,8 +181,8 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -260,8 +260,8 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -338,8 +338,8 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -418,8 +418,8 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		
@@ -498,8 +498,8 @@ public class DatabaseEventHandler implements IDatabaseEvents {
 		
 		
 		Adapter adapter = new Adapter();
-		adapter.setAdapterName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_ADAPTER);
-		adapter.setHandlerName(Constants.HYBRID_SIMINOV_EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
+		adapter.setAdapterName(Constants.EVENT_HANDLER_ADAPTER);
+		adapter.setHandlerName(Constants.EVENT_HANDLER_TRIGGER_EVENT_HANDLER);
 		
 		adapter.addParameter(data);
 		

@@ -23,130 +23,122 @@ package siminov.hybrid;
  * Exposes all constants required by Siminov Hybrid ORM Framework.
  */
 public interface Constants {
-
 	
-	//HybridDescriptor Constants.
-	
-	/**
-	 * HybridDesriptor.si.xml file name.
-	 */
-	public String HYBRID_DESCRIPTOR_FILE_NAME = "HybridDescriptor.si.xml";
-	
+	//Application Descriptor Constants
 	
 	/**
-	 * HybridDescriptor.si.xml file Property TAG.
+	 * Application Descriptor Adapter Descriptor
 	 */
-	public String HYBRID_DESCRIPTOR_PROPERTY = "property";
-	
-	/**
-	 * HybridDescriptor.si.xml file Property Name TAG.
-	 */
-	public String HYBRID_DESCRIPTOR_PROPERTY_NAME = "name";
-
-	
-	/**
-	 * HybridDesriptor.si.xml file Adapter TAG.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_ADAPTER = "adapter";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter property NAME.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_NAME = "name";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter property DESCRIPTION.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_DESCRIPTION = "description";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter property TYPE.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_TYPE = "type";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter property MAP_TO.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_MAP_TO = "map_to";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter property CACHE.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_CACHE = "cache";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter Handlers TAG.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLERS = "handlers";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter Handler TAG.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER = "handler";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter Handler property NAME.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_NAME = "name";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter Handler property MAP_TO.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_MAP_TO = "map_to";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter Handler property DESCRIPTION.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_DESCRIPTION = "description";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter Handler property ERROR_HANDLER.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_ERROR_HANDLER = "error_handler";
+	public String APPLICATION_DESCRIPTOR_ADAPTER_DESCRIPTOR = "adapter-descriptor";
 	
 	
-	/**
-	 * HybridDescriptor.si.xml file Adapter Handler Parameters TAG.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETERS = "parameters";
-	
-	/**
-	 * HybridDescriptor.si.xml file Adapter Handler Parameter TAG.
-	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER = "parameter";
+	//Adapter Descriptor Constants
 
 	/**
-	 * HybridDescriptor.si.xml file Adapter Handler Parameter property NAME.
+	 * Adapter Descriptor Property
 	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER_NAME = "name";
+	public String ADAPTER_DESCRIPTOR_PROPERTY = "property";
 	
+
 	/**
-	 * HybridDescriptor.si.xml file Adapter Handler Parameter property TYPE.
+	 * Adapter Descriptor Property Name
 	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER_TYPE = "type";
+	public String ADAPTER_DESCRIPTOR_PROPERTY_NAME = "name";
 	
+
 	/**
-	 * HybridDescriptor.si.xml file Adapter Handler Parameter property DESCRIPTION.
+	 * Adapter Descriptor Handler
 	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_PARAMETER_DESCRIPTION = "description";
+	public String ADAPTER_DESCRIPTOR_HANDLER = "handler";
 	
-	
+
 	/**
-	 * HybridDescriptor.si.xml file Adapter Handler Return TAG.
+	 * Adapter Descriptor Handler Parameter
 	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN = "return";
+	public String ADAPTER_DESCRIPTOR_HANDLER_PARAMETER = "parameter";
 	
+
 	/**
-	 * HybridDescriptor.si.xml file Adapter Hander Return property TYPE.
+	 * Adapter Descriptor Return
 	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN_TYPE = "type";
+	public String ADAPTER_DESCRIPTOR_RETURN = "return";
 	
+	
+
 	/**
-	 * HybridDescriptor.si.xml file Adapter Handler Return property DESCRIPTION.
+	 * Adapter Descriptor Property Description
 	 */
-	public String HYBRID_DESCRIPTOR_ADAPTER_HANDLER_RETURN_DESCRIPTION = "description";
+	public String ADAPTER_DESCRIPTOR_PROPERTY_DESCRIPTION = "description";
+	
+
+	/**
+	 * Adapter Descriptor Property Type
+	 */
+	public String ADAPTER_DESCRIPTOR_PROPERTY_TYPE = "type";
+	
+
+	/**
+	 * Adapter Descriptor Property Map To
+	 */
+	public String ADAPTER_DESCRIPTOR_PROPERTY_MAP_TO = "map_to";
+	
+
+	/**
+	 * Adapter Descriptor Property Cache
+	 */
+	public String ADAPTER_DESCRIPTOR_PROPERTY_CACHE = "cache";
 	
 	
+
+	/**
+	 * Adapter Descriptor Handler Property Name
+	 */
+	public String ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_NAME = "name";
+	
+
+	/**
+	 * Adapter Descriptor Handler Property Description
+	 */
+	public String ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_DESCRIPTION = "description";
+
+
+	/**
+	 * Adapter Descriptor Handler Property Map To
+	 */
+	public String ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_MAP_TO = "map_to";
+	
+	
+
+	/**
+	 * Adapter Descriptor Handler Parameter Property Name
+	 */
+	public String ADAPTER_DESCRIPTOR_HANDLER_PARAMETER_PROPERTY_NAME = "name";
+
+
+	/**
+	 * Adapter Descriptor Handler Property Type
+	 */
+	public String ADAPTER_DESCRIPTOR_HANDLER_PARAMETER_PROPERTY_TYPE = "type";
+
+
+	/**
+	 * Adapter Descriptor Handler Parameter Property Descriptor
+	 */
+	public String ADAPTER_DESCRIPTOR_HANDLER_PARAMETER_PROPERTY_DESCRIPTION = "description";
+
+	
+
+	/**
+	 * Adapter Descriptor Handler Return Property Type
+	 */
+	public String ADAPTER_DESCRIPTOR_HANDLER_RETURN_PROPERTY_TYPE = "type";
+
+
+	/**
+	 * Adapter Descriptor Handler Return Property Description
+	 */
+	public String ADAPTER_DESCRIPTOR_HANDLER_RETURN_PROPERTY_DESCRIPTION = "description";
+
 	//SiminovDataFormat
 	
 	/**
@@ -159,20 +151,12 @@ public interface Constants {
 	 */
 	public String HYBRID_SIMINOV_DATA_DATA = "data";
 	
-	/**
-	 * Hybrid Siminov Data DATA TYPE TAG.
-	 */
-	public String HYBRID_SIMINOV_DATA_DATA_TYPE = "type";
 	
 	/**
 	 * Hybrid Siminov Data VALUE TAG.
 	 */
 	public String HYBRID_SIMINOV_DATA_VALUE = "value";
 	
-	/**
-	 * Hybrid Siminov Data VALUE TYPE TAG.
-	 */
-	public String HYBRID_SIMINOV_DATA_VALUE_TYPE = "type";
 	
 	/**
 	 * Hybrid Siminov Data JSON TEXT TAG.
@@ -193,11 +177,6 @@ public interface Constants {
 	//HYBRID-Library Descriptor
 	
 	/**
-	 * LibraryDescriptor.si.xml file Adapters TAG.
-	 */
-	public String HYBRID_LIBRARY_DESCRIPTOR_HYBRID_ADAPTER_DESCRIPTORS = "adapter-descriptors";
-	
-	/**
 	 * LibraryDescriptor.si.xml file Adapter TAG.
 	 */
 	public String HYBRID_LIBRARY_DESCRIPTOR_ADAPTER_DESCRIPTOR = "adapter-descriptor";
@@ -206,57 +185,67 @@ public interface Constants {
 	//Siminov Adapter Handler.
 	
 	/**
-	 * Siminov Hybrid Web To Native Adapter Name.
+	 * Web To Native Adapter Name.
 	 */
-	public String HYBRID_SIMINOV_WEB_TO_NATIVE_ADAPTER = "SIMINOV";
+	public String WEB_TO_NATIVE_ADAPTER = "SIMINOV";
 	
 	/**
-	 * Siminov Hybrid Native To Web Adapter Name.
+	 * Native To Web Adapter Name.
 	 */
-	public String HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER = "SIMINOV-NATIVE-TO-WEB";
+	public String NATIVE_TO_WEB_ADAPTER = "SIMINOV-NATIVE-TO-WEB";
 	
 	/**
-	 * Siminov Hybrid Native To Web Adapter Name.
+	 * Native To Web Adapter Name.
 	 */
-	public String HYBRID_SIMINOV_NATIVE_TO_WEB_ADAPTER_HANDLER = "HANDLE-NATIVE-TO-WEB";
+	public String NATIVE_TO_WEB_ADAPTER_HANDLER = "HANDLE-NATIVE-TO-WEB";
 
 	//Siminov Events Handler.
 	
 	/**
-	 * Siminov Hybrid Event Handler Adapter Name.
+	 * Event Handler Adapter Name.
 	 */
-	public String HYBRID_SIMINOV_EVENT_HANDLER_ADAPTER = "EVENT-HANDLER";
+	public String EVENT_HANDLER_ADAPTER = "EVENT-HANDLER";
 	
 	/**
-	 * Siminov Hybrid Event Handler Trigger Event Handler Name.
+	 * Event Handler Trigger Event Handler Name.
 	 */
-	public String HYBRID_SIMINOV_EVENT_HANDLER_TRIGGER_EVENT_HANDLER = "TRIGGER-EVENT";
+	public String EVENT_HANDLER_TRIGGER_EVENT_HANDLER = "TRIGGER-EVENT";
 	
-	public String HYBRID_LIBRARY_DESCRIPTOR_FILE_PATH = "siminov.hybrid.adapter.resources";
-
-	
-	/*
-	 * Service Handler Constants
+	/**
+	 * Library Descriptor File Path
 	 */
-	public String HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_ADAPTER = "SERVICE-EVENT-HANDLER";
+	public String LIBRARY_DESCRIPTOR_FILE_PATH = "siminov.hybrid.adapter.resources";
 
-	public String HYBRID_SIMINOV_SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER = "TRIGGER-EVENT";
 	
-	public String SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE = "SERVICE";
-
-	public String SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_NAME = "SERVICE_NAME";
-	
-	public String SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_API_NAME = "API_NAME";
-	
-	public String SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES = "RESOURCES";
-
-	public String SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCE_NAME = "RESOURCE_NAME";
-	
-	public String SIMINOV_SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCE_VALUE = "RESOURCE_VALUE";
-	
-
-	/*
-	 * Authenticate Handler Constants
+	// Service Handler Constants
+	/**
+	 * Service Event Handler Adapter
 	 */
-	public String SIMINOV_AUTHENTICATE_ADAPTER_GET_AUTHENTICATE_CREDENTIAL_PARAMETER = "CREDENTIAL";
+	public String SERVICE_EVENT_HANDLER_ADAPTER = "SERVICE-EVENT-HANDLER";
+
+	/**
+	 * Service Event Handler Trigger Event Handler
+	 */
+	public String SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER = "TRIGGER-EVENT";
+	
+	/**
+	 * Adapter Invoke Handler Service
+	 */
+	public String ADAPTER_INVOKE_HANDLER_SERVICE = "SERVICE";
+
+	/**
+	 * Adapter Invoke Handler Service Name
+	 */
+	public String ADAPTER_INVOKE_HANDLER_SERVICE_NAME = "SERVICE_NAME";
+	
+	/**
+	 * Adapter Invoke Handler Service API Name
+	 */
+	public String ADAPTER_INVOKE_HANDLER_SERVICE_API_NAME = "API_NAME";
+	
+	/**
+	 * Adapter Invoke Handler Service Resources
+	 */
+	public String ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES = "RESOURCES";
+
 }

@@ -132,7 +132,7 @@ public class ApplicationDescriptorReader extends SiminovSAXDefaultHandler implem
 		} else if(localName.equalsIgnoreCase(NOTIFICATION_DESCRIPTOR)) {
 			applicationDescriptor.setNotificationDescriptor(notificationDescriptor);
 			isNotificationDescriptor = false;
-		} else if(localName.equalsIgnoreCase(HYBRID_DESCRIPTOR_ADAPTER_ADAPTER)) {
+		} else if(localName.equalsIgnoreCase(APPLICATION_DESCRIPTOR_ADAPTER_DESCRIPTOR)) {
 			applicationDescriptor.addAdapterDescriptorPath(tempValue.toString());
 		}
 	}
