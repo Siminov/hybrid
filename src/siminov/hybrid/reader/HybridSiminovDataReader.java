@@ -224,7 +224,10 @@ public class HybridSiminovDataReader implements Constants {
 		
 	}
 
-	
+	/**
+	 * Get Hybrid Siminov Datas instance
+	 * @return HybridSiminovDatas instance
+	 */
 	public HybridSiminovDatas getDatas() {
 		return this.hybridSiminovDatas;
 	}

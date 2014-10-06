@@ -169,6 +169,10 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 
 	}
 
+	/**
+	 * Get library descriptor
+	 * @return Library Descriptor
+	 */
 	public LibraryDescriptor getLibraryDescriptor() {
 		return this.libraryDescriptor;
 	}

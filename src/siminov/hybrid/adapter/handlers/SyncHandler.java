@@ -32,8 +32,15 @@ import siminov.hybrid.reader.HybridSiminovDataReader;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
+
+/**
+ * It handles all request related to sync
+ */
 public class SyncHandler implements IAdapter {
 
+	/**
+	 * It handles sync request from web
+	 */
 	public void handle(String data) throws SyncException {
 		
 		HybridSiminovDataReader hybridSiminovDataParser = null; 

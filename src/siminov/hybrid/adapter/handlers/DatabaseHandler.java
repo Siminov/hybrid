@@ -71,7 +71,7 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 	
-	public static final void save(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
+	private void save(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> jsDatas = jsSiminovDatas.getHybridSiminovDatas();
 		while(jsDatas.hasNext()) {
@@ -80,7 +80,7 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 
-	public static final void save(HybridSiminovData jsSiminovData) throws DatabaseException {
+	private void save(HybridSiminovData jsSiminovData) throws DatabaseException {
 		
 		String className = jsSiminovData.getDataType();
 		Iterator<HybridSiminovValue> jsValues = jsSiminovData.getValues();
@@ -216,7 +216,7 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 
-	public static final void update(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
+	private void update(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> jsDatas = jsSiminovDatas.getHybridSiminovDatas();
 		while(jsDatas.hasNext()) {
@@ -225,7 +225,7 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 	
-	public static final void update(HybridSiminovData hybridSiminovData) throws DatabaseException {
+	private void update(HybridSiminovData hybridSiminovData) throws DatabaseException {
 		
 		String className = hybridSiminovData.getDataType();
 		Iterator<HybridSiminovValue> hybridSiminovValue = hybridSiminovData.getValues();
@@ -378,7 +378,7 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 	
-	public static final void saveOrUpdate(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
+	private void saveOrUpdate(HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> jsDatas = jsSiminovDatas.getHybridSiminovDatas();
 		
@@ -388,7 +388,7 @@ public class DatabaseHandler implements IAdapter {
 		}
 	}
 
-	public static final void saveOrUpdate(HybridSiminovData jsSiminovData) throws DatabaseException {
+	private void saveOrUpdate(HybridSiminovData jsSiminovData) throws DatabaseException {
 
 		String className = jsSiminovData.getDataType();
 		Iterator<HybridSiminovValue> jsValues = jsSiminovData.getValues();
@@ -469,7 +469,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 
-	public static final void delete(final HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
+	private void delete(final HybridSiminovDatas jsSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> jsDatas = jsSiminovDatas.getHybridSiminovDatas();
 		
@@ -520,7 +520,7 @@ public class DatabaseHandler implements IAdapter {
 		}
 	}
 
-	public static final void delete(final DatabaseMappingDescriptor databaseMappingDescriptor, final String whereClause) throws DatabaseException {
+	private void delete(final DatabaseMappingDescriptor databaseMappingDescriptor, final String whereClause) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		
@@ -582,7 +582,7 @@ public class DatabaseHandler implements IAdapter {
 	}
 
 	
-	public static final HybridSiminovDatas select(final DatabaseMappingDescriptor databaseMappingDescriptor, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
+	private HybridSiminovDatas select(final DatabaseMappingDescriptor databaseMappingDescriptor, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 
 		String className = databaseMappingDescriptor.getClassName();
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
@@ -712,7 +712,7 @@ public class DatabaseHandler implements IAdapter {
 		return data;
 	}
 	
-	public static HybridSiminovDatas lazyFetch(final DatabaseMappingDescriptor databaseMappingDescriptor, final boolean distinct, final String whereClause, final Iterator<String> columnNames, final Iterator<String> groupBy, final String having, final Iterator<String> orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
+	private HybridSiminovDatas lazyFetch(final DatabaseMappingDescriptor databaseMappingDescriptor, final boolean distinct, final String whereClause, final Iterator<String> columnNames, final Iterator<String> groupBy, final String having, final Iterator<String> orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -845,7 +845,7 @@ public class DatabaseHandler implements IAdapter {
 	}
 	
 	
-	public static int count(final DatabaseMappingDescriptor databaseMappingDescriptor, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
+	private int count(final DatabaseMappingDescriptor databaseMappingDescriptor, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -934,7 +934,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final int avg(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int avg(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1029,7 +1029,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final int sum(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int sum(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1123,7 +1123,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final int total(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int total(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1217,7 +1217,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final int min(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int min(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1313,7 +1313,7 @@ public class DatabaseHandler implements IAdapter {
 	}
 	
 
-	public static final int max(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int max(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1408,7 +1408,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static String groupConcat(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private String groupConcat(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1492,7 +1492,7 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 	
-	private static final String getTableName(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	private String getTableName(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
 		return databaseMappingDescriptor.getTableName();
 	}
 
@@ -2358,7 +2358,7 @@ public class DatabaseHandler implements IAdapter {
 	}
 	
 	
-	static void processOneToOneRelationship(final HybridSiminovData jsSiminovData) throws DatabaseException {
+	private void processOneToOneRelationship(final HybridSiminovData jsSiminovData) throws DatabaseException {
 
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(jsSiminovData.getDataType());
 		Iterator<DatabaseMappingDescriptor.Relationship> oneToOneRelationships = databaseMappingDescriptor.getOneToOneRelationships();
@@ -2408,7 +2408,7 @@ public class DatabaseHandler implements IAdapter {
 	}
 
 
-	static void processOneToManyRelationship(final HybridSiminovData jsSiminovData) throws DatabaseException {
+	private void processOneToManyRelationship(final HybridSiminovData jsSiminovData) throws DatabaseException {
 
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(jsSiminovData.getDataType());
 		Iterator<DatabaseMappingDescriptor.Relationship> oneToManyRelationships = databaseMappingDescriptor.getOneToManyRelationships();
@@ -2459,7 +2459,7 @@ public class DatabaseHandler implements IAdapter {
 	}
 	
 	
-	static void processManyToOneRelationship(final HybridSiminovData jsSiminovData, Map<String, Object> data) throws DatabaseException {
+	private void processManyToOneRelationship(final HybridSiminovData jsSiminovData, Map<String, Object> data) throws DatabaseException {
 
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(jsSiminovData.getDataType());
 		Iterator<Relationship> manyToOneRelationships = databaseMappingDescriptor.getManyToOneRelationships();
@@ -2526,7 +2526,7 @@ public class DatabaseHandler implements IAdapter {
 	}
 	
 	
-	static void processManyToManyRelationship(final HybridSiminovData jsSiminovData, Map<String, Object> data) throws DatabaseException {
+	private void processManyToManyRelationship(final HybridSiminovData jsSiminovData, Map<String, Object> data) throws DatabaseException {
 
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(jsSiminovData.getDataType());
 		Iterator<Relationship> manyToManyRelationships = databaseMappingDescriptor.getManyToManyRelationships();

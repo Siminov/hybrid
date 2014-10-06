@@ -19,14 +19,24 @@ package siminov.hybrid.adapter.handlers;
 
 import siminov.hybrid.adapter.IAdapter;
 
+/**
+ * It handles all request related to notification.
+ * LIKE: Registration, Unregistration.
+ */
 public class NotificationHandler implements IAdapter {
 
 	private siminov.connect.notification.NotificationManager notificationManager = siminov.connect.notification.NotificationManager.getInstance();
 	
+	/**
+	 * It handles registration request from web
+	 */
 	public void doRegistration() {
 		notificationManager.doRegistration();
 	}
 	
+	/**
+	 * It handles unregistration request from web
+	 */
 	public void doUnregistration() {
 		notificationManager.doUnregistration();
 	}

@@ -17,9 +17,18 @@
 
 package siminov.hybrid.adapter.constants;
 
+/**
+ * Exposes constants which represents Notification Registration on Web.
+ */
 public interface HybridRegistration {
 
+	/**
+	 * Web Notification Registration 
+	 */
 	public String REGISTRATION = "Registration";
 	
+	/**
+	 * Web Notification Registration Id
+	 */
 	public String REGISTRATION_ID = "registrationId";
 }

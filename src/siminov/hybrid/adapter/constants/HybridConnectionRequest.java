@@ -17,31 +17,69 @@
 
 package siminov.hybrid.adapter.constants;
 
+/**
+ * Exposes constants which represents Connection Request on Web.
+ */
 public interface HybridConnectionRequest {
 
+	/**
+	 * Connection Request
+	 */
 	public String CONNECTION_REQUEST = "ConnectionRequest";
 	
+	/**
+	 * Name
+	 */
 	public String URL = "url";
 	
+	/**
+	 * Protocol
+	 */
 	public String PROTOCOL = "protocol";
 	
+	/**
+	 * Type
+	 */
 	public String TYPE = "type";
 
+	/**
+	 * Data Stream
+	 */
 	public String DATA_STREAM = "dataStream";
 
+	/**
+	 * Query Parameters Type
+	 */
 	public String QUERY_PARAMETERS_TYPE = "Array";
 	
+	/**
+	 * Query Parameter Type
+	 */
 	public String QUERY_PARAMETER_TYPE = "ServiceDescriptor.API.QueryParameter";
 	
+	
+	/**
+	 * Query Parameter Name
+	 */
 	public String QUERY_PARAMETER_NAME = "name";
 	
+	/**
+	 * Query Parameter Value
+	 */
 	public String QUERY_PARAMETER_VALUE = "value";
 	
+	/**
+	 * Header Parameters Type
+	 */
 	public String HEADER_PARAMETERS_TYPE = "Array";
 
+	/**
+	 * Header Parameter Type
+	 */
 	public String HEADER_PARAMETER_TYPE = "ServiceDescriptor.API.HeaderParameter";
 	
+	/**
+	 * Header Parameter Name
+	 */
 	public String HEADER_PARAMETER_NAME = "name";
-	
-	public String HEADER_PARAMETER_VALUE = "value";
 }

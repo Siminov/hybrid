@@ -52,7 +52,7 @@ public class EventHandler {
 	}
 
 	/**
-	 * It provides an instance of EventHandler class.
+	 * It provides the singleton instance of EventHandler class.
 	 * 
 	 * @return EventHandler instance.
 	 */
@@ -193,7 +193,10 @@ public class EventHandler {
 		return databaseEvents;
 	}
 
-	
+	/**
+	 * Get INotificationEvents Registered by the application
+	 * @return INotificationEvents Handler
+	 */
 	public INotificationEvents getNotificationEvent() {
 		
 		if(notificationEvents != null) {
@@ -238,6 +241,10 @@ public class EventHandler {
 	}
 
 	
+	/**
+	 * Get ISyncEvents Handler Registered by the application
+	 * @return ISyncEvents Handler
+	 */
 	public ISyncEvents getSyncEvent() {
 		
 		if(syncEvents != null) {

@@ -163,7 +163,11 @@ public class Siminov extends siminov.connect.Siminov {
 		
 		siminov.connect.Siminov.shutdown();
 	}
+
 	
+	/**
+	 * It process ApplicationDescriptor.si.xml file defined in Application, and stores in Resource Manager.
+	 */
 	protected static void processApplicationDescriptor() {
 		
 		ApplicationDescriptorReader applicationDescriptorParser = new ApplicationDescriptorReader();
@@ -180,12 +184,15 @@ public class Siminov extends siminov.connect.Siminov {
 	}
 
 	
+	/**
+	 * It process all DatabaseDescriptor.si.xml files defined by Application and stores in Resource Manager.
+	 */
 	protected static void processDatabaseDescriptors() {
 		siminov.connect.Siminov.processDatabaseDescriptors();
 	}
 	
 	/**
-	 * It process all LibraryDescriptor.si.xml files defined by application, and stores in Resources.
+	 * It process all LibraryDescriptor.si.xml files defined by application, and stores in Resource Manager.
 	 */
 	protected static void processLibraries() {
 		
@@ -243,6 +250,9 @@ public class Siminov extends siminov.connect.Siminov {
 	}
 	
 
+	/**
+	 * It process all DatabaseMappingDescriptor.si.xml file defined in Application, and stores in Resource Manager.
+	 */
 	protected static void processDatabaseMappingDescriptors() {
 		siminov.connect.Siminov.processDatabaseMappingDescriptors();
 		
@@ -250,21 +260,32 @@ public class Siminov extends siminov.connect.Siminov {
 	}
 
 	
+	/**
+	 * It process all SyncDescriptor.si.xml file defined in Application, and stores in Resource Manager.
+	 */
 	protected static void processSyncDescriptors() {
 		siminov.connect.Siminov.processSyncDescriptors();
 	}
 
 	
+	/**
+	 * It starts all Service Workers
+	 */
 	protected static void processServices() {
 		siminov.connect.Siminov.processServices();
 	}
 	
+	/**
+	 * It process all DatabaseDescriptor.si.xml and initialize Database and stores in Resource Manager.
+	 */
 	protected static void processDatabase() {
 		siminov.connect.Siminov.processDatabase();
 	}
 	
 	
-	
+	/**
+	 * It process all AdapterDescriptor.si.xml and initialize bridge between native and web
+	 */
 	protected static void processAdapterDescriptors() {
 		
 		ApplicationDescriptor applicationDescriptor = hybridResourceManager.getApplicationDescriptor();
@@ -280,7 +301,7 @@ public class Siminov extends siminov.connect.Siminov {
 	
 	
 	/**
-	 * It process all Events defined in ApplicationDescriptor.si.xml file in Application, and stores in Resources.
+	 * It process all Events defined in ApplicationDescriptor.si.xml file in Application, and stores in Resource Manager.
 	 */
 	protected static void processEvents() {
 		

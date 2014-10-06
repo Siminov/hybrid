@@ -19,7 +19,7 @@
 package siminov.hybrid.adapter.constants;
 
 /**
- * Exposes constants to which represents Hybrid Event Handler on Web.
+ * Exposes constants which represents Hybrid Event Handler on Web.
  */
 public interface HybridEventHandler {
 
@@ -74,28 +74,50 @@ public interface HybridEventHandler {
 	 */
 	public String IDATABASE_EVENT_ON_INDEX_DROPPED = "onIndexDropped";
 
-	
+	/**
+	 * INofitication Event On Registration
+	 */
 	public String INOTIFICATION_EVENT_ON_REGISTRATION = "onRegistration";
 	
 	
+	/**
+	 * INotification Event On Unregistration
+	 */
 	public String INOTIFICATION_EVENT_ON_UNREGISTRATION = "onUnregistration";
 	
 	
+	/**
+	 * INotification Event On Notification
+	 */
 	public String INOTIFICATION_EVENT_ON_NOTIFICATION = "onNotification";
 	
 	
+	/**
+	 * INotification Event On Error
+	 */
 	public String INOTIFICATION_EVENT_ON_ERROR = "onError";
 	
 	
+	/**
+	 * ISync Event On Sync Started
+	 */
 	public String ISYNC_EVENT_ON_SYNC_STARTED = "onSyncStarted";
 	
 	
+	/**
+	 * ISync Event On Sync Queued
+	 */
 	public String ISYNC_EVENT_ON_SYNC_QUEUED = "onSyncQueued";
 	
-	
+	/**
+	 * ISync Event On Sync Removed
+	 */
 	public String ISYNC_EVENT_ON_SYNC_REMOVED = "onSyncRemoved";
 	
 	
+	/**
+	 * ISync Event On Sync Terminated
+	 */
 	public String ISYNC_EVENT_ON_SYNC_TERMINATED = "onSyncTerminated";
 	
 

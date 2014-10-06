@@ -25,6 +25,9 @@ import siminov.connect.model.SyncDescriptor;
 import siminov.connect.resource.ResourceManager;
 import siminov.connect.sync.design.ISyncRequest;
 
+/**
+ * It handles sync requests on behalf of web 
+ */
 public class SyncHandler {
 
 	private ResourceManager connectResourceManager = ResourceManager.getInstance();
@@ -34,10 +37,17 @@ public class SyncHandler {
 
 	private static SyncHandler syncHandler = null;
 	
+	/**
+	 * SyncHandler Private Constructor
+	 */
 	private SyncHandler() {
 		
 	}
 	
+	/**
+	 * It provides singleton instance of SyncHandler 
+	 * @return SyncHandler singleton instance
+	 */
 	public static SyncHandler getInstance() {
 		
 		if(syncHandler == null) {
@@ -47,6 +57,10 @@ public class SyncHandler {
 		return syncHandler;
 	}
 	
+	/**
+	 * It handle sync request from web
+	 * @param syncRequest Sync Request
+	 */
 	public void handle(ISyncRequest syncRequest) {
 
 		SyncDescriptor syncDescriptor = connectResourceManager.getSyncDescriptor(syncRequest.getName());

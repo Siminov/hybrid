@@ -17,29 +17,64 @@
 
 package siminov.hybrid.adapter.constants;
 
+
+/**
+ * Exposes constants which represents Service on Web.
+ */
 public interface HybridServiceHandler {
 
+	/**
+	 * Web Service Triggered Event
+	 */
 	public String TRIGGERED_EVENT = "TRIGGERED_EVENT";
 
+	/**
+	 * Web Service API Handler
+	 */
 	public String ISERVICE_API_HANDLER = "ISERVICE_API_HANDLER";
 	
+	/**
+	 * Web Service On Service Start
+	 */
 	public String ISERVICE_ON_SERVICE_START = "onServiceStart";
 
+	/**
+	 * Web Service On Service Queue
+	 */
 	public String ISERVICE_ON_SERVICE_QUEUE = "onServiceQueue";
 
+	/**
+	 * Web Service On Service Pause
+	 */
 	public String ISERVICE_ON_SERVICE_PAUSE = "onServicePause";
 	
+	/**
+	 * Web Service On Service Resume
+	 */
 	public String ISERVICE_ON_SERVICE_RESUME = "onServiceResume";
 	
+	/**
+	 * Web Service On Service Finish
+	 */
 	public String ISERVICE_ON_SERVICE_FINISH = "onServiceFinish";
 	
-	public String ISERVICE_ON_SERVICE_API_INVOKE = "onServiceRequestInvoke";
+	/**
+	 * Web Service On Service Request Invoke
+	 */
+	public String ISERVICE_ON_SERVICE_REQUEST_INVOKE = "onServiceRequestInvoke";
 	
-	public String ISERVICE_ON_SERVICE_API_FINISH = "onServiceRequestFinish";
+	/**
+	 * Web Service On Service Request Finish
+	 */
+	public String ISERVICE_ON_SERVICE_REQUEST_FINISH = "onServiceRequestFinish";
 	
+	/**
+	 * Web Service On Service Terminate
+	 */
 	public String ISERVICE_ON_SERVICE_TERMINATE = "onServiceTerminate";
 	
+	/**
+	 * Web Service Resources
+	 */
 	public String ISERVICE_RESOURCES = "RESOURCES";
-	
-	public String ISERVICE_RESOURCE = "RESOURCE";
 }

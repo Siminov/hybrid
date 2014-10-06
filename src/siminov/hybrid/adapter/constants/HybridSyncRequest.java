@@ -17,19 +17,24 @@
 
 package siminov.hybrid.adapter.constants;
 
+/**
+ * Exposes constants to which represents Hybrid Sync Request on Web.
+ */
 public interface HybridSyncRequest {
 
+	/**
+	 * Web Sync Request Function Name
+	 */
 	public String SYNC_REQUEST = "SyncRequest";
 	
+	/**
+	 * Web Sync Request Name
+	 */
 	public String NAME = "name";
 
+	/**
+	 * Web Sync Request Resources
+	 */
 	public String RESOURCES = "resources";
 	
-	public String RESOURCES_ARRAY = "Array";
-
-	public String RESOURCE_TYPE = "Dictionary";
-
-	public String RESOURCE_NAME = "name";
-	
-	public String RESOURCE_VALUE = "value";
 }

@@ -17,13 +17,28 @@
 
 package siminov.hybrid.adapter.constants;
 
+/**
+ * Exposes constants which represents Connection Response on Web.
+ */
 public interface HybridConnectionResponse {
 
+	/**
+	 * Connection Response
+	 */
 	public String CONNECTION_RESPONSE = "ConnectionResponse";
 	
+	/**
+	 * Status Code
+	 */
 	public String STATUS_CODE = "statusCode";
 	
+	/**
+	 * Status Message
+	 */
 	public String STATUS_MESSAGE = "statusMessage";
 	
+	/**
+	 * Response
+	 */
 	public String RESPONSE = "response";
 }

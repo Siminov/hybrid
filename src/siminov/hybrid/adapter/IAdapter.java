@@ -17,6 +17,9 @@
 
 package siminov.hybrid.adapter;
 
+/**
+ * It is a blue print for classes which wants to provide implementation for Adapter bridge between native and web
+ */
 public interface IAdapter {
 
 }

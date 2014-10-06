@@ -36,6 +36,7 @@ import siminov.connect.notification.design.IRegistration;
 import siminov.connect.sync.design.ISyncRequest;
 import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
+import siminov.hybrid.adapter.constants.HybridAdapterDescriptor;
 import siminov.hybrid.adapter.constants.HybridConnectionRequest;
 import siminov.hybrid.adapter.constants.HybridConnectionResponse;
 import siminov.hybrid.adapter.constants.HybridDatabaseDescriptor;
@@ -144,7 +145,7 @@ public class ResourceManager {
 		
 		while(adapterDescriptorPaths.hasNext()) {
 			String adapterDescriptorPath = adapterDescriptorPaths.next();
-			adapterDescriptors.add(applicationDescriptor.getAdapterBasedOnPath(adapterDescriptorPath));
+			adapterDescriptors.add(applicationDescriptor.getAdapterDescriptorBasedOnPath(adapterDescriptorPath));
 		}
 		
 		return adapterDescriptors.iterator();
@@ -189,7 +190,7 @@ public class ResourceManager {
 		
 		boolean contain = applicationDescriptor.containAdapterDescriptorBasedOnPath(adapterDescriptorPath);
 		if(contain) {
-			return applicationDescriptor.getAdapterBasedOnPath(adapterDescriptorPath);
+			return applicationDescriptor.getAdapterDescriptorBasedOnPath(adapterDescriptorPath);
 		}
 		
 		return null;
@@ -592,7 +593,7 @@ public class ResourceManager {
 		
 		
 		HybridSiminovData hybridColumns = new HybridSiminovData();
-		hybridColumns.setDataType(HybridDatabaseMappingDescriptor.COLUMNS);
+		hybridColumns.setDataType(HybridDatabaseMappingDescriptor.ENTITIES);
 		
 		Iterator<Attribute> attributes = databaseMappingDescriptor.getAttributes();
 		while(attributes.hasNext()) {
@@ -646,7 +647,7 @@ public class ResourceManager {
 	public HybridSiminovData generateHybridDatabaseMappingDescriptorColumn(final Attribute attribute) {
 		
 		HybridSiminovData hybridColumn = new HybridSiminovData();
-		hybridColumn.setDataType(HybridDatabaseMappingDescriptor.COLUMN);
+		hybridColumn.setDataType(HybridDatabaseMappingDescriptor.ENTITY);
 		
 		HybridSiminovValue variableName = new HybridSiminovValue();
 		variableName.setType(HybridDatabaseMappingDescriptor.VARIABLE_NAME);
@@ -854,39 +855,39 @@ public class ResourceManager {
 	public HybridSiminovData generateHybridAdapterDescriptor(final AdapterDescriptor adapterDescriptor) {
 		
 		HybridSiminovData hybridAdapterDescriptor = new HybridSiminovData();
-		hybridAdapterDescriptor.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER);
+		hybridAdapterDescriptor.setDataType(HybridAdapterDescriptor.ADAPTER);
 		
 		
 		HybridSiminovValue adapterName = new HybridSiminovValue();
-		adapterName.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_NAME);
+		adapterName.setType(HybridAdapterDescriptor.NAME);
 		adapterName.setValue(adapterDescriptor.getName());
 		
 		hybridAdapterDescriptor.addValue(adapterName);
 		
 
 		HybridSiminovValue adapterDescriptorDescription = new HybridSiminovValue();
-		adapterDescriptorDescription.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_DESCRIPTION);
+		adapterDescriptorDescription.setType(HybridAdapterDescriptor.DESCRIPTION);
 		adapterDescriptorDescription.setValue(adapterDescriptor.getDescription());
 		
 		hybridAdapterDescriptor.addValue(adapterDescriptorDescription);
 		
 		
 		HybridSiminovValue adapterDescriptorMapTo = new HybridSiminovValue();
-		adapterDescriptorMapTo.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_MAP_TO);
+		adapterDescriptorMapTo.setType(HybridAdapterDescriptor.MAP_TO);
 		adapterDescriptorMapTo.setValue(adapterDescriptor.getMapTo());
 		
 		hybridAdapterDescriptor.addValue(adapterDescriptorMapTo);
 		
 		
 		HybridSiminovValue cache = new HybridSiminovValue();
-		cache.setType(siminov.hybrid.adapter.constants.HybridDescriptor.ADAPTER_CACHE);
+		cache.setType(HybridAdapterDescriptor.CACHE);
 		cache.setValue(Boolean.toString(adapterDescriptor.isCache()));
 		
 		hybridAdapterDescriptor.addValue(cache);
 		
 		
 		HybridSiminovData hybridHandlers = new HybridSiminovData();
-		hybridHandlers.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLERS);
+		hybridHandlers.setDataType(HybridAdapterDescriptor.HANDLERS);
 		
 		Iterator<Handler> handlers = adapterDescriptor.getHandlers();
 		while(handlers.hasNext()) {
@@ -908,32 +909,32 @@ public class ResourceManager {
 	public HybridSiminovData generateHybridHandler(final Handler handler) {
 		
 		HybridSiminovData hybridHandler = new HybridSiminovData();
-		hybridHandler.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER);
+		hybridHandler.setDataType(HybridAdapterDescriptor.HANDLER);
 		
 		
 		HybridSiminovValue handlerName = new HybridSiminovValue();
-		handlerName.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_NAME);
+		handlerName.setType(HybridAdapterDescriptor.HANDLER_NAME);
 		handlerName.setValue(handler.getName());
 		
 		hybridHandler.addValue(handlerName);
 		
 		
 		HybridSiminovValue handlerMapTo = new HybridSiminovValue();
-		handlerMapTo.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_MAP_TO);
+		handlerMapTo.setType(HybridAdapterDescriptor.HANDLER_MAP_TO);
 		handlerMapTo.setValue(handler.getMapTo());
 		
 		hybridHandler.addValue(handlerMapTo);
 		
 		
 		HybridSiminovValue handlerDescription = new HybridSiminovValue();
-		handlerDescription.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_DESCRIPTION);
+		handlerDescription.setType(HybridAdapterDescriptor.HANDLER_DESCRIPTION);
 		handlerDescription.setValue(handler.getDescription());
 		
 		hybridHandler.addValue(handlerDescription);
 		
 		
 		HybridSiminovData hybridHandlerParameters = new HybridSiminovData();
-		hybridHandlerParameters.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_PARAMETERS);
+		hybridHandlerParameters.setDataType(HybridAdapterDescriptor.HANDLER_PARAMETERS);
 		
 		Iterator<Parameter> parameters = handler.getParameters();
 		while(parameters.hasNext())  {
@@ -941,18 +942,18 @@ public class ResourceManager {
 			Parameter parameter = parameters.next();
 			
 			HybridSiminovData hybridHandlerParameter = new HybridSiminovData();
-			hybridHandlerParameter.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_PARAMETER);
+			hybridHandlerParameter.setDataType(HybridAdapterDescriptor.HANDLER_PARAMETER);
 			
 			
 			HybridSiminovValue parameterType = new HybridSiminovValue();
-			parameterType.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_PARAMETER_TYPE);
+			parameterType.setType(HybridAdapterDescriptor.HANDLER_PARAMETER_TYPE);
 			parameterType.setValue(parameter.getType());
 			
 			hybridHandlerParameter.addValue(parameterType);
 			
 			
 			HybridSiminovValue parameterDescription = new HybridSiminovValue();
-			parameterDescription.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_PARAMETER_DESCRIPTION);
+			parameterDescription.setType(HybridAdapterDescriptor.HANDLER_PARAMETER_DESCRIPTION);
 			parameterDescription.setValue(parameter.getDescription());
 			
 			hybridHandlerParameter.addValue(parameterDescription);
@@ -967,18 +968,18 @@ public class ResourceManager {
 		if(returnType != null) {
 
 			HybridSiminovData hybridReturn = new HybridSiminovData();
-			hybridReturn.setDataType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_RETURN);
+			hybridReturn.setDataType(HybridAdapterDescriptor.HANDLER_RETURN);
 			
 			
 			HybridSiminovValue hybridReturnType = new HybridSiminovValue();
-			hybridReturnType.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_RETURN_TYPE);
+			hybridReturnType.setType(HybridAdapterDescriptor.HANDLER_RETURN_TYPE);
 			hybridReturnType.setValue(returnType.getType());
 			
 			hybridReturn.addValue(hybridReturnType);
 					
 			
 			HybridSiminovValue hybridReturnDescription = new HybridSiminovValue();
-			hybridReturnDescription.setType(siminov.hybrid.adapter.constants.HybridDescriptor.HANDLER_RETURN_DESCRIPTION);
+			hybridReturnDescription.setType(HybridAdapterDescriptor.HANDLER_RETURN_DESCRIPTION);
 			hybridReturnDescription.setValue(returnType.getDescription());
 			
 			hybridReturn.addValue(hybridReturnDescription);

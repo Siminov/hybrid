@@ -36,6 +36,9 @@ public class AdapterHandler {
 
 	private IHandler handler = null;
 	
+	/**
+	 * AdapterHandler Private Constructor
+	 */
 	private AdapterHandler() {
 		
 		AdapterDescriptor adapterDescriptor = resourceManager.getAdapterDescriptor(Constants.WEB_TO_NATIVE_ADAPTER);
@@ -46,7 +49,7 @@ public class AdapterHandler {
 	}
 	
 	/**
-	 * It provides an instance of Adapter Handler class.
+	 * It provides an singleton instance of Adapter Handler class.
 	 * 
 	 * @return Adapter Handler instance.
 	 */

@@ -25,7 +25,6 @@ import java.util.List;
 /**
  * Handle Request between NATIVE-TO-WEB.
  * Exposes method to GET and SET information about request.
- *
  */
 public class Adapter {
 

@@ -32,8 +32,16 @@ import siminov.hybrid.service.GenericService;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
+/**
+ * It handles all calls related to service
+ */
 public class ServiceHandler implements IAdapter {
 
+	/**
+	 * It invoke requested service 
+	 * @param data Data Parameter
+	 * @throws ServiceException If any exception occur while processing service request
+	 */
 	public void invoke(String data) throws ServiceException {
 
 		HybridSiminovDataReader hybridSiminovDataParser = null; 

@@ -362,7 +362,9 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 	}
 	
 
-	
+	/**
+	 * It handles II part of hybrid initialization
+	 */
 	public void initializeSiminov() {
 
 		siminov.connect.Siminov.processDatabase();
@@ -370,6 +372,9 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 	}
 
 	
+	/**
+	 * It handles siminov framework shutdown request
+	 */
 	public void shutdownSiminov() {
 		
 		shutdown();	

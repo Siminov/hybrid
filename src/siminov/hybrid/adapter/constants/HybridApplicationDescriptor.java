@@ -20,7 +20,7 @@
 package siminov.hybrid.adapter.constants;
 
 /**
- * Exposes constants to which represents Application Descriptor on Web.
+ * Exposes constants which represents Application Descriptor on Web.
  */
 public interface HybridApplicationDescriptor {
 
@@ -43,11 +43,6 @@ public interface HybridApplicationDescriptor {
 	 * Web Application Descriptor Version.
 	 */
 	public String VERSION = "version";
-	
-	/**
-	 * Web Application Descriptor Load Initially.
-	 */
-	public String LOAD_INITIALLY = "loadInitially";
 	
 	
 	

@@ -19,8 +19,9 @@
 
 package siminov.hybrid.utils;
 
-
+/**
+ * Exposes utility methods which can be used by both SIMINOV/Application. 
+ */
 public class Utils extends siminov.orm.utils.Utils {
-
 
 }

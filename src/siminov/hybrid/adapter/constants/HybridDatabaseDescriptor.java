@@ -20,7 +20,7 @@
 package siminov.hybrid.adapter.constants;
 
 /**
- * Exposes constants to which represents Database Descriptor on Web.
+ * Exposes constants which represents Database Descriptor on Web.
  */
 public interface HybridDatabaseDescriptor {
 
@@ -61,16 +61,5 @@ public interface HybridDatabaseDescriptor {
 	 * Web Database Descriptor Database Mapping Descriptor Path.
 	 */
 	public String DATABASE_MAPPING_DESCRIPTOR_PATH = "databaseMappingDescriptorPath";
-	
-	
-	/**
-	 * Web Database Descriptor Libraries.
-	 */
-	public String LIBRARIES = "Array";
-	
-	/**
-	 * Web Database Descriptor Library Path.
-	 */
-	public String LIBRARY_PATH = "libraryPath";
 	
 }

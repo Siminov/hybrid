@@ -38,8 +38,14 @@ import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 import siminov.orm.utils.ClassUtils;
 
+/**
+ * It is a Generic Service handler on behalf of web service request
+ */
 public class GenericService extends Service {
 
+	/**
+	 * It handles generic service start event, and delivers the call to registered classes
+	 */
 	public void onStart() {
 		
 		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
@@ -119,6 +125,9 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles generic service queue event, and delivers the call to registered classes
+	 */
 	public void onQueue() {
 
 		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
@@ -198,6 +207,9 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles generic service pause event, and delivers the call to registered classes
+	 */
 	public void onPause() {
 
 		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
@@ -278,6 +290,9 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles generic service resume event, and delivers the call to registered classes
+	 */
 	public void onResume() {
 
 		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
@@ -357,6 +372,9 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles generic service finish event, and delivers the call to registered classes
+	 */
 	public void onFinish() {
 
 		siminov.connect.resource.ResourceManager conncetResourceManager = siminov.connect.resource.ResourceManager.getInstance();
@@ -436,6 +454,9 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles generic service request invoke event, and delivers the call to registered classes
+	 */
 	public void onRequestInvoke(IConnectionRequest connectionRequest) {
 
 		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
@@ -469,7 +490,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_API_INVOKE);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_REQUEST_INVOKE);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -518,6 +539,9 @@ public class GenericService extends Service {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles generic service request finish event, and delivers the call to registered classes
+	 */
 	public void onRequestFinish(IConnectionResponse connectionResponse) {
 
 		siminov.connect.resource.ResourceManager connectResourceManager = siminov.connect.resource.ResourceManager.getInstance();
@@ -557,7 +581,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_API_FINISH);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_REQUEST_FINISH);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 
@@ -599,7 +623,9 @@ public class GenericService extends Service {
 		
 		adapter.invoke();
 	}
-
+	/**
+	 * It handles generic service terminate event, and delivers the call to registered classes
+	 */
 	public void onTerminate(ServiceException serviceException) {
 
 		siminov.connect.resource.ResourceManager conncetResourceManager = siminov.connect.resource.ResourceManager.getInstance();

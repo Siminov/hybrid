@@ -32,11 +32,18 @@ import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
+
+/**
+ * It handles all events related to Sync Event 
+ */
 public class SyncEventHandler implements ISyncEvents {
 
 	private ResourceManager hybridResourceManager = ResourceManager.getInstance();
 	private EventHandler eventHandler = EventHandler.getInstance();
 	
+	/**
+	 * It handles On Start Sync event
+	 */
 	public void onStart(ISyncRequest syncRequest) {
 
 		ISyncEvents syncEvents = eventHandler.getSyncEvent();
@@ -100,6 +107,9 @@ public class SyncEventHandler implements ISyncEvents {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles On Queue Sync event
+	 */
 	public void onQueue(ISyncRequest syncRequest) {
 
 		ISyncEvents syncEvents = eventHandler.getSyncEvent();
@@ -163,6 +173,9 @@ public class SyncEventHandler implements ISyncEvents {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles On Finish Event
+	 */
 	public void onFinish(ISyncRequest syncRequest) {
 
 		ISyncEvents syncEvents = eventHandler.getSyncEvent();
@@ -226,6 +239,9 @@ public class SyncEventHandler implements ISyncEvents {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles On Terminate Event
+	 */
 	public void onTerminate(ISyncRequest syncRequest) {
 
 		ISyncEvents syncEvents = eventHandler.getSyncEvent();

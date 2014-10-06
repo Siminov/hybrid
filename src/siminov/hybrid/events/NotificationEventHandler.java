@@ -34,12 +34,17 @@ import siminov.hybrid.writter.HybridSiminovDataWritter;
 import siminov.orm.exception.SiminovException;
 import siminov.orm.log.Log;
 
+/**
+ * It handles notification related events 
+ */
 public class NotificationEventHandler implements INotificationEvents {
 
 	private ResourceManager hybridResourceManager = ResourceManager.getInstance();
 	private EventHandler eventHandler = EventHandler.getInstance();
 
-	
+	/**
+	 * It handles on registration event
+	 */
 	public void onRegistration(IRegistration registration) {
 		
 		if(!hybridResourceManager.doesEventsRegistered()) {
@@ -109,6 +114,9 @@ public class NotificationEventHandler implements INotificationEvents {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles on unregistration event
+	 */
 	public void onUnregistration(IRegistration registration) {
 
 		if(!hybridResourceManager.doesEventsRegistered()) {
@@ -178,6 +186,9 @@ public class NotificationEventHandler implements INotificationEvents {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles on notification event
+	 */
 	public void onNotification(IMessage message) {
 
 		if(!hybridResourceManager.doesEventsRegistered()) {
@@ -247,6 +258,9 @@ public class NotificationEventHandler implements INotificationEvents {
 		adapter.invoke();
 	}
 
+	/**
+	 * It handles on error event
+	 */
 	public void onError(NotificationException notificationException) {
 		
 		if(!hybridResourceManager.doesEventsRegistered()) {

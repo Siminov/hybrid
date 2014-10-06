@@ -130,6 +130,12 @@ public class ResourcesHandler implements IAdapter {
 	}
 
 	
+	/**
+	 * It handles database descriptor request from web
+	 * @param databaseDescriptorName Name of database descriptor
+	 * @return Web Hybrid Database Descriptor 
+	 * @throws SiminovException If any exception occur while generating web database descriptor 
+	 */
 	public String getDatabaseDescriptor(final String databaseDescriptorName) throws SiminovException {
 		
 		DatabaseDescriptor databaseDescriptor = ormResourceManager.getDatabaseDescriptorBasedOnName(databaseDescriptorName);

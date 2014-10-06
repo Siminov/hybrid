@@ -17,10 +17,20 @@
 
 package siminov.hybrid.adapter.constants;
 
+
+/**
+ * Exposes constants which represents Notification Message on Web.
+ */
 public interface HybridMessage {
 
+	/**
+	 * Web Message
+	 */
 	public String MESSAGE = "Message";
 
 	
+	/**
+	 * Web Msg
+	 */
 	public String MSG = "message";
 }

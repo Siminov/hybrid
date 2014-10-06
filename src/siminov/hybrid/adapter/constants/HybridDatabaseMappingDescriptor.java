@@ -20,7 +20,7 @@
 package siminov.hybrid.adapter.constants;
 
 /**
- * Exposes constants to which represents Databse Mapping Descriptor on Web.
+ * Exposes constants which represents Databse Mapping Descriptor on Web.
  */
 public interface HybridDatabaseMappingDescriptor {
 
@@ -44,12 +44,12 @@ public interface HybridDatabaseMappingDescriptor {
 	/**
 	 * Web Database Mapping Descriptor Columns.
 	 */
-	public String COLUMNS = "Array";
+	public String ENTITIES = "Array";
 	
 	/**
 	 * Web Database Mapping Descriptor Column.
 	 */
-	public String COLUMN = "DatabaseMappingDescriptor.Column";
+	public String ENTITY = "DatabaseMappingDescriptor.Column";
 	
 	
 	/**
@@ -112,11 +112,6 @@ public interface HybridDatabaseMappingDescriptor {
 	 * Web Database Mapping Descriptor Column.
 	 */
 	public String INDEX_UNIQUE = "unique";
-	
-	/**
-	 * Web Database Mapping Descriptor Index Columns.
-	 */
-	public String INDEX_COLUMNS = "Array";
 	
 	/**
 	 * Web Database Mapping Descriptor Index Column.

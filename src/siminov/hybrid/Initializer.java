@@ -28,6 +28,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.webkit.WebView;
 
+
+/**
+ * It implements IInitializer Interface.
+ * It handle initialization of framework.
+ */
 public class Initializer implements IInitializer {
 
 	private ResourceManager ormResourceManager = ResourceManager.getInstance();
@@ -35,10 +40,16 @@ public class Initializer implements IInitializer {
 	
 	private List<Object> parameters = new ArrayList<Object> ();
 	
+	/**
+	 * Add Initialization Parameter.
+	 */
 	public void addParameter(Object object) {
 		parameters.add(object);
 	}
 	
+	/**
+	 * It is used to initialize and start the framework
+	 */
 	public void initialize() {
 		
 		Context context = null;

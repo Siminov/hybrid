@@ -20,7 +20,7 @@
 package siminov.hybrid.adapter.constants;
 
 /**
- * Exposes constants to which represents Hybrid Library Descriptor on Web.
+ * Exposes constants which represents Hybrid Library Descriptor on Web.
  */
 public interface HybridLibraryDescriptor {
 

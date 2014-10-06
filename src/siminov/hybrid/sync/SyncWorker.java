@@ -32,6 +32,9 @@ import siminov.connect.service.design.IService;
 import siminov.connect.sync.design.ISyncRequest;
 import siminov.hybrid.service.GenericService;
 
+/**
+ * It process sync request on the behalf of web
+ */
 public class SyncWorker implements IWorker {
 
 	private static SyncWorker syncWorker = null;
@@ -41,10 +44,17 @@ public class SyncWorker implements IWorker {
 	
 	private ResourceManager resourceManager = ResourceManager.getInstance();
 	
+	/**
+	 * SyncWorker Private Constructor
+	 */
 	private SyncWorker() {
 		
 	}
 
+	/**
+	 * It provides singleton instance of SyncWorker
+	 * @return SyncWorker singleton instance
+	 */
 	public static SyncWorker getInstance() {
 		
 		if(syncWorker == null) {

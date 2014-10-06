@@ -34,40 +34,76 @@ import siminov.orm.model.IDescriptor;
 		
 Example:
 	{@code
-	<adapter>
-		<property name="name">name_of_adapter</property>
-		<property name="description">description_about_adapter</property>
-		<property name="type">type_of_adapter</property>
-		<property name="map_to">map_to_class_name</property>
-		<property name="cache">should_be_cached_or_not</property>
-		
-		<handlers>
-		
-			<handler>
-				<property name="name">name_of_handler</property>
-				<property name="description">description_about_handler</property>
-				<property name="map_to">map_to_function_name</property>
-				
-				<parameters>
-					
-					<parameter>
-						<property name="name"></property>
-						<property name="description"></property>
-						<property name="type"></property>
-					</parameter>
-				
-				</parameter>
-				
-				<return>
-						<property name="type">return_data_type</property>
-						<property name="description">description_about_return_data</property>
-				</return>
-				
-			</handler>
-		
-		</handlers>
-		
-	</adapter>
+	
+	<adapter-descriptor>
+	    
+	    <!-- General Adapter Properties -->
+	    	<!-- Mandatory Field -->
+	    <property name="name">adapter_name</property>
+	    	
+	    	<!-- Optional Field -->
+	    <property name="description">adapter_description</property>
+	    
+	    	<!-- Mandatory Field -->
+	    <property name="type">WEB-TO-NATIVE|NATIVE-TO-WEB</property>
+	    
+	    	<!-- Optional Field -->
+	    <property name="map_to">name_of_adapter_class</property>
+	
+	    	<!-- Optional Field (DEFAULT: FALSE)-->
+	    <property name="cache">true/false</property>
+	    
+	    <!-- Handlers -->
+	    	<!-- Handler -->
+	    <handlers>
+	        
+	     <handler>
+	         
+	         <!-- General Handler Properties -->
+	         	<!-- Mandatory Field -->
+	         <property name="name">handler_name</property>
+	         
+	         	<!-- Optional Field -->
+	         <property name="description">handler_description</property>	            
+	          	            
+	         	<!-- Mandatory Field -->
+	         <property name="map_to">name_of_handler_method</property>	            
+	         
+	         		            	            	           
+	         <!-- Parameters -->
+	         <parameters>
+	             
+	             <!-- Parameter -->
+	             <parameter>
+	                 
+	                 	<!-- Mandatory Field -->
+	                 <property name="name">name_of_parameter</property>
+	                 
+	                 	<!-- Mandatory Field -->
+	                 <property name="type">parameter_type</property>
+	                 
+	                 	<!-- Optional Field -->
+	                 <property name="description">description_of_parameter</property>
+	                 
+	             </parameter>
+	             
+	         </parameters>
+	         
+	         <return>
+	             
+	             	<!-- Mandatory Field -->
+	             <property name="type">return_type</property>
+	             
+	             	<!-- Optional Field -->
+	             <property name="description">return_data_description</property>
+	             
+	         </return>
+	         
+	     </handler>
+	         
+	    </handlers>
+	
+	</adapter-descriptor>
 			
 	}
 	
