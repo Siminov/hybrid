@@ -34,44 +34,44 @@ public interface HybridServiceHandler {
 	public String ISERVICE_API_HANDLER = "ISERVICE_API_HANDLER";
 	
 	/**
-	 * Web Service On Service Start
+	 * Web Service On Start
 	 */
-	public String ISERVICE_ON_SERVICE_START = "onServiceStart";
+	public String ISERVICE_ON_START = "onStart";
 
 	/**
-	 * Web Service On Service Queue
+	 * Web Service On Queue
 	 */
-	public String ISERVICE_ON_SERVICE_QUEUE = "onServiceQueue";
+	public String ISERVICE_ON_QUEUE = "onQueue";
 
 	/**
-	 * Web Service On Service Pause
+	 * Web Service On Pause
 	 */
-	public String ISERVICE_ON_SERVICE_PAUSE = "onServicePause";
+	public String ISERVICE_ON_PAUSE = "onPause";
 	
 	/**
-	 * Web Service On Service Resume
+	 * Web Service On Resume
 	 */
-	public String ISERVICE_ON_SERVICE_RESUME = "onServiceResume";
+	public String ISERVICE_ON_RESUME = "onResume";
 	
 	/**
-	 * Web Service On Service Finish
+	 * Web Service On Finish
 	 */
-	public String ISERVICE_ON_SERVICE_FINISH = "onServiceFinish";
+	public String ISERVICE_ON_FINISH = "onFinish";
 	
 	/**
-	 * Web Service On Service Request Invoke
+	 * Web Service On Request Invoke
 	 */
-	public String ISERVICE_ON_SERVICE_REQUEST_INVOKE = "onServiceRequestInvoke";
+	public String ISERVICE_ON_REQUEST_INVOKE = "onRequestInvoke";
 	
 	/**
-	 * Web Service On Service Request Finish
+	 * Web Service On Request Finish
 	 */
-	public String ISERVICE_ON_SERVICE_REQUEST_FINISH = "onServiceRequestFinish";
+	public String ISERVICE_ON_REQUEST_FINISH = "onRequestFinish";
 	
 	/**
-	 * Web Service On Service Terminate
+	 * Web Service On Terminate
 	 */
-	public String ISERVICE_ON_SERVICE_TERMINATE = "onServiceTerminate";
+	public String ISERVICE_ON_TERMINATE = "onTerminate";
 	
 	/**
 	 * Web Service Resources

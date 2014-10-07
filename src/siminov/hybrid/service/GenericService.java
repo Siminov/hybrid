@@ -84,7 +84,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_START);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_START);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -166,7 +166,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_QUEUE);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_QUEUE);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -248,7 +248,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_PAUSE);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_PAUSE);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -331,7 +331,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_RESUME);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_RESUME);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -413,7 +413,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_PAUSE);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_PAUSE);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -490,7 +490,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_REQUEST_INVOKE);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_REQUEST_INVOKE);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -581,7 +581,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_REQUEST_FINISH);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_REQUEST_FINISH);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 
@@ -664,7 +664,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_SERVICE_TERMINATE);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_TERMINATE);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
