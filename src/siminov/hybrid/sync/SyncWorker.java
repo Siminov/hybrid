@@ -118,7 +118,7 @@ public class SyncWorker implements IWorker {
 				 */
 				SyncDescriptor refreshDescriptor = resourceManager.getSyncDescriptor(syncRequest.getName());
 				
-				Iterator<String> services = refreshDescriptor.getServices();
+				Iterator<String> services = refreshDescriptor.getServiceDescriptorNames();
 				while(services.hasNext()) {
 					
 					String service = services.next();
