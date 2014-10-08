@@ -647,7 +647,7 @@ public class ResourceManager {
 	public HybridSiminovData generateHybridDatabaseMappingDescriptorColumn(final Attribute attribute) {
 		
 		HybridSiminovData hybridColumn = new HybridSiminovData();
-		hybridColumn.setDataType(HybridDatabaseMappingDescriptor.ENTITY);
+		hybridColumn.setDataType(HybridDatabaseMappingDescriptor.ATTRIBUTE);
 		
 		HybridSiminovValue variableName = new HybridSiminovValue();
 		variableName.setType(HybridDatabaseMappingDescriptor.VARIABLE_NAME);

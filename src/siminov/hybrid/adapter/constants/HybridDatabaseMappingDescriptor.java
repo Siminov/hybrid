@@ -49,7 +49,7 @@ public interface HybridDatabaseMappingDescriptor {
 	/**
 	 * Web Database Mapping Descriptor Column.
 	 */
-	public String ENTITY = "DatabaseMappingDescriptor.Column";
+	public String ATTRIBUTE = "DatabaseMappingDescriptor.Attribute";
 	
 	
 	/**

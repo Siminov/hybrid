@@ -55,7 +55,7 @@ public interface HybridConnectionRequest {
 	/**
 	 * Query Parameter Type
 	 */
-	public String QUERY_PARAMETER_TYPE = "ServiceDescriptor.API.QueryParameter";
+	public String QUERY_PARAMETER_TYPE = "ServiceDescriptor.Request.QueryParameter";
 	
 	
 	/**
@@ -76,7 +76,7 @@ public interface HybridConnectionRequest {
 	/**
 	 * Header Parameter Type
 	 */
-	public String HEADER_PARAMETER_TYPE = "ServiceDescriptor.API.HeaderParameter";
+	public String HEADER_PARAMETER_TYPE = "ServiceDescriptor.Request.HeaderParameter";
 	
 	/**
 	 * Header Parameter Name
