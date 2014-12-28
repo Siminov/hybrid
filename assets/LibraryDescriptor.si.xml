@@ -20,7 +20,7 @@
 
 <!-- DESIGN OF LibraryDescriptor.si.xml -->
 
-<library>
+<library-descriptor>
 
     <!-- General Properties Of Library -->
     
@@ -36,21 +36,40 @@
 	
 	<!-- Optional Field -->
 		<!-- Database Mappings -->
-	<database-mappings>
-		<database-mapping>name_of_database_descriptor.full_path_of_database_mapping_descriptor_file</database-mapping>
-	</database-mappings>
+	<database-mapping-descriptors>
+		<database-mapping-descriptor>name_of_database_descriptor.full_path_of_database_mapping_descriptor_file</database-mapping-descriptor>
+	</database-mapping-descriptors>
 	 
 	
-	<!-- Hybrid Adapters Needed Under This Library Descriptor -->
+	<!-- Service Descriptors -->
 		
 	<!-- Optional Field -->
-		<!-- Hybrid Adapters -->
-	<adapters>
-	    <adapter>full_path_of_hybrid_adapter_file</adapter>
-	</adapters>
+		<!-- Service Descriptor -->
+	<service-descriptors>
+	    <service-descriptor>full_path_of_service-descriptor_file</service-descriptor>
+	</service-descriptors>
 	
 	
-</library>
+	<!-- Sync Descriptors -->
+	
+	<!-- Optional Field -->
+		<!-- Sync Descriptor -->
+	<sync-descriptors>
+	    <sync-descriptor>full_path_of_sync_descriptor_file</sync-descriptor>
+	</sync-descriptors>
+	
+	
+	<!-- Adapter Descriptors -->
+	
+	<!-- Optional Field -->
+		<!-- Adapter Descriptor -->
+	<adapter-descriptors>
+	    <adapter-descriptor>full_path_of_adapter_descriptor_file</adapter-descriptor>
+	</adapter-descriptors>	
+		
+	
+</library-descriptor>
+
 
 
 
@@ -68,18 +87,25 @@ Type Of Properties:
 
 
 
-	ii. Database Mapping Paths Needed Under This Library Descriptor.	 
+	ii. Database Mapping Paths Needed Under This Database Descriptor.	 
 		
 		- Name of database descriptor associated to.
+		
+		- Provide full database mapping descriptor file.
 
-		- Provide full database mapping descriptor file path if you have used xml format to define ORM.
-
-		- Provide full class path of database mapping descriptor POJO class if you have used annotation to define ORM.
-
-
-	iii Hybrid Adapter Paths Needed Under This Library Descriptor.
+		- Put (dot). between database descriptor name and database descriptor file path.
+		
+		
+	iii. Service Descriptor Paths Needed Under The Library.
 	
-		- Provide full hybrid adapter file path.
-	
+		- Provide full service descriptor file path.	
 
+	iv. Sync Descriptor Paths Needed Under The Library.
+		
+		- Provide full sync descriptor file path.
+
+	v. Adapter Descriptor Paths Needed Under The Library.
+	
+		- Provide full adapter descriptor file path.
  -->
+

@@ -1,7 +1,7 @@
 <!-- 
 /** 
  * [SIMINOV FRAMEWORK]
- * Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +22,13 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
 
-<database-mapping>
+<database-mapping-descriptor>
 
     <!-- General Properties Of Table And Class -->
     
 	    <!-- TABLE_NAME: Mandatory Field -->
 	    <!-- CLASS_NAME: Mandatory Field -->
-	<table table_name="name_of_table" class_name="mapped_pojo_java_class_name/mapped_pojo_javascript_class_name">
+	<entity table_name="name_of_table" class_name="mapped_pojo_java_class_name/mapped_pojo_javascript_class_name">
 		
 	    <!-- Column Properties Required Under This Table -->
 	    
@@ -36,7 +36,7 @@
 		
 			<!-- VARIABLE_NAME: Mandatory Field -->
 			<!-- COLUMN_NAME: Mandatory Field -->
-		<column variable_name="class_variable_name" column_name="column_name_of_table">
+		<attribute variable_name="class_variable_name" column_name="column_name_of_table">
 		    
 			    <!-- Mandatory Field -->
 			<property name="type">java_variable_data_type/javascript_variable_data_type</property>
@@ -56,7 +56,7 @@
 				<!-- Optional Field -->
 			<property name="default">default_value_of_column (Eg: 0.1)</property>
 		
-		</column>		
+		</attribute>		
 
 		
 		
@@ -110,9 +110,9 @@
 									
 		</relationships>
 
-	</table>
+	</entity>
 
-</database-mapping>
+</database-mapping-descriptor>
 
 
 
@@ -120,7 +120,7 @@
 
 DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modelling).
 
-	i. TABLE TAG: This tag defines the relationship between database table and its mapped POJO class name.
+	i. ENITYT TAG: This tag defines the relationship between database table and its mapped POJO class name.
 	
 		-> table_name*: Name of table. It is mandatory field. 
 		
@@ -139,7 +139,7 @@ DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modellin
 						Specify full Java class path and name in class_name TAG, no need to define for JavaScript because Siminov will automatically accume same name for it.
 		
 		
-	ii. COLUMN TAG: This tag defines the relationship between database table column and its mapped POJO class variable name.
+	ii. ATTRIBUTE TAG: This tag defines the relationship between database table column and its mapped POJO class variable name.
 	
 		-> column_name*: Name of database table column name which it defines.
 		
