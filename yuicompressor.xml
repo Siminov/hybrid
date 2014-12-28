@@ -37,7 +37,7 @@
 	            <pathelement location="yuicompressor.assets/yuicompressor-2.4.7.jar"/>
 	        </classpath>
 	    </java>
-	    <echo message="Siminov Hybrid Build Successful." />
+	    <echo message="Siminov Web Build Successful." />
 	    
         <touch file = "build/Siminov.js" /> 
         
@@ -59,7 +59,7 @@
   	    
 	    <delete dir="build/Siminov" />
 	    
-	    <echo message="Siminov Hybrid Compression Successful." />
+	    <echo message="Siminov Web Compression Successful." />
         
    	</target>
     

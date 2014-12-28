@@ -1,0 +1,52 @@
+
+<!-- 
+/** 
+ * [SIMINOV FRAMEWORK]
+ * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
+ -->
+
+<adapter-descriptor>
+    
+    <property name="name">SIMINOV</property>
+    <property name="description">Siminov Web Handler</property>
+    <property name="type">WEB-TO-NATIVE</property>
+    <property name="map_to">siminov.web.adapter.handlers.SiminovHandler</property>
+    		
+    <handlers>
+        
+        <handler>
+            
+            <property name="name">INITIALIZE-SIMINOV</property>
+            <property name="map_to">initializeSiminov</property>
+            <property name="description">Initialize Siminov</property>
+			<property name="type">SYNC</property>
+            	            
+        </handler>
+        
+        <handler>
+            
+            <property name="name">SHUTDOWN-SIMINOV</property>
+            <property name="map_to">shutdownSiminov</property>
+            <property name="description">Shutdown Siminov</property>
+			<property name="type">SYNC</property>
+            	            
+        </handler>
+        
+    </handlers>
+    	    
+</adapter-descriptor>
+

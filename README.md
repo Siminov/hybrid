@@ -1,9 +1,9 @@
-Siminov Hybrid ORM (Object Relationship Mapping) - Android + PhoneGap
+Siminov Web ORM (Object Relationship Mapping) - Android + PhoneGap
 ===================================================
 
-A Hybrid Application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a hybrid application leverages best of both native and mobile web technologies.
+A Web Application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a web application leverages best of both native and mobile web technologies.
 
-In Hybrid Environment, it is very difficult to map JavaScript/Java objects to relational database, but Siminov makes application developer life easy and simple by mapping JavaScript/Java objects to relational database.
+In Web Environment, it is very difficult to map JavaScript/Java objects to relational database, but Siminov makes application developer life easy and simple by mapping JavaScript/Java objects to relational database.
 
 Siminov can be used with PhoneGap. It enables application developers to build applications for mobile devices using JavaScript, HTML5 and CSS3, instead of device-specific languages such as Java.
 
@@ -13,7 +13,7 @@ Get Started
 -----------
 Get the source
 
-  git clone http://github.com/siminov/android-hybrid.git
+  git clone http://github.com/siminov/android-web.git
   
   
 Features
@@ -31,7 +31,7 @@ Siminov provides a easy set of defined descriptors which can be broadly classifi
 Easy to use with PhoneGap, It provides Object Relationship Mapping between JavaScript Class and Database 
 
 ###### 3. Synchronous Database Operations
-All Database operations in Siminov Hybrid Framework are Synchronous, because it use communication channel provided by Native Platform. This is an advantage over Phonegap where all database operations are asynchronous.
+All Database operations in Siminov Web Framework are Synchronous, because it use communication channel provided by Native Platform. This is an advantage over Phonegap where all database operations are asynchronous.
 
 
 ###### 4. Handle Application Initialization
@@ -113,4 +113,4 @@ LICENSE
 
 
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/a5f2f9d922d5af9a6e02afa8f816fd1a "githalytics.com")](http://githalytics.com/Siminov/android-hybrid)
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/a5f2f9d922d5af9a6e02afa8f816fd1a "githalytics.com")](http://githalytics.com/Siminov/android-web)
