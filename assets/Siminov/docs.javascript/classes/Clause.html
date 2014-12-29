@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Clause - Siminov Web</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Siminov Web" src="..\yuidoc.assets\siminov-logo.gif" style="max-height: 65%;" title="Siminov Web">
+            Siminov Web
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.0</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Adapter", "classes/AdapterDescriptor.Handler", "classes/AdapterDescriptor.Handler.Parameter", "classes/ApplicationDescriptor", "classes/Clause", "classes/ConnectionRequest", "classes/ConnectionResponse", "classes/Constants", "classes/Database", "classes/DatabaseDescriptor", "classes/DatabaseException", "classes/DatabaseMappingDescriptor", "classes/DatabaseMappingDescriptor.Attribute", "classes/DatabaseMappingDescriptor.Index", "classes/DatabaseMappingDescriptor.Relationship", "classes/DeploymentException", "classes/Dictionary", "classes/EventHandler", "classes/Function", "classes/IAverage", "classes/IAverageClause", "classes/ICount", "classes/ICountClause", "classes/IDelete", "classes/IDeleteClause", "classes/IGroupConcat", "classes/IGroupConcatClause", "classes/IMax", "classes/IMaxClause", "classes/IMin", "classes/IMinClause", "classes/IResource", "classes/ISelect", "classes/ISelectClause", "classes/IService", "classes/IServiceEvents", "classes/ISum", "classes/ISumClause", "classes/ITotal", "classes/ITotalClause", "classes/LibraryDescriptor", "classes/Log", "classes/Message", "classes/NotificationDescriptor", "classes/NotificationException", "classes/NotificationManager", "classes/Registration", "classes/Resources", "classes/Select", "classes/Service", "classes/ServiceDescriptor", "classes/ServiceDescriptor.Request", "classes/ServiceDescriptor.Request.HeaderParameter", "classes/ServiceDescriptor.Request.QueryParameter", "classes/ServiceEventHandler", "classes/ServiceException", "classes/ServiceHandler", "classes/SIDatasHelper", "classes/SIJsonHelper", "classes/Siminov", "classes/SiminovException", "classes/SiminovExceptionHandler", "classes/StringBuilder", "classes/SyncDescriptor", "classes/SyncException", "classes/SyncHandler", "classes/SyncRequest", "classes/WebSiminovDatas", "classes/WebSiminovDatas.WebSiminovData", "modules/Adapter", "modules/Collection", "modules/Connection", "modules/Database", "modules/Design", "modules/Events", "modules/Exception", "modules/Impl", "modules/Log", "modules/Model", "modules/Notification", "modules/Parser", "modules/Resource", "modules/Service", "modules/Sync", "modules/Utils"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/Adapter.html">Adapter</a></li>
+	                            <li><a href="../classes/AdapterDescriptor.Handler.html">AdapterDescriptor.Handler</a></li>
+	                            <li><a href="../classes/AdapterDescriptor.Handler.Parameter.html">AdapterDescriptor.Handler.Parameter</a></li>
+	                            <li><a href="../classes/ApplicationDescriptor.html">ApplicationDescriptor</a></li>
+	                            <li><a href="../classes/Clause.html">Clause</a></li>
+	                            <li><a href="../classes/ConnectionRequest.html">ConnectionRequest</a></li>
+	                            <li><a href="../classes/ConnectionResponse.html">ConnectionResponse</a></li>
+	                            <li><a href="../classes/Constants.html">Constants</a></li>
+	                            <li><a href="../classes/Database.html">Database</a></li>
+	                            <li><a href="../classes/DatabaseDescriptor.html">DatabaseDescriptor</a></li>
+	                            <li><a href="../classes/DatabaseException.html">DatabaseException</a></li>
+	                            <li><a href="../classes/DatabaseMappingDescriptor.html">DatabaseMappingDescriptor</a></li>
+	                            <li><a href="../classes/DatabaseMappingDescriptor.Attribute.html">DatabaseMappingDescriptor.Attribute</a></li>
+	                            <li><a href="../classes/DatabaseMappingDescriptor.Index.html">DatabaseMappingDescriptor.Index</a></li>
+	                            <li><a href="../classes/DatabaseMappingDescriptor.Relationship.html">DatabaseMappingDescriptor.Relationship</a></li>
+	                            <li><a href="../classes/DeploymentException.html">DeploymentException</a></li>
+	                            <li><a href="../classes/Dictionary.html">Dictionary</a></li>
+	                            <li><a href="../classes/EventHandler.html">EventHandler</a></li>
+	                            <li><a href="../classes/Function.html">Function</a></li>
+	                            <li><a href="../classes/IAverage.html">IAverage</a></li>
+	                            <li><a href="../classes/IAverageClause.html">IAverageClause</a></li>
+	                            <li><a href="../classes/ICount.html">ICount</a></li>
+	                            <li><a href="../classes/ICountClause.html">ICountClause</a></li>
+	                            <li><a href="../classes/IDelete.html">IDelete</a></li>
+	                            <li><a href="../classes/IDeleteClause.html">IDeleteClause</a></li>
+	                            <li><a href="../classes/IGroupConcat.html">IGroupConcat</a></li>
+	                            <li><a href="../classes/IGroupConcatClause.html">IGroupConcatClause</a></li>
+	                            <li><a href="../classes/IMax.html">IMax</a></li>
+	                            <li><a href="../classes/IMaxClause.html">IMaxClause</a></li>
+	                            <li><a href="../classes/IMin.html">IMin</a></li>
+	                            <li><a href="../classes/IMinClause.html">IMinClause</a></li>
+	                            <li><a href="../classes/IResource.html">IResource</a></li>
+	                            <li><a href="../classes/ISelect.html">ISelect</a></li>
+	                            <li><a href="../classes/ISelectClause.html">ISelectClause</a></li>
+	                            <li><a href="../classes/IService.html">IService</a></li>
+	                            <li><a href="../classes/IServiceEvents.html">IServiceEvents</a></li>
+	                            <li><a href="../classes/ISum.html">ISum</a></li>
+	                            <li><a href="../classes/ISumClause.html">ISumClause</a></li>
+	                            <li><a href="../classes/ITotal.html">ITotal</a></li>
+	                            <li><a href="../classes/ITotalClause.html">ITotalClause</a></li>
+	                            <li><a href="../classes/LibraryDescriptor.html">LibraryDescriptor</a></li>
+	                            <li><a href="../classes/Log.html">Log</a></li>
+	                            <li><a href="../classes/Message.html">Message</a></li>
+	                            <li><a href="../classes/NotificationDescriptor.html">NotificationDescriptor</a></li>
+	                            <li><a href="../classes/NotificationException.html">NotificationException</a></li>
+	                            <li><a href="../classes/NotificationManager.html">NotificationManager</a></li>
+	                            <li><a href="../classes/Registration.html">Registration</a></li>
+	                            <li><a href="../classes/Resources.html">Resources</a></li>
+	                            <li><a href="../classes/Select.html">Select</a></li>
+	                            <li><a href="../classes/Service.html">Service</a></li>
+	                            <li><a href="../classes/ServiceDescriptor.html">ServiceDescriptor</a></li>
+	                            <li><a href="../classes/ServiceDescriptor.Request.html">ServiceDescriptor.Request</a></li>
+	                            <li><a href="../classes/ServiceDescriptor.Request.HeaderParameter.html">ServiceDescriptor.Request.HeaderParameter</a></li>
+	                            <li><a href="../classes/ServiceDescriptor.Request.QueryParameter.html">ServiceDescriptor.Request.QueryParameter</a></li>
+	                            <li><a href="../classes/ServiceEventHandler.html">ServiceEventHandler</a></li>
+	                            <li><a href="../classes/ServiceException.html">ServiceException</a></li>
+	                            <li><a href="../classes/ServiceHandler.html">ServiceHandler</a></li>
+	                            <li><a href="../classes/SIDatasHelper.html">SIDatasHelper</a></li>
+	                            <li><a href="../classes/SIJsonHelper.html">SIJsonHelper</a></li>
+	                            <li><a href="../classes/Siminov.html">Siminov</a></li>
+	                            <li><a href="../classes/SiminovException.html">SiminovException</a></li>
+	                            <li><a href="../classes/SiminovExceptionHandler.html">SiminovExceptionHandler</a></li>
+	                            <li><a href="../classes/StringBuilder.html">StringBuilder</a></li>
+	                            <li><a href="../classes/SyncDescriptor.html">SyncDescriptor</a></li>
+	                            <li><a href="../classes/SyncException.html">SyncException</a></li>
+	                            <li><a href="../classes/SyncHandler.html">SyncHandler</a></li>
+	                            <li><a href="../classes/SyncRequest.html">SyncRequest</a></li>
+	                            <li><a href="../classes/WebSiminovDatas.html">WebSiminovDatas</a></li>
+	                            <li><a href="../classes/WebSiminovDatas.WebSiminovData.html">WebSiminovDatas.WebSiminovData</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Adapter.html">Adapter</a></li>
+	                            <li><a href="../modules/Collection.html">Collection</a></li>
+	                            <li><a href="../modules/Connection.html">Connection</a></li>
+	                            <li><a href="../modules/Database.html">Database</a></li>
+	                            <li><a href="../modules/Design.html">Design</a></li>
+	                            <li><a href="../modules/Events.html">Events</a></li>
+	                            <li><a href="../modules/Exception.html">Exception</a></li>
+	                            <li><a href="../modules/Impl.html">Impl</a></li>
+	                            <li><a href="../modules/Log.html">Log</a></li>
+	                            <li><a href="../modules/Model.html">Model</a></li>
+	                            <li><a href="../modules/Notification.html">Notification</a></li>
+	                            <li><a href="../modules/Parser.html">Parser</a></li>
+	                            <li><a href="../modules/Resource.html">Resource</a></li>
+	                            <li><a href="../modules/Service.html">Service</a></li>
+	                            <li><a href="../modules/Sync.html">Sync</a></li>
+	                            <li><a href="../modules/Utils.html">Utils</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>Clause <small>Class</small></h1>
+                        </div>
+                        
+                        <div class="well well-small">
+                        
+                        
+                                <div class="foundat">
+                                    Defined in: <a href="../files/Database_Clause.js.html#l29"><code>Database\Clause.js:29</code></a>
+                                </div>
+                        
+                                    Module: <a href="../modules/Database.html">Database</a>
+                        
+                        </div>
+                        
+                        
+                        <div class="well well-small">
+                            <p>Exposes API to deal with conditions used in query.</p>
+                        
+                        </div>
+                        
+                        
+                        <div>
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
+                        
+                                    <li><a data-toggle="tab" href="#methods">Methods</a></li>
+                                    <li><a data-toggle="tab" href="#properties">Properties</a></li>
+                            </ul>
+                        
+                            <div class="tab-content">
+                                <div id="index" class="tab-pane active">
+                                    <h2 class="off-left">Item Index</h2>
+                        
+                                        <div class="index-section methods">
+                                            <h3>Methods</h3>
+                        
+                                            <ul class="index-list methods">
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_add" data-tablink="add">add</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_addColumn" data-tablink="addColumn">addColumn</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_between" data-tablink="between">between</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_equalTo" data-tablink="equalTo">equalTo</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_greaterThan" data-tablink="greaterThan">greaterThan</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_greaterThanEqual" data-tablink="greaterThanEqual">greaterThanEqual</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_lessThan" data-tablink="lessThan">lessThan</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_lessThanEqual" data-tablink="lessThanEqual">lessThanEqual</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_" data-tablink=""></a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_like" data-tablink="like">like</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_notEqualTo" data-tablink="notEqualTo">notEqualTo</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_or" data-tablink="or">or</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#" data-tabid="#methods" data-anchor="#method_toString" data-tablink="toString">toString</a>
+                        
+                                                    </li>
+                                            </ul>
+                                        </div>
+                        
+                                        <div class="index-section properties">
+                                            <h3>Properties</h3>
+                        
+                                            <ul class="index-list properties">
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_AND" data-tablink="AND">AND</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_ASC_ORDER_BY" data-tablink="ASC_ORDER_BY">ASC_ORDER_BY</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_Between" data-tablink="Between">Between</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_DESC_ORDER_BY" data-tablink="DESC_ORDER_BY">DESC_ORDER_BY</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_" data-tablink=""></a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_EQUAL_TO" data-tablink="EQUAL_TO">EQUAL_TO</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_GREATER_THAN_EQUAL" data-tablink="GREATER_THAN_EQUAL">GREATER_THAN_EQUAL</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_IN" data-tablink="IN">IN</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_LESS_THAN" data-tablink="LESS_THAN">LESS_THAN</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_LESS_THAN_EQUAL" data-tablink="LESS_THAN_EQUAL">LESS_THAN_EQUAL</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_LIKE" data-tablink="LIKE">LIKE</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_NOT_EQUAL_TO" data-tablink="NOT_EQUAL_TO">NOT_EQUAL_TO</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                                    <li class="index-item property">
+                                                        <a href="#" data-tabid="#properties" data-anchor="#property_OR" data-tablink="OR">OR</a>
+                        
+                                                            <span class="flag static">static</span>
+                                                    </li>
+                                            </ul>
+                                        </div>
+                        
+                        
+                                </div>
+                        
+                                    <div id="methods" class="tab-pane">
+                                        <h2 class="off-left">Methods</h2>
+                        
+                                            <div id="method_add" class="method item">
+                                                <h3 class="name"><code>add</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>column</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l181"><code>Database\Clause.js:181</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Add condition</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">column</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Column</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_addColumn" class="method item">
+                                                <h3 class="name"><code>addColumn</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>column</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l41"><code>Database\Clause.js:41</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Add column</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">column</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Column</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_between" class="method item">
+                                                <h3 class="name"><code>between</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>start</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>end</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l128"><code>Database\Clause.js:128</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Between condition</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">start</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Start Condition</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">end</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>End Condition</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>:
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_equalTo" class="method item">
+                                                <h3 class="name"><code>equalTo</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>val</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l51"><code>Database\Clause.js:51</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Equal to conditiion</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">val</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Value of the condition</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>:
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_greaterThan" class="method item">
+                                                <h3 class="name"><code>greaterThan</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>val</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l77"><code>Database\Clause.js:77</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Greater then condition</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">val</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Value of the condition</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>:
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_greaterThanEqual" class="method item">
+                                                <h3 class="name"><code>greaterThanEqual</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>val</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l90"><code>Database\Clause.js:90</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Greater than equal condition</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">val</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Value of the condition</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>:
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_lessThan" class="method item">
+                                                <h3 class="name"><code>lessThan</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>val</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l102"><code>Database\Clause.js:102</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Less than condition</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">val</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Value of the condition</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>:
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_lessThanEqual" class="method item">
+                                                <h3 class="name"><code>lessThanEqual</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>val</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l115"><code>Database\Clause.js:115</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Less than equal condition</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">val</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Value of the condition</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>:
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_" class="method item">
+                                                <h3 class="name"><code></code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>values</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l154"><code>Database\Clause.js:154</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>In condition</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">values</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Values</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_like" class="method item">
+                                                <h3 class="name"><code>like</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>val</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type">Iselect</span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l141"><code>Database\Clause.js:141</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Like condition</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">val</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Value of the condition</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type">Iselect</span>:
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_notEqualTo" class="method item">
+                                                <h3 class="name"><code>notEqualTo</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>val</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l64"><code>Database\Clause.js:64</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Not equal to condition</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">val</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Value of the condition</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type"><a href="../classes/ISelect.html" class="crosslink">ISelect</a></span>:
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_or" class="method item">
+                                                <h3 class="name"><code>or</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>column</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l191"><code>Database\Clause.js:191</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Or condition</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">column</code>
+                                                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Column</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_toString" class="method item">
+                                                <h3 class="name"><code>toString</code></h3>
+                                            
+                                                    <span class="paren">()</span>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l201"><code>Database\Clause.js:201</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Where Clause</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                <p>Where Clause</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                    </div>
+                        
+                                    <div id="properties" class="tab-pane">
+                                        <h2 class="off-left">Properties</h2>
+                        
+                                            <div id="property_AND" class="property item">
+                                                <h3 class="name"><code>AND</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l315"><code>Database\Clause.js:315</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>And Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_ASC_ORDER_BY" class="property item">
+                                                <h3 class="name"><code>ASC_ORDER_BY</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l338"><code>Database\Clause.js:338</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Asc Order By Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_Between" class="property item">
+                                                <h3 class="name"><code>Between</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l282"><code>Database\Clause.js:282</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Between Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_DESC_ORDER_BY" class="property item">
+                                                <h3 class="name"><code>DESC_ORDER_BY</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l349"><code>Database\Clause.js:349</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Desc Order By Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_" class="property item">
+                                                <h3 class="name"><code></code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l238"><code>Database\Clause.js:238</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Greater Than Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_EQUAL_TO" class="property item">
+                                                <h3 class="name"><code>EQUAL_TO</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l215"><code>Database\Clause.js:215</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Equal To Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_GREATER_THAN_EQUAL" class="property item">
+                                                <h3 class="name"><code>GREATER_THAN_EQUAL</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l249"><code>Database\Clause.js:249</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Greater Than Equal Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_IN" class="property item">
+                                                <h3 class="name"><code>IN</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l304"><code>Database\Clause.js:304</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>In Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_LESS_THAN" class="property item">
+                                                <h3 class="name"><code>LESS_THAN</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l260"><code>Database\Clause.js:260</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Less Then Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_LESS_THAN_EQUAL" class="property item">
+                                                <h3 class="name"><code>LESS_THAN_EQUAL</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l271"><code>Database\Clause.js:271</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Less Than Equal Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_LIKE" class="property item">
+                                                <h3 class="name"><code>LIKE</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l293"><code>Database\Clause.js:293</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Like Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_NOT_EQUAL_TO" class="property item">
+                                                <h3 class="name"><code>NOT_EQUAL_TO</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l227"><code>Database\Clause.js:227</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Not Equal To Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                            <div id="property_OR" class="property item">
+                                                <h3 class="name"><code>OR</code></h3>
+                                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            
+                                            
+                                            
+                                                    <span class="flag final">final</span>
+                                            
+                                                    <span class="flag static">static</span>
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/Database_Clause.js.html#l326"><code>Database\Clause.js:326</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Or Condition</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                    </div>
+                        
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
