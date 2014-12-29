@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="yuidoc">
     	
-    <property name="yui" value="C:\Users\Ajaydeep\AppData\Roaming\npm" />
+    <property name="yui" value="" />
     <property name="appDir" value="" />
     
     <target name="yuidoc">

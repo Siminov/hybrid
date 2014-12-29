@@ -1,7 +1,7 @@
 {
 	"name": "Siminov Web",
   	"description": "Siminov Web JavaScript APIs Documentation",
-  	"version": "0.9",
+  	"version": "1.0",
   	"url": "http://siminov.github.com/android-web",
   	"logo": "yuidoc.assets/siminov-logo.gif",
   	"options": {
@@ -10,7 +10,6 @@
 
         "themedir": "yuidoc.assets/bootstrap",
         "helpers": ["yuidoc.assets/bootstrap/helpers/helpers.js"],
-	    
     	"outdir": "docs.javascript"
   	}
 }
