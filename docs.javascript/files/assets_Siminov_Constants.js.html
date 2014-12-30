@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>assets\Siminov\Constants.js - Siminov Web</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="Siminov Web" src="..\yuidoc.assets\siminov-logo.gif" style="max-height: 65%;" title="Siminov Web">
+            Siminov Web
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.0</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Adapter", "classes/AdapterDescriptor.Handler", "classes/AdapterDescriptor.Handler.Parameter", "classes/ApplicationDescriptor", "classes/Clause", "classes/ConnectionRequest", "classes/ConnectionResponse", "classes/Constants", "classes/Database", "classes/DatabaseDescriptor", "classes/DatabaseException", "classes/DatabaseMappingDescriptor", "classes/DatabaseMappingDescriptor.Attribute", "classes/DatabaseMappingDescriptor.Index", "classes/DatabaseMappingDescriptor.Relationship", "classes/DeploymentException", "classes/Dictionary", "classes/EventHandler", "classes/Function", "classes/IAverage", "classes/IAverageClause", "classes/ICount", "classes/ICountClause", "classes/IDelete", "classes/IDeleteClause", "classes/IGroupConcat", "classes/IGroupConcatClause", "classes/IMax", "classes/IMaxClause", "classes/IMin", "classes/IMinClause", "classes/IResource", "classes/ISelect", "classes/ISelectClause", "classes/IService", "classes/IServiceEvents", "classes/ISum", "classes/ISumClause", "classes/ITotal", "classes/ITotalClause", "classes/LibraryDescriptor", "classes/Log", "classes/Message", "classes/NotificationDescriptor", "classes/NotificationException", "classes/NotificationManager", "classes/Registration", "classes/Resources", "classes/Select", "classes/Service", "classes/ServiceDescriptor", "classes/ServiceDescriptor.Request", "classes/ServiceDescriptor.Request.HeaderParameter", "classes/ServiceDescriptor.Request.QueryParameter", "classes/ServiceEventHandler", "classes/ServiceException", "classes/ServiceHandler", "classes/SIDatasHelper", "classes/SIJsonHelper", "classes/Siminov", "classes/SiminovException", "classes/SiminovExceptionHandler", "classes/StringBuilder", "classes/SyncDescriptor", "classes/SyncException", "classes/SyncHandler", "classes/SyncRequest", "classes/WebSiminovDatas", "classes/WebSiminovDatas.WebSiminovData", "modules/Adapter", "modules/Collection", "modules/Connection", "modules/Database", "modules/Design", "modules/Events", "modules/Exception", "modules/Impl", "modules/Log", "modules/Model", "modules/Notification", "modules/Parser", "modules/Resource", "modules/Service", "modules/Sync", "modules/Utils"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/Adapter.html">Adapter</a></li>
+	                            <li><a href="../classes/AdapterDescriptor.Handler.html">AdapterDescriptor.Handler</a></li>
+	                            <li><a href="../classes/AdapterDescriptor.Handler.Parameter.html">AdapterDescriptor.Handler.Parameter</a></li>
+	                            <li><a href="../classes/ApplicationDescriptor.html">ApplicationDescriptor</a></li>
+	                            <li><a href="../classes/Clause.html">Clause</a></li>
+	                            <li><a href="../classes/ConnectionRequest.html">ConnectionRequest</a></li>
+	                            <li><a href="../classes/ConnectionResponse.html">ConnectionResponse</a></li>
+	                            <li><a href="../classes/Constants.html">Constants</a></li>
+	                            <li><a href="../classes/Database.html">Database</a></li>
+	                            <li><a href="../classes/DatabaseDescriptor.html">DatabaseDescriptor</a></li>
+	                            <li><a href="../classes/DatabaseException.html">DatabaseException</a></li>
+	                            <li><a href="../classes/DatabaseMappingDescriptor.html">DatabaseMappingDescriptor</a></li>
+	                            <li><a href="../classes/DatabaseMappingDescriptor.Attribute.html">DatabaseMappingDescriptor.Attribute</a></li>
+	                            <li><a href="../classes/DatabaseMappingDescriptor.Index.html">DatabaseMappingDescriptor.Index</a></li>
+	                            <li><a href="../classes/DatabaseMappingDescriptor.Relationship.html">DatabaseMappingDescriptor.Relationship</a></li>
+	                            <li><a href="../classes/DeploymentException.html">DeploymentException</a></li>
+	                            <li><a href="../classes/Dictionary.html">Dictionary</a></li>
+	                            <li><a href="../classes/EventHandler.html">EventHandler</a></li>
+	                            <li><a href="../classes/Function.html">Function</a></li>
+	                            <li><a href="../classes/IAverage.html">IAverage</a></li>
+	                            <li><a href="../classes/IAverageClause.html">IAverageClause</a></li>
+	                            <li><a href="../classes/ICount.html">ICount</a></li>
+	                            <li><a href="../classes/ICountClause.html">ICountClause</a></li>
+	                            <li><a href="../classes/IDelete.html">IDelete</a></li>
+	                            <li><a href="../classes/IDeleteClause.html">IDeleteClause</a></li>
+	                            <li><a href="../classes/IGroupConcat.html">IGroupConcat</a></li>
+	                            <li><a href="../classes/IGroupConcatClause.html">IGroupConcatClause</a></li>
+	                            <li><a href="../classes/IMax.html">IMax</a></li>
+	                            <li><a href="../classes/IMaxClause.html">IMaxClause</a></li>
+	                            <li><a href="../classes/IMin.html">IMin</a></li>
+	                            <li><a href="../classes/IMinClause.html">IMinClause</a></li>
+	                            <li><a href="../classes/IResource.html">IResource</a></li>
+	                            <li><a href="../classes/ISelect.html">ISelect</a></li>
+	                            <li><a href="../classes/ISelectClause.html">ISelectClause</a></li>
+	                            <li><a href="../classes/IService.html">IService</a></li>
+	                            <li><a href="../classes/IServiceEvents.html">IServiceEvents</a></li>
+	                            <li><a href="../classes/ISum.html">ISum</a></li>
+	                            <li><a href="../classes/ISumClause.html">ISumClause</a></li>
+	                            <li><a href="../classes/ITotal.html">ITotal</a></li>
+	                            <li><a href="../classes/ITotalClause.html">ITotalClause</a></li>
+	                            <li><a href="../classes/LibraryDescriptor.html">LibraryDescriptor</a></li>
+	                            <li><a href="../classes/Log.html">Log</a></li>
+	                            <li><a href="../classes/Message.html">Message</a></li>
+	                            <li><a href="../classes/NotificationDescriptor.html">NotificationDescriptor</a></li>
+	                            <li><a href="../classes/NotificationException.html">NotificationException</a></li>
+	                            <li><a href="../classes/NotificationManager.html">NotificationManager</a></li>
+	                            <li><a href="../classes/Registration.html">Registration</a></li>
+	                            <li><a href="../classes/Resources.html">Resources</a></li>
+	                            <li><a href="../classes/Select.html">Select</a></li>
+	                            <li><a href="../classes/Service.html">Service</a></li>
+	                            <li><a href="../classes/ServiceDescriptor.html">ServiceDescriptor</a></li>
+	                            <li><a href="../classes/ServiceDescriptor.Request.html">ServiceDescriptor.Request</a></li>
+	                            <li><a href="../classes/ServiceDescriptor.Request.HeaderParameter.html">ServiceDescriptor.Request.HeaderParameter</a></li>
+	                            <li><a href="../classes/ServiceDescriptor.Request.QueryParameter.html">ServiceDescriptor.Request.QueryParameter</a></li>
+	                            <li><a href="../classes/ServiceEventHandler.html">ServiceEventHandler</a></li>
+	                            <li><a href="../classes/ServiceException.html">ServiceException</a></li>
+	                            <li><a href="../classes/ServiceHandler.html">ServiceHandler</a></li>
+	                            <li><a href="../classes/SIDatasHelper.html">SIDatasHelper</a></li>
+	                            <li><a href="../classes/SIJsonHelper.html">SIJsonHelper</a></li>
+	                            <li><a href="../classes/Siminov.html">Siminov</a></li>
+	                            <li><a href="../classes/SiminovException.html">SiminovException</a></li>
+	                            <li><a href="../classes/SiminovExceptionHandler.html">SiminovExceptionHandler</a></li>
+	                            <li><a href="../classes/StringBuilder.html">StringBuilder</a></li>
+	                            <li><a href="../classes/SyncDescriptor.html">SyncDescriptor</a></li>
+	                            <li><a href="../classes/SyncException.html">SyncException</a></li>
+	                            <li><a href="../classes/SyncHandler.html">SyncHandler</a></li>
+	                            <li><a href="../classes/SyncRequest.html">SyncRequest</a></li>
+	                            <li><a href="../classes/WebSiminovDatas.html">WebSiminovDatas</a></li>
+	                            <li><a href="../classes/WebSiminovDatas.WebSiminovData.html">WebSiminovDatas.WebSiminovData</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/Adapter.html">Adapter</a></li>
+	                            <li><a href="../modules/Collection.html">Collection</a></li>
+	                            <li><a href="../modules/Connection.html">Connection</a></li>
+	                            <li><a href="../modules/Database.html">Database</a></li>
+	                            <li><a href="../modules/Design.html">Design</a></li>
+	                            <li><a href="../modules/Events.html">Events</a></li>
+	                            <li><a href="../modules/Exception.html">Exception</a></li>
+	                            <li><a href="../modules/Impl.html">Impl</a></li>
+	                            <li><a href="../modules/Log.html">Log</a></li>
+	                            <li><a href="../modules/Model.html">Model</a></li>
+	                            <li><a href="../modules/Notification.html">Notification</a></li>
+	                            <li><a href="../modules/Parser.html">Parser</a></li>
+	                            <li><a href="../modules/Resource.html">Resource</a></li>
+	                            <li><a href="../modules/Service.html">Service</a></li>
+	                            <li><a href="../modules/Sync.html">Sync</a></li>
+	                            <li><a href="../modules/Utils.html">Utils</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>assets\Siminov\Constants.js <small>File</small></h1>
+                        </div>
+                        
+                        <div class="file">
+                            <pre class="prettyprint linenums">
+                        /** 
+                         * [SIMINOV FRAMEWORK]
+                         * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+                         *
+                         * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+                         * you may not use this file except in compliance with the License.
+                         * You may obtain a copy of the License at
+                         *
+                         *     http://www.apache.org/licenses/LICENSE-2.0
+                         *
+                         * Unless required by applicable law or agreed to in writing, software
+                         * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+                         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                         * See the License for the specific language governing permissions and
+                         * limitations under the License.
+                         **/
+                        
+                        
+                        
+                        /**
+                        	It contain all contain variables requried by Siminov Framework.
+                        	
+                        	@class Constants
+                        	@constructor
+                        	
+                        */
+                        function Constants() {
+                        
+                        }
+                        
+                        //    ApplicationDescriptor.si.xml Constants.
+                        
+                        
+                        /**
+                        	Application Descriptor Name	
+                        	
+                        	@property APPLICATION_DESCRIPTOR_NAME
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.APPLICATION_DESCRIPTOR_NAME = &quot;name&quot;;
+                        
+                        /**
+                        	Application Descriptor Description
+                        
+                        	@property APPLICATION_DESCRIPTOR_DESCRIPTION
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.APPLICATION_DESCRIPTOR_DESCRIPTION = &quot;description&quot;;
+                        
+                        /**
+                        	Application Descriptor Version
+                        
+                        	@property APPLICATION_DESCRIPTOR_VERSION
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.APPLICATION_DESCRIPTOR_VERSION = &quot;version&quot;;
+                        
+                        
+                        //   DatabaseDescriptor.si.xml Constants.
+                        
+                        
+                        
+                        /**
+                        	Database Descriptor Database Name
+                        
+                        	@property DATABASE_DESCRIPTOR_DATABASE_NAME
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_DESCRIPTOR_DATABASE_NAME = &quot;database_name&quot;;
+                        
+                        /**
+                        	Database Descriptor Description
+                        
+                        	@property DATABASE_DESCRIPTOR_DESCRIPTION
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_DESCRIPTOR_DESCRIPTION = &quot;description&quot;;
+                        
+                        /**
+                        	Database Descriptor Type
+                        
+                        	@property DATABASE_DESCRIPTOR_TYPE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_DESCRIPTOR_TYPE = &quot;type&quot;;
+                        
+                        /**
+                        	Database Descriptor Is Locking Required
+                        
+                        	@property DATABASE_DESCRIPTOR_IS_LOCKING_REQUIRED
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_DESCRIPTOR_TRANSACTION_SAFE = &quot;is_locking_required&quot;;
+                        
+                        /**
+                        	Database Descriptor External Storage
+                        
+                        	@property DATABASE_DESCRIPTOR_EXTERNAL_STORAGE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_DESCRIPTOR_EXTERNAL_STORAGE = &quot;external_storage&quot;;
+                        
+                        
+                        //   LibraryDescriptor.si.xml Constants.
+                        
+                        
+                        
+                        /**
+                        	Library Descriptor Name
+                        
+                        	@property LIBRARY_DESCRIPTOR_NAME
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.LIBRARY_DESCRIPTOR_NAME = &quot;name&quot;;
+                        
+                        /**
+                        	Library Descriptor Description
+                        
+                        	@property LIBRARY_DESCRIPTOR_DESCRIPTION
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.LIBRARY_DESCRIPTOR_DESCRIPTION = &quot;description&quot;;
+                        
+                        
+                        //    DatabaseMappingDescriptor.si.xml Constants.
+                        
+                        
+                        
+                        /**
+                        	Database Mapping Descriptor Parimary Key
+                        
+                        	@property DATABASE_MAPPING_DESCRIPTOR_PRIMARY_KEY
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_MAPPING_DESCRIPTOR_PRIMARY_KEY = &quot;primary_key&quot;;
+                        
+                        /**
+                        	Database Mapping Descriptor Unique
+                        
+                        	@property DATABASE_MAPPING_DESCRIPTOR_UNIQUE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_MAPPING_DESCRIPTOR_UNIQUE = &quot;unique&quot;;
+                        
+                        /**
+                        	Database Mapping Descriptor Not Null
+                        
+                        	@property DATABASE_MAPPING_DESCRIPTOR_NOT_NULL
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_MAPPING_DESCRIPTOR_NOT_NULL = &quot;not_null&quot;;
+                        
+                        /**
+                        	Database Mapping Descriptor Default Value
+                        
+                        	@property DATABASE_MAPPING_DESCRIPTOR_DEFAULT_VALUE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_MAPPING_DESCRIPTOR_DEFAULT_VALUE = &quot;default&quot;;
+                        
+                        /**
+                        	Database Mapping Descriptor Check
+                        
+                        	@property DATABASE_MAPPING_DESCRIPTOR_CHECK
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_MAPPING_DESCRIPTOR_CHECK = &quot;check&quot;;
+                        
+                        /**
+                        	Database Mapping Descriptor Type
+                        
+                        	@property DATABASE_MAPPING_DESCRIPTOR_TYPE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_MAPPING_DESCRIPTOR_TYPE = &quot;type&quot;;
+                        
+                        
+                        /**
+                        	Database Mapping Descriptor Relationships Load
+                        
+                        	@property DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_LOAD
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_LOAD = &quot;load&quot;;
+                        
+                        
+                        //    WebDescriptor.si.xml Constants.
+                        
+                        
+                        
+                        /**
+                        	Web Descriptor Adapter Name
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_NAME
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_NAME = &quot;name&quot;;
+                        
+                        /**
+                        	Web Descriptor Adapter Description
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_DESCRIPTION
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_DESCRIPTION = &quot;description&quot;;
+                        
+                        /**
+                        	Web Descriptor Adapter Type
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_TYPE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_TYPE = &quot;type&quot;;
+                        
+                        /**
+                        	Web Descriptor Adapter Map To
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_MAP_TO
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_MAP_TO = &quot;map_to&quot;;
+                        
+                        /**
+                        	Web Descriptor Adapter Cache
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_CACHE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_CACHE = &quot;cache&quot;;
+                        
+                        
+                        
+                        /**
+                        	Web Descriptor Adapter Handler Name
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_HANDLER_NAME
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_HANDLER_NAME = &quot;name&quot;;
+                        
+                        /**
+                        	Web Descriptor Adapter Handler Map To
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_HANDLER_MAP_TO
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_HANDLER_MAP_TO = &quot;map_to&quot;;
+                        
+                        /**
+                        	Web Descriptor Adapter Handler Description
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_HANDLER_DESCRIPTION
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_HANDLER_DESCRIPTION = &quot;description&quot;;
+                        
+                        
+                        /**
+                        	Web Descriptor Adapter Parameter Type
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_PARAMETER_TYPE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_PARAMETER_TYPE = &quot;type&quot;;
+                        
+                        /**
+                        	Web Descriptor Adapter Parameter Description
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_PARAMETER_DESCRIPTION
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_PARAMETER_DESCRIPTION = &quot;description&quot;;
+                        
+                        
+                        /**
+                        	Wen Descriptor Adapter Return Type
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_RETURN_TYPE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_RETURN_TYPE = &quot;type&quot;;
+                        
+                        /**
+                        	Web Descriptor Adapter Return Description
+                        
+                        	@property WEB_DESCRIPTOR_ADAPTER_RETURN_DESCRIPTION
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ADAPTER_DESCRIPTOR_RETURN_DESCRIPTION = &quot;description&quot;;
+                        
+                        
+                        //	ServiceDescriptor.si.xml
+                        
+                        Constants.SERVICE_DESCRIPTOR_NAME = &quot;name&quot;;
+                        
+                        Constants.SERVICE_DESCRIPTOR_DESCRIPTION = &quot;description&quot;;
+                        
+                        Constants.SERVICE_DESCRIPTOR_PROTOCOL = &quot;protocol&quot;;
+                        
+                        Constants.SERVICE_DESCRIPTOR_INSTANCE = &quot;instance&quot;;
+                        
+                        Constants.SERVICE_DESCRIPTOR_PORT = &quot;port&quot;;
+                        
+                        Constants.SERVICE_DESCRIPTOR_CONTEXT = &quot;context&quot;;
+                        
+                        
+                        Constants.SERVICE_DESCRIPTOR_API_NAME = &quot;name&quot;;
+                        
+                        Constants.SERVICE_DESCRIPTOR_API_TYPE = &quot;type&quot;;
+                        
+                        Constants.SERVICE_DESCRIPTOR_API_API = &quot;api&quot;;
+                        
+                        Constants.SERVICE_DESCRIPTOR_API_MODE = &quot;mode&quot;;
+                        
+                        Constants.SERVICE_DESCRIPTOR_API_DATA_STREAM = &quot;data-stream&quot;;
+                        
+                        
+                        //Sync Descriptor.si.xml
+                        Constants.SYNC_DESCRIPTOR_NAME = &quot;name&quot;;
+                        
+                        Constants.SYNC_DESCRIPTOR_REFRESH_INTERVAL = &quot;interval&quot;;
+                        
+                        
+                        
+                        //    Siminov Event Handler
+                        
+                        
+                        
+                        /**
+                        	Event Handler Triggered Event
+                        
+                        	@property EVENT_HANDLER_TRIGGERED_EVENT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_TRIGGERED_EVENT = &quot;TriggeredEvent&quot;;
+                        
+                        
+                        /**
+                        	Event Handler ISiminov Event First Time Siminov Initialized
+                        
+                        	@property EVENT_HANDLER_ISIMINOV_EVENT_FIRST_TIME_SIMINOV_INITIALIZED
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_ISIMINOV_EVENT_ON_FIRST_TIME_SIMINOV_INITIALIZED = &quot;onFirstTimeSiminovInitialized&quot;;
+                        
+                        /**
+                        	Event Handler ISiminov Event Siminov Initialized
+                        
+                        	@property EVENT_HANDLER_ISIMINOV_EVENT_SIMINOV_INITIALIZED
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_ISIMINOV_EVENT_ON_SIMINOV_INITIALIZED = &quot;onSiminovInitialized&quot;;
+                        
+                        /**
+                        	Event Handler ISiminov Event Siminov Stopped
+                        
+                        	@property EVENT_HANDLER_ISIMINOV_EVENT_SIMINOV_STOPPED
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_ISIMINOV_EVENT_ON_SIMINOV_STOPPED = &quot;onSiminovStopped&quot;;
+                        
+                        
+                        /**
+                        	Event Handler IDatabase Event Database Created
+                        
+                        	@property EVENT_HANDLER_IDATABASE_EVENT_DATABASE_CREATED
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_DATABASE_CREATED = &quot;onDatabaseCreated&quot;;
+                        
+                        /**
+                        	Event Handler IDatabase Event Database Dropped
+                        
+                        	@property EVENT_HANDLER_IDATABASE_EVENT_DATABASE_DROPPED
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_DATABASE_DROPPED = &quot;onDatabaseDropped&quot;;
+                        
+                        /**
+                        	Event Handler IDatabase Event Table Created
+                        
+                        	@property EVENT_HANDLER_IDATABASE_EVENT_TABLE_CREATED
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_TABLE_CREATED = &quot;onTableCreated&quot;;
+                        
+                        /**
+                        	Event Handler IDatabase Event Table Dropped
+                        
+                        	@property EVENT_HANDLER_IDATABASE_EVENT_TABLE_DROPPED
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_TABLE_DROPPED = &quot;onTableDropped&quot;;
+                        
+                        /**
+                        	Event Handler IDatabase Event Index Created
+                        
+                        	@property EVENT_HANDLER_IDATABASE_EVENT_INDEX_CREATED
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_INDEX_CREATED = &quot;onIndexCreated&quot;;
+                        
+                        /**
+                        	Event Handler IDatabase Event Index Dropped
+                        
+                        	@property EVENT_HANDLER_IDATABASE_EVENT_INDEX_DROPPED
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_INDEX_DROPPED = &quot;onIndexDropped&quot;;
+                        
+                        
+                        Constants.EVENT_HANDLER_INOTIFICATION_EVENT_ON_REGISTRATION = &quot;onRegistration&quot;;
+                        
+                        Constants.EVENT_HANDLER_INOTIFICATION_EVENT_ON_UNREGISTRATION = &quot;onUnregistration&quot;;
+                        
+                        Constants.EVENT_HANDLER_INOTIFICATION_EVENT_ON_NOTIFICATION = &quot;onNotification&quot;;
+                        
+                        Constants.EVENT_HANDLER_INOTIFICATION_EVENT_ON_ERROR = &quot;onError&quot;;
+                        
+                        
+                        Constants.EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_STARTED = &quot;onSyncStarted&quot;;
+                        
+                        Constants.EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_QUEUED = &quot;onSyncQueued&quot;;
+                        
+                        Constants.EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_REMOVED = &quot;onSyncRemoved&quot;;
+                        
+                        Constants.EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_TERMINATED = &quot;onSyncTerminated&quot;;
+                        
+                        
+                        /**
+                        	Event Handler Events
+                        
+                        	@property EVENT_HANDLER_EVENTS
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_EVENTS = &quot;Events&quot;;
+                        
+                        /**
+                        	Event Handler Event Parameters
+                        
+                        	@property EVENT_HANDLER_EVENT_PARAMETERS
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.EVENT_HANDLER_EVENT_PARAMETERS = &quot;EventParameters&quot;;
+                        
+                        
+                        
+                        //    Siminov Resources Adapter
+                        
+                        
+                        
+                        /**
+                        	Siminov Resources Adapter
+                        
+                        	@property SIMINOV_RESOURCES_ADAPTER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.RESOURCE_ADAPTER = &quot;RESOURCES&quot;;
+                        
+                        Constants.RESOURCE_GET_APPLICATION_DESCRIPTOR_HANDLER = &quot;GET-APPLICATION-DESCRIPTOR&quot;;
+                        
+                        Constants.RESOURCE_GET_DATABASE_DESCRIPTOR_BASED_ON_NAME_HANDLER = &quot;GET-DATABASE-DESCRIPTOR&quot;;
+                        
+                        Constants.RESOURCE_GET_DATABASE_MAPPING_DESCRIPTOR_BASED_ON_CLASS_NAME_HANDLER = &quot;GET-DATABASE-MAPPING-DESCRIPTOR-BASED-ON-CLASS-NAME&quot;;
+                        
+                        Constants.RESOURCE_GET_DATABASE_MAPPING_DESCRIPTOR_BASED_ON_TABLE_NAME_HANDLER = &quot;GET-DATABASE-MAPPING-DESCRIPTOR-BASED-ON-TABLE-NAME&quot;;
+                        
+                        
+                        
+                        //    Siminov Database Adapter
+                        
+                        
+                        
+                        /**
+                        	Siminov Database Adapter
+                        
+                        	@property SIMINOV_DATABASE_ADAPTER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_ADAPTER = &quot;DATABASE&quot;;
+                        
+                        
+                        /**
+                        	Siminov Database Save Handler
+                        
+                        	@property SIMINOV_DATABASE_SAVE_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_SAVE_HANDLER = &quot;SAVE&quot;;
+                        
+                        /**
+                        	Siminov Database Update Handler
+                        
+                        	@property SIMINOV_DATABASE_UPDATE_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_UPDATE_HANDLER = &quot;UPDATE&quot;;
+                        
+                        /**
+                        	Siminov Database Save Or Update Handler
+                        
+                        	@property SIMINOV_DATABASE_SAVE_OR_UPDATE_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_SAVE_OR_UPDATE_HANDLER = &quot;SAVE-OR-UPDATE&quot;;
+                        
+                        /**
+                        	Siminov Database Delete Handler
+                        
+                        	@property SIMINOV_DATABASE_DELETE_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_DELETE_HANDLER = &quot;DELETE&quot;;
+                        
+                        /**
+                        	Siminov Database Select Handler
+                        	
+                        	@property SIMINOV_DATABASE_SELECT_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_SELECT_HANDLER = &quot;SELECT&quot;;
+                        
+                        
+                        /**
+                        	Siminov Database Select Handler
+                        	
+                        	@property SIMINOV_DATABASE_SELECT_MANUAL_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_SELECT_MANUAL_HANDLER = &quot;SELECT-MANUAL&quot;;
+                        
+                        
+                        /**	
+                        	Siminov Database Count Handler
+                        
+                        	@property SIMINOV_DATABASE_COUNT_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_COUNT_HANDLER = &quot;COUNT&quot;;
+                        
+                        /**
+                        	Siminov Database Average Handler
+                        
+                        	@property SIMINOV_DATABASE_AVERAGE_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_AVERAGE_HANDLER = &quot;AVG&quot;;
+                        
+                        /**	
+                        	Siminov Database Max Handler
+                        
+                        	@property SIMINOV_DATABASE_MAX_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_MAX_HANDLER = &quot;MAX&quot;;
+                        
+                        /**
+                        	Siminov Database Min Handler
+                        
+                        	@property SIMINOV_DATABASE_MIN_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_MIN_HANDLER = &quot;MIN&quot;;
+                        
+                        /**
+                        	Siminov Database Sum Handler
+                        
+                        	@property SIMINOV_DATABASE_SUM_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_SUM_HANDLER = &quot;SUM&quot;;
+                        
+                        /**
+                        	Siminov Database Total Handler
+                        
+                        	@property SIMINOV_DATABASE_TOTAL_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_TOTAL_HANDLER = &quot;TOTAL&quot;;
+                        
+                        /**
+                        	Siminov Database Group Concat Handler
+                        
+                        	@property SIMINOV_DATABASE_GROUP_CONCAT_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_GROUP_CONCAT_HANDLER = &quot;GROUP-CONCAT&quot;;
+                        
+                        
+                        /**
+                        	Siminov Database Get Table Name Handler
+                        
+                        	@property SIMINOV_DATABASE_GET_TABLE_NAME_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_GET_TABLE_NAME_HANDLER = &quot;GET-TABLE-NAME&quot;;
+                        
+                        /**
+                        	Siminov Database Get Column Names Handler
+                        
+                        	@property SIMINOV_DATABASE_GET_COLUMN_NAMES_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_GET_COLUMN_NAMES_HANDLER = &quot;GET-COLUMN-NAMES&quot;;
+                        
+                        /**
+                        	Siminov Database Get Column Types Handler
+                        
+                        	@property SIMINOV_DATABASE_GET_COLUMN_TYPES_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_GET_COLUMN_TYPES_HANDLER = &quot;GET-COLUMN-TYPES&quot;;
+                        
+                        /**
+                        	Siminov Database Get Primary Keys Handler
+                        
+                        	@property SIMINOV_DATABASE_GET_PRIMARY_KEYS_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_GET_PRIMARY_KEYS_HANDLER = &quot;GET-PRIMARY-KEYS&quot;;
+                        
+                        /**
+                        	Siminov Database Get Mandatory Fields Handler
+                        
+                        	@property SIMINOV_DATABASE_GET_MANDATORY_FIELDS_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_GET_MANDATORY_FIELDS_HANDLER = &quot;GET-MANDATORY-FIELDS&quot;;
+                        
+                        /**
+                        	Siminov Database Get Unique Fields Handler
+                        
+                        	@property SIMINOV_DATABASE_GET_UNIQUE_FIELDS_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_GET_UNIQUE_FIELDS_HANDLER = &quot;GET-UNIQUE-FIELDS&quot;;
+                        
+                        /**
+                        	Siminov Database Get Foreign Keys Handler
+                        
+                        	@property SIMINOV_DATABASE_GET_FOREIGN_KEYS_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_GET_FOREIGN_KEYS_HANDLER = &quot;GET-FOREIGN-KEYS&quot;;
+                        
+                        
+                        
+                        /**
+                        	Siminov Database Begin Transaction Handler
+                        
+                        	@property SIMINOV_DATABASE_BEGIN_TRANSACTION_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_BEGIN_TRANSACTION_HANDLER = &quot;BEGIN-TRANSACTION&quot;;
+                        
+                        /**
+                        	Siminov Database Commit Transaction Handler
+                        
+                        	@property SIMINOV_DATABASE_COMMIT_TRANSACTION_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_COMMIT_TRANSACTION_HANDLER = &quot;COMMIT-TRANSACTION&quot;;
+                        
+                        /**
+                        	Siminov Database End Transaction Handler
+                        
+                        	@property SIMINOV_DATABASE_END_TRANSACTION_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.DATABASE_END_TRANSACTION_HANDLER = &quot;END-TRANSACTION&quot;;
+                        
+                        
+                        //	Siminov Adapter
+                        
+                        
+                        
+                        /**
+                        	Siminov Adapter
+                        
+                        	@property SIMINOV_ADAPTER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SIMINOV_ADAPTER = &quot;SIMINOV&quot;;
+                        
+                        
+                        /**
+                        	Siminov Adapter Initialize Siminov Handler
+                        
+                        	@property SIMINOV_ADAPTER_INITIALIZE_SIMINOV_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SIMINOV_ADAPTER_INITIALIZE_SIMINOV_HANDLER = &quot;INITIALIZE-SIMINOV&quot;;
+                        
+                        
+                        /**
+                        	Siminov Adapter Shutdown Siminov Handler
+                        
+                        	@property SIMINOV_ADAPTER_SHUTDOWN_SIMINOV_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SIMINOV_ADAPTER_SHUTDOWN_SIMINOV_HANDLER = &quot;SHUTDOWN-SIMINOV&quot;;
+                        
+                        
+                        //    JSON Builder
+                        
+                        
+                        
+                        /**
+                        	Siminov Web Data
+                        
+                        	@property SIMINOV_WEB_DATA
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SIMINOV_WEB_DATA = &quot;siminov-web-data&quot;;
+                        
+                        /**
+                        	Siminov Web Data Data
+                        
+                        	@property SIMINOV_WEB_DATA_DATA
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SIMINOV_WEB_DATA_DATA = &quot;data&quot;;
+                        
+                        /**
+                        	Siminov Web Data Data Type
+                        
+                        	@property SIMINOV_WEB_DATA_DATA_TYPE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SIMINOV_WEB_DATA_DATA_TYPE = &quot;-type&quot;;
+                        
+                        /**
+                        	Siminov Web Data Data Text
+                        
+                        	@property SIMINOV_WEB_DATA_DATA_TEXT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SIMINOV_WEB_DATA_DATA_TEXT = &quot;#text&quot;;
+                        
+                        /**
+                        	Siminov Web Data Value
+                        
+                        	@property SIMINOV_WEB_DATA_VALUE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SIMINOV_WEB_DATA_VALUE = &quot;value&quot;;
+                        
+                        /**
+                        	Siminov Hyrbid Data Text
+                        
+                        	@property SIMINOV_WEB_DATA_TEXT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SIMINOV_WEB_DATA_TEXT = &quot;#text&quot;;
+                        
+                        
+                        
+                        // Siminov Service 
+                        
+                        /**
+                        	Service Adapter
+                        
+                        	@property SERVICE_ADAPTER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SERVICE_ADAPTER = &quot;SERVICE&quot;;
+                        
+                        /**
+                        	Service Adapter Invoke Handler
+                        
+                        	@property SERVICE_ADAPTER_INVOKE_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SERVICE_ADAPTER_INVOKE_HANDLER = &quot;INVOKE&quot;;
+                        
+                        /**
+                        	Service Adapter Invoke Handler Service
+                        
+                        	@property SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE = &quot;SERVICE&quot;;
+                        
+                        /**
+                        	Service Adapter Invoke Handler Service Name
+                        
+                        	@property SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_NAME
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_NAME = &quot;SERVICE_NAME&quot;;
+                        
+                        /**
+                        	Service Adapter Invoke Handler Service API
+                        
+                        	@property SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_API
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_API = &quot;API_NAME&quot;;
+                        
+                        /**
+                        	Service Adapter Invoke Handler Service Resources
+                        
+                        	@property SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES = &quot;RESOURCES&quot;;
+                        
+                        
+                        /**
+                        	IService API Handler
+                        
+                        	@property ISERVICE_API_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_API_HANDLER = &quot;ISERVICE_API_HANDLER&quot;;
+                        
+                        /**
+                        	IService Triggered Event
+                        
+                        	@property ISERVICE_TRIGGERED_EVENT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_TRIGGERED_EVENT = &quot;TRIGGERED_EVENT&quot;;
+                        
+                        /**
+                        	IService Connection Request
+                        
+                        	@property ISERVICE_CONNECTION_REQUEST
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_CONNECTION_REQUEST = &quot;ConnectionRequest&quot;;
+                        
+                        /**
+                        	IService Connection Response
+                        
+                        	@property ISERVICE_CONNECTION_RESPONSE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_CONNECTION_RESPONSE = &quot;ConnectionResponse&quot;;
+                        
+                        /**
+                        	IService On Start Event
+                        
+                        	@property ISERVICE_ON_START_EVENT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_ON_START_EVENT = &quot;onStart&quot;;
+                        
+                        /**
+                        	IService On Queue Event
+                        
+                        	@property ISERVICE_ON_QUEUE_EVENT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_ON_QUEUE_EVENT = &quot;onQueue&quot;;
+                        
+                        /**
+                        	IService On Pause Event
+                        
+                        	@property ISERVICE_ON_PAUSE_EVENT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_ON_PAUSE_EVENT = &quot;onPause&quot;;
+                        
+                        /**
+                        	IService On Resume Event
+                        
+                        	@property ISERVICE_ON_RESUME_EVENT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_ON_RESUME_EVENT = &quot;onResume&quot;;
+                        
+                        /**
+                        	IService On Finish Event
+                        
+                        	@property ISERVICE_ON_FINISH_EVENT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_ON_FINISH_EVENT = &quot;onFinish&quot;;
+                        
+                        /**
+                        	IService On Request Invoke Event
+                        
+                        	@property ISERVICE_ON_REQUEST_INVOKE_EVENT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_ON_REQUEST_INVOKE_EVENT = &quot;onRequestInvoke&quot;;
+                        
+                        /**
+                        	IService On Request Finish Event
+                        
+                        	@property ISERVICE_ON_REQUEST_FINISH_EVENT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_ON_REQUEST_FINISH_EVENT = &quot;onRequestFinish&quot;;
+                        
+                        /**
+                        	IService On Terminate Event
+                        
+                        	@property ISERVICE_ON_TERMINATE_EVENT
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_ON_TERMINATE_EVENT = &quot;onTerminate&quot;;
+                        
+                        /**
+                        	IService Resources	
+                        
+                        	@property ISERVICE_RESOURCES
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_RESOURCES = &quot;RESOURCES&quot;;
+                        
+                        /**
+                        	IService Resource
+                        
+                        	@property ISERVICE_RESOURCE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_RESOURCE = &quot;RESOURCE&quot;;
+                        
+                        /**
+                        	IService Add Resource
+                        
+                        	@property ISERVICE_ADD_RESOURCE
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.ISERVICE_ADD_RESOURCE = &quot;addResource&quot;;
+                        
+                        
+                        //Notification Adapter Constants
+                        
+                        /**
+                        	Notification Adapter
+                        
+                        	@property NOTIFICATION_ADAPTER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.NOTIFICATION_ADAPTER = &quot;NOTIFICATION&quot;;
+                        
+                        /**
+                        	Notification Adater Do Registration Handler
+                        
+                        	@property NOTIFICATION_ADAPTER_DO_REGISTRATION_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.NOTIFICATION_ADAPTER_DO_REGISTRATION_HANDLER = &quot;DO-REGISTRATION&quot;;
+                        
+                        /**
+                        	Notification Adapter Do Unregistration handler
+                        
+                        	@property NOTIFICATION_ADPATER_DO_UNREGISTRATION_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.NOTIFICATION_ADPATER_DO_UNREGISTRATION_HANDLER = &quot;DO-UNREGISTRATION&quot;;
+                        
+                        
+                        //Sync Adapter Constants
+                        
+                        /**
+                        	Sync Adapter
+                        
+                        	@property SYNC_ADAPTER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SYNC_ADAPTER = &quot;SYNC&quot;;
+                        
+                        /**
+                        	Sync Adapter Handler Handler
+                        
+                        	@property SYNC_ADAPTER_HANDLE_HANDLER
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SYNC_ADAPTER_HANDLE_HANDLER = &quot;HANDLE&quot;;
+                        
+                        /**
+                        	Sync Adapter Handler Handler Sync Request
+                        
+                        	@property SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST = &quot;SyncRequest&quot;;
+                        
+                        /**
+                        	Sync Adapter Handler Handler Sync Request Name
+                        
+                        	@property SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST_NAME
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST_NAME = &quot;name&quot;;
+                        
+                        /**
+                        	Sync Adapter Handler Handler Sync Request Resources
+                        
+                        	@property SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST_RESOURCES
+                        	@type String
+                        	@static
+                        	@final
+                        	@readOnly
+                        */
+                        Constants.SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST_RESOURCES = &quot;RESOURCES&quot;;
+                        
+                        
+                        
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
