@@ -1,4 +1,4 @@
-Siminov Web ORM (Object Relationship Mapping) - Android + PhoneGap
+Siminov Web (Object Relationship Mapping) & (RESTful) - Android + PhoneGap
 ===================================================
 
 A Web Application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a web application leverages best of both native and mobile web technologies.
@@ -35,7 +35,7 @@ All Database operations in Siminov Web Framework are Synchronous, because it use
 
 
 ###### 4. Handle Application Initialization
-All resources required by application are created and managed by siminov orm. (Eg: Creating Database, Deploying Application).
+All resources required by application are created and managed by siminov core. (Eg: Creating Database, Deploying Application).
 
 ###### 5. Handle Multiple Schema's
 It also supports multiple schema's if required by application.
@@ -88,7 +88,7 @@ Siminov provides implementation for SQLCipher to protect application database fr
 ###### 11. Handling Libraries
 An android library project is a development project that holds shared android source code and resources. Other android application projects can reference the library project and, at build time, include its compiled sources in their .apk files.
 
-Siminov provides mechanism to configure ORM for your library projects.
+Siminov provides mechanism to configure Core for your library projects.
 
 
 LICENSE
