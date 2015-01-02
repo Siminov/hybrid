@@ -30,7 +30,7 @@
 	
 	<handlers>
 
-	    <!-- ORM BASED HANDLERS -->
+	    <!-- CORE BASED HANDLERS -->
 	    
         <handler>
             

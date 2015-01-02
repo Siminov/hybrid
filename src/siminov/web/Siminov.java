@@ -52,7 +52,7 @@ import siminov.core.model.DatabaseDescriptor;
  *		</p>
  *	
  *
- *	Note*: siminov.web.Siminov extends siminov.orm.Siminov.
+ *	Note*: siminov.web.Siminov extends siminov.core.Siminov.
  *
  *	</p>
  */
@@ -178,7 +178,7 @@ public class Siminov extends siminov.connect.Siminov {
 			throw new DeploymentException(Siminov.class.getName(), "processApplicationDescriptor", "Invalid Application Descriptor Found.");
 		}
 		
-		ormResourceManager.setApplicationDescriptor(applicationDescriptor);		
+		coreResourceManager.setApplicationDescriptor(applicationDescriptor);		
 		connectResourceManager.setApplicationDescriptor(applicationDescriptor);
 		webResourceManager.setApplicationDescriptor(applicationDescriptor);
 	}
@@ -350,8 +350,8 @@ public class Siminov extends siminov.connect.Siminov {
 		isActive = true;
 		siminov.core.Siminov.isActive = true;
 		
-		ISiminovEvents coreEventHandler = ormResourceManager.getSiminovEventHandler();
-		if(ormResourceManager.getSiminovEventHandler() != null) {
+		ISiminovEvents coreEventHandler = coreResourceManager.getSiminovEventHandler();
+		if(coreResourceManager.getSiminovEventHandler() != null) {
 			if(siminov.core.Siminov.firstTimeProcessed) {
 				coreEventHandler.onFirstTimeSiminovInitialized();
 			} else {

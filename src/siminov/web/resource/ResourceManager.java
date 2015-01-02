@@ -73,7 +73,7 @@ import android.webkit.WebView;
 public class ResourceManager {
 
 	private static ResourceManager webResources = null;
-	private siminov.core.resource.ResourceManager ormResourceManager = null;
+	private siminov.core.resource.ResourceManager coreResourceManager = null;
 	
 	private ApplicationDescriptor applicationDescriptor = null;
 	
@@ -88,7 +88,7 @@ public class ResourceManager {
 	private Map<String, String> webNativeClassMapping = new ConcurrentHashMap<String, String>();
 	
 	private ResourceManager() {
-		ormResourceManager = siminov.core.resource.ResourceManager.getInstance();
+		coreResourceManager = siminov.core.resource.ResourceManager.getInstance();
 		eventHandler = EventHandler.getInstance();
 	}
 	
@@ -386,7 +386,7 @@ public class ResourceManager {
 
 
 	/*
-	 * Siminov ORM API's.
+	 * Siminov Core API's.
 	 */
 
 	/**
@@ -399,7 +399,7 @@ public class ResourceManager {
 		className = className.substring(className.lastIndexOf(".") + 1, className.length());
 
 		String nativeClassName = webNativeClassMapping.get(className);
-		return ormResourceManager.getDatabaseDescriptorBasedOnClassName(nativeClassName);
+		return coreResourceManager.getDatabaseDescriptorBasedOnClassName(nativeClassName);
 		
 	}
 	
@@ -413,7 +413,7 @@ public class ResourceManager {
 		className = className.substring(className.lastIndexOf(".") + 1, className.length());
 
 		String nativeClassName = webNativeClassMapping.get(className);
-		return ormResourceManager.getDatabaseDescriptorNameBasedOnClassName(nativeClassName);
+		return coreResourceManager.getDatabaseDescriptorNameBasedOnClassName(nativeClassName);
 		
 	}
 	
@@ -423,7 +423,7 @@ public class ResourceManager {
 	 * @return Database Descriptor Name.
 	 */
 	public String getDatabaseDescriptorNameBasedOnTableName(final String tableName) {
-		return ormResourceManager.getDatabaseDescriptorNameBasedOnTableName(tableName);
+		return coreResourceManager.getDatabaseDescriptorNameBasedOnTableName(tableName);
 	}
 
 	/**
@@ -432,7 +432,7 @@ public class ResourceManager {
 	 * @return Database Descriptor.
 	 */
 	public DatabaseDescriptor getDatabaseDescriptorBasedOnTableName(final String tableName) {
-		return ormResourceManager.getDatabaseDescriptorBasedOnTableName(tableName);
+		return coreResourceManager.getDatabaseDescriptorBasedOnTableName(tableName);
 	}
 	
 	/**
@@ -446,13 +446,13 @@ public class ResourceManager {
 
 		String nativeClassName = webNativeClassMapping.get(className);
 		if(nativeClassName == null ||nativeClassName.length() <= 0) {
-			DatabaseMappingDescriptor databaseMappingDescriptor = ormResourceManager.requiredDatabaseMappingDescriptorBasedOnClassName(className);
+			DatabaseMappingDescriptor databaseMappingDescriptor = coreResourceManager.requiredDatabaseMappingDescriptorBasedOnClassName(className);
 			synchronizeMappings();
 			
 			return databaseMappingDescriptor;
 		}
 		
-		return ormResourceManager.requiredDatabaseMappingDescriptorBasedOnClassName(nativeClassName);
+		return coreResourceManager.requiredDatabaseMappingDescriptorBasedOnClassName(nativeClassName);
 		
 	}
 	
@@ -462,7 +462,7 @@ public class ResourceManager {
 	 * @return Database Mapping Descriptor.
 	 */
 	public DatabaseMappingDescriptor getDatabaseMappingDescriptorBasedOnTableName(final String tableName) {
-		return ormResourceManager.getDatabaseMappingDescriptorBasedOnTableName(tableName);
+		return coreResourceManager.getDatabaseMappingDescriptorBasedOnTableName(tableName);
 	}
 
 	/**
@@ -500,7 +500,7 @@ public class ResourceManager {
 	 */
 	public void synchronizeMappings() {
 
-		Iterator<DatabaseMappingDescriptor> databaseMappingDescriptors = ormResourceManager.getDatabaseMappingDescriptors();
+		Iterator<DatabaseMappingDescriptor> databaseMappingDescriptors = coreResourceManager.getDatabaseMappingDescriptors();
 		while(databaseMappingDescriptors.hasNext()) {
 			DatabaseMappingDescriptor databaseMappingDescriptor = databaseMappingDescriptors.next();
 			

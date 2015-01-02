@@ -35,7 +35,7 @@ import android.webkit.WebView;
  */
 public class Initializer implements IInitializer {
 
-	private ResourceManager ormResourceManager = ResourceManager.getInstance();
+	private ResourceManager coreResourceManager = ResourceManager.getInstance();
 	private siminov.web.resource.ResourceManager webResourceManager = siminov.web.resource.ResourceManager.getInstance(); 
 	
 	private List<Object> parameters = new ArrayList<Object> ();
@@ -71,7 +71,7 @@ public class Initializer implements IInitializer {
 			
 		}
 		
-		ormResourceManager.setApplicationContext(context);
+		coreResourceManager.setApplicationContext(context);
 
 		webResourceManager.setWebView(webView);
 		webResourceManager.setWebActivity(activity);

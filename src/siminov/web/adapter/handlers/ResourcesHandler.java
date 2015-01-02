@@ -38,7 +38,7 @@ import siminov.web.writter.WebSiminovDataWritter;
  */
 public class ResourcesHandler implements IAdapter {
 
-	private static siminov.core.resource.ResourceManager ormResourceManager = siminov.core.resource.ResourceManager.getInstance();
+	private static siminov.core.resource.ResourceManager coreResourceManager = siminov.core.resource.ResourceManager.getInstance();
 	private static siminov.web.resource.ResourceManager webResourceManager = siminov.web.resource.ResourceManager.getInstance(); 
 
 	
@@ -50,7 +50,7 @@ public class ResourcesHandler implements IAdapter {
 	 */
 	public String getApplicationDescriptor() throws SiminovException {
 		
-		ApplicationDescriptor applicationDescriptor = ormResourceManager.getApplicationDescriptor();
+		ApplicationDescriptor applicationDescriptor = coreResourceManager.getApplicationDescriptor();
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 		WebSiminovData webApplicationDescriptor = new WebSiminovData();
@@ -138,7 +138,7 @@ public class ResourcesHandler implements IAdapter {
 	 */
 	public String getDatabaseDescriptor(final String databaseDescriptorName) throws SiminovException {
 		
-		DatabaseDescriptor databaseDescriptor = ormResourceManager.getDatabaseDescriptorBasedOnName(databaseDescriptorName);
+		DatabaseDescriptor databaseDescriptor = coreResourceManager.getDatabaseDescriptorBasedOnName(databaseDescriptorName);
 		
 		WebSiminovDatas webDatabaseDescriptors = new WebSiminovDatas();
 		WebSiminovData webDatabaseDescriptor = webResourceManager.generateWebDatabaseDescriptor(databaseDescriptor);

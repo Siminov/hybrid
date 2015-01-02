@@ -52,7 +52,7 @@ Example:
 			 	<!-- OR -->
 			 
 			<database-mappings>
-				<database-mapping path="siminov.orm.library.sample.model.Credential" />
+				<database-mapping path="siminov.core.library.sample.model.Credential" />
 			</database-mappings>
 
 		 <!-- Adapters -->

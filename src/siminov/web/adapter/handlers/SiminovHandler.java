@@ -53,7 +53,7 @@ import android.webkit.JavascriptInterface;
  */
 public class SiminovHandler extends siminov.web.Siminov implements IAdapter, IHandler {
 
-	protected siminov.core.resource.ResourceManager ormResourceManager = siminov.core.resource.ResourceManager.getInstance();
+	protected siminov.core.resource.ResourceManager coreResourceManager = siminov.core.resource.ResourceManager.getInstance();
 	protected ResourceManager webResourceManager = ResourceManager.getInstance();
 
 	protected AdapterFactory adapterResources = AdapterFactory.getInstance();

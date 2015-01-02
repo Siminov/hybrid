@@ -20,7 +20,7 @@
 package siminov.web;
 
 /**
- * Exposes all constants required by Siminov Web ORM Framework.
+ * Exposes all constants required by Siminov Web Framework.
  */
 public interface Constants {
 	

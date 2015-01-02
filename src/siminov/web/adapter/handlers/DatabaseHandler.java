@@ -55,7 +55,7 @@ import siminov.web.writter.WebSiminovDataWritter;
  */
 public class DatabaseHandler implements IAdapter {
 
-	private static ResourceManager ormResourceManager = ResourceManager.getInstance();
+	private static ResourceManager coreResourceManager = ResourceManager.getInstance();
 	private static siminov.web.resource.ResourceManager webResourceManager = siminov.web.resource.ResourceManager.getInstance();
 
 	
@@ -95,7 +95,7 @@ public class DatabaseHandler implements IAdapter {
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 		
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
@@ -240,7 +240,7 @@ public class DatabaseHandler implements IAdapter {
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
@@ -524,7 +524,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
 		
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
@@ -587,7 +587,7 @@ public class DatabaseHandler implements IAdapter {
 		String className = databaseMappingDescriptor.getClassName();
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 		
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
@@ -668,7 +668,7 @@ public class DatabaseHandler implements IAdapter {
 		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		
 		if(database == null) {
@@ -715,7 +715,7 @@ public class DatabaseHandler implements IAdapter {
 	private WebSiminovDatas lazyFetch(final DatabaseMappingDescriptor databaseMappingDescriptor, final boolean distinct, final String whereClause, final Iterator<String> columnNames, final Iterator<String> groupBy, final String having, final Iterator<String> orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -753,7 +753,7 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public void beginTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptorName);
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptorName);
 		IDatabaseImpl database = databaseBundle.getDatabase();
 
 		if(database == null) {
@@ -773,7 +773,7 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public void commitTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptorName);
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptorName);
 		IDatabaseImpl database = databaseBundle.getDatabase();
 
 		if(database == null) {
@@ -793,7 +793,7 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public void endTransaction(final String databaseDescriptorName) throws DatabaseException {
 		
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptorName);
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptorName);
 		IDatabaseImpl database = databaseBundle.getDatabase();
 
 		if(database == null) {
@@ -848,7 +848,7 @@ public class DatabaseHandler implements IAdapter {
 	private int count(final DatabaseMappingDescriptor databaseMappingDescriptor, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -937,7 +937,7 @@ public class DatabaseHandler implements IAdapter {
 	private int avg(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -1032,7 +1032,7 @@ public class DatabaseHandler implements IAdapter {
 	private int sum(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -1126,7 +1126,7 @@ public class DatabaseHandler implements IAdapter {
 	private int total(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -1220,7 +1220,7 @@ public class DatabaseHandler implements IAdapter {
 	private int min(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -1316,7 +1316,7 @@ public class DatabaseHandler implements IAdapter {
 	private int max(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
@@ -1411,7 +1411,7 @@ public class DatabaseHandler implements IAdapter {
 	private String groupConcat(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
-		DatabaseBundle databaseBundle = ormResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
+		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
