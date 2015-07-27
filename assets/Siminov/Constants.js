@@ -152,87 +152,131 @@ Constants.LIBRARY_DESCRIPTOR_NAME = "name";
 Constants.LIBRARY_DESCRIPTOR_DESCRIPTION = "description";
 
 
-//    DatabaseMappingDescriptor.si.xml Constants.
-
+//    EntityDescriptor.si.xml Constants.
 
 
 /**
-	Database Mapping Descriptor Parimary Key
+	Entity Descriptor Table Name
 
-	@property DATABASE_MAPPING_DESCRIPTOR_PRIMARY_KEY
+	@property ENTITY_DESCRIPTOR_TABLE_NAME
 	@type String
 	@static
 	@final
 	@readOnly
 */
-Constants.DATABASE_MAPPING_DESCRIPTOR_PRIMARY_KEY = "primary_key";
+Constants.ENTITY_DESCRIPTOR_TABLE_NAME = "table_name";
 
 /**
-	Database Mapping Descriptor Unique
+	Entity Descriptor Class Name
 
-	@property DATABASE_MAPPING_DESCRIPTOR_UNIQUE
+	@property ENTITY_DESCRIPTOR_ATTRIBUTE_CLASS_NAME
 	@type String
 	@static
 	@final
 	@readOnly
 */
-Constants.DATABASE_MAPPING_DESCRIPTOR_UNIQUE = "unique";
+Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_CLASS_NAME = "class_name";
 
 /**
-	Database Mapping Descriptor Not Null
+	Entity Descriptor Attribute Variable Name
 
-	@property DATABASE_MAPPING_DESCRIPTOR_NOT_NULL
+	@property ENTITY_DESCRIPTOR_ATTRIBUTE_VARIABLE_NAME
 	@type String
 	@static
 	@final
 	@readOnly
 */
-Constants.DATABASE_MAPPING_DESCRIPTOR_NOT_NULL = "not_null";
+Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_VARIABLE_NAME = "variable_name";
 
 /**
-	Database Mapping Descriptor Default Value
+	Entity Descriptor Attribute Column Name
 
-	@property DATABASE_MAPPING_DESCRIPTOR_DEFAULT_VALUE
+	@property ENTITY_DESCRIPTOR_ATTRIBUTE_COLUMN_NAME
 	@type String
 	@static
 	@final
 	@readOnly
 */
-Constants.DATABASE_MAPPING_DESCRIPTOR_DEFAULT_VALUE = "default";
+Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_COLUMN_NAME = "column_name";
+
 
 /**
-	Database Mapping Descriptor Check
+	Entity Descriptor Attribute Primary Key
 
-	@property DATABASE_MAPPING_DESCRIPTOR_CHECK
+	@property ENTITY_DESCRIPTOR_ATTRIBUTE_PRIMARY_KEY
 	@type String
 	@static
 	@final
 	@readOnly
 */
-Constants.DATABASE_MAPPING_DESCRIPTOR_CHECK = "check";
+Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_PRIMARY_KEY = "primary_key";
 
 /**
-	Database Mapping Descriptor Type
+	Entity Descriptor Attribute Unique
 
-	@property DATABASE_MAPPING_DESCRIPTOR_TYPE
+	@property ENTITY_DESCRIPTOR_ATTRIBUTE_UNIQUE
 	@type String
 	@static
 	@final
 	@readOnly
 */
-Constants.DATABASE_MAPPING_DESCRIPTOR_TYPE = "type";
-
+Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_UNIQUE = "unique";
 
 /**
-	Database Mapping Descriptor Relationships Load
+	Entity Descriptor Attribute Not Null
 
-	@property DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_LOAD
+	@property ENTITY_DESCRIPTOR_ATTRIBUTE_NOT_NULL
 	@type String
 	@static
 	@final
 	@readOnly
 */
-Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_LOAD = "load";
+Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_NOT_NULL = "not_null";
+
+/**
+	Entity Descriptor Attribute Default Value
+
+	@property ENTITY_DESCRIPTOR_ATTRIBUTE_DEFAULT_VALUE
+	@type String
+	@static
+	@final
+	@readOnly
+*/
+Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_DEFAULT_VALUE = "default";
+
+/**
+	Entity Descriptor Attribute Check
+
+	@property ENTITY_DESCRIPTOR_ATTRIBUTE_CHECK
+	@type String
+	@static
+	@final
+	@readOnly
+*/
+Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_CHECK = "check";
+
+/**
+	Entity Descriptor Attribute Type
+
+	@property ENTITY_DESCRIPTOR_ATTRIBUTE_TYPE
+	@type String
+	@static
+	@final
+	@readOnly
+*/
+Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_TYPE = "type";
+
+
+/**
+	Entity Descriptor Relationship Attribute Load
+
+	@property ENTITY_DESCRIPTOR_RELATIONSHIP_ATTRIBUTE_LOAD
+	@type String
+	@static
+	@final
+	@readOnly
+*/
+Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_ATTRIBUTE_LOAD = "load";
 
 
 //    WebDescriptor.si.xml Constants.
@@ -391,15 +435,15 @@ Constants.SERVICE_DESCRIPTOR_PORT = "port";
 Constants.SERVICE_DESCRIPTOR_CONTEXT = "context";
 
 
-Constants.SERVICE_DESCRIPTOR_API_NAME = "name";
+Constants.SERVICE_DESCRIPTOR_REQUEST_NAME = "name";
 
-Constants.SERVICE_DESCRIPTOR_API_TYPE = "type";
+Constants.SERVICE_DESCRIPTOR_REQUEST_TYPE = "type";
 
-Constants.SERVICE_DESCRIPTOR_API_API = "api";
+Constants.SERVICE_DESCRIPTOR_REQUEST_API = "api";
 
-Constants.SERVICE_DESCRIPTOR_API_MODE = "mode";
+Constants.SERVICE_DESCRIPTOR_REQUEST_MODE = "mode";
 
-Constants.SERVICE_DESCRIPTOR_API_DATA_STREAM = "data-stream";
+Constants.SERVICE_DESCRIPTOR_REQUEST_DATA_STREAM = "data-stream";
 
 
 //Sync Descriptor.si.xml
@@ -1035,7 +1079,7 @@ Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_NAME = "SERVICE_NAME";
 	@final
 	@readOnly
 */
-Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_API = "API_NAME";
+Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_REQUEST = "REQUEST_NAME";
 
 /**
 	Service Adapter Invoke Handler Service Resources
@@ -1307,5 +1351,15 @@ Constants.SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST_NAME = "name";
 	@readOnly
 */
 Constants.SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST_RESOURCES = "RESOURCES";
+
+
+Constants.HTTP_GET_METHOD = "GET";
+
+Constants.HTTP_POST_METHOD = "POST";
+
+Constants.HTTP_REQUEST_API_QUERY_PARAMETER = "request_api";
+Constants.HTTP_REQUEST_DATA_QUERY_PARAMETER = "request_data";
+
+Constants.HTTP_SIMINOV_PROTOCOL = "siminov://";
 
 

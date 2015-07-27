@@ -117,15 +117,22 @@ SIJsonHelper.parseJson = function(dataProperty) {
 	@method toJson
 	@static
 */
-SIJsonHelper.toJson = function(datas) {
+SIJsonHelper.toJson = function(datas, innerData) {
 
     var siDatas = datas.getWebSiminovDatas();
 
         var json = new StringBuilder();
 
         json.append('{');
-            json.append('"' + Constants.SIMINOV_WEB_DATA + '":{');
-            json.append('"' + Constants.SIMINOV_WEB_DATA_DATA + '":[');
+    
+            if(innerData) {
+                json.append("'" + Constants.SIMINOV_WEB_DATA + "':{");
+                json.append("'" + Constants.SIMINOV_WEB_DATA_DATA + "':[");
+            } else {
+                json.append('"' + Constants.SIMINOV_WEB_DATA + '":{');
+                json.append('"' + Constants.SIMINOV_WEB_DATA_DATA + '":[');
+            }
+    
 
             for(var i = 0;i < siDatas.length;i++) {
             	
@@ -133,7 +140,7 @@ SIJsonHelper.toJson = function(datas) {
             		 json.append(',');
             	}
             	
-                json.append(SIJsonHelper.parseSI(siDatas[i]));
+                json.append(SIJsonHelper.parseSI(siDatas[i], innerData));
             }
 
             json.append(']');
@@ -147,7 +154,7 @@ SIJsonHelper.toJson = function(datas) {
 
 
 
-SIJsonHelper.parseSI = function(data) {
+SIJsonHelper.parseSI = function(data, innerData) {
 
     var type = data.getDataType();
     var val = data.getDataValue();
@@ -156,12 +163,17 @@ SIJsonHelper.parseSI = function(data) {
     json.append('{');
 
     if(type != undefined && type != null && type.length > 0) {
-        json.append('"' + Constants.SIMINOV_WEB_DATA_DATA_TYPE + '":"' + type + '",');
+        
+        if(innerData) {
+            json.append("'" + Constants.SIMINOV_WEB_DATA_DATA_TYPE + "':'" + type + "',");
+        } else {
+            json.append('"' + Constants.SIMINOV_WEB_DATA_DATA_TYPE + '":"' + type + '",');
+        }
     }
 
     var datas = data.getDatas();
     if(datas != undefined && datas != null && datas.length > 0) {
-        json.append(SIJsonHelper.parseInnerSI(datas));
+        json.append(SIJsonHelper.parseInnerSI(datas, innerData));
     }
 
     if(val == undefined || val == null) {
@@ -169,7 +181,11 @@ SIJsonHelper.parseSI = function(data) {
         var values = data.getValues();
         if(values != undefined && values.length > 0) {
 
-            json.append('"' + Constants.SIMINOV_WEB_DATA_VALUE + '":[');
+            if(innerData) {
+                json.append("'" + Constants.SIMINOV_WEB_DATA_VALUE + "':[");
+            } else {
+                json.append('"' + Constants.SIMINOV_WEB_DATA_VALUE + '":[');
+            }
 
             for(var j = 0;j < values.length;j++) {
 
@@ -183,8 +199,25 @@ SIJsonHelper.parseSI = function(data) {
 				}
 
                 json.append('{');
-                    json.append('"' + Constants.SIMINOV_WEB_DATA_DATA_TYPE + '":"' + valueType + '",');
-                    json.append('"' + Constants.SIMINOV_WEB_DATA_DATA_TEXT + '":"' + valueVal + '"');
+                
+                    if(innerData) {
+                        json.append("'" + Constants.SIMINOV_WEB_DATA_DATA_TYPE + "':'" + valueType + "',");
+                        
+                        if(valueVal == undefined || valueVal == null) {
+                            json.append("'" + Constants.SIMINOV_WEB_DATA_DATA_TEXT + "':'" + "" + "'");
+                        } else {
+                            json.append("'" + Constants.SIMINOV_WEB_DATA_DATA_TEXT + "':'" + valueVal + "'");
+                        }
+                    } else {
+                        json.append('"' + Constants.SIMINOV_WEB_DATA_DATA_TYPE + '":"' + valueType + '",');
+                        
+                        if(valueVal == undefined || valueVal == null) {
+                            json.append('"' + Constants.SIMINOV_WEB_DATA_DATA_TEXT + '":"' + '' + '"');
+                        } else {
+                            json.append('"' + Constants.SIMINOV_WEB_DATA_DATA_TEXT + '":"' + valueVal + '"');
+                        }
+                    }
+                
                 json.append('}');
             }
 
@@ -193,7 +226,23 @@ SIJsonHelper.parseSI = function(data) {
 
     } else {
         if(val != undefined && val != null && val.length > 0) {
-            json.append('"' + Constants.SIMINOV_WEB_DATA_DATA_TEXT + '":"' + val + '"');
+            
+            if(innerData) {
+                
+                if(val == undefined || val == null) {
+                    json.append("'" + Constants.SIMINOV_WEB_DATA_DATA_TEXT + "':'" + "" + "'");
+                } else {
+                    json.append("'" + Constants.SIMINOV_WEB_DATA_DATA_TEXT + "':'" + val + "'");
+                }
+            } else {
+                
+                
+                if(val == undefined || val == null) {
+                    json.append('"' + Constants.SIMINOV_WEB_DATA_DATA_TEXT + '":"' + '' + '"');
+                } else {
+                    json.append('"' + Constants.SIMINOV_WEB_DATA_DATA_TEXT + '":"' + val + '"');
+                }
+            }
         }
     }
 
@@ -203,13 +252,17 @@ SIJsonHelper.parseSI = function(data) {
 }
 
 
-SIJsonHelper.parseInnerSI = function(datas) {
+SIJsonHelper.parseInnerSI = function(datas, innerData) {
 
     var json = new StringBuilder();
-    json.append('"' + Constants.SIMINOV_WEB_DATA_DATA + '":[');
+    if(innerData) {
+        json.append("'" + Constants.SIMINOV_WEB_DATA_DATA + "':[");
+    } else {
+        json.append('"' + Constants.SIMINOV_WEB_DATA_DATA + '":[');
+    }
 
     for(var i = 0;i < datas.length;i++) {
-        json.append(SIJsonHelper.parseSI(datas[i]));
+        json.append(SIJsonHelper.parseSI(datas[i], innerData));
     }
 
     json.append('],');

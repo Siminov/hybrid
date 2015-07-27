@@ -25,109 +25,130 @@
 
 
 /**
- 	Exposes methods to GET and SET Database Mapping Descriptor information as per define in DatabaseMappingDescriptor.si.xml file by application.
+ 	Exposes methods to GET and SET Entity Descriptor information as per define in EntityDescriptor.si.xml file by application.
 		
 	Example:
 
-		<database-mapping-descriptor>
-		
-		    <!-- General Properties Of Table And Class -->
+	
+	<!-- Design Of EntityDescriptor.si.xml -->
+	
+	<entity-descriptor>
+	
+	    <!-- General Properties Of Table And Class -->
+	    
+	    	<!-- Mandatory Field -->
+	    		<!-- NAME OF TABLE -->
+	    <property name="table_name">name_of_table</property>
+	    
+	    	<!-- Mandatory Field -->
+	    		<!-- MAPPED CLASS NAME -->
+	    <property name="class_name">mapped_class_name</property>
+	    
+	    
+	    	<!-- Optional Field -->
+	    <attributes>
+	        
+		    <!-- Column Properties Required Under This Table -->
 		    
-			    <!-- TABLE_NAME: Mandatory Field -->
-			    <!-- CLASS_NAME: Mandatory Field -->
-			<entity table_name="name_of_table" class_name="mapped_pojo_class_name">
-				
-			    <!-- Column Properties Required Under This Table -->
+				<!-- Optional Field -->
+			<attribute>
 			    
-				<!-- Optional Field -->
+				    <!-- Mandatory Field -->
+						<!-- COLUMN_NAME: Mandatory Field -->
+	   		    <property name="column_name">column_name_of_table</property>
+			    			
+	    		    <!-- Mandatory Field -->
+						<!-- VARIABLE_NAME: Mandatory Field -->
+			    <property name="variable_name">class_variable_name</property>
+			    		    
+				    <!-- Mandatory Field -->
+				<property name="type">java_variable_data_type</property>
 				
-					<!-- VARIABLE_NAME: Mandatory Field -->
-					<!-- COLUMN_NAME: Mandatory Field -->
-				<attribute column_name="column_name_of_table" variable_name="class_variable_name">
-				    
-					    <!-- Mandatory Field -->
-					<property name="type">java_variable_data_type</property>
+					<!-- Optional Field (Default is false) -->
+				<property name="primary_key">true/false</property>
+				
+					<!-- Optional Field (Default is false) -->
+				<property name="not_null">true/false</property>
+				
+					<!-- Optional Field (Default is false) -->
+				<property name="unique">true/false</property>
+				
+					<!-- Optional Field -->
+				<property name="check">condition_to_be_checked (Eg: variable_name 'condition' value; variable_name > 0)</property>
+				
+					<!-- Optional Field -->
+				<property name="default">default_value_of_column (Eg: 0.1)</property>
+			
+			</attribute>		
+	
+	    </attributes>
+			
+			
+			<!-- Optional Field -->
+	    <indexes>
+	        
+			<!-- Index Properties -->
+			<index>
+			    
+				    <!-- Mandatory Field -->
+				    	<!-- NAME OF INDEX -->
+			    <property name="name">name_of_index</property>
+			    
+				    <!-- Mandatory Field -->
+						<!-- UNIQUE: Optional Field (Default is false) -->
+			    <property name="unique">true/false</property>
+			    
+			    	<!-- Optional Field -->
+			    		<!-- Name of the column -->
+			    <property name="column">column_name_needs_to_add</property>
+			    
+			</index>
+	        
+	    </indexes>
+	    
+			
+		<!-- Map Relationship Properties -->
 					
-						<!-- Optional Field (Default is false) -->
-					<property name="primary_key">true/false</property>
-					
-						<!-- Optional Field (Default is false) -->
-					<property name="not_null">true/false</property>
-					
-						<!-- Optional Field (Default is false) -->
-					<property name="unique">true/false</property>
-					
-						<!-- Optional Field -->
-					<property name="check">condition_to_be_checked (Eg: variable_name 'condition' value; variable_name > 0)</property>
-					
-						<!-- Optional Field -->
-					<property name="default">default_value_of_column (Eg: 0.1)</property>
-				
-				</attribute>		
-		
-				
-				
-				<!-- Index Properties -->
-						
-				<!-- Optional Field -->
-					<!-- NAME: Mandatory Field -->
-					<!-- UNIQUE: Optional Field (Default is false) -->
-				<index name="name_of_index" unique="true/false">
-					<column>column_name_needs_to_add</column>
-				</index>
-				
-				
-				
-				<!-- Map Relationship Properties -->
-						
-				<!-- Optional Field's -->	
-				<relationships>
-				    
-					    <!-- REFER: Mandatory Field -->
-					    <!-- REFER_TO: Mandatory Field -->
-					<one-to-one refer="class_variable_name" refer_to="map_to_pojo_class_name" on_update="cascade/restrict/no_action/set_null/set_default" on_delete="cascade/restrict/no_action/set_null/set_default">
-							
-							<!-- Optional Field (Default is false) -->
-						<property name="load">true/false</property>
-					</one-to-one>		
-					
-						<!-- REFER: Mandatory Field -->
-					    <!-- REFER_TO: Mandatory Field -->
-					<one-to-many refer="class_variable_name" refer_to="map_to_pojo_class_name" on_update="cascade/restrict/no_action/set_null/set_default" on_delete="cascade/restrict/no_action/set_null/set_default">
-							
-							<!-- Optional Field (Default is false) -->
-						<property name="load">true/false</property>
-					</one-to-many>		
-		
-						<!-- REFER: Mandatory Field -->
-					    <!-- REFER_TO: Mandatory Field -->
-					<many-to-one refer="class_variable_name" refer_to="map_to_pojo_class_name" on_update="cascade/restrict/no_action/set_null/set_default" on_delete="cascade/restrict/no_action/set_null/set_default">
-							
-							<!-- Optional Field (Default is false) -->
-						<property name="load">true/false</property>
-					</many-to-one>		
-		
-						<!-- REFER: Mandatory Field -->
-					    <!-- REFER_TO: Mandatory Field -->
-					<many-to-many refer="class_variable_name" refer_to="map_to_pojo_class_name" on_update="cascade/restrict/no_action/set_null/set_default" on_delete="cascade/restrict/no_action/set_null/set_default">
-							
-							<!-- Optional Field (Default is false) -->
-						<property name="load">true/false</property>
-					</many-to-many>		
-											
-				</relationships>
-		
-			</entity>
-		
-		</database-mapping-descriptor>
+			<!-- Optional Field's -->	
+		<relationships>
+			    
+		    <relationship>
+		        
+		        	<!-- Mandatory Field -->
+		        		<!-- Type of Relationship -->
+		        <property name="type">one-to-one|one-to-many|many-to-one|many-to-many</property>
+		        
+		        	<!-- Mandatory Field -->
+		        		<!-- REFER -->
+		        <property name="refer">class_variable_name</property>
+		        
+		        	<!-- Mandatory Field -->
+		        		<!-- REFER TO -->
+		        <property name="refer_to">map_to_class_name</property>
+		            
+		        	<!-- Optional Field -->
+		        <property name="on_update">cascade/restrict/no_action/set_null/set_default</property>    
+		            
+		        	<!-- Optional Field -->    
+		        <property name="on_delete">cascade/restrict/no_action/set_null/set_default</property>    
+		            
+					<!-- Optional Field (Default is false) -->
+		       	<property name="load">true/false</property>	            
+		        
+		    </relationship>
+		    
+		</relationships>
+	
+	</entity-descriptor>
+
 
 	@module Model	
-	@class DatabaseMappingDescriptor
+	@class EntityDescriptor
 	@constructor
  */
-function DatabaseMappingDescriptor() {
+function EntityDescriptor() {
 
-    var tableName, className;
+    var properties = new Dictionary();
 
     var attributes = new Array();
     var indexes = new Array();
@@ -140,37 +161,37 @@ function DatabaseMappingDescriptor() {
 	 	@return {String} Name of table.
 	 */
     this.getTableName = function() {
-    	return tableName;
+    	return properties.get(Constants.ENTITY_DESCRIPTOR_TABLE_NAME);
 	}
 	
 	/**
-	 	Set table name as per defined in DatabaseMapping.core.xml file.
+	 	Set table name as per defined in EntityDescriptor.si.xml file.
 	 
 	 	@method setTableName
 	 	@param tableName Name of table.
 	 */
-    this.setTableName = function(val) {
-		tableName = val;
+    this.setTableName = function(tableName) {
+		properties.add(Constants.ENTITY_DESCRIPTOR_TABLE_NAME, tableName);
 	}
 
 	/**
 	 	Get Function class name.
 	 
 	 	@method getClassName
-	 	@return {String} POJO class name.
+	 	@return {String} Mapped class name.
 	 */
     this.getClassName = function() {
-    	return className;
+    	return properties.get(Constants.ENTITY_DESCRIPTOR_CLASS_NAME);
 	}
 	
 	/**
-	 	Set Function class name as per defined in DatabaseMapping.core.xml file.
+	 	Set Function class name as per defined in EntityDescriptor.si.xml file.
 	 	
 	 	@method setClassName
-	 	@param className {String} POJO class name.
+	 	@param className {String} Mapped class name.
 	 */
-    this.setClassName = function(val) {
-		className = val;
+    this.setClassName = function(className) {
+		properties.add(Constants.ENTITY_DESCRIPTOR_CLASS_NAME, className);
 	}
 
 	/**
@@ -184,7 +205,7 @@ function DatabaseMappingDescriptor() {
 	}
 
 	/**
-	 	Add column to DatabaseMapping object.
+	 	Add column to EntityDescriptor object.
 	 
 	 	@method addColumn
 	 	@param column {Column} Column object.
@@ -204,7 +225,7 @@ function DatabaseMappingDescriptor() {
 	}
 	
 	/**
-	 	Add index to DatabaseMapping object.
+	 	Add index to EntityDescriptor object.
 	 
 	 	@method addIndex
 	 	@param index {Index} Index object.
@@ -239,24 +260,23 @@ function DatabaseMappingDescriptor() {
 
 
 /**
- 	Exposes methods to GET and SET Column information as per define in DatabaseMappingDescriptor.si.xml file by application.
+ 	Exposes methods to GET and SET Column information as per define in EntityDescriptor.si.xml file by application.
 
 	 Example:
 	
-		 <column variable_name="liquorType" column_name="LIQUOR_TYPE">
+		 <attribute>
+			 <property name="variable_name">liquorType</property>
+			 <property name="column_name">LIQUOR_TYPE</property>
 			 <property name="type">TEXT</property>
 			 <property name="primary_key">true</property>
 			 <property name="not_null">true</property>
 			 <property name="unique">true</property>
-		 </column>
+		 </attribute>
 	
-	@class DatabaseMappingDescriptor.Attribute
+	@class EntityDescriptor.Attribute
 	
  */
-DatabaseMappingDescriptor.Attribute = function() {
-
-    var variableName;
-    var columnName;
+EntityDescriptor.Attribute = function() {
 
     var properties = new Dictionary();
 
@@ -267,7 +287,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@return {String} Variable Name
      */
     this.getVariableName = function() {
-        return variableName;
+        return properties.get(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_VARIABLE_NAME);
     }
 
     /**
@@ -276,8 +296,8 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@method setVariableName
      	@param variableName {String} Name of variable.
      */
-    this.setVariableName = function(val) {
-        variableName = val;
+    this.setVariableName = function(variableName) {
+        properties.add(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_VARIABLE_NAME, variableName);
     }
 
     /**
@@ -287,7 +307,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@return {String} Name Of Column.
      */
     this.getColumnName = function() {
-        return columnName;
+        return properties.get(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_COLUMN_NAME);
     }
 
     /**
@@ -296,8 +316,8 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@method setColumnName
      	@param columnName {String} Name of column name.
      */
-    this.setColumnName = function(val) {
-        columnName = val;
+    this.setColumnName = function(columnName) {
+        properties.add(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_VARIABLE_NAME, columnName);
     }
 
     /**
@@ -307,7 +327,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@return {String} Type of column.
      */
     this.getType = function() {
-        return properties.get(Constants.DATABASE_MAPPING_DESCRIPTOR_TYPE);
+        return properties.get(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_TYPE);
     }
 
     /**
@@ -317,7 +337,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@param type {String} Type of column.
      */
     this.setType = function(type) {
-        properties.add(Constants.DATABASE_MAPPING_DESCRIPTOR_TYPE, type);
+        properties.add(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_TYPE, type);
     }
 
     /**
@@ -327,7 +347,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@return {String} Check constraint of column.
      */
     this.getCheck = function() {
-        return properties.get(Constants.DATABASE_MAPPING_DESCRIPTOR_CHECK);
+        return properties.get(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_CHECK);
     }
 
     /**
@@ -337,7 +357,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@param check {String} Check constraint.
      */
     this.setCheck = function(check) {
-        properties.add(Constants.DATABASE_MAPPING_DESCRIPTOR_CHECK);
+        properties.add(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_CHECK);
     }
 
     /**
@@ -347,7 +367,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@return Default value of column.
      */
     this.getDefaultValue = function() {
-        return properties.get(Constants.DATABASE_MAPPING_DESCRIPTOR_DEFAULT_VALUE);
+        return properties.get(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_DEFAULT_VALUE);
     }
 
     /**
@@ -357,7 +377,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@param defaultValue {String} Default value of column.
      */
     this.setDefaultValue = function(defaultValue) {
-        properties.add(Constants.DATABASE_MAPPING_DESCRIPTOR_DEFAULT_VALUE, defaultValue);
+        properties.add(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_DEFAULT_VALUE, defaultValue);
     }
 
     /**
@@ -367,7 +387,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@param primaryKey {Boolean} (true/false) TRUE: If column is primary key, FALSE: If column is not primary key.
      */
     this.setPrimaryKey = function(primaryKey) {
-        properties.add(Constants.DATABASE_MAPPING_DESCRIPTOR_PRIMARY_KEY, primaryKey);
+        properties.add(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_PRIMARY_KEY, primaryKey);
     }
 
     /**
@@ -377,7 +397,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@return {Boolean} (true/false) TRUE: If column is primary key, FALSE: If column is not primary key.
      */
     this.isPrimaryKey = function() {
-        properties.get(Constants.DATABASE_MAPPING_DESCRIPTOR_PRIMARY_KEY);
+        properties.get(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_PRIMARY_KEY);
     }
 
     /**
@@ -387,7 +407,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@param isNotNull {Boolean} (true/false) TRUE: If column value can be null, FALSE: If column value can not be null.
      */
     this.setNotNull = function(notNull) {
-        properties.add(Constants.DATABASE_MAPPING_DESCRIPTOR_NOT_NULL, notNull);
+        properties.add(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_NOT_NULL, notNull);
     }
 
     /**
@@ -397,7 +417,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@return {Boolean} (true/false) TRUE: If column value can be null, FALSE: If column value can not be null.
      */
     this.isNotNull = function() {
-        properties.get(Constants.DATABASE_MAPPING_DESCRIPTOR_NOT_NULL);
+        properties.get(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_NOT_NULL);
     }
 
     /**
@@ -407,7 +427,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@param isUnique {Boolean} (true/false) TRUE: If column is unique, FALSE: If column is not unique
      */
     this.setUnique = function(unique) {
-        properties.add(Constants.DATABASE_MAPPING_DESCRIPTOR_UNIQUE, unique);
+        properties.add(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_UNIQUE, unique);
     }
 
     /**
@@ -417,7 +437,7 @@ DatabaseMappingDescriptor.Attribute = function() {
      	@return {Boolean} (true/false) TRUE: If column is unique, FALSE: If column is not unique.
      */
     this.isUnique = function() {
-        properties.get(Constants.DATABASE_MAPPING_DESCRIPTOR_UNIQUE);
+        properties.get(Constants.ENTITY_DESCRIPTOR_ATTRIBUTE_UNIQUE);
     }
     
     	
@@ -485,21 +505,21 @@ DatabaseMappingDescriptor.Attribute = function() {
 
 
 /**
- 	Exposes methods to GET and SET Index information as per define in DatabaseMappingDescriptor.si.xml file by application.
+ 	Exposes methods to GET and SET Index information as per define in EntityDescriptor.si.xml file by application.
 
 	Example:
-		<index name="LIQUOR_INDEX_BASED_ON_LINK" unique="true">
-			<column>HISTORY</column>
+		<index>
+			<property name="name">LIQUOR_INDEX_BASED_ON_LINK</property>
+			<property name="unique">true</property>
+			<property name="column">HISTORY</property>
 		</index>
 
 
-	@class DatabaseMappingDescriptor.Index
+	@class EntityDescriptor.Index
 	@constructor
 */
-DatabaseMappingDescriptor.Index = function() {
+EntityDescriptor.Index = function() {
 
-    var name;
-    var unique = false;
 
     var columns = new Array();
 
@@ -510,7 +530,7 @@ DatabaseMappingDescriptor.Index = function() {
      	@return {String} Index Name.
      */
     this.getName = function() {
-        return name;
+        properties.get(Constants.ENTITY_DESCRIPTOR_INDEX_NAME);
     }
 
     /**
@@ -519,8 +539,8 @@ DatabaseMappingDescriptor.Index = function() {
      	@method setName
      	@param name {String} Index Name.
      */
-    this.setName = function(val) {
-        name = val;
+    this.setName = function(name) {
+        properties.add(Constants.ENTITY_DESCRIPTOR_INDEX_NAME, name);
     }
 
     /**
@@ -530,7 +550,7 @@ DatabaseMappingDescriptor.Index = function() {
      	@param unique {Boolean} (true/false) TRUE: If index is unique, FALSE: If index is not unique.
      */
     this.setUnique = function(val) {
-        unique = val;
+        properties.get(Constants.ENTITY_DESCRIPTOR_INDEX_UNIQUE);
     }
 
     /**
@@ -540,7 +560,7 @@ DatabaseMappingDescriptor.Index = function() {
      	@return {Boolean} (true/false) TRUE: If index is unique, FALSE: If index is not unqiue.
      */
     this.isUnique = function() {
-        if(unique)
+        if(properties.get(Constants.ENTITY_DESCRIPTOR_INDEX_NAME))
             return true;
         else
             return false;
@@ -572,17 +592,9 @@ DatabaseMappingDescriptor.Index = function() {
 /**
 	Contains relationship details.
 	
-	@class DatabaseMappingDescriptor.Relationship
+	@class EntityDescriptor.Relationship
  */
-DatabaseMappingDescriptor.Relationship = function() {
-
-    var refer;
-    var referTo;
-
-    var relationshipType;
-
-    var onUpdate;
-    var onDelete;
+EntityDescriptor.Relationship = function() {
 
     var getterReferMethodName;
     var setterReferMethodName;
@@ -596,7 +608,7 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@return {String} Type of relationship.
      */
     this.getRelationshipType = function() {
-        return relationshipType;
+        return properties.get(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_TYPE);
     }
 
     /**
@@ -605,8 +617,8 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@method setRelationshipType
      	@param relationshipType {String} Type of relationship.
      */
-    this.setRelationshipType = function(val) {
-        return relationshipType = val;
+    this.setRelationshipType = function(type) {
+        properties.add(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_TYPE, type);
     }
 
     /**
@@ -616,7 +628,7 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@return {String} Name of refer.
      */
     this.getRefer = function() {
-        refer;
+        return properties.get(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_REFER);
     }
 
     /**
@@ -625,8 +637,8 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@method setRefer
      	@param refer {String} Name of refer.
      */
-    this.setRefer = function(val) {
-        refer = val;
+    this.setRefer = function(refer) {
+        properties.add(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_REFER, refer);
     }
 
     /**
@@ -636,7 +648,7 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@return {String} Name of refer to.
      */
     this.getReferTo = function() {
-        return referTo;
+        return properties.get(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_REFER_TO);
     }
 
     /**
@@ -645,8 +657,8 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@method setReferTo
      	@param referTo {String} Name of refer to.
      */
-    this.setReferTo = function(val) {
-        referTo = val;
+    this.setReferTo = function(referTo) {
+        properties.add(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_REFER_TO, referTo);
     }
 
     /**
@@ -656,7 +668,7 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@return {String} Action on update.
      */
     this.getOnUpdate = function() {
-        return onUpdate;
+        return properties.get(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_ON_UPDATE);
     }
 
     /**
@@ -665,8 +677,8 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@method setOnUpdate
      	@param onUpdate {String} Action on update.
      */
-    this.setOnUpdate = function(val) {
-        onUpdate = val;
+    this.setOnUpdate = function(onUpdate) {
+        properties.add(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_ON_UPDATE, onUpdate);
     }
 
     /**
@@ -676,7 +688,7 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@return {String} Action on delete.
      */
     this.getOnDelete = function() {
-        return onDelete;
+        return properties.get(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_ON_DELETE);
     }
 
     /**
@@ -685,8 +697,8 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@method setOnDelete
      	@param onDelete {String} Action on delete.
      */
-    this.setOnDelete = function(val) {
-        onDelete = val;
+    this.setOnDelete = function(onDelete) {
+        properties.add(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_ON_DELETE, onDelete);
     }
 
     /**
@@ -736,7 +748,7 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@param load {Boolean} (true/false) TRUE: If load property value is true; FALSE: If load property value is false.
      */
     this.setLoad = function(isLoad) {
-        properties.get(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_LOAD);
+        properties.get(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_LOAD);
     }
 
     /**
@@ -746,7 +758,7 @@ DatabaseMappingDescriptor.Relationship = function() {
      	@return {Boolean} (true/false) TRUE: If load property value is set to true; FALSE: If load property value is set to false.
      */
     this.isLoad = function() {
-        return properties.get(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_LOAD);
+        return properties.get(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_LOAD);
     }
 
 		

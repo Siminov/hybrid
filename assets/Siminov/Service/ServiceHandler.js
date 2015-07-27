@@ -86,8 +86,8 @@ var ServiceHandler = (function() {
 			webService.addValue(webServiceName)
 			
 				var webServiceValue = new WebSiminovDatas.WebSiminovData.WebSiminovValue();
-				webServiceValue.setType(Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_API);	
-				webServiceValue.setValue(iService.getApi());
+				webServiceValue.setType(Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_REQUEST);	
+				webServiceValue.setValue(iService.getRequest());
 
 			webService.addValue(webServiceValue);
 
@@ -117,7 +117,7 @@ var ServiceHandler = (function() {
 
 			webServiceDatas.addWebSiminovData(webService)
 			
-			var data = encodeURI(SIJsonHelper.toJson(webServiceDatas));
+			var data = encodeURI(SIJsonHelper.toJson(webServiceDatas, true));
 			adapter.addParameter(data);
 
 			adapter.invoke();

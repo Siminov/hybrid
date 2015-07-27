@@ -137,32 +137,32 @@ function EventHandler() {
         } else if(apiName === Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_TABLE_CREATED) {
 
 			var databaseDescriptor = parameters[0];
-			var databaseMappingDescriptor = parameters[1];
+			var entityDescriptor = parameters[1];
 		
-			Function.invokeAndInflate(eventHandler, apiName, databaseDescriptor, databaseMappingDescriptor);
+			Function.invokeAndInflate(eventHandler, apiName, databaseDescriptor, entityDescriptor);
 
         } else if(apiName === Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_TABLE_DROPPED) {
 
 			var databaseDescriptor = parameters[0];
-			var databaseMappingDescriptor = parameters[1];
+			var entityDescriptor = parameters[1];
 		
-			Function.invokeAndInflate(eventHandler, apiName, databaseDescriptor, databaseMappingDescriptor);
+			Function.invokeAndInflate(eventHandler, apiName, databaseDescriptor, entityDescriptor);
 
         } else if(apiName === Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_INDEX_CREATED) {
 
 			var databaseDescriptor = parameters[0];
-			var databaseMappingDescriptor = parameters[1];
+			var entityDescriptor = parameters[1];
 			var index = parameters[2];
 			
-			Function.invokeAndInflate(eventHandler, apiName, databaseDescriptor, databaseMappingDescriptor, index);
+			Function.invokeAndInflate(eventHandler, apiName, databaseDescriptor, entityDescriptor, index);
 
         } else if(apiName === Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_INDEX_DROPPED) {
 
 			var databaseDescriptor = parameters[0];
-			var databaseMappingDescriptor = parameters[1];
+			var entityDescriptor = parameters[1];
 			var index = parameters[2];
 		
-			Function.invokeAndInflate(eventHandler, apiName, databaseDescriptor, databaseMappingDescriptor, index);
+			Function.invokeAndInflate(eventHandler, apiName, databaseDescriptor, entityDescriptor, index);
 			
         /*
          * INotification Events

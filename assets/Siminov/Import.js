@@ -36,7 +36,7 @@ document.write('<script type="text/javascript" src="Siminov/Collection/StringBui
 document.write('<script type="text/javascript" src="Siminov/Model/ApplicationDescriptor.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Model/DatabaseDescriptor.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Model/LibraryDescriptor.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/Model/DatabaseMappingDescriptor.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Model/EntityDescriptor.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Model/ServiceDescriptor.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Model/AdapterDescriptor.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Model/NotificationDescriptor.js"></script>');

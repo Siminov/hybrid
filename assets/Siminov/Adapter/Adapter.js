@@ -27,7 +27,7 @@
 /**
 	Handle Request between NATIVE-TO-WEB and WEB-TO-NATIVE.
 	Exposes method to GET and SET information about request.
-
+ 
 	@module Adapter
 	@class Adapter
 	@constructor
@@ -36,6 +36,7 @@ function Adapter() {
 
     var adapterName;
     var handlerName;
+    var adapterMode;
 
     var parameters = [];
 
@@ -115,14 +116,65 @@ function Adapter() {
         for(var i = 0;i < parameters.length;i++) {
             var siminovData = new WebSiminovDatas.WebSiminovData();
 
-            siminovData.setDataValue(parameters[i]);
+			var parameter = parameters[i];
+			if(parameter != undefined) {
+				parameter = encodeURI(parameters[i]);
+			} else {
+				parameter = "";
+			}
+
+            siminovData.setDataValue(parameter);
             siminovDatas.addWebSiminovData(siminovData);
         }
 
         var json = SIJsonHelper.toJson(siminovDatas);
         
         Log.debug("Adapter", "invoke", "SIMINOV WEB TO NATIVE - ADAPTER: " + adapterName + ", HANDLER: " + handlerName + ", DATA: " + json);
-        return window.SIMINOV.handleWebToNative(adapterName + "." + handlerName, json);
+        
+        
+        /**
+         * Android Native Bridge
+         */
+        if(window.SIMINOV != undefined) {
+            return window.SIMINOV.handleWebToNative(adapterName + "." + handlerName, json);
+        }
+
+        
+        /**
+         * iOS and Windows Sync Native Bridge
+         */
+        json = json.replace(new RegExp('#', 'g'), "%23");
+        if(adapterMode == undefined || adapterMode == null || adapterMode == Adapter.ADAPTER_SYNC_MODE) {
+            
+            var xmlHttpRequest = new XMLHttpRequest();
+            
+            xmlHttpRequest.open(Constants.HTTP_POST_METHOD, Constants.HTTP_SIMINOV_PROTOCOL + "?" + Constants.HTTP_REQUEST_API_QUERY_PARAMETER + "=" + adapterName + "." + handlerName + "&" + Constants.HTTP_REQUEST_DATA_QUERY_PARAMETER + "=" + json, false);
+            xmlHttpRequest.send(json);
+            
+            return xmlHttpRequest.responseText;
+        }
+        
+
+        /**
+         * iOS and Windows Async Native Bridge
+         */
+        var xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function() {
+         
+            if(xmlHttpRequest.readyState == 4) {
+                if(xmlHttpRequest.status >= 200 && xmlHttpRequest.status <= 226) {
+                    alert("response:" + xmlHttpRequest.responseText);
+                } else {
+                    alert("error response: " + xmlHttpRequest.responseText);
+                }
+            }
+        }
+        
+        
+        xmlHttpRequest.open(Constants.HTTP_POST_METHOD, Constants.HTTP_SIMINOV_PROTOCOL + "?" + Constants.HTTP_REQUEST_API_QUERY_PARAMETER + "=" + adapterName + "." + handlerName + "&" + Constants.HTTP_REQUEST_DATA_QUERY_PARAMETER + "=" + json, true);
+        xmlHttpRequest.send(json);
+        
+        return xmlHttpRequest.responseText;
     }
 
 
@@ -143,3 +195,7 @@ function Adapter() {
         Function.invokeAndInflate(obj, apiName, data);
     }
 }
+
+
+Adapter.ADAPTER_SYNC_MODE = "SYNC";
+Adapter.ADAPTER_ASYNC_MODE = "ASYNC";

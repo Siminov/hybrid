@@ -53,12 +53,12 @@
 				
 		
 		
-			<!-- Database Mapping Descriptor Paths Needed Under This Database Descriptor -->
+			<!-- Entity Descriptor Paths Needed Under This Database Descriptor -->
 			
 				<!-- Optional Field -->
-			<database-mapping-descriptors>
-				<database-mapping-descriptor>full_path_of_database_mapping_descriptor_file</database-mapping-descriptor>
-			</database-mapping-descriptors>
+			<entity-descriptors>
+				<entity-descriptor>full_path_of_database_mapping_descriptor_file</entity-descriptor>
+			</entity-descriptors>
 			
 		</database-descriptor>
 
@@ -72,7 +72,7 @@ function DatabaseDescriptor() {
 
     var properties = new Dictionary();
 
-    var databaseMappingPaths = new  Array();
+    var entityDescriptorPaths = new  Array();
     var libraries = new Array();
 
 
@@ -225,30 +225,30 @@ function DatabaseDescriptor() {
 
 	
 	/**
-	 	Get all database mapping paths as per defined in DatabaseDescriptor.si.xml file.
+	 	Get all entity descriptor paths as per defined in EntityDescriptor.si.xml file.
 	 
 	 	@method getDatabaseMappingDescriptorPaths
-	 	@return {Array} It contain all database mapping paths.
+	 	@return {Array} It contain all entity descriptor paths.
 	 */
-    this.getDatabaseMappingDescriptorPaths = function() {
-    	return databaseMappingPaths;
+    this.getEntityDescriptorPaths = function() {
+    	return entityDescriptorPaths;
 	}
 	
 	/**
-	 	Add database mapping path as per defined in DatabaseDescriptor.si.xml file.
+	 	Add entity descriptor path as per defined in DatabaseDescriptor.si.xml file.
 	 		
 		EXAMPLE:
 			<database-descriptor>
-				<database-mappings>
-					<database-mapping path="Liquor-Mappings/Liquor.xml" />
-					<database-mapping path="Liquor-Mappings/LiquorBrand.xml" />
-				</database-mappings>
+				<entity-descriptor>
+					<entity-descriptor>Liquor-Mappings/Liquor.xml</entity-descriptor>
+					<entity-descriptor>Liquor-Mappings/LiquorBrand.xml</entity-descriptor>
+				</entity-descriptor>
 			</database-descriptor>
 	
-		@method addDatabaseMappingDescriptorPath
-	 	@param databaseMappingPath Database Mapping Path.
+		@method addEntityDescriptorPath
+	 	@param entityPath Entity Descriptor Path.
 	 */
-    this.addDatabaseMappingDescriptorPath = function(databaseMappingPath) {
-    	databaseMappingPaths.push(databaseMappingPath);
+    this.addEntityDescriptorPath = function(entityDescriptorPath) {
+    	entityDescriptorPaths.push(entityDescriptorPath);
 	}
 } 

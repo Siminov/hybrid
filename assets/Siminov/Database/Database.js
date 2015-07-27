@@ -65,7 +65,7 @@ function Database() {
 	this.save = function() {
 
         var datas = SIDatasHelper.toSI(this);
-        var json = SIJsonHelper.toJson(datas);
+        var json = SIJsonHelper.toJson(datas, true);
 
         var adapter = new Adapter();
         adapter.setAdapterName(Constants.DATABASE_ADAPTER);
@@ -115,7 +115,7 @@ function Database() {
     this.update = function() {
 
         var datas = SIDatasHelper.toSI(this);
-        var json = SIJsonHelper.toJson(datas);
+        var json = SIJsonHelper.toJson(datas, true);
 
         var adapter = new Adapter();
         adapter.setAdapterName(Constants.DATABASE_ADAPTER);
@@ -169,13 +169,13 @@ function Database() {
     this.saveOrUpdate = function() {
 
         var datas = SIDatasHelper.toSI(this);
-        var json = SIJsonHelper.toJson(datas);
+        var json = SIJsonHelper.toJson(datas, true);
 
         var adapter = new Adapter();
         adapter.setAdapterName(Constants.DATABASE_ADAPTER);
         adapter.setHandlerName(Constants.DATABASE_SAVE_OR_UPDATE_HANDLER);
 
-        adapter.addParameter(encodeURI(json));
+        adapter.addParameter(json);
 
         var data = adapter.invoke();
         if(data != undefined && data != null) {
