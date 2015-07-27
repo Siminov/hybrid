@@ -32,13 +32,13 @@
 
 	
 	
-	<!-- Database Mappings Needed Under This Library Descriptor -->
+	<!-- Entity Descriptor Needed Under This Library Descriptor -->
 	
 	<!-- Optional Field -->
 		<!-- Database Mappings -->
-	<database-mapping-descriptors>
-		<database-mapping-descriptor>name_of_database_descriptor.full_path_of_database_mapping_descriptor_file</database-mapping-descriptor>
-	</database-mapping-descriptors>
+	<entity-descriptors>
+		<entity-descriptor>name_of_database_descriptor.full_path_of_database_mapping_descriptor_file</entity-descriptor>
+	</entity-descriptors>
 	 
 	
 	<!-- Service Descriptors -->
@@ -87,11 +87,11 @@ Type Of Properties:
 
 
 
-	ii. Database Mapping Paths Needed Under This Database Descriptor.	 
+	ii. Entity Descriptor Paths Needed Under This Database Descriptor.	 
 		
 		- Name of database descriptor associated to.
 		
-		- Provide full database mapping descriptor file.
+		- Provide full entity descriptor file.
 
 		- Put (dot). between database descriptor name and database descriptor file path.
 		
