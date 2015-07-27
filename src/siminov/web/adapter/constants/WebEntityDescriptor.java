@@ -20,143 +20,143 @@
 package siminov.web.adapter.constants;
 
 /**
- * Exposes constants which represents Databse Mapping Descriptor on Web.
+ * Exposes constants which represents Entity Descriptor on Web.
  */
-public interface WebDatabaseMappingDescriptor {
+public interface WebEntityDescriptor {
 
 	/**
-	 * Web Module Database Mapping Descriptor Function Name.
+	 * Web Module Entity Descriptor Function Name.
 	 */
-	public String DATABASE_MAPPING_DESCRIPTOR = "DatabaseMappingDescriptor";
+	public String ENTITY_DESCRIPTOR = "EntityDescriptor";
 	
 	
 	/**
-	 * Web Database Mapping Descriptor Table Name.
+	 * Web Entity Descriptor Table Name.
 	 */
 	public String TABLE_NAME = "tableName";
 	
 	/**
-	 * Web Database Mapping Descriptor Class Name.
+	 * Web Entity Descriptor Class Name.
 	 */
 	public String CLASS_NAME = "className";
 	
 	
 	/**
-	 * Web Database Mapping Descriptor Columns.
+	 * Web Entity Descriptor Columns.
 	 */
 	public String ENTITIES = "Array";
 	
 	/**
-	 * Web Database Mapping Descriptor Column.
+	 * Web Entity Descriptor Column.
 	 */
-	public String ATTRIBUTE = "DatabaseMappingDescriptor.Attribute";
+	public String ATTRIBUTE = "EntityDescriptor.Attribute";
 	
 	
 	/**
-	 * Web Database Mapping Descriptor Column Variable Name.
+	 * Web Entity Descriptor Column Variable Name.
 	 */
 	public String VARIABLE_NAME = "variableName";
 	
 	/**
-	 * Web Database Mapping Descriptor Column Name.
+	 * Web Entity Descriptor Column Name.
 	 */
 	public String COLUMN_NAME = "columnName";
 	
 	/**
-	 * Web Database Mapping Descriptor Column Type.
+	 * Web Entity Descriptor Column Type.
 	 */
 	public String TYPE = "type";
 	
 	/**
-	 * Web Database Mapping Descriptor Column Is Primary.
+	 * Web Entity Descriptor Column Is Primary.
 	 */
 	public String PRIMARY_KEY = "primaryKey";
 	
 	/**
-	 * Web Database Mapping Descriptor Column Is Not Null.
+	 * Web Entity Descriptor Column Is Not Null.
 	 */
 	public String NOT_NULL = "notNull";
 	
 	/**
-	 * Web Database Mapping Descriptor Column Is Unique.
+	 * Web Entity Descriptor Column Is Unique.
 	 */
 	public String UNIQUE = "unique";
 
 	/**
-	 * Web Database Mapping Descriptor Column Check Condition.
+	 * Web Entity Descriptor Column Check Condition.
 	 */
 	public String CHECK = "check";
 	
 	/**
-	 * Web Database Mapping Descriptor Column Default Value.
+	 * Web Entity Descriptor Column Default Value.
 	 */
 	public String DEFAULT = "defaultValue";
 	
 	
 	/**
-	 * Web Database Mapping Descriptor Index's.
+	 * Web Entity Descriptor Index's.
 	 */
 	public String INDEXS = "Array";
 
 	/**
-	 * Web Database Mapping Descriptor Index Function.
+	 * Web Entity Descriptor Index Function.
 	 */
-	public String INDEX = "DatabaseMappingDescriptor.Index";
+	public String INDEX = "EntityDescriptor.Index";
 
 	/**
-	 * Web Database Mapping Descriptor Index Name.
+	 * Web Entity Descriptor Index Name.
 	 */
 	public String INDEX_NAME = "name";
 	
 	/**
-	 * Web Database Mapping Descriptor Column.
+	 * Web Entity Descriptor Column.
 	 */
 	public String INDEX_UNIQUE = "unique";
 	
 	/**
-	 * Web Database Mapping Descriptor Index Column.
+	 * Web Entity Descriptor Index Column.
 	 */
 	public String INDEX_COLUMN = "indexColumn";
 	
 	
 	/**
-	 * Web Database Mapping Descriptor Relationships.
+	 * Web Entity Descriptor Relationships.
 	 */
 	public String RELATIONSHIPS = "Array";
 	
 	/**
-	 * Web Database Mapping Descriptor Relationship Function.
+	 * Web Entity Descriptor Relationship Function.
 	 */
-	public String RELATIONSHIP = "DatabaseMappingDescriptor.Relationship";
+	public String RELATIONSHIP = "EntityDescriptor.Relationship";
 	
 	/**
-	 * Web Database Mapping Descriptor Relationship Type.
+	 * Web Entity Descriptor Relationship Type.
 	 */
 	public String RELATIONSHIP_TYPE = "relationshipType";
 	
 	/**
-	 * Web Database Mapping Descriptor Relationship Refer.
+	 * Web Entity Descriptor Relationship Refer.
 	 */
 	public String REFER = "refer";
 
 	/**
-	 * Web Database Mapping Descriptor Relationship Refer To.
+	 * Web Entity Descriptor Relationship Refer To.
 	 */
 	public String REFER_TO = "referTo";
 	
 	
 	/**
-	 * Web Database Mapping Descriptor Relationship On Update. 
+	 * Web Entity Descriptor Relationship On Update. 
 	 */
 	public String ON_UPDATE = "onUpdate";
 	
 	/**
-	 * Web Database Mapping Descriptor Relationship On Delete.
+	 * Web Entity Descriptor Relationship On Delete.
 	 */
 	public String ON_DELETE = "onDelete";
 
 	/**
-	 * Web Database Mapping Descriptor Relationship Load Property.
+	 * Web Entity Descriptor Relationship Load Property.
 	 */
 	public String LOAD = "load";
 	

@@ -45,13 +45,18 @@ public class ServiceHandler implements IAdapter {
 	public void invoke(String data) throws ServiceException {
 
 		WebSiminovDataReader webSiminovDataParser = null; 
-		data = URLDecoder.decode(data);
 		
 		try {
+			data = URLDecoder.decode(data, "UTF-8");
+			data = URLDecoder.decode(data, "UTF-8");
+			
 			webSiminovDataParser = new WebSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
 			Log.error(ServiceHandler.class.getName(), "invoke", "SiminovException caught while parsing siminov web core data, " + siminovException.getMessage());
 			throw new ServiceException(ServiceHandler.class.getName(), "invoke", "SiminovException caught while parsing siminov web core data, " + siminovException.getMessage());
+		} catch(Exception exception) {
+			Log.error(ServiceHandler.class.getName(), "invoke", "Exception caught while parsing siminov web core data, " + exception.getMessage());
+			throw new ServiceException(ServiceHandler.class.getName(), "invoke", "Exception caught while parsing siminov web core data, " + exception.getMessage());
 		}
 
 		WebSiminovDatas webSiminovDatas = webSiminovDataParser.getDatas();
@@ -59,7 +64,7 @@ public class ServiceHandler implements IAdapter {
 		WebSiminovData webService = webSiminovDatas.getWebSiminovDataBasedOnDataType(Constants.ADAPTER_INVOKE_HANDLER_SERVICE);
 		
 		WebSiminovValue webServiceName = webService.getValueBasedOnType(Constants.ADAPTER_INVOKE_HANDLER_SERVICE_NAME);
-		WebSiminovValue webAPIName = webService.getValueBasedOnType(Constants.ADAPTER_INVOKE_HANDLER_SERVICE_API_NAME);
+		WebSiminovValue webRequestName = webService.getValueBasedOnType(Constants.ADAPTER_INVOKE_HANDLER_SERVICE_REQUEST_NAME);
 		
 		WebSiminovData webResources = webService.getWebSiminovDataBasedOnDataType(Constants.ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES);
 		
@@ -67,7 +72,7 @@ public class ServiceHandler implements IAdapter {
 		IService genericService = new GenericService();
 		
 		genericService.setService(webServiceName.getValue());
-		genericService.setRequest(webAPIName.getValue());
+		genericService.setRequest(webRequestName.getValue());
 
 		
 		if(webResources != null) {

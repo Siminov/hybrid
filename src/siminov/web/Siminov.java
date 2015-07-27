@@ -216,13 +216,13 @@ public class Siminov extends siminov.connect.Siminov {
 			/*
 			 * Map Database Mapping Descriptors
 			 */
-			Iterator<String> databaseMappingDescriptors = libraryDescriptor.getDatabaseMappingPaths();
-			while(databaseMappingDescriptors.hasNext()) {
+			Iterator<String> entityDescriptors = libraryDescriptor.getEntityDescriptorPaths();
+			while(entityDescriptors.hasNext()) {
 
-				String libraryDatabaseMappingDescriptorPath = databaseMappingDescriptors.next();
+				String libraryEntityDescriptorPath = entityDescriptors.next();
 				
-				String databaseDescriptorName = libraryDatabaseMappingDescriptorPath.substring(0, libraryDatabaseMappingDescriptorPath.indexOf(Constants.LIBRARY_DESCRIPTOR_DATABASE_MAPPING_SEPRATOR));
-				String databaseMappingDescriptor = libraryDatabaseMappingDescriptorPath.substring(libraryDatabaseMappingDescriptorPath.indexOf(Constants.LIBRARY_DESCRIPTOR_DATABASE_MAPPING_SEPRATOR) + 1, libraryDatabaseMappingDescriptorPath.length());
+				String databaseDescriptorName = libraryEntityDescriptorPath.substring(0, libraryEntityDescriptorPath.indexOf(Constants.LIBRARY_DESCRIPTOR_ENTITY_DESCRIPTOR_SEPRATOR));
+				String entityDescriptor = libraryEntityDescriptorPath.substring(libraryEntityDescriptorPath.indexOf(Constants.LIBRARY_DESCRIPTOR_ENTITY_DESCRIPTOR_SEPRATOR) + 1, libraryEntityDescriptorPath.length());
 				
 				
 				Iterator<DatabaseDescriptor> databaseDescriptors = applicationDescriptor.getDatabaseDescriptors();
@@ -230,7 +230,7 @@ public class Siminov extends siminov.connect.Siminov {
 					
 					DatabaseDescriptor databaseDescriptor = databaseDescriptors.next();
 					if(databaseDescriptor.getDatabaseName().equalsIgnoreCase(databaseDescriptorName)) {
-						databaseDescriptor.addDatabaseMappingDescriptorPath(library.replace(".", "/") + File.separator + databaseMappingDescriptor);
+						databaseDescriptor.addEntityDescriptorPath(library.replace(".", "/") + File.separator + entityDescriptor);
 					}
 				}
 			}

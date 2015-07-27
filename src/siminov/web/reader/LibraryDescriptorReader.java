@@ -39,28 +39,58 @@ import siminov.core.reader.SiminovSAXDefaultHandler;
 		
 Example:
 	{@code
-	<library>
+	<!-- DESIGN OF LibraryDescriptor.si.xml -->
 	
-		<property name="name">SIMINOV LIBRARY SAMPLE</property>
-		<property name="description">Siminov Library Sample</property>
+	<library-descriptor>
 	
-		<!-- Database Mappings -->
-			<database-mappings>
-				<database-mapping path="Credential.si.xml" />
-			</database-mappings>
+	    <!-- General Properties Of Library -->
+	    
+	    <!-- Mandatory Field -->
+		<property name="name">name_of_library</property>
+		
+		<!-- Optional Field -->
+		<property name="description">description_of_library</property>
 	
-			 	<!-- OR -->
-			 
-			<database-mappings>
-				<database-mapping path="siminov.core.library.sample.model.Credential" />
-			</database-mappings>
-
-		 <!-- Adapters -->
-		 	<adapters>
-		 		<adapter path="adapter_full_path" />
-		 	</adapters>
+		
+		
+		<!-- Entity Descriptor Needed Under This Library Descriptor -->
+		
+		<!-- Optional Field -->
+			<!-- Database Mappings -->
+		<entity-descriptors>
+			<entity-descriptor>name_of_database_descriptor.full_path_of_database_mapping_descriptor_file</entity-descriptor>
+		</entity-descriptors>
 		 
-	</library>
+		
+		<!-- Service Descriptors -->
+			
+		<!-- Optional Field -->
+			<!-- Service Descriptor -->
+		<service-descriptors>
+		    <service-descriptor>full_path_of_service-descriptor_file</service-descriptor>
+		</service-descriptors>
+		
+		
+		<!-- Sync Descriptors -->
+		
+		<!-- Optional Field -->
+			<!-- Sync Descriptor -->
+		<sync-descriptors>
+		    <sync-descriptor>full_path_of_sync_descriptor_file</sync-descriptor>
+		</sync-descriptors>
+		
+		
+		<!-- Adapter Descriptors -->
+		
+		<!-- Optional Field -->
+			<!-- Adapter Descriptor -->
+		<adapter-descriptors>
+		    <adapter-descriptor>full_path_of_adapter_descriptor_file</adapter-descriptor>
+		</adapter-descriptors>	
+			
+		
+	</library-descriptor>
+	
 	}
 	
 		</pre>
@@ -131,8 +161,8 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 		
 		if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_PROPERTY)) {
 			libraryDescriptor.addProperty(propertyName, tempValue.toString());
-		} else if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_DATABASE_MAPPING_DESCRIPTOR)) {
-			libraryDescriptor.addDatabaseMappingPath(tempValue.toString());
+		} else if(localName.equalsIgnoreCase(LIBRARY_DESCRIPTOR_ENTITY_DESCRIPTOR)) {
+			libraryDescriptor.addEntityDescriptorPath(tempValue.toString());
 		} else if(localName.equalsIgnoreCase(WEB_LIBRARY_DESCRIPTOR_ADAPTER_DESCRIPTOR)) {
 			libraryDescriptor.addAdapterDescriptorPath(tempValue.toString());
 		}
@@ -155,7 +185,7 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 			throw new DeploymentException(getClass().getName(), "doValidation", "LIBRARY-NAME IS MANDATORY FIELD - LIBRARY-DESCRIPTOR: " + this.libraryName);
 		}
 		
-		Iterator<String> databaseMappingPaths = libraryDescriptor.getDatabaseMappingPaths();
+		Iterator<String> databaseMappingPaths = libraryDescriptor.getEntityDescriptorPaths();
 		while(databaseMappingPaths.hasNext()) {
 			String databaseMappingPath = databaseMappingPaths.next();
 			

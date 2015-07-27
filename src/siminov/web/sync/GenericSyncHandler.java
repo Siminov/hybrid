@@ -28,19 +28,19 @@ import siminov.connect.sync.design.ISyncRequest;
 /**
  * It handles sync requests on behalf of web 
  */
-public class SyncHandler {
+public class GenericSyncHandler {
 
 	private ResourceManager connectResourceManager = ResourceManager.getInstance();
 	
 	private SyncWorker syncWorker = SyncWorker.getInstance();
 	private Map<ISyncRequest, Long> requestTimestamps = new HashMap<ISyncRequest, Long>();
 
-	private static SyncHandler syncHandler = null;
+	private static GenericSyncHandler syncHandler = null;
 	
 	/**
 	 * SyncHandler Private Constructor
 	 */
-	private SyncHandler() {
+	private GenericSyncHandler() {
 		
 	}
 	
@@ -48,10 +48,10 @@ public class SyncHandler {
 	 * It provides singleton instance of SyncHandler 
 	 * @return SyncHandler singleton instance
 	 */
-	public static SyncHandler getInstance() {
+	public static GenericSyncHandler getInstance() {
 		
 		if(syncHandler == null) {
-			syncHandler = new SyncHandler();
+			syncHandler = new GenericSyncHandler();
 		}
 		
 		return syncHandler;

@@ -37,9 +37,9 @@ import siminov.core.exception.DeploymentException;
 import siminov.core.exception.SiminovException;
 import siminov.core.log.Log;
 import siminov.core.model.DatabaseDescriptor;
-import siminov.core.model.DatabaseMappingDescriptor;
-import siminov.core.model.DatabaseMappingDescriptor.Attribute;
-import siminov.core.model.DatabaseMappingDescriptor.Relationship;
+import siminov.core.model.EntityDescriptor;
+import siminov.core.model.EntityDescriptor.Attribute;
+import siminov.core.model.EntityDescriptor.Relationship;
 import siminov.core.resource.ResourceManager;
 import siminov.web.adapter.IAdapter;
 import siminov.web.model.WebSiminovDatas;
@@ -92,19 +92,19 @@ public class DatabaseHandler implements IAdapter {
 		}
 		
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 		
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
-		String tableName = databaseMappingDescriptor.getTableName();
+		String tableName = entityDescriptor.getTableName();
 		
 		Collection<String> columnNames = new LinkedList<String>();
 		Collection<Object> columnValues = new LinkedList<Object>();
 
-		Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		Iterator<EntityDescriptor.Attribute> attributes = entityDescriptor.getAttributes();
 		while(attributes.hasNext()) {
 			Attribute attribute = attributes.next();
 			
@@ -129,28 +129,28 @@ public class DatabaseHandler implements IAdapter {
 		parameters.put(IQueryBuilder.FORM_SAVE_BIND_QUERY_COLUMN_NAMES_PARAMETER, columnNames.iterator());
 
 		String query = queryBuilder.formSaveBindQuery(parameters);
-		database.executeBindQuery(databaseDescriptor, databaseMappingDescriptor, query, columnValues.iterator());
+		database.executeBindQuery(databaseDescriptor, entityDescriptor, query, columnValues.iterator());
 
 		
 
 		/*
 		 * 5. Check for relationship's if any, IF EXISTS: process it, ELSE: return all objects.
 		 */
-		Iterator<DatabaseMappingDescriptor.Relationship> relationships = databaseMappingDescriptor.getRelationships();
+		Iterator<EntityDescriptor.Relationship> relationships = entityDescriptor.getRelationships();
 		while(relationships.hasNext()) {
-			DatabaseMappingDescriptor.Relationship relationship = relationships.next();
+			EntityDescriptor.Relationship relationship = relationships.next();
 			
 			boolean isLoad = relationship.isLoad();
 			if(!isLoad) {
 				continue;
 			}
 			
-			String relationshipType = relationship.getRelationshipType();
+			String relationshipType = relationship.getType();
 			if(relationshipType == null || relationshipType.length() <= 0) {
 				continue;
 			}
 			
-			if(relationshipType.equalsIgnoreCase(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_ONE_TO_ONE)) {
+			if(relationshipType.equalsIgnoreCase(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_TYPE_ONE_TO_ONE)) {
 				
 				WebSiminovData referedData = null;
 				Iterator<WebSiminovData> datas = webSiminovData.getDatas();
@@ -171,7 +171,7 @@ public class DatabaseHandler implements IAdapter {
 				}
 
 				saveOrUpdate(referedData);
-			} else if(relationshipType.equalsIgnoreCase(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_ONE_TO_MANY)) {
+			} else if(relationshipType.equalsIgnoreCase(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_TYPE_ONE_TO_MANY)) {
 				
 				Iterator<WebSiminovData> datas = webSiminovData.getDatas();
 				while(datas.hasNext()) {
@@ -185,7 +185,7 @@ public class DatabaseHandler implements IAdapter {
 					}
 				}
 				
-			} else if(relationshipType.equalsIgnoreCase(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_MANY_TO_MANY)) {
+			} else if(relationshipType.equalsIgnoreCase(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_TYPE_MANY_TO_MANY)) {
 				
 				Iterator<WebSiminovData> datas = webSiminovData.getDatas();
 				while(datas.hasNext()) {
@@ -237,7 +237,7 @@ public class DatabaseHandler implements IAdapter {
 		}
 		
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -246,12 +246,12 @@ public class DatabaseHandler implements IAdapter {
 		
 		
 		StringBuilder whereClause = new StringBuilder();
-		String tableName = databaseMappingDescriptor.getTableName();
+		String tableName = entityDescriptor.getTableName();
 		
 		Collection<String> columnNames = new LinkedList<String>();
 		Collection<Object> columnValues = new LinkedList<Object>();
 
-		Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		Iterator<EntityDescriptor.Attribute> attributes = entityDescriptor.getAttributes();
 		while(attributes.hasNext()) {
 			Attribute attribute = attributes.next();
 			
@@ -291,28 +291,28 @@ public class DatabaseHandler implements IAdapter {
 		String query = queryBuilder.formUpdateBindQuery(parameters);
 
 		Iterator<Object> values = columnValues.iterator();
-		database.executeBindQuery(databaseDescriptor, databaseMappingDescriptor, query, values);
+		database.executeBindQuery(databaseDescriptor, entityDescriptor, query, values);
 
 		
 		
 		/*
 		 * 5. Check for relationship's if any, IF EXISTS: process it, ELSE: return all objects.
 		 */
-		Iterator<DatabaseMappingDescriptor.Relationship> relationships = databaseMappingDescriptor.getRelationships();
+		Iterator<EntityDescriptor.Relationship> relationships = entityDescriptor.getRelationships();
 		while(relationships.hasNext()) {
-			DatabaseMappingDescriptor.Relationship relationship = relationships.next();
+			EntityDescriptor.Relationship relationship = relationships.next();
 			
 			boolean isLoad = relationship.isLoad();
 			if(!isLoad) {
 				continue;
 			}
 			
-			String relationshipType = relationship.getRelationshipType();
+			String relationshipType = relationship.getType();
 			if(relationshipType == null || relationshipType.length() <= 0) {
 				continue;
 			}
 			
-			if(relationshipType.equalsIgnoreCase(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_ONE_TO_ONE)) {
+			if(relationshipType.equalsIgnoreCase(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_TYPE_ONE_TO_ONE)) {
 				
 				WebSiminovData referedData = null;
 				Iterator<WebSiminovData> datas = webSiminovData.getDatas();
@@ -333,7 +333,7 @@ public class DatabaseHandler implements IAdapter {
 				}
 
 				saveOrUpdate(referedData);
-			} else if(relationshipType.equalsIgnoreCase(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_ONE_TO_MANY)) {
+			} else if(relationshipType.equalsIgnoreCase(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_TYPE_ONE_TO_MANY)) {
 				
 				Iterator<WebSiminovData> datas = webSiminovData.getDatas();
 				while(datas.hasNext()) {
@@ -347,7 +347,7 @@ public class DatabaseHandler implements IAdapter {
 					}
 				}
 				
-			} else if(relationshipType.equalsIgnoreCase(Constants.DATABASE_MAPPING_DESCRIPTOR_RELATIONSHIPS_MANY_TO_MANY)) {
+			} else if(relationshipType.equalsIgnoreCase(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_TYPE_MANY_TO_MANY)) {
 				
 				Iterator<WebSiminovData> datas = webSiminovData.getDatas();
 				while(datas.hasNext()) {
@@ -400,10 +400,10 @@ public class DatabaseHandler implements IAdapter {
 		}
 		
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 		
 		StringBuilder whereClause = new StringBuilder();
-		Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		Iterator<EntityDescriptor.Attribute> attributes = entityDescriptor.getAttributes();
 		while(attributes.hasNext()) {
 			Attribute attribute = attributes.next();
 			
@@ -435,7 +435,7 @@ public class DatabaseHandler implements IAdapter {
 		/*
 		 * 4. IF EXISTS: call update method, ELSE: call save method.
 		 */
-		int count = count(databaseMappingDescriptor, null, false, whereClause.toString(), null, null);
+		int count = count(entityDescriptor, null, false, whereClause.toString(), null, null);
 		if(count <= 0) {
 			save(webSiminovData);
 		} else {
@@ -463,9 +463,9 @@ public class DatabaseHandler implements IAdapter {
 			return;
 		}
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 		
-		delete(databaseMappingDescriptor, whereClause);
+		delete(entityDescriptor, whereClause);
 
 	}
 
@@ -485,14 +485,14 @@ public class DatabaseHandler implements IAdapter {
 				webSiminovValues.put(webSiminovValue.getType(), webSiminovValue);
 			}
 			
-			DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+			EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 			
 			StringBuilder whereClause = new StringBuilder();
 			
 			Collection<String> columnNames = new LinkedList<String>();
 			Collection<Object> columnValues = new LinkedList<Object>();
 	
-			Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
+			Iterator<EntityDescriptor.Attribute> attributes = entityDescriptor.getAttributes();
 			while(attributes.hasNext()) {
 				Attribute attribute = attributes.next();
 				
@@ -516,13 +516,13 @@ public class DatabaseHandler implements IAdapter {
 			processManyToManyRelationship(webSiminovData, whereClause);
 			
 			
-			delete(databaseMappingDescriptor, whereClause.toString());
+			delete(entityDescriptor, whereClause.toString());
 		}
 	}
 
-	private void delete(final DatabaseMappingDescriptor databaseMappingDescriptor, final String whereClause) throws DatabaseException {
+	private void delete(final EntityDescriptor entityDescriptor, final String whereClause) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
@@ -533,12 +533,12 @@ public class DatabaseHandler implements IAdapter {
 		 * Add Parameters
 		 */
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_DELETE_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_DELETE_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_DELETE_QUERY_WHERE_CLAUSE_PARAMETER, whereClause.toString());
 		
 		
 		String query = queryBuilder.formDeleteQuery(parameters);
-		database.executeQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		database.executeQuery(databaseDescriptor, entityDescriptor, query);
 
 	}
 	
@@ -565,10 +565,10 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String select(final String className, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
-		select(databaseMappingDescriptor, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
+		select(entityDescriptor, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
 
-		WebSiminovDatas webSiminovDatas = select(databaseMappingDescriptor, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
+		WebSiminovDatas webSiminovDatas = select(entityDescriptor, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
 		
 		String data = null;
 		try {
@@ -582,9 +582,9 @@ public class DatabaseHandler implements IAdapter {
 	}
 
 	
-	private WebSiminovDatas select(final DatabaseMappingDescriptor databaseMappingDescriptor, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
+	private WebSiminovDatas select(final EntityDescriptor entityDescriptor, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 
-		String className = databaseMappingDescriptor.getClassName();
+		String className = entityDescriptor.getClassName();
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 		
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -624,7 +624,7 @@ public class DatabaseHandler implements IAdapter {
 		 * Add Parameters
 		 */
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_DISTINCT_PARAMETER, false);
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_COLUMN_NAMES_PARAMETER, columnNameCollection.iterator());
@@ -635,13 +635,13 @@ public class DatabaseHandler implements IAdapter {
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_LIMIT_PARAMETER, limit);
 
 		
-		Iterator<Map<String, Object>> datas = database.executeSelectQuery(getDatabaseDescriptor(className), databaseMappingDescriptor, queryBuilder.formSelectQuery(parameters));
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(getDatabaseDescriptor(className), entityDescriptor, queryBuilder.formSelectQuery(parameters));
 		Collection<Map<String, Object>> datasBundle = new LinkedList<Map<String,Object>>();
 		while(datas.hasNext()) {
 			datasBundle.add(datas.next());
 		}
 
-		WebSiminovDatas webSiminovDatas = parseData(databaseMappingDescriptor, datasBundle.iterator());
+		WebSiminovDatas webSiminovDatas = parseData(entityDescriptor, datasBundle.iterator());
 		datas = datasBundle.iterator();
 		
 		Iterator<WebSiminovData> siminovDatas = webSiminovDatas.getWebSiminovDatas();
@@ -665,7 +665,7 @@ public class DatabaseHandler implements IAdapter {
 	
 	public String selectManual(final String className, final String query) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
 
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -677,13 +677,13 @@ public class DatabaseHandler implements IAdapter {
 		}
 		
 		
-		Iterator<Map<String, Object>> datas = database.executeSelectQuery(getDatabaseDescriptor(className), databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(getDatabaseDescriptor(className), entityDescriptor, query);
 		Collection<Map<String, Object>> datasBundle = new LinkedList<Map<String,Object>>();
 		while(datas.hasNext()) {
 			datasBundle.add(datas.next());
 		}
 
-		WebSiminovDatas webSiminovDatas = parseData(databaseMappingDescriptor, datasBundle.iterator());
+		WebSiminovDatas webSiminovDatas = parseData(entityDescriptor, datasBundle.iterator());
 		datas = datasBundle.iterator();
 		
 		Iterator<WebSiminovData> siminovDatas = webSiminovDatas.getWebSiminovDatas();
@@ -712,17 +712,17 @@ public class DatabaseHandler implements IAdapter {
 		return data;
 	}
 	
-	private WebSiminovDatas lazyFetch(final DatabaseMappingDescriptor databaseMappingDescriptor, final boolean distinct, final String whereClause, final Iterator<String> columnNames, final Iterator<String> groupBy, final String having, final Iterator<String> orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
+	private WebSiminovDatas lazyFetch(final EntityDescriptor entityDescriptor, final boolean distinct, final String whereClause, final Iterator<String> columnNames, final Iterator<String> groupBy, final String having, final Iterator<String> orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.error(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
-			throw new DeploymentException(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
+			throw new DeploymentException(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
 		}
 
 		
@@ -731,7 +731,7 @@ public class DatabaseHandler implements IAdapter {
 		 * Add Parameters
 		 */
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_DISTINCT_PARAMETER, false);
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_COLUMN_NAMES_PARAMETER, columnNames);
@@ -741,7 +741,7 @@ public class DatabaseHandler implements IAdapter {
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHICH_ORDER_BY_PARAMETER, null);
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_LIMIT_PARAMETER, limit);
 
-		return parseData(databaseMappingDescriptor, database.executeSelectQuery(getDatabaseDescriptor(databaseMappingDescriptor.getClassName()), databaseMappingDescriptor, queryBuilder.formSelectQuery(parameters)));
+		return parseData(entityDescriptor, database.executeSelectQuery(getDatabaseDescriptor(entityDescriptor.getClassName()), entityDescriptor, queryBuilder.formSelectQuery(parameters)));
 	
 	}
 	
@@ -822,8 +822,8 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String count(final String className, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
 
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
-		int count = count(databaseMappingDescriptor, column, distinct, whereClause, groupBys, having);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
+		int count = count(entityDescriptor, column, distinct, whereClause, groupBys, having);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 		WebSiminovData siminovData = new WebSiminovData();
@@ -845,17 +845,17 @@ public class DatabaseHandler implements IAdapter {
 	}
 	
 	
-	private int count(final DatabaseMappingDescriptor databaseMappingDescriptor, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
+	private int count(final EntityDescriptor entityDescriptor, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.error(DatabaseHandler.class.getName(), "count", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
-			throw new DeploymentException(DatabaseHandler.class.getName(), "count", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "count", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
+			throw new DeploymentException(DatabaseHandler.class.getName(), "count", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
 		}
 
 		
@@ -864,7 +864,7 @@ public class DatabaseHandler implements IAdapter {
 		 */
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_COLUMN_PARAMETER, null);
 		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_DISTINCT_PARAMETER, false);
 		parameters.put(IQueryBuilder.FORM_COUNT_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
@@ -874,7 +874,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		String query = queryBuilder.formCountQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, entityDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -911,9 +911,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String avg(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		int avg = avg(databaseMappingDescriptor, columnName, whereClause, groupBy, having);
+		int avg = avg(entityDescriptor, columnName, whereClause, groupBy, having);
 
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 		WebSiminovData siminovData = new WebSiminovData();
@@ -934,17 +934,17 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	private int avg(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int avg(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.error(DatabaseHandler.class.getName(), "avg", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
-			throw new DeploymentException(DatabaseHandler.class.getName(), "avg", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "avg", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
+			throw new DeploymentException(DatabaseHandler.class.getName(), "avg", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
 		}
 
 		
@@ -960,7 +960,7 @@ public class DatabaseHandler implements IAdapter {
 		 * Add Parameters
 		 */
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_AVG_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_AVG_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_AVG_QUERY_COLUMN_PARAMETER, columnName);
 		parameters.put(IQueryBuilder.FORM_AVG_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
 		parameters.put(IQueryBuilder.FORM_AVG_QUERY_GROUP_BYS_PARAMETER, groupBys.iterator());
@@ -969,7 +969,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		String query = queryBuilder.formAvgQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, entityDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1006,9 +1006,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String sum(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		int sum =  sum(databaseMappingDescriptor, columnName, whereClause, groupBy, having);
+		int sum =  sum(entityDescriptor, columnName, whereClause, groupBy, having);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 		WebSiminovData siminovData = new WebSiminovData();
@@ -1029,17 +1029,17 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	private int sum(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int sum(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.error(DatabaseHandler.class.getName(), "sum", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
-			throw new DeploymentException(DatabaseHandler.class.getName(), "sum", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "sum", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
+			throw new DeploymentException(DatabaseHandler.class.getName(), "sum", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
 		}
 
 		Collection<String> groupBys =  new ArrayList<String>();
@@ -1054,7 +1054,7 @@ public class DatabaseHandler implements IAdapter {
 		 * Add Parameters
 		 */
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_SUM_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_SUM_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_SUM_QUERY_COLUMN_PARAMETER, columnName);
 		parameters.put(IQueryBuilder.FORM_SUM_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
 		parameters.put(IQueryBuilder.FORM_SUM_QUERY_GROUP_BYS_PARAMETER, groupBys.iterator());
@@ -1063,7 +1063,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		String query = queryBuilder.formSumQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, entityDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1100,9 +1100,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String total(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		int total = total(databaseMappingDescriptor, columnName, whereClause, groupBy, having);
+		int total = total(entityDescriptor, columnName, whereClause, groupBy, having);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 		WebSiminovData siminovData = new WebSiminovData();
@@ -1123,17 +1123,17 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	private int total(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int total(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.error(DatabaseHandler.class.getName(), "total", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
-			throw new DeploymentException(DatabaseHandler.class.getName(), "total", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "total", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
+			throw new DeploymentException(DatabaseHandler.class.getName(), "total", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
 		}
 
 		Collection<String> groupBys = new ArrayList<String>();
@@ -1148,7 +1148,7 @@ public class DatabaseHandler implements IAdapter {
 		 * Add Parameters
 		 */
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_TOTAL_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_TOTAL_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_TOTAL_QUERY_COLUMN_PARAMETER, columnName);
 		parameters.put(IQueryBuilder.FORM_TOTAL_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
 		parameters.put(IQueryBuilder.FORM_TOTAL_QUERY_GROUP_BYS_PARAMETER, groupBys.iterator());
@@ -1157,7 +1157,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		String query = queryBuilder.formTotalQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, entityDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1194,9 +1194,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String min(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		int min = min(databaseMappingDescriptor, columnName, whereClause, groupBy, having);
+		int min = min(entityDescriptor, columnName, whereClause, groupBy, having);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 		WebSiminovData siminovData = new WebSiminovData();
@@ -1217,17 +1217,17 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	private int min(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int min(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.error(DatabaseHandler.class.getName(), "min", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
-			throw new DeploymentException(DatabaseHandler.class.getName(), "min", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "min", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
+			throw new DeploymentException(DatabaseHandler.class.getName(), "min", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
 		}
 
 		Collection<String> groupBys = new ArrayList<String>();
@@ -1243,7 +1243,7 @@ public class DatabaseHandler implements IAdapter {
 		 */
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_MIN_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_MIN_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_MIN_QUERY_COLUMN_PARAMETER, columnName);
 		parameters.put(IQueryBuilder.FORM_MIN_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
 		parameters.put(IQueryBuilder.FORM_MIN_QUERY_GROUP_BYS_PARAMETER, groupBys.iterator());
@@ -1252,7 +1252,7 @@ public class DatabaseHandler implements IAdapter {
 
 		String query = queryBuilder.formMinQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, entityDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1289,9 +1289,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String max(final String className, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		int max = max(databaseMappingDescriptor, columnName, whereClause, groupBy, having);
+		int max = max(entityDescriptor, columnName, whereClause, groupBy, having);
 
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 		WebSiminovData siminovData = new WebSiminovData();
@@ -1313,17 +1313,17 @@ public class DatabaseHandler implements IAdapter {
 	}
 	
 
-	private int max(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int max(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.error(DatabaseHandler.class.getName(), "max", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
-			throw new DeploymentException(DatabaseHandler.class.getName(), "max", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "max", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
+			throw new DeploymentException(DatabaseHandler.class.getName(), "max", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
 		}
 
 		Collection<String> groupBys = new ArrayList<String>();
@@ -1338,7 +1338,7 @@ public class DatabaseHandler implements IAdapter {
 		 * Add Parameters
 		 */
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_MAX_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_MAX_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_MAX_QUERY_COLUMN_PARAMETER, columnName);
 		parameters.put(IQueryBuilder.FORM_MAX_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
 		parameters.put(IQueryBuilder.FORM_MAX_QUERY_GROUP_BYS_PARAMETER, groupBys.iterator());
@@ -1347,7 +1347,7 @@ public class DatabaseHandler implements IAdapter {
 
 		String query = queryBuilder.formMaxQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, entityDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1385,9 +1385,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String groupConcat(final String className, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		String groupConcat = groupConcat(databaseMappingDescriptor, columnName, delimiter, whereClause, groupBy, having);
+		String groupConcat = groupConcat(entityDescriptor, columnName, delimiter, whereClause, groupBy, having);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 		WebSiminovData siminovData = new WebSiminovData();
@@ -1408,17 +1408,17 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	private String groupConcat(final DatabaseMappingDescriptor databaseMappingDescriptor, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private String groupConcat(final EntityDescriptor entityDescriptor, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(databaseMappingDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
 		if(database == null) {
-			Log.error(DatabaseHandler.class.getName(), "groupConcat", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
-			throw new DeploymentException(DatabaseHandler.class.getName(), "groupConcat", "No Database Instance Found For DATABASE-MAPPING: " + databaseMappingDescriptor.getClassName());
+			Log.error(DatabaseHandler.class.getName(), "groupConcat", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
+			throw new DeploymentException(DatabaseHandler.class.getName(), "groupConcat", "No Database Instance Found For DATABASE-MAPPING: " + entityDescriptor.getClassName());
 		}
 
 		Collection<String> groupBys = new ArrayList<String>();
@@ -1434,7 +1434,7 @@ public class DatabaseHandler implements IAdapter {
 		 */
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_TABLE_NAME_PARAMETER, databaseMappingDescriptor.getTableName());
+		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_COLUMN_PARAMETER, columnName);
 		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_WHERE_CLAUSE_PARAMETER, delimiter);
 		parameters.put(IQueryBuilder.FORM_GROUP_CONCAT_QUERY_GROUP_BYS_PARAMETER, whereClause);
@@ -1444,7 +1444,7 @@ public class DatabaseHandler implements IAdapter {
 
 		String query = queryBuilder.formGroupConcatQuery(parameters);
 
-		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, databaseMappingDescriptor, query);
+		Iterator<Map<String, Object>> datas = database.executeSelectQuery(databaseDescriptor, entityDescriptor, query);
 		while(datas.hasNext()) {
 			Map<String, Object> data = datas.next();
 			Collection<Object> parse = data.values();
@@ -1469,9 +1469,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String getTableName(final String className) throws DatabaseException {
 	
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		String tableName = getTableName(databaseMappingDescriptor);
+		String tableName = getTableName(entityDescriptor);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 		WebSiminovData siminovData = new WebSiminovData();
@@ -1492,8 +1492,8 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 	
-	private String getTableName(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
-		return databaseMappingDescriptor.getTableName();
+	private String getTableName(final EntityDescriptor entityDescriptor) throws DatabaseException {
+		return entityDescriptor.getTableName();
 	}
 
 	
@@ -1505,9 +1505,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String getColumnNames(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		Iterator<String> columnNames = getColumnNames(databaseMappingDescriptor);
+		Iterator<String> columnNames = getColumnNames(entityDescriptor);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 
@@ -1533,9 +1533,9 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 	
-	public static final Iterator<String> getColumnNames(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final Iterator<String> getColumnNames(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
-		Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		Iterator<EntityDescriptor.Attribute> attributes = entityDescriptor.getAttributes();
 
 		Collection<String> columnNames = new ArrayList<String>();
 		while(attributes.hasNext()) {
@@ -1545,18 +1545,18 @@ public class DatabaseHandler implements IAdapter {
 		/*
 		 * Add ONE-TO-MANY And MANY-TO-MANY Relationship Columns.
 		 */
-		Iterator<Relationship> oneToManyRelationships = databaseMappingDescriptor.getManyToOneRelationships();
-		Iterator<Relationship> manyToManyRelationships = databaseMappingDescriptor.getManyToManyRelationships();
+		Iterator<Relationship> oneToManyRelationships = entityDescriptor.getManyToOneRelationships();
+		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
 		
 		while(oneToManyRelationships.hasNext()) {
 			Relationship oneToManyRelationship = oneToManyRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = oneToManyRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(oneToManyRelationship.getReferTo());
-				oneToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = oneToManyRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(oneToManyRelationship.getReferTo());
+				oneToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
-			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -1569,9 +1569,9 @@ public class DatabaseHandler implements IAdapter {
 		
 		while(manyToManyRelationships.hasNext()) {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
+			EntityDescriptor parentEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
 			
-			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = parentEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -1597,16 +1597,16 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String getColumnTypes(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		return getColumnType(databaseMappingDescriptor);
+		return getColumnType(entityDescriptor);
 		
 	}
 	
-	public static final String getColumnType(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final String getColumnType(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
 		Map<String, Object> columnTypes = new HashMap<String, Object> ();
-		Iterator<DatabaseMappingDescriptor.Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		Iterator<EntityDescriptor.Attribute> attributes = entityDescriptor.getAttributes();
 		
 		while(attributes.hasNext()) {
 			Attribute attribute = attributes.next();
@@ -1616,19 +1616,19 @@ public class DatabaseHandler implements IAdapter {
 		/*
 		 * Add ONE-TO-MANY And MANY-TO-MANY Relationship Columns.
 		 */
-		Iterator<Relationship> oneToManyRelationships = databaseMappingDescriptor.getManyToOneRelationships();
-		Iterator<Relationship> manyToManyRelationships = databaseMappingDescriptor.getManyToManyRelationships();
+		Iterator<Relationship> oneToManyRelationships = entityDescriptor.getManyToOneRelationships();
+		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
 		
 		while(oneToManyRelationships.hasNext()) {
 			Relationship oneToManyRelationship = oneToManyRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = oneToManyRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(oneToManyRelationship.getReferTo());
-				oneToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = oneToManyRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(oneToManyRelationship.getReferTo());
+				oneToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			
-			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -1641,9 +1641,9 @@ public class DatabaseHandler implements IAdapter {
 		
 		while(manyToManyRelationships.hasNext()) {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
+			EntityDescriptor parentEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
 			
-			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = parentEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -1658,7 +1658,7 @@ public class DatabaseHandler implements IAdapter {
 		Collection<Map<String, Object>> values = new ArrayList<Map<String, Object>>();
 		values.add(columnTypes);
 		
-		WebSiminovDatas webSiminovDatas = parseData(databaseMappingDescriptor, values.iterator());
+		WebSiminovDatas webSiminovDatas = parseData(entityDescriptor, values.iterator());
 		
 		String returnData = null;
 		try {
@@ -1681,9 +1681,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String getPrimaryKeys(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		Iterator<String> primaryKeys = getPrimaryKeys(databaseMappingDescriptor);
+		Iterator<String> primaryKeys = getPrimaryKeys(entityDescriptor);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 
@@ -1709,9 +1709,9 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final Iterator<String> getPrimaryKeys(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final Iterator<String> getPrimaryKeys(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
-		Iterator<Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		Iterator<Attribute> attributes = entityDescriptor.getAttributes();
 		Collection<String> primaryKeys = new ArrayList<String>();
 
 		while(attributes.hasNext()) {
@@ -1726,19 +1726,19 @@ public class DatabaseHandler implements IAdapter {
 		/*
 		 * Add ONE-TO-MANY And MANY-TO-MANY Relationship Columns.
 		 */
-		Iterator<Relationship> oneToManyRelationships = databaseMappingDescriptor.getManyToOneRelationships();
-		Iterator<Relationship> manyToManyRelationships = databaseMappingDescriptor.getManyToManyRelationships();
+		Iterator<Relationship> oneToManyRelationships = entityDescriptor.getManyToOneRelationships();
+		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
 		
 		while(oneToManyRelationships.hasNext()) {
 			Relationship oneToManyRelationship = oneToManyRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = oneToManyRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(oneToManyRelationship.getReferTo());
-				oneToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = oneToManyRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(oneToManyRelationship.getReferTo());
+				oneToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			
-			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -1751,9 +1751,9 @@ public class DatabaseHandler implements IAdapter {
 		
 		while(manyToManyRelationships.hasNext()) {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
+			EntityDescriptor parentEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
 			
-			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = parentEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -1777,9 +1777,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String getMandatoryFields(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		Iterator<String> mandatoryFields = getMandatoryFields(databaseMappingDescriptor);
+		Iterator<String> mandatoryFields = getMandatoryFields(entityDescriptor);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 
@@ -1805,9 +1805,9 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final Iterator<String> getMandatoryFields(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final Iterator<String> getMandatoryFields(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
-		Iterator<Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		Iterator<Attribute> attributes = entityDescriptor.getAttributes();
 		Collection<String> mandatoryFields = new ArrayList<String>();
 		
 		while(attributes.hasNext()) {
@@ -1822,19 +1822,19 @@ public class DatabaseHandler implements IAdapter {
 		/*
 		 * Add ONE-TO-MANY And MANY-TO-MANY Relationship Columns.
 		 */
-		Iterator<Relationship> oneToManyRelationships = databaseMappingDescriptor.getManyToOneRelationships();
-		Iterator<Relationship> manyToManyRelationships = databaseMappingDescriptor.getManyToManyRelationships();
+		Iterator<Relationship> oneToManyRelationships = entityDescriptor.getManyToOneRelationships();
+		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
 		
 		while(oneToManyRelationships.hasNext()) {
 			Relationship oneToManyRelationship = oneToManyRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = oneToManyRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(oneToManyRelationship.getReferTo());
-				oneToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = oneToManyRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(oneToManyRelationship.getReferTo());
+				oneToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			
-			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -1849,9 +1849,9 @@ public class DatabaseHandler implements IAdapter {
 		
 		while(manyToManyRelationships.hasNext()) {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
+			EntityDescriptor parentEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
 			
-			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = parentEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -1877,9 +1877,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String getUniqueFields(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		Iterator<String> uniqueFields = getUniqueFields(databaseMappingDescriptor);
+		Iterator<String> uniqueFields = getUniqueFields(entityDescriptor);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 
@@ -1905,9 +1905,9 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final Iterator<String> getUniqueFields(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final Iterator<String> getUniqueFields(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
-		Iterator<Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		Iterator<Attribute> attributes = entityDescriptor.getAttributes();
 		Collection<String> uniqueFields = new ArrayList<String>();
 		
 		while(attributes.hasNext()) {
@@ -1922,19 +1922,19 @@ public class DatabaseHandler implements IAdapter {
 		/*
 		 * Add ONE-TO-MANY And MANY-TO-MANY Relationship Columns.
 		 */
-		Iterator<Relationship> oneToManyRelationships = databaseMappingDescriptor.getManyToOneRelationships();
-		Iterator<Relationship> manyToManyRelationships = databaseMappingDescriptor.getManyToManyRelationships();
+		Iterator<Relationship> oneToManyRelationships = entityDescriptor.getManyToOneRelationships();
+		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
 		
 		while(oneToManyRelationships.hasNext()) {
 			Relationship oneToManyRelationship = oneToManyRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = oneToManyRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(oneToManyRelationship.getReferTo());
-				oneToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = oneToManyRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(oneToManyRelationship.getReferTo());
+				oneToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			
-			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -1951,9 +1951,9 @@ public class DatabaseHandler implements IAdapter {
 		
 		while(manyToManyRelationships.hasNext()) {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
+			EntityDescriptor parentEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
 			
-			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = parentEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -1982,9 +1982,9 @@ public class DatabaseHandler implements IAdapter {
 	 */
 	public String getForeignKeys(final String className) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		Iterator<String> foreignKeys = getForeignKeys(databaseMappingDescriptor);
+		Iterator<String> foreignKeys = getForeignKeys(entityDescriptor);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
 
@@ -2010,26 +2010,26 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final Iterator<String> getForeignKeys(final DatabaseMappingDescriptor databaseMappingDescriptor) throws DatabaseException {
+	public static final Iterator<String> getForeignKeys(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
 		Collection<String> foreignKeys = new LinkedList<String>();
 		
 		/*
 		 * Add ONE-TO-MANY And MANY-TO-MANY Relationship Columns.
 		 */
-		Iterator<Relationship> oneToManyRelationships = databaseMappingDescriptor.getManyToOneRelationships();
-		Iterator<Relationship> manyToManyRelationships = databaseMappingDescriptor.getManyToManyRelationships();
+		Iterator<Relationship> oneToManyRelationships = entityDescriptor.getManyToOneRelationships();
+		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
 		
 		while(oneToManyRelationships.hasNext()) {
 			Relationship oneToManyRelationship = oneToManyRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = oneToManyRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(oneToManyRelationship.getReferTo());
-				oneToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = oneToManyRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(oneToManyRelationship.getReferTo());
+				oneToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			
-			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -2042,9 +2042,9 @@ public class DatabaseHandler implements IAdapter {
 		
 		while(manyToManyRelationships.hasNext()) {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			DatabaseMappingDescriptor parentDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
+			EntityDescriptor parentEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
 			
-			Iterator<Attribute> parentAttributes = parentDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = parentEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -2079,14 +2079,14 @@ public class DatabaseHandler implements IAdapter {
 		return webResourceManager.getDatabaseDescriptorBasedOnClassName(className);
 	}
 
-	public static final DatabaseMappingDescriptor getDatabaseMappingDescriptor(final String className) throws DatabaseException {
-		return webResourceManager.getDatabaseMappingDescriptorBasedOnClassName(className);
+	public static final EntityDescriptor getEntityDescriptor(final String className) throws DatabaseException {
+		return webResourceManager.getEntityDescriptorBasedOnClassName(className);
 	}
 	
 	/**
 		Iterates the provided cursor, and returns tuples in form of actual objects.
 	 */
-	private static WebSiminovDatas parseData(final DatabaseMappingDescriptor databaseMappingDescriptor, Iterator<Map<String, Object>> values) throws DatabaseException {
+	private static WebSiminovDatas parseData(final EntityDescriptor entityDescriptor, Iterator<Map<String, Object>> values) throws DatabaseException {
 		
 		Collection<Map<String, Object>> tuples = new LinkedList<Map<String, Object>>();
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
@@ -2095,17 +2095,17 @@ public class DatabaseHandler implements IAdapter {
 			Map<String, Object> value = values.next();
 			
 			WebSiminovData webSiminovData = new WebSiminovData();
-			webSiminovData.setDataType(webResourceManager.getMappedWebClassName(databaseMappingDescriptor.getClassName()));
+			webSiminovData.setDataType(webResourceManager.getMappedWebClassName(entityDescriptor.getClassName()));
 			
 			Iterator<String> keys = value.keySet().iterator();
 			while(keys.hasNext()) {
 				
 				String columnName = keys.next();
-				if(!databaseMappingDescriptor.containsAttributeBasedOnColumnName(columnName)) {
+				if(!entityDescriptor.containsAttributeBasedOnColumnName(columnName)) {
 					continue;
 				}
 				
-				String variableName = databaseMappingDescriptor.getAttributeBasedOnColumnName(columnName).getVariableName();
+				String variableName = entityDescriptor.getAttributeBasedOnColumnName(columnName).getVariableName();
 				
 				Object object = value.get(columnName);
 				
@@ -2137,15 +2137,15 @@ public class DatabaseHandler implements IAdapter {
 	
 	static void processManyToOneRelationship(final WebSiminovData siminovData, final Collection<String> columnNames, final Collection<Object> columnValues) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(siminovData.getDataType());
-		Iterator<Relationship> manyToOneRelationships = databaseMappingDescriptor.getManyToOneRelationships();
+		EntityDescriptor entityDescriptor = getEntityDescriptor(siminovData.getDataType());
+		Iterator<Relationship> manyToOneRelationships = entityDescriptor.getManyToOneRelationships();
 		
 		while(manyToOneRelationships.hasNext()) {
 			Relationship manyToOneRelationship = manyToOneRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = manyToOneRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(manyToOneRelationship.getReferTo());
-				manyToOneRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = manyToOneRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(manyToOneRelationship.getReferTo());
+				manyToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			WebSiminovData referedWebSiminovData = null;
@@ -2154,7 +2154,7 @@ public class DatabaseHandler implements IAdapter {
 				WebSiminovData data = datas.next();
 				String referedClassName = webResourceManager.getMappedNativeClassName(data.getDataType());
 				
-				if(referedClassName.equalsIgnoreCase(referedDatabaseMappingDescriptor.getClassName())) {
+				if(referedClassName.equalsIgnoreCase(referedEntityDescriptor.getClassName())) {
 					referedWebSiminovData = data;
 					break;
 				}
@@ -2175,7 +2175,7 @@ public class DatabaseHandler implements IAdapter {
 				webSiminovValues.put(webSiminovValue.getType(), webSiminovValue);
 			}
 			
-			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -2191,15 +2191,15 @@ public class DatabaseHandler implements IAdapter {
 	
 	static void processManyToManyRelationship(final WebSiminovData siminovData, final Collection<String> columnNames, final Collection<Object> columnValues) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(siminovData.getDataType());
-		Iterator<Relationship> manyToManyRelationships = databaseMappingDescriptor.getManyToManyRelationships();
+		EntityDescriptor entityDescriptor = getEntityDescriptor(siminovData.getDataType());
+		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
 		
 		while(manyToManyRelationships.hasNext()) {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(manyToManyRelationship.getReferTo());
-				manyToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(manyToManyRelationship.getReferTo());
+				manyToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			WebSiminovData referedWebSiminovData = null;
@@ -2208,7 +2208,7 @@ public class DatabaseHandler implements IAdapter {
 				WebSiminovData data = datas.next();
 				String referedClassName = webResourceManager.getMappedNativeClassName(data.getDataType());
 				
-				if(referedClassName.equalsIgnoreCase(referedDatabaseMappingDescriptor.getClassName())) {
+				if(referedClassName.equalsIgnoreCase(referedEntityDescriptor.getClassName())) {
 					referedWebSiminovData = data;
 					break;
 				}
@@ -2229,7 +2229,7 @@ public class DatabaseHandler implements IAdapter {
 				webSiminovValues.put(webSiminovValue.getType(), webSiminovValue);
 			}
 			
-			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -2245,15 +2245,15 @@ public class DatabaseHandler implements IAdapter {
 	
 	static void processManyToOneRelationship(final WebSiminovData siminovData, final StringBuilder whereClause) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(siminovData.getDataType());
-		Iterator<Relationship> manyToOneRelationships = databaseMappingDescriptor.getManyToOneRelationships();
+		EntityDescriptor entityDescriptor = getEntityDescriptor(siminovData.getDataType());
+		Iterator<Relationship> manyToOneRelationships = entityDescriptor.getManyToOneRelationships();
 		
 		while(manyToOneRelationships.hasNext()) {
 			Relationship manyToOneRelationship = manyToOneRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = manyToOneRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(manyToOneRelationship.getReferTo());
-				manyToOneRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = manyToOneRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(manyToOneRelationship.getReferTo());
+				manyToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			WebSiminovData referedWebSiminovData = null;
@@ -2262,7 +2262,7 @@ public class DatabaseHandler implements IAdapter {
 				WebSiminovData data = datas.next();
 				String referedClassName = webResourceManager.getMappedNativeClassName(data.getDataType());
 				
-				if(referedClassName.equalsIgnoreCase(referedDatabaseMappingDescriptor.getClassName())) {
+				if(referedClassName.equalsIgnoreCase(referedEntityDescriptor.getClassName())) {
 					referedWebSiminovData = data;
 					break;
 				}
@@ -2283,7 +2283,7 @@ public class DatabaseHandler implements IAdapter {
 				webSiminovValues.put(webSiminovValue.getType(), webSiminovValue);
 			}
 			
-			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -2303,15 +2303,15 @@ public class DatabaseHandler implements IAdapter {
 	
 	static void processManyToManyRelationship(final WebSiminovData siminovData, final StringBuilder whereClause) throws DatabaseException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(siminovData.getDataType());
-		Iterator<Relationship> manyToManyRelationships = databaseMappingDescriptor.getManyToManyRelationships();
+		EntityDescriptor entityDescriptor = getEntityDescriptor(siminovData.getDataType());
+		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
 		
 		while(manyToManyRelationships.hasNext()) {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(manyToManyRelationship.getReferTo());
-				manyToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(manyToManyRelationship.getReferTo());
+				manyToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			WebSiminovData referedWebSiminovData = null;
@@ -2320,7 +2320,7 @@ public class DatabaseHandler implements IAdapter {
 				WebSiminovData data = datas.next();
 				String referedClassName = webResourceManager.getMappedNativeClassName(data.getDataType());
 				
-				if(referedClassName.equalsIgnoreCase(referedDatabaseMappingDescriptor.getClassName())) {
+				if(referedClassName.equalsIgnoreCase(referedEntityDescriptor.getClassName())) {
 					referedWebSiminovData = data;
 					break;
 				}
@@ -2340,7 +2340,7 @@ public class DatabaseHandler implements IAdapter {
 				webSiminovValues.put(webSiminovValue.getType(), webSiminovValue);
 			}
 			
-			Iterator<Attribute> parentAttributes = referedDatabaseMappingDescriptor.getAttributes();
+			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
 			while(parentAttributes.hasNext()) {
 				Attribute attribute = parentAttributes.next();
 				
@@ -2360,12 +2360,12 @@ public class DatabaseHandler implements IAdapter {
 	
 	private void processOneToOneRelationship(final WebSiminovData webSiminovData) throws DatabaseException {
 
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(webSiminovData.getDataType());
-		Iterator<DatabaseMappingDescriptor.Relationship> oneToOneRelationships = databaseMappingDescriptor.getOneToOneRelationships();
+		EntityDescriptor entityDescriptor = getEntityDescriptor(webSiminovData.getDataType());
+		Iterator<EntityDescriptor.Relationship> oneToOneRelationships = entityDescriptor.getOneToOneRelationships();
 		
 		while(oneToOneRelationships.hasNext()) {
 			
-			DatabaseMappingDescriptor.Relationship oneToOneRelationship = oneToOneRelationships.next();
+			EntityDescriptor.Relationship oneToOneRelationship = oneToOneRelationships.next();
 
 			boolean isLoad = oneToOneRelationship.isLoad();
 			if(!isLoad) {
@@ -2374,7 +2374,7 @@ public class DatabaseHandler implements IAdapter {
 
 			
 			StringBuilder whereClause = new StringBuilder();
-			Iterator<String> foreignKeys = getPrimaryKeys(databaseMappingDescriptor);
+			Iterator<String> foreignKeys = getPrimaryKeys(entityDescriptor);
 			while(foreignKeys.hasNext()) {
 				String foreignKey = foreignKeys.next();
 				Object columnValue = null;
@@ -2389,14 +2389,14 @@ public class DatabaseHandler implements IAdapter {
 				}
 			}
 
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = oneToOneRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(oneToOneRelationship.getReferTo());
-				oneToOneRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = oneToOneRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(oneToOneRelationship.getReferTo());
+				oneToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			
-			WebSiminovDatas referedObject = lazyFetch(referedDatabaseMappingDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
+			WebSiminovDatas referedObject = lazyFetch(referedEntityDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
 			Iterator<WebSiminovData> siminovDatas = referedObject.getWebSiminovDatas();
 			
 			while(siminovDatas.hasNext()) {
@@ -2410,12 +2410,12 @@ public class DatabaseHandler implements IAdapter {
 
 	private void processOneToManyRelationship(final WebSiminovData webSiminovData) throws DatabaseException {
 
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(webSiminovData.getDataType());
-		Iterator<DatabaseMappingDescriptor.Relationship> oneToManyRelationships = databaseMappingDescriptor.getOneToManyRelationships();
+		EntityDescriptor entityDescriptor = getEntityDescriptor(webSiminovData.getDataType());
+		Iterator<EntityDescriptor.Relationship> oneToManyRelationships = entityDescriptor.getOneToManyRelationships();
 		
 		while(oneToManyRelationships.hasNext()) {
 			
-			DatabaseMappingDescriptor.Relationship oneToManyRelationship = oneToManyRelationships.next();
+			EntityDescriptor.Relationship oneToManyRelationship = oneToManyRelationships.next();
 
 			boolean isLoad = oneToManyRelationship.isLoad();
 			if(!isLoad) {
@@ -2424,10 +2424,10 @@ public class DatabaseHandler implements IAdapter {
 
 			
 			StringBuilder whereClause = new StringBuilder();
-			Iterator<String> foreignKeys = getPrimaryKeys(databaseMappingDescriptor);
+			Iterator<String> foreignKeys = getPrimaryKeys(entityDescriptor);
 			while(foreignKeys.hasNext()) {
 				String foreignKey = foreignKeys.next();
-				Attribute attribute = databaseMappingDescriptor.getAttributeBasedOnColumnName(foreignKey);
+				Attribute attribute = entityDescriptor.getAttributeBasedOnColumnName(foreignKey);
 				
 				Object columnValue = null;
 				
@@ -2441,14 +2441,14 @@ public class DatabaseHandler implements IAdapter {
 				}
 			}
 
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = oneToManyRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(oneToManyRelationship.getReferTo());
-				oneToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = oneToManyRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(oneToManyRelationship.getReferTo());
+				oneToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			
-			WebSiminovDatas referedObject = lazyFetch(referedDatabaseMappingDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
+			WebSiminovDatas referedObject = lazyFetch(referedEntityDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
 			Iterator<WebSiminovData> siminovDatas = referedObject.getWebSiminovDatas();
 			
 			while(siminovDatas.hasNext()) {
@@ -2461,19 +2461,19 @@ public class DatabaseHandler implements IAdapter {
 	
 	private void processManyToOneRelationship(final WebSiminovData webSiminovData, Map<String, Object> data) throws DatabaseException {
 
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(webSiminovData.getDataType());
-		Iterator<Relationship> manyToOneRelationships = databaseMappingDescriptor.getManyToOneRelationships();
+		EntityDescriptor entityDescriptor = getEntityDescriptor(webSiminovData.getDataType());
+		Iterator<Relationship> manyToOneRelationships = entityDescriptor.getManyToOneRelationships();
 
 		while(manyToOneRelationships.hasNext()) {
 			Relationship manyToOneRelationship = manyToOneRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = manyToOneRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(manyToOneRelationship.getReferTo());
-				manyToOneRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = manyToOneRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(manyToOneRelationship.getReferTo());
+				manyToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			WebSiminovData referedObject = new WebSiminovData();
-			referedObject.setDataType(webResourceManager.getMappedWebClassName(referedDatabaseMappingDescriptor.getClassName()));
+			referedObject.setDataType(webResourceManager.getMappedWebClassName(referedEntityDescriptor.getClassName()));
 			
 			processManyToOneRelationship(referedObject, data);
 
@@ -2481,10 +2481,10 @@ public class DatabaseHandler implements IAdapter {
 
 				StringBuilder whereClause = new StringBuilder();
 
-				Iterator<String> foreignKeys = getPrimaryKeys(referedDatabaseMappingDescriptor);
+				Iterator<String> foreignKeys = getPrimaryKeys(referedEntityDescriptor);
 				while(foreignKeys.hasNext()) {
 					String foreignKey = foreignKeys.next();
-					Attribute attribute = referedDatabaseMappingDescriptor.getAttributeBasedOnColumnName(foreignKey);
+					Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
 					Object columnValue = data.get(attribute.getColumnName());
 
 					if(whereClause.length() <= 0) {
@@ -2494,14 +2494,14 @@ public class DatabaseHandler implements IAdapter {
 					}
 				}
 				
-				WebSiminovDatas fetchedObjects = lazyFetch(referedDatabaseMappingDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
+				WebSiminovDatas fetchedObjects = lazyFetch(referedEntityDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
 				referedObject = fetchedObjects.getWebSiminovDatas().next();
 				
 			} else {
-				Iterator<String> foreignKeys = getPrimaryKeys(referedDatabaseMappingDescriptor);
+				Iterator<String> foreignKeys = getPrimaryKeys(referedEntityDescriptor);
 				while(foreignKeys.hasNext()) {
 					String foreignKey = foreignKeys.next();
-					Attribute attribute = referedDatabaseMappingDescriptor.getAttributeBasedOnColumnName(foreignKey);
+					Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
 
 					Object columnValue = data.get(attribute.getColumnName());
 					if(columnValue == null) {
@@ -2528,19 +2528,19 @@ public class DatabaseHandler implements IAdapter {
 	
 	private void processManyToManyRelationship(final WebSiminovData webSiminovData, Map<String, Object> data) throws DatabaseException {
 
-		DatabaseMappingDescriptor databaseMappingDescriptor = getDatabaseMappingDescriptor(webSiminovData.getDataType());
-		Iterator<Relationship> manyToManyRelationships = databaseMappingDescriptor.getManyToManyRelationships();
+		EntityDescriptor entityDescriptor = getEntityDescriptor(webSiminovData.getDataType());
+		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
 
 		while(manyToManyRelationships.hasNext()) {
 			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			DatabaseMappingDescriptor referedDatabaseMappingDescriptor = manyToManyRelationship.getReferedDatabaseMappingDescriptor();
-			if(referedDatabaseMappingDescriptor == null) {
-				referedDatabaseMappingDescriptor = getDatabaseMappingDescriptor(manyToManyRelationship.getReferTo());
-				manyToManyRelationship.setReferedDatabaseMappingDescriptor(referedDatabaseMappingDescriptor);
+			EntityDescriptor referedEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
+			if(referedEntityDescriptor == null) {
+				referedEntityDescriptor = getEntityDescriptor(manyToManyRelationship.getReferTo());
+				manyToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
 			}
 
 			WebSiminovData referedObject = new WebSiminovData();
-			referedObject.setDataType(webResourceManager.getMappedWebClassName(referedDatabaseMappingDescriptor.getClassName()));
+			referedObject.setDataType(webResourceManager.getMappedWebClassName(referedEntityDescriptor.getClassName()));
 			
 			processManyToManyRelationship(referedObject, data);
 
@@ -2548,10 +2548,10 @@ public class DatabaseHandler implements IAdapter {
 
 				StringBuilder whereClause = new StringBuilder();
 
-				Iterator<String> foreignKeys = getPrimaryKeys(referedDatabaseMappingDescriptor);
+				Iterator<String> foreignKeys = getPrimaryKeys(referedEntityDescriptor);
 				while(foreignKeys.hasNext()) {
 					String foreignKey = foreignKeys.next();
-					Attribute attribute = referedDatabaseMappingDescriptor.getAttributeBasedOnColumnName(foreignKey);
+					Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
 					Object columnValue = data.get(attribute.getColumnName());
 
 					if(whereClause.length() <= 0) {
@@ -2561,14 +2561,14 @@ public class DatabaseHandler implements IAdapter {
 					}
 				}
 				
-				WebSiminovDatas fetchedObjects = lazyFetch(referedDatabaseMappingDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
+				WebSiminovDatas fetchedObjects = lazyFetch(referedEntityDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
 				referedObject = fetchedObjects.getWebSiminovDatas().next();
 				
 			} else {
-				Iterator<String> foreignKeys = getPrimaryKeys(referedDatabaseMappingDescriptor);
+				Iterator<String> foreignKeys = getPrimaryKeys(referedEntityDescriptor);
 				while(foreignKeys.hasNext()) {
 					String foreignKey = foreignKeys.next();
-					Attribute attribute = referedDatabaseMappingDescriptor.getAttributeBasedOnColumnName(foreignKey);
+					Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
 
 					Object columnValue = data.get(attribute.getColumnName());
 					if(columnValue == null) {

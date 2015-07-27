@@ -24,7 +24,7 @@ import java.util.Iterator;
 import siminov.core.exception.SiminovException;
 import siminov.core.model.ApplicationDescriptor;
 import siminov.core.model.DatabaseDescriptor;
-import siminov.core.model.DatabaseMappingDescriptor;
+import siminov.core.model.EntityDescriptor;
 import siminov.web.adapter.IAdapter;
 import siminov.web.adapter.constants.WebApplicationDescriptor;
 import siminov.web.model.WebSiminovDatas;
@@ -149,17 +149,17 @@ public class ResourcesHandler implements IAdapter {
 	}
 	
 	/**
-	 * Handle Get Database Mapping Descriptor Based On Web Model Class Name.
+	 * Handle Get Entity Descriptor Based On Web Model Class Name.
 	 * @param className Name of Web Model Class.
-	 * @return Database Mapping Descriptor.
+	 * @return Entity Descriptor.
 	 * @throws SiminovException If any error occur while getting Database Mapping Descriptor.
 	 */
-	public String getDatabaseMappingDescriptorBasedOnClassName(final String className) throws SiminovException {
+	public String getEntityDescriptorBasedOnClassName(final String className) throws SiminovException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = webResourceManager.getDatabaseMappingDescriptorBasedOnClassName(className);
+		EntityDescriptor entityDescriptor = webResourceManager.getEntityDescriptorBasedOnClassName(className);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
-		webSiminovDatas.addWebSiminovData(webResourceManager.generateWebDatabaseMappingDescriptor(databaseMappingDescriptor));
+		webSiminovDatas.addWebSiminovData(webResourceManager.generateWebEntityDescriptor(entityDescriptor));
 		
 		return WebSiminovDataWritter.jsonBuidler(webSiminovDatas);
 		
@@ -172,12 +172,12 @@ public class ResourcesHandler implements IAdapter {
 	 * @return Database Mapping Descriptor.
 	 * @throws SiminovException If any error occur while getting Database Mapping Descriptor.
 	 */
-	public String getDatabaseMappingDescriptorBasedOnTableName(final String tableName) throws SiminovException {
+	public String getEntityDescriptorBasedOnTableName(final String tableName) throws SiminovException {
 		
-		DatabaseMappingDescriptor databaseMappingDescriptor = webResourceManager.getDatabaseMappingDescriptorBasedOnTableName(tableName);
+		EntityDescriptor entityDescriptor = webResourceManager.getEntityDescriptorBasedOnTableName(tableName);
 		
 		WebSiminovDatas webSiminovDatas = new WebSiminovDatas();
-		webSiminovDatas.addWebSiminovData(webResourceManager.generateWebDatabaseMappingDescriptor(databaseMappingDescriptor));
+		webSiminovDatas.addWebSiminovData(webResourceManager.generateWebEntityDescriptor(entityDescriptor));
 		
 		return WebSiminovDataWritter.jsonBuidler(webSiminovDatas);
 		

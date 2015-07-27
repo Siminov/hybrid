@@ -40,7 +40,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Siminov Data Format</property>
                     
                 </parameter>
@@ -60,7 +60,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Siminov Data Format</property>
                     
                 </parameter>
@@ -80,7 +80,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Siminov Data Format</property>
                     
                 </parameter>
@@ -100,14 +100,14 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Siminov Data Format</property>
                     
                 </parameter>
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Where Clause</property>
                     
                 </parameter>
@@ -129,14 +129,14 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Query</property>
                     
                 </parameter>
@@ -158,21 +158,21 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
                 
                 <parameter>
                     
-                    <property name="type">java.lang.Boolean</property>
+                    <property name="type">boolean</property>
                     <property name="description">Distinct</property>
                     
                 </parameter>
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Where Clause</property>
                     
                 </parameter>
@@ -214,7 +214,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Limit</property>
                     
                 </parameter>
@@ -224,7 +224,7 @@
             
             <return>
                 
-                <type>java.lang.String</type>
+                <type>string</type>
                 <description>Siminov Data Format</description>
                 
             </return>
@@ -243,28 +243,28 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Column Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.Boolean</property>
+                    <property name="type">boolean</property>
                     <property name="description">Distinct</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Where Clause</property>
                     
                 </parameter>
@@ -279,7 +279,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Having Clause</property>
                     
                 </parameter>
@@ -288,7 +288,7 @@
             
             <return>
                 
-                <type>java.lang.String</type>
+                <type>string</type>
                 <description>Count</description>
                 
             </return>
@@ -306,21 +306,21 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Column Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Where Clause</property>
                     
                 </parameter>
@@ -334,7 +334,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Having Clause</property>
                     
                 </parameter>
@@ -343,7 +343,7 @@
             
             <return>
                 
-                <type>java.lang.String</type>
+                <type>string</type>
                 <description>Avg</description>
                 
             </return>
@@ -362,21 +362,21 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Column Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Where Clause</property>
                     
                 </parameter>
@@ -390,7 +390,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Having Clause</property>
                     
                 </parameter>
@@ -399,7 +399,7 @@
             
             <return>
                 
-                <type>java.lang.String</type>
+                <type>string</type>
                 <description>Sum</description>
                 
             </return>
@@ -417,21 +417,21 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Column Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Where Clause</property>
                     
                 </parameter>
@@ -445,7 +445,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Having Clause</property>
                     
                 </parameter>
@@ -454,7 +454,7 @@
             
             <return>
                 
-                <type>java.lang.String</type>
+                <type>string</type>
                 <description>Total</description>
                 
             </return>
@@ -472,21 +472,21 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Column Name</property>
                     
                 </parameter>
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Where Clause</property>
                     
                 </parameter>
@@ -500,7 +500,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Having Clause</property>
                     
                 </parameter>
@@ -509,7 +509,7 @@
             
             <return>
                 
-                <type>java.lang.String</type>
+                <type>string</type>
                 <description>Min</description>
                 
             </return>
@@ -528,21 +528,21 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                	<property name="type">java.lang.String</property>
+                	<property name="type">string</property>
                     <property name="description">Column Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Where Clause</property>
                     
                 </parameter>
@@ -556,7 +556,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Having Clause</property>
                     
                 </parameter>
@@ -565,7 +565,7 @@
             
             <return>
                 
-                <type>java.lang.String</type>
+                <type>string</type>
                 <description>Max</description>
                 
             </return>
@@ -583,28 +583,28 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Column Name</property>
                     
                 </parameter>
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Delimiter</property>
                     
                 </parameter>
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Where Clause</property>
                     
                 </parameter>
@@ -618,7 +618,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Having Clause</property>
                     
                 </parameter>
@@ -627,7 +627,7 @@
             
             <return>
                 
-                <type>java.lang.int</type>
+                <type>java.lang.integer</type>
                 <description>GroupConcat</description>
                 
             </return>
@@ -645,7 +645,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
@@ -654,7 +654,7 @@
             
             <return>
                 
-                <type>java.lang.int</type>
+                <type>primitive-integer</type>
                 <description>Table Name</description>
                 
             </return>
@@ -672,7 +672,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
@@ -681,7 +681,7 @@
             
             <return>
                 
-                <type>java.lang.int</type>
+                <type>primitive-integer</type>
                 <description>Column Names</description>
                 
             </return>
@@ -699,7 +699,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
@@ -708,7 +708,7 @@
             
             <return>
                 
-                <type>java.lang.int</type>
+                <type>primitive-integer</type>
                 <description>Column Types</description>
                 
             </return>
@@ -726,7 +726,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
@@ -735,7 +735,7 @@
             
             <return>
                 
-                <type>java.lang.int</type>
+                <type>primitive-integer</type>
                 <description>Primary Keys</description>
                 
             </return>
@@ -753,7 +753,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
@@ -762,7 +762,7 @@
             
             <return>
                 
-                <type>java.lang.int</type>
+                <type>primitive-integer</type>
                 <description>Mandatory Fields</description>
                 
             </return>
@@ -780,7 +780,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
@@ -789,7 +789,7 @@
             
             <return>
                 
-                <type>java.lang.int</type>
+                <type>primitive-integer</type>
                 <description>Unique Fields</description>
                 
             </return>
@@ -807,7 +807,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
@@ -816,7 +816,7 @@
             
             <return>
                 
-                <type>java.lang.int</type>
+                <type>primitive-integer</type>
                 <description>Foreign Keys</description>
                 
             </return>
@@ -835,7 +835,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
@@ -856,7 +856,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>
@@ -877,7 +877,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Class Name</property>
                     
                 </parameter>

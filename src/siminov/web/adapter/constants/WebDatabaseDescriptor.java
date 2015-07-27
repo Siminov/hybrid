@@ -53,13 +53,13 @@ public interface WebDatabaseDescriptor {
 	
 	
 	/**
-	 * Web Database Descriptor Database Mapping Descriptor Paths.
+	 * Web Database Descriptor Entity Descriptor Paths.
 	 */
-	public String DATABASE_MAPPING_DESCRIPTORS = "Array";
+	public String ENTITY_DESCRIPTORS = "Array";
 	
 	/**
-	 * Web Database Descriptor Database Mapping Descriptor Path.
+	 * Web Database Descriptor Entity Descriptor Path.
 	 */
-	public String DATABASE_MAPPING_DESCRIPTOR_PATH = "databaseMappingDescriptorPath";
+	public String ENTITY_DESCRIPTOR_PATH = "entityDescriptorPath";
 	
 }

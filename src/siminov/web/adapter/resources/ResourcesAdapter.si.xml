@@ -41,7 +41,7 @@
 
 			<return>
 	        
-			    	<property name="type">java.lang.String</property>
+			    	<property name="type">string</property>
 	                <property name="description">Application Descriptor</property>
 	                
 	      	</return>
@@ -59,7 +59,7 @@
             
                 <parameter>
                 
-                	<property name="type">java.lang.String</property>
+                	<property name="type">string</property>
                 	<property name="description">Database Descriptor Name</property>
                 	
             	</parameter>
@@ -68,7 +68,7 @@
                             
 			<return>
 	        
-			    	<property name="type">java.lang.String</property>
+			    	<property name="type">string</property>
 	                <property name="description">Database Descriptor</property>
 	                
 	      	</return>
@@ -86,7 +86,7 @@
             
                 <parameter>
                 
-                	<property name="type">java.lang.String</property>
+                	<property name="type">string</property>
                 	<property name="description">Database Mapping Descriptor Class Name</property>
                 	
             	</parameter>
@@ -95,7 +95,7 @@
                             
 			<return>
 	        
-			    	<property name="type">java.lang.String</property>
+			    	<property name="type">string</property>
 	                <property name="description">Database Mapping Descriptor</property>
 	                
 	      	</return>
@@ -113,7 +113,7 @@
             
                 <parameter>
                 
-                	<property name="type">java.lang.String</property>
+                	<property name="type">string</property>
                 	<property name="description">Database Mapping Descriptor Table Name</property>
                 	
             	</parameter>
@@ -122,8 +122,8 @@
                             
 			<return>
 	        
-			    	<property name="type">java.lang.String</property>
-	                <property name="description">Database Mapping Descriptor</property>
+		    	<property name="type">string</property>
+                <property name="description">Database Mapping Descriptor</property>
 	                
 	      	</return>
             

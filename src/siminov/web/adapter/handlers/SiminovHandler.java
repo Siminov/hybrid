@@ -25,6 +25,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
+import siminov.core.utils.DataTypeHandler;
 import siminov.core.exception.SiminovException;
 import siminov.core.log.Log;
 import siminov.core.utils.ClassUtils;
@@ -145,7 +146,7 @@ public class SiminovHandler extends siminov.web.Siminov implements IAdapter, IHa
 					continue;
 				} 
 				
-				parameters += ", '" + data[i] + ",";
+				parameters += ", '" + data[i] + "',";
 			}
 		}
 		
@@ -289,7 +290,7 @@ public class SiminovHandler extends siminov.web.Siminov implements IAdapter, IHa
 		Collection<Class<?>> parameterTypes = new LinkedList<Class<?>> ();
 		while(parameters.hasNext()) {
 			Parameter parameter = parameters.next();
-			parameterTypes.add(ClassUtils.createClass(parameter.getType()));
+			parameterTypes.add(ClassUtils.createClass(DataTypeHandler.convert(parameter.getType())));
 		}
 		
 		int index = 0;

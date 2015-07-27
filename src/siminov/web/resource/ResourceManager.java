@@ -37,10 +37,10 @@ import siminov.connect.sync.design.ISyncRequest;
 import siminov.core.exception.SiminovException;
 import siminov.core.log.Log;
 import siminov.core.model.DatabaseDescriptor;
-import siminov.core.model.DatabaseMappingDescriptor;
-import siminov.core.model.DatabaseMappingDescriptor.Attribute;
-import siminov.core.model.DatabaseMappingDescriptor.Index;
-import siminov.core.model.DatabaseMappingDescriptor.Relationship;
+import siminov.core.model.EntityDescriptor;
+import siminov.core.model.EntityDescriptor.Attribute;
+import siminov.core.model.EntityDescriptor.Index;
+import siminov.core.model.EntityDescriptor.Relationship;
 import siminov.core.utils.Utils;
 import siminov.web.adapter.AdapterFactory;
 import siminov.web.adapter.AdapterHandler;
@@ -48,7 +48,7 @@ import siminov.web.adapter.constants.WebAdapterDescriptor;
 import siminov.web.adapter.constants.WebConnectionRequest;
 import siminov.web.adapter.constants.WebConnectionResponse;
 import siminov.web.adapter.constants.WebDatabaseDescriptor;
-import siminov.web.adapter.constants.WebDatabaseMappingDescriptor;
+import siminov.web.adapter.constants.WebEntityDescriptor;
 import siminov.web.adapter.constants.WebLibraryDescriptor;
 import siminov.web.adapter.constants.WebMessage;
 import siminov.web.adapter.constants.WebNotificationException;
@@ -436,33 +436,33 @@ public class ResourceManager {
 	}
 	
 	/**
-	 * Get Database Mapping Descriptor based on Web Model Class Name.
+	 * Get Entity Descriptor based on Web Model Class Name.
 	 * @param className Name of Web Model Class.
-	 * @return Database Mapping Descriptor.
+	 * @return Entity Descriptor.
 	 */
-	public DatabaseMappingDescriptor getDatabaseMappingDescriptorBasedOnClassName(String className) {
+	public EntityDescriptor getEntityDescriptorBasedOnClassName(String className) {
 		
 		className = className.substring(className.lastIndexOf(".") + 1, className.length());
 
 		String nativeClassName = webNativeClassMapping.get(className);
 		if(nativeClassName == null ||nativeClassName.length() <= 0) {
-			DatabaseMappingDescriptor databaseMappingDescriptor = coreResourceManager.requiredDatabaseMappingDescriptorBasedOnClassName(className);
+			EntityDescriptor entityDescriptor = coreResourceManager.requiredEntityDescriptorBasedOnClassName(className);
 			synchronizeMappings();
 			
-			return databaseMappingDescriptor;
+			return entityDescriptor;
 		}
 		
-		return coreResourceManager.requiredDatabaseMappingDescriptorBasedOnClassName(nativeClassName);
+		return coreResourceManager.requiredEntityDescriptorBasedOnClassName(nativeClassName);
 		
 	}
 	
 	/**
-	 * Get Database Mapping Descriptor based on table name.
+	 * Get Entity Descriptor based on table name.
 	 * @param tableName Name of Table.
-	 * @return Database Mapping Descriptor.
+	 * @return Entity Descriptor.
 	 */
-	public DatabaseMappingDescriptor getDatabaseMappingDescriptorBasedOnTableName(final String tableName) {
-		return coreResourceManager.getDatabaseMappingDescriptorBasedOnTableName(tableName);
+	public EntityDescriptor getEntityDescriptorBasedOnTableName(final String tableName) {
+		return coreResourceManager.getEntityDescriptorBasedOnTableName(tableName);
 	}
 
 	/**
@@ -500,11 +500,11 @@ public class ResourceManager {
 	 */
 	public void synchronizeMappings() {
 
-		Iterator<DatabaseMappingDescriptor> databaseMappingDescriptors = coreResourceManager.getDatabaseMappingDescriptors();
-		while(databaseMappingDescriptors.hasNext()) {
-			DatabaseMappingDescriptor databaseMappingDescriptor = databaseMappingDescriptors.next();
+		Iterator<EntityDescriptor> entityDescriptors = coreResourceManager.getEntityDescriptors();
+		while(entityDescriptors.hasNext()) {
+			EntityDescriptor entityDescriptor = entityDescriptors.next();
 			
-			String nativeClassName = databaseMappingDescriptor.getClassName();
+			String nativeClassName = entityDescriptor.getClassName();
 			String webClassName = nativeClassName.substring(nativeClassName.lastIndexOf(".") + 1, nativeClassName.length());
 			
 			webNativeClassMapping.put(webClassName, nativeClassName);
@@ -547,159 +547,159 @@ public class ResourceManager {
 		
 		webDatabaseDescriptor.addValue(externalStorage);
 		
-		WebSiminovData webDatabaseMappingDescriptorPaths = new WebSiminovData();
-		webDatabaseMappingDescriptorPaths.setDataType(WebDatabaseDescriptor.DATABASE_MAPPING_DESCRIPTORS);
+		WebSiminovData webEntityDescriptorPaths = new WebSiminovData();
+		webEntityDescriptorPaths.setDataType(WebDatabaseDescriptor.ENTITY_DESCRIPTORS);
 		
-		Iterator<String> databaseMappingDescriptors = databaseDescriptor.getDatabaseMappingDescriptorPaths();
-		while(databaseMappingDescriptors.hasNext()) {
+		Iterator<String> entityDescriptors = databaseDescriptor.getEntityDescriptorPaths();
+		while(entityDescriptors.hasNext()) {
 			
-			WebSiminovValue databaseMappingDescriptorPath = new WebSiminovValue();
-			databaseMappingDescriptorPath.setType(WebDatabaseDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATH);
-			databaseMappingDescriptorPath.setValue(databaseMappingDescriptors.next());
+			WebSiminovValue entityDescriptorPath = new WebSiminovValue();
+			entityDescriptorPath.setType(WebDatabaseDescriptor.ENTITY_DESCRIPTOR_PATH);
+			entityDescriptorPath.setValue(entityDescriptors.next());
 			
-			webDatabaseMappingDescriptorPaths.addValue(databaseMappingDescriptorPath);
+			webEntityDescriptorPaths.addValue(entityDescriptorPath);
 			
 		}
 		
-		webDatabaseDescriptor.addData(webDatabaseMappingDescriptorPaths);
+		webDatabaseDescriptor.addData(webEntityDescriptorPaths);
 		
 		return webDatabaseDescriptor;
 	}
 
 	
 	/**
-	 * Generate Web Database Mapping Descriptor.
-	 * @param databaseMappingDescriptor Database Mapping Descriptor.
-	 * @return Web Database Mapping Descriptor.
+	 * Generate Web Entity Descriptor.
+	 * @param entityDescriptor Entity Descriptor.
+	 * @return Web Entity Descriptor.
 	 */
-	public WebSiminovData generateWebDatabaseMappingDescriptor(final DatabaseMappingDescriptor databaseMappingDescriptor) {
+	public WebSiminovData generateWebEntityDescriptor(final EntityDescriptor entityDescriptor) {
 		
-		WebSiminovData webDatabaseMappingDescriptor = new WebSiminovData();
-		webDatabaseMappingDescriptor.setDataType(WebDatabaseMappingDescriptor.DATABASE_MAPPING_DESCRIPTOR);
+		WebSiminovData webEntityDescriptor = new WebSiminovData();
+		webEntityDescriptor.setDataType(WebEntityDescriptor.ENTITY_DESCRIPTOR);
 		
 		
 		WebSiminovValue tableName = new WebSiminovValue();
-		tableName.setType(WebDatabaseMappingDescriptor.TABLE_NAME);
-		tableName.setValue(databaseMappingDescriptor.getTableName());
+		tableName.setType(WebEntityDescriptor.TABLE_NAME);
+		tableName.setValue(entityDescriptor.getTableName());
 		
-		webDatabaseMappingDescriptor.addValue(tableName);
+		webEntityDescriptor.addValue(tableName);
 		
 		
 		WebSiminovValue className = new WebSiminovValue();
-		className.setType(WebDatabaseMappingDescriptor.CLASS_NAME);
-		className.setValue(databaseMappingDescriptor.getClassName());
+		className.setType(WebEntityDescriptor.CLASS_NAME);
+		className.setValue(entityDescriptor.getClassName());
 		
-		webDatabaseMappingDescriptor.addValue(className);
+		webEntityDescriptor.addValue(className);
 		
 		
 		WebSiminovData webColumns = new WebSiminovData();
-		webColumns.setDataType(WebDatabaseMappingDescriptor.ENTITIES);
+		webColumns.setDataType(WebEntityDescriptor.ENTITIES);
 		
-		Iterator<Attribute> attributes = databaseMappingDescriptor.getAttributes();
+		Iterator<Attribute> attributes = entityDescriptor.getAttributes();
 		while(attributes.hasNext()) {
 			
 			Attribute attribute = attributes.next();
-			WebSiminovData webColumn = generateWebDatabaseMappingDescriptorColumn(attribute);
+			WebSiminovData webColumn = generateWebEntityDescriptorColumn(attribute);
 			webColumns.addData(webColumn);
 			
 		}
 
 		
-		webDatabaseMappingDescriptor.addData(webColumns);
+		webEntityDescriptor.addData(webColumns);
 		
 		
 		WebSiminovData webIndexs = new WebSiminovData();
-		webIndexs.setDataType(WebDatabaseMappingDescriptor.INDEXS);
+		webIndexs.setDataType(WebEntityDescriptor.INDEXS);
 		
-		Iterator<Index> indexs = databaseMappingDescriptor.getIndexes();
+		Iterator<Index> indexs = entityDescriptor.getIndexes();
 		while(indexs.hasNext()) {
 			
 			Index index = indexs.next();
-			WebSiminovData webIndex = generateWebDatabaseMappingDescriptorIndex(index);
+			WebSiminovData webIndex = generateWebEntityDescriptorIndex(index);
 			webIndexs.addData(webIndex);
 		}
 			
-		webDatabaseMappingDescriptor.addData(webIndexs);
+		webEntityDescriptor.addData(webIndexs);
 		
 		
 		WebSiminovData webRelationships = new WebSiminovData();
-		webRelationships.setDataType(WebDatabaseMappingDescriptor.RELATIONSHIPS);
+		webRelationships.setDataType(WebEntityDescriptor.RELATIONSHIPS);
 		
-		Iterator<Relationship> relationships = databaseMappingDescriptor.getRelationships();
+		Iterator<Relationship> relationships = entityDescriptor.getRelationships();
 		while(relationships.hasNext()) {
 			Relationship relationship = relationships.next();
 			
-			WebSiminovData webRelationship = generateWebDatabaseMappingDescriptorRelationship(relationship);
+			WebSiminovData webRelationship = generateWebEntityDescriptorRelationship(relationship);
 			webRelationships.addData(webRelationship);
 		}
 
-		webDatabaseMappingDescriptor.addData(webRelationships);
+		webEntityDescriptor.addData(webRelationships);
 			
-		return webDatabaseMappingDescriptor;
+		return webEntityDescriptor;
 	}
 
 	
 	/**
-	 * Generate Web Database Mapping Descriptor Column.
-	 * @param attribute Database Mapping Descriptor Column.
+	 * Generate Web Entity Descriptor Column.
+	 * @param attribute Entity Descriptor Column.
 	 * @return Web Siminov Data.
 	 */
-	public WebSiminovData generateWebDatabaseMappingDescriptorColumn(final Attribute attribute) {
+	public WebSiminovData generateWebEntityDescriptorColumn(final Attribute attribute) {
 		
 		WebSiminovData webColumn = new WebSiminovData();
-		webColumn.setDataType(WebDatabaseMappingDescriptor.ATTRIBUTE);
+		webColumn.setDataType(WebEntityDescriptor.ATTRIBUTE);
 		
 		WebSiminovValue variableName = new WebSiminovValue();
-		variableName.setType(WebDatabaseMappingDescriptor.VARIABLE_NAME);
+		variableName.setType(WebEntityDescriptor.VARIABLE_NAME);
 		variableName.setValue(attribute.getVariableName());
 		
 		webColumn.addValue(variableName);
 		
 		
 		WebSiminovValue columnName = new WebSiminovValue();
-		columnName.setType(WebDatabaseMappingDescriptor.COLUMN_NAME);
+		columnName.setType(WebEntityDescriptor.COLUMN_NAME);
 		columnName.setValue(attribute.getColumnName());
 		
 		webColumn.addValue(columnName);
 		
 		
 		WebSiminovValue type = new WebSiminovValue();
-		type.setType(WebDatabaseMappingDescriptor.TYPE);
+		type.setType(WebEntityDescriptor.TYPE);
 		type.setValue(attribute.getType());
 		
 		webColumn.addValue(type);
 		
 		
 		WebSiminovValue primaryKey = new WebSiminovValue();
-		primaryKey.setType(WebDatabaseMappingDescriptor.PRIMARY_KEY);
+		primaryKey.setType(WebEntityDescriptor.PRIMARY_KEY);
 		primaryKey.setValue(Boolean.toString(attribute.isPrimaryKey()));
 		
 		webColumn.addValue(primaryKey);
 		
 		
 		WebSiminovValue notNull = new WebSiminovValue();
-		notNull.setType(WebDatabaseMappingDescriptor.NOT_NULL);
+		notNull.setType(WebEntityDescriptor.NOT_NULL);
 		notNull.setValue(Boolean.toString(attribute.isNotNull()));
 		
 		webColumn.addValue(notNull);
 		
 		
 		WebSiminovValue unique = new WebSiminovValue();
-		unique.setType(WebDatabaseMappingDescriptor.UNIQUE);
+		unique.setType(WebEntityDescriptor.UNIQUE);
 		unique.setValue(Boolean.toString(attribute.isUnique()));
 		
 		webColumn.addValue(unique);
 		
 		
 		WebSiminovValue check = new WebSiminovValue();
-		check.setType(WebDatabaseMappingDescriptor.CHECK);
+		check.setType(WebEntityDescriptor.CHECK);
 		check.setValue(attribute.getCheck());
 		
 		webColumn.addValue(check);
 		
 		
 		WebSiminovValue defaultValue = new WebSiminovValue();
-		defaultValue.setType(WebDatabaseMappingDescriptor.DEFAULT);
+		defaultValue.setType(WebEntityDescriptor.DEFAULT);
 		defaultValue.setValue(attribute.getDefaultValue());
 		
 		webColumn.addValue(defaultValue);
@@ -710,24 +710,24 @@ public class ResourceManager {
 	
 	
 	/**
-	 * Generate Web Database Mapping Descriptor Index.
-	 * @param index Database Mapping Descriptor Index.
-	 * @return Web Database Mapping Descriptor Index.
+	 * Generate Web Entity Descriptor Index.
+	 * @param index Entity Descriptor Index.
+	 * @return Web Entity Descriptor Index.
 	 */
-	public WebSiminovData generateWebDatabaseMappingDescriptorIndex(final Index index) {
+	public WebSiminovData generateWebEntityDescriptorIndex(final Index index) {
 		
 		WebSiminovData webIndex = new WebSiminovData();
-		webIndex.setDataType(WebDatabaseMappingDescriptor.INDEX);
+		webIndex.setDataType(WebEntityDescriptor.INDEX);
 		
 		WebSiminovValue name = new WebSiminovValue();
-		name.setType(WebDatabaseMappingDescriptor.INDEX_NAME);
+		name.setType(WebEntityDescriptor.INDEX_NAME);
 		name.setValue(index.getName());
 		
 		webIndex.addValue(name);
 		
 		
 		WebSiminovValue unique = new WebSiminovValue();
-		unique.setType(WebDatabaseMappingDescriptor.INDEX_UNIQUE);
+		unique.setType(WebEntityDescriptor.INDEX_UNIQUE);
 		unique.setValue(Boolean.toString(index.isUnique()));
 		
 		webIndex.addValue(unique);
@@ -737,7 +737,7 @@ public class ResourceManager {
 		Iterator<String> columnNames = index.getColumns();
 		while(columnNames.hasNext()) {
 			WebSiminovValue column = new WebSiminovValue();
-			column.setType(WebDatabaseMappingDescriptor.INDEX_COLUMN);
+			column.setType(WebEntityDescriptor.INDEX_COLUMN);
 			column.setValue(columnNames.next());
 
 			webIndexColumns.addValue(column);
@@ -750,52 +750,52 @@ public class ResourceManager {
 	
 	
 	/**
-	 * Generate Web Database Mapping Descriptor Relationship.
-	 * @param relationship Database Mapping Descriptor Relationship.
-	 * @return Web Database Mapping Descriptor Relationship.
+	 * Generate Web Database Entity Relationship.
+	 * @param relationship Entity Descriptor Relationship.
+	 * @return Web Entity Descriptor Relationship.
 	 */
-	public WebSiminovData generateWebDatabaseMappingDescriptorRelationship(final Relationship relationship) {
+	public WebSiminovData generateWebEntityDescriptorRelationship(final Relationship relationship) {
 		
 		WebSiminovData webRelationship = new WebSiminovData();
-		webRelationship.setDataType(WebDatabaseMappingDescriptor.RELATIONSHIP);
+		webRelationship.setDataType(WebEntityDescriptor.RELATIONSHIP);
 		
 		WebSiminovValue relationshipType = new WebSiminovValue();
-		relationshipType.setType(WebDatabaseMappingDescriptor.RELATIONSHIP_TYPE);
-		relationshipType.setValue(relationship.getRelationshipType());
+		relationshipType.setType(WebEntityDescriptor.RELATIONSHIP_TYPE);
+		relationshipType.setValue(relationship.getType());
 		
 		webRelationship.addValue(relationshipType);
 		
 		
 		WebSiminovValue refer = new WebSiminovValue();
-		refer.setType(WebDatabaseMappingDescriptor.REFER);
+		refer.setType(WebEntityDescriptor.REFER);
 		refer.setValue(relationship.getRefer());
 		
 		webRelationship.addValue(refer);
 		
 		
 		WebSiminovValue referTo = new WebSiminovValue();
-		referTo.setType(WebDatabaseMappingDescriptor.REFER_TO);
+		referTo.setType(WebEntityDescriptor.REFER_TO);
 		referTo.setValue(relationship.getReferTo());
 		
 		webRelationship.addValue(referTo);
 		
 		
 		WebSiminovValue onUpdate = new WebSiminovValue();
-		onUpdate.setType(WebDatabaseMappingDescriptor.ON_UPDATE);
+		onUpdate.setType(WebEntityDescriptor.ON_UPDATE);
 		onUpdate.setValue(relationship.getOnUpdate());
 		
 		webRelationship.addValue(onUpdate);
 		
 		
 		WebSiminovValue  onDelete = new WebSiminovValue();
-		onDelete.setType(WebDatabaseMappingDescriptor.ON_DELETE);
+		onDelete.setType(WebEntityDescriptor.ON_DELETE);
 		onDelete.setValue(relationship.getOnDelete());
 		
 		webRelationship.addValue(onDelete);
 		
 		
 		WebSiminovValue load = new WebSiminovValue();
-		load.setType(WebDatabaseMappingDescriptor.LOAD);
+		load.setType(WebEntityDescriptor.LOAD);
 		load.setValue(Boolean.toString(relationship.isLoad()));
 		
 		webRelationship.addValue(load);
@@ -829,13 +829,13 @@ public class ResourceManager {
 		
 		
 		WebSiminovData webDatabaseMappingDescriptorPaths = new WebSiminovData();
-		webDatabaseMappingDescriptorPaths.setDataType(WebLibraryDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATHS);
+		webDatabaseMappingDescriptorPaths.setDataType(WebLibraryDescriptor.ENTITY_DESCRIPTOR_PATHS);
 		
-		Iterator<String> databaseMappingDescriptorPaths = libraryDescriptor.getDatabaseMappingPaths();
+		Iterator<String> databaseMappingDescriptorPaths = libraryDescriptor.getEntityDescriptorPaths();
 		while(databaseMappingDescriptorPaths.hasNext()) {
 			
 			WebSiminovValue webDatabaseMappingDescriptorPath = new WebSiminovValue();
-			webDatabaseMappingDescriptorPath.setType(WebLibraryDescriptor.DATABASE_MAPPING_DESCRIPTOR_PATH);
+			webDatabaseMappingDescriptorPath.setType(WebLibraryDescriptor.ENTITY_DESCRIPTOR_PATH);
 			
 			webDatabaseMappingDescriptorPaths.addValue(webDatabaseMappingDescriptorPath);
 		}

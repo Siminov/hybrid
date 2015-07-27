@@ -17,9 +17,11 @@
 
 package siminov.web.model;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 
@@ -140,6 +142,8 @@ Example:
  */
 public class ApplicationDescriptor extends siminov.connect.model.ApplicationDescriptor {
 
+	private Collection<String> adapterDescriptorPaths = new ConcurrentLinkedQueue<String> ();
+	
 	private Map<String, AdapterDescriptor> adapterDescriptorsBasedOnName = new HashMap<String, AdapterDescriptor>();
 	private Map<String, AdapterDescriptor> adapterDescriptorsBasedOnPath = new HashMap<String, AdapterDescriptor>();
 
@@ -210,7 +214,7 @@ public class ApplicationDescriptor extends siminov.connect.model.ApplicationDesc
 	 * @return Adapter Descriptor Paths
 	 */
 	public Iterator<String> getAdapterDescriptorPaths() {
-		return this.adapterDescriptorsBasedOnPath.keySet().iterator();
+		return this.adapterDescriptorPaths.iterator();
 	}
 	
 	/**
@@ -218,7 +222,7 @@ public class ApplicationDescriptor extends siminov.connect.model.ApplicationDesc
 	 * @param adapterDescriptorPath Path of adapter descriptor
 	 */
 	public void addAdapterDescriptorPath(final String adapterDescriptorPath) {
-		this.adapterDescriptorsBasedOnPath.put(adapterDescriptorPath, null);
+		this.adapterDescriptorPaths.add(adapterDescriptorPath);
 	}
 	
 	/**
@@ -268,6 +272,7 @@ public class ApplicationDescriptor extends siminov.connect.model.ApplicationDesc
 		
 		this.adapterDescriptorsBasedOnName.remove(adapterDescriptor.getName());
 		this.adapterDescriptorsBasedOnPath.remove(adapterDescriptorPath);
+		this.adapterDescriptorPaths.remove(adapterDescriptorPaths);
 	}
 	
 	/**

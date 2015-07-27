@@ -34,7 +34,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 Example:
 	{@code
 	
-	<library>
+		
+	<!-- DESIGN OF LibraryDescriptor.si.xml -->
+	
+	<library-descriptor>
 	
 	    <!-- General Properties Of Library -->
 	    
@@ -46,33 +49,52 @@ Example:
 	
 		
 		
-		<!-- Database Mappings Needed Under This Library Descriptor -->
+		<!-- Entity Descriptor Needed Under This Library Descriptor -->
 		
 		<!-- Optional Field -->
 			<!-- Database Mappings -->
-		<database-mappings>
-			<database-mapping>name_of_database_descriptor.full_path_of_database_mapping_descriptor_file</database-mapping>
-		</database-mappings>
+		<entity-descriptors>
+			<entity-descriptor>name_of_database_descriptor.full_path_of_database_mapping_descriptor_file</entity-descriptor>
+		</entity-descriptors>
 		 
 		
-		<!-- Web Adapters Needed Under This Library Descriptor -->
+		<!-- Service Descriptors -->
 			
 		<!-- Optional Field -->
-			<!-- Web Adapters -->
-		<adapters>
-		    <adapter>full_path_of_web_adapter_file</adapter>
-		</adapters>
+			<!-- Service Descriptor -->
+		<service-descriptors>
+		    <service-descriptor>full_path_of_service-descriptor_file</service-descriptor>
+		</service-descriptors>
 		
 		
-	</library>
+		<!-- Sync Descriptors -->
+		
+		<!-- Optional Field -->
+			<!-- Sync Descriptor -->
+		<sync-descriptors>
+		    <sync-descriptor>full_path_of_sync_descriptor_file</sync-descriptor>
+		</sync-descriptors>
+		
+		
+		<!-- Adapter Descriptors -->
+		
+		<!-- Optional Field -->
+			<!-- Adapter Descriptor -->
+		<adapter-descriptors>
+		    <adapter-descriptor>full_path_of_adapter_descriptor_file</adapter-descriptor>
+		</adapter-descriptors>	
+			
+		
+	</library-descriptor>
+	
+	
 
-	}
 	
 		</pre>
 	</p>
  *
  */
-public class LibraryDescriptor extends siminov.core.model.LibraryDescriptor {
+public class LibraryDescriptor extends siminov.connect.model.LibraryDescriptor {
 
 	private Collection<String> adapterDescriptorPaths = new ConcurrentLinkedQueue<String> ();
 

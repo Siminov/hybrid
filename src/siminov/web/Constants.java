@@ -241,7 +241,7 @@ public interface Constants {
 	/**
 	 * Adapter Invoke Handler Service API Name
 	 */
-	public String ADAPTER_INVOKE_HANDLER_SERVICE_API_NAME = "API_NAME";
+	public String ADAPTER_INVOKE_HANDLER_SERVICE_REQUEST_NAME = "REQUEST_NAME";
 	
 	/**
 	 * Adapter Invoke Handler Service Resources

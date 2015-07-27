@@ -42,14 +42,14 @@ public interface WebLibraryDescriptor {
 	
 	
 	/**
-	 * Web Library Descriptor Paths.
+	 * Web Library Descriptor Entity Descriptor Paths.
 	 */
-	public String DATABASE_MAPPING_DESCRIPTOR_PATHS = "Array";
+	public String ENTITY_DESCRIPTOR_PATHS = "Array";
 	
 	/**
-	 * Web Library Descriptor Path.
+	 * Web Library Descriptor Entity Descriptor Path.
 	 */
-	public String DATABASE_MAPPING_DESCRIPTOR_PATH = "databaseMappingDescriptorPath";
+	public String ENTITY_DESCRIPTOR_PATH = "entityDescriptorPath";
 	
 	
 }

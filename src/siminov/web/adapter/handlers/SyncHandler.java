@@ -31,6 +31,7 @@ import siminov.web.model.WebSiminovDatas;
 import siminov.web.model.WebSiminovDatas.WebSiminovData;
 import siminov.web.model.WebSiminovDatas.WebSiminovData.WebSiminovValue;
 import siminov.web.reader.WebSiminovDataReader;
+import siminov.web.sync.GenericSyncHandler;
 
 
 /**
@@ -81,7 +82,7 @@ public class SyncHandler implements IAdapter {
 		}
 
 		
-		siminov.web.sync.SyncHandler syncHandler = siminov.web.sync.SyncHandler.getInstance();
+		GenericSyncHandler syncHandler = GenericSyncHandler.getInstance();
 		syncHandler.handle(syncRequest);
 	}
 }

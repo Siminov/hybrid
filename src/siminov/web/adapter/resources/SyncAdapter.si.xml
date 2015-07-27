@@ -40,7 +40,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Web Sync Request</property>
                     
                 </parameter>
