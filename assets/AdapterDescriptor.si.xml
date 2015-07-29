@@ -32,7 +32,7 @@
     <property name="description">adapter_description</property>
     
     	<!-- Mandatory Field -->
-    <property name="type">WEB-TO-NATIVE|NATIVE-TO-WEB</property>
+    <property name="type">HYBRID-TO-NATIVE|NATIVE-TO-HYBRID</property>
     
     	<!-- Optional Field -->
     <property name="map_to">name_of_adapter_class</property>

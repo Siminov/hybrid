@@ -142,15 +142,15 @@ DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modellin
 		-> class_name*: Name of mapped class name which is to be mapped to table name. It is mandatory field.
 
 			Note*: 
-				-> Mapped class can be define in both Native and Web.
+				-> Mapped class can be define in both Native and Hybrid.
 				
 				-> Native Class: If you have mapped class is in Native then use Java to define class. 
 						Specify full native class path and name in class_name TAG.
 				
-				-> Web Class: If you have mapped class is in Web then use JavaScript to define class. 
+				-> Hybrid Class: If you have mapped class is in Hybrid then use JavaScript to define class. 
 						Specify only JavaScript Function name in class_name TAG.
 				
-				-> Both (Native/Web) Class: If you have mapped class is in both Native and Web then both Native and JavaScript to define classes.		
+				-> Both (Native/Hybrid) Class: If you have mapped class is in both Native and Hybrid then both Native and JavaScript to define classes.		
 						Specify full native class path and name in class_name TAG, no need to define for JavaScript because Siminov will automatically accume same name for it.
 		
 		
@@ -166,11 +166,11 @@ DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modellin
 			-> type*: Variable data type. It is mandatory field.
 		
 					Note*: 
-						-> Mapped Class can be define in both Native and Web.
+						-> Mapped Class can be define in both Native and Hybrid.
 						
 						-> Native Class: If you have mapped class in Native then specify Variable data type.
 							
-						-> Web Class: If you have mapped POJO class in Web then specify JavaScript Variable data type.
+						-> Hybrid Class: If you have mapped POJO class in Hybrid then specify JavaScript Variable data type.
 						
 							Data Types*:
 								-> string
@@ -181,7 +181,7 @@ DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modellin
 								-> primitive-boolean | boolean
 								-> primitive-byte | byte
 				
-						-> Native and Web Class: If your mapped native class is in both Native and Web then only specify Java Variable data type, for JavaScript Siminov will take care.
+						-> Native and Hybrid Class: If your mapped native class is in both Native and Hybrid then only specify Java Variable data type, for JavaScript Siminov will take care.
 
 			
 			-> primary_key: TRUE/FALSE. It defines whether the field is primary key to table or not. It is optional field. Default value is false.
@@ -246,13 +246,13 @@ DatabaseMapping.si.xml is the one who does the ORM (Object Relationship Modellin
 			-> refer_to*: Class name of mapped variable. It is mandatory field.
 			
 					Note*: 
-						-> Class can be define in both Native and Web.
+						-> Class can be define in both Native and Hybrid.
 						
 						-> Native Class: If you have mapped class in Native then specify native class path and name in refer_to TAG.
 						
-						-> Web Class: If you have mapped class in Web then specify only JavaScript Function name in refer_to TAG.
+						-> Hybrid Class: If you have mapped class in Hybrid then specify only JavaScript Function name in refer_to TAG.
 						
-						-> Both (Native/Web) Class: If you have mapped class in both Native and Web then specify full Java class path and name in refer_to TAG, no need to define for JavaScript because Siminov will automatically accume same name for it.
+						-> Both (Native/Hybrid) Class: If you have mapped class in both Native and Hybrid then specify full Java class path and name in refer_to TAG, no need to define for JavaScript because Siminov will automatically accume same name for it.
 			
 			-> on_update: cascade/restrict/no_action/set_null/set_default. It defines action needs to be done, when update occur.
 		
