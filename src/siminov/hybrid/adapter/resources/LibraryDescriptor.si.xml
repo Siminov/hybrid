@@ -21,15 +21,15 @@
 
 <library-descriptor>
 
-	<property name="name">SIMINOV-WEB</property>
+	<property name="name">SIMINOV-HYBRID</property>
 	
 	<!-- Optional Field -->
-	<property name="description">Siminov Web</property>
+	<property name="description">Siminov Hybrid</property>
 
 	<adapter-descriptors>
 	    
 	    <adapter-descriptor>SiminovNativeAdapter.si.xml</adapter-descriptor>
-	    <adapter-descriptor>SiminovWebAdapter.si.xml</adapter-descriptor>
+	    <adapter-descriptor>SiminovHybridAdapter.si.xml</adapter-descriptor>
 	    <adapter-descriptor>SiminovExceptionAdapter.si.xml</adapter-descriptor>
 	    <adapter-descriptor>EventHandlerAdapter.si.xml</adapter-descriptor>
 		<adapter-descriptor>DatabaseAdapter.si.xml</adapter-descriptor>	    

@@ -23,7 +23,7 @@
    
     <property name="name">SIMINOV-EXCEPTION-HANDLER</property>
     <property name="description">Siminov Exception Handler</property>
-    <property name="type">NATIVE-TO-WEB</property>
+    <property name="type">NATIVE-TO-HYBRID</property>
     <property name="map_to">SiminovExcpetionHandler</property>
 
     <handlers>

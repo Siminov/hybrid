@@ -23,7 +23,7 @@
     
     <property name="name">SERVICE-EVENT-HANDLER</property>
     <property name="description">Siminov Service Event Handler</property>
-    <property name="type">NATIVE-TO-WEB</property>
+    <property name="type">NATIVE-TO-HYBRID</property>
     <property name="map_to">ServiceEventHandler</property>
     		
     <handlers>

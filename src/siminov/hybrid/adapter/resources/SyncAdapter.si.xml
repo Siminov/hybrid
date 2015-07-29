@@ -23,8 +23,8 @@
     
     <property name="name">SYNC</property>
     <property name="description">Siminov Connect Sync</property>
-    <property name="type">WEB-TO-NATIVE</property>
-    <property name="map_to">siminov.web.adapter.handlers.SyncHandler</property>
+    <property name="type">HYBRID-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.SyncHandler</property>
 	<property name="cache">true</property>
 	
     <handlers>
@@ -41,7 +41,7 @@
                 <parameter>
                     
                     <property name="type">string</property>
-                    <property name="description">Web Sync Request</property>
+                    <property name="description">Hybrid Sync Request</property>
                     
                 </parameter>
                 

@@ -23,8 +23,8 @@
     
     <property name="name">SERVICE</property>
     <property name="description">Siminov Connect Service</property>
-    <property name="type">WEB-TO-NATIVE</property>
-    <property name="map_to">siminov.web.adapter.handlers.ServiceHandler</property>
+    <property name="type">HYBRID-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.ServiceHandler</property>
 	<property name="cache">true</property>
 	
     <handlers>

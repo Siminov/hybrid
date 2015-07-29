@@ -22,9 +22,9 @@
 <adapter-descriptor>
     
     <property name="name">SIMINOV</property>
-    <property name="description">Siminov Web Handler</property>
-    <property name="type">WEB-TO-NATIVE</property>
-    <property name="map_to">siminov.web.adapter.handlers.SiminovHandler</property>
+    <property name="description">Siminov Hybrid Handler</property>
+    <property name="type">HYBRID-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.SiminovHandler</property>
     		
     <handlers>
         

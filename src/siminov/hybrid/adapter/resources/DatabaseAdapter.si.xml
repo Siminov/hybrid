@@ -22,9 +22,9 @@
 <adapter-descriptor>
     
     <property name="name">DATABASE</property>
-    <property name="description">Database Web Handler</property>
-    <property name="type">WEB-TO-NATIVE</property>
-    <property name="map_to">siminov.web.adapter.handlers.DatabaseHandler</property>
+    <property name="description">Database Hybrid Handler</property>
+    <property name="type">HYBRID-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.DatabaseHandler</property>
 	<property name="cache">true</property>
 	
     <handlers>

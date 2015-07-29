@@ -23,8 +23,8 @@
     
     <property name="name">NOTIFICATION</property>
     <property name="description">Siminov Connect Notification</property>
-    <property name="type">WEB-TO-NATIVE</property>
-    <property name="map_to">siminov.web.adapter.handlers.NotificationHandler</property>
+    <property name="type">HYBRID-TO-NATIVE</property>
+    <property name="map_to">siminov.hybrid.adapter.handlers.NotificationHandler</property>
 	<property name="cache">true</property>
 	
     <handlers>
