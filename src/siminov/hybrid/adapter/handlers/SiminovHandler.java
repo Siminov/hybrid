@@ -25,7 +25,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
-import siminov.core.utils.DataTypeHandler;
 import siminov.core.exception.SiminovException;
 import siminov.core.log.Log;
 import siminov.core.utils.ClassUtils;
@@ -43,6 +42,7 @@ import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
 import siminov.hybrid.reader.HybridSiminovDataReader;
 import siminov.hybrid.resource.ResourceManager;
+import siminov.hybrid.utils.DataTypeHandler;
 import siminov.hybrid.writter.HybridSiminovDataWritter;
 import android.app.Activity;
 import android.webkit.JavascriptInterface;
