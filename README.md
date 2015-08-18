@@ -25,10 +25,14 @@ Siminov provides a easy set of defined descriptors which can be broadly classifi
 	|- ApplicationDescriptor.si.xml 
 	|- DatabaseDescriptor.si.xml
 	|- LibraryDescriptor.si.xml
-	|- DatabaseMappingDescriptor.si.xml.
+	|- EntityDescriptor.si.xml
+	|- AdapterDescriptor.si.xml
+	|- ServiceDescriptor.si.xml
+	|- SyncDescriptor.si.xml
+	|- NotificationDescriptor.si.xml
 
-###### 2. Use With PhoneGap
-Easy to use with PhoneGap, It provides Object Relationship Mapping between JavaScript Class and Database 
+###### 2. Use With 3rd Party Frameworks
+Easy to integrate with any 3rd party frameworks, It provides Object Relationship Mapping between JavaScript Class and Database 
 
 ###### 3. Synchronous Database Operations
 All Database operations in Siminov Web Framework are Synchronous, because it use communication channel provided by Native Platform. This is an advantage over Phonegap where all database operations are asynchronous.
@@ -88,6 +92,21 @@ Siminov provides implementation for SQLCipher to protect application database fr
 ###### 11. Handling Libraries
 An android library project is a development project that holds shared android source code and resources. Other android application projects can reference the library project and, at build time, include its compiled sources in their .apk files.
 
+
+###### 12. Push Notification
+Push notification is provide by all the platforms but in different forms and implementation. It provides a unique and generic implementation on all platforms with same APIs bundle and architecture.
+
+
+###### 13. Synchronization
+Synchronizing your app data with service data is a tough job.It allows app to automatically checks for updates in the background. There are different ways by which you can synchronize your app data
+
+  |- Time Interval
+  |- Screen Click
+  |- Time Interval + Screen Click
+  
+  
+  
+
 Siminov provides mechanism to configure Core for your library projects.
 
 
@@ -97,7 +116,7 @@ LICENSE
  
 <b> SIMINOV FRAMEWORK </b>
  <p>
- Copyright [2013] [Siminov Software Solution LLP|support@siminov.com]
+ Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -111,6 +130,3 @@ LICENSE
  See the License for the specific language governing permissions and
  limitations under the License.
 
-
-
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/a5f2f9d922d5af9a6e02afa8f816fd1a "githalytics.com")](http://githalytics.com/Siminov/android-web)
