@@ -1,9 +1,9 @@
-Siminov Web (Object Relationship Mapping) & (RESTful) - Android
+Siminov Hybrid (Object Relationship Mapping) & (RESTful) - Android
 ===================================================
 
-A web application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a web application leverages best of both native and mobile web technologies.
+A hybrid application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a hybrid application leverages best of both native and mobile web technologies or other technologies.
 
-In web environment, it is very difficult to handle database and web service calls. Siminov makes application developer life easy by mapping JavaScript/Native model objects (Android - Java | iOS - Objective C | Windows - C#) to relational database and handling all web service calls using the native container capability.
+In hybrid environment, it is very difficult to handle database and web service calls. Siminov makes application developer life easy by mapping JavaScript/Native model objects (Android - Java | iOS - Objective C | Windows - C#) to relational database and handling all web service calls using the native container capability.
 
 Siminov can be used with PhoneGap, React, Sencha, Xamarin. It enables application developers to build applications for mobile devices using JavaScript, HTML5 and CSS3, instead of device-specific languages.
 
