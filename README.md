@@ -1,4 +1,4 @@
-Siminov Web (Object Relationship Mapping) & (RESTful) - Android + PhoneGap
+Siminov Web (Object Relationship Mapping) & (RESTful) - Android
 ===================================================
 
 A web application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a web application leverages best of both native and mobile web technologies.
