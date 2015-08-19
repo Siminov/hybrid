@@ -13,7 +13,7 @@ Get Started
 -----------
 Get the source
 
-  git clone http://github.com/siminov/android-web.git
+  git clone http://github.com/siminov/android-hybrid.git
   
   
 Features
