@@ -68,7 +68,7 @@
             </parameters>
             
         </handler>
-
+        
 		<handler>
             
             <property name="name">SAVE-OR-UPDATE</property>
@@ -88,7 +88,7 @@
         	</parameters>
             
         </handler>
-        
+ 
 		<handler>
             
             <property name="name">DELETE</property>
@@ -116,7 +116,6 @@
             
         </handler>
 
-				
 		<handler>
             
             <property name="name">SELECT-MANUAL</property>
@@ -145,7 +144,7 @@
         
            
         </handler>
-                
+        
 		<handler>
             
             <property name="name">SELECT</property>
@@ -193,7 +192,7 @@
                 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Having Clause</property>
                     
                 </parameter>
@@ -207,7 +206,7 @@
 
                 <parameter>
                     
-                    <property name="type">java.lang.String</property>
+                    <property name="type">string</property>
                     <property name="description">Which Order By</property>
                     
                 </parameter>
@@ -231,7 +230,6 @@
             
         </handler>
 		
-
 		<handler>
             
             <property name="name">COUNT</property>
@@ -300,7 +298,7 @@
             <property name="name">AVG</property>
             <property name="type">SYNC</property>
             <property name="map_to">avg</property>
-            <property name="description">Get Avg Of Tuples Based On Column Name</property>
+            <property name="description">Get Avg Of Tuples Based On Column Name Async</property>
 
             <parameters>
                 
@@ -350,7 +348,6 @@
             
         </handler>
 		
-
 		<handler>
             
             <property name="name">SUM</property>
@@ -405,7 +402,7 @@
             </return>
             
         </handler>
-		
+        
 		<handler>
             
             <property name="name">TOTAL</property>
@@ -516,7 +513,6 @@
             
         </handler>
 				
-		
 		<handler>
             
             <property name="name">MAX</property>
@@ -660,7 +656,7 @@
             </return>
             
 		</handler>
-				
+		
         <handler>
             
             <property name="name">GET-COLUMN-NAMES</property>
@@ -741,7 +737,7 @@
             </return>
             
 		</handler>
-        								
+		
         <handler>
             
             <property name="name">GET-MANDATORY-FIELDS</property>
@@ -768,7 +764,7 @@
             </return>
             
 		</handler>
-        								
+ 
         <handler>
             
             <property name="name">GET-UNIQUE-FIELDS</property>
@@ -795,7 +791,7 @@
             </return>
             
 		</handler>
-        
+		
         <handler>
             
             <property name="name">GET-FOREIGN-KEYS</property>
@@ -822,8 +818,7 @@
             </return>
             
 		</handler>
-        
-        
+
         <handler>
             
             <property name="name">BEGIN-TRANSACTION</property>

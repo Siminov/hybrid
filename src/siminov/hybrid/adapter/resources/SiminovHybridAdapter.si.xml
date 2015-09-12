@@ -55,6 +55,33 @@
             
         </handler>
     
+        <handler>
+            
+            <property name="name">HANDLE-NATIVE-TO-HYBRID-ASYNC</property>
+            <property name="type">ASYNC</property>
+            <property name="map_to">handleAsync</property>
+            <property name="description">Handle Call From Native To Hybrid Async</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">string</property>
+                    <property name="description">Unique Id</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">string</property>
+                    <property name="description">Data</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+        </handler>
+                
     </handlers>
 
 </adapter-descriptor>

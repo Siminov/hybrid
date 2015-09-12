@@ -95,6 +95,7 @@ public interface Constants {
 	 */
 	public String ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_NAME = "name";
 	
+	public String ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_TYPE = "type";
 
 	/**
 	 * Adapter Descriptor Handler Property Description
@@ -198,6 +199,8 @@ public interface Constants {
 	 * Native To Hybrid Adapter Name.
 	 */
 	public String NATIVE_TO_HYBRID_ADAPTER_HANDLER = "HANDLE-NATIVE-TO-HYBRID";
+	
+	public String NATIVE_TO_HYBRID_ADAPTER_ASYNC_HANDLER = "HANDLE-NATIVE-TO-HYBRID-ASYNC";
 
 	//Siminov Events Handler.
 	
@@ -247,5 +250,10 @@ public interface Constants {
 	 * Adapter Invoke Handler Service Resources
 	 */
 	public String ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES = "RESOURCES";
+
+	
+	public String REQUEST_SYNC_MODE = "SYNC";
+	
+	public String REQUEST_ASYNC_MODE = "ASYNC";
 
 }

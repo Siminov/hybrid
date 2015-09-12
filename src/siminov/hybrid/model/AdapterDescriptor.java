@@ -307,6 +307,14 @@ public class AdapterDescriptor implements IDescriptor {
 			this.properties.put(Constants.ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_NAME, name);
 		}
 		
+		public String getType() {
+			return this.properties.get(Constants.ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_TYPE);
+		}
+		
+		public void setType(String type) {
+			this.properties.put(Constants.ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_TYPE, type);
+		}
+		
 		/**
 		 * Get Map To Name.
 		 * @return Map To Name.

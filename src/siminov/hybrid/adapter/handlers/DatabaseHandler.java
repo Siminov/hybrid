@@ -67,20 +67,20 @@ public class DatabaseHandler implements IAdapter {
 	public void save(final String data) throws DatabaseException {
 
 		HybridSiminovDatas hybridSiminovDatas = parseHybridSiminovDatas(data);
-		save(hybridSiminovDatas);
+		saveDatas(hybridSiminovDatas);
 		
 	}
 	
-	private void save(HybridSiminovDatas hybridSiminovDatas) throws DatabaseException {
+	private void saveDatas(HybridSiminovDatas hybridSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> hybridDatas = hybridSiminovDatas.getHybridSiminovDatas();
 		while(hybridDatas.hasNext()) {
-			save(hybridDatas.next());
+			saveData(hybridDatas.next(), null);
 		}
 		
 	}
 
-	private void save(HybridSiminovData hybridSiminovData) throws DatabaseException {
+	private void saveData(HybridSiminovData hybridSiminovData, HybridSiminovData parentHybridSiminovData) throws DatabaseException {
 		
 		String className = hybridSiminovData.getDataType();
 		Iterator<HybridSiminovValue> hybridValues = hybridSiminovData.getValues();
@@ -109,16 +109,15 @@ public class DatabaseHandler implements IAdapter {
 			Attribute attribute = attributes.next();
 			
 			String columnName = attribute.getColumnName();
-			Object columnValue = hybridSiminovValues.get(attribute.getVariableName()).getValue();
+			String columnValue = hybridSiminovValues.get(attribute.getVariableName()).getValue();
 			
 			columnNames.add(columnName);
 			columnValues.add(columnValue);
 			
 		}
 
-			
-		processManyToOneRelationship(hybridSiminovData, columnNames, columnValues);
-		processManyToManyRelationship(hybridSiminovData, columnNames, columnValues);
+		
+		RelationshipHelper.processRelationship(hybridSiminovData, parentHybridSiminovData, columnNames, columnValues);
 
 		
 		/*
@@ -170,7 +169,7 @@ public class DatabaseHandler implements IAdapter {
 					continue;
 				}
 
-				saveOrUpdate(referedData);
+				saveData(referedData, null);
 			} else if(relationshipType.equalsIgnoreCase(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_TYPE_ONE_TO_MANY)) {
 				
 				Iterator<HybridSiminovData> datas = hybridSiminovData.getDatas();
@@ -181,7 +180,7 @@ public class DatabaseHandler implements IAdapter {
 					String mappedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
 						data.addData(hybridSiminovData);
-						saveOrUpdate(data);
+						saveData(data, null);
 					}
 				}
 				
@@ -195,7 +194,7 @@ public class DatabaseHandler implements IAdapter {
 					String mappedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
 						data.addData(hybridSiminovData);
-						saveOrUpdate(data);
+						saveData(data, null);
 					}
 				}
 			}
@@ -212,20 +211,20 @@ public class DatabaseHandler implements IAdapter {
 	public void update(String data) throws DatabaseException {
 		
 		HybridSiminovDatas hybridSiminovDatas = parseHybridSiminovDatas(data);
-		update(hybridSiminovDatas);
+		updateDatas(hybridSiminovDatas);
 		
 	}
 
-	private void update(HybridSiminovDatas hybridSiminovDatas) throws DatabaseException {
+	private void updateDatas(HybridSiminovDatas hybridSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> hybridDatas = hybridSiminovDatas.getHybridSiminovDatas();
 		while(hybridDatas.hasNext()) {
-			update(hybridDatas.next());
+			updateData(hybridDatas.next(), null);
 		}
 		
 	}
 	
-	private void update(HybridSiminovData hybridSiminovData) throws DatabaseException {
+	private void updateData(HybridSiminovData hybridSiminovData, HybridSiminovData parentHybridSiminovData) throws DatabaseException {
 		
 		String className = hybridSiminovData.getDataType();
 		Iterator<HybridSiminovValue> hybridSiminovValue = hybridSiminovData.getValues();
@@ -270,13 +269,8 @@ public class DatabaseHandler implements IAdapter {
 			}
 		}
 
-		
-		processManyToOneRelationship(hybridSiminovData, whereClause);
-		processManyToManyRelationship(hybridSiminovData, whereClause);
-
-		processManyToOneRelationship(hybridSiminovData, columnNames, columnValues);
-		processManyToManyRelationship(hybridSiminovData, columnNames, columnValues);
-		
+		RelationshipHelper.processRelationship(hybridSiminovData, parentHybridSiminovData, whereClause);
+		RelationshipHelper.processRelationship(hybridSiminovData, parentHybridSiminovData, columnNames, columnValues);
 		
 
 		/*
@@ -332,7 +326,7 @@ public class DatabaseHandler implements IAdapter {
 					continue;
 				}
 
-				saveOrUpdate(referedData);
+				updateData(referedData, null);
 			} else if(relationshipType.equalsIgnoreCase(Constants.ENTITY_DESCRIPTOR_RELATIONSHIP_TYPE_ONE_TO_MANY)) {
 				
 				Iterator<HybridSiminovData> datas = hybridSiminovData.getDatas();
@@ -343,7 +337,7 @@ public class DatabaseHandler implements IAdapter {
 					String mappedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
 						data.addData(hybridSiminovData);
-						saveOrUpdate(data);
+						updateData(data, null);
 					}
 				}
 				
@@ -357,7 +351,7 @@ public class DatabaseHandler implements IAdapter {
 					String mappedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
 					if(mappedClassName.equalsIgnoreCase(relationship.getReferTo())) {
 						data.addData(hybridSiminovData);
-						saveOrUpdate(data);
+						updateData(data, null);
 					}
 				}
 			}
@@ -374,21 +368,21 @@ public class DatabaseHandler implements IAdapter {
 	public void saveOrUpdate(String data) throws DatabaseException {
 
 		HybridSiminovDatas hybridSiminovDatas = parseHybridSiminovDatas(data);
-		saveOrUpdate(hybridSiminovDatas);
+		saveOrUpdateDatas(hybridSiminovDatas);
 		
 	}
 	
-	private void saveOrUpdate(HybridSiminovDatas hybridSiminovDatas) throws DatabaseException {
+	private void saveOrUpdateDatas(HybridSiminovDatas hybridSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> hybridDatas = hybridSiminovDatas.getHybridSiminovDatas();
 		
 		while(hybridDatas.hasNext()) {
 			HybridSiminovData hybridSiminovData = hybridDatas.next();
-			saveOrUpdate(hybridSiminovData);
+			saveOrUpdateData(hybridSiminovData, null);
 		}
 	}
 
-	private void saveOrUpdate(HybridSiminovData hybridSiminovData) throws DatabaseException {
+	private void saveOrUpdateData(HybridSiminovData hybridSiminovData, HybridSiminovData parentHybridSiminovData) throws DatabaseException {
 
 		String className = hybridSiminovData.getDataType();
 		Iterator<HybridSiminovValue> hybridValues = hybridSiminovData.getValues();
@@ -422,12 +416,9 @@ public class DatabaseHandler implements IAdapter {
 		}
 
 		
-		processManyToOneRelationship(hybridSiminovData, whereClause);
-		processManyToManyRelationship(hybridSiminovData, whereClause);
-		
-
+		RelationshipHelper.processRelationship(hybridSiminovData, parentHybridSiminovData, whereClause);
 		if(whereClause == null || whereClause.length() <= 0) {
-			save(hybridSiminovData);
+			saveData(hybridSiminovData, parentHybridSiminovData);
 			return;
 		}
 
@@ -435,11 +426,11 @@ public class DatabaseHandler implements IAdapter {
 		/*
 		 * 4. IF EXISTS: call update method, ELSE: call save method.
 		 */
-		int count = count(entityDescriptor, null, false, whereClause.toString(), null, null);
+		int count = countRaw(entityDescriptor, null, false, whereClause.toString(), null, null);
 		if(count <= 0) {
-			save(hybridSiminovData);
+			saveData(hybridSiminovData, parentHybridSiminovData);
 		} else {
-			update(hybridSiminovData);
+			updateData(hybridSiminovData, parentHybridSiminovData);
 		}
 	}
 	
@@ -459,17 +450,14 @@ public class DatabaseHandler implements IAdapter {
 		if(data != null && data.length() > 0) {
 			hybridSiminovDatas = parseHybridSiminovDatas(data);			
 		
-			delete(hybridSiminovDatas);
+			deleteDatas(hybridSiminovDatas);
 			return;
 		}
 		
-		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
-		
-		delete(entityDescriptor, whereClause);
-
+		deleteData(null, null, whereClause);
 	}
 
-	private void delete(final HybridSiminovDatas hybridSiminovDatas) throws DatabaseException {
+	private void deleteDatas(final HybridSiminovDatas hybridSiminovDatas) throws DatabaseException {
 		
 		Iterator<HybridSiminovData> hybridDatas = hybridSiminovDatas.getHybridSiminovDatas();
 		
@@ -512,17 +500,15 @@ public class DatabaseHandler implements IAdapter {
 			}
 	
 			
-			processManyToOneRelationship(hybridSiminovData, whereClause);
-			processManyToManyRelationship(hybridSiminovData, whereClause);
-			
-			
-			delete(entityDescriptor, whereClause.toString());
+			RelationshipHelper.processRelationship(hybridSiminovData, null, whereClause);
+			deleteData(hybridSiminovData, null, whereClause.toString());
 		}
 	}
 
-	private void delete(final EntityDescriptor entityDescriptor, final String whereClause) throws DatabaseException {
+	private void deleteData(final HybridSiminovData hybridSiminovData, final HybridSiminovDatas parentHybridSiminovData, final String whereClause) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(hybridSiminovData.getDataType());
+		EntityDescriptor entityDescriptor = getEntityDescriptor(hybridSiminovData.getDataType());
 		
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
@@ -539,16 +525,9 @@ public class DatabaseHandler implements IAdapter {
 		
 		String query = queryBuilder.formDeleteQuery(parameters);
 		database.executeQuery(databaseDescriptor, entityDescriptor, query);
-
 	}
 	
 
-	/**
-	 * 
-	 * @param data 
-	 * @throws DatabaseException 
-	 */
-	
 	/**
 	 * Handles Database Select Request From Hybrid.
 	 * @param className Hybrid Model Function Name.
@@ -566,9 +545,7 @@ public class DatabaseHandler implements IAdapter {
 	public String select(final String className, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
-		select(entityDescriptor, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
-
-		HybridSiminovDatas hybridSiminovDatas = select(entityDescriptor, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
+		HybridSiminovDatas hybridSiminovDatas = selectDatas(entityDescriptor, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
 		
 		String data = null;
 		try {
@@ -582,7 +559,7 @@ public class DatabaseHandler implements IAdapter {
 	}
 
 	
-	private HybridSiminovDatas select(final EntityDescriptor entityDescriptor, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
+	private static HybridSiminovDatas selectDatas(final EntityDescriptor entityDescriptor, final Boolean distinct, final String whereClause, final String[] columnNames, final String[] groupBy, final String havingClause, final String[] orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
 
 		String className = entityDescriptor.getClassName();
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
@@ -594,6 +571,11 @@ public class DatabaseHandler implements IAdapter {
 		if(database == null) {
 			Log.error(DatabaseHandler.class.getName(), "select", "No Database Instance Found For ENTITY-DESCRIPTOR: " + className);
 			throw new DeploymentException(DatabaseHandler.class.getName(), "select", "No Database Instance Found For ENTITY-DESCRIPTOR: " + className);
+		}
+		
+		String whereCondition = "";
+		if(whereClause != null && whereClause.length() > 0) {
+			whereCondition = URLDecoder.decode(whereClause);
 		}
 		
 		Collection<String> columnNameCollection = new LinkedList<String>();
@@ -626,7 +608,7 @@ public class DatabaseHandler implements IAdapter {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_DISTINCT_PARAMETER, false);
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
+		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHERE_CLAUSE_PARAMETER, whereCondition);
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_COLUMN_NAMES_PARAMETER, columnNameCollection.iterator());
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_GROUP_BYS_PARAMETER, groupByCollection.iterator());
 		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_HAVING_PARAMETER, havingClause);
@@ -650,11 +632,8 @@ public class DatabaseHandler implements IAdapter {
 			Map<String, Object> data = datas.next();
 			HybridSiminovData siminovData = siminovDatas.next();
 			
-			processOneToOneRelationship(siminovData);
-			processOneToManyRelationship(siminovData);
-
-			processManyToOneRelationship(siminovData, data);
-			processManyToManyRelationship(siminovData, data);
+			RelationshipHelper.processRelationship(siminovData, null);
+			RelationshipHelper.processRelationship(siminovData, null, data);
 		}
 		
 
@@ -692,12 +671,8 @@ public class DatabaseHandler implements IAdapter {
 			Map<String, Object> data = datas.next();
 			HybridSiminovData siminovData = siminovDatas.next();
 			
-			processOneToOneRelationship(siminovData);
-			processOneToManyRelationship(siminovData);
-
-			processManyToOneRelationship(siminovData, data);
-			processManyToManyRelationship(siminovData, data);
-			
+			RelationshipHelper.processRelationship(siminovData, null);
+			RelationshipHelper.processRelationship(siminovData, null, data);
 		}
 		
 		
@@ -710,39 +685,6 @@ public class DatabaseHandler implements IAdapter {
 		}
 
 		return data;
-	}
-	
-	private HybridSiminovDatas lazyFetch(final EntityDescriptor entityDescriptor, final boolean distinct, final String whereClause, final Iterator<String> columnNames, final Iterator<String> groupBy, final String having, final Iterator<String> orderBy, final String whichOrderBy, final String limit) throws DatabaseException {
-		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
-		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
-		
-		IDatabaseImpl database = databaseBundle.getDatabase();
-		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
-		
-		if(database == null) {
-			Log.error(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For ENTITY-DESCRIPTOR: " + entityDescriptor.getClassName());
-			throw new DeploymentException(DatabaseHandler.class.getName(), "lazyFetch", "No Database Instance Found For ENTITY-DESCRIPTOR: " + entityDescriptor.getClassName());
-		}
-
-		
-		
-		/*
-		 * Add Parameters
-		 */
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_DISTINCT_PARAMETER, false);
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_COLUMN_NAMES_PARAMETER, columnNames);
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_GROUP_BYS_PARAMETER, groupBy);
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_HAVING_PARAMETER, having);
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_ORDER_BYS_PARAMETER, orderBy);
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_WHICH_ORDER_BY_PARAMETER, null);
-		parameters.put(IQueryBuilder.FORM_SELECT_QUERY_LIMIT_PARAMETER, limit);
-
-		return parseData(entityDescriptor, database.executeSelectQuery(getDatabaseDescriptor(entityDescriptor.getClassName()), entityDescriptor, queryBuilder.formSelectQuery(parameters)));
-	
 	}
 	
 	
@@ -823,7 +765,7 @@ public class DatabaseHandler implements IAdapter {
 	public String count(final String className, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
 
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
-		int count = count(entityDescriptor, column, distinct, whereClause, groupBys, having);
+		int count = countRaw(entityDescriptor, column, distinct, whereClause, groupBys, having);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		HybridSiminovData siminovData = new HybridSiminovData();
@@ -845,7 +787,7 @@ public class DatabaseHandler implements IAdapter {
 	}
 	
 	
-	private int count(final EntityDescriptor entityDescriptor, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
+	private int countRaw(final EntityDescriptor entityDescriptor, final String column, final Boolean distinct, final String whereClause, final String[] groupBys, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -913,7 +855,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		int avg = avg(entityDescriptor, columnName, whereClause, groupBy, having);
+		int avg = avgRaw(entityDescriptor, columnName, whereClause, groupBy, having);
 
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		HybridSiminovData siminovData = new HybridSiminovData();
@@ -934,7 +876,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	private int avg(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int avgRaw(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1008,7 +950,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		int sum =  sum(entityDescriptor, columnName, whereClause, groupBy, having);
+		int sum =  sumRaw(entityDescriptor, columnName, whereClause, groupBy, having);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		HybridSiminovData siminovData = new HybridSiminovData();
@@ -1029,7 +971,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	private int sum(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int sumRaw(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1102,7 +1044,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		int total = total(entityDescriptor, columnName, whereClause, groupBy, having);
+		int total = totalRaw(entityDescriptor, columnName, whereClause, groupBy, having);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		HybridSiminovData siminovData = new HybridSiminovData();
@@ -1123,7 +1065,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	private int total(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int totalRaw(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1196,7 +1138,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		int min = min(entityDescriptor, columnName, whereClause, groupBy, having);
+		int min = minRaw(entityDescriptor, columnName, whereClause, groupBy, having);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		HybridSiminovData siminovData = new HybridSiminovData();
@@ -1217,7 +1159,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	private int min(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int minRaw(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1291,7 +1233,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		int max = max(entityDescriptor, columnName, whereClause, groupBy, having);
+		int max = maxRaw(entityDescriptor, columnName, whereClause, groupBy, having);
 
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		HybridSiminovData siminovData = new HybridSiminovData();
@@ -1313,7 +1255,7 @@ public class DatabaseHandler implements IAdapter {
 	}
 	
 
-	private int max(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private int maxRaw(final EntityDescriptor entityDescriptor, final String columnName, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1387,7 +1329,7 @@ public class DatabaseHandler implements IAdapter {
 
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		String groupConcat = groupConcat(entityDescriptor, columnName, delimiter, whereClause, groupBy, having);
+		String groupConcat = groupConcatRaw(entityDescriptor, columnName, delimiter, whereClause, groupBy, having);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		HybridSiminovData siminovData = new HybridSiminovData();
@@ -1408,7 +1350,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	private String groupConcat(final EntityDescriptor entityDescriptor, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
+	private String groupConcatRaw(final EntityDescriptor entityDescriptor, final String columnName, final String delimiter, final String whereClause, final String[] groupBy, final String having) throws DatabaseException {
 		
 		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(entityDescriptor.getClassName());
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
@@ -1471,7 +1413,7 @@ public class DatabaseHandler implements IAdapter {
 	
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		String tableName = getTableName(entityDescriptor);
+		String tableName = getTableNameRaw(entityDescriptor);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		HybridSiminovData siminovData = new HybridSiminovData();
@@ -1492,7 +1434,7 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 	
-	private String getTableName(final EntityDescriptor entityDescriptor) throws DatabaseException {
+	private String getTableNameRaw(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		return entityDescriptor.getTableName();
 	}
 
@@ -1507,7 +1449,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		Iterator<String> columnNames = getColumnNames(entityDescriptor);
+		Iterator<String> columnNames = getColumnNamesRaw(entityDescriptor);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 
@@ -1533,7 +1475,7 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 	
-	public static final Iterator<String> getColumnNames(final EntityDescriptor entityDescriptor) throws DatabaseException {
+	public static final Iterator<String> getColumnNamesRaw(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
 		Iterator<EntityDescriptor.Attribute> attributes = entityDescriptor.getAttributes();
 
@@ -1599,11 +1541,11 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		return getColumnType(entityDescriptor);
+		return getColumnTypesRaw(entityDescriptor);
 		
 	}
 	
-	public static final String getColumnType(final EntityDescriptor entityDescriptor) throws DatabaseException {
+	public static final String getColumnTypesRaw(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
 		Map<String, Object> columnTypes = new HashMap<String, Object> ();
 		Iterator<EntityDescriptor.Attribute> attributes = entityDescriptor.getAttributes();
@@ -1683,7 +1625,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		Iterator<String> primaryKeys = getPrimaryKeys(entityDescriptor);
+		Iterator<String> primaryKeys = getPrimaryKeysRaw(entityDescriptor);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 
@@ -1709,7 +1651,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final Iterator<String> getPrimaryKeys(final EntityDescriptor entityDescriptor) throws DatabaseException {
+	public static final Iterator<String> getPrimaryKeysRaw(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
 		Iterator<Attribute> attributes = entityDescriptor.getAttributes();
 		Collection<String> primaryKeys = new ArrayList<String>();
@@ -1779,7 +1721,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		Iterator<String> mandatoryFields = getMandatoryFields(entityDescriptor);
+		Iterator<String> mandatoryFields = getMandatoryFieldsRaw(entityDescriptor);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 
@@ -1805,7 +1747,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final Iterator<String> getMandatoryFields(final EntityDescriptor entityDescriptor) throws DatabaseException {
+	public static final Iterator<String> getMandatoryFieldsRaw(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
 		Iterator<Attribute> attributes = entityDescriptor.getAttributes();
 		Collection<String> mandatoryFields = new ArrayList<String>();
@@ -1879,7 +1821,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		Iterator<String> uniqueFields = getUniqueFields(entityDescriptor);
+		Iterator<String> uniqueFields = getUniqueFieldsRaw(entityDescriptor);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 
@@ -1905,7 +1847,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final Iterator<String> getUniqueFields(final EntityDescriptor entityDescriptor) throws DatabaseException {
+	public static final Iterator<String> getUniqueFieldsRaw(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
 		Iterator<Attribute> attributes = entityDescriptor.getAttributes();
 		Collection<String> uniqueFields = new ArrayList<String>();
@@ -1984,7 +1926,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 
-		Iterator<String> foreignKeys = getForeignKeys(entityDescriptor);
+		Iterator<String> foreignKeys = getForeignKeysRaw(entityDescriptor);
 		
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 
@@ -2010,7 +1952,7 @@ public class DatabaseHandler implements IAdapter {
 
 	}
 	
-	public static final Iterator<String> getForeignKeys(final EntityDescriptor entityDescriptor) throws DatabaseException {
+	public static final Iterator<String> getForeignKeysRaw(final EntityDescriptor entityDescriptor) throws DatabaseException {
 		
 		Collection<String> foreignKeys = new LinkedList<String>();
 		
@@ -2135,460 +2077,745 @@ public class DatabaseHandler implements IAdapter {
 	}
 
 	
-	static void processManyToOneRelationship(final HybridSiminovData siminovData, final Collection<String> columnNames, final Collection<Object> columnValues) throws DatabaseException {
+	
+	private static class RelationshipHelper {
 		
-		EntityDescriptor entityDescriptor = getEntityDescriptor(siminovData.getDataType());
-		Iterator<Relationship> manyToOneRelationships = entityDescriptor.getManyToOneRelationships();
-		
-		while(manyToOneRelationships.hasNext()) {
-			Relationship manyToOneRelationship = manyToOneRelationships.next();
-			EntityDescriptor referedEntityDescriptor = manyToOneRelationship.getReferedEntityDescriptor();
-			if(referedEntityDescriptor == null) {
-				referedEntityDescriptor = getEntityDescriptor(manyToOneRelationship.getReferTo());
-				manyToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
-			}
-
-			HybridSiminovData referedHybridSiminovData = null;
-			Iterator<HybridSiminovData> datas = siminovData.getDatas();
-			while(datas.hasNext()) {
-				HybridSiminovData data = datas.next();
-				String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
-				
-				if(referedClassName.equalsIgnoreCase(referedEntityDescriptor.getClassName())) {
-					referedHybridSiminovData = data;
-					break;
-				}
-			}
-
-			if(referedHybridSiminovData == null) {
-				Log.error(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
-				throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
-			}
-			
-			processManyToOneRelationship(referedHybridSiminovData, columnNames, columnValues);
-			
-			Iterator<HybridSiminovValue> hybridValues = referedHybridSiminovData.getValues();
-			
-			Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
-			while(hybridValues.hasNext()) {
-				HybridSiminovValue hybridSiminovValue = hybridValues.next();
-				hybridSiminovValues.put(hybridSiminovValue.getType(), hybridSiminovValue);
-			}
-			
-			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
-			while(parentAttributes.hasNext()) {
-				Attribute attribute = parentAttributes.next();
-				
-				boolean isPrimary = attribute.isPrimaryKey();
-				if(isPrimary) {
-					columnNames.add(attribute.getColumnName());
-					columnValues.add(hybridSiminovValues.get(attribute.getVariableName()).getValue());
-				}
-			}
+		public static void processRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData) throws DatabaseException {
+		    
+		    RelationshipHelper.processOneToOneRelationship(siminovData, parentSiminovData);
+		    RelationshipHelper.processOneToManyRelationship(siminovData, parentSiminovData);
+		    RelationshipHelper.processManyToOneRelationship(siminovData, parentSiminovData);
+		    RelationshipHelper.processManyToManyRelationship(siminovData, parentSiminovData);
 		}
-	}
-	
-	
-	static void processManyToManyRelationship(final HybridSiminovData siminovData, final Collection<String> columnNames, final Collection<Object> columnValues) throws DatabaseException {
-		
-		EntityDescriptor entityDescriptor = getEntityDescriptor(siminovData.getDataType());
-		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
-		
-		while(manyToManyRelationships.hasNext()) {
-			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			EntityDescriptor referedEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
-			if(referedEntityDescriptor == null) {
-				referedEntityDescriptor = getEntityDescriptor(manyToManyRelationship.getReferTo());
-				manyToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
-			}
 
-			HybridSiminovData referedHybridSiminovData = null;
-			Iterator<HybridSiminovData> datas = siminovData.getDatas();
-			while(datas.hasNext()) {
-				HybridSiminovData data = datas.next();
-				String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
-				
-				if(referedClassName.equalsIgnoreCase(referedEntityDescriptor.getClassName())) {
-					referedHybridSiminovData = data;
-					break;
-				}
-			}
-
-			if(referedHybridSiminovData == null) {
-				Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
-				throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
-			}
-			
-			processManyToManyRelationship(referedHybridSiminovData, columnNames, columnValues);
-			
-			Iterator<HybridSiminovValue> hybridValues = referedHybridSiminovData.getValues();
-			
-			Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
-			while(hybridValues.hasNext()) {
-				HybridSiminovValue hybridSiminovValue = hybridValues.next();
-				hybridSiminovValues.put(hybridSiminovValue.getType(), hybridSiminovValue);
-			}
-			
-			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
-			while(parentAttributes.hasNext()) {
-				Attribute attribute = parentAttributes.next();
-				
-				boolean isPrimary = attribute.isPrimaryKey();
-				if(isPrimary) {
-					columnNames.add(attribute.getColumnName());
-					columnValues.add(hybridSiminovValues.get(attribute.getVariableName()).getValue());
-				}
-			}
+		public static void processRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, Collection<String> columnNames, Collection<Object> columnValues) throws DatabaseException {
+		    
+		    RelationshipHelper.processOneToOneRelationship(siminovData, parentSiminovData, columnNames, columnValues);
+		    RelationshipHelper.processOneToManyRelationship(siminovData, parentSiminovData, columnNames, columnValues);
+		    RelationshipHelper.processManyToOneRelationship(siminovData, parentSiminovData, columnNames, columnValues);
+		    RelationshipHelper.processManyToManyRelationship(siminovData, parentSiminovData, columnNames, columnValues);
 		}
-	}
-	
-	
-	static void processManyToOneRelationship(final HybridSiminovData siminovData, final StringBuilder whereClause) throws DatabaseException {
-		
-		EntityDescriptor entityDescriptor = getEntityDescriptor(siminovData.getDataType());
-		Iterator<Relationship> manyToOneRelationships = entityDescriptor.getManyToOneRelationships();
-		
-		while(manyToOneRelationships.hasNext()) {
-			Relationship manyToOneRelationship = manyToOneRelationships.next();
-			EntityDescriptor referedEntityDescriptor = manyToOneRelationship.getReferedEntityDescriptor();
-			if(referedEntityDescriptor == null) {
-				referedEntityDescriptor = getEntityDescriptor(manyToOneRelationship.getReferTo());
-				manyToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
-			}
 
-			HybridSiminovData referedHybridSiminovData = null;
-			Iterator<HybridSiminovData> datas = siminovData.getDatas();
-			while(datas.hasNext()) {
-				HybridSiminovData data = datas.next();
-				String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
-				
-				if(referedClassName.equalsIgnoreCase(referedEntityDescriptor.getClassName())) {
-					referedHybridSiminovData = data;
-					break;
-				}
-			}
-
-			if(referedHybridSiminovData == null) {
-				Log.error(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
-				throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
-			}
-			
-			processManyToOneRelationship(referedHybridSiminovData, whereClause);
-			
-			Iterator<HybridSiminovValue> HybridValues = referedHybridSiminovData.getValues();
-			
-			Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
-			while(HybridValues.hasNext()) {
-				HybridSiminovValue hybridSiminovValue = HybridValues.next();
-				hybridSiminovValues.put(hybridSiminovValue.getType(), hybridSiminovValue);
-			}
-			
-			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
-			while(parentAttributes.hasNext()) {
-				Attribute attribute = parentAttributes.next();
-				
-				boolean isPrimary = attribute.isPrimaryKey();
-				if(isPrimary) {
-					String columnValue = hybridSiminovValues.get(attribute.getVariableName()).getValue();
-					if(whereClause.length() <= 0) {
-						whereClause.append(attribute.getColumnName() + "= '" + columnValue + "'");
-					} else {
-						whereClause.append(" AND " + attribute.getColumnName() + "= '" + columnValue + "'");
-					}
-				}
-			}
+		public static void processRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, StringBuilder whereClause) throws DatabaseException {
+		    
+		    RelationshipHelper.processOneToOneRelationship(siminovData, parentSiminovData, whereClause);
+		    RelationshipHelper.processOneToManyRelationship(siminovData, parentSiminovData, whereClause);
+		    RelationshipHelper.processManyToOneRelationship(siminovData, parentSiminovData, whereClause);
+		    RelationshipHelper.processManyToManyRelationship(siminovData, parentSiminovData, whereClause);
 		}
-	}
-	
-	
-	static void processManyToManyRelationship(final HybridSiminovData siminovData, final StringBuilder whereClause) throws DatabaseException {
-		
-		EntityDescriptor entityDescriptor = getEntityDescriptor(siminovData.getDataType());
-		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
-		
-		while(manyToManyRelationships.hasNext()) {
-			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			EntityDescriptor referedEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
-			if(referedEntityDescriptor == null) {
-				referedEntityDescriptor = getEntityDescriptor(manyToManyRelationship.getReferTo());
-				manyToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
-			}
 
-			HybridSiminovData referedHybridSiminovData = null;
-			Iterator<HybridSiminovData> datas = siminovData.getDatas();
-			while(datas.hasNext()) {
-				HybridSiminovData data = datas.next();
-				String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
-				
-				if(referedClassName.equalsIgnoreCase(referedEntityDescriptor.getClassName())) {
-					referedHybridSiminovData = data;
-					break;
-				}
-			}
-
-			if(referedHybridSiminovData == null) {
-				Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
-			}
-			
-			processManyToManyRelationship(referedHybridSiminovData, whereClause);
-			
-			Iterator<HybridSiminovValue> hybridValues = siminovData.getValues();
-			
-			Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
-			while(hybridValues.hasNext()) {
-				HybridSiminovValue hybridSiminovValue = hybridValues.next();
-				hybridSiminovValues.put(hybridSiminovValue.getType(), hybridSiminovValue);
-			}
-			
-			Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
-			while(parentAttributes.hasNext()) {
-				Attribute attribute = parentAttributes.next();
-				
-				boolean isPrimary = attribute.isPrimaryKey();
-				if(isPrimary) {
-					String columnValue = hybridSiminovValues.get(attribute.getVariableName()).getValue();
-					if(whereClause.length() <= 0) {
-						whereClause.append(attribute.getColumnName() + "= '" + columnValue + "'");
-					} else {
-						whereClause.append(" AND " + attribute.getColumnName() + "= '" + columnValue + "'");
-					}
-				}
-			}
-		}
-	}
-	
-	
-	private void processOneToOneRelationship(final HybridSiminovData hybridSiminovData) throws DatabaseException {
-
-		EntityDescriptor entityDescriptor = getEntityDescriptor(hybridSiminovData.getDataType());
-		Iterator<EntityDescriptor.Relationship> oneToOneRelationships = entityDescriptor.getOneToOneRelationships();
-		
-		while(oneToOneRelationships.hasNext()) {
-			
-			EntityDescriptor.Relationship oneToOneRelationship = oneToOneRelationships.next();
-
-			boolean isLoad = oneToOneRelationship.isLoad();
-			if(!isLoad) {
-				continue;
-			}
-
-			
-			StringBuilder whereClause = new StringBuilder();
-			Iterator<String> foreignKeys = getPrimaryKeys(entityDescriptor);
-			while(foreignKeys.hasNext()) {
-				String foreignKey = foreignKeys.next();
-				Object columnValue = null;
-				
-				HybridSiminovValue value = hybridSiminovData.getValueBasedOnType(foreignKey);
-				columnValue = value.getValue();
-
-				if(whereClause.length() <= 0) {
-					whereClause.append(foreignKey + "='" + columnValue.toString() + "'"); 
-				} else {
-					whereClause.append(", " + foreignKey + "='" + columnValue.toString() + "'");  
-				}
-			}
-
-			EntityDescriptor referedEntityDescriptor = oneToOneRelationship.getReferedEntityDescriptor();
-			if(referedEntityDescriptor == null) {
-				referedEntityDescriptor = getEntityDescriptor(oneToOneRelationship.getReferTo());
-				oneToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
-			}
-
-			
-			HybridSiminovDatas referedObject = lazyFetch(referedEntityDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
-			Iterator<HybridSiminovData> siminovDatas = referedObject.getHybridSiminovDatas();
-			
-			while(siminovDatas.hasNext()) {
-				HybridSiminovData siminovData = siminovDatas.next();
-				hybridSiminovData.addData(siminovData);
-			}
+		public static void processRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, Map<String, Object> data) throws DatabaseException {
+		    
+		    RelationshipHelper.processOneToOneRelationship(siminovData, parentSiminovData, data);
+		    RelationshipHelper.processOneToManyRelationship(siminovData, parentSiminovData, data);
+		    RelationshipHelper.processManyToOneRelationship(siminovData, parentSiminovData, data);
+		    RelationshipHelper.processManyToManyRelationship(siminovData, parentSiminovData, data);
 		}
 		
-	}
-
-
-	private void processOneToManyRelationship(final HybridSiminovData hybridSiminovData) throws DatabaseException {
-
-		EntityDescriptor entityDescriptor = getEntityDescriptor(hybridSiminovData.getDataType());
-		Iterator<EntityDescriptor.Relationship> oneToManyRelationships = entityDescriptor.getOneToManyRelationships();
 		
-		while(oneToManyRelationships.hasNext()) {
-			
-			EntityDescriptor.Relationship oneToManyRelationship = oneToManyRelationships.next();
-
-			boolean isLoad = oneToManyRelationship.isLoad();
-			if(!isLoad) {
-				continue;
-			}
-
-			
-			StringBuilder whereClause = new StringBuilder();
-			Iterator<String> foreignKeys = getPrimaryKeys(entityDescriptor);
-			while(foreignKeys.hasNext()) {
-				String foreignKey = foreignKeys.next();
-				Attribute attribute = entityDescriptor.getAttributeBasedOnColumnName(foreignKey);
-				
-				Object columnValue = null;
-				
-				HybridSiminovValue value = hybridSiminovData.getValueBasedOnType(attribute.getVariableName());
-				columnValue = value.getValue();
-
-				if(whereClause.length() <= 0) {
-					whereClause.append(foreignKey + "='" + columnValue.toString() + "'"); 
-				} else {
-					whereClause.append(" AND " + foreignKey + "='" + columnValue.toString() + "'");  
-				}
-			}
-
-			EntityDescriptor referedEntityDescriptor = oneToManyRelationship.getReferedEntityDescriptor();
-			if(referedEntityDescriptor == null) {
-				referedEntityDescriptor = getEntityDescriptor(oneToManyRelationship.getReferTo());
-				oneToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
-			}
-
-			
-			HybridSiminovDatas referedObject = lazyFetch(referedEntityDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
-			Iterator<HybridSiminovData> siminovDatas = referedObject.getHybridSiminovDatas();
-			
-			while(siminovDatas.hasNext()) {
-				HybridSiminovData siminovData = siminovDatas.next();
-				hybridSiminovData.addData(siminovData);
-			}
+		private static void processOneToOneRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData) throws DatabaseException {
+		    
+		    EntityDescriptor entityDescriptor = DatabaseHandler.getEntityDescriptor(siminovData.getDataType());
+		    Iterator<EntityDescriptor.Relationship> oneToOneRelationships = entityDescriptor.getOneToOneRelationships();
+		    
+		    while(oneToOneRelationships.hasNext()) {
+			    Relationship oneToOneRelationship = oneToOneRelationships.next();
+		        
+		        boolean isLoad = oneToOneRelationship.isLoad();
+		        if(!isLoad) {
+		            continue;
+		        }
+		        
+		        
+		        StringBuffer whereClause = new StringBuffer();
+		        Iterator<String> foreignKeys = DatabaseHandler.getPrimaryKeysRaw(entityDescriptor);
+		        
+		        while(foreignKeys.hasNext()) {
+			        String foreignKey = foreignKeys.next();
+		            
+		            String columnValue;
+		            
+		            HybridSiminovValue value = siminovData.getValueBasedOnType(foreignKey);
+		            columnValue = value.getValue();
+		            
+		            if(whereClause.length() <= 0) {
+		                whereClause.append(foreignKey + "='" + columnValue + "'");
+		            } else {
+		                whereClause.append(" AND " + foreignKey + "='" + columnValue + "'");
+		            }
+		        }
+		        
+		        EntityDescriptor referedEntityDescriptor = oneToOneRelationship.getReferedEntityDescriptor();
+		        if(referedEntityDescriptor == null) {
+		            referedEntityDescriptor = DatabaseHandler.getEntityDescriptor(oneToOneRelationship.getReferTo());
+		            oneToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
+		        }
+		        
+		        
+		        if(siminovData != null && (siminovData.getDataType().equalsIgnoreCase(referedEntityDescriptor.getClassName()))) {
+		            continue;
+		            //return;
+		        }
+		        
+		        HybridSiminovDatas referedObjects = DatabaseHandler.selectDatas(referedEntityDescriptor, Boolean.valueOf(false), whereClause.toString(), null, null, null, null, null, null);
+		        HybridSiminovData referedObject = referedObjects.getHybridSiminovDatas().next();
+		        
+		        if(referedObject == null) {
+		        	continue;
+		        }
+		        
+		        siminovData.addData(referedObject);
+		    }
 		}
-	}
-	
-	
-	private void processManyToOneRelationship(final HybridSiminovData hybridSiminovData, Map<String, Object> data) throws DatabaseException {
 
-		EntityDescriptor entityDescriptor = getEntityDescriptor(hybridSiminovData.getDataType());
-		Iterator<Relationship> manyToOneRelationships = entityDescriptor.getManyToOneRelationships();
 
-		while(manyToOneRelationships.hasNext()) {
-			Relationship manyToOneRelationship = manyToOneRelationships.next();
-			EntityDescriptor referedEntityDescriptor = manyToOneRelationship.getReferedEntityDescriptor();
-			if(referedEntityDescriptor == null) {
-				referedEntityDescriptor = getEntityDescriptor(manyToOneRelationship.getReferTo());
-				manyToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
-			}
-
-			HybridSiminovData referedObject = new HybridSiminovData();
-			referedObject.setDataType(hybridResourceManager.getMappedHybridClassName(referedEntityDescriptor.getClassName()));
-			
-			processManyToOneRelationship(referedObject, data);
-
-			if(manyToOneRelationship.isLoad()) {
-
-				StringBuilder whereClause = new StringBuilder();
-
-				Iterator<String> foreignKeys = getPrimaryKeys(referedEntityDescriptor);
-				while(foreignKeys.hasNext()) {
-					String foreignKey = foreignKeys.next();
-					Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
-					Object columnValue = data.get(attribute.getColumnName());
-
-					if(whereClause.length() <= 0) {
-						whereClause.append(foreignKey + "='" + columnValue.toString() + "'"); 
-					} else {
-						whereClause.append(" AND " + foreignKey + "='" + columnValue.toString() + "'");  
-					}
-				}
-				
-				HybridSiminovDatas fetchedObjects = lazyFetch(referedEntityDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
-				referedObject = fetchedObjects.getHybridSiminovDatas().next();
-				
-			} else {
-				Iterator<String> foreignKeys = getPrimaryKeys(referedEntityDescriptor);
-				while(foreignKeys.hasNext()) {
-					String foreignKey = foreignKeys.next();
-					Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
-
-					Object columnValue = data.get(attribute.getColumnName());
-					if(columnValue == null) {
-						continue;
-					}
-					
-					HybridSiminovValue value = new HybridSiminovValue();
-					value.setType(foreignKey);
-					value.setValue(columnValue.toString());
-					
-				}
-			}
-			
-
-			if(referedObject == null) {
-				Log.error(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
-				throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
-			}
-
-			hybridSiminovData.addData(referedObject);
+		private static void processOneToManyRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData) throws DatabaseException {
+		    
+		    EntityDescriptor entityDescriptor = DatabaseHandler.getEntityDescriptor(siminovData.getDataType());
+		    Iterator<EntityDescriptor.Relationship> oneToManyRelationships = entityDescriptor.getOneToManyRelationships();
+		    
+		    while(oneToManyRelationships.hasNext()) {
+			    Relationship oneToManyRelationship = oneToManyRelationships.next();
+		        
+		        boolean isLoad = oneToManyRelationship.isLoad();
+		        if(!isLoad) {
+		            continue;
+		        }
+		        
+		        StringBuilder whereClause = new StringBuilder();
+		        Iterator<String> foreignKeys = DatabaseHandler.getPrimaryKeysRaw(entityDescriptor);
+		        
+		        while(foreignKeys.hasNext()) {
+			        String foreignKey = foreignKeys.next();
+		            
+		            String columnValue = null;
+		            
+		            HybridSiminovValue value = siminovData.getValueBasedOnType(foreignKey);
+		            columnValue = value.getValue();
+		            
+		            if(whereClause.length() <= 0) {
+		                whereClause.append(foreignKey + "='" + columnValue + "'");
+		            } else {
+		                whereClause.append(" AND " + foreignKey + "='" + columnValue + "'");
+		            }
+		        }
+		        
+		        EntityDescriptor referedEntityDescriptor = oneToManyRelationship.getReferedEntityDescriptor();
+		        if(referedEntityDescriptor == null) {
+		            referedEntityDescriptor = DatabaseHandler.getEntityDescriptor(oneToManyRelationship.getReferTo());
+		            
+		            oneToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
+		        }
+		        
+		        HybridSiminovDatas referedObjects = DatabaseHandler.selectDatas(referedEntityDescriptor, Boolean.valueOf(false), whereClause.toString(), null, null, "", null, "", "");
+		        if(referedObjects == null) {
+		        	continue;
+		        }
+		            
+	            Iterator<HybridSiminovData> referedObjectsDatas = referedObjects.getHybridSiminovDatas();
+	            while(referedObjectsDatas.hasNext()) {
+	            	HybridSiminovData referedObjectsData = referedObjectsDatas.next();
+	            	siminovData.addData(referedObjectsData);
+	            }
+		    }
 		}
-	}
-	
-	
-	private void processManyToManyRelationship(final HybridSiminovData hybridSiminovData, Map<String, Object> data) throws DatabaseException {
 
-		EntityDescriptor entityDescriptor = getEntityDescriptor(hybridSiminovData.getDataType());
-		Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
 
-		while(manyToManyRelationships.hasNext()) {
-			Relationship manyToManyRelationship = manyToManyRelationships.next();
-			EntityDescriptor referedEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
-			if(referedEntityDescriptor == null) {
-				referedEntityDescriptor = getEntityDescriptor(manyToManyRelationship.getReferTo());
-				manyToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
-			}
+		private static void processManyToOneRelationship(HybridSiminovData object, HybridSiminovData parentObject) throws DatabaseException {
+		    
+		}
 
-			HybridSiminovData referedObject = new HybridSiminovData();
-			referedObject.setDataType(hybridResourceManager.getMappedHybridClassName(referedEntityDescriptor.getClassName()));
-			
-			processManyToManyRelationship(referedObject, data);
+		private static void processManyToManyRelationship(HybridSiminovData object, HybridSiminovData parentObject) throws DatabaseException {
+		    
+		}
 
-			if(manyToManyRelationship.isLoad()) {
 
-				StringBuilder whereClause = new StringBuilder();
+		private static void processOneToOneRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, Collection<String> columnNames, Collection<Object> columnValues) throws DatabaseException {
+		    
+		    EntityDescriptor entityDescriptor = DatabaseHandler.getEntityDescriptor(siminovData.getDataType());
+		    Iterator<EntityDescriptor.Relationship> oneToOneRelationships = entityDescriptor.getOneToOneRelationships();
+		    
+		    while(oneToOneRelationships.hasNext()) {
+			    Relationship oneToOneRelationship = oneToOneRelationships.next();
+			    
+		        EntityDescriptor referedEntityDescriptor = oneToOneRelationship.getReferedEntityDescriptor();
+		        if(referedEntityDescriptor == null) {
+		            referedEntityDescriptor = DatabaseHandler.getEntityDescriptor(oneToOneRelationship.getReferTo());
+		            oneToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
+		        }
+		        
+		        
+		        HybridSiminovData referedSiminovData = null;
+		        Iterator<HybridSiminovData> datas = siminovData.getDatas();
+		        
+		        while(datas.hasNext()) {
+			        HybridSiminovData data = datas.next();
+			        
+		            String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
+		            
+		            if(referedClassName.equalsIgnoreCase(referedEntityDescriptor.getClassName())) {
+		                referedSiminovData = data;
+		                break;
+		            }
+		        }
+		        
+		        if(referedSiminovData == null) {
+		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + oneToOneRelationship.getReferTo());
+		            
+		            continue;
+		            //@throw [[SICDatabaseException alloc] initWithClassName:NSStringFromClass([SIHDatabaseHandler class]) methodName:@"processManyToManyRelationship" message:[NSString stringWithFormat:@"Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: %@", [oneToOneRelationship getReferTo]]];
+		        }
+		        
+		        
+		        RelationshipHelper.processOneToManyRelationship(siminovData, parentSiminovData, columnNames, columnValues);
+		        RelationshipHelper.processManyToOneRelationship(siminovData, parentSiminovData, columnNames, columnValues);
+		        RelationshipHelper.processManyToManyRelationship(siminovData, parentSiminovData, columnNames, columnValues);
+		        
+		        Iterator<HybridSiminovValue> hybridValues = referedSiminovData.getValues();
+		        
+		        Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
+		        while(hybridValues.hasNext()) {
+			        HybridSiminovValue hybridSiminovValue = hybridValues.next();
+		            hybridSiminovValues.put(hybridSiminovValue.getType(), hybridSiminovValue);
+		        }
+		        
+		        Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
+		        while(parentAttributes.hasNext()) {
+			        Attribute attribute = parentAttributes.next();
+			        
+		            boolean isPrimary = attribute.isPrimaryKey();
+		            if(isPrimary) {
+		                columnNames.add(attribute.getColumnName());
+		                columnValues.add(hybridSiminovValues.get(attribute.getVariableName()).getValue());
+		            }
+		        }
+		    }
+		}
 
-				Iterator<String> foreignKeys = getPrimaryKeys(referedEntityDescriptor);
-				while(foreignKeys.hasNext()) {
-					String foreignKey = foreignKeys.next();
-					Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
-					Object columnValue = data.get(attribute.getColumnName());
 
-					if(whereClause.length() <= 0) {
-						whereClause.append(foreignKey + "='" + columnValue.toString() + "'"); 
-					} else {
-						whereClause.append(" AND " + foreignKey + "='" + columnValue.toString() + "'");  
-					}
-				}
-				
-				HybridSiminovDatas fetchedObjects = lazyFetch(referedEntityDescriptor, false, whereClause.toString(), null, null, null, null, null, null);
-				referedObject = fetchedObjects.getHybridSiminovDatas().next();
-				
-			} else {
-				Iterator<String> foreignKeys = getPrimaryKeys(referedEntityDescriptor);
-				while(foreignKeys.hasNext()) {
-					String foreignKey = foreignKeys.next();
-					Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
+		private static void processOneToManyRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, Collection<String> columnNames, Collection<Object> columnValues) throws DatabaseException {
+		    
+		}
 
-					Object columnValue = data.get(attribute.getColumnName());
-					if(columnValue == null) {
-						continue;
-					}
-					
-					HybridSiminovValue value = new HybridSiminovValue();
-					value.setType(foreignKey);
-					value.setValue(columnValue.toString());
-					
-				}
-			}
-			
 
-			if(referedObject == null) {
-				Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
-				throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
-			}
 
-			hybridSiminovData.addData(referedObject);
+		private static void processManyToOneRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, Collection<String> columnNames, Collection<Object> columnValues) throws DatabaseException {
+		    
+		    EntityDescriptor entityDescriptor = DatabaseHandler.getEntityDescriptor(siminovData.getDataType());
+		    Iterator<EntityDescriptor.Relationship> manyToOneRelationships = entityDescriptor.getManyToOneRelationships();
+		    
+		    while(manyToOneRelationships.hasNext()) {
+			    Relationship manyToOneRelationship = manyToOneRelationships.next();
+			    
+		        EntityDescriptor referedEntityDescriptor = manyToOneRelationship.getReferedEntityDescriptor();
+		        if(referedEntityDescriptor == null) {
+		            referedEntityDescriptor = DatabaseHandler.getEntityDescriptor(manyToOneRelationship.getReferTo());
+		            manyToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
+		        }
+		        
+		        
+		        HybridSiminovData referedSiminovData = null;
+		        Iterator<HybridSiminovData> datas = siminovData.getDatas();
+		        
+		        while(datas.hasNext()) {
+			        HybridSiminovData data = datas.next();
+			        
+		            String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
+		            
+		            if(referedClassName.equalsIgnoreCase(referedEntityDescriptor.getClassName())) {
+		                referedSiminovData = data;
+		                break;
+		            }
+		        }
+		        
+		        if(referedSiminovData == null) {
+		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		            
+		            continue;
+		            //@throw [[SICDatabaseException alloc] initWithClassName:NSStringFromClass([SIHDatabaseHandler class]) methodName:@"processManyToManyRelationship" message:[NSString stringWithFormat:@"Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: %@", [manyToOneRelationship getReferTo]]];
+		        }
+		        
+		        
+		        
+		        RelationshipHelper.processOneToOneRelationship(siminovData, parentSiminovData, columnNames, columnValues);
+		        RelationshipHelper.processManyToOneRelationship(siminovData, parentSiminovData, columnNames, columnValues);
+		        RelationshipHelper.processManyToManyRelationship(siminovData, parentSiminovData, columnNames, columnValues);
+		        
+		        
+		        Iterator<HybridSiminovValue> hybridValues = referedSiminovData.getValues();
+		        
+		        Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
+		        
+		        while(hybridValues.hasNext()) {
+			        HybridSiminovValue hybridSiminovValue = hybridValues.next();
+		            hybridSiminovValues.put(hybridSiminovValue.getType(), hybridSiminovValue);
+		        }
+		        
+		        Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
+		        while(parentAttributes.hasNext()) {
+			        Attribute attribute = parentAttributes.next();
+			        
+		            boolean isPrimary = attribute.isPrimaryKey();
+		            if(isPrimary) {
+		                columnNames.add(attribute.getColumnName());
+		                columnValues.add(hybridSiminovValues.get(attribute.getVariableName()).getValue());
+		            }
+		        }
+		    }
+		}
+
+
+		private static void processOneToOneRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, StringBuilder whereClause) throws DatabaseException {
+		    
+		    EntityDescriptor entityDescriptor = DatabaseHandler.getEntityDescriptor(siminovData.getDataType());
+		    Iterator<Relationship> oneToOneRelationships = entityDescriptor.getOneToOneRelationships();
+		    
+		    while(oneToOneRelationships.hasNext()) {
+			    Relationship oneToOneRelationship = oneToOneRelationships.next();
+			    
+		        EntityDescriptor referedEntityDescriptor = oneToOneRelationship.getReferedEntityDescriptor();
+		        if (referedEntityDescriptor == null) {
+		            referedEntityDescriptor = DatabaseHandler.getEntityDescriptor(oneToOneRelationship.getReferTo());
+		            oneToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
+		        }
+		        
+		        
+		        HybridSiminovData referedSiminovData = null;
+		        Iterator<HybridSiminovData> datas = siminovData.getDatas();
+		        
+		        while(datas.hasNext()) {
+			        HybridSiminovData data = datas.next(); 
+		            String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
+		            
+		            if(referedClassName.equalsIgnoreCase(oneToOneRelationship.getGetterReferMethodName())) {
+		                referedSiminovData = data;
+		                break;
+		            }
+		        }
+		        
+		        if(referedSiminovData == null) {
+		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + oneToOneRelationship.getReferTo());
+		            throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + oneToOneRelationship.getReferTo());
+		        }
+		        
+		        
+		        RelationshipHelper.processOneToManyRelationship(referedSiminovData, siminovData, whereClause);
+		        RelationshipHelper.processManyToOneRelationship(referedSiminovData, siminovData, whereClause);
+		        RelationshipHelper.processManyToManyRelationship(referedSiminovData, siminovData, whereClause);
+		        
+		        
+		        Iterator<HybridSiminovValue> hybridValues = referedSiminovData.getValues();
+		        
+		        Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
+		        while(hybridValues.hasNext()) {
+			        HybridSiminovValue hybridSiminovValue = hybridValues.next();
+		            hybridSiminovValues.put(hybridSiminovValue.getType(), hybridSiminovValue);
+		        }
+		        
+		        Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
+		        while(parentAttributes.hasNext()) {
+			        Attribute attribute = parentAttributes.next();
+			        
+		            boolean isPrimary = attribute.isPrimaryKey();
+		            if(isPrimary) {
+		                String columnName = attribute.getColumnName();
+		                String columnValue = hybridSiminovValues.get(attribute.getVariableName()).getValue();
+		                
+		                if (whereClause.length() <= 0) {
+		                    whereClause.append(columnName + "= '" + columnValue + "'");
+		                } else {
+		                    whereClause.append(" AND " + columnName + "= '" + columnValue + "'");
+		                }
+		            }
+		        }
+		    }
+		}
+
+
+		private static void processOneToManyRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, StringBuilder whereClause) throws DatabaseException {
+		    
+		}
+
+
+		private static void processManyToOneRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, StringBuilder whereClause) throws DatabaseException {
+		    
+		    EntityDescriptor entityDescriptor = DatabaseHandler.getEntityDescriptor(siminovData.getDataType());
+		    Iterator<Relationship> manyToOneRelationships = entityDescriptor.getManyToOneRelationships();
+		    
+		    while(manyToOneRelationships.hasNext()) {
+			    Relationship manyToOneRelationship = manyToOneRelationships.next();
+			    
+		        EntityDescriptor referedEntityDescriptor = manyToOneRelationship.getReferedEntityDescriptor();
+		        if (referedEntityDescriptor == null) {
+		            referedEntityDescriptor = DatabaseHandler.getEntityDescriptor(manyToOneRelationship.getReferTo());
+		            manyToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
+		        }
+		        
+		        
+		        HybridSiminovData referedSiminovData = null;
+		        Iterator<HybridSiminovData> datas = siminovData.getDatas();
+		        
+		        while(datas.hasNext()) {
+			        HybridSiminovData data = datas.next();
+			        
+		            String referedClassName = hybridResourceManager.getMappedNativeClassName(data.getDataType());
+		            
+		            if(referedClassName.equalsIgnoreCase(manyToOneRelationship.getGetterReferMethodName())) {
+		                referedSiminovData = data;
+		                break;
+		            }
+		        }
+		        
+		        if(referedSiminovData == null) {
+		            Log.error(DatabaseHandler.class.getName(), "manyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		            
+		            continue;
+		            //@throw [[SICDatabaseException alloc] initWithClassName:NSStringFromClass([SIHDatabaseHandler class]) methodName:@"manyToOneRelationship" message:[NSString stringWithFormat:@"Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: %@", [manyToOneRelationship getReferTo]]];
+		        }
+		        
+		        
+		        RelationshipHelper.processOneToOneRelationship(referedSiminovData, parentSiminovData, whereClause);
+		        RelationshipHelper.processManyToOneRelationship(referedSiminovData, parentSiminovData, whereClause);
+		        RelationshipHelper.processManyToManyRelationship(referedSiminovData, parentSiminovData, whereClause);
+		        
+		        
+		        
+		        Iterator<HybridSiminovValue> hybridValues = referedSiminovData.getValues();
+		        
+		        Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
+		        while(hybridValues.hasNext()) {
+			        HybridSiminovValue hybridSiminovValue = hybridValues.next();
+		            hybridSiminovValues.put(hybridSiminovValue.getType(), hybridSiminovValue);
+		        }
+		        
+		        Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
+		        while(parentAttributes.hasNext()) {
+			        Attribute attribute = parentAttributes.next();
+			        
+		            boolean isPrimary = attribute.isPrimaryKey();
+		            if(isPrimary) {
+		                String columnName = attribute.getColumnName();
+		                String columnValue = hybridSiminovValues.get(attribute.getVariableName()).getValue();
+		                
+		                if (whereClause.length() <= 0) {
+		                	whereClause.append(columnName + "= '" + columnValue + "'");
+		                } else {
+		                    whereClause.append(" AND " + columnName + "= '" + columnValue + "'");
+		                }
+		            }
+		        }
+		    }
+		}
+
+
+		private static void processOneToOneRelationship(HybridSiminovData object, HybridSiminovData parentObject, Map<String, Object> data) throws DatabaseException {
+		    
+		}
+
+		private static void processOneToManyRelationship(HybridSiminovData object, HybridSiminovData parentObject, Map<String, Object> data) throws DatabaseException {
+		    
+		}
+
+
+		private static void processManyToOneRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, Map<String, Object> data) throws DatabaseException {
+		    
+		    EntityDescriptor entityDescriptor = DatabaseHandler.getEntityDescriptor(siminovData.getDataType());
+		    Iterator<Relationship> manyToOneRelationships = entityDescriptor.getManyToManyRelationships();
+		    
+		    while(manyToOneRelationships.hasNext()) {
+			    Relationship manyToOneRelationship = manyToOneRelationships.next();
+			    
+		        EntityDescriptor referedEntityDescriptor = manyToOneRelationship.getReferedEntityDescriptor();
+		        if (referedEntityDescriptor == null) {
+		            referedEntityDescriptor = DatabaseHandler.getEntityDescriptor(manyToOneRelationship.getReferTo());
+		            manyToOneRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
+		        }
+		        
+		        
+		        HybridSiminovData referedSiminovData = null;
+		        Iterator<HybridSiminovData> datas = siminovData.getDatas();
+		        
+		        while(datas.hasNext()) {
+			        HybridSiminovData siminovReferedData = datas.next();
+		            String referedClassName = hybridResourceManager.getMappedNativeClassName(siminovReferedData.getDataType());
+		            
+		            if(referedClassName.equalsIgnoreCase(manyToOneRelationship.getGetterReferMethodName())) {
+		                referedSiminovData = siminovReferedData;
+		                break;
+		            }
+		        }
+		        
+		        if(referedSiminovData == null) {
+		            Log.error(DatabaseHandler.class.getName(), "manyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		            throw new DatabaseException(DatabaseHandler.class.getName(), "manyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		        }
+		        
+		        
+		        RelationshipHelper.processOneToOneRelationship(referedSiminovData, parentSiminovData, data);
+		        RelationshipHelper.processManyToOneRelationship(referedSiminovData, parentSiminovData, data);
+		        RelationshipHelper.processManyToManyRelationship(referedSiminovData, parentSiminovData, data);
+		        
+		        
+		        if(manyToOneRelationship.isLoad()) {
+		            
+		            StringBuilder whereClause = new StringBuilder();
+		            
+		            Iterator<String> foreignKeys = DatabaseHandler.getPrimaryKeysRaw(referedEntityDescriptor);
+		            while(foreignKeys.hasNext()) {
+			            String foreignKey = foreignKeys.next();
+			            
+		                Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
+		                Object columnValue = data.get(attribute.getColumnName());
+		                
+		                if(whereClause.length() <= 0) {
+		                    whereClause.append(foreignKey + "='" + columnValue + "'");
+		                } else {
+		                    whereClause.append(" AND " + foreignKey + "='" + columnValue + "'");
+		                }
+		            }
+		            
+		            
+		            HybridSiminovDatas fetchedObjects = DatabaseHandler.selectDatas(referedEntityDescriptor, Boolean.valueOf(false), whereClause.toString(), null, null, null, null, null, null);
+		            referedSiminovData = fetchedObjects.getHybridSiminovDatas().next();
+		            
+		        } else {
+		            
+		            Iterator<String> foreignKeys = DatabaseHandler.getPrimaryKeysRaw(referedEntityDescriptor);
+		            while(foreignKeys.hasNext()) {
+			            String foreignKey = foreignKeys.next();
+			            
+		                Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
+		                
+		                Object columnValue = data.get(attribute.getColumnName());
+		                if(columnValue == null) {
+		                    continue;
+		                }
+		                
+		                HybridSiminovValue value = new HybridSiminovValue();
+		                value.setType(foreignKey);
+		                value.setValue((String) columnValue);
+		            }
+		        }
+		        
+		        if(referedSiminovData == null) {
+		            Log.error(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		            throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		        }
+		        
+		        siminovData.addData(referedSiminovData);
+		    }
+		}
+
+
+		private static void processManyToManyRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, Collection<String> columnNames, Collection<Object> columnValues) throws DatabaseException {
+		    
+		    EntityDescriptor entityDescriptor = DatabaseHandler.getEntityDescriptor(siminovData.getDataType());
+		    Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
+		    
+		    while(manyToManyRelationships.hasNext()) {
+			    Relationship manyToManyRelationship = manyToManyRelationships.next();
+			    
+		        EntityDescriptor referedEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
+		        if (referedEntityDescriptor == null) {
+		            referedEntityDescriptor = DatabaseHandler.getEntityDescriptor(manyToManyRelationship.getReferTo());
+		            manyToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
+		        }
+		        
+		        
+		        HybridSiminovData referedSiminovData = null;
+		        Iterator<HybridSiminovData> datas = siminovData.getDatas();
+		        
+		        while(datas.hasNext()) {
+			        HybridSiminovData siminovReferedData = datas.next();
+			        
+		            String referedClassName = hybridResourceManager.getMappedNativeClassName(siminovReferedData.getDataType());
+		            
+		            if(referedClassName.equalsIgnoreCase(manyToManyRelationship.getGetterReferMethodName())) {
+		                referedSiminovData = siminovReferedData;
+		                break;
+		            }
+		        }
+		        
+		        if(referedSiminovData == null) {
+		            Log.error(DatabaseHandler.class.getName(), "manyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		            throw new DatabaseException(DatabaseHandler.class.getName(), "manyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		        }
+		        
+		        RelationshipHelper.processRelationship(referedSiminovData, parentSiminovData, columnNames, columnValues);
+		        
+		        
+		        Iterator<HybridSiminovValue> hybridValues = referedSiminovData.getValues();
+		        
+		        Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
+		        while(hybridValues.hasNext()) {
+			        HybridSiminovValue hybridSiminovValue = hybridValues.next();
+		            hybridSiminovValues.put(hybridSiminovValue.getType(), hybridSiminovValue);
+		        }
+		        
+		        Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
+		        while(parentAttributes.hasNext()) {
+			        Attribute attribute = parentAttributes.next();
+			        
+		            boolean isPrimary = attribute.isPrimaryKey();
+		            if(isPrimary) {
+		                columnNames.add(attribute.getColumnName());
+		                columnValues.add(hybridSiminovValues.get(attribute.getVariableName()).getValue());
+		            }
+		        }
+		    }
+		}
+
+		private static void processManyToManyRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, StringBuilder whereClause) throws DatabaseException {
+		    
+		    EntityDescriptor entityDescriptor = DatabaseHandler.getEntityDescriptor(siminovData.getDataType());
+		    Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
+		    
+		    while(manyToManyRelationships.hasNext()) {
+			    Relationship manyToManyRelationship = manyToManyRelationships.next();
+			    
+		        EntityDescriptor referedEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
+		        if (referedEntityDescriptor == null) {
+		            referedEntityDescriptor = DatabaseHandler.getEntityDescriptor(manyToManyRelationship.getReferTo());
+		            manyToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
+		        }
+		        
+		        
+		        HybridSiminovData referedSiminovData = null;
+		        Iterator<HybridSiminovData> datas = siminovData.getDatas();
+		        
+		        while(datas.hasNext()) {
+			        HybridSiminovData siminovReferedData = datas.next();
+			        
+		            String referedClassName = hybridResourceManager.getMappedNativeClassName(siminovReferedData.getDataType());
+		            
+		            if(referedClassName.equalsIgnoreCase(manyToManyRelationship.getGetterReferMethodName())) {
+		                referedSiminovData = siminovReferedData;
+		                break;
+		            }
+		        }
+		        
+		        if(referedSiminovData == null) {
+		            Log.error(DatabaseHandler.class.getName(), "manyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		            throw new DatabaseException(DatabaseHandler.class.getName(), "manyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		        }
+		        
+		        
+		        RelationshipHelper.processRelationship(referedSiminovData, parentSiminovData, whereClause);
+		        
+		        Iterator<HybridSiminovValue> hybridValues = referedSiminovData.getValues();
+		        
+		        Map<String, HybridSiminovValue> hybridSiminovValues = new HashMap<String, HybridSiminovValue>();
+		        while(hybridValues.hasNext()) {
+			        HybridSiminovValue hybridSiminovValue = hybridValues.next();
+		            hybridSiminovValues.put(hybridSiminovValue.getType(), hybridSiminovValue);
+		        }
+		        
+		        Iterator<Attribute> parentAttributes = referedEntityDescriptor.getAttributes();
+		        while(parentAttributes.hasNext()) {
+			        Attribute attribute = parentAttributes.next();
+			        
+		            boolean isPrimary = attribute.isPrimaryKey();
+		            if(isPrimary) {
+		                String columnName = attribute.getColumnName();
+		                String columnValue = hybridSiminovValues.get(attribute.getVariableName()).getValue();
+		                
+		                if (whereClause.length() <= 0) {
+		                    whereClause.append(columnName + "= '" + columnValue + "'");
+		                } else {
+		                    whereClause.append(" AND " + columnName + "= '" + columnValue + "'");
+		                }
+		            }
+		        }
+		    }
+		}
+
+		private static void processManyToManyRelationship(HybridSiminovData siminovData, HybridSiminovData parentSiminovData, Map<String, Object> data) throws DatabaseException {
+		    
+		    EntityDescriptor entityDescriptor = DatabaseHandler.getEntityDescriptor(siminovData.getDataType());
+		    Iterator<Relationship> manyToManyRelationships = entityDescriptor.getManyToManyRelationships();
+		    
+		    while(manyToManyRelationships.hasNext()) {
+			    Relationship manyToManyRelationship = manyToManyRelationships.next();
+			    
+		        EntityDescriptor referedEntityDescriptor = manyToManyRelationship.getReferedEntityDescriptor();
+		        if (referedEntityDescriptor == null) {
+		            referedEntityDescriptor = DatabaseHandler.getEntityDescriptor(manyToManyRelationship.getReferTo());
+		            manyToManyRelationship.setReferedEntityDescriptor(referedEntityDescriptor);
+		        }
+		        
+		        HybridSiminovData referedObject = null;
+		        Iterator<HybridSiminovData> datas = siminovData.getDatas();
+		        
+		        while(datas.hasNext()) {
+			        HybridSiminovData siminovReferedData = datas.next();
+			        
+		            String referedClassName = hybridResourceManager.getMappedNativeClassName(siminovReferedData.getDataType());
+		            
+		            if(referedClassName.equalsIgnoreCase(manyToManyRelationship.getGetterReferMethodName())) {
+		            	referedObject = siminovReferedData;
+		                break;
+		            }
+		        }
+		        
+		        if(referedObject == null) {
+		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		            //@throw [[SICDatabaseException alloc]initWithClassName:NSStringFromClass([self class]) methodName:@"processManyToManyRelationship" message:[NSString stringWithFormat:@"Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: %@",[manyToManyRelationship getReferTo]]];
+		            
+		            return;
+		        }
+		        
+		        RelationshipHelper.processRelationship(referedObject, parentSiminovData, data);
+		        
+		        if(manyToManyRelationship.isLoad()) {
+		            
+		            StringBuilder whereClause = new StringBuilder();
+		            Iterator<String> foreignKeys = DatabaseHandler.getPrimaryKeysRaw(referedEntityDescriptor);
+		            
+		            while(foreignKeys.hasNext()) {
+			            String foreignKey = foreignKeys.next();
+		                
+		                Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
+		                Object columnValue = data.get(attribute.getColumnName());
+		                
+		                if(whereClause.length() <= 0) {
+		                    whereClause.append(foreignKey = "='" + columnValue + "'");
+		                } else {
+		                    whereClause.append(" AND " + foreignKey + "='" + columnValue + "'");
+		                }
+		            }
+		            
+		            
+		            HybridSiminovDatas fetchedObjects = DatabaseHandler.selectDatas(referedEntityDescriptor, Boolean.FALSE, whereClause.toString(), null, null, null, null, null, null);
+		            
+		            referedObject = fetchedObjects.getHybridSiminovDatas().next();
+		            
+		        } else {
+		            
+		            
+		            Iterator<String> foreignKeys = DatabaseHandler.getPrimaryKeysRaw(referedEntityDescriptor);
+		            while(foreignKeys.hasNext()) {
+			            String foreignKey = foreignKeys.next();
+			            
+		                Attribute attribute = referedEntityDescriptor.getAttributeBasedOnColumnName(foreignKey);
+		                
+		                Object columnValue = data.get(attribute.getColumnName());
+		                if(columnValue == null) {
+		                    continue;
+		                }
+		                
+		                HybridSiminovValue value = new HybridSiminovValue();
+		                value.setType(foreignKey);
+		                value.setValue((String) columnValue);
+		            }
+		        }
+		        
+		        if(referedObject == null) {
+		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		            throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		        }
+		        
+		        siminovData.addData(referedObject);
+		    }
 		}
 	}
 }

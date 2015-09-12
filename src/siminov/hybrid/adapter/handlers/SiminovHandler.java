@@ -29,6 +29,7 @@ import siminov.core.exception.SiminovException;
 import siminov.core.log.Log;
 import siminov.core.utils.ClassUtils;
 import siminov.hybrid.Constants;
+import siminov.hybrid.adapter.Adapter;
 import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.IAdapter;
@@ -66,7 +67,35 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 	
 	@JavascriptInterface
 	public String handleHybridToNative(final String action, final String data) {
+		return processHandler(action, data);
+	}
+	
+	public String handleHybridToNativeAsync(final String requestId, final String action, final String data) {
+		
+		Runnable requestRunnable = new Runnable() {
+			
+			public void run() {
+				
+				String responseData = processHandler(action, data);
+				handleNativeToHybridAsync(requestId, responseData);
+			}
+		};
+		
+		Thread requestThread = new Thread(requestRunnable);
+		requestThread.start();
+		
+		return generateHybridSiminovEmptyData();
+	}
+	
+	
+	private String processHandler(final String action, final String data) {
 
+		String adapterDescriptorName = action.substring(0, action.indexOf("."));
+		String handlerName = action.substring(action.indexOf(".") + 1, action.length());
+
+		final AdapterDescriptor adapterDescriptor = hybridResourceManager.getAdapterDescriptor(adapterDescriptorName);
+		final AdapterDescriptor.Handler handler = hybridResourceManager.getHandler(adapterDescriptorName, handlerName);
+		
 		HybridSiminovDataReader hybridSiminovDataParser = null; 
 		try {
 			hybridSiminovDataParser = new HybridSiminovDataReader(data);
@@ -84,12 +113,6 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 			String dataValue = hybridData.getDataValue();
 			parameterValues.add(dataValue);
 		}
-		
-		String adapterDescriptorName = action.substring(0, action.indexOf("."));
-		String handlerName = action.substring(action.indexOf(".") + 1, action.length());
-
-		AdapterDescriptor adapterDescriptor = hybridResourceManager.getAdapterDescriptor(adapterDescriptorName);
-		AdapterDescriptor.Handler handler = hybridResourceManager.getHandler(adapterDescriptorName, handlerName);
 		
 		Iterator<Parameter> parameters = handler.getParameters();
 		Class<?>[] parameterTypes = getParameterTypes(parameters);
@@ -129,9 +152,30 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 		}
 			
 		return generateHybridSiminovEmptyData();
-
 	}
-
+	
+	
+	public void handleNativeToHybridAsync(final String requestId, final String...data) {
+		
+		AdapterDescriptor adapterDescriptor = hybridResourceManager.getAdapterDescriptor(Constants.NATIVE_TO_HYBRID_ADAPTER);
+		Handler handler = hybridResourceManager.getHandler(Constants.NATIVE_TO_HYBRID_ADAPTER, Constants.NATIVE_TO_HYBRID_ADAPTER_ASYNC_HANDLER);
+	
+		String parameters = "";
+		if(data != null && data.length > 0) {
+			for(int i = 0; i < data.length; i++) {
+				if(i == 0) {
+					parameters += "'" + data[i] + "'";
+					continue;
+				} 
+				
+				parameters += ", '" + data[i] + "'";
+			}
+		}
+		
+		
+		handleNativeToHybrid(adapterDescriptor.getMapTo(), handler.getMapTo(), requestId, parameters);
+	}
+	
 	@JavascriptInterface
 	public void handleNativeToHybrid(final String action, final String...data) {
 
@@ -146,7 +190,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 					continue;
 				} 
 				
-				parameters += ", '" + data[i] + "',";
+				parameters += ", '" + data[i] + "'";
 			}
 		}
 		
@@ -174,30 +218,28 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 			invokeAction += "." + invokeHandler.getMapTo();
 		}
 		
+		handleNativeToHybrid(adapterDescriptor.getMapTo(), handler.getMapTo(), invokeAction, parameters);
+	}
 
-		final AdapterDescriptor finalAdapter = adapterDescriptor;
-		final Handler finalHandler = handler;
-		final String finalInvokeAction = invokeAction;
-		final String finalParameters = parameters;
+	
+	private void handleNativeToHybrid(final String functionName, final String apiName, final String action, final String parameters) {
 		
 		Activity webActivity = hybridResourceManager.getWebActivity();
 		webActivity.runOnUiThread(new Runnable() {
 			
 			public void run() {
 				
-				if(finalAdapter.getMapTo() != null && finalAdapter.getMapTo().length() > 0 && finalHandler.getMapTo() != null && finalHandler.getMapTo().length() > 0) {
-					hybridResourceManager.getWebView().loadUrl("javascript: new " + finalAdapter.getMapTo() + "()." + finalHandler.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
-				} else if(finalAdapter.getMapTo() != null && finalAdapter.getMapTo().length() > 0) {
-					hybridResourceManager.getWebView().loadUrl("javascript:" + finalAdapter.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
-				} else if(finalHandler.getMapTo() != null && finalHandler.getMapTo().length() > 0) {
-					hybridResourceManager.getWebView().loadUrl("javascript:" + finalHandler.getMapTo() + "('" + finalInvokeAction + "', " + finalParameters + ");");
+				if(functionName != null && functionName.length() > 0 && apiName != null && apiName.length() > 0) {
+					hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "." + apiName + "('" + action + "', " + parameters + ");");
+				} else if(functionName != null && functionName.length() > 0) {
+					hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "('" + action + "', " + parameters + ");");
+				} else if(functionName != null && apiName.length() > 0) {
+					hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "('" + action + "', " + parameters + ");");
 				}
 			}
 		});
-
-		
 	}
-
+	
 	private Object[] createAndInflateParameter(Class<?>[] parameterTypes, Iterator<String> parameterValues) throws SiminovException {
 		
 		Collection<Object> parameters = new LinkedList<Object> ();
