@@ -28,6 +28,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
+import android.R.attr;
 import siminov.core.Constants;
 import siminov.core.database.DatabaseBundle;
 import siminov.core.database.design.IDatabaseImpl;
@@ -2132,11 +2133,14 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        while(foreignKeys.hasNext()) {
 			        String foreignKey = foreignKeys.next();
+		            Attribute attribute = entityDescriptor.getAttributeBasedOnColumnName(foreignKey);
+			        
+		            if(attribute == null) {
+		            	continue;
+		            }
 		            
-		            String columnValue;
-		            
-		            HybridSiminovValue value = siminovData.getValueBasedOnType(foreignKey);
-		            columnValue = value.getValue();
+		            HybridSiminovValue value = siminovData.getValueBasedOnType(attribute.getVariableName());
+		            String columnValue = value.getValue();
 		            
 		            if(whereClause.length() <= 0) {
 		                whereClause.append(foreignKey + "='" + columnValue + "'");
@@ -2187,11 +2191,14 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        while(foreignKeys.hasNext()) {
 			        String foreignKey = foreignKeys.next();
+			        Attribute attribute = entityDescriptor.getAttributeBasedOnColumnName(foreignKey);
 		            
-		            String columnValue = null;
-		            
-		            HybridSiminovValue value = siminovData.getValueBasedOnType(foreignKey);
-		            columnValue = value.getValue();
+			        if(attribute == null) {
+			        	continue;
+			        }
+			        
+		            HybridSiminovValue value = siminovData.getValueBasedOnType(attribute.getVariableName());
+		            String columnValue = value.getValue();
 		            
 		            if(whereClause.length() <= 0) {
 		                whereClause.append(foreignKey + "='" + columnValue + "'");
@@ -2261,9 +2268,7 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        if(referedSiminovData == null) {
 		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + oneToOneRelationship.getReferTo());
-		            
 		            continue;
-		            //@throw [[SICDatabaseException alloc] initWithClassName:NSStringFromClass([SIHDatabaseHandler class]) methodName:@"processManyToManyRelationship" message:[NSString stringWithFormat:@"Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: %@", [oneToOneRelationship getReferTo]]];
 		        }
 		        
 		        
@@ -2330,15 +2335,12 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        if(referedSiminovData == null) {
 		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
-		            
 		            continue;
-		            //@throw [[SICDatabaseException alloc] initWithClassName:NSStringFromClass([SIHDatabaseHandler class]) methodName:@"processManyToManyRelationship" message:[NSString stringWithFormat:@"Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: %@", [manyToOneRelationship getReferTo]]];
 		        }
 		        
 		        
 		        
 		        RelationshipHelper.processOneToOneRelationship(siminovData, parentSiminovData, columnNames, columnValues);
-		        RelationshipHelper.processManyToOneRelationship(siminovData, parentSiminovData, columnNames, columnValues);
 		        RelationshipHelper.processManyToManyRelationship(siminovData, parentSiminovData, columnNames, columnValues);
 		        
 		        
@@ -2395,7 +2397,7 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        if(referedSiminovData == null) {
 		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + oneToOneRelationship.getReferTo());
-		            throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + oneToOneRelationship.getReferTo());
+		            continue;
 		        }
 		        
 		        
@@ -2468,14 +2470,11 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        if(referedSiminovData == null) {
 		            Log.error(DatabaseHandler.class.getName(), "manyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
-		            
 		            continue;
-		            //@throw [[SICDatabaseException alloc] initWithClassName:NSStringFromClass([SIHDatabaseHandler class]) methodName:@"manyToOneRelationship" message:[NSString stringWithFormat:@"Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: %@", [manyToOneRelationship getReferTo]]];
 		        }
 		        
 		        
 		        RelationshipHelper.processOneToOneRelationship(referedSiminovData, parentSiminovData, whereClause);
-		        RelationshipHelper.processManyToOneRelationship(referedSiminovData, parentSiminovData, whereClause);
 		        RelationshipHelper.processManyToManyRelationship(referedSiminovData, parentSiminovData, whereClause);
 		        
 		        
@@ -2547,12 +2546,11 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        if(referedSiminovData == null) {
 		            Log.error(DatabaseHandler.class.getName(), "manyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
-		            throw new DatabaseException(DatabaseHandler.class.getName(), "manyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		            continue;
 		        }
 		        
 		        
 		        RelationshipHelper.processOneToOneRelationship(referedSiminovData, parentSiminovData, data);
-		        RelationshipHelper.processManyToOneRelationship(referedSiminovData, parentSiminovData, data);
 		        RelationshipHelper.processManyToManyRelationship(referedSiminovData, parentSiminovData, data);
 		        
 		        
@@ -2599,7 +2597,7 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        if(referedSiminovData == null) {
 		            Log.error(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
-		            throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToOneRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		            continue;
 		        }
 		        
 		        siminovData.addData(referedSiminovData);
@@ -2638,7 +2636,7 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        if(referedSiminovData == null) {
 		            Log.error(DatabaseHandler.class.getName(), "manyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
-		            throw new DatabaseException(DatabaseHandler.class.getName(), "manyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		            continue;
 		        }
 		        
 		        RelationshipHelper.processRelationship(referedSiminovData, parentSiminovData, columnNames, columnValues);
@@ -2696,7 +2694,7 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        if(referedSiminovData == null) {
 		            Log.error(DatabaseHandler.class.getName(), "manyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
-		            throw new DatabaseException(DatabaseHandler.class.getName(), "manyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		            continue;
 		        }
 		        
 		        
@@ -2759,9 +2757,7 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        if(referedObject == null) {
 		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
-		            //@throw [[SICDatabaseException alloc]initWithClassName:NSStringFromClass([self class]) methodName:@"processManyToManyRelationship" message:[NSString stringWithFormat:@"Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: %@",[manyToManyRelationship getReferTo]]];
-		            
-		            return;
+		            continue;
 		        }
 		        
 		        RelationshipHelper.processRelationship(referedObject, parentSiminovData, data);
@@ -2811,7 +2807,7 @@ public class DatabaseHandler implements IAdapter {
 		        
 		        if(referedObject == null) {
 		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
-		            throw new DatabaseException(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Unable To Create Parent Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		            continue;
 		        }
 		        
 		        siminovData.addData(referedObject);
