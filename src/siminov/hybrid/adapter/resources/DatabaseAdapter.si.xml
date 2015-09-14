@@ -623,7 +623,7 @@
             
             <return>
                 
-                <type>java.lang.integer</type>
+                <type>string</type>
                 <description>GroupConcat</description>
                 
             </return>
