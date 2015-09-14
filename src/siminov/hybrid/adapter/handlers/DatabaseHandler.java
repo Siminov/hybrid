@@ -454,7 +454,7 @@ public class DatabaseHandler implements IAdapter {
 			return;
 		}
 		
-		deleteData(null, null, whereClause);
+		deleteData(className, null, whereClause);
 	}
 
 	private void deleteDatas(final HybridSiminovDatas hybridSiminovDatas) throws DatabaseException {
@@ -501,26 +501,29 @@ public class DatabaseHandler implements IAdapter {
 	
 			
 			RelationshipHelper.processRelationship(hybridSiminovData, null, whereClause);
-			deleteData(hybridSiminovData, null, whereClause.toString());
+			deleteData(hybridSiminovData.getDataType(), null, whereClause.toString());
 		}
 	}
 
-	private void deleteData(final HybridSiminovData hybridSiminovData, final HybridSiminovDatas parentHybridSiminovData, final String whereClause) throws DatabaseException {
+	private void deleteData(String className, HybridSiminovDatas parentHybridSiminovData, String whereClause) throws DatabaseException {
 		
-		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(hybridSiminovData.getDataType());
-		EntityDescriptor entityDescriptor = getEntityDescriptor(hybridSiminovData.getDataType());
+		DatabaseDescriptor databaseDescriptor = getDatabaseDescriptor(className);
+		EntityDescriptor entityDescriptor = getEntityDescriptor(className);
 		
 		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptor.getDatabaseName());
 		IDatabaseImpl database = databaseBundle.getDatabase();
 		IQueryBuilder queryBuilder = databaseBundle.getQueryBuilder();
 		
+		if(whereClause == null) {
+			whereClause = new String();
+		}
 		
 		/*
 		 * Add Parameters
 		 */
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put(IQueryBuilder.FORM_DELETE_QUERY_TABLE_NAME_PARAMETER, entityDescriptor.getTableName());
-		parameters.put(IQueryBuilder.FORM_DELETE_QUERY_WHERE_CLAUSE_PARAMETER, whereClause.toString());
+		parameters.put(IQueryBuilder.FORM_DELETE_QUERY_WHERE_CLAUSE_PARAMETER, whereClause);
 		
 		
 		String query = queryBuilder.formDeleteQuery(parameters);
