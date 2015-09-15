@@ -74,7 +74,62 @@
 	      	</return>
             
         </handler>        
-        
+
+		<handler>
+            
+            <property name="name">GET-DATABASE-DESCRIPTOR-BASED-ON-CLASS-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseDescriptorBasedOnClassName</property>
+            <property name="description">Get Database Descriptor Based On Class Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">string</property>
+                	<property name="description">Entity Descriptor Class Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">string</property>
+	                <property name="description">Database Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>        
+		
+		<handler>
+            
+            <property name="name">GET-DATABASE-DESCRIPTOR-BASED-ON-TABLE-NAME</property>
+            <property name="type">SYNC</property>
+            <property name="map_to">getDatabaseDescriptorBasedOnTableName</property>
+            <property name="description">Get Database Descriptor Based On Table Name</property>
+
+            <parameters>
+            
+                <parameter>
+                
+                	<property name="type">string</property>
+                	<property name="description">Entity Descriptor Table Name</property>
+                	
+            	</parameter>
+			
+			</parameters>
+                            
+			<return>
+	        
+			    	<property name="type">string</property>
+	                <property name="description">Database Descriptor</property>
+	                
+	      	</return>
+            
+        </handler>        
+					
+			
         <handler>
             
             <property name="name">GET-ENTITY-DESCRIPTOR-BASED-ON-CLASS-NAME</property>

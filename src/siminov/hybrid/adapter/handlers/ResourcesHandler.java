@@ -148,6 +148,33 @@ public class ResourcesHandler implements IAdapter {
 		return HybridSiminovDataWritter.jsonBuidler(hybridDatabaseDescriptors);
 	}
 	
+	
+	public String getDatabaseDescriptorBasedOnClassName(String className) throws SiminovException {
+		
+		DatabaseDescriptor databaseDescriptor = coreResourceManager.getDatabaseDescriptorBasedOnClassName(className);
+		
+		HybridSiminovDatas hybridDatabaseDescriptors = new HybridSiminovDatas();
+		HybridSiminovData hybridDatabaseDescriptor = hybridResourceManager.generateHybridDatabaseDescriptor(databaseDescriptor);
+		
+		hybridDatabaseDescriptors.addHybridSiminovData(hybridDatabaseDescriptor);
+		
+		return HybridSiminovDataWritter.jsonBuidler(hybridDatabaseDescriptors);
+	}
+	
+	public String getDatabaseDescriptorBasedOnTableName(String tableName) throws SiminovException {
+		
+		DatabaseDescriptor databaseDescriptor = coreResourceManager.getDatabaseDescriptorBasedOnTableName(tableName);
+		
+		HybridSiminovDatas hybridDatabaseDescriptors = new HybridSiminovDatas();
+		HybridSiminovData hybridDatabaseDescriptor = hybridResourceManager.generateHybridDatabaseDescriptor(databaseDescriptor);
+		
+		hybridDatabaseDescriptors.addHybridSiminovData(hybridDatabaseDescriptor);
+		
+		return HybridSiminovDataWritter.jsonBuidler(hybridDatabaseDescriptors);
+	}
+	
+	
+	
 	/**
 	 * Handle Get Entity Descriptor Based On Hybrid Model Class Name.
 	 * @param className Name of Hybrid Model Class.

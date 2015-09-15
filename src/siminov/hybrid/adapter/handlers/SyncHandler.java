@@ -45,11 +45,13 @@ public class SyncHandler implements IAdapter {
 	public void handle(String data) throws SyncException {
 		
 		HybridSiminovDataReader hybridSiminovDataParser = null; 
-		data = URLDecoder.decode(data);
 		
 		try {
+			data = URLDecoder.decode(data, "UTF-8");
+			data = URLDecoder.decode(data, "UTF-8");
+
 			hybridSiminovDataParser = new HybridSiminovDataReader(data);
-		} catch(SiminovException siminovException) {
+		} catch(Exception siminovException) {
 			Log.error(DatabaseHandler.class.getName(), "handle", "SiminovException caught while parsing js core data, " + siminovException.getMessage());
 		}
 		
