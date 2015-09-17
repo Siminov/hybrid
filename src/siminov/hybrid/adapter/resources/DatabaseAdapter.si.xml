@@ -845,8 +845,34 @@
         	</parameters>
             
 		</handler>
-        				
-        
+        					
+		<handler>
+            
+            <property name="name">BEGIN-TRANSACTION-ASYNC</property>
+            <property name="type">ASYNC</property>
+            <property name="map_to">beginTransactionAsync</property>
+            <property name="description">Begin Transaction Async</property>
+            
+            <parameters>
+                
+                <parameter>
+                    
+                    <property name="type">string</property>
+                    <property name="description">Class Name</property>
+                    
+                </parameter>
+
+                <parameter>
+                    
+                    <property name="type">string</property>
+                    <property name="description">Data</property>
+                    
+                </parameter>
+                
+        	</parameters>
+            
+		</handler>
+		        
         <handler>
             
             <property name="name">COMMIT-TRANSACTION</property>

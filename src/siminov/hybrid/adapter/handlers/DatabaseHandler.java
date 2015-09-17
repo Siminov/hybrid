@@ -19,6 +19,7 @@
 
 package siminov.hybrid.adapter.handlers;
 
+import java.lang.reflect.Array;
 import java.net.URLDecoder;
 import java.sql.Blob;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import siminov.core.Constants;
 import siminov.core.database.DatabaseBundle;
@@ -41,6 +43,7 @@ import siminov.core.model.EntityDescriptor;
 import siminov.core.model.EntityDescriptor.Attribute;
 import siminov.core.model.EntityDescriptor.Relationship;
 import siminov.core.resource.ResourceManager;
+import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.IAdapter;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
@@ -710,6 +713,19 @@ public class DatabaseHandler implements IAdapter {
 		
 	}
 
+	
+	public void beginTransactionAsync(String databaseDescriptorName, String data) throws DatabaseException {
+		
+		data = URLDecoder.decode(data);
+
+		beginTransaction(databaseDescriptorName);
+		
+		String[] splitStrings = data.split(siminov.hybrid.Constants.BEGIN_TRANSACTION_ASYNC_DELIMITER);
+		
+		//HybridSiminovDatas hybridSiminovDatas = parseHybridSiminovDatas(data);
+		
+		commitTransaction(databaseDescriptorName);
+	}
 	
 	/**
 	 * Handles Database Commit Transaction Request From Hybrid.

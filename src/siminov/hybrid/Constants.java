@@ -256,4 +256,6 @@ public interface Constants {
 	
 	public String REQUEST_ASYNC_MODE = "ASYNC";
 
+	
+	public String BEGIN_TRANSACTION_ASYNC_DELIMITER = "{\\'siminov-hybrid-data\\':{\\'data\\':[{\\'-type\\':\\'Adapter\\'";
 }

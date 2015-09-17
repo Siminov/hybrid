@@ -25,11 +25,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
+import android.app.Activity;
+import android.webkit.JavascriptInterface;
 import siminov.core.exception.SiminovException;
 import siminov.core.log.Log;
 import siminov.core.utils.ClassUtils;
 import siminov.hybrid.Constants;
-import siminov.hybrid.adapter.Adapter;
 import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.IAdapter;
@@ -45,8 +46,6 @@ import siminov.hybrid.reader.HybridSiminovDataReader;
 import siminov.hybrid.resource.ResourceManager;
 import siminov.hybrid.utils.DataTypeHandler;
 import siminov.hybrid.writter.HybridSiminovDataWritter;
-import android.app.Activity;
-import android.webkit.JavascriptInterface;
 
 
 /**
@@ -70,6 +69,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 		return processHandler(action, data);
 	}
 	
+	@JavascriptInterface
 	public String handleHybridToNativeAsync(final String requestId, final String action, final String data) {
 		
 		Runnable requestRunnable = new Runnable() {
@@ -100,7 +100,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 		try {
 			hybridSiminovDataParser = new HybridSiminovDataReader(data);
 		} catch(SiminovException siminovException) {
-			Log.error(AdapterHandler.class.getName(), "handleJSToNative", "SiminovException caught while parsing siminov hybrid data, " + siminovException.getMessage());
+			Log.error(AdapterHandler.class.getName(), "processHandler", "SiminovException caught while parsing siminov hybrid data, " + siminovException.getMessage());
 		}
 		
 		HybridSiminovDatas hybridSiminovDatas = hybridSiminovDataParser.getDatas();
@@ -120,7 +120,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 		try {
 			parameterObjects = createAndInflateParameter(parameterTypes, parameterValues.iterator());
 		} catch(SiminovException siminovException) {
-			Log.error(AdapterHandler.class.getName(), "", "SiminovException caught while create and inflate parameters, " + siminovException.getMessage());
+			Log.error(AdapterHandler.class.getName(), "processHandler", "SiminovException caught while create and inflate parameters, " + siminovException.getMessage());
 		}
 		
 

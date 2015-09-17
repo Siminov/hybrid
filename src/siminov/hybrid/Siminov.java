@@ -345,10 +345,10 @@ public class Siminov extends siminov.connect.Siminov {
 	 */
 	protected static void siminovInitialized() {
 		
-		processServices();
-		
 		isActive = true;
 		siminov.core.Siminov.isActive = true;
+
+		processServices();
 		
 		ISiminovEvents coreEventHandler = coreResourceManager.getSiminovEventHandler();
 		if(coreResourceManager.getSiminovEventHandler() != null) {
