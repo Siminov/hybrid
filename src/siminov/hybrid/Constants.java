@@ -257,5 +257,23 @@ public interface Constants {
 	public String REQUEST_ASYNC_MODE = "ASYNC";
 
 	
-	public String BEGIN_TRANSACTION_ASYNC_DELIMITER = "{\\'siminov-hybrid-data\\':{\\'data\\':[{\\'-type\\':\\'Adapter\\'";
+	/**
+	 * Database Transaction Async Constants
+	 */
+	
+	public String BEGIN_TRANSACTION_ASYNC_DELIMITER_WITHOUT_SPECIAL_CHARS = "\\{'siminov\\-hybrid\\-data'\\:\\{'data':\\[\\{'\\-type'\\:'Adapter'";
+	
+	public String BEGIN_TRANSACTION_ASYNC_DELIMITER = "{'siminov-hybrid-data':{'data':[{'-type':'Adapter'";
+	
+	public String DATABASE_ADAPTER = "DATABASE";
+	
+	public String DATABASE_ADAPTER_SAVE_HANDLER = "SAVE";
+	
+	public String DATABASE_ADAPTER_UPDATE_HANDLER = "UPDATE";
+	
+	public String DATABASE_ADAPTER_SAVE_OR_UPDATE_HANDLER = "SAVE-OR-UPDATE";
+	
+	public String DATABASE_ADAPTER_DELETE_HANDLER = "DELETE";
+	
+	
 }

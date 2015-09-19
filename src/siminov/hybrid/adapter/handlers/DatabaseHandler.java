@@ -19,7 +19,6 @@
 
 package siminov.hybrid.adapter.handlers;
 
-import java.lang.reflect.Array;
 import java.net.URLDecoder;
 import java.sql.Blob;
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import siminov.core.Constants;
 import siminov.core.database.DatabaseBundle;
@@ -43,8 +41,8 @@ import siminov.core.model.EntityDescriptor;
 import siminov.core.model.EntityDescriptor.Attribute;
 import siminov.core.model.EntityDescriptor.Relationship;
 import siminov.core.resource.ResourceManager;
-import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.IAdapter;
+import siminov.hybrid.adapter.constants.HybridAdapter;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData.HybridSiminovValue;
@@ -720,9 +718,43 @@ public class DatabaseHandler implements IAdapter {
 
 		beginTransaction(databaseDescriptorName);
 		
-		String[] splitStrings = data.split(siminov.hybrid.Constants.BEGIN_TRANSACTION_ASYNC_DELIMITER);
+		String[] splitStrings = data.split(siminov.hybrid.Constants.BEGIN_TRANSACTION_ASYNC_DELIMITER_WITHOUT_SPECIAL_CHARS);
+		for(int i = 0;i < splitStrings.length;i++) {
+			
+			if(splitStrings[i].length() <= 0) {
+				continue;
+			}
+			
+			String request = siminov.hybrid.Constants.BEGIN_TRANSACTION_ASYNC_DELIMITER + splitStrings[i];
+			HybridSiminovDatas hybridSiminovDatas = parseHybridSiminovDatas(request);
+			
+			HybridSiminovData hybridAdapter = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(HybridAdapter.ADAPTER);
+			if(hybridAdapter == null) {
+				continue;
+			}
+			
+			HybridSiminovValue hybridAdapterName = hybridAdapter.getValueBasedOnType(HybridAdapter.ADAPTER_NAME);
+			HybridSiminovValue hybridHandlerName = hybridAdapter.getValueBasedOnType(HybridAdapter.HANDLER_NAME);
+			
+			HybridSiminovValue hybridParameters = hybridAdapter.getValueBasedOnType(HybridAdapter.PARAMETERS);
+
+			String adapterName = hybridAdapterName.getValue();
+			String handlerName = hybridHandlerName.getValue();
+			
+			String parameters = hybridParameters.getValue();
+			
+			HybridSiminovDatas hybridSiminovParameters = parseHybridSiminovDatas(parameters);
+			
+			if(!adapterName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER)) {
+				continue;
+			}
+			
+			if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_SAVE_OR_UPDATE_HANDLER)) {
+				saveOrUpdateDatas(hybridSiminovParameters);
+			}
+		}
+
 		
-		//HybridSiminovDatas hybridSiminovDatas = parseHybridSiminovDatas(data);
 		
 		commitTransaction(databaseDescriptorName);
 	}
@@ -744,31 +776,13 @@ public class DatabaseHandler implements IAdapter {
 
 		database.executeMethod(Constants.SQLITE_DATABASE_COMMIT_TRANSACTION, null);
 
-	}
-	
-	
-	/**
-	 * Handles Database End Transaction Request From Hybrid.
-	 * @param databaseDescriptorName Name of Database Descriptor.
-	 * @throws DatabaseException If any error occur while ending transaction.
-	 */
-	public void endTransaction(final String databaseDescriptorName) throws DatabaseException {
-		
-		DatabaseBundle databaseBundle = coreResourceManager.getDatabaseBundle(databaseDescriptorName);
-		IDatabaseImpl database = databaseBundle.getDatabase();
-
-		if(database == null) {
-			Log.error(DatabaseHandler.class.getName(), "endTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
-			throw new DeploymentException(DatabaseHandler.class.getName(), "endTransaction", "No Database Instance Found For CLASS: " + databaseDescriptorName);
-		}
-		
 		try {
 			database.executeMethod(Constants.SQLITE_DATABASE_END_TRANSACTION, null);
 		} catch(DatabaseException databaseException) {
 			Log.error(DatabaseHandler.class.getName(), "endTransaction", "DatabaseException caught while executing end transaction method, " + databaseException.getMessage());
 		}
 	}
-	
+
 	
 	/**
 	 * Handles Database Count Request From Hybrid.
