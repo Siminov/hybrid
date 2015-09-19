@@ -753,7 +753,6 @@ public class DatabaseHandler implements IAdapter {
 				saveOrUpdateDatas(hybridSiminovParameters);
 			}
 		}
-
 		
 		
 		commitTransaction(databaseDescriptorName);

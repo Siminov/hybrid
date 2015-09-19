@@ -893,28 +893,6 @@
             
 		</handler>
         
-        
-        <handler>
-            
-            <property name="name">END-TRANSACTION</property>
-            <property name="type">SYNC</property>
-            <property name="map_to">endTransaction</property>
-            <property name="description">End Transaction</property>
-            
-            <parameters>
-                
-                <parameter>
-                    
-                    <property name="type">string</property>
-                    <property name="description">Class Name</property>
-                    
-                </parameter>
-                
-        	</parameters>
-            
-		</handler>
-        
-        																		
     </handlers>
     
 </adapter-descriptor>
