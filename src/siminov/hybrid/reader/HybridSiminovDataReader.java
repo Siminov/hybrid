@@ -48,13 +48,12 @@ public class HybridSiminovDataReader implements Constants {
 		}
 		
 		JSONObject jsonData = toJSON(data);
-	
-		JSONObject hybridSiminovData = getJSONObject(HYBRID_SIMINOV_DATA, jsonData);
-		JSONArray datas = getJSONArray(HYBRID_SIMINOV_DATA_DATA, hybridSiminovData);
+		JSONArray datas = getJSONArray(HYBRID_SIMINOV_DATAS, jsonData);
 
 		try {
 			if(datas != null && datas.length() > 0) {
 				for(int i = 0;i < datas.length();i++) {
+					
 					JSONObject jsonObject = null;
 					try {
 						jsonObject = datas.getJSONObject(i);
@@ -81,28 +80,30 @@ public class HybridSiminovDataReader implements Constants {
 		
 		String dataType = null;
 		String dataValue = null;
+		
 		JSONArray values = null;
 		JSONArray innerDatas = null;
 		
 		Iterator<String> keys = data.keys();
 		while(keys.hasNext()) {
+			
 			String key = keys.next();
-			if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_JSON_TYPE)) {
+			if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_TYPE)) {
 				dataType = (String) getValue(key, data);
-			} else if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_JSON_CDATA_SECTION) || key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_JSON_TEXT)) { 
-				dataValue = (String) getValue(key, data);
 			} else if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_VALUE)) {
+				dataValue = (String) getValue(key, data);
+			} else if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_VALUES)) {
 				
 				try {
-					values = data.getJSONArray(HYBRID_SIMINOV_DATA_VALUE);
+					values = data.getJSONArray(HYBRID_SIMINOV_DATA_VALUES);
 				} catch(Exception exception) {
 					Log.error(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while getting values array, " + exception.getMessage());
 					throw new SiminovException(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while getting values array, " + exception.getMessage());
 				}
-			} else if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_DATA)) {
+			} else if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_DATAS)) {
 				
 				try {
-					innerDatas = data.getJSONArray(HYBRID_SIMINOV_DATA_DATA);
+					innerDatas = data.getJSONArray(HYBRID_SIMINOV_DATA_DATAS);
 				} catch(Exception exception) {
 					Log.error(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while getting datas array, " + exception.getMessage());
 					throw new SiminovException(HybridSiminovDataReader.class.getName(), "parseData", "Exception caught while getting datas array, " + exception.getMessage());
@@ -149,6 +150,7 @@ public class HybridSiminovDataReader implements Constants {
 		for(int i = 0;i < values.length();i++) {
 			
 			JSONObject jsonObject = null;
+			
 			try {
 				jsonObject = values.getJSONObject(i);
 			} catch(Exception exception) {
@@ -162,9 +164,10 @@ public class HybridSiminovDataReader implements Constants {
 			Iterator<String> keys = jsonObject.keys();
 			while(keys.hasNext()) {
 				String key = keys.next();
-				if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_JSON_TYPE)) {
+				
+				if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_VALUE_TYPE)) {
 					valueType = (String) getValue(key, jsonObject);
-				} else if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_JSON_TEXT)){
+				} else if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_VALUE_VALUE)){
 					value = (String) getValue(key, jsonObject);
 				}
 			}
@@ -174,9 +177,7 @@ public class HybridSiminovDataReader implements Constants {
 			hybridSiminovValue.setValue(value);
 			
 			hybridSiminovData.addValue(hybridSiminovValue);
-			
 		}
-		
 	}
 
 	private Object getValue(String name, JSONObject jsonObject) throws SiminovException {
@@ -189,23 +190,13 @@ public class HybridSiminovDataReader implements Constants {
 		}
 	}
 	
-	private JSONObject getJSONObject(String name, JSONObject jsonObject) throws SiminovException {
-		
-		try {
-			return jsonObject.getJSONObject(name);
-		} catch(Exception exception) {
-			Log.error(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting json object, " + exception.getMessage());
-			throw new SiminovException(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting json object, " + exception.getMessage());
-		}
-	}
-	
 	private JSONArray getJSONArray(String name, JSONObject jsonObject) throws SiminovException {
 		
 		try {
 			return jsonObject.getJSONArray(name);
 		} catch(Exception exception) {
-			Log.error(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting json array, " + exception.getMessage());
-			throw new SiminovException(HybridSiminovDataReader.class.getName(), "", "Exception caught while getting json array, " + exception.getMessage());
+			Log.error(HybridSiminovDataReader.class.getName(), "getJSONArray", "Exception caught while getting json array, " + exception.getMessage());
+			throw new SiminovException(HybridSiminovDataReader.class.getName(), "getJSONArray", "Exception caught while getting json array, " + exception.getMessage());
 		}
 	}
 	
@@ -231,5 +222,4 @@ public class HybridSiminovDataReader implements Constants {
 	public HybridSiminovDatas getDatas() {
 		return this.hybridSiminovDatas;
 	}
-	
 }

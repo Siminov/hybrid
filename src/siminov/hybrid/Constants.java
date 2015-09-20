@@ -145,34 +145,28 @@ public interface Constants {
 	/**
 	 * Hybrid Siminov Data TAG.
 	 */
-	public String HYBRID_SIMINOV_DATA = "siminov-hybrid-data";
+	public String HYBRID_SIMINOV_DATAS = "datas";
+
+	public String HYBRID_SIMINOV_DATA_TYPE = "type";
+
+	public String HYBRID_SIMINOV_DATA_DATAS = "datas";
 	
-	/**
-	 * Hybrid Siminov Data DATA TAG.
-	 */
-	public String HYBRID_SIMINOV_DATA_DATA = "data";
-	
+	public String HYBRID_SIMINOV_DATA_VALUE = "value";
 	
 	/**
 	 * Hybrid Siminov Data VALUE TAG.
 	 */
-	public String HYBRID_SIMINOV_DATA_VALUE = "value";
-	
+	public String HYBRID_SIMINOV_DATA_VALUES = "values";
 	
 	/**
 	 * Hybrid Siminov Data JSON TEXT TAG.
 	 */
-	public String HYBRID_SIMINOV_DATA_JSON_TEXT = "#text";
+	public String HYBRID_SIMINOV_DATA_VALUE_TYPE = "type";
 	
 	/**
 	 * Hybrid Siminov Data JSON TYPE TAG.
 	 */
-	public String HYBRID_SIMINOV_DATA_JSON_TYPE = "-type";
-	
-	/**
-	 * Hybrid Siminov Data JSON CDATA SECTION TAG.
-	 */
-	public String HYBRID_SIMINOV_DATA_JSON_CDATA_SECTION = "#cdata-section";
+	public String HYBRID_SIMINOV_DATA_VALUE_VALUE = "value";
 	
 	
 	//Hybrid Library Descriptor
@@ -275,5 +269,6 @@ public interface Constants {
 	
 	public String DATABASE_ADAPTER_DELETE_HANDLER = "DELETE";
 	
+	public String DATABASE_ADAPTER_SELECT_HANDLER = "SELECT";
 	
 }

@@ -733,11 +733,14 @@ public class DatabaseHandler implements IAdapter {
 				continue;
 			}
 			
+			HybridSiminovValue hybridRequestId = hybridAdapter.getValueBasedOnType(HybridAdapter.REQUEST_ID);
 			HybridSiminovValue hybridAdapterName = hybridAdapter.getValueBasedOnType(HybridAdapter.ADAPTER_NAME);
 			HybridSiminovValue hybridHandlerName = hybridAdapter.getValueBasedOnType(HybridAdapter.HANDLER_NAME);
 			
 			HybridSiminovValue hybridParameters = hybridAdapter.getValueBasedOnType(HybridAdapter.PARAMETERS);
 
+			String requestId = hybridRequestId.getValue();
+			
 			String adapterName = hybridAdapterName.getValue();
 			String handlerName = hybridHandlerName.getValue();
 			
@@ -749,8 +752,16 @@ public class DatabaseHandler implements IAdapter {
 				continue;
 			}
 			
-			if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_SAVE_OR_UPDATE_HANDLER)) {
+			if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_SAVE_HANDLER)) {
+				saveDatas(hybridSiminovParameters);
+			} else if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_UPDATE_HANDLER)) {
+				updateDatas(hybridSiminovParameters);
+			} else if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_SAVE_OR_UPDATE_HANDLER)) {
 				saveOrUpdateDatas(hybridSiminovParameters);
+			} else if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_DELETE_HANDLER)) {
+				
+			} else if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_SELECT_HANDLER)) {
+				
 			}
 		}
 		

@@ -46,7 +46,6 @@ public class HybridSiminovDataWritter {
 	 */
 	public static String jsonBuidler(HybridSiminovDatas hybridSiminovDatas) throws SiminovException {
 		
-		JSONObject jsonHybridSiminovData = new JSONObject();
 		JSONObject jsonHybridData = new JSONObject();
 		JSONArray jsonHybridSiminovDatas = new JSONArray();
 
@@ -61,25 +60,14 @@ public class HybridSiminovDataWritter {
 		}
 
 		
-		if(jsonHybridSiminovDatas.length() > 0) {
-			try {
-				jsonHybridData.accumulate(Constants.HYBRID_SIMINOV_DATA_DATA, jsonHybridSiminovDatas);
-			} catch(Exception exception) {
-				Log.error(HybridSiminovDataWritter.class.getName(), "jsonBuidler", "Exception caught while adding json js core datas, " + exception.getMessage());
-				throw new SiminovException(HybridSiminovDataWritter.class.getName(), "jsonBuidler", "Exception caught while adding json js core datas, " + exception.getMessage());
-			}
-		}
-
-
 		try {
-			jsonHybridSiminovData.accumulate(Constants.HYBRID_SIMINOV_DATA, jsonHybridData);
+			jsonHybridData.accumulate(Constants.HYBRID_SIMINOV_DATAS, jsonHybridSiminovDatas);
 		} catch(Exception exception) {
-			Log.error(HybridSiminovDataWritter.class.getName(), "jsonBuidler", "Exception caught while adding final js core data, " + exception.getMessage());
-			throw new SiminovException(HybridSiminovDataWritter.class.getName(), "jsonBuidler", "Exception caught while adding final js core data, " + exception.getMessage());
+			Log.error(HybridSiminovDataWritter.class.getName(), "jsonBuidler", "Exception caught while adding json js core datas, " + exception.getMessage());
+			throw new SiminovException(HybridSiminovDataWritter.class.getName(), "jsonBuidler", "Exception caught while adding json js core datas, " + exception.getMessage());
 		}
 		
-		return jsonHybridSiminovData.toString();
-		
+		return jsonHybridData.toString();
 	}
 	
 	private static JSONObject jsonBuilder(HybridSiminovData hybridSiminovData) throws SiminovException {
@@ -90,14 +78,14 @@ public class HybridSiminovDataWritter {
 		JSONObject jsonHybridSiminovData = new JSONObject();
 
 		try {
-			jsonHybridSiminovData.put(Constants.HYBRID_SIMINOV_DATA_JSON_TYPE, dataType);
+			jsonHybridSiminovData.put(Constants.HYBRID_SIMINOV_DATA_TYPE, dataType);
 		} catch(Exception exception) {
 			Log.error(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding data type to json js core data, DATA-TYPE: " + dataType + ", " + exception.getMessage());
 			throw new SiminovException(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding data type to json js core data, DATA-TYPE: " + dataType + ", " + exception.getMessage());
 		}
 
 		try {
-			jsonHybridSiminovData.put(Constants.HYBRID_SIMINOV_DATA_JSON_TEXT, dataValue);
+			jsonHybridSiminovData.put(Constants.HYBRID_SIMINOV_DATA_VALUE, dataValue);
 		} catch(Exception exception) {
 			Log.error(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding data to json js core data, DATA: " + dataValue + ", " + exception.getMessage());
 			throw new SiminovException(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding data to json js core data, DATA: " + dataValue + ", " + exception.getMessage());
@@ -118,14 +106,14 @@ public class HybridSiminovDataWritter {
 			JSONObject jsonHybridSiminovValue = new JSONObject();
 
 			try {
-				jsonHybridSiminovValue.put(Constants.HYBRID_SIMINOV_DATA_JSON_TYPE, valueType);	
+				jsonHybridSiminovValue.put(Constants.HYBRID_SIMINOV_DATA_VALUE_TYPE, valueType);	
 			} catch(Exception exception) {
 				Log.error(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding value type, VALUE-TYPE: " + valueType + ", " + exception.getMessage());
 				throw new SiminovException(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding value type, VALUE-TYPE: " + valueType + ", " + exception.getMessage());
 			}
 			
 			try {
-				jsonHybridSiminovValue.put(Constants.HYBRID_SIMINOV_DATA_JSON_TEXT, value);
+				jsonHybridSiminovValue.put(Constants.HYBRID_SIMINOV_DATA_VALUE_VALUE, value);
 			} catch(Exception exception) {
 				Log.error(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding value, VALUE: " + value + ", " + exception.getMessage());
 				throw new SiminovException(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding value, VALUE: " + value + ", " + exception.getMessage());
@@ -143,7 +131,7 @@ public class HybridSiminovDataWritter {
 
 		if(jsonHybridSiminovValues.length() >  0) {
 			try {
-				jsonHybridSiminovData.accumulate(Constants.HYBRID_SIMINOV_DATA_VALUE, jsonHybridSiminovValues);
+				jsonHybridSiminovData.accumulate(Constants.HYBRID_SIMINOV_DATA_VALUES, jsonHybridSiminovValues);
 			} catch(Exception exception) {
 				Log.error(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding value to json js core data, " + exception.getMessage());
 				throw new SiminovException(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding value to json js core data, " + exception.getMessage());
@@ -153,7 +141,7 @@ public class HybridSiminovDataWritter {
 
 		if(jsonHybridSiminovSubDatas.length() > 0) {
 			try {
-				jsonHybridSiminovData.accumulate(Constants.HYBRID_SIMINOV_DATA_DATA, jsonHybridSiminovSubDatas);
+				jsonHybridSiminovData.accumulate(Constants.HYBRID_SIMINOV_DATA_DATAS, jsonHybridSiminovSubDatas);
 			} catch(Exception exception) {
 				Log.error(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding data to js core data, " + exception.getMessage());
 				throw new SiminovException(HybridSiminovDataWritter.class.getName(), "jsonBuilder", "Exception caught while adding data to js core data, " + exception.getMessage());
