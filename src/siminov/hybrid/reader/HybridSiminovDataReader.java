@@ -119,6 +119,7 @@ public class HybridSiminovDataReader implements Constants {
 		
 		try {
 			if(innerDatas != null && innerDatas.length() > 0) {
+				
 				for(int i = 0;i < innerDatas.length();i++) {
 					JSONObject jsonObject = null;
 					try {
