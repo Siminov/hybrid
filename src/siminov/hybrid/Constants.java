@@ -254,10 +254,7 @@ public interface Constants {
 	/**
 	 * Database Transaction Async Constants
 	 */
-	
-	public String BEGIN_TRANSACTION_ASYNC_DELIMITER_WITHOUT_SPECIAL_CHARS = "\\{'siminov\\-hybrid\\-data'\\:\\{'data':\\[\\{'\\-type'\\:'Adapter'";
-	
-	public String BEGIN_TRANSACTION_ASYNC_DELIMITER = "{'siminov-hybrid-data':{'data':[{'-type':'Adapter'";
+	public String ADAPTER = "Adapter";
 	
 	public String DATABASE_ADAPTER = "DATABASE";
 	
