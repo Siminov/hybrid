@@ -715,29 +715,22 @@ public class DatabaseHandler implements IAdapter {
 	public void beginTransactionAsync(String databaseDescriptorName, String data) throws DatabaseException {
 		
 		data = URLDecoder.decode(data);
-
-		beginTransaction(databaseDescriptorName);
 		
-		String[] splitStrings = data.split(siminov.hybrid.Constants.BEGIN_TRANSACTION_ASYNC_DELIMITER_WITHOUT_SPECIAL_CHARS);
-		for(int i = 0;i < splitStrings.length;i++) {
+		beginTransaction(databaseDescriptorName);
+
+		HybridSiminovDatas hybridSiminovDatasArray = parseHybridSiminovDatas(data);
+		Iterator<HybridSiminovData> hybridSiminovData = hybridSiminovDatasArray.getHybridSiminovDatas();
+		
+		while(hybridSiminovData.hasNext()) {
 			
-			if(splitStrings[i].length() <= 0) {
-				continue;
-			}
+			HybridSiminovData siminovData = hybridSiminovData.next();
+			HybridSiminovData datas = siminovData.getHybridSiminovDataBasedOnDataType(HybridAdapter.ADAPTER);
 			
-			String request = siminov.hybrid.Constants.BEGIN_TRANSACTION_ASYNC_DELIMITER + splitStrings[i];
-			HybridSiminovDatas hybridSiminovDatas = parseHybridSiminovDatas(request);
+			HybridSiminovValue hybridRequestId = datas.getValueBasedOnType(HybridAdapter.REQUEST_ID);
+			HybridSiminovValue hybridAdapterName = datas.getValueBasedOnType(HybridAdapter.ADAPTER_NAME);
+			HybridSiminovValue hybridHandlerName = datas.getValueBasedOnType(HybridAdapter.HANDLER_NAME);
 			
-			HybridSiminovData hybridAdapter = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(HybridAdapter.ADAPTER);
-			if(hybridAdapter == null) {
-				continue;
-			}
-			
-			HybridSiminovValue hybridRequestId = hybridAdapter.getValueBasedOnType(HybridAdapter.REQUEST_ID);
-			HybridSiminovValue hybridAdapterName = hybridAdapter.getValueBasedOnType(HybridAdapter.ADAPTER_NAME);
-			HybridSiminovValue hybridHandlerName = hybridAdapter.getValueBasedOnType(HybridAdapter.HANDLER_NAME);
-			
-			HybridSiminovValue hybridParameters = hybridAdapter.getValueBasedOnType(HybridAdapter.PARAMETERS);
+			HybridSiminovValue hybridParameters = datas.getValueBasedOnType(HybridAdapter.PARAMETERS);
 
 			String requestId = hybridRequestId.getValue();
 			
@@ -747,10 +740,6 @@ public class DatabaseHandler implements IAdapter {
 			String parameters = hybridParameters.getValue();
 			
 			HybridSiminovDatas hybridSiminovParameters = parseHybridSiminovDatas(parameters);
-			
-			if(!adapterName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER)) {
-				continue;
-			}
 			
 			if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_SAVE_HANDLER)) {
 				saveDatas(hybridSiminovParameters);
@@ -764,7 +753,6 @@ public class DatabaseHandler implements IAdapter {
 				
 			}
 		}
-		
 		
 		commitTransaction(databaseDescriptorName);
 	}
@@ -2049,6 +2037,7 @@ public class DatabaseHandler implements IAdapter {
 		
 		HybridSiminovDataReader hybridSiminovDataParser = null; 
 		data = URLDecoder.decode(data);
+		
 		
 		try {
 			hybridSiminovDataParser = new HybridSiminovDataReader(data);
