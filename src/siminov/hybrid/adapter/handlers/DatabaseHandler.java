@@ -20,6 +20,7 @@
 package siminov.hybrid.adapter.handlers;
 
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +28,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+
+import org.json.JSONObject;
 
 import siminov.core.Constants;
 import siminov.core.database.DatabaseBundle;
@@ -712,7 +715,9 @@ public class DatabaseHandler implements IAdapter {
 	}
 
 	
-	public void beginTransactionAsync(String databaseDescriptorName, String data) throws DatabaseException {
+	public String beginTransactionAsync(String databaseDescriptorName, String data) throws DatabaseException {
+		
+		HybridSiminovDatas hybridResponseDatas = new HybridSiminovDatas();
 		
 		data = URLDecoder.decode(data);
 		
@@ -750,11 +755,70 @@ public class DatabaseHandler implements IAdapter {
 			} else if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_DELETE_HANDLER)) {
 				
 			} else if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_SELECT_HANDLER)) {
+			
+
+				String className = "";
+				Boolean distinct = false;
+				String whereClause = "";
+				String[] columnNames = {};
+				String[] groupBy = {};
+				String havingClause = "";
+				String[] orderBy = {};
+				String whichOrderBy = "";
+				String limit = "";
 				
+				int parameterIndex = 0;
+				
+				Iterator<HybridSiminovData> selectParameters = parseHybridSiminovDatas(parameters).getHybridSiminovDatas();
+				while(selectParameters.hasNext()) {
+					
+					HybridSiminovData selectParameter = selectParameters.next();
+					
+					if(parameterIndex == 0) {
+						className = selectParameter.getDataValue();
+					} else if(parameterIndex == 1) {
+						distinct = Boolean.parseBoolean(selectParameter.getDataValue());
+					} else if(parameterIndex == 2) {
+						whereClause = selectParameter.getDataValue();
+					} else if(parameterIndex == 3) {
+						//column names
+					} else if(parameterIndex == 4) {
+						//group bys
+					} else if(parameterIndex == 5) {
+						havingClause = selectParameter.getDataValue();
+					} else if(parameterIndex == 6) {
+						//order by
+					} else if(parameterIndex == 7) {
+						whichOrderBy = selectParameter.getDataValue();
+					} else if(parameterIndex == 8) {
+						limit = selectParameter.getDataValue();
+					}
+					
+					parameterIndex++;
+				}
+				
+				String response = select(className, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
+				 
+				HybridSiminovData selectResponse = new HybridSiminovData();
+				selectResponse.setDataType(requestId);
+				selectResponse.setDataValue(URLEncoder.encode(response));
+				
+				hybridResponseDatas.addHybridSiminovData(selectResponse);
 			}
 		}
 		
 		commitTransaction(databaseDescriptorName);
+		
+
+		String response = null;
+		try {
+			response = HybridSiminovDataWritter.jsonBuidler(hybridResponseDatas);
+		} catch(SiminovException siminovException) {
+			Log.error(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
+			throw new DatabaseException(DatabaseHandler.class.getName(), "select", "SiminovException caught while building json, " + siminovException.getMessage());
+		}
+
+		return response;
 	}
 	
 	/**

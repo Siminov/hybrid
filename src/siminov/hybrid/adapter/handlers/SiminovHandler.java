@@ -25,7 +25,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.os.Build;
 import android.webkit.JavascriptInterface;
 import siminov.core.exception.SiminovException;
 import siminov.core.log.Log;
@@ -230,11 +232,27 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 			public void run() {
 				
 				if(functionName != null && functionName.length() > 0 && apiName != null && apiName.length() > 0) {
-					hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "." + apiName + "('" + action + "', " + parameters + ");");
+					
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+						hybridResourceManager.getWebView().evaluateJavascript("javascript:" + functionName + "." + apiName + "('" + action + "', " + parameters + ");", null);
+				    } else {
+				    	hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "." + apiName + "('" + action + "', " + parameters + ");", null);
+				    }
+					
 				} else if(functionName != null && functionName.length() > 0) {
-					hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "('" + action + "', " + parameters + ");");
+
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+						hybridResourceManager.getWebView().evaluateJavascript("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
+				    } else {
+						hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
+				    }
 				} else if(functionName != null && apiName.length() > 0) {
-					hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "('" + action + "', " + parameters + ");");
+
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+						hybridResourceManager.getWebView().evaluateJavascript("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
+				    } else {
+						hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
+				    }
 				}
 			}
 		});
