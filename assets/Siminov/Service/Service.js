@@ -137,7 +137,7 @@ function Service() {
 			serviceHandler.handle(this);
 		} catch(se) {
 			alert(se);
-			this.onServiceTerminate(se);
+			this.onTerminate(se);
 		}
 	}
 	
