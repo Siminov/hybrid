@@ -28,9 +28,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.StringTokenizer;
-
-import org.json.JSONObject;
 
 import siminov.core.Constants;
 import siminov.core.database.DatabaseBundle;
@@ -45,7 +42,9 @@ import siminov.core.model.EntityDescriptor;
 import siminov.core.model.EntityDescriptor.Attribute;
 import siminov.core.model.EntityDescriptor.Relationship;
 import siminov.core.resource.ResourceManager;
+import siminov.hybrid.adapter.AdapterHandler;
 import siminov.hybrid.adapter.IAdapter;
+import siminov.hybrid.adapter.IHandler;
 import siminov.hybrid.adapter.constants.HybridAdapter;
 import siminov.hybrid.model.HybridSiminovDatas;
 import siminov.hybrid.model.HybridSiminovDatas.HybridSiminovData;
@@ -747,109 +746,18 @@ public class DatabaseHandler implements IAdapter {
 			
 			HybridSiminovDatas hybridSiminovParameters = parseHybridSiminovDatas(parameters);
 			
-			if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_SAVE_HANDLER)) {
-				saveDatas(hybridSiminovParameters);
-			} else if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_UPDATE_HANDLER)) {
-				updateDatas(hybridSiminovParameters);
-			} else if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_SAVE_OR_UPDATE_HANDLER)) {
-				saveOrUpdateDatas(hybridSiminovParameters);
-			} else if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_DELETE_HANDLER)) {
-				
-			} else if(handlerName.equalsIgnoreCase(siminov.hybrid.Constants.DATABASE_ADAPTER_SELECT_HANDLER)) {
+			IHandler siminovHandler = AdapterHandler.getInstance().getHandler();
 			
-
-				String className = "";
-				Boolean distinct = false;
-				String whereClause = "";
-				String[] columnNames = {};
-				String[] groupBy = {};
-				String havingClause = "";
-				String[] orderBy = {};
-				String whichOrderBy = "";
-				String limit = "";
-				
-				int parameterIndex = -1;
-				
-				Iterator<HybridSiminovData> selectParameters = parseHybridSiminovDatas(parameters).getHybridSiminovDatas();
-				while(selectParameters.hasNext()) {
-					++parameterIndex;
-					
-					HybridSiminovData selectParameter = selectParameters.next();
-					
-					if(parameterIndex == 0) {
-						className = selectParameter.getDataValue();
-						continue;
-					} else if(parameterIndex == 1) {
-						distinct = Boolean.parseBoolean(selectParameter.getDataValue());
-						continue;
-					} else if(parameterIndex == 2) {
-						whereClause = selectParameter.getDataValue();
-						continue;
-					} else if(parameterIndex == 3) {
-						String dataValue = selectParameter.getDataValue();
-						if(dataValue == null) {
-							continue;
-						}
-						
-						StringTokenizer columns = new StringTokenizer(dataValue, ",");
-						columnNames = new String[columns.countTokens()];
-						
-						int columnsCount = 0;
-						while(columns.hasMoreTokens()) {
-							columnNames[columnsCount++] = columns.nextToken();
-						}
-						
-						continue;
-					} else if(parameterIndex == 4) {
-						String dataValue = selectParameter.getDataValue();
-						if(dataValue == null) {
-							continue;
-						}
-						
-						StringTokenizer groupBys = new StringTokenizer(dataValue, ",");
-						groupBy = new String[groupBys.countTokens()];
-						
-						int groupByCount = 0;
-						while(groupBys.hasMoreTokens()) {
-							groupBy[groupByCount++] = groupBys.nextToken();
-						}
-						
-						continue;
-					} else if(parameterIndex == 5) {
-						havingClause = selectParameter.getDataValue();
-						continue;
-					} else if(parameterIndex == 6) {
-						String dataValue = selectParameter.getDataValue();
-						if(dataValue == null) {
-							continue;
-						}
-						
-						StringTokenizer orderBys = new StringTokenizer(dataValue, ",");
-						orderBy = new String[orderBys.countTokens()];
-						
-						int orderByCount = 0;
-						while(orderBys.hasMoreTokens()) {
-							orderBy[orderByCount++] = orderBys.nextToken();
-						}
-
-						continue;
-					} else if(parameterIndex == 7) {
-						whichOrderBy = selectParameter.getDataValue();
-						continue;
-					} else if(parameterIndex == 8) {
-						limit = selectParameter.getDataValue();
-						continue;
-					}
-				}
-				
-				String response = select(className, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
-				 
-				HybridSiminovData selectResponse = new HybridSiminovData();
-				selectResponse.setDataType(requestId);
-				selectResponse.setDataValue(URLEncoder.encode(response));
-				
-				hybridResponseDatas.addHybridSiminovData(selectResponse);
+			String response = ((SiminovHandler) siminovHandler).processHandler(adapterName + "." + handlerName, parameters);
+			if(response == null || response.length() <= 0) {
+				continue;
 			}
+			
+			HybridSiminovData selectResponse = new HybridSiminovData();
+			selectResponse.setDataType(requestId);
+			selectResponse.setDataValue(URLEncoder.encode(response));
+				
+			hybridResponseDatas.addHybridSiminovData(selectResponse);
 		}
 		
 		commitTransaction(databaseDescriptorName);

@@ -90,7 +90,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 	}
 	
 	
-	private String processHandler(final String action, final String data) {
+	public String processHandler(final String action, final String data) {
 
 		String adapterDescriptorName = action.substring(0, action.indexOf("."));
 		String handlerName = action.substring(action.indexOf(".") + 1, action.length());

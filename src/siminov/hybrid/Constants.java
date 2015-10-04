@@ -249,23 +249,5 @@ public interface Constants {
 	public String REQUEST_SYNC_MODE = "SYNC";
 	
 	public String REQUEST_ASYNC_MODE = "ASYNC";
-
-	
-	/**
-	 * Database Transaction Async Constants
-	 */
-	public String ADAPTER = "Adapter";
-	
-	public String DATABASE_ADAPTER = "DATABASE";
-	
-	public String DATABASE_ADAPTER_SAVE_HANDLER = "SAVE";
-	
-	public String DATABASE_ADAPTER_UPDATE_HANDLER = "UPDATE";
-	
-	public String DATABASE_ADAPTER_SAVE_OR_UPDATE_HANDLER = "SAVE-OR-UPDATE";
-	
-	public String DATABASE_ADAPTER_DELETE_HANDLER = "DELETE";
-	
-	public String DATABASE_ADAPTER_SELECT_HANDLER = "SELECT";
 	
 }
