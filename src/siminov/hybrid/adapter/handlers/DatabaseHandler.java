@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import org.json.JSONObject;
 
@@ -589,19 +590,19 @@ public class DatabaseHandler implements IAdapter {
 		Collection<String> groupByCollection = new LinkedList<String>();
 		Collection<String> orderByCollection = new LinkedList<String>();
 		
-		while(columnNames != null && columnNames.length > 0) {
+		if(columnNames != null && columnNames.length > 0) {
 			for(int i = 0;i < columnNames.length;i++) {
 				columnNameCollection.add(columnNames[i]);
 			}
 		} 
 		
-		while(groupBy != null && groupBy.length > 0) {
+		if(groupBy != null && groupBy.length > 0) {
 			for(int i = 0;i < groupBy.length;i++) {
 				groupByCollection.add(groupBy[i]);
 			}
 		}
 		
-		while(orderBy != null && orderBy.length > 0) {
+		if(orderBy != null && orderBy.length > 0) {
 			for(int i = 0;i < orderBy.length;i++) {
 				orderByCollection.add(orderBy[i]);
 			}
@@ -767,34 +768,78 @@ public class DatabaseHandler implements IAdapter {
 				String whichOrderBy = "";
 				String limit = "";
 				
-				int parameterIndex = 0;
+				int parameterIndex = -1;
 				
 				Iterator<HybridSiminovData> selectParameters = parseHybridSiminovDatas(parameters).getHybridSiminovDatas();
 				while(selectParameters.hasNext()) {
+					++parameterIndex;
 					
 					HybridSiminovData selectParameter = selectParameters.next();
 					
 					if(parameterIndex == 0) {
 						className = selectParameter.getDataValue();
+						continue;
 					} else if(parameterIndex == 1) {
 						distinct = Boolean.parseBoolean(selectParameter.getDataValue());
+						continue;
 					} else if(parameterIndex == 2) {
 						whereClause = selectParameter.getDataValue();
+						continue;
 					} else if(parameterIndex == 3) {
-						//column names
+						String dataValue = selectParameter.getDataValue();
+						if(dataValue == null) {
+							continue;
+						}
+						
+						StringTokenizer columns = new StringTokenizer(dataValue, ",");
+						columnNames = new String[columns.countTokens()];
+						
+						int columnsCount = 0;
+						while(columns.hasMoreTokens()) {
+							columnNames[columnsCount++] = columns.nextToken();
+						}
+						
+						continue;
 					} else if(parameterIndex == 4) {
-						//group bys
+						String dataValue = selectParameter.getDataValue();
+						if(dataValue == null) {
+							continue;
+						}
+						
+						StringTokenizer groupBys = new StringTokenizer(dataValue, ",");
+						groupBy = new String[groupBys.countTokens()];
+						
+						int groupByCount = 0;
+						while(groupBys.hasMoreTokens()) {
+							groupBy[groupByCount++] = groupBys.nextToken();
+						}
+						
+						continue;
 					} else if(parameterIndex == 5) {
 						havingClause = selectParameter.getDataValue();
+						continue;
 					} else if(parameterIndex == 6) {
-						//order by
+						String dataValue = selectParameter.getDataValue();
+						if(dataValue == null) {
+							continue;
+						}
+						
+						StringTokenizer orderBys = new StringTokenizer(dataValue, ",");
+						orderBy = new String[orderBys.countTokens()];
+						
+						int orderByCount = 0;
+						while(orderBys.hasMoreTokens()) {
+							orderBy[orderByCount++] = orderBys.nextToken();
+						}
+
+						continue;
 					} else if(parameterIndex == 7) {
 						whichOrderBy = selectParameter.getDataValue();
+						continue;
 					} else if(parameterIndex == 8) {
 						limit = selectParameter.getDataValue();
+						continue;
 					}
-					
-					parameterIndex++;
 				}
 				
 				String response = select(className, distinct, whereClause, columnNames, groupBy, havingClause, orderBy, whichOrderBy, limit);
