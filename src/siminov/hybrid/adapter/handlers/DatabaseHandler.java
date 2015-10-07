@@ -744,10 +744,7 @@ public class DatabaseHandler implements IAdapter {
 			
 			String parameters = hybridParameters.getValue();
 			
-			HybridSiminovDatas hybridSiminovParameters = parseHybridSiminovDatas(parameters);
-			
 			IHandler siminovHandler = AdapterHandler.getInstance().getHandler();
-			
 			String response = ((SiminovHandler) siminovHandler).processHandler(adapterName + "." + handlerName, parameters);
 			if(response == null || response.length() <= 0) {
 				continue;
@@ -1552,7 +1549,7 @@ public class DatabaseHandler implements IAdapter {
 				
 				boolean isPrimary = attribute.isPrimaryKey();
 				if(isPrimary) {
-					columnNames.add(attributes.next().getColumnName());
+					columnNames.add(attribute.getColumnName());
 				}
 			}
 		}
@@ -1648,7 +1645,7 @@ public class DatabaseHandler implements IAdapter {
 		Collection<Map<String, Object>> values = new ArrayList<Map<String, Object>>();
 		values.add(columnTypes);
 		
-		HybridSiminovDatas hybridSiminovDatas = parseData(entityDescriptor, values.iterator());
+		HybridSiminovDatas hybridSiminovDatas = parseData(null, values.iterator());
 		
 		String returnData = null;
 		try {
@@ -2086,17 +2083,17 @@ public class DatabaseHandler implements IAdapter {
 			Map<String, Object> value = values.next();
 			
 			HybridSiminovData hybridSiminovData = new HybridSiminovData();
-			hybridSiminovData.setDataType(hybridResourceManager.getMappedHybridClassName(entityDescriptor.getClassName()));
+			hybridSiminovData.setDataType(hybridResourceManager.getMappedHybridClassName(entityDescriptor == null?"":entityDescriptor.getClassName()));
 			
 			Iterator<String> keys = value.keySet().iterator();
 			while(keys.hasNext()) {
 				
 				String columnName = keys.next();
-				if(!entityDescriptor.containsAttributeBasedOnColumnName(columnName)) {
+				if(entityDescriptor != null && !entityDescriptor.containsAttributeBasedOnColumnName(columnName)) {
 					continue;
 				}
 				
-				String variableName = entityDescriptor.getAttributeBasedOnColumnName(columnName).getVariableName();
+				String variableName = entityDescriptor == null?"":entityDescriptor.getAttributeBasedOnColumnName(columnName).getVariableName();
 				
 				Object object = value.get(columnName);
 				
