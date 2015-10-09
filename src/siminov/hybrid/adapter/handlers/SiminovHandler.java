@@ -24,8 +24,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
-
-import android.app.ActionBar;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Build;
 import android.webkit.JavascriptInterface;
@@ -229,6 +228,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 		Activity webActivity = hybridResourceManager.getWebActivity();
 		webActivity.runOnUiThread(new Runnable() {
 			
+			@SuppressLint("NewApi")
 			public void run() {
 				
 				if(functionName != null && functionName.length() > 0 && apiName != null && apiName.length() > 0) {

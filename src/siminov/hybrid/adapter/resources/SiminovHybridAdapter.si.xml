@@ -70,7 +70,14 @@
                     <property name="description">Unique Id</property>
                     
                 </parameter>
-
+                
+                <parameter>
+                    
+                    <property name="type">string</property>
+                    <property name="description">Action</property>
+                    
+                </parameter>
+                
                 <parameter>
                     
                     <property name="type">string</property>
