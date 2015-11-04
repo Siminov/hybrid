@@ -223,6 +223,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 	}
 
 	
+	@SuppressLint("NewApi")
 	private void handleNativeToHybrid(final String functionName, final String apiName, final String action, final String parameters) {
 		
 		Activity webActivity = hybridResourceManager.getWebActivity();
@@ -374,7 +375,7 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 			data = HybridSiminovDataWritter.jsonBuidler(hybridSiminovDatas);
 		} catch(SiminovException siminovException) {
 			Log.error(SiminovHandler.class.getName(), "generateHybridSiminovException", "SiminovException caught while generating empty siminov js data: " + siminovException.getMessage());
-			return "{\"siminov-hybrid-data\":{}}";
+			return "{\"datas\":{}}";
 		}
 		
 		return data;

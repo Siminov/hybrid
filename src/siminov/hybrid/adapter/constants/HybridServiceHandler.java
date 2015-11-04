@@ -28,6 +28,9 @@ public interface HybridServiceHandler {
 	 */
 	public String TRIGGERED_EVENT = "TRIGGERED_EVENT";
 
+	public String ISERVICE_REQUEST_ID = "ISERVICE_REQUEST_ID";
+
+	
 	/**
 	 * Hybrid Service API Handler
 	 */

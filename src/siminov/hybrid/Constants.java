@@ -230,6 +230,8 @@ public interface Constants {
 	 */
 	public String ADAPTER_INVOKE_HANDLER_SERVICE = "SERVICE";
 
+	public String ADAPTER_INVOKE_HANDLER_REQUEST_ID = "REQUEST_ID";
+	
 	/**
 	 * Adapter Invoke Handler Service Name
 	 */

@@ -74,6 +74,12 @@ public class GenericService extends Service {
 		 */
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		
+		HybridSiminovData hybridRequestId = new HybridSiminovData();
+		hybridRequestId.setDataType(HybridServiceHandler.ISERVICE_REQUEST_ID);
+		hybridRequestId.setDataValue(String.valueOf(getRequestId()));
+
+		hybridSiminovDatas.addHybridSiminovData(hybridRequestId);
+		
 		HybridSiminovData hybridAPIHandler = new HybridSiminovData();
 		hybridAPIHandler.setDataType(HybridServiceHandler.ISERVICE_API_HANDLER);
 		hybridAPIHandler.setDataValue(apiHandler);
@@ -156,6 +162,12 @@ public class GenericService extends Service {
 		 */
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		
+		HybridSiminovData hybridRequestId = new HybridSiminovData();
+		hybridRequestId.setDataType(HybridServiceHandler.ISERVICE_REQUEST_ID);
+		hybridRequestId.setDataValue(String.valueOf(getRequestId()));
+
+		hybridSiminovDatas.addHybridSiminovData(hybridRequestId);
+		
 		HybridSiminovData hybridAPIHandler = new HybridSiminovData();
 		hybridAPIHandler.setDataType(HybridServiceHandler.ISERVICE_API_HANDLER);
 		hybridAPIHandler.setDataValue(apiHandler);
@@ -237,6 +249,12 @@ public class GenericService extends Service {
 		 * Invoke Hybrid Handler
 		 */
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
+		
+		HybridSiminovData hybridRequestId = new HybridSiminovData();
+		hybridRequestId.setDataType(HybridServiceHandler.ISERVICE_REQUEST_ID);
+		hybridRequestId.setDataValue(String.valueOf(getRequestId()));
+
+		hybridSiminovDatas.addHybridSiminovData(hybridRequestId);
 		
 		HybridSiminovData hybridAPIHandler = new HybridSiminovData();
 		hybridAPIHandler.setDataType(HybridServiceHandler.ISERVICE_API_HANDLER);
@@ -321,6 +339,12 @@ public class GenericService extends Service {
 		 */
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		
+		HybridSiminovData hybridRequestId = new HybridSiminovData();
+		hybridRequestId.setDataType(HybridServiceHandler.ISERVICE_REQUEST_ID);
+		hybridRequestId.setDataValue(String.valueOf(getRequestId()));
+
+		hybridSiminovDatas.addHybridSiminovData(hybridRequestId);
+		
 		HybridSiminovData hybridAPIHandler = new HybridSiminovData();
 		hybridAPIHandler.setDataType(HybridServiceHandler.ISERVICE_API_HANDLER);
 		hybridAPIHandler.setDataValue(apiHandler);
@@ -403,6 +427,12 @@ public class GenericService extends Service {
 		 */
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		
+		HybridSiminovData hybridRequestId = new HybridSiminovData();
+		hybridRequestId.setDataType(HybridServiceHandler.ISERVICE_REQUEST_ID);
+		hybridRequestId.setDataValue(String.valueOf(getRequestId()));
+
+		hybridSiminovDatas.addHybridSiminovData(hybridRequestId);
+		
 		HybridSiminovData hybridAPIHandler = new HybridSiminovData();
 		hybridAPIHandler.setDataType(HybridServiceHandler.ISERVICE_API_HANDLER);
 		hybridAPIHandler.setDataValue(apiHandler);
@@ -413,7 +443,7 @@ public class GenericService extends Service {
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
 		
 		triggeredEvent.setDataType(HybridServiceHandler.TRIGGERED_EVENT);
-		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_PAUSE);
+		triggeredEvent.setDataValue(HybridServiceHandler.ISERVICE_ON_FINISH);
 		
 		hybridSiminovDatas.addHybridSiminovData(triggeredEvent);
 		
@@ -485,6 +515,12 @@ public class GenericService extends Service {
 		 * Invoke Hybrid Handler
 		 */
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
+		
+		HybridSiminovData hybridRequestId = new HybridSiminovData();
+		hybridRequestId.setDataType(HybridServiceHandler.ISERVICE_REQUEST_ID);
+		hybridRequestId.setDataValue(String.valueOf(getRequestId()));
+
+		hybridSiminovDatas.addHybridSiminovData(hybridRequestId);
 		
 		//Triggered Event
 		HybridSiminovData triggeredEvent = new HybridSiminovData();
@@ -571,6 +607,12 @@ public class GenericService extends Service {
 		 */
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
 		
+		HybridSiminovData hybridRequestId = new HybridSiminovData();
+		hybridRequestId.setDataType(HybridServiceHandler.ISERVICE_REQUEST_ID);
+		hybridRequestId.setDataValue(String.valueOf(getRequestId()));
+
+		hybridSiminovDatas.addHybridSiminovData(hybridRequestId);
+		
 		HybridSiminovData hybridAPIHandler = new HybridSiminovData();
 		hybridAPIHandler.setDataType(HybridServiceHandler.ISERVICE_API_HANDLER);
 		hybridAPIHandler.setDataValue(apiHandler);
@@ -653,6 +695,12 @@ public class GenericService extends Service {
 		 * Invoke Hybrid Handler
 		 */
 		HybridSiminovDatas hybridSiminovDatas = new HybridSiminovDatas();
+		
+		HybridSiminovData hybridRequestId = new HybridSiminovData();
+		hybridRequestId.setDataType(HybridServiceHandler.ISERVICE_REQUEST_ID);
+		hybridRequestId.setDataValue(String.valueOf(getRequestId()));
+
+		hybridSiminovDatas.addHybridSiminovData(hybridRequestId);
 		
 		HybridSiminovData hybridAPIHandler = new HybridSiminovData();
 		hybridAPIHandler.setDataType(HybridServiceHandler.ISERVICE_API_HANDLER);

@@ -123,6 +123,7 @@ public class SyncWorker implements IWorker {
 					
 					String service = services.next();
 					
+					long requestId = syncRequest.getRequestId();
 					String serviceName = service.substring(0, service.indexOf(Constants.SYNC_DESCRIPTOR_SERVICE_SEPARATOR));
 					String requestName = service.substring(service.indexOf(Constants.SYNC_DESCRIPTOR_SERVICE_SEPARATOR) + 1, service.length());
 
@@ -130,6 +131,7 @@ public class SyncWorker implements IWorker {
 					ServiceDescriptor serviceDescriptor = resourceManager.requiredServiceDescriptorBasedOnName(serviceName);
 					
 					IService genericService = new GenericService();
+					genericService.setRequestId(requestId);
 					genericService.setService(serviceName);
 					genericService.setRequest(requestName);
 					

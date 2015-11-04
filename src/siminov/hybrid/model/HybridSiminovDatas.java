@@ -34,7 +34,7 @@ import java.util.LinkedList;
 Example:
 	{@code
 	
-	<siminov-hybrid-data>
+	<datas>
 	
 	    <data type="data_type">
 	        <value type="value_type">value</value>
@@ -43,7 +43,7 @@ Example:
 	
 	    <data type="data_type" />
 	    
-	</siminov-hybrid-data>
+	</datas>
 
 	}
 	

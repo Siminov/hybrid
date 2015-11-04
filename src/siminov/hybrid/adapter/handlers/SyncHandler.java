@@ -59,12 +59,14 @@ public class SyncHandler implements IAdapter {
 		HybridSiminovDatas hybridSiminovDatas = hybridSiminovDataParser.getDatas();
 
 		HybridSiminovData hybridSyncRequest = hybridSiminovDatas.getHybridSiminovDataBasedOnDataType(HybridSyncRequest.SYNC_REQUEST);
+		HybridSiminovValue hybridRequestId = hybridSyncRequest.getValueBasedOnType(HybridSyncRequest.REQUEST_ID);
 		HybridSiminovValue hybridSyncName = hybridSyncRequest.getValueBasedOnType(HybridSyncRequest.NAME);
 		
 		HybridSiminovData hybridResources = hybridSyncRequest.getHybridSiminovDataBasedOnDataType(HybridSyncRequest.RESOURCES);
 		
 
 		ISyncRequest syncRequest = new SyncRequest();
+		syncRequest.setRequestId(Long.valueOf(hybridRequestId.getValue()));
 		syncRequest.setName(hybridSyncName.getValue());
 		
 		

@@ -2312,7 +2312,7 @@ public class DatabaseHandler implements IAdapter {
 		        }
 		        
 		        if(referedSiminovData == null) {
-		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + oneToOneRelationship.getReferTo());
+		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please provide relationship for REFER-TO: " + oneToOneRelationship.getReferTo());
 		            continue;
 		        }
 		        
@@ -2379,7 +2379,7 @@ public class DatabaseHandler implements IAdapter {
 		        }
 		        
 		        if(referedSiminovData == null) {
-		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please provide relationship for REFER-TO: " + manyToOneRelationship.getReferTo());
 		            continue;
 		        }
 		        
@@ -2441,7 +2441,7 @@ public class DatabaseHandler implements IAdapter {
 		        }
 		        
 		        if(referedSiminovData == null) {
-		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + oneToOneRelationship.getReferTo());
+		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please provide relationship for REFER-TO: " + oneToOneRelationship.getReferTo());
 		            continue;
 		        }
 		        
@@ -2514,7 +2514,7 @@ public class DatabaseHandler implements IAdapter {
 		        }
 		        
 		        if(referedSiminovData == null) {
-		            Log.error(DatabaseHandler.class.getName(), "manyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		            Log.error(DatabaseHandler.class.getName(), "manyToOneRelationship", "Parent Object Not Set, Please provide relationship for REFER-TO: " + manyToOneRelationship.getReferTo());
 		            continue;
 		        }
 		        
@@ -2590,7 +2590,7 @@ public class DatabaseHandler implements IAdapter {
 		        }
 		        
 		        if(referedSiminovData == null) {
-		            Log.error(DatabaseHandler.class.getName(), "manyToOneRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToOneRelationship.getReferTo());
+		            Log.error(DatabaseHandler.class.getName(), "manyToOneRelationship", "Parent Object Not Set, Please provide relationship for REFER-TO: " + manyToOneRelationship.getReferTo());
 		            continue;
 		        }
 		        
@@ -2680,7 +2680,7 @@ public class DatabaseHandler implements IAdapter {
 		        }
 		        
 		        if(referedSiminovData == null) {
-		            Log.error(DatabaseHandler.class.getName(), "manyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		            Log.error(DatabaseHandler.class.getName(), "manyToManyRelationship", "Parent Object Not Set, Please provide relationship for REFER-TO: " + manyToManyRelationship.getReferTo());
 		            continue;
 		        }
 		        
@@ -2801,7 +2801,7 @@ public class DatabaseHandler implements IAdapter {
 		        }
 		        
 		        if(referedObject == null) {
-		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please Provide Proper Relationship. REFER-TO: " + manyToManyRelationship.getReferTo());
+		            Log.error(DatabaseHandler.class.getName(), "processManyToManyRelationship", "Parent Object Not Set, Please provide relationship for REFER-TO: " + manyToManyRelationship.getReferTo());
 		            continue;
 		        }
 		        

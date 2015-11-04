@@ -168,7 +168,7 @@ public class HybridSiminovDataReader implements Constants {
 				
 				if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_VALUE_TYPE)) {
 					valueType = (String) getValue(key, jsonObject);
-				} else if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_VALUE_VALUE)){
+				} else if(key.equalsIgnoreCase(HYBRID_SIMINOV_DATA_VALUE_VALUE)) {
 					value = (String) getValue(key, jsonObject);
 				}
 			}
