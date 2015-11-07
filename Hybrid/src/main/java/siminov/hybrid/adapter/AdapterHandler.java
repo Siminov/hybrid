@@ -74,7 +74,9 @@ public class AdapterHandler {
 		WebView webView = resourceManager.getWebView();
 
 		this.handler = handler;
-		webView.addJavascriptInterface(this.handler, adapterName);
+		if(webView != null) {
+			webView.addJavascriptInterface(this.handler, adapterName);
+		}
 	}
 	
 	

@@ -41,13 +41,19 @@ public interface IHandler {
 	 * @return
 	 */
 	public String handleHybridToNative(final String action, final String data);
-	
-	
+
+
+	public String handleHybridToNativeAsync(String requestId, String action, String data);
+
 	/**
 	 * Handle request from NATIVE-TO-HYBRID.
 	 * @param action Action Needs to be performed on Hybrid.
 	 * @param data Data to Hybrid Handler.
 	 */
 	public void handleNativeToHybrid(final String action, final String...data);
-	
+
+	public void handleNativeToHybridAsync(String requestId, final String...data);
+
+	public void handleNativeToHybrid(String functionName, String apiName, String action, String parameters);
+
 }

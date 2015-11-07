@@ -172,12 +172,12 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 				parameters += ", '" + data[i] + "'";
 			}
 		}
-		
-		
-		handleNativeToHybrid(adapterDescriptor.getMapTo(), handler.getMapTo(), requestId, parameters);
-	}
-	
-	@JavascriptInterface
+
+
+        handleNativeToHybrid(adapterDescriptor.getMapTo(), handler.getMapTo(), requestId, parameters);
+    }
+
+    @JavascriptInterface
 	public void handleNativeToHybrid(final String action, final String...data) {
 
 		AdapterDescriptor adapterDescriptor = hybridResourceManager.getAdapterDescriptor(Constants.NATIVE_TO_HYBRID_ADAPTER);
@@ -224,39 +224,54 @@ public class SiminovHandler extends siminov.hybrid.Siminov implements IAdapter, 
 
 	
 	@SuppressLint("NewApi")
-	private void handleNativeToHybrid(final String functionName, final String apiName, final String action, final String parameters) {
+	public void handleNativeToHybrid(final String functionName, final String apiName, final String action, final String parameters) {
 		
 		Activity webActivity = hybridResourceManager.getWebActivity();
+        IHandler handler = hybridResourceManager.getInterceptor();
+
+        if(handler != null) {
+
+            if(functionName != null && functionName.length() > 0 && apiName != null && apiName.length() > 0) {
+                handler.handleNativeToHybrid(functionName, apiName, action, parameters);
+            } else if(functionName != null && functionName.length() > 0) {
+                handler.handleNativeToHybrid(functionName, action, parameters);
+            } else if(functionName != null && apiName.length() > 0) {
+                handler.handleNativeToHybrid(functionName, action, parameters);
+            }
+
+            return;
+        }
+
 		webActivity.runOnUiThread(new Runnable() {
-			
-			@SuppressLint("NewApi")
-			public void run() {
-				
-				if(functionName != null && functionName.length() > 0 && apiName != null && apiName.length() > 0) {
-					
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-						hybridResourceManager.getWebView().evaluateJavascript("javascript:" + functionName + "." + apiName + "('" + action + "', " + parameters + ");", null);
-				    } else {
-				    	hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "." + apiName + "('" + action + "', " + parameters + ");", null);
-				    }
-					
-				} else if(functionName != null && functionName.length() > 0) {
 
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-						hybridResourceManager.getWebView().evaluateJavascript("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
-				    } else {
-						hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
-				    }
-				} else if(functionName != null && apiName.length() > 0) {
+            @SuppressLint("NewApi")
+            public void run() {
 
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-						hybridResourceManager.getWebView().evaluateJavascript("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
-				    } else {
-						hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
-				    }
-				}
-			}
-		});
+                if (functionName != null && functionName.length() > 0 && apiName != null && apiName.length() > 0) {
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        hybridResourceManager.getWebView().evaluateJavascript("javascript:" + functionName + "." + apiName + "('" + action + "', " + parameters + ");", null);
+                    } else {
+                        hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "." + apiName + "('" + action + "', " + parameters + ");", null);
+                    }
+
+                } else if (functionName != null && functionName.length() > 0) {
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        hybridResourceManager.getWebView().evaluateJavascript("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
+                    } else {
+                        hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
+                    }
+                } else if (functionName != null && apiName.length() > 0) {
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        hybridResourceManager.getWebView().evaluateJavascript("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
+                    } else {
+                        hybridResourceManager.getWebView().loadUrl("javascript:" + functionName + "('" + action + "', " + parameters + ");", null);
+                    }
+                }
+            }
+        });
 	}
 	
 	private Object[] createAndInflateParameter(Class<?>[] parameterTypes, Iterator<String> parameterValues) throws SiminovException {

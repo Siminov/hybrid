@@ -44,6 +44,7 @@ import siminov.core.model.EntityDescriptor.Relationship;
 import siminov.core.utils.Utils;
 import siminov.hybrid.adapter.AdapterFactory;
 import siminov.hybrid.adapter.AdapterHandler;
+import siminov.hybrid.adapter.IHandler;
 import siminov.hybrid.adapter.constants.HybridAdapterDescriptor;
 import siminov.hybrid.adapter.constants.HybridConnectionRequest;
 import siminov.hybrid.adapter.constants.HybridConnectionResponse;
@@ -86,7 +87,9 @@ public class ResourceManager {
 	private AdapterFactory adapterFactory = null;
 
 	private Map<String, String> hybridNativeClassMapping = new ConcurrentHashMap<String, String>();
-	
+
+	private IHandler interceptor;
+
 	private ResourceManager() {
 		coreResourceManager = siminov.core.resource.ResourceManager.getInstance();
 		eventHandler = EventHandler.getInstance();
@@ -326,7 +329,15 @@ public class ResourceManager {
 	public void setWebActivity(Activity webActivity) {
 		this.webActivity = webActivity;
 	}
-	
+
+	public IHandler getInterceptor() {
+		return this.interceptor;
+	}
+
+	public void setInterceptor(IHandler handler) {
+		this.interceptor = handler;
+	}
+
 	
 	/**
 	 * Check whether any event registered by application or not.
