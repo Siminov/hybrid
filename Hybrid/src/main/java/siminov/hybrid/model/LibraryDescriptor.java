@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 /**
- * Exposes methods to GET and SET Library Descriptor information as per define in LibraryDescriptor.si.xml file by application.
+ * Exposes methods to GET and SET Library Descriptor information as per define in LibraryDescriptor.xml file by application.
 	<p>
 		<pre>
 		
@@ -35,7 +35,7 @@ Example:
 	{@code
 	
 		
-	<!-- DESIGN OF LibraryDescriptor.si.xml -->
+	<!-- DESIGN OF LibraryDescriptor.xml -->
 	
 	<library-descriptor>
 	

@@ -28,7 +28,7 @@ import siminov.core.model.IDescriptor;
 
 
 /**
- * Exposes methods to GET and SET Hybrid Descriptor Adapter information as per define in AdapterDescriptor.si.xml file or standalone xml file in application.
+ * Exposes methods to GET and SET Hybrid Descriptor Adapter information as per define in AdapterDescriptor.xml file or standalone xml file in application.
 	<p>
 		<pre>
 		
@@ -281,7 +281,7 @@ public class AdapterDescriptor implements IDescriptor {
 	}
 
 	/**
-	 * Exposes methods to GET and SET Hybrid Descriptor Adapter Handler information as per define in HybridDescriptor.si.xml file or in standalone adapter xml file in application.
+	 * Exposes methods to GET and SET Hybrid Descriptor Adapter Handler information as per define in HybridDescriptor.xml file or in standalone adapter xml file in application.
 	 *
 	 */
 	public static class Handler implements IDescriptor {
@@ -423,7 +423,7 @@ public class AdapterDescriptor implements IDescriptor {
 		}
 		
 		/**
-		 * Exposes methods to GET and SET Parameter information as per define in AdapterDescriptor.si.xml file or in standalone adapter xml file in application.
+		 * Exposes methods to GET and SET Parameter information as per define in AdapterDescriptor.xml file or in standalone adapter xml file in application.
 		 *
 		 */
 		public static class Parameter implements IDescriptor {
@@ -526,7 +526,7 @@ public class AdapterDescriptor implements IDescriptor {
 		
 		
 		/**
-		 * Exposes methods to GET and SET Return information as per define in AdapterDescriptor.si.xml file or in standalone adapter xml file in application.
+		 * Exposes methods to GET and SET Return information as per define in AdapterDescriptor.xml file or in standalone adapter xml file in application.
 		 *
 		 */
 		public static class Return implements IDescriptor {

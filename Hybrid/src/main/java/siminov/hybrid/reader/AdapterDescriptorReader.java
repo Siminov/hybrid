@@ -35,7 +35,7 @@ import android.content.Context;
 
 
 /**
- * Exposes methods to parse Adapter Descriptor information as per define in AdapterDescriptor.si.xml file by application.
+ * Exposes methods to parse Adapter Descriptor information as per define in AdapterDescriptor.xml file by application.
 	<p>
 		<pre>
 		

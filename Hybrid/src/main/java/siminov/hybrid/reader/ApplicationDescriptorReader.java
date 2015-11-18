@@ -34,7 +34,7 @@ import android.content.Context;
 
 
 /**
- * Exposes methods to parse Application Descriptor information as per define in ApplicationDescriptor.si.xml file by application.
+ * Exposes methods to parse Application Descriptor information as per define in ApplicationDescriptor.xml file by application.
 	<p>
 		<pre>
 		

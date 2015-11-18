@@ -172,7 +172,7 @@ public interface Constants {
 	//Hybrid Library Descriptor
 	
 	/**
-	 * LibraryDescriptor.si.xml file Adapter TAG.
+	 * LibraryDescriptor.xml file Adapter TAG.
 	 */
 	public String HYBRID_LIBRARY_DESCRIPTOR_ADAPTER_DESCRIPTOR = "adapter-descriptor";
 	

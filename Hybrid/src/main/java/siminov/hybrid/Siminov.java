@@ -166,7 +166,7 @@ public class Siminov extends siminov.connect.Siminov {
 
 	
 	/**
-	 * It process ApplicationDescriptor.si.xml file defined in Application, and stores in Resource Manager.
+	 * It process ApplicationDescriptor.xml file defined in Application, and stores in Resource Manager.
 	 */
 	protected static void processApplicationDescriptor() {
 		
@@ -185,14 +185,14 @@ public class Siminov extends siminov.connect.Siminov {
 
 	
 	/**
-	 * It process all DatabaseDescriptor.si.xml files defined by Application and stores in Resource Manager.
+	 * It process all DatabaseDescriptor.xml files defined by Application and stores in Resource Manager.
 	 */
 	protected static void processDatabaseDescriptors() {
 		siminov.connect.Siminov.processDatabaseDescriptors();
 	}
 	
 	/**
-	 * It process all LibraryDescriptor.si.xml files defined by application, and stores in Resource Manager.
+	 * It process all LibraryDescriptor.xml files defined by application, and stores in Resource Manager.
 	 */
 	protected static void processLibraries() {
 		
@@ -251,7 +251,7 @@ public class Siminov extends siminov.connect.Siminov {
 	
 
 	/**
-	 * It process all EntityDescriptor.si.xml file defined in Application, and stores in Resource Manager.
+	 * It process all EntityDescriptor.xml file defined in Application, and stores in Resource Manager.
 	 */
 	protected static void processEntityDescriptors() {
 		siminov.connect.Siminov.processEntityDescriptors();
@@ -261,7 +261,7 @@ public class Siminov extends siminov.connect.Siminov {
 
 	
 	/**
-	 * It process all SyncDescriptor.si.xml file defined in Application, and stores in Resource Manager.
+	 * It process all SyncDescriptor.xml file defined in Application, and stores in Resource Manager.
 	 */
 	protected static void processSyncDescriptors() {
 		siminov.connect.Siminov.processSyncDescriptors();
@@ -276,7 +276,7 @@ public class Siminov extends siminov.connect.Siminov {
 	}
 	
 	/**
-	 * It process all DatabaseDescriptor.si.xml and initialize Database and stores in Resource Manager.
+	 * It process all DatabaseDescriptor.xml and initialize Database and stores in Resource Manager.
 	 */
 	protected static void processDatabase() {
 		siminov.connect.Siminov.processDatabase();
@@ -284,7 +284,7 @@ public class Siminov extends siminov.connect.Siminov {
 	
 	
 	/**
-	 * It process all AdapterDescriptor.si.xml and initialize bridge between native and hybrid
+	 * It process all AdapterDescriptor.xml and initialize bridge between native and hybrid
 	 */
 	protected static void processAdapterDescriptors() {
 		
@@ -301,7 +301,7 @@ public class Siminov extends siminov.connect.Siminov {
 	
 	
 	/**
-	 * It process all Events defined in ApplicationDescriptor.si.xml file in Application, and stores in Resource Manager.
+	 * It process all Events defined in ApplicationDescriptor.xml file in Application, and stores in Resource Manager.
 	 */
 	protected static void processEvents() {
 		

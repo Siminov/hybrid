@@ -33,13 +33,13 @@ import siminov.core.log.Log;
 import siminov.core.reader.SiminovSAXDefaultHandler;
 
 /**
- * Exposes methods to parse Library Descriptor information as per define in LibraryDescriptor.si.xml file by application.
+ * Exposes methods to parse Library Descriptor information as per define in LibraryDescriptor.xml file by application.
 	<p>
 		<pre>
 		
 Example:
 	{@code
-	<!-- DESIGN OF LibraryDescriptor.si.xml -->
+	<!-- DESIGN OF LibraryDescriptor.xml -->
 	
 	<library-descriptor>
 	
@@ -184,19 +184,6 @@ public class LibraryDescriptorReader extends SiminovSAXDefaultHandler implements
 			Log.error(getClass().getName(), "doValidation", "LIBRARY-NAME IS MANDATORY FIELD - LIBRARY-DESCRIPTOR: " + this.libraryName);
 			throw new DeploymentException(getClass().getName(), "doValidation", "LIBRARY-NAME IS MANDATORY FIELD - LIBRARY-DESCRIPTOR: " + this.libraryName);
 		}
-		
-		Iterator<String> entityDescriptorPaths = libraryDescriptor.getEntityDescriptorPaths();
-		while(entityDescriptorPaths.hasNext()) {
-			String entityDescriptorPath = entityDescriptorPaths.next();
-			
-			if(entityDescriptorPath.endsWith(XML_FILE_EXTENSION)) {
-				if(!entityDescriptorPath.contains(SIMINOV_DESCRIPTOR_EXTENSION)) {
-					Log.error(getClass().getName(), "doValidation", "INVALID LIBRARY ENTITY DESCRIPTOR PATH FOUND, it should contain .core extension in path, PATH-DEFINED: " + entityDescriptorPath);
-					throw new DeploymentException(getClass().getName(), "doValidation", "INVALID LIBRARY ENTITY DESCRIPTOR PATH FOUND, it should contain .core extension in path, PATH-DEFINED: " + entityDescriptorPath);
-				}
-			}
-		}
-
 	}
 
 	/**

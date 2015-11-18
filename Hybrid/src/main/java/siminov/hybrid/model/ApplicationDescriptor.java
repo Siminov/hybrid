@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 /**
- * Exposes methods to GET and SET Application Descriptor information as per define in ApplicationDescriptor.si.xml file by application.
+ * Exposes methods to GET and SET Application Descriptor information as per define in ApplicationDescriptor.xml file by application.
 	<p>
 		<pre>
 		
