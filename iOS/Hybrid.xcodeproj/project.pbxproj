@@ -1,0 +1,1036 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE4904091B78969E00144838 /* SIHDataTypeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4904081B78969E00144838 /* SIHDataTypeHandler.m */; };
+		CE4904101B78A59600144838 /* SIHDataTypeHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE4904071B78969E00144838 /* SIHDataTypeHandler.h */; };
+		CE49041A1B78D29E00144838 /* SIHSiminovHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4904191B78D29E00144838 /* SIHSiminovHandler.m */; };
+		CE7341721B7787AE00743DCB /* SIHHybridAdapterDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB002C1B77791A00F0B830 /* SIHHybridAdapterDescriptor.h */; };
+		CE7341731B7787AE00743DCB /* SIHHybridApplicationDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB002D1B77791A00F0B830 /* SIHHybridApplicationDescriptor.h */; };
+		CE7341741B7787AE00743DCB /* SIHHybridConnectionRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB002E1B77791A00F0B830 /* SIHHybridConnectionRequest.h */; };
+		CE7341751B7787AE00743DCB /* SIHHybridConnectionResponse.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB002F1B77791A00F0B830 /* SIHHybridConnectionResponse.h */; };
+		CE7341761B7787AE00743DCB /* SIHHybridDatabaseDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00301B77791A00F0B830 /* SIHHybridDatabaseDescriptor.h */; };
+		CE7341771B7787AE00743DCB /* SIHHybridEntityDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00311B77791A00F0B830 /* SIHHybridEntityDescriptor.h */; };
+		CE7341781B7787AE00743DCB /* SIHHybridEventHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00321B77791A00F0B830 /* SIHHybridEventHandler.h */; };
+		CE7341791B7787AE00743DCB /* SIHHybridLibraryDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00331B77791A00F0B830 /* SIHHybridLibraryDescriptor.h */; };
+		CE73417A1B7787AE00743DCB /* SIHHybridMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00341B77791A00F0B830 /* SIHHybridMessage.h */; };
+		CE73417B1B7787AE00743DCB /* SIHHybridNotificationException.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00351B77791A00F0B830 /* SIHHybridNotificationException.h */; };
+		CE73417C1B7787AE00743DCB /* SIHHybridRegistration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00361B77791A00F0B830 /* SIHHybridRegistration.h */; };
+		CE73417D1B7787AE00743DCB /* SIHHybridServiceHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00371B77791A00F0B830 /* SIHHybridServiceHandler.h */; };
+		CE73417E1B7787AE00743DCB /* SIHHybridSiminovException.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00381B77791A00F0B830 /* SIHHybridSiminovException.h */; };
+		CE73417F1B7787AE00743DCB /* SIHHybridSyncRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00391B77791A00F0B830 /* SIHHybridSyncRequest.h */; };
+		CE7341801B7787AE00743DCB /* SIHDatabaseHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB003B1B77791A00F0B830 /* SIHDatabaseHandler.h */; };
+		CE7341811B7787AE00743DCB /* SIHNotificationHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB003D1B77791A00F0B830 /* SIHNotificationHandler.h */; };
+		CE7341821B7787AE00743DCB /* SIHResourcesHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB003F1B77791A00F0B830 /* SIHResourcesHandler.h */; };
+		CE7341831B7787AE00743DCB /* SIHServiceHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00411B77791A00F0B830 /* SIHServiceHandler.h */; };
+		CE7341851B7787AE00743DCB /* SIHSyncHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00451B77791A00F0B830 /* SIHSyncHandler.h */; };
+		CE7341861B7787AE00743DCB /* SIHAdapter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00531B77791A00F0B830 /* SIHAdapter.h */; };
+		CE7341871B7787AE00743DCB /* SIHAdapterFactory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00551B77791A00F0B830 /* SIHAdapterFactory.h */; };
+		CE7341881B7787AE00743DCB /* SIHAdapterHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00571B77791A00F0B830 /* SIHAdapterHandler.h */; };
+		CE7341891B7787AE00743DCB /* SIHIAdapter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00591B77791A00F0B830 /* SIHIAdapter.h */; };
+		CE73418A1B7787AE00743DCB /* SIHIHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB005A1B77791A00F0B830 /* SIHIHandler.h */; };
+		CE73418B1B7787AE00743DCB /* SIHDatabaseEventHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB005C1B77791A00F0B830 /* SIHDatabaseEventHandler.h */; };
+		CE73418C1B7787AE00743DCB /* SIHEventHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB005E1B77791A00F0B830 /* SIHEventHandler.h */; };
+		CE73418D1B7787AE00743DCB /* SIHNotificationEventHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00601B77791A00F0B830 /* SIHNotificationEventHandler.h */; };
+		CE73418E1B7787AE00743DCB /* SIHSiminovEventHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00621B77791A00F0B830 /* SIHSiminovEventHandler.h */; };
+		CE73418F1B7787AE00743DCB /* SIHSyncEventHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00641B77791A00F0B830 /* SIHSyncEventHandler.h */; };
+		CE7341901B7787AE00743DCB /* SIHAdapterDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00671B77791A00F0B830 /* SIHAdapterDescriptor.h */; };
+		CE7341911B7787AE00743DCB /* SIHApplicationDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00691B77791A00F0B830 /* SIHApplicationDescriptor.h */; };
+		CE7341921B7787AE00743DCB /* SIHHybridSiminovDatas.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB006B1B77791A00F0B830 /* SIHHybridSiminovDatas.h */; };
+		CE7341931B7787AE00743DCB /* SIHLibraryDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB006D1B77791A00F0B830 /* SIHLibraryDescriptor.h */; };
+		CE7341941B7787AE00743DCB /* SIHAdapterDescriptorReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00701B77791A00F0B830 /* SIHAdapterDescriptorReader.h */; };
+		CE7341951B7787AE00743DCB /* SIHApplicationDescriptorReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00721B77791A00F0B830 /* SIHApplicationDescriptorReader.h */; };
+		CE7341961B7787AE00743DCB /* SIHHybridSiminovDataReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00741B77791A00F0B830 /* SIHHybridSiminovDataReader.h */; };
+		CE7341971B7787AE00743DCB /* SIHLibraryDescriptorReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00761B77791A00F0B830 /* SIHLibraryDescriptorReader.h */; };
+		CE7341981B7787AE00743DCB /* SIHResourceManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00791B77791A00F0B830 /* SIHResourceManager.h */; };
+		CE7341991B7787AE00743DCB /* SIHConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB007E1B77791A00F0B830 /* SIHConstants.h */; };
+		CE73419A1B7787AE00743DCB /* SIHInitializer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB007F1B77791A00F0B830 /* SIHInitializer.h */; };
+		CE73419B1B7787AE00743DCB /* SIHSiminov.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00811B77791A00F0B830 /* SIHSiminov.h */; };
+		CE73419C1B7787AE00743DCB /* SIHGenericSyncHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00841B77791A00F0B830 /* SIHGenericSyncHandler.h */; };
+		CE73419D1B7787AE00743DCB /* SIHSyncWorker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00861B77791A00F0B830 /* SIHSyncWorker.h */; };
+		CE73419E1B7787AE00743DCB /* SIHUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB00891B77791A00F0B830 /* SIHUtils.h */; };
+		CE73419F1B7787AE00743DCB /* SIHHybridSiminovDataWritter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB008C1B77791A00F0B830 /* SIHHybridSiminovDataWritter.h */; };
+		CE7341A01B7787B800743DCB /* SIHGenericService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEBB007C1B77791A00F0B830 /* SIHGenericService.h */; };
+		CE7341C91B77964300743DCB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7341C81B77964300743DCB /* SystemConfiguration.framework */; };
+		CE7341CB1B77964A00743DCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7341CA1B77964A00743DCB /* Foundation.framework */; };
+		CE7690A81BFE282200ADF6AF /* DatabaseAdapter.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE7690931BFDFA1F00ADF6AF /* DatabaseAdapter.xml */; };
+		CE7690A91BFE282500ADF6AF /* EventHandlerAdapter.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE7690941BFDFA3B00ADF6AF /* EventHandlerAdapter.xml */; };
+		CE7690AA1BFE282B00ADF6AF /* LibraryDescriptor.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE7690951BFDFA5400ADF6AF /* LibraryDescriptor.xml */; };
+		CE7690AB1BFE282F00ADF6AF /* NotificationAdapter.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE7690961BFDFA6F00ADF6AF /* NotificationAdapter.xml */; };
+		CE7690AC1BFE283200ADF6AF /* ResourcesAdapter.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE7690971BFDFA8C00ADF6AF /* ResourcesAdapter.xml */; };
+		CE7690AD1BFE283400ADF6AF /* SiminovHybridAdapter.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE7690981BFDFAA800ADF6AF /* SiminovHybridAdapter.xml */; };
+		CE7690AE1BFE283700ADF6AF /* ServiceAdapter.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE7690991BFDFAC000ADF6AF /* ServiceAdapter.xml */; };
+		CE7690AF1BFE283A00ADF6AF /* ServiceEventHandlerAdapter.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE76909A1BFDFADA00ADF6AF /* ServiceEventHandlerAdapter.xml */; };
+		CE7690B01BFE283D00ADF6AF /* SiminovExceptionAdapter.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE76909B1BFDFAF900ADF6AF /* SiminovExceptionAdapter.xml */; };
+		CE7690B11BFE284000ADF6AF /* SiminovNativeAdapter.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE76909C1BFE21E300ADF6AF /* SiminovNativeAdapter.xml */; };
+		CE7690B21BFE284200ADF6AF /* SyncAdapter.xml in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE76909D1BFE21F900ADF6AF /* SyncAdapter.xml */; };
+		CEBB008E1B77791A00F0B830 /* SIHDatabaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB003C1B77791A00F0B830 /* SIHDatabaseHandler.m */; };
+		CEBB008F1B77791A00F0B830 /* SIHNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB003E1B77791A00F0B830 /* SIHNotificationHandler.m */; };
+		CEBB00901B77791A00F0B830 /* SIHResourcesHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00401B77791A00F0B830 /* SIHResourcesHandler.m */; };
+		CEBB00911B77791A00F0B830 /* SIHServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00421B77791A00F0B830 /* SIHServiceHandler.m */; };
+		CEBB00931B77791A00F0B830 /* SIHSyncHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00461B77791A00F0B830 /* SIHSyncHandler.m */; };
+		CEBB00941B77791A00F0B830 /* SIHAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00541B77791A00F0B830 /* SIHAdapter.m */; };
+		CEBB00951B77791A00F0B830 /* SIHAdapterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00561B77791A00F0B830 /* SIHAdapterFactory.m */; };
+		CEBB00961B77791A00F0B830 /* SIHAdapterHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00581B77791A00F0B830 /* SIHAdapterHandler.m */; };
+		CEBB00971B77791A00F0B830 /* SIHDatabaseEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB005D1B77791A00F0B830 /* SIHDatabaseEventHandler.m */; };
+		CEBB00981B77791A00F0B830 /* SIHEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB005F1B77791A00F0B830 /* SIHEventHandler.m */; };
+		CEBB00991B77791A00F0B830 /* SIHNotificationEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00611B77791A00F0B830 /* SIHNotificationEventHandler.m */; };
+		CEBB009A1B77791A00F0B830 /* SIHSiminovEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00631B77791A00F0B830 /* SIHSiminovEventHandler.m */; };
+		CEBB009B1B77791A00F0B830 /* SIHSyncEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00651B77791A00F0B830 /* SIHSyncEventHandler.m */; };
+		CEBB009C1B77791A00F0B830 /* SIHAdapterDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00681B77791A00F0B830 /* SIHAdapterDescriptor.m */; };
+		CEBB009D1B77791A00F0B830 /* SIHApplicationDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB006A1B77791A00F0B830 /* SIHApplicationDescriptor.m */; };
+		CEBB009E1B77791A00F0B830 /* SIHHybridSiminovDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB006C1B77791A00F0B830 /* SIHHybridSiminovDatas.m */; };
+		CEBB009F1B77791A00F0B830 /* SIHLibraryDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB006E1B77791A00F0B830 /* SIHLibraryDescriptor.m */; };
+		CEBB00A01B77791A00F0B830 /* SIHAdapterDescriptorReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00711B77791A00F0B830 /* SIHAdapterDescriptorReader.m */; };
+		CEBB00A11B77791A00F0B830 /* SIHApplicationDescriptorReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00731B77791A00F0B830 /* SIHApplicationDescriptorReader.m */; };
+		CEBB00A21B77791A00F0B830 /* SIHHybridSiminovDataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00751B77791A00F0B830 /* SIHHybridSiminovDataReader.m */; };
+		CEBB00A31B77791A00F0B830 /* SIHLibraryDescriptorReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00771B77791A00F0B830 /* SIHLibraryDescriptorReader.m */; };
+		CEBB00A41B77791A00F0B830 /* SIHResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB007A1B77791A00F0B830 /* SIHResourceManager.m */; };
+		CEBB00A51B77791A00F0B830 /* SIHGenericService.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB007D1B77791A00F0B830 /* SIHGenericService.m */; };
+		CEBB00A61B77791A00F0B830 /* SIHInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00801B77791A00F0B830 /* SIHInitializer.m */; };
+		CEBB00A71B77791A00F0B830 /* SIHSiminov.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00821B77791A00F0B830 /* SIHSiminov.m */; };
+		CEBB00A81B77791A00F0B830 /* SIHGenericSyncHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00851B77791A00F0B830 /* SIHGenericSyncHandler.m */; };
+		CEBB00A91B77791A00F0B830 /* SIHSyncWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB00871B77791A00F0B830 /* SIHSyncWorker.m */; };
+		CEBB00AA1B77791A00F0B830 /* SIHUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB008A1B77791A00F0B830 /* SIHUtils.m */; };
+		CEBB00AB1B77791A00F0B830 /* SIHHybridSiminovDataWritter.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBB008D1B77791A00F0B830 /* SIHHybridSiminovDataWritter.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE7341AE1B77884F00743DCB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = include/Siminov.Hybrid.Adapter.Resources;
+			dstSubfolderSpec = 7;
+			files = (
+				CE7690A81BFE282200ADF6AF /* DatabaseAdapter.xml in CopyFiles */,
+				CE7690B21BFE284200ADF6AF /* SyncAdapter.xml in CopyFiles */,
+				CE7690AE1BFE283700ADF6AF /* ServiceAdapter.xml in CopyFiles */,
+				CE7690AF1BFE283A00ADF6AF /* ServiceEventHandlerAdapter.xml in CopyFiles */,
+				CE7690B11BFE284000ADF6AF /* SiminovNativeAdapter.xml in CopyFiles */,
+				CE7690B01BFE283D00ADF6AF /* SiminovExceptionAdapter.xml in CopyFiles */,
+				CE7690AD1BFE283400ADF6AF /* SiminovHybridAdapter.xml in CopyFiles */,
+				CE7690A91BFE282500ADF6AF /* EventHandlerAdapter.xml in CopyFiles */,
+				CE7690AC1BFE283200ADF6AF /* ResourcesAdapter.xml in CopyFiles */,
+				CE7690AB1BFE282F00ADF6AF /* NotificationAdapter.xml in CopyFiles */,
+				CE7690AA1BFE282B00ADF6AF /* LibraryDescriptor.xml in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEBB000C1B7778D000F0B830 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = include;
+			dstSubfolderSpec = 16;
+			files = (
+				CE7341A01B7787B800743DCB /* SIHGenericService.h in CopyFiles */,
+				CE7341721B7787AE00743DCB /* SIHHybridAdapterDescriptor.h in CopyFiles */,
+				CE7341731B7787AE00743DCB /* SIHHybridApplicationDescriptor.h in CopyFiles */,
+				CE7341741B7787AE00743DCB /* SIHHybridConnectionRequest.h in CopyFiles */,
+				CE7341751B7787AE00743DCB /* SIHHybridConnectionResponse.h in CopyFiles */,
+				CE7341761B7787AE00743DCB /* SIHHybridDatabaseDescriptor.h in CopyFiles */,
+				CE7341771B7787AE00743DCB /* SIHHybridEntityDescriptor.h in CopyFiles */,
+				CE7341781B7787AE00743DCB /* SIHHybridEventHandler.h in CopyFiles */,
+				CE7341791B7787AE00743DCB /* SIHHybridLibraryDescriptor.h in CopyFiles */,
+				CE73417A1B7787AE00743DCB /* SIHHybridMessage.h in CopyFiles */,
+				CE73417B1B7787AE00743DCB /* SIHHybridNotificationException.h in CopyFiles */,
+				CE73417C1B7787AE00743DCB /* SIHHybridRegistration.h in CopyFiles */,
+				CE73417D1B7787AE00743DCB /* SIHHybridServiceHandler.h in CopyFiles */,
+				CE73417E1B7787AE00743DCB /* SIHHybridSiminovException.h in CopyFiles */,
+				CE73417F1B7787AE00743DCB /* SIHHybridSyncRequest.h in CopyFiles */,
+				CE7341801B7787AE00743DCB /* SIHDatabaseHandler.h in CopyFiles */,
+				CE7341811B7787AE00743DCB /* SIHNotificationHandler.h in CopyFiles */,
+				CE7341821B7787AE00743DCB /* SIHResourcesHandler.h in CopyFiles */,
+				CE7341831B7787AE00743DCB /* SIHServiceHandler.h in CopyFiles */,
+				CE7341851B7787AE00743DCB /* SIHSyncHandler.h in CopyFiles */,
+				CE7341861B7787AE00743DCB /* SIHAdapter.h in CopyFiles */,
+				CE7341871B7787AE00743DCB /* SIHAdapterFactory.h in CopyFiles */,
+				CE7341881B7787AE00743DCB /* SIHAdapterHandler.h in CopyFiles */,
+				CE7341891B7787AE00743DCB /* SIHIAdapter.h in CopyFiles */,
+				CE73418A1B7787AE00743DCB /* SIHIHandler.h in CopyFiles */,
+				CE73418B1B7787AE00743DCB /* SIHDatabaseEventHandler.h in CopyFiles */,
+				CE73418C1B7787AE00743DCB /* SIHEventHandler.h in CopyFiles */,
+				CE73418D1B7787AE00743DCB /* SIHNotificationEventHandler.h in CopyFiles */,
+				CE73418E1B7787AE00743DCB /* SIHSiminovEventHandler.h in CopyFiles */,
+				CE73418F1B7787AE00743DCB /* SIHSyncEventHandler.h in CopyFiles */,
+				CE7341901B7787AE00743DCB /* SIHAdapterDescriptor.h in CopyFiles */,
+				CE7341911B7787AE00743DCB /* SIHApplicationDescriptor.h in CopyFiles */,
+				CE7341921B7787AE00743DCB /* SIHHybridSiminovDatas.h in CopyFiles */,
+				CE7341931B7787AE00743DCB /* SIHLibraryDescriptor.h in CopyFiles */,
+				CE7341941B7787AE00743DCB /* SIHAdapterDescriptorReader.h in CopyFiles */,
+				CE7341951B7787AE00743DCB /* SIHApplicationDescriptorReader.h in CopyFiles */,
+				CE7341961B7787AE00743DCB /* SIHHybridSiminovDataReader.h in CopyFiles */,
+				CE7341971B7787AE00743DCB /* SIHLibraryDescriptorReader.h in CopyFiles */,
+				CE7341981B7787AE00743DCB /* SIHResourceManager.h in CopyFiles */,
+				CE4904101B78A59600144838 /* SIHDataTypeHandler.h in CopyFiles */,
+				CE7341991B7787AE00743DCB /* SIHConstants.h in CopyFiles */,
+				CE73419A1B7787AE00743DCB /* SIHInitializer.h in CopyFiles */,
+				CE73419B1B7787AE00743DCB /* SIHSiminov.h in CopyFiles */,
+				CE73419C1B7787AE00743DCB /* SIHGenericSyncHandler.h in CopyFiles */,
+				CE73419D1B7787AE00743DCB /* SIHSyncWorker.h in CopyFiles */,
+				CE73419E1B7787AE00743DCB /* SIHUtils.h in CopyFiles */,
+				CE73419F1B7787AE00743DCB /* SIHHybridSiminovDataWritter.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CE4904071B78969E00144838 /* SIHDataTypeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHDataTypeHandler.h; sourceTree = "<group>"; };
+		CE4904081B78969E00144838 /* SIHDataTypeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHDataTypeHandler.m; sourceTree = "<group>"; };
+		CE4904181B78D29E00144838 /* SIHSiminovHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHSiminovHandler.h; sourceTree = "<group>"; };
+		CE4904191B78D29E00144838 /* SIHSiminovHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHSiminovHandler.m; sourceTree = "<group>"; };
+		CE7341C81B77964300743DCB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CE7341CA1B77964A00743DCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CE76908D1BFDF92200ADF6AF /* AdapterDescriptor.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AdapterDescriptor.xml; sourceTree = "<group>"; };
+		CE76908E1BFDF94800ADF6AF /* ApplicationDescriptor.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ApplicationDescriptor.xml; sourceTree = "<group>"; };
+		CE76908F1BFDF96200ADF6AF /* DatabaseDescriptor.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DatabaseDescriptor.xml; sourceTree = "<group>"; };
+		CE7690901BFDF97C00ADF6AF /* EntityDescriptor.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EntityDescriptor.xml; sourceTree = "<group>"; };
+		CE7690911BFDF99600ADF6AF /* HybridSiminovData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = HybridSiminovData.xml; sourceTree = "<group>"; };
+		CE7690921BFDF9AE00ADF6AF /* LibraryDescriptor.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LibraryDescriptor.xml; sourceTree = "<group>"; };
+		CE7690931BFDFA1F00ADF6AF /* DatabaseAdapter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DatabaseAdapter.xml; sourceTree = "<group>"; };
+		CE7690941BFDFA3B00ADF6AF /* EventHandlerAdapter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = EventHandlerAdapter.xml; sourceTree = "<group>"; };
+		CE7690951BFDFA5400ADF6AF /* LibraryDescriptor.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LibraryDescriptor.xml; sourceTree = "<group>"; };
+		CE7690961BFDFA6F00ADF6AF /* NotificationAdapter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NotificationAdapter.xml; sourceTree = "<group>"; };
+		CE7690971BFDFA8C00ADF6AF /* ResourcesAdapter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ResourcesAdapter.xml; sourceTree = "<group>"; };
+		CE7690981BFDFAA800ADF6AF /* SiminovHybridAdapter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SiminovHybridAdapter.xml; sourceTree = "<group>"; };
+		CE7690991BFDFAC000ADF6AF /* ServiceAdapter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ServiceAdapter.xml; sourceTree = "<group>"; };
+		CE76909A1BFDFADA00ADF6AF /* ServiceEventHandlerAdapter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ServiceEventHandlerAdapter.xml; sourceTree = "<group>"; };
+		CE76909B1BFDFAF900ADF6AF /* SiminovExceptionAdapter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SiminovExceptionAdapter.xml; sourceTree = "<group>"; };
+		CE76909C1BFE21E300ADF6AF /* SiminovNativeAdapter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SiminovNativeAdapter.xml; sourceTree = "<group>"; };
+		CE76909D1BFE21F900ADF6AF /* SyncAdapter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SyncAdapter.xml; sourceTree = "<group>"; };
+		CEBB000E1B7778D000F0B830 /* libHybrid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHybrid.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEBB002C1B77791A00F0B830 /* SIHHybridAdapterDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridAdapterDescriptor.h; sourceTree = "<group>"; };
+		CEBB002D1B77791A00F0B830 /* SIHHybridApplicationDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridApplicationDescriptor.h; sourceTree = "<group>"; };
+		CEBB002E1B77791A00F0B830 /* SIHHybridConnectionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridConnectionRequest.h; sourceTree = "<group>"; };
+		CEBB002F1B77791A00F0B830 /* SIHHybridConnectionResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridConnectionResponse.h; sourceTree = "<group>"; };
+		CEBB00301B77791A00F0B830 /* SIHHybridDatabaseDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridDatabaseDescriptor.h; sourceTree = "<group>"; };
+		CEBB00311B77791A00F0B830 /* SIHHybridEntityDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridEntityDescriptor.h; sourceTree = "<group>"; };
+		CEBB00321B77791A00F0B830 /* SIHHybridEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridEventHandler.h; sourceTree = "<group>"; };
+		CEBB00331B77791A00F0B830 /* SIHHybridLibraryDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridLibraryDescriptor.h; sourceTree = "<group>"; };
+		CEBB00341B77791A00F0B830 /* SIHHybridMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridMessage.h; sourceTree = "<group>"; };
+		CEBB00351B77791A00F0B830 /* SIHHybridNotificationException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridNotificationException.h; sourceTree = "<group>"; };
+		CEBB00361B77791A00F0B830 /* SIHHybridRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridRegistration.h; sourceTree = "<group>"; };
+		CEBB00371B77791A00F0B830 /* SIHHybridServiceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridServiceHandler.h; sourceTree = "<group>"; };
+		CEBB00381B77791A00F0B830 /* SIHHybridSiminovException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridSiminovException.h; sourceTree = "<group>"; };
+		CEBB00391B77791A00F0B830 /* SIHHybridSyncRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridSyncRequest.h; sourceTree = "<group>"; };
+		CEBB003B1B77791A00F0B830 /* SIHDatabaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHDatabaseHandler.h; sourceTree = "<group>"; };
+		CEBB003C1B77791A00F0B830 /* SIHDatabaseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHDatabaseHandler.m; sourceTree = "<group>"; };
+		CEBB003D1B77791A00F0B830 /* SIHNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHNotificationHandler.h; sourceTree = "<group>"; };
+		CEBB003E1B77791A00F0B830 /* SIHNotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHNotificationHandler.m; sourceTree = "<group>"; };
+		CEBB003F1B77791A00F0B830 /* SIHResourcesHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHResourcesHandler.h; sourceTree = "<group>"; };
+		CEBB00401B77791A00F0B830 /* SIHResourcesHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHResourcesHandler.m; sourceTree = "<group>"; };
+		CEBB00411B77791A00F0B830 /* SIHServiceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHServiceHandler.h; sourceTree = "<group>"; };
+		CEBB00421B77791A00F0B830 /* SIHServiceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHServiceHandler.m; sourceTree = "<group>"; };
+		CEBB00451B77791A00F0B830 /* SIHSyncHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHSyncHandler.h; sourceTree = "<group>"; };
+		CEBB00461B77791A00F0B830 /* SIHSyncHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHSyncHandler.m; sourceTree = "<group>"; };
+		CEBB00531B77791A00F0B830 /* SIHAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHAdapter.h; sourceTree = "<group>"; };
+		CEBB00541B77791A00F0B830 /* SIHAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHAdapter.m; sourceTree = "<group>"; };
+		CEBB00551B77791A00F0B830 /* SIHAdapterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHAdapterFactory.h; sourceTree = "<group>"; };
+		CEBB00561B77791A00F0B830 /* SIHAdapterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHAdapterFactory.m; sourceTree = "<group>"; };
+		CEBB00571B77791A00F0B830 /* SIHAdapterHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHAdapterHandler.h; sourceTree = "<group>"; };
+		CEBB00581B77791A00F0B830 /* SIHAdapterHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHAdapterHandler.m; sourceTree = "<group>"; };
+		CEBB00591B77791A00F0B830 /* SIHIAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHIAdapter.h; sourceTree = "<group>"; };
+		CEBB005A1B77791A00F0B830 /* SIHIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHIHandler.h; sourceTree = "<group>"; };
+		CEBB005C1B77791A00F0B830 /* SIHDatabaseEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHDatabaseEventHandler.h; sourceTree = "<group>"; };
+		CEBB005D1B77791A00F0B830 /* SIHDatabaseEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHDatabaseEventHandler.m; sourceTree = "<group>"; };
+		CEBB005E1B77791A00F0B830 /* SIHEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHEventHandler.h; sourceTree = "<group>"; };
+		CEBB005F1B77791A00F0B830 /* SIHEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHEventHandler.m; sourceTree = "<group>"; };
+		CEBB00601B77791A00F0B830 /* SIHNotificationEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHNotificationEventHandler.h; sourceTree = "<group>"; };
+		CEBB00611B77791A00F0B830 /* SIHNotificationEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHNotificationEventHandler.m; sourceTree = "<group>"; };
+		CEBB00621B77791A00F0B830 /* SIHSiminovEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHSiminovEventHandler.h; sourceTree = "<group>"; };
+		CEBB00631B77791A00F0B830 /* SIHSiminovEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHSiminovEventHandler.m; sourceTree = "<group>"; };
+		CEBB00641B77791A00F0B830 /* SIHSyncEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHSyncEventHandler.h; sourceTree = "<group>"; };
+		CEBB00651B77791A00F0B830 /* SIHSyncEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHSyncEventHandler.m; sourceTree = "<group>"; };
+		CEBB00671B77791A00F0B830 /* SIHAdapterDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHAdapterDescriptor.h; sourceTree = "<group>"; };
+		CEBB00681B77791A00F0B830 /* SIHAdapterDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHAdapterDescriptor.m; sourceTree = "<group>"; };
+		CEBB00691B77791A00F0B830 /* SIHApplicationDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHApplicationDescriptor.h; sourceTree = "<group>"; };
+		CEBB006A1B77791A00F0B830 /* SIHApplicationDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHApplicationDescriptor.m; sourceTree = "<group>"; };
+		CEBB006B1B77791A00F0B830 /* SIHHybridSiminovDatas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridSiminovDatas.h; sourceTree = "<group>"; };
+		CEBB006C1B77791A00F0B830 /* SIHHybridSiminovDatas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHHybridSiminovDatas.m; sourceTree = "<group>"; };
+		CEBB006D1B77791A00F0B830 /* SIHLibraryDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHLibraryDescriptor.h; sourceTree = "<group>"; };
+		CEBB006E1B77791A00F0B830 /* SIHLibraryDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHLibraryDescriptor.m; sourceTree = "<group>"; };
+		CEBB00701B77791A00F0B830 /* SIHAdapterDescriptorReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHAdapterDescriptorReader.h; sourceTree = "<group>"; };
+		CEBB00711B77791A00F0B830 /* SIHAdapterDescriptorReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHAdapterDescriptorReader.m; sourceTree = "<group>"; };
+		CEBB00721B77791A00F0B830 /* SIHApplicationDescriptorReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHApplicationDescriptorReader.h; sourceTree = "<group>"; };
+		CEBB00731B77791A00F0B830 /* SIHApplicationDescriptorReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHApplicationDescriptorReader.m; sourceTree = "<group>"; };
+		CEBB00741B77791A00F0B830 /* SIHHybridSiminovDataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridSiminovDataReader.h; sourceTree = "<group>"; };
+		CEBB00751B77791A00F0B830 /* SIHHybridSiminovDataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHHybridSiminovDataReader.m; sourceTree = "<group>"; };
+		CEBB00761B77791A00F0B830 /* SIHLibraryDescriptorReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHLibraryDescriptorReader.h; sourceTree = "<group>"; };
+		CEBB00771B77791A00F0B830 /* SIHLibraryDescriptorReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHLibraryDescriptorReader.m; sourceTree = "<group>"; };
+		CEBB00791B77791A00F0B830 /* SIHResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHResourceManager.h; sourceTree = "<group>"; };
+		CEBB007A1B77791A00F0B830 /* SIHResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHResourceManager.m; sourceTree = "<group>"; };
+		CEBB007C1B77791A00F0B830 /* SIHGenericService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHGenericService.h; sourceTree = "<group>"; };
+		CEBB007D1B77791A00F0B830 /* SIHGenericService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHGenericService.m; sourceTree = "<group>"; };
+		CEBB007E1B77791A00F0B830 /* SIHConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHConstants.h; sourceTree = "<group>"; };
+		CEBB007F1B77791A00F0B830 /* SIHInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHInitializer.h; sourceTree = "<group>"; };
+		CEBB00801B77791A00F0B830 /* SIHInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHInitializer.m; sourceTree = "<group>"; };
+		CEBB00811B77791A00F0B830 /* SIHSiminov.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHSiminov.h; sourceTree = "<group>"; };
+		CEBB00821B77791A00F0B830 /* SIHSiminov.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHSiminov.m; sourceTree = "<group>"; };
+		CEBB00841B77791A00F0B830 /* SIHGenericSyncHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHGenericSyncHandler.h; sourceTree = "<group>"; };
+		CEBB00851B77791A00F0B830 /* SIHGenericSyncHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHGenericSyncHandler.m; sourceTree = "<group>"; };
+		CEBB00861B77791A00F0B830 /* SIHSyncWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHSyncWorker.h; sourceTree = "<group>"; };
+		CEBB00871B77791A00F0B830 /* SIHSyncWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHSyncWorker.m; sourceTree = "<group>"; };
+		CEBB00891B77791A00F0B830 /* SIHUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHUtils.h; sourceTree = "<group>"; };
+		CEBB008A1B77791A00F0B830 /* SIHUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHUtils.m; sourceTree = "<group>"; };
+		CEBB008C1B77791A00F0B830 /* SIHHybridSiminovDataWritter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridSiminovDataWritter.h; sourceTree = "<group>"; };
+		CEBB008D1B77791A00F0B830 /* SIHHybridSiminovDataWritter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHHybridSiminovDataWritter.m; sourceTree = "<group>"; };
+		CEBB00BB1B7779D200F0B830 /* Adapter.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Adapter.js; sourceTree = "<group>"; };
+		CEBB00BD1B7779D200F0B830 /* Dictionary.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Dictionary.js; sourceTree = "<group>"; };
+		CEBB00BE1B7779D200F0B830 /* StringBuilder.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = StringBuilder.js; sourceTree = "<group>"; };
+		CEBB00C01B7779D200F0B830 /* ConnectionRequest.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ConnectionRequest.js; sourceTree = "<group>"; };
+		CEBB00C11B7779D200F0B830 /* ConnectionResponse.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ConnectionResponse.js; sourceTree = "<group>"; };
+		CEBB00C21B7779D200F0B830 /* Constants.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Constants.js; sourceTree = "<group>"; };
+		CEBB00C41B7779D200F0B830 /* Clause.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Clause.js; sourceTree = "<group>"; };
+		CEBB00C51B7779D200F0B830 /* Database.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Database.js; sourceTree = "<group>"; };
+		CEBB00C71B7779D200F0B830 /* IAverage.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IAverage.js; sourceTree = "<group>"; };
+		CEBB00C81B7779D200F0B830 /* IAverageClause.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IAverageClause.js; sourceTree = "<group>"; };
+		CEBB00C91B7779D200F0B830 /* ICount.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ICount.js; sourceTree = "<group>"; };
+		CEBB00CA1B7779D200F0B830 /* ICountClause.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ICountClause.js; sourceTree = "<group>"; };
+		CEBB00CB1B7779D200F0B830 /* IDelete.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IDelete.js; sourceTree = "<group>"; };
+		CEBB00CC1B7779D200F0B830 /* IDeleteClause.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IDeleteClause.js; sourceTree = "<group>"; };
+		CEBB00CD1B7779D200F0B830 /* IGroupConcat.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IGroupConcat.js; sourceTree = "<group>"; };
+		CEBB00CE1B7779D200F0B830 /* IGroupConcatClause.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IGroupConcatClause.js; sourceTree = "<group>"; };
+		CEBB00CF1B7779D200F0B830 /* IMax.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IMax.js; sourceTree = "<group>"; };
+		CEBB00D01B7779D200F0B830 /* IMaxClause.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IMaxClause.js; sourceTree = "<group>"; };
+		CEBB00D11B7779D200F0B830 /* IMin.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IMin.js; sourceTree = "<group>"; };
+		CEBB00D21B7779D200F0B830 /* IMinClause.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IMinClause.js; sourceTree = "<group>"; };
+		CEBB00D31B7779D200F0B830 /* ISelect.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ISelect.js; sourceTree = "<group>"; };
+		CEBB00D41B7779D200F0B830 /* ISelectClause.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ISelectClause.js; sourceTree = "<group>"; };
+		CEBB00D51B7779D200F0B830 /* ISum.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ISum.js; sourceTree = "<group>"; };
+		CEBB00D61B7779D200F0B830 /* ISumClause.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ISumClause.js; sourceTree = "<group>"; };
+		CEBB00D71B7779D200F0B830 /* ITotal.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ITotal.js; sourceTree = "<group>"; };
+		CEBB00D81B7779D200F0B830 /* ITotalClause.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ITotalClause.js; sourceTree = "<group>"; };
+		CEBB00D91B7779D200F0B830 /* Select.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Select.js; sourceTree = "<group>"; };
+		CEBB00DB1B7779D200F0B830 /* EventHandler.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = EventHandler.js; sourceTree = "<group>"; };
+		CEBB00DD1B7779D200F0B830 /* DatabaseException.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = DatabaseException.js; sourceTree = "<group>"; };
+		CEBB00DE1B7779D200F0B830 /* DeploymentException.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = DeploymentException.js; sourceTree = "<group>"; };
+		CEBB00DF1B7779D200F0B830 /* NotificationException.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = NotificationException.js; sourceTree = "<group>"; };
+		CEBB00E01B7779D200F0B830 /* ServiceException.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ServiceException.js; sourceTree = "<group>"; };
+		CEBB00E11B7779D200F0B830 /* SiminovException.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SiminovException.js; sourceTree = "<group>"; };
+		CEBB00E21B7779D200F0B830 /* SiminovExceptionHandler.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SiminovExceptionHandler.js; sourceTree = "<group>"; };
+		CEBB00E31B7779D200F0B830 /* SyncException.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SyncException.js; sourceTree = "<group>"; };
+		CEBB00E51B7779D200F0B830 /* Function.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Function.js; sourceTree = "<group>"; };
+		CEBB00E61B7779D200F0B830 /* Import.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Import.js; sourceTree = "<group>"; };
+		CEBB00E81B7779D200F0B830 /* Log.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Log.js; sourceTree = "<group>"; };
+		CEBB00EA1B7779D200F0B830 /* AdapterDescriptor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = AdapterDescriptor.js; sourceTree = "<group>"; };
+		CEBB00EB1B7779D200F0B830 /* ApplicationDescriptor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ApplicationDescriptor.js; sourceTree = "<group>"; };
+		CEBB00EC1B7779D200F0B830 /* DatabaseDescriptor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = DatabaseDescriptor.js; sourceTree = "<group>"; };
+		CEBB00ED1B7779D200F0B830 /* EntityDescriptor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = EntityDescriptor.js; sourceTree = "<group>"; };
+		CEBB00EE1B7779D200F0B830 /* LibraryDescriptor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = LibraryDescriptor.js; sourceTree = "<group>"; };
+		CEBB00EF1B7779D200F0B830 /* NotificationDescriptor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = NotificationDescriptor.js; sourceTree = "<group>"; };
+		CEBB00F01B7779D200F0B830 /* ServiceDescriptor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ServiceDescriptor.js; sourceTree = "<group>"; };
+		CEBB00F11B7779D200F0B830 /* SyncDescriptor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SyncDescriptor.js; sourceTree = "<group>"; };
+		CEBB00F21B7779D200F0B830 /* WebSiminovDatas.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = WebSiminovDatas.js; sourceTree = "<group>"; };
+		CEBB00F41B7779D200F0B830 /* Message.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Message.js; sourceTree = "<group>"; };
+		CEBB00F51B7779D200F0B830 /* NotificationManager.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = NotificationManager.js; sourceTree = "<group>"; };
+		CEBB00F61B7779D200F0B830 /* Registration.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Registration.js; sourceTree = "<group>"; };
+		CEBB00F81B7779D200F0B830 /* SIDatasHelper.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SIDatasHelper.js; sourceTree = "<group>"; };
+		CEBB00F91B7779D200F0B830 /* SIJsonHelper.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SIJsonHelper.js; sourceTree = "<group>"; };
+		CEBB00FB1B7779D200F0B830 /* ResourceManager.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ResourceManager.js; sourceTree = "<group>"; };
+		CEBB00FE1B7779D200F0B830 /* IResource.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IResource.js; sourceTree = "<group>"; };
+		CEBB00FF1B7779D200F0B830 /* IService.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IService.js; sourceTree = "<group>"; };
+		CEBB01001B7779D200F0B830 /* IServiceEvents.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = IServiceEvents.js; sourceTree = "<group>"; };
+		CEBB01011B7779D200F0B830 /* Service.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Service.js; sourceTree = "<group>"; };
+		CEBB01021B7779D200F0B830 /* ServiceEventHandler.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ServiceEventHandler.js; sourceTree = "<group>"; };
+		CEBB01031B7779D200F0B830 /* ServiceHandler.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ServiceHandler.js; sourceTree = "<group>"; };
+		CEBB01041B7779D200F0B830 /* Siminov-build.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "Siminov-build.js"; sourceTree = "<group>"; };
+		CEBB01051B7779D200F0B830 /* Siminov.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Siminov.js; sourceTree = "<group>"; };
+		CEBB01071B7779D200F0B830 /* SyncHandler.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SyncHandler.js; sourceTree = "<group>"; };
+		CEBB01081B7779D200F0B830 /* SyncRequest.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SyncRequest.js; sourceTree = "<group>"; };
+		CECF44031BCB526800887F35 /* SIHHybridAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHHybridAdapter.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEBB000B1B7778D000F0B830 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE7341CB1B77964A00743DCB /* Foundation.framework in Frameworks */,
+				CE7341C91B77964300743DCB /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEBB00051B7778D000F0B830 = {
+			isa = PBXGroup;
+			children = (
+				CE7341CA1B77964A00743DCB /* Foundation.framework */,
+				CE7341C81B77964300743DCB /* SystemConfiguration.framework */,
+				CEBB00B21B7779D200F0B830 /* Assets */,
+				CEBB00281B77791A00F0B830 /* Siminov */,
+				CEBB000F1B7778D000F0B830 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CEBB000F1B7778D000F0B830 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB000E1B7778D000F0B830 /* libHybrid.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEBB00281B77791A00F0B830 /* Siminov */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00291B77791A00F0B830 /* Hybrid */,
+			);
+			path = Siminov;
+			sourceTree = "<group>";
+		};
+		CEBB00291B77791A00F0B830 /* Hybrid */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB002A1B77791A00F0B830 /* Adapter */,
+				CEBB005B1B77791A00F0B830 /* Events */,
+				CEBB00661B77791A00F0B830 /* Model */,
+				CEBB006F1B77791A00F0B830 /* Reader */,
+				CEBB00781B77791A00F0B830 /* Resource */,
+				CEBB007B1B77791A00F0B830 /* Service */,
+				CEBB007E1B77791A00F0B830 /* SIHConstants.h */,
+				CEBB007F1B77791A00F0B830 /* SIHInitializer.h */,
+				CEBB00801B77791A00F0B830 /* SIHInitializer.m */,
+				CEBB00811B77791A00F0B830 /* SIHSiminov.h */,
+				CEBB00821B77791A00F0B830 /* SIHSiminov.m */,
+				CEBB00831B77791A00F0B830 /* Sync */,
+				CEBB00881B77791A00F0B830 /* Utils */,
+				CEBB008B1B77791A00F0B830 /* Writter */,
+			);
+			path = Hybrid;
+			sourceTree = "<group>";
+		};
+		CEBB002A1B77791A00F0B830 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB002B1B77791A00F0B830 /* Constants */,
+				CEBB003A1B77791A00F0B830 /* Handlers */,
+				CEBB00471B77791A00F0B830 /* Resources */,
+				CEBB00531B77791A00F0B830 /* SIHAdapter.h */,
+				CEBB00541B77791A00F0B830 /* SIHAdapter.m */,
+				CEBB00551B77791A00F0B830 /* SIHAdapterFactory.h */,
+				CEBB00561B77791A00F0B830 /* SIHAdapterFactory.m */,
+				CEBB00571B77791A00F0B830 /* SIHAdapterHandler.h */,
+				CEBB00581B77791A00F0B830 /* SIHAdapterHandler.m */,
+				CEBB00591B77791A00F0B830 /* SIHIAdapter.h */,
+				CEBB005A1B77791A00F0B830 /* SIHIHandler.h */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		CEBB002B1B77791A00F0B830 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB002C1B77791A00F0B830 /* SIHHybridAdapterDescriptor.h */,
+				CEBB002D1B77791A00F0B830 /* SIHHybridApplicationDescriptor.h */,
+				CEBB002E1B77791A00F0B830 /* SIHHybridConnectionRequest.h */,
+				CEBB002F1B77791A00F0B830 /* SIHHybridConnectionResponse.h */,
+				CEBB00301B77791A00F0B830 /* SIHHybridDatabaseDescriptor.h */,
+				CEBB00311B77791A00F0B830 /* SIHHybridEntityDescriptor.h */,
+				CEBB00321B77791A00F0B830 /* SIHHybridEventHandler.h */,
+				CEBB00331B77791A00F0B830 /* SIHHybridLibraryDescriptor.h */,
+				CEBB00341B77791A00F0B830 /* SIHHybridMessage.h */,
+				CEBB00351B77791A00F0B830 /* SIHHybridNotificationException.h */,
+				CEBB00361B77791A00F0B830 /* SIHHybridRegistration.h */,
+				CEBB00371B77791A00F0B830 /* SIHHybridServiceHandler.h */,
+				CEBB00381B77791A00F0B830 /* SIHHybridSiminovException.h */,
+				CEBB00391B77791A00F0B830 /* SIHHybridSyncRequest.h */,
+				CECF44031BCB526800887F35 /* SIHHybridAdapter.h */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		CEBB003A1B77791A00F0B830 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB003B1B77791A00F0B830 /* SIHDatabaseHandler.h */,
+				CEBB003C1B77791A00F0B830 /* SIHDatabaseHandler.m */,
+				CEBB003D1B77791A00F0B830 /* SIHNotificationHandler.h */,
+				CEBB003E1B77791A00F0B830 /* SIHNotificationHandler.m */,
+				CEBB003F1B77791A00F0B830 /* SIHResourcesHandler.h */,
+				CE4904181B78D29E00144838 /* SIHSiminovHandler.h */,
+				CE4904191B78D29E00144838 /* SIHSiminovHandler.m */,
+				CEBB00401B77791A00F0B830 /* SIHResourcesHandler.m */,
+				CEBB00411B77791A00F0B830 /* SIHServiceHandler.h */,
+				CEBB00421B77791A00F0B830 /* SIHServiceHandler.m */,
+				CEBB00451B77791A00F0B830 /* SIHSyncHandler.h */,
+				CEBB00461B77791A00F0B830 /* SIHSyncHandler.m */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		CEBB00471B77791A00F0B830 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE7690931BFDFA1F00ADF6AF /* DatabaseAdapter.xml */,
+				CE7690941BFDFA3B00ADF6AF /* EventHandlerAdapter.xml */,
+				CE7690951BFDFA5400ADF6AF /* LibraryDescriptor.xml */,
+				CE7690961BFDFA6F00ADF6AF /* NotificationAdapter.xml */,
+				CE7690971BFDFA8C00ADF6AF /* ResourcesAdapter.xml */,
+				CE7690981BFDFAA800ADF6AF /* SiminovHybridAdapter.xml */,
+				CE7690991BFDFAC000ADF6AF /* ServiceAdapter.xml */,
+				CE76909A1BFDFADA00ADF6AF /* ServiceEventHandlerAdapter.xml */,
+				CE76909B1BFDFAF900ADF6AF /* SiminovExceptionAdapter.xml */,
+				CE76909C1BFE21E300ADF6AF /* SiminovNativeAdapter.xml */,
+				CE76909D1BFE21F900ADF6AF /* SyncAdapter.xml */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CEBB005B1B77791A00F0B830 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB005C1B77791A00F0B830 /* SIHDatabaseEventHandler.h */,
+				CEBB005D1B77791A00F0B830 /* SIHDatabaseEventHandler.m */,
+				CEBB005E1B77791A00F0B830 /* SIHEventHandler.h */,
+				CEBB005F1B77791A00F0B830 /* SIHEventHandler.m */,
+				CEBB00601B77791A00F0B830 /* SIHNotificationEventHandler.h */,
+				CEBB00611B77791A00F0B830 /* SIHNotificationEventHandler.m */,
+				CEBB00621B77791A00F0B830 /* SIHSiminovEventHandler.h */,
+				CEBB00631B77791A00F0B830 /* SIHSiminovEventHandler.m */,
+				CEBB00641B77791A00F0B830 /* SIHSyncEventHandler.h */,
+				CEBB00651B77791A00F0B830 /* SIHSyncEventHandler.m */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		CEBB00661B77791A00F0B830 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00671B77791A00F0B830 /* SIHAdapterDescriptor.h */,
+				CEBB00681B77791A00F0B830 /* SIHAdapterDescriptor.m */,
+				CEBB00691B77791A00F0B830 /* SIHApplicationDescriptor.h */,
+				CEBB006A1B77791A00F0B830 /* SIHApplicationDescriptor.m */,
+				CEBB006B1B77791A00F0B830 /* SIHHybridSiminovDatas.h */,
+				CEBB006C1B77791A00F0B830 /* SIHHybridSiminovDatas.m */,
+				CEBB006D1B77791A00F0B830 /* SIHLibraryDescriptor.h */,
+				CEBB006E1B77791A00F0B830 /* SIHLibraryDescriptor.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CEBB006F1B77791A00F0B830 /* Reader */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00701B77791A00F0B830 /* SIHAdapterDescriptorReader.h */,
+				CEBB00711B77791A00F0B830 /* SIHAdapterDescriptorReader.m */,
+				CEBB00721B77791A00F0B830 /* SIHApplicationDescriptorReader.h */,
+				CEBB00731B77791A00F0B830 /* SIHApplicationDescriptorReader.m */,
+				CEBB00741B77791A00F0B830 /* SIHHybridSiminovDataReader.h */,
+				CEBB00751B77791A00F0B830 /* SIHHybridSiminovDataReader.m */,
+				CEBB00761B77791A00F0B830 /* SIHLibraryDescriptorReader.h */,
+				CEBB00771B77791A00F0B830 /* SIHLibraryDescriptorReader.m */,
+			);
+			path = Reader;
+			sourceTree = "<group>";
+		};
+		CEBB00781B77791A00F0B830 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00791B77791A00F0B830 /* SIHResourceManager.h */,
+				CEBB007A1B77791A00F0B830 /* SIHResourceManager.m */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CEBB007B1B77791A00F0B830 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB007C1B77791A00F0B830 /* SIHGenericService.h */,
+				CEBB007D1B77791A00F0B830 /* SIHGenericService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CEBB00831B77791A00F0B830 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00841B77791A00F0B830 /* SIHGenericSyncHandler.h */,
+				CEBB00851B77791A00F0B830 /* SIHGenericSyncHandler.m */,
+				CEBB00861B77791A00F0B830 /* SIHSyncWorker.h */,
+				CEBB00871B77791A00F0B830 /* SIHSyncWorker.m */,
+			);
+			path = Sync;
+			sourceTree = "<group>";
+		};
+		CEBB00881B77791A00F0B830 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00891B77791A00F0B830 /* SIHUtils.h */,
+				CEBB008A1B77791A00F0B830 /* SIHUtils.m */,
+				CE4904071B78969E00144838 /* SIHDataTypeHandler.h */,
+				CE4904081B78969E00144838 /* SIHDataTypeHandler.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		CEBB008B1B77791A00F0B830 /* Writter */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB008C1B77791A00F0B830 /* SIHHybridSiminovDataWritter.h */,
+				CEBB008D1B77791A00F0B830 /* SIHHybridSiminovDataWritter.m */,
+			);
+			path = Writter;
+			sourceTree = "<group>";
+		};
+		CEBB00B21B7779D200F0B830 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00B91B7779D200F0B830 /* Siminov */,
+				CE76908D1BFDF92200ADF6AF /* AdapterDescriptor.xml */,
+				CE76908E1BFDF94800ADF6AF /* ApplicationDescriptor.xml */,
+				CE76908F1BFDF96200ADF6AF /* DatabaseDescriptor.xml */,
+				CE7690901BFDF97C00ADF6AF /* EntityDescriptor.xml */,
+				CE7690911BFDF99600ADF6AF /* HybridSiminovData.xml */,
+				CE7690921BFDF9AE00ADF6AF /* LibraryDescriptor.xml */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		CEBB00B91B7779D200F0B830 /* Siminov */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00BA1B7779D200F0B830 /* Adapter */,
+				CEBB00BC1B7779D200F0B830 /* Collection */,
+				CEBB00BF1B7779D200F0B830 /* Connection */,
+				CEBB00C21B7779D200F0B830 /* Constants.js */,
+				CEBB00C31B7779D200F0B830 /* Database */,
+				CEBB00DA1B7779D200F0B830 /* Events */,
+				CEBB00DC1B7779D200F0B830 /* Exception */,
+				CEBB00E41B7779D200F0B830 /* Function */,
+				CEBB00E61B7779D200F0B830 /* Import.js */,
+				CEBB00E71B7779D200F0B830 /* Log */,
+				CEBB00E91B7779D200F0B830 /* Model */,
+				CEBB00F31B7779D200F0B830 /* Notification */,
+				CEBB00F71B7779D200F0B830 /* ReaderWriter */,
+				CEBB00FA1B7779D200F0B830 /* Resource */,
+				CEBB00FC1B7779D200F0B830 /* Service */,
+				CEBB01041B7779D200F0B830 /* Siminov-build.js */,
+				CEBB01051B7779D200F0B830 /* Siminov.js */,
+				CEBB01061B7779D200F0B830 /* Sync */,
+			);
+			path = Siminov;
+			sourceTree = "<group>";
+		};
+		CEBB00BA1B7779D200F0B830 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00BB1B7779D200F0B830 /* Adapter.js */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		CEBB00BC1B7779D200F0B830 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00BD1B7779D200F0B830 /* Dictionary.js */,
+				CEBB00BE1B7779D200F0B830 /* StringBuilder.js */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		CEBB00BF1B7779D200F0B830 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00C01B7779D200F0B830 /* ConnectionRequest.js */,
+				CEBB00C11B7779D200F0B830 /* ConnectionResponse.js */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		CEBB00C31B7779D200F0B830 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00C41B7779D200F0B830 /* Clause.js */,
+				CEBB00C51B7779D200F0B830 /* Database.js */,
+				CEBB00C61B7779D200F0B830 /* Design */,
+				CEBB00D91B7779D200F0B830 /* Select.js */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		CEBB00C61B7779D200F0B830 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00C71B7779D200F0B830 /* IAverage.js */,
+				CEBB00C81B7779D200F0B830 /* IAverageClause.js */,
+				CEBB00C91B7779D200F0B830 /* ICount.js */,
+				CEBB00CA1B7779D200F0B830 /* ICountClause.js */,
+				CEBB00CB1B7779D200F0B830 /* IDelete.js */,
+				CEBB00CC1B7779D200F0B830 /* IDeleteClause.js */,
+				CEBB00CD1B7779D200F0B830 /* IGroupConcat.js */,
+				CEBB00CE1B7779D200F0B830 /* IGroupConcatClause.js */,
+				CEBB00CF1B7779D200F0B830 /* IMax.js */,
+				CEBB00D01B7779D200F0B830 /* IMaxClause.js */,
+				CEBB00D11B7779D200F0B830 /* IMin.js */,
+				CEBB00D21B7779D200F0B830 /* IMinClause.js */,
+				CEBB00D31B7779D200F0B830 /* ISelect.js */,
+				CEBB00D41B7779D200F0B830 /* ISelectClause.js */,
+				CEBB00D51B7779D200F0B830 /* ISum.js */,
+				CEBB00D61B7779D200F0B830 /* ISumClause.js */,
+				CEBB00D71B7779D200F0B830 /* ITotal.js */,
+				CEBB00D81B7779D200F0B830 /* ITotalClause.js */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		CEBB00DA1B7779D200F0B830 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00DB1B7779D200F0B830 /* EventHandler.js */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		CEBB00DC1B7779D200F0B830 /* Exception */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00DD1B7779D200F0B830 /* DatabaseException.js */,
+				CEBB00DE1B7779D200F0B830 /* DeploymentException.js */,
+				CEBB00DF1B7779D200F0B830 /* NotificationException.js */,
+				CEBB00E01B7779D200F0B830 /* ServiceException.js */,
+				CEBB00E11B7779D200F0B830 /* SiminovException.js */,
+				CEBB00E21B7779D200F0B830 /* SiminovExceptionHandler.js */,
+				CEBB00E31B7779D200F0B830 /* SyncException.js */,
+			);
+			path = Exception;
+			sourceTree = "<group>";
+		};
+		CEBB00E41B7779D200F0B830 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00E51B7779D200F0B830 /* Function.js */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		CEBB00E71B7779D200F0B830 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00E81B7779D200F0B830 /* Log.js */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		CEBB00E91B7779D200F0B830 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00EA1B7779D200F0B830 /* AdapterDescriptor.js */,
+				CEBB00EB1B7779D200F0B830 /* ApplicationDescriptor.js */,
+				CEBB00EC1B7779D200F0B830 /* DatabaseDescriptor.js */,
+				CEBB00ED1B7779D200F0B830 /* EntityDescriptor.js */,
+				CEBB00EE1B7779D200F0B830 /* LibraryDescriptor.js */,
+				CEBB00EF1B7779D200F0B830 /* NotificationDescriptor.js */,
+				CEBB00F01B7779D200F0B830 /* ServiceDescriptor.js */,
+				CEBB00F11B7779D200F0B830 /* SyncDescriptor.js */,
+				CEBB00F21B7779D200F0B830 /* WebSiminovDatas.js */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CEBB00F31B7779D200F0B830 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00F41B7779D200F0B830 /* Message.js */,
+				CEBB00F51B7779D200F0B830 /* NotificationManager.js */,
+				CEBB00F61B7779D200F0B830 /* Registration.js */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		CEBB00F71B7779D200F0B830 /* ReaderWriter */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00F81B7779D200F0B830 /* SIDatasHelper.js */,
+				CEBB00F91B7779D200F0B830 /* SIJsonHelper.js */,
+			);
+			path = ReaderWriter;
+			sourceTree = "<group>";
+		};
+		CEBB00FA1B7779D200F0B830 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00FB1B7779D200F0B830 /* ResourceManager.js */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CEBB00FC1B7779D200F0B830 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00FD1B7779D200F0B830 /* Design */,
+				CEBB01011B7779D200F0B830 /* Service.js */,
+				CEBB01021B7779D200F0B830 /* ServiceEventHandler.js */,
+				CEBB01031B7779D200F0B830 /* ServiceHandler.js */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CEBB00FD1B7779D200F0B830 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB00FE1B7779D200F0B830 /* IResource.js */,
+				CEBB00FF1B7779D200F0B830 /* IService.js */,
+				CEBB01001B7779D200F0B830 /* IServiceEvents.js */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		CEBB01061B7779D200F0B830 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				CEBB01071B7779D200F0B830 /* SyncHandler.js */,
+				CEBB01081B7779D200F0B830 /* SyncRequest.js */,
+			);
+			path = Sync;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEBB000D1B7778D000F0B830 /* Hybrid */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEBB00221B7778D000F0B830 /* Build configuration list for PBXNativeTarget "Hybrid" */;
+			buildPhases = (
+				CEBB000A1B7778D000F0B830 /* Sources */,
+				CEBB000B1B7778D000F0B830 /* Frameworks */,
+				CEBB000C1B7778D000F0B830 /* CopyFiles */,
+				CE7341A11B7787DA00743DCB /* ShellScript */,
+				CE7341AE1B77884F00743DCB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hybrid;
+			productName = Hybrid;
+			productReference = CEBB000E1B7778D000F0B830 /* libHybrid.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEBB00061B7778D000F0B830 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = Siminov;
+				TargetAttributes = {
+					CEBB000D1B7778D000F0B830 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = CEBB00091B7778D000F0B830 /* Build configuration list for PBXProject "Hybrid" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CEBB00051B7778D000F0B830;
+			productRefGroup = CEBB000F1B7778D000F0B830 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEBB000D1B7778D000F0B830 /* Hybrid */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CE7341A11B7787DA00743DCB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset -o pipefail\n\n#################[ Tests: helps workaround any future bugs in Xcode ]########\n#\nDEBUG_THIS_SCRIPT=\"false\"\n\nif [ $DEBUG_THIS_SCRIPT = \"true\" ]\nthen\necho \"########### TESTS #############\"\necho \"Use the following variables when debugging this script; note that they may change on recursions\"\necho \"BUILD_DIR = $BUILD_DIR\"\necho \"BUILD_ROOT = $BUILD_ROOT\"\necho \"CONFIGURATION_BUILD_DIR = $CONFIGURATION_BUILD_DIR\"\necho \"BUILT_PRODUCTS_DIR = $BUILT_PRODUCTS_DIR\"\necho \"CONFIGURATION_TEMP_DIR = $CONFIGURATION_TEMP_DIR\"\necho \"TARGET_BUILD_DIR = $TARGET_BUILD_DIR\"\nfi\n\n#####################[ part 1 ]##################\n# First, work out the BASESDK version number (NB: Apple ought to report this, but they hide it)\n#    (incidental: searching for substrings in sh is a nightmare! Sob)\n\nSDK_VERSION=$(echo ${SDK_NAME} | grep -o '.\\{3\\}$')\n\n# Next, work out if we're in SIM or DEVICE\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nOTHER_SDK_TO_BUILD=iphoneos${SDK_VERSION}\nelse\nOTHER_SDK_TO_BUILD=iphonesimulator${SDK_VERSION}\nfi\n\necho \"XCode has selected SDK: ${PLATFORM_NAME} with version: ${SDK_VERSION} (although back-targetting: ${IPHONEOS_DEPLOYMENT_TARGET})\"\necho \"...therefore, OTHER_SDK_TO_BUILD = ${OTHER_SDK_TO_BUILD}\"\n#\n#####################[ end of part 1 ]##################\n\n#####################[ part 2 ]##################\n#\n# IF this is the original invocation, invoke WHATEVER other builds are required\n#\n# Xcode is already building ONE target...\n#\n# ...but this is a LIBRARY, so Apple is wrong to set it to build just one.\n# ...we need to build ALL targets\n# ...we MUST NOT re-build the target that is ALREADY being built: Xcode WILL CRASH YOUR COMPUTER if you try this (infinite recursion!)\n#\n#\n# So: build ONLY the missing platforms/configurations.\n\nif [ \"true\" == ${ALREADYINVOKED:-false} ]\nthen\necho \"RECURSION: I am NOT the root invocation, so I'm NOT going to recurse\"\nelse\n# CRITICAL:\n# Prevent infinite recursion (Xcode sucks)\nexport ALREADYINVOKED=\"true\"\n\necho \"RECURSION: I am the root ... recursing all missing build targets NOW...\"\necho \"RECURSION: ...about to invoke: xcodebuild -configuration \\\"${CONFIGURATION}\\\" -project \\\"${PROJECT_NAME}.xcodeproj\\\" -target \\\"${TARGET_NAME}\\\" -sdk \\\"${OTHER_SDK_TO_BUILD}\\\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO\" BUILD_DIR=\\\"${BUILD_DIR}\\\" BUILD_ROOT=\\\"${BUILD_ROOT}\\\" SYMROOT=\\\"${SYMROOT}\\\"\n\nxcodebuild -configuration \"${CONFIGURATION}\" -project \"${PROJECT_NAME}.xcodeproj\" -target \"${TARGET_NAME}\" -sdk \"${OTHER_SDK_TO_BUILD}\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\"\n\nACTION=\"build\"\n\n#Merge all platform binaries as a fat binary for each configurations.\n\n# Calculate where the (multiple) built files are coming from:\nCURRENTCONFIG_DEVICE_DIR=${SYMROOT}/${CONFIGURATION}-iphoneos\nCURRENTCONFIG_SIMULATOR_DIR=${SYMROOT}/${CONFIGURATION}-iphonesimulator\n\necho \"Taking device build from: ${CURRENTCONFIG_DEVICE_DIR}\"\necho \"Taking simulator build from: ${CURRENTCONFIG_SIMULATOR_DIR}\"\n\nCREATING_UNIVERSAL_DIR=${SYMROOT}/${CONFIGURATION}-universal\necho \"...I will output a universal build to: ${CREATING_UNIVERSAL_DIR}\"\n\n# ... remove the products of previous runs of this script\n#      NB: this directory is ONLY created by this script - it should be safe to delete!\n\nrm -rf \"${CREATING_UNIVERSAL_DIR}\"\nmkdir \"${CREATING_UNIVERSAL_DIR}\"\n\n#\necho \"lipo: for current configuration (${CONFIGURATION}) creating output file: ${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\"\nxcrun -sdk iphoneos lipo -create -output \"${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_DEVICE_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_SIMULATOR_DIR}/${EXECUTABLE_NAME}\"\n\n#########\n#\n# Added: StackOverflow suggestion to also copy \"include\" files\n#    (untested, but should work OK)\n#\necho \"Fetching headers from ${PUBLIC_HEADERS_FOLDER_PATH}\"\necho \"  (if you embed your library project in another project, you will need to add\"\necho \"   a \"User Search Headers\" build setting of: (NB INCLUDE THE DOUBLE QUOTES BELOW!)\"\necho '        \"$(TARGET_BUILD_DIR)/include/\"'\nif [ -d \"${CURRENTCONFIG_DEVICE_DIR}/include/\" ]\nthen\nmkdir -p \"${CREATING_UNIVERSAL_DIR}/include/\"\n# * needs to be outside the double quotes?\ncp -r \"${CURRENTCONFIG_DEVICE_DIR}/include/\"* \"${CREATING_UNIVERSAL_DIR}/include\"\nfi\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEBB000A1B7778D000F0B830 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE49041A1B78D29E00144838 /* SIHSiminovHandler.m in Sources */,
+				CEBB008F1B77791A00F0B830 /* SIHNotificationHandler.m in Sources */,
+				CEBB00AA1B77791A00F0B830 /* SIHUtils.m in Sources */,
+				CEBB009A1B77791A00F0B830 /* SIHSiminovEventHandler.m in Sources */,
+				CEBB00A11B77791A00F0B830 /* SIHApplicationDescriptorReader.m in Sources */,
+				CEBB00A81B77791A00F0B830 /* SIHGenericSyncHandler.m in Sources */,
+				CEBB00A41B77791A00F0B830 /* SIHResourceManager.m in Sources */,
+				CEBB00911B77791A00F0B830 /* SIHServiceHandler.m in Sources */,
+				CEBB00981B77791A00F0B830 /* SIHEventHandler.m in Sources */,
+				CEBB009C1B77791A00F0B830 /* SIHAdapterDescriptor.m in Sources */,
+				CEBB009F1B77791A00F0B830 /* SIHLibraryDescriptor.m in Sources */,
+				CEBB00931B77791A00F0B830 /* SIHSyncHandler.m in Sources */,
+				CEBB00A31B77791A00F0B830 /* SIHLibraryDescriptorReader.m in Sources */,
+				CEBB00971B77791A00F0B830 /* SIHDatabaseEventHandler.m in Sources */,
+				CEBB00A61B77791A00F0B830 /* SIHInitializer.m in Sources */,
+				CEBB00AB1B77791A00F0B830 /* SIHHybridSiminovDataWritter.m in Sources */,
+				CEBB00A71B77791A00F0B830 /* SIHSiminov.m in Sources */,
+				CEBB009E1B77791A00F0B830 /* SIHHybridSiminovDatas.m in Sources */,
+				CEBB00951B77791A00F0B830 /* SIHAdapterFactory.m in Sources */,
+				CEBB00A21B77791A00F0B830 /* SIHHybridSiminovDataReader.m in Sources */,
+				CEBB00901B77791A00F0B830 /* SIHResourcesHandler.m in Sources */,
+				CEBB00961B77791A00F0B830 /* SIHAdapterHandler.m in Sources */,
+				CEBB00A51B77791A00F0B830 /* SIHGenericService.m in Sources */,
+				CEBB00A91B77791A00F0B830 /* SIHSyncWorker.m in Sources */,
+				CEBB00941B77791A00F0B830 /* SIHAdapter.m in Sources */,
+				CEBB00A01B77791A00F0B830 /* SIHAdapterDescriptorReader.m in Sources */,
+				CEBB009D1B77791A00F0B830 /* SIHApplicationDescriptor.m in Sources */,
+				CEBB009B1B77791A00F0B830 /* SIHSyncEventHandler.m in Sources */,
+				CEBB008E1B77791A00F0B830 /* SIHDatabaseHandler.m in Sources */,
+				CE4904091B78969E00144838 /* SIHDataTypeHandler.m in Sources */,
+				CEBB00991B77791A00F0B830 /* SIHNotificationEventHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CEBB00201B7778D000F0B830 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CEBB00211B7778D000F0B830 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CEBB00231B7778D000F0B830 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/hybrid-sample-azdvmzlaormkedenokxopdxanfgk/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/hybrid-sample-azdvmzlaormkedenokxopdxanfgk/Build/Products/Debug-universal",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CEBB00241B7778D000F0B830 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/hybrid-sample-azdvmzlaormkedenokxopdxanfgk/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/hybrid-sample-azdvmzlaormkedenokxopdxanfgk/Build/Products/Debug-universal",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEBB00091B7778D000F0B830 /* Build configuration list for PBXProject "Hybrid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEBB00201B7778D000F0B830 /* Debug */,
+				CEBB00211B7778D000F0B830 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEBB00221B7778D000F0B830 /* Build configuration list for PBXNativeTarget "Hybrid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEBB00231B7778D000F0B830 /* Debug */,
+				CEBB00241B7778D000F0B830 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEBB00061B7778D000F0B830 /* Project object */;
+}

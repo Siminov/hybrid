@@ -1,4 +1,4 @@
-Siminov Hybrid (Object Relationship Mapping) & (RESTful) - Android
+Siminov Hybrid (Object Relationship Mapping) & (RESTful) - Android, IOS, Windows
 ===================================================
 
 A hybrid application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a hybrid application leverages best of both native and mobile web technologies or other technologies.
@@ -13,7 +13,7 @@ Get Started
 -----------
 Get the source
 
-  git clone http://github.com/siminov/android-hybrid.git
+  git clone http://github.com/siminov/hybrid.git
   
   
 Features
@@ -22,14 +22,14 @@ Features
 ###### 1. Easy Configuration
 Siminov provides a easy set of defined descriptors which can be broadly classified as 
 	
-	|- ApplicationDescriptor.si.xml 
-	|- DatabaseDescriptor.si.xml
-	|- LibraryDescriptor.si.xml
-	|- EntityDescriptor.si.xml
-	|- AdapterDescriptor.si.xml
-	|- ServiceDescriptor.si.xml
-	|- SyncDescriptor.si.xml
-	|- NotificationDescriptor.si.xml
+	|- ApplicationDescriptor.xml 
+	|- DatabaseDescriptor.xml
+	|- LibraryDescriptor.xml
+	|- EntityDescriptor.xml
+	|- AdapterDescriptor.xml
+	|- ServiceDescriptor.xml
+	|- SyncDescriptor.xml
+	|- NotificationDescriptor.xml
 
 ###### 2. Use With 3rd Party Frameworks
 Easy to integrate with any 3rd party frameworks, It provides Object Relationship Mapping between JavaScript Class and Database 
