@@ -25,6 +25,25 @@
 	@module Database
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+if(dom == undefined) {
+    module.exports = IMax;    
+}
 
 /**
 	Design contain all interfaces required by database layer to deal with database.
@@ -142,8 +161,11 @@ function IMax(select) {
 		 	@return {Object} Return maximum.
 		 	@throws {SiminovException} Throws exception if any error occur while calculating maximum. 
 		 */
-        execute: select.execute
+        execute: select.execute,
 
+		
+		executeAsync: select.executeAsync
+		
     }
 
 }

@@ -21,6 +21,27 @@
 
 	@module Notification
 */
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = Registration;
+    win.Registration = Registration;    
+}
 
 /**
 	It exposes APIs to Get and Set push notification registration information

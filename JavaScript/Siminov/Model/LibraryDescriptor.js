@@ -24,6 +24,30 @@
 	@module Model
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+if(dom == undefined) {
+    var Constants = require('../Constants');
+    var Dictionary = require('../Collection/Dictionary');
+    
+    
+    module.exports = LibraryDescriptor;
+    win.LibraryDescriptor = LibraryDescriptor;
+}
 
 /**
  	Exposes methods to GET and SET Library Descriptor information as per define in LibraryDescriptor.si.xml file by application.
@@ -42,21 +66,21 @@
 		
 			
 			
-			<!-- Database Mappings Needed Under This Library Descriptor -->
+			<!-- Entity Descriptors Needed Under This Library Descriptor -->
 			
 			<!-- Optional Field -->
-				<!-- Database Mappings -->
-			<database-mappings>
-				<database-mapping>name_of_database_descriptor.full_path_of_database_mapping_descriptor_file</database-mapping>
-			</database-mappings>
+				<!-- Entity Descriptors -->
+			<entity-descriptors>
+				<entity-descriptor>name_of_database_descriptor.full_path_of_entity_descriptor_file</entity-descriptor>
+			</entity-descriptors>
 			 
 			
-			<!-- Web Adapters Needed Under This Library Descriptor -->
+			<!-- Hybrid Adapters Needed Under This Library Descriptor -->
 				
 			<!-- Optional Field -->
-				<!-- Web Adapters -->
+				<!-- Hybrid Adapters -->
 			<adapters>
-			    <adapter>full_path_of_web_adapter_file</adapter>
+			    <adapter>full_path_of_hybrid_adapter_file</adapter>
 			</adapters>
 			
 			
@@ -71,7 +95,7 @@ function LibraryDescriptor() {
 
     var properties = new Dictionary();
 
-    var databaseMappingDescriptorPaths = new Array();
+    var entityDescriptorPaths = new Array();
 	var serviceDescriptorPaths = new Array();
 	var adapterDescriptorPaths = new Array();
 	
@@ -177,32 +201,32 @@ function LibraryDescriptor() {
 
 	
 	/**
-	 	Get all database mapping paths as per defined in DatabaseDescriptor.si.xml file.
+	 	Get all entity descriptor paths as per defined in DatabaseDescriptor.si.xml file.
 	 
-	 	@method getDatabaseMappingDescriptorPaths
-	 	@return {Array} It contain all database mapping paths.
+	 	@method getEntityDescriptorPaths
+	 	@return {Array} It contain all entity paths.
 	 */
-    this.getDatabaseMappingDescriptorPaths = function() {
-    	return databaseMappingDescriptorPaths;
+    this.getEntityDescriptorPaths = function() {
+    	return entityDescriptorPaths;
 	}
 	
 	/**
-	 	Add database mapping path as per defined in DatabaseDescriptor.si.xml file.
+	 	Add entity path as per defined in DatabaseDescriptor.si.xml file.
 	 		
 		EXAMPLE:
 			<database-descriptor>
-				<database-mappings>
-					<database-mapping path="Liquor-Mappings/Liquor.xml" />
-					<database-mapping path="Liquor-Mappings/LiquorBrand.xml" />
-				</database-mappings>
+				<entity-descriptors>
+					<entity-descriptor>Entity-Descriptors/Liquor.xml</entity-descriptor>
+					<entity-descriptor>Entity-Descriptors/LiquorBrand.xml</entity-descriptor>
+				</entity-descriptors>
 			</database-descriptor>
 	
 	 
-	 	@method addDatabaseMappingDescriptorPath
-	 	@param databaseMappingPath {String} Database Mapping Path.
+	 	@method addEntityDescriptorPath
+	 	@param entityDescriptorPath {String} Entity Descriptor Path.
 	 */
-    this.addDatabaseMappingDescriptorPath = function(databaseMappingDescriptorPath) {
-    	databaseMappingDescriptorPaths.push(databaseMappingDescriptorPaths);
+    this.addEntityDescriptorDescriptorPath = function(entityDescriptorPath) {
+    	entityDescriptorPaths.push(entityDescriptorPaths);
 	}
     
     

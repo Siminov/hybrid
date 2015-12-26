@@ -24,6 +24,28 @@
 	@module Collection
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = Dictionary;
+}
+
+
 
 /**
 	Dictionary maps keys to values. A Dictionary cannot contain duplicate keys; each key can map to at most on value.

@@ -22,6 +22,30 @@
 
 	@module Model
 */
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    var Constants = require('../Constants');
+    var Dictionary = require('../Collection/Dictionary');
+    
+    module.exports = DatabaseDescriptor;
+    win.DatabaseDescriptor = DatabaseDescriptor;
+}
 
 /**
  	Exposes methods to GET and SET Database Descriptor information as per define in DatabaseDescriptor.si.xml file by application.
@@ -57,7 +81,7 @@
 			
 				<!-- Optional Field -->
 			<entity-descriptors>
-				<entity-descriptor>full_path_of_database_mapping_descriptor_file</entity-descriptor>
+				<entity-descriptor>full_path_of_entity_descriptor_file</entity-descriptor>
 			</entity-descriptors>
 			
 		</database-descriptor>
@@ -227,7 +251,7 @@ function DatabaseDescriptor() {
 	/**
 	 	Get all entity descriptor paths as per defined in EntityDescriptor.si.xml file.
 	 
-	 	@method getDatabaseMappingDescriptorPaths
+	 	@method getEntityDescriptorPaths
 	 	@return {Array} It contain all entity descriptor paths.
 	 */
     this.getEntityDescriptorPaths = function() {
@@ -240,8 +264,8 @@ function DatabaseDescriptor() {
 		EXAMPLE:
 			<database-descriptor>
 				<entity-descriptor>
-					<entity-descriptor>Liquor-Mappings/Liquor.xml</entity-descriptor>
-					<entity-descriptor>Liquor-Mappings/LiquorBrand.xml</entity-descriptor>
+					<entity-descriptor>Entity-Descriptors/Liquor.xml</entity-descriptor>
+					<entity-descriptor>Entity-Descriptors/LiquorBrand.xml</entity-descriptor>
 				</entity-descriptor>
 			</database-descriptor>
 	

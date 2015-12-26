@@ -17,13 +17,36 @@
 
 /**
 	Exposes classes which deal with services.
-	Service is a client-side communication component that process and handles any web service request. It performs long running operations in the background.
-	A Service is a group of APIs which deals on one particular web service.
+	Service is a client-side communication component that process and handles any hybrid service request. It performs long running operations in the background.
+	A Service is a group of APIs which deals on one particular hybrid service.
 	
 	@module Service
 */
 
+var win;
+var dom;
 
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    var Dictionary = require('../Collection/Dictionary');
+    var ServiceHandler = require('./ServiceHandler');
+    var Utils = require('../Utils/Utils');
+    
+    module.exports = Service;
+}
 
 /**
 	It exposes APIs to Get and Set service information by extending IService
@@ -34,7 +57,7 @@
 */
 function Service() {
 	
-	var requestId;
+	var requestId = Utils.uniqueNumber();
 	
 	var service;
 	var request;
@@ -132,13 +155,19 @@ function Service() {
 	 */
 	this.invoke = function() {
 
+		var callback = arguments && arguments[0];
+
 		var serviceHandler = ServiceHandler.getInstance();
 		try {
-			serviceHandler.handle(this);
+			callback?serviceHandler.handleAsync(this, callback):serviceHandler.handle(this);
 		} catch(se) {
-			alert(se);
 			this.onTerminate(se);
 		}
+	}
+	
+	
+	this.invokeAsync = function(callback) {
+		this.invoke(callback?callback:new Callback());
 	}
 	
 	

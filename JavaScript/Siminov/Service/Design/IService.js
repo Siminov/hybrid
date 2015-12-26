@@ -18,8 +18,8 @@
 
 /**
 	Exposes classes which deal with services.
-	Service is a client-side communication component that process and handles any web service request. It performs long running operations in the background.
-	A Service is a group of APIs which deals on one particular web service.
+	Service is a client-side communication component that process and handles any hybrid service request. It performs long running operations in the background.
+	A Service is a group of APIs which deals on one particular hybrid service.
 	
 	@module Service
 */
@@ -32,6 +32,26 @@
 	@submodule Design
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = IService;    
+}
 
 /**
 	It exposes APIs to Get and Set service information
@@ -116,6 +136,10 @@ function IService(service) {
 		 * @method invoke
 		 */
 		invoke: service.invoke,
+
+	
+		invokeAsync: service.invokeAsync,
+	
 
 		/**
 		 * It terminated the executing service request

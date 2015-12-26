@@ -16,7 +16,6 @@
  **/
 
 
-
 /**
 	Exposes classes which deal with database.
 	A Siminov Database Abstraction Layer is an application programming interface which unifies the communication between a computer application and database such as SQLite.
@@ -25,6 +24,25 @@
 	@module Database
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+if(dom == undefined) {
+    module.exports = IAverageClause;    
+}
 
 /**
 	Design contain all interfaces required by database layer to deal with database.

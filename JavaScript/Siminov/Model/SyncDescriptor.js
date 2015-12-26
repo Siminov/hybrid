@@ -22,7 +22,29 @@
 
 	@module Model
 */
+var win;
+var dom;
 
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+if(dom == undefined) {
+    var Constants = require('../Constants');
+    var Dictionary = require('../Collection/Dictionary');
+    
+    module.exports = SyncDescriptor;
+    win.SyncDescriptor = SyncDescriptor;    
+}
 
 /**
  	Exposes methods to GET and SET Sync Descriptor information as per define in SyncDescriptor.si.xml file by application.

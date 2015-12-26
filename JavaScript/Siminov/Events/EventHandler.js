@@ -23,6 +23,35 @@
 	@module Events	
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    var Constants = require('../Constants');
+    var Dictionary = require('../Collection/Dictionary');
+    var Function = require('../Function/Function');
+    var SIDatasHelper = require('../ReaderWriter/SIDatasHelper');
+    var Log = require('../Log/Log');
+    
+    module.exports = EventHandler;
+    
+    win.EventHandler = EventHandler;    	
+}
+
 /**
 	Any event triggered by Siminov is first handled by this function later it will deliver to appropriate Event APIs. 
 	
@@ -37,12 +66,13 @@ function EventHandler() {
 		Handle event triggered by Siminov.
 		
 		@method triggerEvent
-		@param data {String} Web Data From Native
+		@param data {String} Hybrid Data From Native
 	*/
     this.triggerEvent = function(data) {
-
-        var webSiminovDatas = SIJsonHelper.toSI(data);
-        var datas = webSiminovDatas.getWebSiminovDatas();
+        Log.debug("EventHandler", "triggerEvent", "Data: " + data);
+        
+        var hybridSiminovDatas = dom == undefined?JSON.parse(eval('(' + data + ')')):JSON.parse(data);
+        var datas = hybridSiminovDatas.datas;
 
         var functionName;
         var apiName;
@@ -57,21 +87,21 @@ function EventHandler() {
             for(var i = 0;i < datas.length;i++) {
                 var data = datas[i];
 
-                var dataType = data.getDataType();
+                var dataType = data.type;
                 if(dataType === Constants.EVENT_HANDLER_TRIGGERED_EVENT) {
-                    apiName = data.getDataValue();
+                    apiName = data.value;
                 } else if(dataType === Constants.EVENT_HANDLER_EVENTS) {
 
-                    var values = data.getValues();
+                    var values = data.values;
                     if(values != undefined &&  values != null && values.length > 0) {
                         for(var j = 0;j < values.length;j++) {
-                            events.push(values[j].getValue());
+                            events.push(values[j].value);
                         }
                     }
 
                 } else if(dataType === Constants.EVENT_HANDLER_EVENT_PARAMETERS) {
 					
-					var parameterDatas = data.getDatas();
+					var parameterDatas = data.datas;
 					if(parameterDatas != undefined && parameterDatas != null && parameterDatas.length > 0) {
 						
 						for(var j = 0;j < parameterDatas.length;j++) {

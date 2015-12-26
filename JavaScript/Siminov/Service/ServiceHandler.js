@@ -19,11 +19,35 @@
 
 /**
 	Exposes classes which deal with services.
-	Service is a client-side communication component that process and handles any web service request. It performs long running operations in the background.
-	A Service is a group of APIs which deals on one particular web service.
+	Service is a client-side communication component that process and handles any hybrid service request. It performs long running operations in the background.
+	A Service is a group of APIs which deals on one particular hybrid service.
 	
 	@module Service
 */
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    var Callback = require('../Callback');
+    var Constants = require('../Constants');
+    var Adapter = require('../Adapter/Adapter');
+    var Dictionary = require('../Collection/Dictionary');
+    var HybridSiminovDatas = require('../Model/HybridSiminovDatas');
+}
 
 
 
@@ -34,96 +58,150 @@
 	@class ServiceHandler
 	@constructor
 */
-var ServiceHandler = (function() {
 
-	var serviceHandler;
-	
-	return {
-	
-		/**
-		 * Get singleton instance of Service Handler class
-		 * 
-		 * @method getInstance
-		 * @return {ServiceHandler} Singleton instance of Service Handler
-		 */
-		getInstance: function() {
-			if(serviceHandler == null) {
-				serviceHandler = new ServiceHandler();
-				
-				serviceHandler.constructor = null;
-			}
-			
-			return serviceHandler;
-		}
-	}
-	
+var serviceHandler = null;
 
-	function ServiceHandler() {
-		
-		/**
-		 * It handles the service request 
-		 * 
-		 * @method handler
-		 * @param iService {Service} Service instance
-		 */
-		this.handle = function(iService) {
+ServiceHandler.getInstance = function() {
+    
+    if(serviceHandler == null) {
+        serviceHandler = new ServiceHandler();
+    }
+    
+    return serviceHandler;
+};
 
-	        var adapter = new Adapter();
-	        adapter.setAdapterName(Constants.SERVICE_ADAPTER);
-	        adapter.setHandlerName(Constants.SERVICE_ADAPTER_INVOKE_HANDLER);
-			
-
-			var webServiceDatas = new WebSiminovDatas();
-
-			var webService = new WebSiminovDatas.WebSiminovData();
-				webService.setDataType(Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE);
-
-				
-				var webServiceName = new WebSiminovDatas.WebSiminovData.WebSiminovValue();
-				webServiceName.setType(Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_NAME);
-				webServiceName.setValue(iService.getService());
-			
-			webService.addValue(webServiceName)
-			
-				var webServiceValue = new WebSiminovDatas.WebSiminovData.WebSiminovValue();
-				webServiceValue.setType(Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_REQUEST);	
-				webServiceValue.setValue(iService.getRequest());
-
-			webService.addValue(webServiceValue);
+var getInstance = function() {
+    
+    if(serviceHandler == null) {
+        serviceHandler = new ServiceHandler();
+    }
+    
+    return serviceHandler;
+};
 
 
-				var resources = iService.getResources();
-				if(resources != undefined && resources != null && resources.length > 0) {
-					
-					var webResources = new WebSiminovDatas.WebSiminovData();
-						webResources.setDataType(Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES);
-					
-					for(var i = 0;i < resources.length;i++) {
-						var resourceName = resources[i];
-						var resourceValue = iService.getResource(resourceName);
-						
-						resourceValue = '' + resourceValue;
-						
-						var webResource = new WebSiminovDatas.WebSiminovData.WebSiminovValue();
-						webResource.setType(resourceName);
-						webResource.setValue(resourceValue);
-						
-						webResources.addValue(webResource);
-					}				
-		
-					webService.addData(webResources);	
-				}
+function ServiceHandler() {
+    
+    var requestQueue = new Dictionary();
+    
+    var getRequest = function(requestId) {
+        return requestQueue.get(requestId);
+    }
+    
+    
+    var removeRequest = function(requestId) {
+        requestQueue.remove(requestId);
+    }
+    
+    
+    var handleAsync = function(iService, callback) {
+        this.handle(iService, callback?callback:new Callback());
+    };
+    
+    
+    /**
+     * It handles the service request
+     *
+     * @method handler
+     * @param iService {Service} Service instance
+     */
+    var handle = function(iService) {
+        
+        var callback = arguments && arguments[1];
+        
+        var adapter = new Adapter();
+        adapter.setAdapterName(Constants.SERVICE_ADAPTER);
+        adapter.setHandlerName(Constants.SERVICE_ADAPTER_INVOKE_HANDLER);
+        
+        
+        var hybridServiceDatas = Object.create(HybridSiminovDatas);
+        hybridServiceDatas.datas = new Array();
+        
+        var hybridService = Object.create(HybridSiminovDatas.HybridSiminovData);
+        hybridService.datas = new Array();
+        hybridService.values = new Array();
+        
+        hybridService.type = Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE;
+        
+        
+        var hybridRequestId = Object.create(HybridSiminovDatas.HybridSiminovData.HybridSiminovValue);
+        hybridRequestId.type = Constants.SERVICE_ADAPTER_INVOKE_HANDLER_REQUEST_ID;
+        hybridRequestId.value = iService.getRequestId();
+        
+        hybridService.values.push(hybridRequestId);
+        
+        var hybridServiceName = Object.create(HybridSiminovDatas.HybridSiminovData.HybridSiminovValue);
+        hybridServiceName.type = Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_NAME;
+        hybridServiceName.value = iService.getService();
+        
+        hybridService.values.push(hybridServiceName);
+        
+        var hybridServiceValue = Object.create(HybridSiminovDatas.HybridSiminovData.HybridSiminovValue);
+        hybridServiceValue.type = Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_REQUEST;
+        hybridServiceValue.value = iService.getRequest();
+        
+        hybridService.values.push(hybridServiceValue);
+        
+        
+        var resources = iService.getResources();
+        if(resources != undefined && resources != null && resources.length > 0) {
+            
+            var hybridResources = Object.create(HybridSiminovDatas.HybridSiminovData);
+            hybridResources.datas = new Array();
+            hybridResources.values = new Array();
+            
+            hybridResources.type = Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES;
+            
+            for(var i = 0;i < resources.length;i++) {
+                var resourceName = resources[i];
+                var resourceValue = iService.getResource(resourceName);
+                if(resourceValue && !(typeof resourceValue == 'string')) {
+                    continue;
+                }
+                
+                resourceValue = '' + resourceValue;
+                
+                var hybridResource = Object.create(HybridSiminovDatas.HybridSiminovData.HybridSiminovValue);
+                hybridResource.type = resourceName;
+                hybridResource.value = resourceValue;
+                
+                hybridResources.values.push(hybridResource);
+            }
+            
+            hybridService.datas.push(hybridResources);
+        }
+        
+        
+        hybridServiceDatas.datas.push(hybridService);
+        
+        var data = encodeURI(JSON.stringify(hybridServiceDatas));
+        adapter.addParameter(data);
+        
+        requestQueue.add(iService.getRequestId(), iService);
+        if(callback) {
+            adapter.setCallback(serviceCallback);
+            adapter.setAdapterMode(Adapter.REQUEST_ASYNC_MODE);
+            
+            Adapter.invoke(adapter);		
+            
+            function serviceCallback() {
+                callback && callback.onSuccess && callback.onSuccess();
+            }	
+        } else {
+            Adapter.invoke(adapter);
+        }
+    };
+    
+    return {
+        getRequest: getRequest,
+        removeRequest: removeRequest,
+        handleAsync: handleAsync,
+        handle: handle
+    };
+};
 
 
-			webServiceDatas.addWebSiminovData(webService)
-			
-			var data = encodeURI(SIJsonHelper.toJson(webServiceDatas, true));
-			adapter.addParameter(data);
 
-			adapter.invoke();
-		}
-	}
-		
-}) ();
-
-
+if(dom == undefined) {
+    exports.getInstance = getInstance;
+}

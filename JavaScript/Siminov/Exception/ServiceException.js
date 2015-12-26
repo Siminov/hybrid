@@ -23,6 +23,27 @@
 	@module Exception
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = ServiceException;
+    win.ServiceException = ServiceException;    
+}
 
 /**
 	This is general exception, which is thrown through Service APIs, if any exception occur while processing service request.
@@ -39,4 +60,4 @@
 }
 
 
-Function.extend(SiminovException, ServiceException);
+//Function.extend(SiminovException, ServiceException);

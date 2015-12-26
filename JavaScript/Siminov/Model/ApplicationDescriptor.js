@@ -22,7 +22,30 @@
 
 	@module Model
 */
+var win;
+var dom;
 
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    var Constants = require('../Constants');
+    var Dictionary = require('../Collection/Dictionary');
+    
+    module.exports = ApplicationDescriptor;
+    win.ApplicationDescriptor = ApplicationDescriptor;
+}
 
 /**
  	Exposes methods to GET and SET Application Descriptor information as per define in ApplicationDescriptor.si.xml file by application.
@@ -30,8 +53,8 @@
 	Example:
 		<siminov>
 		
-			<property name="name">SIMINOV WEB SAMPLE</property>	
-			<property name="description">Siminov Web Sample Application</property>
+			<property name="name">SIMINOV HYBRID SAMPLE</property>	
+			<property name="description">Siminov Hybrid Sample Application</property>
 			<property name="version">0.9</property>
 		
 			<property name="load_initially">true</property>
@@ -43,8 +66,8 @@
 		
 			<!-- SIMINOV EVENTS -->
 		 	<event-handlers>
-			    <event-handler>siminov.web.sample.events.SiminovEventHandler</event-handler>
-			    <event-handler>siminov.web.sample.events.DatabaseEventHandler</event-handler>
+			    <event-handler>siminov.hybrid.sample.events.SiminovEventHandler</event-handler>
+			    <event-handler>siminov.hybrid.sample.events.DatabaseEventHandler</event-handler>
 			</event-handlers>
 				
 		</siminov>
@@ -121,6 +144,16 @@ function ApplicationDescriptor() {
     this.setVersion = function(version) {
         properties.add(Constants.APPLICATION_DESCRIPTOR_VERSION, version);
     }
+    
+    
+    this.getDeploy = function() {
+    	return properties.get(Constants.APPLICATION_DESCRIPTOR_DEPLOY);
+    }
+    
+    this.setDeploy = function(deploy) {
+    	properties.add(Constants.APPLICATION_DESCRIPTOR_DEPLOY, deploy);
+    }
+    
 
 	/**
 	 	Get all Properties defined in descriptor.

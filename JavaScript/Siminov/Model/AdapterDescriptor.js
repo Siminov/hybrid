@@ -22,6 +22,30 @@
 	@module Model
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+if(dom == undefined) {
+    var Constants = require('../Constants');
+    var Dictionary = require('../Collection/Dictionary');
+    
+    module.exports = AdapterDescriptor;
+    win.AdapterDescriptor = AdapterDescriptor;    
+}
+
 /**
  	Exposes methods to GET and SET Adapter Descriptor information as per define in AdapterDescriptor.si.xml file by application.
 		
@@ -36,7 +60,7 @@
 		    <property name="description">adapter_description</property>
 		    
 		    	<!-- Mandatory Field -->
-		    <property name="type">WEB-TO-NATIVE|NATIVE-TO-WEB</property>
+		    <property name="type">HYBRID-TO-NATIVE|NATIVE-TO-HYBRID</property>
 		    
 		    	<!-- Optional Field -->
 		    <property name="map_to">name_of_adapter_class</property>

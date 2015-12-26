@@ -18,11 +18,35 @@
 
 
 
+
 /**
 	It provide Util class needed by Siminov Framework.
 	
-	@module Utils
+	@module Function
 */
+
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    var Log = require('../Log/Log');
+    
+    module.exports = Function;    
+}
 
 /**
 	Get all properties a given function contain.
@@ -30,19 +54,24 @@
 	@method properties
 	@return {Array} All function properties
 */
-Object.defineProperty(
-    Object.prototype, "properties", {
-        value: function() {
-            var result = [];
-            for (var property in this) {
-                if (this.hasOwnProperty(property))
-                    result.push(property);
-            }
 
-            return result;
-        }
-    }
-);
+try {
+	Object.defineProperty(
+	    Object.prototype, "properties", {
+	        value: function() {
+	            var result = [];
+	            for (var property in this) {
+	                if (this.hasOwnProperty(property) && !this.__proto__.hasOwnProperty(property))
+	                    result.push(property);
+	            }
+	
+	            return result;
+	        }
+	    }
+	);
+} catch(e) {
+	
+}
 
 
 /**
@@ -51,21 +80,25 @@ Object.defineProperty(
 	@method containProperties
 	@return {Boolean} true/false; TRUE: If it contain property; FALSE: If it does not contain property.
 */
-Object.defineProperty(
-    Object.prototype, "containProperty", {
-        value: function(property) {
-            var properties = this.properties();
-
-            for(var i = 0;i < properties.length;i++) {
-                if(properties[i] === property) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-    }
-);
+try {
+	Object.defineProperty(
+	    Object.prototype, "containProperty", {
+	        value: function(property) {
+	            var properties = this.properties();
+	
+	            for(var i = 0;i < properties.length;i++) {
+	                if(properties[i] === property) {
+	                    return true;
+	                }
+	            }
+	
+	            return false;
+	        }
+	    }
+	);	
+} catch(e) {
+	
+}
 
 
 
@@ -75,22 +108,26 @@ Object.defineProperty(
 	@method getterProperties
 	@return {Array} All GET Properties
 */
-Object.defineProperty(
-    Object.prototype, "getterProperties", {
-        value: function() {
-            var properties = this.properties();
-            var getterProperties = [];
-
-            for(var i = 0;i < properties.length;i++) {
-                if(properties[i].indexOf("get") == 0 || properties[i].indexOf("is") == 0) {
-                    getterProperties.push(properties[i]);
-                }
-            }
-
-            return getterProperties;
-        }
-    }
-);
+try {
+	Object.defineProperty(
+	    Object.prototype, "getterProperties", {
+	        value: function() {
+	            var properties = this.properties();
+	            var getterProperties = [];
+	
+	            for(var i = 0;i < properties.length;i++) {
+	                if(properties[i].indexOf("get") == 0 || properties[i].indexOf("is") == 0) {
+	                    getterProperties.push(properties[i]);
+	                }
+	            }
+	
+	            return getterProperties;
+	        }
+	    }
+	);	
+} catch(e) {
+	
+}
 
 
 
@@ -100,22 +137,26 @@ Object.defineProperty(
 	@method setterProperties
 	@return {Array} All SET Properties
 */
-Object.defineProperty(
-    Object.prototype, "setterProperties", {
-        value: function() {
-            var properties = this.properties();
-            var setterProperties = [];
-
-            for(var i = 0;i < properties.length;i++) {
-                if(properties[i].indexOf("set") === 0) {
-                    setterProperties.push(properties[i]);
-                }
-            }
-
-            return setterProperties;
-        }
-    }
-);
+try {
+	Object.defineProperty(
+	    Object.prototype, "setterProperties", {
+	        value: function() {
+	            var properties = this.properties();
+	            var setterProperties = [];
+	
+	            for(var i = 0;i < properties.length;i++) {
+	                if(properties[i].indexOf("set") === 0) {
+	                    setterProperties.push(properties[i]);
+	                }
+	            }
+	
+	            return setterProperties;
+	        }
+	    }
+	);	
+} catch(e) {
+	
+}
 
 
 /**
@@ -124,16 +165,20 @@ Object.defineProperty(
 	@method getObjectName
 	@return {String} Name of Function 
 */
-Object.defineProperty(
-    Object.prototype, "getFunctionName", {
-        value: function() {
-            var funcNameRegex = /function (.{1,})\(/;
-            var results = (funcNameRegex).exec((this).constructor.toString());
-
-            return (results && results.length > 1) ? results[1] : "";
-        }
-    }
-);
+try {
+	Object.defineProperty(
+	    Object.prototype, "getFunctionName", {
+	        value: function() {
+	            var funcNameRegex = /function (.{1,})\(/;
+	            var results = (funcNameRegex).exec((this).constructor.toString());
+	
+	            return (results && results.length > 1) ? results[1] : "";
+	        }
+	    }
+	);	
+} catch(e) {
+	
+}
 
 
 
@@ -160,8 +205,19 @@ function Function() {
 Function.extend = function (parent, child) {
     child.prototype = new parent();
     child.prototype.constructor = child;
+    
+    if(!win[child.name]) {
+        win[child.name] = child;
+    }
 }
 
+                      
+Function.implement = function(parent, child) {
+                      
+    if(!win[child.name]) {
+        win[child.name] = child;
+    }
+}
 
 
 /**
@@ -174,7 +230,11 @@ Function.extend = function (parent, child) {
 Function.createFunctionInstance = function(functionName) {
 	Log.debug("Function", "createFunctionInstance", "FUNCTION: " + functionName);
 	
-    var obj = Function.createFunctionInstanceDescend(window, functionName);
+    var obj = Function.createFunctionInstanceDescend(win, functionName);
+    if(!obj) {
+    	return eval(functionName)();	
+    }
+    
     return new obj();
 }
 
@@ -190,6 +250,7 @@ Function.createFunctionInstanceDescend = function(obj, path) {
     var parts = path.split('.');
 
     for(var i = 0; i < parts.length; i++) {
+    	Log.debug(obj, "createFunctionInstanceDescend", parts[i]);
         obj = obj[parts[i]];
     }
 

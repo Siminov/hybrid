@@ -24,7 +24,26 @@
 	
 	@module Database
 */
+var win;
+var dom;
 
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = ISelect;
+}
 
 /**
 	Design contain all interfaces required by database layer to deal with database.
@@ -44,7 +63,7 @@
 	@param select {Select} Select class object.
 */
 function ISelect(select) {
-
+    
     return {
 
 		/**
@@ -189,8 +208,10 @@ function ISelect(select) {
 		 	@return {Object} Return array of model objects.
 		 	@throws {SiminovException} Throws exception if any error occur while getting tuples from table. 
 		 */
-        execute: select.execute
+        execute: select.execute,
 
+		executeAsync: select.executeAsync,
+        
     }
 
 }

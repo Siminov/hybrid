@@ -23,6 +23,28 @@
 	@module Exception
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+
+if(dom == undefined) {
+    module.exports = SiminovException;
+    win.SiminovException = SiminovException;    
+}
 
 /**
 	This is general exception, which is thrown through Siminov APIs, if any exception occur while performing any tasks.

@@ -21,10 +21,30 @@
 	
 	@module Exception
 */
+var win;
+var dom;
 
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = SiminovExceptionHandler;
+    win.SiminovExceptionHandler = SiminovExceptionHandler;    
+}
 
 /**
-	Any exception thrown from NATIVE-TO-WEB is handled and show to user. 
+	Any exception thrown from NATIVE-TO-HYBRID is handled and show to user. 
 	
 	@module Exception
 	@class SiminovExceptionHandler

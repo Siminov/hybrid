@@ -25,6 +25,26 @@
 	@module Database
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = ICount;    
+}
 
 /**
 	Design contain all interfaces required by database layer to deal with database.
@@ -148,7 +168,9 @@ function ICount(select) {
 			@return {Object} Return count.
 		 	@throws {SiminovException} Throws exception if any error occur while calculating count. 
 		 */
-        execute: select.execute
+        execute: select.execute,
+        
+        executeAsync: select.executeAsync
 
     }
 

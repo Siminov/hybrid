@@ -21,7 +21,27 @@
 	
 	@module Exception
 */
+var win;
+var dom;
 
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = DeploymentException;
+    win.DeploymentException = DeploymentException;    
+}
 
 /**
 	This is general exception, which is thrown through Deployment APIs, if any exception occur while deploying application.
@@ -39,4 +59,4 @@ function DeploymentException(className, methodName, message) {
 }
 
 
-Function.extend(SiminovException, DeploymentException);
+//Function.extend(SiminovException, DeploymentException);

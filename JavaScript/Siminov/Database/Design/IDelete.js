@@ -25,6 +25,26 @@
 	@module Database
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+if(dom == undefined) {
+    module.exports = IDelete;
+}
+
 
 /**
 	Design contain all interfaces required by database layer to deal with database.
@@ -101,8 +121,10 @@ function IDelete(select) {
 		 	@method execute
 		 	@throws {SiminovException} Throws exception if any error occur while deleting tuples from table. 
 		 */
-        execute: select.execute
+        execute: select.execute,
 		
+		
+		executeAsync: select.executeAsync
 	}
 
 }

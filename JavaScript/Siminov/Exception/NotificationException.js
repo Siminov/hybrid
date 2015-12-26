@@ -21,7 +21,27 @@
 	
 	@module Exception
 */
+var win;
+var dom;
 
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = NotificationException;
+    win.NotificationException = NotificationException;    
+}
 
 /**
 	This is general exception, which is thrown through Notification APIs, if any exception occur while processing notification.
@@ -38,4 +58,4 @@ function NotificationException(className, methodName, message) {
 
 }
 
-Function.extend(SiminovException, NotificationException);
+//Function.extend(SiminovException, NotificationException);

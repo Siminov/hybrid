@@ -22,6 +22,26 @@
 
 	@module Notification
 */
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = NotificationManager;    
+}
 
 /**
 	It exposes APIs to Get and Set push notification 
@@ -62,13 +82,37 @@ var NotificationManager = (function() {
 		 */
 		this.doRegistration = function() {
 
+			var callback = arguments && arguments[0];
+
 		    var adapter = new Adapter();
 		    adapter.setAdapterName(Constants.NOTIFICATION_ADAPTER);
 		    adapter.setHandlerName(Constants.NOTIFICATION_ADAPTER_DO_REGISTRATION_HANDLER);
 		
-			adapter.invoke();				
+			
+			if(callback) {
+				adapter.setCallback(doRegstrationCallback);
+				adapter.setAdapterMode(Adapter.REQUEST_ASYNC_MODE);
+				
+				Adapter.invoke(adapter);
+			} else {
+				var data = Adapter.invoke(adapter);
+				return doRegistrationCallback(data);				
+			}
+			
+			
+			function doRegistrationCallback(data) {
+				
+				if(callback) {
+					callback && callback.onSuccess && callback.onSuccess();
+				} else {
+					return;
+				}
+			}
 		}
 			
+		this.doRegistrationAsync = function(callback) {
+			this.doRegistration(callback?callback:new Callback());
+		}	
 			
 		/**
 		 * It executes the unregistration process of push notification
@@ -77,12 +121,39 @@ var NotificationManager = (function() {
 		 */	
 		this.doUnregistration = function() {
 
+			var callback = arguments && arguments[0];
+
 		    var adapter = new Adapter();
 		    adapter.setAdapterName(Constants.NOTIFICATION_ADAPTER);
 		    adapter.setHandlerName(Constants.NOTIFICATION_ADPATER_DO_UNREGISTRATION_HANDLER);
 		
-			adapter.invoke();				
+		
+			if(callback) {
+				adapter.setCallback(doUnregistrationCallback);
+				adapter.setAdapterMode(Adapter.REQUEST_ASYNC_MODE);
+				
+				Adapter.invoke(adapter);
+			} else {
+				var data = Adapter.invoke(adapter);
+				return doUnregistrationCallback(data);				
+			}
+			
+			
+			function doUnregistrationCallback(data) {
+				
+				if(callback) {
+					callback && callback.onSuccess && callback.onSuccess();
+				} else {
+					return;
+				}
+			}
 		}
+		
+		
+		this.doUnregistrationAsync = function(callback) {
+			this.doUnregistration(callback);
+		}
+		
 	}
 
 		

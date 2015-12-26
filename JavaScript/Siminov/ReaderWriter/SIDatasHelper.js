@@ -23,6 +23,30 @@
 	@module Parser
 */
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    var Function = require('../Function/Function');
+    var HybridSiminovDatas = require('../Model/HybridSiminovDatas');
+    
+    module.exports = SIDatasHelper;
+}
+
 /**
 	Exposes APIs to deal with Models, it convert si datas to models or models to si datas.
 	
@@ -45,7 +69,7 @@ function SIDatasHelper() {
 SIDatasHelper.toModels = function(siDatas) {
 
     var models = [];
-    var datas = siDatas.getWebSiminovDatas();
+    var datas = siDatas.datas;
 
     for(var i = 0;i < datas.length;i++) {
 
@@ -68,18 +92,18 @@ SIDatasHelper.toModels = function(siDatas) {
 */
 SIDatasHelper.toModel = function(data) {
 
-    var model = Function.createFunctionInstance(data.getDataType());
-    var values = data.getValues();
+    var model = Function.createFunctionInstance(data.type);
+    var values = data.values;
 
     if(values != undefined) {
 
         for(var j = 0;j < values.length;j++) {
             var value = values[j];
 
-            var type = value.getType();
-            var val = value.getValue();
+            var type = value.type;
+            var val = value.value;
 
-            if(data.getDataType() === "Array") {
+            if(data.type === "Array") {
             	
                 if(type != undefined) {
                     model[j] = [type, val];
@@ -92,14 +116,14 @@ SIDatasHelper.toModel = function(data) {
         }
     }
 
-    var innerDatas = data.getDatas();
+    var innerDatas = data.datas;
     if(innerDatas != undefined) {
 
         for(var i = 0;i < innerDatas.length;i++) {
             var innerData = innerDatas[i];
             var innerModel = SIDatasHelper.toModel(innerData);
 
-            var innerDataType = innerData.getDataType();
+            var innerDataType = innerData.type;
             if(innerDataType === "Array" && innerModel != undefined) {
                 
                 for(var j = 0;j < innerModel.length;j++) {
@@ -110,9 +134,7 @@ SIDatasHelper.toModel = function(data) {
 					if(type == undefined) {
 						var innerModelDataType = innerModel[j].getFunctionName();
 
-						console.log("inner model data type: " + innerModelDataType + ", inner data type: " + innerDataType);
 						type = innerModelDataType.substring(innerModelDataType.lastIndexOf('.') + 1, innerModelDataType.length);
-						console.log("type: " + type);
 						value = innerModel[j];
 					}
 					
@@ -124,7 +146,7 @@ SIDatasHelper.toModel = function(data) {
                 if(innerDataType.indexOf('.') !== -1) {
                     innerDataType = innerDataType.substring(innerDataType.lastIndexOf('.') + 1, innerDataType.length);
 
-                    if(data.getDataType() === "Array") {
+                    if(data.type === "Array") {
                         model[i] = [innerDataType, innerModel];
                     } else {
 
@@ -134,7 +156,7 @@ SIDatasHelper.toModel = function(data) {
 
                 } else {
                 	
-                    if(data.getDataType() === "Array") {
+                    if(data.type === "Array") {
                         model.push(innerModel);
                     } else {
 
@@ -156,62 +178,88 @@ SIDatasHelper.toModel = function(data) {
 */
 SIDatasHelper.toSI = function(object) {
 
-    var datas = new WebSiminovDatas();
-    var data = SIDatasHelper.parseSI(object);
+    var siminovDatas = Object.create(HybridSiminovDatas);
+    siminovDatas.datas = new Array();
+    
+    var data = SIDatasHelper.buildSI(object);
+    siminovDatas.datas.push(data);
 
-    datas.addWebSiminovData(data);
-
-    return datas;
+    return siminovDatas;
 }
 
 /**
  * Convert Model to SI Data
  */
-SIDatasHelper.parseSI = function(object) {
+SIDatasHelper.buildSI = function(object) {
 
-    var data = new WebSiminovDatas.WebSiminovData();
+	if(object && object.getterProperties().length <= 0) {
+		return object;
+	}
+
+    var data = Object.create(HybridSiminovDatas.HybridSiminovData);
+    data.datas = new Array();
+	data.values = new Array();
 
     var modelName = object.getFunctionName();
-    data.setDataType(modelName);
+    data.type = modelName;
 
     var getterProperties = object.getterProperties();
 
     for(var i = 0;i < getterProperties.length;i++) {
 
-        var value = new WebSiminovDatas.WebSiminovData.WebSiminovValue();
+        var value = Object.create(HybridSiminovDatas.HybridSiminovData.HybridSiminovValue);
 
         if(getterProperties[i].indexOf("get") === 0) {
             var type = getterProperties[i].substring(3, getterProperties[i].length);
             var val = Function.invokeAndFetch(object, getterProperties[i]);
 
-            value.setType(type.charAt(0).toLowerCase() + type.substring(1, type.length));
+            value.type = type.charAt(0).toLowerCase() + type.substring(1, type.length);
 
             if(val instanceof Object && !(val instanceof Array)) {
 
-                var obj = SIDatasHelper.parseSI(val);
-                data.addData(obj);
+				if(!val) {
+					continue;
+				}
+				
+                var obj = SIDatasHelper.buildSI(val);
+                if(typeof obj === 'string') {
+    				value.value = obj;
+                } else if(typeof obj === 'object') {
+    				data.datas.push(obj);      
+                }                
             } else if(val instanceof Array) {
 
                 if(val != undefined && val != null && val.length > 0) {
 
                     for(var j = 0;j < val.length;j++) {
-                        var obj = SIDatasHelper.parseSI(val[j]);
-                        data.addData(obj);
+                    
+                        var obj = SIDatasHelper.buildSI(val[j]);
+                        if(typeof obj === 'string') {
+			                value.value = obj;
+                        } else if(typeof obj === 'object') {
+                        	data.datas.push(obj);
+                        }
                     }
                 }
-
             } else {
-                value.setValue(val);
+            
+            	if(val) {
+	                value.value = val.toString();
+            	}
             }
         } else if(getterProperties[i].indexOf("is") == 0) {
             var type = getterProperties[i].substring(2, getterProperties[i].length);
 
-            value.setType(type.charAt(0).toLowerCase() + type.substring(1, type.length));
-            value.setValue(Function.invokeAndFetch(object, getterProperties[i]));
+            value.type = type.charAt(0).toLowerCase() + type.substring(1, type.length);
+            var apiValue = Function.invokeAndFetch(object, getterProperties[i]);
+            
+            if(apiValue) {
+            	value.value = apiValue.toString();
+            }
         }
 
 
-        data.addValue(value);
+        data.values.push(value);
     }
 
     return data;

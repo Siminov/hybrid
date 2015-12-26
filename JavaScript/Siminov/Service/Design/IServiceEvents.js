@@ -19,8 +19,8 @@
 
 /**
 	Exposes classes which deal with services.
-	Service is a client-side communication component that process and handles any web service request. It performs long running operations in the background.
-	A Service is a group of APIs which deals on one particular web service.
+	Service is a client-side communication component that process and handles any hybrid service request. It performs long running operations in the background.
+	A Service is a group of APIs which deals on one particular hybrid service.
 	
 	@module Service
 */
@@ -32,6 +32,27 @@
 	@module Service
 	@submodule Design
 */
+
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+
+if(dom == undefined) {
+    module.exports = IServiceEvents;    
+}
 
 
 /**
@@ -104,7 +125,7 @@ function IServiceEvents(serviceEvents) {
 
 
 		/**
-		 * This is the final method that is called on a Service instance before it’s destroyed and completely removed from memory.
+		 * This is the final method that is called on a Service instance before itï¿½s destroyed and completely removed from memory.
 			<p>
 			There will be no lifecycle methods called after the Activity has been destroyed.
 		* 
@@ -114,7 +135,7 @@ function IServiceEvents(serviceEvents) {
 
 
 		/**
-		 * This method is called before Service calls Web Service Request. 
+		 * This method is called before Service calls Hybrid Service Request. 
 		 * 
 		 * @method onRequestInvoke
 		 * @param connectionRequest IConnectionRequest instance
@@ -123,7 +144,7 @@ function IServiceEvents(serviceEvents) {
 		
 	
 		/**
-		 * This method is called after Web Service Request is executed.
+		 * This method is called after Hybrid Service Request is executed.
 		 * 
 		 * @method onRequestFinish
 		 * @param connectionResponse IConnectionResponse instance

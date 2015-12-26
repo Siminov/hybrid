@@ -15,12 +15,11 @@
  * limitations under the License.
  **/
 
-
-
 /*
     Siminov Layer Import
  */
 document.write('<script type="text/javascript" src="Siminov/Constants.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Callback.js"></script>');
 
 
 /*
@@ -28,6 +27,8 @@ document.write('<script type="text/javascript" src="Siminov/Constants.js"></scri
  */
 document.write('<script type="text/javascript" src="Siminov/Collection/Dictionary.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Collection/StringBuilder.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Collection/Array.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Collection/String.js"></script>');
 
 
 /*
@@ -42,7 +43,7 @@ document.write('<script type="text/javascript" src="Siminov/Model/AdapterDescrip
 document.write('<script type="text/javascript" src="Siminov/Model/NotificationDescriptor.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Model/SyncDescriptor.js"></script>');
 
-document.write('<script type="text/javascript" src="Siminov/Model/WebSiminovDatas.js"></script>');
+document.write('<script type="text/javascript" src="Siminov/Model/HybridSiminovDatas.js"></script>');
 
 
 /*
@@ -55,7 +56,6 @@ document.write('<script type="text/javascript" src="Siminov/Function/Function.js
     Parser Layer Import
  */
 document.write('<script type="text/javascript" src="Siminov/ReaderWriter/SIDatasHelper.js"></script>');
-document.write('<script type="text/javascript" src="Siminov/ReaderWriter/SIJsonHelper.js"></script>');
 
 
 /*
@@ -74,6 +74,7 @@ document.write('<script type="text/javascript" src="Siminov/Adapter/Adapter.js">
 	Database Layer Import	
  */
 
+document.write('<script type="text/javascript" src="Siminov/Database/Transaction.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Database/Database.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Database/Select.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Database/Clause.js"></script>');
@@ -106,7 +107,6 @@ document.write('<script type="text/javascript" src="Siminov/Database/Design/ITot
 document.write('<script type="text/javascript" src="Siminov/Database/Design/ITotalClause.js"></script>');
 
 
-
 /*
     Log Import
  */
@@ -117,7 +117,6 @@ document.write('<script type="text/javascript" src="Siminov/Log/Log.js"></script
     EventHandler Import
  */
 document.write('<script type="text/javascript" src="Siminov/Events/EventHandler.js"></script>');
-
 
 
 /*
@@ -143,16 +142,14 @@ document.write('<script type="text/javascript" src="Siminov/Service/ServiceEvent
 document.write('<script type="text/javascript" src="Siminov/Service/Design/IResource.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Service/Design/IService.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Service/Design/IServiceEvents.js"></script>');
- 
 
- 
+
 
 /*
  * Connection Import
  */ 
 document.write('<script type="text/javascript" src="Siminov/Connection/ConnectionRequest.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Connection/ConnectionResponse.js"></script>');
- 
 
 
 /*
@@ -161,7 +158,6 @@ document.write('<script type="text/javascript" src="Siminov/Connection/Connectio
 document.write('<script type="text/javascript" src="Siminov/Notification/NotificationManager.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Notification/Message.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Notification/Registration.js"></script>');
- 
 
 
 /*
@@ -169,5 +165,11 @@ document.write('<script type="text/javascript" src="Siminov/Notification/Registr
  */ 
 document.write('<script type="text/javascript" src="Siminov/Sync/SyncRequest.js"></script>');
 document.write('<script type="text/javascript" src="Siminov/Sync/SyncHandler.js"></script>');
- 
- 
+
+
+
+/*
+  * Utils Import
+  */
+document.write('<script type="text/javascript" src="Siminov/Utils/Utils.js"></script>');
+
