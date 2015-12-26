@@ -342,9 +342,8 @@ static SIHResourceManager *hybridResourceManager;
 
 
 - (void)saveOrUpdate:(NSString *)data {
-    
-    data = [data stringByReplacingOccurrencesOfString:@"'"
-                                           withString:@"\""];
+
+    data = [data stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
     
     SIHHybridSiminovDatas *hybridSiminovDatas = [self parseHybridSiminovDatas:data];
     [SIHDatabaseHandler saveOrUpdateDatas:hybridSiminovDatas];
@@ -372,8 +371,7 @@ static SIHResourceManager *hybridResourceManager;
     while(hybridSiminovValue = [hybridValues nextObject]) {
         [hybridSiminovValues setValue:hybridSiminovValue forKey:[hybridSiminovValue getType]];
     }
-    
-    
+
     SICEntityDescriptor *entityDescriptor = [SIHDatabaseHandler getEntityDescriptor:className];
     
     NSMutableString *whereClause = [[NSMutableString alloc] init];

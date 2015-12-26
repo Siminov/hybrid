@@ -30,8 +30,9 @@
         @try {
             
             NSString *filePath = [[[SICFileUtils alloc] init] getFilePath:APPLICATION_DESCRIPTOR_FILE_NAME inDirectory:DIRECTORY_NAME];
-            applicationDescriptorStream = [[NSFileManager defaultManager] contentsAtPath:filePath];
+            NSLog([NSString stringWithFormat:@"Application Descriptor Path: %@", filePath], __PRETTY_FUNCTION__);
             
+            applicationDescriptorStream = [[NSFileManager defaultManager] contentsAtPath:filePath];
             if (applicationDescriptorStream == nil) {
                 @throw [[SICDeploymentException alloc] initWithClassName:NSStringFromClass([self class]) methodName:@"Constructor" message:[NSString stringWithFormat:@"IOException caught while getting input stream of application descriptor"]];
             }

@@ -267,7 +267,7 @@ static NSMutableDictionary *hybridNativeClassMapping;
 - (SICDatabaseDescriptor *)getDatabaseDescriptorBasedOnClassName:(NSString *)className {
     
     int classNameIndex;
-    if([className rangeOfString:@"."].location != -1) {
+    if([className rangeOfString:@"."].location > -1) {
         classNameIndex = (int) [className rangeOfString:@"."].location + 1;
     } else {
         classNameIndex = 0;
@@ -283,7 +283,7 @@ static NSMutableDictionary *hybridNativeClassMapping;
 - (NSString *)getDatabaseDescriptorNameBasedOnClassName:(NSString *)className {
     
     int classNameIndex;
-    if([className rangeOfString:@"."].location != -1) {
+    if([className rangeOfString:@"."].location > -1) {
         classNameIndex = (int) [className rangeOfString:@"."].location + 1;
     } else {
         classNameIndex = 0;
@@ -309,12 +309,12 @@ static NSMutableDictionary *hybridNativeClassMapping;
 - (SICEntityDescriptor *)getEntityDescriptorBasedOnClassName:(NSString *)className {
     
     int classNameIndex;
-    if([className rangeOfString:@"."].location != -1) {
+    if([className rangeOfString:@"."].location > -1) {
         classNameIndex = (int) [className rangeOfString:@"."].location + 1;
     } else {
         classNameIndex = 0;
     }
-    
+        
     className = [className substringWithRange:NSMakeRange(classNameIndex, [className length] - classNameIndex)];
     
     NSString *nativeClassName = [hybridNativeClassMapping objectForKey:className];
@@ -337,7 +337,7 @@ static NSMutableDictionary *hybridNativeClassMapping;
 - (NSString *)getMappedNativeClassName:(NSString *)hybridClassName {
     
     int hybridClassNameIndex;
-    if([hybridClassName rangeOfString:@"."].location != -1) {
+    if([hybridClassName rangeOfString:@"."].location > -1) {
         hybridClassNameIndex = (int) [hybridClassName rangeOfString:@"."].location + 1;
     } else {
         hybridClassNameIndex = 0;
@@ -791,11 +791,11 @@ static NSMutableDictionary *hybridNativeClassMapping;
     SIHHybridSiminovData *hybridHandlerParameters = [[SIHHybridSiminovData alloc] init];
     [hybridHandlerParameters setDataType:HYBRID_ADAPTER_DESCRIPTOR_HANDLER_PARAMETERS];
     
-    NSArray *parameters = [handler getParameters];
+    NSEnumerator *parameters = [handler getParameters];
+    SIHParameter *parameter;
     
-    for(int i = 0;i < [parameters count];i++)  {
+    while(parameter = [parameters nextObject]) {
         
-        SIHParameter *parameter = [parameters objectAtIndex:i];
         SIHHybridSiminovData *hybridHandlerParameter = [[SIHHybridSiminovData alloc] init];
         [hybridHandlerParameter setDataType:HYBRID_ADAPTER_DESCRIPTOR_HANDLER_PARAMETER];
         

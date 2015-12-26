@@ -65,8 +65,8 @@
     NSString *event;
     
     while(event = [appEvents nextObject]) {
-        int startLocation = [event rangeOfString:@"."].location;
-        if(startLocation == -1) {
+        NSUInteger startLocation = [event rangeOfString:@"."].location;
+        if(startLocation <= -1 || startLocation == NSNotFound) {
             startLocation = 0;
         }
         
@@ -131,11 +131,12 @@
     NSString *event;
     
     while(event = [appEvents nextObject]) {
-        int startLocation = [event rangeOfString:@"."].location;
-        if(startLocation == -1) {
+        long startLocation = [event rangeOfString:@"."].location;
+        if(startLocation <= -1 || startLocation == NSNotFound) {
             startLocation = 0;
         }
         
+        NSLog([NSString stringWithFormat:@"Start Location: %ld, %@", startLocation, event], __PRETTY_FUNCTION__);
         NSRange eventRange = NSMakeRange(startLocation, [event length] - startLocation);
         event = [event substringWithRange:eventRange];
         
@@ -198,8 +199,8 @@
     NSString *event;
     
     while(event = [appEvents nextObject]) {
-        int startLocation = [event rangeOfString:@"."].location;
-        if(startLocation == -1) {
+        NSUInteger startLocation = [event rangeOfString:@"."].location;
+        if(startLocation <= -1 || startLocation == NSNotFound) {
             startLocation = 0;
         }
         

@@ -704,10 +704,11 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/hybrid-sample-azdvmzlaormkedenokxopdxanfgk/Build/Products/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/hybrid-sample-azdvmzlaormkedenokxopdxanfgk/Build/Products/Debug-universal",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -720,10 +721,11 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/hybrid-sample-azdvmzlaormkedenokxopdxanfgk/Build/Products/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/hybrid-sample-azdvmzlaormkedenokxopdxanfgk/Build/Products/Debug-universal",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};

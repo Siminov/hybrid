@@ -25,7 +25,7 @@
 
 
 - (void)onStart {
-    
+    return;
     SIKResourceManager *connectResourceManager = [SIKResourceManager getInstance];
     
     SIKServiceDescriptor *selfServiceDescriptor = [self getServiceDescriptor];
@@ -112,7 +112,7 @@
 
 
 - (void)onQueue {
-    
+    return;
     SIKResourceManager *connectResourceManager = [SIKResourceManager getInstance];
     
     SIKServiceDescriptor *selfServiceDescriptor = [self getServiceDescriptor];
@@ -199,7 +199,7 @@
 
 
 - (void)onPause {
-    
+    return;
     SIKResourceManager *connectResourceManager = [SIKResourceManager getInstance];
     
     SIKServiceDescriptor *selfServiceDescriptor = [self getServiceDescriptor];
@@ -287,7 +287,7 @@
 
 
 - (void)onResume {
-    
+    return;
     SIKResourceManager *connectResourceManager = [SIKResourceManager getInstance];
     
     SIKServiceDescriptor *selfServiceDescriptor = [self getServiceDescriptor];
@@ -374,7 +374,7 @@
 
 
 - (void)onFinish {
-    
+    return;
     SIKResourceManager *conncetResourceManager = [SIKResourceManager getInstance];
     
     SIKServiceDescriptor *selfServiceDescriptor = [self getServiceDescriptor];
@@ -461,7 +461,7 @@
 
 
 - (void)onRequestInvoke:(id<SIKIConnectionRequest>)connectionRequest {
-    
+    return;
     SIKResourceManager *connectResourceManager = [SIKResourceManager getInstance];
     SIHResourceManager *hybridResourceManager = [SIHResourceManager getInstance];
     
@@ -551,7 +551,7 @@
 
 
 - (void)onRequestFinish:(id<SIKIConnectionResponse>)connectionResponse {
-    
+
     SIKResourceManager *connectResourceManager = [SIKResourceManager getInstance];
     SIHResourceManager *hybridResourceManager = [SIHResourceManager getInstance];
     
@@ -642,7 +642,7 @@
 
 
 - (void)onTerminate:(SIKServiceException *)serviceException {
-    
+    return;
     SIKResourceManager *conncetResourceManager = [SIKResourceManager getInstance];
     
     SIKServiceDescriptor *selfServiceDescriptor = [self getServiceDescriptor];

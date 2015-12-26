@@ -49,20 +49,25 @@
 
 - (NSString *)handleHybridToNativeAsync:(NSString *)requestId action:(NSString *)action data:(NSString *)data {
     
+    NSLog([NSString stringWithFormat:@"handleHybridToNativeAsync:action:data, %@", action], __PRETTY_FUNCTION__);
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self processHandlerAsync:requestId action:action data:data];
     });
-    
     
     return [self generateHybridSiminovEmptyData];
 }
 
 - (void)processHandlerAsync:(NSString *)requestId action:(NSString *)action data:(NSString *)data {
     
+    NSLog([NSString stringWithFormat:@"processHandlerAsync before, %@", action], __PRETTY_FUNCTION__);
+
     NSString *response = [self processHandler:action data:data];
+    //NSString *response = [self generateHybridSiminovEmptyData];
     NSMutableArray *responseData = [[NSMutableArray alloc] init];
     [responseData addObject:response];
     
+    NSLog([NSString stringWithFormat:@"processHandlerAsync after, %@", action], __PRETTY_FUNCTION__);
     [self handleNativeToHybridAsync:requestId data:responseData];
 }
 
@@ -128,10 +133,10 @@
     
     @try {
         returnData = [SICClassUtils invokeMethodBasedOnMethod:adapterInstanceObject method:handlerInstanceObject parameters:parameterObjects];
-    } @catch(SICSiminovException *siminovException) {
-        [SICLog error:NSStringFromClass([self class]) methodName:@"" message:[NSString stringWithFormat:@"SiminovException caught while invoking handler, %@", [siminovException getMessage]]];
+    } @catch(NSException *siminovException) {
+        [SICLog error:NSStringFromClass([self class]) methodName:@"processHandler" message:[NSString stringWithFormat:@"SiminovException caught while invoking handler, %@", [siminovException reason]]];
         
-        return [self generateHybridSiminovException:[siminovException getClassName] methodName:[siminovException getMethodName] message:[siminovException getMessage]];
+        return [self generateHybridSiminovException:NSStringFromClass([self class]) methodName:@"processHandler" message:[NSString stringWithFormat:@"SiminovException caught while invoking handler, %@", [siminovException reason]]];
     }
     
     if(returnData != nil) {
@@ -144,6 +149,7 @@
 
 
 - (void)handleNativeToHybridAsync:(NSString *)requestId data:(NSArray *)data {
+    NSLog([NSString stringWithFormat:@"handleNativeToHybridAsync start, %@", requestId], __PRETTY_FUNCTION__);
     
     SIHAdapterDescriptor *adapterDescriptor = [hybridResourceManager getAdapterDescriptor:NATIVE_TO_HYBRID_ADAPTER];
     SIHHandler *handler = [hybridResourceManager getHandler:NATIVE_TO_HYBRID_ADAPTER handlerName:NATIVE_TO_HYBRID_ADAPTER_ASYNC_HANDLER];
@@ -163,6 +169,7 @@
         parameters = [parametersArray componentsJoinedByString:@""];
     }
     
+    NSLog([NSString stringWithFormat:@"handleNativeToHybridAsync end, %@", requestId], __PRETTY_FUNCTION__);
     
     [self handleNativeToHybrid:[adapterDescriptor getMapTo] apiName:[handler getMapTo] action:requestId parameters:parameters];
 }
@@ -221,6 +228,7 @@
 }
 
 - (void)handleNativeToHybrid:(NSString *)functionName apiName:(NSString *)apiName action:(NSString *)action parameters:(NSString *)parameters {
+    NSLog([NSString stringWithFormat:@"handleNativeToHybrid start, %@", action], __PRETTY_FUNCTION__);
     
     UIWebView *webView = [hybridResourceManager getWebView];
     id<SIHIHandler> handler = [hybridResourceManager getInterceptor];
@@ -342,7 +350,9 @@
                 
                 }*/
         
-        [parameters addObject:parameter];
+            if(parameter) {
+                [parameters addObject:parameter];
+            }
     }
     
     

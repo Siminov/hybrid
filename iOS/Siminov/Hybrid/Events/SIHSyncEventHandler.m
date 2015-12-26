@@ -68,8 +68,8 @@
     NSString *event;
     
     while(event = [appEvents nextObject]) {
-        int startLocation = [event rangeOfString:@"."].location;
-        if(startLocation == -1) {
+        NSUInteger startLocation = [event rangeOfString:@"."].location;
+        if(startLocation <= -1 || startLocation == NSNotFound) {
             startLocation = 0;
         }
         
@@ -139,8 +139,8 @@
     NSString *event;
     
     while(event = [appEvents nextObject]) {
-        int startLocation = [event rangeOfString:@"."].location;
-        if(startLocation == -1) {
+        NSUInteger startLocation = [event rangeOfString:@"."].location;
+        if(startLocation <= -1 || startLocation == NSNotFound) {
             startLocation = 0;
         }
         
@@ -210,8 +210,8 @@
     NSString *event;
     
     while(event = [appEvents nextObject]) {
-        int startLocation = [event rangeOfString:@"."].location;
-        if(startLocation == -1) {
+        NSUInteger startLocation = [event rangeOfString:@"."].location;
+        if(startLocation <= -1 || startLocation == NSNotFound) {
             startLocation = 0;
         }
         
@@ -281,8 +281,8 @@
     NSString *event;
     
     while(event = [appEvents nextObject]) {
-        int startLocation = [event rangeOfString:@"."].location;
-        if(startLocation == -1) {
+        NSUInteger startLocation = [event rangeOfString:@"."].location;
+        if(startLocation <= -1 || startLocation == NSNotFound) {
             startLocation = 0;
         }
         

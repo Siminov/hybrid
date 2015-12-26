@@ -57,6 +57,7 @@ static SIHResourceManager *hybridResourceManager;
     isHybridActive = active;
 }
 
+
 + (id<SICIInitializer>)initializer {
     return [[SIHInitializer alloc] init];
 }
@@ -64,7 +65,7 @@ static SIHResourceManager *hybridResourceManager;
 
 
 + (void)start {
-    
+
     [self processApplicationDescriptor];
     
     [self processDatabaseDescriptors];
@@ -259,9 +260,9 @@ static SIHResourceManager *hybridResourceManager;
     if([coreResourceManager getSiminovEventHandler] != nil) {
         
         if([SICSiminov isFirstTimeInitialized]) {
-            [coreEventHandler onFirstTimeSiminovInitialized];
+            //[coreEventHandler onFirstTimeSiminovInitialized];
         } else {
-            [coreEventHandler onSiminovInitialized];
+            //[coreEventHandler onSiminovInitialized];
         }
     }
 }
