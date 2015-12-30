@@ -17,5 +17,6 @@ android {
 }
 
 dependencies {
-    
+    compile project(':Core')
+    compile project(':Connect')
 }
