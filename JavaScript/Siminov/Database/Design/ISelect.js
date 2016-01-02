@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -204,12 +204,19 @@ function ISelect(select) {
 		/**
 		 	Used to get tuples, this method should be called in last to get tuples from table.
 		 	
-		 	@method fetch
+		 	@method execute
 		 	@return {Object} Return array of model objects.
 		 	@throws {SiminovException} Throws exception if any error occur while getting tuples from table. 
 		 */
         execute: select.execute,
 
+
+		/**
+			Used to get tuples asynchronous, this method should be called in last to get tuples from table.
+
+			@method executeAsync
+			@param callback {Callback} Request Callback
+		*/
 		executeAsync: select.executeAsync,
         
     }

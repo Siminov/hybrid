@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
+
 
 /**
 	Exposes classes which deal with services.
@@ -166,6 +168,11 @@ function Service() {
 	}
 	
 	
+	/**
+	 * It invokes the respective service request asynchronous
+	 *
+	 * @method invokeAsync
+	 */
 	this.invokeAsync = function(callback) {
 		this.invoke(callback?callback:new Callback());
 	}

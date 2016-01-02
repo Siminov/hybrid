@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,4 +60,4 @@ function SyncException(className, methodName, message) {
 }
 
 
-//Function.extend(SiminovException, SyncException);
+Function.extend(SiminovException, SyncException);

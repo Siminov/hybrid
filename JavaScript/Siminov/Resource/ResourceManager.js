@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-
 
 
 /**
@@ -127,6 +126,46 @@ function ResourceManager() {
     };
 	
 	
+    /**
+        Get Application Descriptor object asynchronous of application.
+
+            - Using Transaction
+
+                var callback = new Callback();
+                callback.onExecute = function(transaction) {
+
+                    var getApplicationDescriptorCallback = new Callback();
+                    getApplicationDescriptorCallback.onSuccess = function(applicationDescriptor) {
+
+                    }
+
+                    ResourceManager.getInstance().getApplicationDescriptorAsync(getApplicationDescriptorCallback, transaction);
+                }
+
+                callback.onSuccess = function() {
+
+                }
+
+                var databaseDescriptor = new Book().getDatabaseDescriptor();
+                Database.beginTransactionAsync(databaseDescriptor, callback);
+
+
+            - Using Callback
+
+                var callback = new Callback();
+                callback.onSuccess = function(applicationDescriptor) {
+
+                }
+
+
+                var resourceManager = ResourceManager.getInstance();
+                resourceManager.getApplicationDescriptorAsync(callback);
+
+
+        @method getApplicationDescriptorAsync
+        @param callback {Callback} Request Callback
+        @param transaction {Transaction} Request Transaction
+    */
     var getApplicationDescriptorAsync = function(callback, transaction) {
         this.getApplicationDescriptor(callback?callback:new Callback(), transaction);
     };
@@ -135,13 +174,10 @@ function ResourceManager() {
     /**
         Get Database Descriptor based on database descriptor name provided as per defined in Database Descriptor file.
 				
-        Example: DatabaseDescriptor.si.xml
-				
-            <database-descriptor>
-				
-                <property name="database_name">SIMINOV-HYBRID-SAMPLE</property>
-					
-            </database-descriptor>
+        Example:
+
+            var resourceManager = ResourceManager.getInstance();
+            resourceManager.getDatabaseDescriptor('database_name');
 		 
         @method getDatabaseDescriptor
         @param databaseDescriptorName Database Descriptor object based on database descriptor name provided.
@@ -183,11 +219,62 @@ function ResourceManager() {
     };
 	    
 	    
+    /**
+        Get Database Descriptor object asynchronous of application.
+
+            - Using Transaction
+
+                var callback = new Callback();
+                callback.onExecute = function(transaction) {
+
+                    var getDatabaseDescriptorCallback = new Callback();
+                    getDatabaseDescriptorCallback.onSuccess = function(databaseDescriptor) {
+
+                    }
+
+                    ResourceManager.getInstance().getDatabaseDescriptorAsync(getDatabaseDescriptorCallback, transaction);
+                }
+
+                callback.onSuccess = function() {
+
+                }
+
+                var databaseDescriptor = new Book().getDatabaseDescriptor();
+                Database.beginTransactionAsync(databaseDescriptor, callback);
+
+
+            - Using Callback
+
+                var callback = new Callback();
+                callback.onSuccess = function(applicationDescriptor) {
+
+                }
+
+
+                var resourceManager = ResourceManager.getInstance();
+                resourceManager.getDatabaseDescriptorAsync(callback);
+
+
+        @method getDatabaseDescriptorAsync
+        @param databaseName {String} Name of database
+        @param callback {Callback} Request Callback
+        @param transaction {Transaction} Request Transaction
+    */
     var getDatabaseDescriptorAsync = function(databaseName, callback, transaction) {
         this.getDatabaseDescriptor(databaseName, callback?callback:new Callback(), transaction);
     };
 	
-	
+
+	/**
+	    Get Database Descriptor based on Hybrid model class name.
+
+            var resourceManager = ResourceManager.getInstance();
+            var databaseDescriptor = resourceManager.getDatabaseDescriptorBasedOnClassName('Book');
+
+	    @method getDatabaseDescriptorBasedOnClassName
+	    @param className {String} Name of class
+	    @return {DatabaseDescriptor} Database Descriptor
+	*/
     var getDatabaseDescriptorBasedOnClassName = function(className) {
 			
         var callback = arguments && arguments[1];
@@ -250,12 +337,62 @@ function ResourceManager() {
         }
     };
 		
-		
+
+    /**
+        Get Database Descriptor based on Hybrid model class name.
+
+            - Using Transaction
+
+                var callback = new Callback();
+                callback.onExecute = function() {
+
+                    var getDatabaseDescriptorCallback = new Callback();
+                    getDatabaseDescriptorCallback.onSuccess = function(databaseDescriptor) {
+
+                    }
+
+                    var resourceManager = ResourceManager.getInstance();
+                    resourceManager.getDatabaseDescriptorBasedOnClassNameAsync(getDatabaseDescriptorCallback, transaction);
+                }
+
+                callback.onSuccess = function() {
+
+                }
+
+                var databaseDescriptor = new Book().getDatabaseDescriptor();
+                Database.beginTransactionAsync(databaseDescriptor, callback);
+
+            - Using Callback
+
+                var callback = new Callback();
+                callback.onSuccess = function(databaseDescriptor) {
+
+                }
+
+                var resourceManager = ResourceManager.getInstance();
+                resourceManager.getDatabaseDescriptorBasedOnClassNameAsync(callback);
+
+        @method getDatabaseDescriptorBasedOnClassNameAsync
+        @param databaseName {String} Name of database
+        @param callback {Callback} Request Callback
+        @param transaction {Transaction} Request Transaction
+    */
     var getDatabaseDescriptorBasedOnClassNameAsync = function(databaseName, callback, transaction) {
         this.getDatabaseDescriptorBasedOnClassName(databaseName, callback?callback:new Callback(), transaction);
     };
 
 
+	/**
+	    Get Database Descriptor based on Hybrid model table name.
+
+            var resourceManager = ResourceManager.getInstance();
+            var databaseDescriptor = resourceManager.getDatabaseDescriptorBasedOnTableName('BOOK');
+
+
+	    @method getDatabaseDescriptorBasedOnTableName
+	    @param className {String} Name of class
+	    @return {DatabaseDescriptor} Database Descriptor
+	*/
     var getDatabaseDescriptorBasedOnTableName = function(tableName) {
 			
         var callback = arguments && arguments[1];
@@ -319,6 +456,46 @@ function ResourceManager() {
     };
 		
 		
+	/**
+	    Get Database Descriptor asynchronous based on Hybrid model table name.
+
+            - Using Transaction
+
+                var callback = new Callback();
+                callback.onExecute = function () {
+
+                    var getDatabaseDescriptorCallback = new Callback();
+                    getDatabaseDescriptorCallback.onSuccess = function(databaseDescriptor) {
+
+                    }
+
+                    var resourceManager = ResourceManager.getInstance();
+                    resourceManager.getDatabaseDescriptorBasedOnTableNameAsync(getDatabaseDescriptorCallback, transaction);
+                }
+
+                callback.onSuccess = function() {
+
+                }
+
+                var databaseDescriptor = new Book().getDatabaseDescriptor();
+                Database.beginTransactionAsync(databaseDescriptor, callback);
+
+            - Using Callback
+
+                var callback = new Callback();
+                callback.onSuccess = function(databaseDescriptor) {
+
+                }
+
+
+                var resourceManager = ResourceManager.getInstance();
+                resourceManager.getDatabaseDescriptorBasedOnTableNameAsync
+
+	    @method getDatabaseDescriptorBasedOnTableNameAsync
+	    @param className {String} Name of class
+	    @param callback {Callback} Request Callback
+	    @param transaction {Transaction} Request Transaction
+	*/
     var getDatabaseDescriptorBasedOnTableNameAsync = function(databaseName, callback, transaction) {
         this.getDatabaseDescriptorBasedOnTableName(databaseName, callback?callback:new Callback(), transaction);
     };
@@ -327,6 +504,9 @@ function ResourceManager() {
 
     /**
         Get Entity Descriptor based on mapped class name provided.
+
+            var resourceManager = ResourceManager.getInstance();
+            var entityDescriptor = resourceManager.getEntityDescriptorBasedOnClassName('Book');
 
         @method getEntityDescriptorBasedOnClassName
         @param className {String} POJO class name.
@@ -393,7 +573,48 @@ function ResourceManager() {
         }
     };
 	    
-	    
+
+	/**
+	    Get Entity Descriptor asynchronous based on mapped class name provided.
+
+            - Using Transaction
+
+                var callback = new Callback();
+                callback.onExecute = function(transaction) {
+
+                    var getEntityDescriptorCallback = new Callback();
+                    getEntityDescriptorCallback.onSuccess = function(entityDescriptor) {
+
+                    }
+
+                    var resourceManager = ResourceManager.getInstance();
+                    resourceManager.getEntityDescriptorBasedOnClassNameAsync('Book', getEntityDescriptorCallback, transaction);
+                }
+
+                callback.onSuccess = function() {
+
+                }
+
+                var databaseDescriptor = new Book().getDatabaseDescriptor();
+                Database.beginTransactionAsync(databaseDescriptor, callback);
+
+            - Using Callback
+
+                var callback = new Callback();
+                callback.onSuccess = function(entityDescriptor) {
+
+                }
+
+
+                var resourceManager = ResourceManager.getInstance();
+                resourceManager.getEntityDescriptorBasedOnClassNameAsync('Book', callback);
+
+
+	    @method getEntityDescriptorBasedOnClassNameAsync
+	    @param className {String} Name of class
+	    @param callback {Callback} Request Callback
+	    @param transaction {Transaction} Request Transaction
+	*/
     var getEntityDescriptorBasedOnClassNameAsync = function(className, callback, transaction) {
         this.getEntityDescriptorBasedOnClassName(className, callback?callback:new Callback(), transaction);
     };
@@ -401,6 +622,9 @@ function ResourceManager() {
 		
     /**
         Get Entity Descriptor based on table name provided.
+
+            var resourceManager = ResourceManager.getInstance();
+            var entityDescriptor = resourceManager.getEntityDescriptorBasedOnTableName('BOOK');
 
         @method getEntityDescriptorBasedOnTableName
         @param tableName {String} Name of table.
@@ -468,7 +692,48 @@ function ResourceManager() {
         }
     };
 	    
-	    
+
+    /**
+        Get Entity Descriptor asynchronous based on table name provided.
+
+            - Using Transaction
+
+                var callback = new Callback();
+                callback.onExecute = function(transaction) {
+
+                    var getEntityDescriptorCallback = new Callback();
+                    getEntityDescriptorCallback.onSuccess = function(entityDescriptor) {
+
+                    }
+
+
+                    var resourceManager = ResourceManager.getInstance();
+                    resourceManager.getEntityDescriptorBasedOnTableNameAsync('BOOK', getEntityDescriptorCallback, transaction);
+                }
+
+                callback.onSuccess = function() {
+
+                }
+
+                var databaseDescriptor = new Book().getDatabaseDescriptor();
+                Database.beginTransactionAsync('BOOK', callback);
+
+
+            - Using Callback
+
+                var callback = new Callback();
+                callback.onSuccess = function(entityDescriptor) {
+
+                }
+
+                var resourceManager = ResourceManager.getInstance();
+                resourceManager.getEntityDescriptorBasedOnTableNameAsync('BOOK', callback);
+
+        @method getEntityDescriptorBasedOnTableNameAsync
+        @param tableName {String} Name of table
+        @param callback {Callback} Request Callback
+        @param transaction {Transaction} Request Transaction
+    */
     var getEntityDescriptorBasedOnTableNameAsync = function(tableName, callback, transaction) {
         this.getEntityDescriptorBasedOnTableName(tableName, callback, transaction);
     };

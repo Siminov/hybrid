@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -163,7 +163,13 @@ function IMax(select) {
 		 */
         execute: select.execute,
 
-		
+
+		/**
+			Used to get maximum asynchronous, this method should be called in last to calculate maximum.
+
+			@method executeAsync
+			@param callback {Callback} Request Callback
+		*/
 		executeAsync: select.executeAsync
 		
     }

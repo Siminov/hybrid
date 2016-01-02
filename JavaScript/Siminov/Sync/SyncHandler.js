@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 
 /**
@@ -102,6 +103,8 @@ function SyncHandler() {
     /**
      * It handles and processes the sync request
      *
+     * @method handle
+     * @param syncRequest {ISyncRequest} Sync Request
      */
     var handle = function(syncRequest) {
 			
@@ -183,6 +186,13 @@ function SyncHandler() {
     };
 		
 		
+    /**
+     * It handles and processes the sync request asynchronous
+     *
+     * @method handleAsync
+     * @param syncRequest {ISyncRequest} Sync Request
+     * @param callback {Callback} Request Callback
+     */
     var handleAsync = function(syncRequest, callback) {
         this.handle(syncRequest, callback?callback:new Callback());
     };

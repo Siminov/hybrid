@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 
 
@@ -166,7 +167,7 @@ function IGroupConcat(select) {
 
 
 		/**
-		 	Used to get average, this method should be called in last to calculate group concat.
+		 	Used to get group concat, this method should be called in last to calculate group concat.
 		 
 		 	@method execute
 			@return {Object} Return group concat.
@@ -174,7 +175,13 @@ function IGroupConcat(select) {
 		 */
         execute: select.execute,
         
-        
+
+		/**
+			Used to get group concat asynchronous, this method should be called in last to calculate group concat.
+
+			@method executeAsync
+			@param callback {Callback} Request Callback
+		*/
         executeAsync: select.executeAsync
 
     }

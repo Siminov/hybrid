@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,42 +50,61 @@ if(dom == undefined) {
 }
 
 /**
- 	Exposes methods to GET and SET Library Descriptor information as per define in LibraryDescriptor.si.xml file by application.
+ 	Exposes methods to GET and SET Library Descriptor information as per define in LibraryDescriptor.xml file by application.
 		
 	Example:
 
+		<!-- DESIGN OF LibraryDescriptor.xml -->
+
 		<library-descriptor>
-		
-		    <!-- General Properties Of Library -->
-		    
-		    <!-- Mandatory Field -->
+
+			<!-- General Properties Of Library -->
+
+			<!-- Mandatory Field -->
 			<property name="name">name_of_library</property>
-			
+
 			<!-- Optional Field -->
 			<property name="description">description_of_library</property>
-		
-			
-			
-			<!-- Entity Descriptors Needed Under This Library Descriptor -->
-			
-			<!-- Optional Field -->
-				<!-- Entity Descriptors -->
-			<entity-descriptors>
-				<entity-descriptor>name_of_database_descriptor.full_path_of_entity_descriptor_file</entity-descriptor>
-			</entity-descriptors>
-			 
-			
-			<!-- Hybrid Adapters Needed Under This Library Descriptor -->
-				
-			<!-- Optional Field -->
-				<!-- Hybrid Adapters -->
-			<adapters>
-			    <adapter>full_path_of_hybrid_adapter_file</adapter>
-			</adapters>
-			
-			
-		</library-descriptor>
 
+
+
+			<!-- Entity Descriptor Needed Under This Library Descriptor -->
+
+			<!-- Optional Field -->
+				<!-- Database Mappings -->
+			<entity-descriptors>
+				<entity-descriptor>name_of_database_descriptor.full_path_of_database_mapping_descriptor_file</entity-descriptor>
+			</entity-descriptors>
+
+
+			<!-- Service Descriptors -->
+
+			<!-- Optional Field -->
+				<!-- Service Descriptor -->
+			<service-descriptors>
+				<service-descriptor>full_path_of_service-descriptor_file</service-descriptor>
+			</service-descriptors>
+
+
+			<!-- Sync Descriptors -->
+
+			<!-- Optional Field -->
+				<!-- Sync Descriptor -->
+			<sync-descriptors>
+				<sync-descriptor>full_path_of_sync_descriptor_file</sync-descriptor>
+			</sync-descriptors>
+
+
+			<!-- Adapter Descriptors -->
+
+			<!-- Optional Field -->
+				<!-- Adapter Descriptor -->
+			<adapter-descriptors>
+				<adapter-descriptor>full_path_of_adapter_descriptor_file</adapter-descriptor>
+			</adapter-descriptors>
+
+
+		</library-descriptor>
 	
 	@module Model		
 	@class LibraryDescriptor
@@ -112,7 +131,7 @@ function LibraryDescriptor() {
 	}
 	
 	/**
-	 	Set library name as per defined in LibraryDescriptor.si.xml
+	 	Set library name as per defined in LibraryDescriptor.xml
 	 
 	 	@method setName
  		@param name {String} Name of Library
@@ -122,7 +141,7 @@ function LibraryDescriptor() {
 	}
 	
 	/**
-	 	Get descriptor as per defined in LibraryDescriptor.si.xml
+	 	Get descriptor as per defined in LibraryDescriptor.xml
 	 	
 	 	@method getDescription
 	 	@return {String} Description of Library
@@ -201,7 +220,7 @@ function LibraryDescriptor() {
 
 	
 	/**
-	 	Get all entity descriptor paths as per defined in DatabaseDescriptor.si.xml file.
+	 	Get all entity descriptor paths as per defined in DatabaseDescriptor.xml file.
 	 
 	 	@method getEntityDescriptorPaths
 	 	@return {Array} It contain all entity paths.
@@ -211,13 +230,13 @@ function LibraryDescriptor() {
 	}
 	
 	/**
-	 	Add entity path as per defined in DatabaseDescriptor.si.xml file.
+	 	Add entity path as per defined in DatabaseDescriptor.xml file.
 	 		
 		EXAMPLE:
 			<database-descriptor>
 				<entity-descriptors>
-					<entity-descriptor>Entity-Descriptors/Liquor.xml</entity-descriptor>
-					<entity-descriptor>Entity-Descriptors/LiquorBrand.xml</entity-descriptor>
+					<entity-descriptor>Entity-Descriptors/Book.xml</entity-descriptor>
+					<entity-descriptor>Entity-Descriptors/Lession.xml</entity-descriptor>
 				</entity-descriptors>
 			</database-descriptor>
 	

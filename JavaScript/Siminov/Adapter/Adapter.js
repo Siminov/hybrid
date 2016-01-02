@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,16 +60,16 @@ if(dom == undefined) {
     	RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
     } catch(e) {
     
-	/*
-	* Titanium Imports
-	*/
-	var TitaniumInterceptor;
-	var titaniumModule = 'hybrid.titanium.module';
+        /*
+        * Titanium Imports
+        */
+        var TitaniumInterceptor;
+        var titaniumModule = 'hybrid.titanium.module';
 
-	try {
-		TitaniumInterceptor = require(titaniumModule);
-	} catch(e) {
-    	
+        try {
+            TitaniumInterceptor = require(titaniumModule);
+        } catch(e) {
+
     	}
     }    
     
@@ -173,15 +173,32 @@ function Adapter() {
 	this.getParameters = function() {
 		return parameters;
 	}
-	
+
+	/**
+	    Remove all parameters
+
+	    @method removeParameters
+	*/
 	this.removeParameters = function() {
 		parameters = new Array();
 	}
 
+    /**
+        Get request callback
+
+        @method getCallback
+        @return {Callback} Request Callback
+    */
 	this.getCallback = function() {
 		return callback;
 	}
-	
+
+	/**
+	    Set request callback
+
+	    @method setCallback
+	    @param value {Callback} Request Callback
+	*/
 	this.setCallback = function(value) {
 		callback = value;
 	}

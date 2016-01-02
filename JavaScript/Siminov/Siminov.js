@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 var win;
 var dom;
@@ -154,6 +155,33 @@ Siminov.initialize = function() {
 }
 
 
+/**
+ 	It is the entry point to the SIMINOV HYBRID FRAMEWORK.
+
+ 	When application starts it should call this method to activate SIMINOV HYBRID FRAMEWORK.
+ 	This api works asynchronous.
+
+	Siminov will initialize all databases, and do necessary processing asynchronous.
+
+	EXAMPLE:
+          document.addEventListener("deviceready", initialize, false);
+
+            function initialize() {
+
+                var callback = new Callback():
+                callback.onSuccess = function() {
+
+                }
+
+                Siminov.initializeAsync(callback);
+            }
+
+	@class Siminov
+	@method initializeAsync
+	@param callback {Callback} Request Callback
+	@static
+	@constructor
+ */
 Siminov.initializeAsync = function(callback) {
 	Siminov.initialize(callback?callback:new Callback());
 }
@@ -169,14 +197,38 @@ Siminov.initializeAsync = function(callback) {
 */
 Siminov.shutdown = function() {
 
-	var adapter = new Adapter();
+	var callback = arguments && arguments[0];
+
+    var adapter = new Adapter();
 	
     adapter.setAdapterName(Constants.SIMINOV_ADAPTER);
     adapter.setHandlerName(Constants.SIMINOV_ADAPTER_SHUTDOWN_SIMINOV_HANDLER);
 
-    Adapter.invoke(adapter);
+	if(callback) {
+
+		adapter.setAdapterMode(Adapter.REQUEST_ASYNC_MODE);
+		adapter.setCallback(shutdownCallback);
+
+	    Adapter.invoke(adapter);
+
+	    function shutdownCallback(data) {
+			callback && callback.onSuccess && callback.onSuccess(data);
+	    }
+	} else {
+	    Adapter.invoke(adapter);
+	}
 }
 
 
-Siminov.shutdownAsync = function(onSuccess, onError) {
+/**
+	It shudown's Siminov Framework asynchronous, and releases all resources acquired by Siminov.
+
+	@class Siminov
+	@method shutdown
+	@param callback {Callback} Request Callback
+	@static
+	@constructor
+*/
+Siminov.shutdownAsync = function(callback) {
+    Siminov.shutdown(callback?callback:new Callback());
 }

@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 
 var win;
 var dom;
@@ -85,6 +86,15 @@ Constants.APPLICATION_DESCRIPTOR_DESCRIPTION = "description";
 Constants.APPLICATION_DESCRIPTOR_VERSION = "version";
 
 
+/**
+	Application Descriptor Deploy
+
+	@property APPLICATION_DESCRIPTOR_DEPLOY
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.APPLICATION_DESCRIPTOR_DEPLOY = "deploy";
 
 
@@ -445,33 +455,152 @@ Constants.ADAPTER_DESCRIPTOR_RETURN_DESCRIPTION = "description";
 
 //	ServiceDescriptor.si.xml
 
+/**
+	Service Descriptor Name
+
+	@property SERVICE_DESCRIPTOR_NAME
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_NAME = "name";
 
+/**
+	Service Descriptor Description
+
+	@property SERVICE_DESCRIPTOR_DESCRIPTION
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_DESCRIPTION = "description";
 
+/**
+	Service Descriptor Protocol
+
+	@property SERVICE_DESCRIPTOR_PROTOCOL
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_PROTOCOL = "protocol";
 
+/**
+	Service Descriptor Instance
+
+	@property SERVICE_DESCRIPTOR_INSTANCE
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_INSTANCE = "instance";
 
+/**
+	Service Descriptor Port
+
+	@property SERVICE_DESCRIPTOR_PORT
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_PORT = "port";
 
+/**
+	Service Descriptor Context
+
+	@property SERVICE_DESCRIPTOR_CONTEXT
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_CONTEXT = "context";
 
 
+/**
+	Service Descriptor Request Name
+
+	@property SERVICE_DESCRIPTOR_REQUEST_NAME
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_REQUEST_NAME = "name";
 
+/**
+	Service Descriptor Request Type
+
+	@property SERVICE_DESCRIPTOR_REQUEST_TYPE
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_REQUEST_TYPE = "type";
 
+/**
+	Service Descriptor Request API
+
+	@property SERVICE_DESCRIPTOR_REQUEST_API
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_REQUEST_API = "api";
 
+/**
+	Service Descriptor Request Mode
+
+	@property SERVICE_DESCRIPTOR_REQUEST_MODE
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_REQUEST_MODE = "mode";
 
+/**
+	Service Descriptor Request Data Stream
+
+	@property SERVICE_DESCRIPTOR_REQUEST_DATA_STREAM
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_DESCRIPTOR_REQUEST_DATA_STREAM = "data-stream";
 
 
 //Sync Descriptor.si.xml
+
+
+/**
+	Sync Descriptor Name
+
+	@property SYNC_DESCRIPTOR_NAME
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SYNC_DESCRIPTOR_NAME = "name";
 
+/**
+	Sync Descriptor Refresh Interval
+
+	@property SYNC_DESCRIPTOR_REFRESH_INTERVAL
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SYNC_DESCRIPTOR_REFRESH_INTERVAL = "interval";
 
 
@@ -593,21 +722,93 @@ Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_INDEX_CREATED = "onIndexCreated";
 Constants.EVENT_HANDLER_IDATABASE_EVENT_ON_INDEX_DROPPED = "onIndexDropped";
 
 
+/**
+	Event Handler INotification Event On Registration
+
+	@property EVENT_HANDLER_INOTIFICATION_EVENT_ON_REGISTRATION
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.EVENT_HANDLER_INOTIFICATION_EVENT_ON_REGISTRATION = "onRegistration";
 
+/**
+	Event Handler INotification Event On Unregistration
+
+	@property EVENT_HANDLER_INOTIFICATION_EVENT_ON_UNREGISTRATION
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.EVENT_HANDLER_INOTIFICATION_EVENT_ON_UNREGISTRATION = "onUnregistration";
 
+/**
+	Event Handler INotification Event On Notification
+
+	@property EVENT_HANDLER_INOTIFICATION_EVENT_ON_NOTIFICATION
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.EVENT_HANDLER_INOTIFICATION_EVENT_ON_NOTIFICATION = "onNotification";
 
+/**
+	Event Handler INotification Event On Error
+
+	@property EVENT_HANDLER_INOTIFICATION_EVENT_ON_ERROR
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.EVENT_HANDLER_INOTIFICATION_EVENT_ON_ERROR = "onError";
 
 
+/**
+	Event Handler ISync Event On Sync Started
+
+	@property EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_STARTED
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_STARTED = "onSyncStarted";
 
+/**
+	Event Handler ISync Event On Sync Queued
+
+	@property EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_QUEUED
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_QUEUED = "onSyncQueued";
 
+/**
+	Event Handler ISync Event On Sync Removed
+
+	@property EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_REMOVED
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_REMOVED = "onSyncRemoved";
 
+/**
+	Event Handler ISync Event On Sync Terminated
+
+	@property EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_TERMINATED
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.EVENT_HANDLER_ISYNC_EVENT_ON_SYNC_TERMINATED = "onSyncTerminated";
 
 
@@ -650,16 +851,70 @@ Constants.EVENT_HANDLER_EVENT_PARAMETERS = "EventParameters";
 */
 Constants.RESOURCE_ADAPTER = "RESOURCES";
 
+/**
+	Resource Get Application Descriptor Handler
+
+	@property RESOURCE_GET_APPLICATION_DESCRIPTOR_HANDLER
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.RESOURCE_GET_APPLICATION_DESCRIPTOR_HANDLER = "GET-APPLICATION-DESCRIPTOR";
 
+/**
+	Resource Get Database Descriptor Based On Name Handler
+
+	@property RESOURCE_GET_DATABASE_DESCRIPTOR_BASED_ON_NAME_HANDLER
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.RESOURCE_GET_DATABASE_DESCRIPTOR_BASED_ON_NAME_HANDLER = "GET-DATABASE-DESCRIPTOR";
 
+/**
+	Resource Get Database Descriptor Based On Class Name Handler
+
+	@property RESOURCE_GET_DATABASE_DESCRIPTOR_BASED_ON_CLASS_NAME_HANDLER
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.RESOURCE_GET_DATABASE_DESCRIPTOR_BASED_ON_CLASS_NAME_HANDLER = "GET-DATABASE-DESCRIPTOR-BASED-ON-CLASS-NAME";
 
+/**
+	Resource Get Database Descriptor Based On Table Name Handler
+
+	@property RESOURCE_GET_DATABASE_DESCRIPTOR_BASED_ON_TABLE_NAME_HANDLER
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.RESOURCE_GET_DATABASE_DESCRIPTOR_BASED_ON_TABLE_NAME_HANDLER = "GET-DATABASE-DESCRIPTOR-BASED-ON-TABLE-NAME";
 
+/**
+	Resource Get Entity Descriptir Based On Class Name Handler
+
+	@property RESOURCE_GET_ENTITY_DESCRIPTOR_BASED_ON_CLASS_NAME_HANDLER
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.RESOURCE_GET_ENTITY_DESCRIPTOR_BASED_ON_CLASS_NAME_HANDLER = "GET-ENTITY-DESCRIPTOR-BASED-ON-CLASS-NAME";
 
+/**
+	Resource Get Entity Descriptor Based On Table Name Handler
+
+	@property RESOURCE_GET_ENTITY_DESCRIPTOR_BASED_ON_TABLE_NAME_HANDLER
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.RESOURCE_GET_ENTITY_DESCRIPTOR_BASED_ON_TABLE_NAME_HANDLER = "GET-ENTITY-DESCRIPTOR-BASED-ON-TABLE-NAME";
 
 
@@ -976,18 +1231,81 @@ Constants.SIMINOV_ADAPTER_SHUTDOWN_SIMINOV_HANDLER = "SHUTDOWN-SIMINOV";
 
 
 
+/**
+	Siminov Hybrid Datas
+
+	@property SIMINOV_HYBRID_DATAS
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SIMINOV_HYBRID_DATAS = "datas";
 
+/**
+	Siminov Hybrid Data Datas
+
+	@property SIMINOV_HYBRID_DATA_DATAS
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SIMINOV_HYBRID_DATA_DATAS = "datas";
 
+/**
+	Siminov Hybrid Data Type
+
+	@property SIMINOV_HYBRID_DATA_TYPE
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SIMINOV_HYBRID_DATA_TYPE = "type";
 
+/**
+	Siminov Hybrid Data Value
+
+	@property SIMINOV_HYBRID_DATA_VALUE
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SIMINOV_HYBRID_DATA_VALUE = "value";
 
+/**
+	Siminov Hybrid Data Value
+
+	@property SIMINOV_HYBRID_DATA_VALUE
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SIMINOV_HYBRID_DATA_VALUE = "value";
 
+/**
+	Siminov Hybrid Data Value Text
+
+	@property SIMINOV_HYBRID_DATA_VALUE_TEXT
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SIMINOV_HYBRID_DATA_VALUE_TEXT = "text";
 
+/**
+	Siminov Hybrid Data Value Value
+
+	@property SIMINOV_HYBRID_DATA_VALUE_VALUE
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SIMINOV_HYBRID_DATA_VALUE_VALUE = "value";
 
 
@@ -1026,6 +1344,15 @@ Constants.SERVICE_ADAPTER_INVOKE_HANDLER = "INVOKE";
 */
 Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE = "SERVICE";
 
+/**
+	Service Adapter invoke handler Request Id
+
+	@property SERVICE_ADAPTER_INVOKE_HANDLER_REQUEST_ID
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SERVICE_ADAPTER_INVOKE_HANDLER_REQUEST_ID = "REQUEST_ID";
 
 /**
@@ -1061,6 +1388,15 @@ Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_REQUEST = "REQUEST_NAME";
 */
 Constants.SERVICE_ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES = "RESOURCES";
 
+/**
+	IService Request Id
+
+	@property ISERVICE_REQUEST_ID
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.ISERVICE_REQUEST_ID = "ISERVICE_REQUEST_ID";
 
 /**
@@ -1300,6 +1636,15 @@ Constants.SYNC_ADAPTER_HANDLE_HANDLER = "HANDLE";
 */
 Constants.SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST = "SyncRequest";
 
+/**
+	Sync Adapter Handler Handler Sync Request Id
+
+	@property SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST_ID
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST_ID = "request_id";
 
 /**
@@ -1325,17 +1670,91 @@ Constants.SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST_NAME = "name";
 Constants.SYNC_ADAPTER_HANDLE_HANDLER_SYNC_REQUEST_RESOURCES = "RESOURCES";
 
 
+/**
+	HTTP Get Method
+
+	@property HTTP_GET_METHOD
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.HTTP_GET_METHOD = "GET";
 
+/**
+	HTTP Post Method
+
+	@property HTTP_POST_METHOD
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.HTTP_POST_METHOD = "POST";
 
+/**
+	HTTP Request API Query Parameter
+
+	@property HTTP_REQUEST_API_QUERY_PARAMETER
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.HTTP_REQUEST_API_QUERY_PARAMETER = "request_api";
+
+/**
+	HTTP Request Data Query Parameter
+
+	@property HTTP_REQUEST_DATA_QUERY_PARAMETER
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.HTTP_REQUEST_DATA_QUERY_PARAMETER = "request_data";
 
+/**
+	HTTP Siminov Protocol
+
+	@property HTTP_SIMINOV_PROTOCOL
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.HTTP_SIMINOV_PROTOCOL = "siminov://";
 
+/**
+	Request Unique ID
+
+	@property REQUEST_UNIQUE_ID
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.REQUEST_UNIQUE_ID = "REQUEST_UNIQUE_ID";
 
+/**
+	HTTP Request ID
+
+	@property HTTP_REQUEST_ID
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.HTTP_REQUEST_ID = "request_id";
+
+/**
+	HTTP Request Mode
+
+	@property HTTP_REQUEST_MODE
+	@type String
+	@static
+	@final
+	@readonly
+*/
 Constants.HTTP_REQUEST_MODE = "request_mode";
 

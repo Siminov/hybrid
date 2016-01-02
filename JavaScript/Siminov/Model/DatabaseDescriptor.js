@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-
 
 
 /**
@@ -48,42 +47,42 @@ if(dom == undefined) {
 }
 
 /**
- 	Exposes methods to GET and SET Database Descriptor information as per define in DatabaseDescriptor.si.xml file by application.
+ 	Exposes methods to GET and SET Database Descriptor information as per define in DatabaseDescriptor.xml file by application.
 	
 		
 	Example:
-				
+
 		<database-descriptor>
-		
-		    <!-- General Database Descriptor Properties -->
-		    
-			    <!-- Mandatory Field -->
+
+			<!-- General Database Descriptor Properties -->
+
+				<!-- Mandatory Field -->
 			<property name="database_name">name_of_database_file</property>
-		
+
 				<!-- Optional Field (Default is sqlite)-->
 			<property name="type">type_of_database</property>
-		
+
 				<!-- Mandatory Field -->
 			<property name="version">database_version</property>
-					
+
 				<!-- Optional Field -->
 			<property name="description">database_description</property>
-		
+
 				<!-- Optional Field (Default is false) -->
 			<property name="transaction_safe">true/false</property>
-			
+
 				<!-- Optional Field (Default is false) -->
 			<property name="external_storage">true/false</property>
-				
-		
-		
+
+
+
 			<!-- Entity Descriptor Paths Needed Under This Database Descriptor -->
-			
+
 				<!-- Optional Field -->
 			<entity-descriptors>
 				<entity-descriptor>full_path_of_entity_descriptor_file</entity-descriptor>
 			</entity-descriptors>
-			
+
 		</database-descriptor>
 
 
@@ -101,7 +100,7 @@ function DatabaseDescriptor() {
 
 
 	/**
-	 	Get database descriptor name as defined in DatabaseDescriptor.si.xml file.
+	 	Get database descriptor name as defined in DatabaseDescriptor.xml file.
 	 
 	 	@method getDatabaseName
 	 	@return {String} Database Descriptor Name.
@@ -111,7 +110,7 @@ function DatabaseDescriptor() {
    	}
    	
 	/**
-	 	Set database descriptor name as per defined in DatabaseDescriptor.si.xml file.
+	 	Set database descriptor name as per defined in DatabaseDescriptor.xml file.
 	 
 	 	@method setDatabaseName
 	 	@param databaseName {String} Database Descriptor Name.
@@ -121,10 +120,10 @@ function DatabaseDescriptor() {
     }
     
 	/**
-	 	Get description as per defined in DatabaseDescriptor.si.xml file.
+	 	Get description as per defined in DatabaseDescriptor.xml file.
 	 
 	 	@method getDescription
-	 	@return {String} Description defined in DatabaseDescriptor.si.xml file.
+	 	@return {String} Description defined in DatabaseDescriptor.xml file.
 	 */
     this.getDescription = function() {
     	return properties.get(Constants.DATABASE_DESCRIPTOR_DESCRIPTION);
@@ -134,7 +133,7 @@ function DatabaseDescriptor() {
 	 	Set description as per defined in DatabaseDescritor.xml file.
 	 
 	 	@method setDescription
-	 	@param description {String} Description defined in DatabaseDescriptor.si.xml file.
+	 	@param description {String} Description defined in DatabaseDescriptor.xml file.
 	 */
     this.setDescription = function(description) {
     	properties.add(Constants.DATABASE_DESCRIPTOR_DESCRIPTION, description);
@@ -150,10 +149,10 @@ function DatabaseDescriptor() {
 
     
 	/**
-	 	Set database locking as per defined in DatabaseDescriptor.si.xml file.
+	 	Set database locking as per defined in DatabaseDescriptor.xml file.
 	 
 	 	@method setLockingRequired
-	 	@param isLockingRequired {Boolean} (true/false) database locking as per defined in DatabaseDescriptor.si.xml file.
+	 	@param isLockingRequired {Boolean} (true/false) database locking as per defined in DatabaseDescriptor.xml file.
 	 */
     this.setTransactionSafe = function(transactionSafe) {
     	properties.add(Constants.DATABASE_DESCRIPTOR_TRANSACTION_SAFE, transactionSafe);
@@ -163,14 +162,14 @@ function DatabaseDescriptor() {
 	 	Check whether database transactions to make multi-threading safe or not.
 	 
 	 	@method isLockingRequired
-	 	@return {Boolean} (true/false) TRUE: If locking is required as per defined in DatabaseDescriptor.si.xml file, FALSE: If locking is not required as per defined in DatabaseDescriptor.si.xml file.
+	 	@return {Boolean} (true/false) TRUE: If locking is required as per defined in DatabaseDescriptor.xml file, FALSE: If locking is not required as per defined in DatabaseDescriptor.xml file.
 	 */
     this.isTransactionSafe = function() {
     	properties.get(Constants.DATABASE_DESCRIPTOR_TRANSACTION_SAFE);
     }
     
 	/**
-	 	Set the external storage value as per defined in DatabaseDescriptor.si.xml file.
+	 	Set the external storage value as per defined in DatabaseDescriptor.xml file.
 	 
 	 	@method setExternalStorage
 	 	@param isExternalStorageEnable {Boolean} (true/false) External Storage Enable Or Not.
@@ -183,7 +182,7 @@ function DatabaseDescriptor() {
 	 	Check whether database needs to be stored on SDCard or not.
 	 
 	 	@method isExternalStorage
-	 	@return {Boolean} (true/false) TRUE: If external_storage defined as true in DatabaseDescriptor.si.xml file, FALSE: If external_storage defined as false in DatabaseDescritor.xml file.
+	 	@return {Boolean} (true/false) TRUE: If external_storage defined as true in DatabaseDescriptor.xml file, FALSE: If external_storage defined as false in DatabaseDescritor.xml file.
 	 */
     this.isExternalStorage = function() {
     	return properties.get(Constants.DATABASE_DESCRIPTOR_EXTERNAL_STORAGE)
@@ -249,7 +248,7 @@ function DatabaseDescriptor() {
 
 	
 	/**
-	 	Get all entity descriptor paths as per defined in EntityDescriptor.si.xml file.
+	 	Get all entity descriptor paths as per defined in EntityDescriptor.xml file.
 	 
 	 	@method getEntityDescriptorPaths
 	 	@return {Array} It contain all entity descriptor paths.
@@ -259,13 +258,13 @@ function DatabaseDescriptor() {
 	}
 	
 	/**
-	 	Add entity descriptor path as per defined in DatabaseDescriptor.si.xml file.
+	 	Add entity descriptor path as per defined in DatabaseDescriptor.xml file.
 	 		
 		EXAMPLE:
 			<database-descriptor>
 				<entity-descriptor>
-					<entity-descriptor>Entity-Descriptors/Liquor.xml</entity-descriptor>
-					<entity-descriptor>Entity-Descriptors/LiquorBrand.xml</entity-descriptor>
+					<entity-descriptor>Entity-Descriptors/Book.xml</entity-descriptor>
+					<entity-descriptor>Entity-Descriptors/Lession.xml</entity-descriptor>
 				</entity-descriptor>
 			</database-descriptor>
 	

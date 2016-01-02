@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,17 +91,16 @@ function Database() {
 
 	   	<pre>
 	   	
-		Example: Make Liquor Object
+		Example: Make Book Object
 	
-			var beer = new Liquor();
-			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
-			beer.setDescription(beer_description));
-			beer.setHistory(beer_history));
-			beer.setLink(beer_link));
-			beer.setAlcholContent(beer_alchol_content));
-		  
+			var cBook = new Book();
+			cBook.setTitle(Book.BOOK_TYPE_C);
+			cBook.setDescription(c_description));
+			cBook.setAuthor(c_author));
+			cBook.setLink(c_link));
+
 			try {
-				beer.save();
+				cBook.save();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -181,6 +180,74 @@ function Database() {
 		}
 	}
 
+
+	/**
+		It adds a record to any single table in a relational database asynchronous.
+
+	   	<pre>
+
+		Example: Make Book Object
+
+			var cBook = new Book();
+			cBook.setTitle(Book.BOOK_TYPE_C);
+			cBook.setDescription(c_description));
+			cBook.setAuthor(c_author));
+			cBook.setLink(beer_link));
+
+
+		 	- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function(transaction) {
+
+					var saveCallback = new Callback();
+					saveCallback.onSuccess = function() {
+
+					}
+
+					cBook.saveAsync(saveCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+
+				try {
+
+					var databaseDescriptor = new Book().getDatabaseDescriptor();
+					Database.beginTransactionAsync(databaseDescriptor, callback);
+				} catch(e) {
+					//Log it.
+				}
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+				try {
+					cBook.saveAsync(callback);
+				} catch(e) {
+					//Log it.
+				}
+
+	    </pre>
+
+		@method saveAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
 	this.saveAsync = function(callback, transaction) {
 		this.save(callback?callback:new Callback(), transaction);
 	}
@@ -189,17 +256,16 @@ function Database() {
 	/**
 		It updates a record to any single table in a relational database.
 	
-		Example: Make Beer Object
+		Example: Make Book Object
 		
-			var beer = new Liquor();
-			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
-			beer.setDescription(beer_description));
-			beer.setHistory(beer_history));
-			beer.setLink(beer_link));
-			beer.setAlcholContent(beer_alchol_content));
-		 
+			var cBook = new Book();
+			cBook.setTitle(Book.BOOK_TYPE_C);
+			cBook.setDescription(c_description));
+			cBook.setAuthor(c_author));
+			cBook.setLink(c_link));
+
 			try {
-				beer.update();
+				cBook.update();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -277,6 +343,70 @@ function Database() {
     }
 
 
+	/**
+		It updates asynchronous a record to any single table in a relational database.
+
+		Example: Make Book Object
+
+			var cBook = new Book();
+			cBook.setTitle(Book.BOOK_TYPE_C);
+			cBook.setDescription(c_description));
+			cBook.setAuthor(c_author));
+			cBook.setLink(c_link));
+
+
+		 	- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function(transaction) {
+
+					var updateCallback = new Callback();
+					updateCallback.onSuccess = function() {
+
+					}
+
+					cBook.updateAsync(updateCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+
+				try {
+
+					var databaseDescriptor = new Book().getDatabaseDescriptor();
+					Database.beginTransactionAsync(databaseDescriptor, callback);
+				} catch(e) {
+					//Log it.
+				}
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+				try {
+					cBook.updateAsync(callback);
+				} catch(e) {
+					//Log it.
+				}
+
+
+		@method updateAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
 	this.updateAsync = function(callback, transaction) {
 		this.update(callback?callback:new Callback(), transaction);		
 	}
@@ -289,17 +419,16 @@ function Database() {
 		ELSE:
 			updates a record to any single table in a relational database.
 	   	
-		Example: Make Beer Object
+		Example: Make Book Object
 		
-			var beer = new Liquor();
-			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
-			beer.setDescription(beer_description));
-			beer.setHistory(beer_history));
-			beer.setLink(beer_link));
-			beer.setAlcholContent(beer_alchol_content));
-		  
+			var cBook = new Book();
+			cBook.setTitle(Book.BOOK_TYPE_C);
+			cBook.setDescription(c_description));
+			cBook.setAuthor(c_author));
+			cBook.setLink(c_link));
+
 			try {
-				beer.saveOrUpdate();
+				cBook.saveOrUpdate();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -376,6 +505,73 @@ function Database() {
     }
 
 
+	/**
+		It finds out whether tuple exists in table or not.
+		IF NOT EXISTS:
+			adds a record to any single table in a relational database.
+		ELSE:
+			updates a record to any single table in a relational database.
+
+		Example: Make Book Object
+
+			var cBook = new Book();
+			cBook.setTitle(Book.BOOK_TYPE_C);
+			cBook.setDescription(c_description));
+			cBook.setAuthor(c_author));
+			cBook.setLink(c_link));
+
+
+		 	- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function(transaction) {
+
+					var saveOrUpdateCallback = new Callback();
+					saveOrUpdateCallback.onSuccess = function() {
+
+					}
+
+					cBook.saveOrUpdateAsync(saveOrUpdateCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+
+				try {
+
+					var databaseDescriptor = new Book().getDatabaseDescriptor();
+					Database.beginTransactionAsync(databaseDescriptor, callback);
+				} catch(e) {
+					//Log it.
+				}
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+				try {
+					cBook.saveOrUpdateAsync(callback);
+				} catch(e) {
+					//Log it.
+				}
+
+		@method saveOrUpdateAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
 	this.saveOrUpdateAsync = function(callback, transaction) {
 		this.saveOrUpdate(callback?callback:new Callback(), transaction);
     }
@@ -387,9 +583,9 @@ function Database() {
 
 		Example:
 	
-		var liquors =  new Liquor().select()
-						.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
-						.and(Liquor.ALCHOL_CONTENT).equalTo("90%")
+		var books =  new Book().select()
+						.where(Book.TITLE).equalTo("C")
+						.and(Book.AUTHOR).equalTo("C Author")
 						.execute();
 		
 		@method select
@@ -432,15 +628,14 @@ function Database() {
 	
 		Example:
 		
-			var beer = new Liquor();
-			beer.setLiquorType(Liquor.LIQUOR_TYPE_BEER);
-			beer.setDescription(beer_description));
-			beer.setHistory(beer_history));
-			beer.setLink(beer_link));
-			beer.setAlcholContent(beer_alchol_content));
-		  
+			var cBook = new Book();
+			cBook.setTitle(Book.BOOK_TYPE_C);
+			cBook.setDescription(c_description));
+			cBook.setAuthor(c_author));
+			cBook.setLink(beer_link));
+
 			try {
-				beer.delete();
+				cBook.delete();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -448,7 +643,7 @@ function Database() {
 			OR
 					
 			try {
-				new Liquor().delete().execute();
+				new Book().delete().execute();
 			} catch(DatabaseException de) {
 				//Log It.
 			}
@@ -468,9 +663,9 @@ function Database() {
 			var average = 0;
 			
 			try {
-				average = new Liquor().avg()
-							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
-							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+				average = new Book().avg()
+							.column(Book.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Book.TITLE).equalTo("C")
 							.execute();
 		
 			} catch(DatabaseException de) {
@@ -494,8 +689,8 @@ function Database() {
 			var count = 0;
 			
 			try {
-				count = new Liquor().count().
-							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+				count = new Book().count().
+							.where(Book.TITLE).equalTo("C")
 							.execute();
 				
 			} catch(DatabaseException de) {
@@ -519,9 +714,9 @@ function Database() {
 			var maximum = 0;
 			
 			try {
-				maximum = new Liquor().max()
-							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
-							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+				maximum = new Book().max()
+							.column(Book.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Book.TITLE).equalTo("C")
 							.execute();
 				
 			} catch(DatabaseException de) {
@@ -545,9 +740,9 @@ function Database() {
 			var minimum = 0;
 			
 			try {
-				minimum = new Liquor().min()
-							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
-							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+				minimum = new Book().min()
+							.column(Book.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Book.TITLE).equalTo("C")
 							.execute();
 				
 			} catch(DatabaseException de) {
@@ -571,9 +766,9 @@ function Database() {
 			var sum = 0;
 			
 			try {
-				sum = new Liquor().sum()
-							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
-							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+				sum = new Book().sum()
+							.column(Book.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Book.TITLE).equalTo("C")
 							.execute();
 		
 			} catch(DatabaseException de) {
@@ -597,9 +792,9 @@ function Database() {
 			var total = 0;
 			
 			try {
-				total = new Liquor().total()
-							.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
-							.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+				total = new Book().total()
+							.column(Book.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+							.where(Book.TITLE).equalTo("C")
 							.execute();
 				
 			} catch(DatabaseException de) {
@@ -623,9 +818,9 @@ function Database() {
 			var groupConcat = 0;
 			
 			try {
-				groupConcat = new Liquor().groupConcat()
-								.column(Liquor.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
-								.where(Liquor.LIQUOR_TYPE).equalTo("RUM")
+				groupConcat = new Book().groupConcat()
+								.column(Book.COLUMN_NAME_WHICH_CONTAIN_NUMBRIC_VALUE)
+								.where(Book.TITLE).equalTo("C")
 								.execute();
 								
 			} catch(DatabaseException de) {
@@ -648,7 +843,7 @@ function Database() {
 		Example:
 			var tableName = null;
 			try {
-				tableName = new Liquor().getTableName();
+				tableName = new Book().getTableName();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -755,6 +950,58 @@ function Database() {
     }
 
 
+	/**
+	 	Returns asynchronous the mapped table name for invoked class object.
+
+		Example:
+
+			- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function(transaction) {
+
+					var getTableNameCallback = function Callback();
+					getTableNameCallback.onSuccess = function(tableName) {
+
+					}
+
+					new Book().getTableName(getTableNameCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+
+				try {
+					DatabaseDescriptor databaseDescriptor = new Book().getDatabaseDescriptor();
+					Database.beginTransactionAsync(databaseDescriptor, callback);
+				} catch(DatabaseException de) {
+					//Log it.
+				}
+
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function(tableName) {
+
+				}
+
+				try {
+					new Book().getTableNameAsync(callback);
+				} catch(e) {
+
+				}
+
+		@method getTableNameAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
 	this.getTableNameAsync = function(callback, transaction) {
 		this.getTableName(callback?callback:new Callback(), transaction);
 	}
@@ -766,7 +1013,7 @@ function Database() {
 		Example:
 			var columnNames = null;
 			try {
-				columnNames = new Liquor().getColumnNames();
+				columnNames = new Book().getColumnNames();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -868,6 +1115,58 @@ function Database() {
     }
 
 
+	/**
+	 	Returns asynchronous all column names of mapped table.
+
+		Example:
+
+			- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function(transaction) {
+
+					var getColumnNamesCallback = function Callback();
+					getColumnNamesCallback.onSuccess = function(columnNames) {
+
+					}
+
+					new Book().getColumnNamesAsync(getColumnNamesCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+
+				try {
+					DatabaseDescriptor databaseDescriptor = new Book().getDatabaseDescriptor();
+					Database.beginTransactionAsync(databaseDescriptor, callback);
+				} catch(DatabaseException de) {
+					//Log it.
+				}
+
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function(tableName) {
+
+				}
+
+				try {
+					new Book().getColumnNamesAsync(callback);
+				} catch(e) {
+
+				}
+
+		@method getColumnNamesAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
 	this.getColumnNamesAsync = function(callback, transaction) {
 		this.getColumnNames(callback?callback:new Callback(), transaction);
 	}
@@ -880,7 +1179,7 @@ function Database() {
 		Example:
 			var columnTypes = null;
 			try {
-				columnTypes = new Liquor().getColumnTypes();
+				columnTypes = new Book().getColumnTypes();
 			} catch(DatabaseException de) {
 				//Log it.
 			}	
@@ -988,6 +1287,59 @@ function Database() {
     }
 
 
+	/**
+	 	Returns asynchronous all columns with there data types for invoked class object.
+
+		Example:
+
+			- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function(transaction) {
+
+					var getColumnTypesCallback = function Callback();
+					getColumnTypesCallback.onSuccess = function(columnNames) {
+
+					}
+
+					new Book().getColumnTypesAsync(getColumnTypesCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+
+				try {
+					DatabaseDescriptor databaseDescriptor = new Book().getDatabaseDescriptor();
+					Database.beginTransactionAsync(databaseDescriptor, callback);
+				} catch(DatabaseException de) {
+					//Log it.
+				}
+
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function(tableName) {
+
+				}
+
+				try {
+					new Book().getColumnTypesAsync(callback);
+				} catch(e) {
+
+				}
+
+
+		@method getColumnTypesAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
 	this.getColumnTypesAsync = function(callback, transaction) {
 		this.getColumnTypes(callback?callback:new Callback(), transaction);
 	}
@@ -999,7 +1351,7 @@ function Database() {
 		Example:
 			var primaryKeys = null;
 			try {
-				primaryKeys = new Liquor().getPrimeryKeys();
+				primaryKeys = new Book().getPrimeryKeys();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -1099,6 +1451,59 @@ function Database() {
 
 
 
+	/**
+	 	Returns asynchronous all primary keys of mapped table for invoked class object.
+
+		Example:
+
+			- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function(transaction) {
+
+					var getPrimaryKeysCallback = function Callback();
+					getPrimaryKeysCallback.onSuccess = function(primaryKeys) {
+
+					}
+
+					new Book().getPrimaryKeysAsync(getPrimaryKeysCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+
+				try {
+					DatabaseDescriptor databaseDescriptor = new Book().getDatabaseDescriptor();
+					Database.beginTransactionAsync(databaseDescriptor, callback);
+				} catch(DatabaseException de) {
+					//Log it.
+				}
+
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function(tableName) {
+
+				}
+
+				try {
+					new Book().getPrimaryKeysAsync(callback);
+				} catch(e) {
+
+				}
+
+
+		@method getPrimaryKeysAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
 	this.getPrimaryKeysAsync = function(callback, transaction) {
 		this.getPrimaryKeys(callback?callback:new Callback(), transaction);		
 	}
@@ -1110,7 +1515,7 @@ function Database() {
 		Example:
 			var mandatoryFields = null;
 			try {
-				mandatoryFields = new Liquor().getMandatoryFields();
+				mandatoryFields = new Book().getMandatoryFields();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -1211,9 +1616,63 @@ function Database() {
     }
 
 
-	this.getMandatoryFieldsAsync = function(callback, transaction) {
+
+	/**
+	 	Returns asynchronous all mandatory fields which are associated with mapped table for invoked class object.
+
+		Example:
+
+			- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function(transaction) {
+
+					var getMandatoryFieldsCallback = function Callback();
+					getMandatoryFieldsCallback.onSuccess = function(primaryKeys) {
+
+					}
+
+					new Book().getMandatoryFieldsAsync(getMandatoryFieldsCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+
+				try {
+					DatabaseDescriptor databaseDescriptor = new Book().getDatabaseDescriptor();
+					Database.beginTransactionAsync(databaseDescriptor, callback);
+				} catch(DatabaseException de) {
+					//Log it.
+				}
+
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function(tableName) {
+
+				}
+
+				try {
+					new Book().getMandatoryFieldsAsync(callback);
+				} catch(e) {
+
+				}
+
+		@method getMandatoryFieldsAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
+	 this.getMandatoryFieldsAsync = function(callback, transaction) {
 		this.getMandatoryFields(callback?callback:new Callback(), transaction);
 	}
+
 
 	/**
 	 	Returns all unique fields which are associated with mapped table for invoked class object.
@@ -1222,7 +1681,7 @@ function Database() {
 			 			
 			var uniqueFields = null;
 			try {
-				uniqueFields = new Liquor().getUniqueFields();
+				uniqueFields = new Book().getUniqueFields();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -1315,6 +1774,59 @@ function Database() {
     }
 
 
+	/**
+	 	Returns asynchronous all unique fields which are associated with mapped table for invoked class object.
+
+		Example:
+
+			- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function(transaction) {
+
+					var getUniqueFieldsCallback = function Callback();
+					getUniqueFieldsCallback.onSuccess = function(primaryKeys) {
+
+					}
+
+					new Book().getUniqueFieldsAsync(getUniqueFieldsCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+
+				try {
+					DatabaseDescriptor databaseDescriptor = new Book().getDatabaseDescriptor();
+					Database.beginTransactionAsync(databaseDescriptor, callback);
+				} catch(DatabaseException de) {
+					//Log it.
+				}
+
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function(tableName) {
+
+				}
+
+				try {
+					new Book().getUniqueFieldsAsync(callback);
+				} catch(e) {
+
+				}
+
+
+		@method getUniqueFieldsAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
 	this.getUniqueFieldsAsync = function(callback, transaction) {
 		this.getUniqueFields(callback?callback:new Callback(), transaction);
 	}
@@ -1328,7 +1840,7 @@ function Database() {
 			 			
 			var foreignKeys = null;
 			try {
-				foreignKeys = new Liquor().getForeignKeys();
+				foreignKeys = new Book().getForeignKeys();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -1429,7 +1941,61 @@ function Database() {
 
 
 
-	this.getForeignKeysAsync = function(callback, transaction) {
+
+	/**
+	 	Returns asynchronous all foreign keys of mapped table for invoked class object.
+
+		Example:
+
+			- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function(transaction) {
+
+					var getForeignKeysCallback = function Callback();
+					getForeignKeysCallback.onSuccess = function(primaryKeys) {
+
+					}
+
+					new Book().getForeignKeysAsync(getForeignKeysCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				callback.onFailure = function() {
+
+				}
+
+
+				try {
+					DatabaseDescriptor databaseDescriptor = new Book().getDatabaseDescriptor();
+					Database.beginTransactionAsync(databaseDescriptor, callback);
+				} catch(DatabaseException de) {
+					//Log it.
+				}
+
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function(tableName) {
+
+				}
+
+				try {
+					new Book().getForeignKeysAsync(callback);
+				} catch(e) {
+
+				}
+
+
+		@method getForeignKeysAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
+	 this.getForeignKeysAsync = function(callback, transaction) {
 		this.getForeignKeys(callback?callback:new Callback(), transaction);
 	}
 
@@ -1440,7 +2006,7 @@ function Database() {
 		Example:
 		
 			try {
-				DatabaseDescriptor databaseDescriptor = new Liquor().getDatabaseDescriptor();
+				DatabaseDescriptor databaseDescriptor = new Book().getDatabaseDescriptor();
 			} catch(DatabaseException databaseException) {
 				//Log It.
 			}
@@ -1466,6 +2032,44 @@ function Database() {
     }
 
 
+	/**
+	 	Returns asynchronous database descriptor object based on the POJO class called.
+
+		Example:
+
+			- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function() {
+
+					var getDatabaseDescriptorCallback = new Callback();
+					getDatabaseDescriptorCallback.onSuccess = function(databaseDescriptor) {
+
+					}
+
+					new Lession().getDatabaseDescriptorAsync(getDatabaseDescriptorCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				var databaseDescriptor = new Book().getDatabaseDescriptor();
+				Database.beginTransactionAsync(databaseDescriptor, callback);
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function(databaseDescriptor) {
+
+				}
+
+				new Book().getDatabaseDescriptorAsync(callback);
+
+		@method getDatabaseDescriptorAsync
+		@param callback {Callback} Request Callback
+		@param transaction {Transaction} Request Transaction
+	 */
 	this.getDatabaseDescriptorAsync = function(callback, transaction) {
 		this.getDatabaseDescriptor(callback?callback:new Callback(), transaction);
 	}
@@ -1477,7 +2081,7 @@ function Database() {
 		Example:
 			EntityDescriptor entityDescriptor = null;
 			try {
-				entityDescriptor = new Liquor().getEntityDescriptor();
+				entityDescriptor = new Book().getEntityDescriptor();
 			} catch(DatabaseException de) {
 				//Log it.
 			}
@@ -1504,6 +2108,44 @@ function Database() {
     }
 
 
+	/**
+	 	Returns asynchronous the actual entity descriptor object mapped for invoked class object.
+
+		Example:
+
+			- Using Transaction
+
+				var callback = new Callback();
+				callback.onExecute = function() {
+
+					var getEntityDescriptorCallback = new Callback();
+					getEntityDescriptorCallback.onSuccess = function(entityDescriptor) {
+
+					}
+
+					new Lession().getEntityDescriptorAsync(getEntityDescriptorCallback, transaction);
+				}
+
+				callback.onSuccess = function() {
+
+				}
+
+				var databaseDescriptor = new Book().getDatabaseDescriptor();
+				Database.beginTransactionAsync(databaseDescriptor, callback);
+
+			- Using Callback
+
+				var callback = new Callback();
+				callback.onSuccess = function(entityDescriptor) {
+
+				}
+
+				new Book().getEntityDescriptorAsync(callback);
+
+		@method getEntityDescriptor
+	 	@return {EntityDescriptor} Entity Descriptor Object
+	 	@throws {SiminovException} If entity object not mapped for invoked class object.
+	 */
 	this.getEntityDescriptorAsync = function(callback, transaction) {
 		this.getEntityDescriptor(callback?callback:new Callback(), transaction);
 	}

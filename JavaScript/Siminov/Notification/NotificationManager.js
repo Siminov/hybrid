@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-
 
 
 /**
@@ -110,6 +109,11 @@ var NotificationManager = (function() {
 			}
 		}
 			
+		/**
+		 * It executes the registration process asynchronous of push notification
+		 *
+		 * @method doRegistrationAsync
+		 */
 		this.doRegistrationAsync = function(callback) {
 			this.doRegistration(callback?callback:new Callback());
 		}	
@@ -150,6 +154,11 @@ var NotificationManager = (function() {
 		}
 		
 		
+		/**
+		 * It executes the unregistration process of asynchronous push notification
+		 *
+		 * @method doUnregistrationAsync
+		 */
 		this.doUnregistrationAsync = function(callback) {
 			this.doUnregistration(callback);
 		}

@@ -1,6 +1,6 @@
-/** 
- * [SIMINOV FRAMEWORK]
- * Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
+/**
+ * [SIMINOV FRAMEWORK - HYBRID]
+ * Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ if(dom == undefined) {
 }
 
 /**
- 	Exposes methods to GET and SET Application Descriptor information as per define in ApplicationDescriptor.si.xml file by application.
+ 	Exposes methods to GET and SET Application Descriptor information as per define in ApplicationDescriptor.xml file by application.
 		
 	Example:
 		<siminov>
@@ -57,11 +57,9 @@ if(dom == undefined) {
 			<property name="description">Siminov Hybrid Sample Application</property>
 			<property name="version">0.9</property>
 		
-			<property name="load_initially">true</property>
-		
 			<!-- DATABASE-DESCRIPTORS -->
 			<database-descriptors>
-				<database-descriptor>DatabaseDescriptor.si.xml</database-descriptor>
+				<database-descriptor>DatabaseDescriptor.xml</database-descriptor>
 			</database-descriptors>
 		
 			<!-- SIMINOV EVENTS -->
@@ -86,7 +84,7 @@ function ApplicationDescriptor() {
     var events = new Array();
 
 	/**
-	 	Get Application Descriptor Name as per defined in ApplicationDescriptor.si.xml file.
+	 	Get Application Descriptor Name as per defined in ApplicationDescriptor.xml file.
 	 	
 	 	@method getName
 	 	@return {String} Application Descriptor Name.
@@ -96,7 +94,7 @@ function ApplicationDescriptor() {
     }
 
 	/**
-	 	Set Application Descriptor Name as per defined in ApplicationDescriptor.si.xml file.
+	 	Set Application Descriptor Name as per defined in ApplicationDescriptor.xml file.
 	 	
 	 	@method setName
 		@param name {String} Name of Application Descriptor.
@@ -106,7 +104,7 @@ function ApplicationDescriptor() {
     }
 
 	/**
-	 	Set Description of Application as per defined in ApplicationDescriptor.si.xml file.
+	 	Set Description of Application as per defined in ApplicationDescriptor.xml file.
 	 
 	 	@method getDescription
 		@return {String} Description of application.
@@ -116,7 +114,7 @@ function ApplicationDescriptor() {
     }
 
 	/**
-	 	Set Description of Application as per defined in ApplicationDescriptor.si.xml file.
+	 	Set Description of Application as per defined in ApplicationDescriptor.xml file.
 	 
 	 	@method setDescription
 		@param description {String} Description of application.
@@ -126,7 +124,7 @@ function ApplicationDescriptor() {
     }
 
 	/**
-	 	Get Version of Application as per defined in ApplicationDescriptor.si.xml file.
+	 	Get Version of Application as per defined in ApplicationDescriptor.xml file.
 		
 		@method getVersion
 		@return {String} Version of application.
@@ -136,7 +134,7 @@ function ApplicationDescriptor() {
     }
 
 	/**
-	 	Set Version of Application as per defined in ApplicationDescriptor.si.xml file.
+	 	Set Version of Application as per defined in ApplicationDescriptor.xml file.
 	 
 	 	@method setVersion
 	 	@param version {String} Version of application.
@@ -214,7 +212,7 @@ function ApplicationDescriptor() {
 
 
 	/**
-	 	Add Database Descriptor path as per contained in ApplicationDescriptor.si.xml file.
+	 	Add Database Descriptor path as per contained in ApplicationDescriptor.xml file.
 	 
 	 	@method addDatabaseDescriptorPath
 	 	@param databaseDescriptorPath {String} DatabaseDescriptor path.
@@ -224,7 +222,7 @@ function ApplicationDescriptor() {
     }
 
 	/**
-	 	Get all database descriptor paths as per contained in ApplicationDescriptor.si.xml file.
+	 	Get all database descriptor paths as per contained in ApplicationDescriptor.xml file.
 		
 		@method getDatabaseDescriptorPaths
 		@return {Array} It which contains all database descriptor paths.
@@ -234,17 +232,17 @@ function ApplicationDescriptor() {
     }
 
 	/**
-		Get all event handlers as per defined in ApplicationDescriptor.si.xml file.
+		Get all event handlers as per defined in ApplicationDescriptor.xml file.
 	 
  		@method getEvents
- 		@return {Array} All event handlers defined in ApplicationDescriptor.si.xml file
+ 		@return {Array} All event handlers defined in ApplicationDescriptor.xml file
 	 */
     this.getEvents = function() {
         return events;
     }
 
 	/**
-	 	Add event as per defined in ApplicationDescriptor.si.xml file.
+	 	Add event as per defined in ApplicationDescriptor.xml file.
 	 	
 	 	@method addEvent
 	 	@param event {String} Event Handler class name.
