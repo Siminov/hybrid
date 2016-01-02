@@ -18,6 +18,9 @@
 
 package siminov.hybrid.adapter.constants;
 
+/**
+ * Exposes constants which represents Adapter Descriptor on Hybrid.
+ */
 public interface HybridAdapterDescriptor {
 
 	/**

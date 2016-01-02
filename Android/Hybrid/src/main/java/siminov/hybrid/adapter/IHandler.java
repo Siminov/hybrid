@@ -50,8 +50,20 @@ public interface IHandler {
 	 */
 	public void handleNativeToHybrid(final String action, final String...data);
 
+	/**
+	 * Handles Native to Hybrid Async Request
+	 * @param requestId Request Id
+	 * @param data Data
+	 */
 	public void handleNativeToHybridAsync(String requestId, final String...data);
 
+	/**
+	 * Handles Native to Hybrid Request
+	 * @param functionName Name of the hybrid function
+	 * @param apiName Name of the api
+	 * @param action Name of the Action
+	 * @param parameters Request Parameters
+	 */
 	public void handleNativeToHybrid(String functionName, String apiName, String action, String parameters);
 
 }

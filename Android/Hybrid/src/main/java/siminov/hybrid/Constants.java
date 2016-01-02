@@ -92,7 +92,10 @@ public interface Constants {
 	 * Adapter Descriptor Handler Property Name
 	 */
 	public String ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_NAME = "name";
-	
+
+	/**
+	 * Adapter Descriptor Handler Property Type
+	 */
 	public String ADAPTER_DESCRIPTOR_HANDLER_PROPERTY_TYPE = "type";
 
 	/**
@@ -145,10 +148,19 @@ public interface Constants {
 	 */
 	public String HYBRID_SIMINOV_DATAS = "datas";
 
+	/**
+	 * Hybrid Siminov Data Type
+	 */
 	public String HYBRID_SIMINOV_DATA_TYPE = "type";
 
+	/**
+	 * Hybrid Siminov Data Datas
+	 */
 	public String HYBRID_SIMINOV_DATA_DATAS = "datas";
-	
+
+	/**
+	 * Hybrid Siminov Data Value
+	 */
 	public String HYBRID_SIMINOV_DATA_VALUE = "value";
 	
 	/**
@@ -191,7 +203,10 @@ public interface Constants {
 	 * Native To Hybrid Adapter Name.
 	 */
 	public String NATIVE_TO_HYBRID_ADAPTER_HANDLER = "HANDLE-NATIVE-TO-HYBRID";
-	
+
+	/**
+	 * Native To Hybrid Adapter Async Handler
+	 */
 	public String NATIVE_TO_HYBRID_ADAPTER_ASYNC_HANDLER = "HANDLE-NATIVE-TO-HYBRID-ASYNC";
 
 	//Siminov Events Handler.
@@ -228,6 +243,9 @@ public interface Constants {
 	 */
 	public String ADAPTER_INVOKE_HANDLER_SERVICE = "SERVICE";
 
+	/**
+	 * Adapter Invoke Handler Request Id
+	 */
 	public String ADAPTER_INVOKE_HANDLER_REQUEST_ID = "REQUEST_ID";
 	
 	/**
@@ -245,9 +263,14 @@ public interface Constants {
 	 */
 	public String ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES = "RESOURCES";
 
-	
+	/**
+	 * Request Sync Mode
+	 */
 	public String REQUEST_SYNC_MODE = "SYNC";
-	
+
+	/**
+	 * Request Async Mode
+	 */
 	public String REQUEST_ASYNC_MODE = "ASYNC";
 	
 }

@@ -17,16 +17,34 @@
 
 package siminov.hybrid.adapter.constants;
 
+/**
+ * Exposes constants which represents Hybrid Adapter on Hybrid.
+ */
 public interface HybridAdapter {
 
+	/**
+	 * Hybrid Adapter Adapter
+	 */
 	public String ADAPTER = "Adapter";
-	
+
+	/**
+	 * Hybrid Adapter Request Id
+	 */
 	public String REQUEST_ID = "requestId";
-	
+
+	/**
+	 * Hybrid Adapter Adapter Name
+	 */
 	public String ADAPTER_NAME = "adapterName";
-	
+
+	/**
+	 * Hybrid Adapter Handler Name
+	 */
 	public String HANDLER_NAME = "handlerName";
-	
+
+	/**
+	 * Hybrid Adapter Parameters
+	 */
 	public String PARAMETERS = "parameters";
 	
 }

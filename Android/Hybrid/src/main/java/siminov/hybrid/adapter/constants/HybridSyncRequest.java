@@ -26,7 +26,10 @@ public interface HybridSyncRequest {
 	 * Hybrid Sync Request Function Name
 	 */
 	public String SYNC_REQUEST = "SyncRequest";
-	
+
+	/**
+	 * Hybrid Sync Request Id
+	 */
 	public String REQUEST_ID = "request_id";
 	
 	/**

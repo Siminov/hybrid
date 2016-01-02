@@ -998,7 +998,12 @@ public class ResourceManager {
 
 		return hybridHandler;
 	}
-	
+
+	/**
+	 * Generate hybrid conection request
+	 * @param connectionRequest Connection Request
+	 * @return Hybrid Siminov Data
+	 */
 	public HybridSiminovData generateHybridConnectionRequest(final IConnectionRequest connectionRequest) {
 		
 		HybridSiminovData hybridConnectionRequest = new HybridSiminovData();
@@ -1108,6 +1113,11 @@ public class ResourceManager {
 	}
 
 
+	/**
+	 * Generate hybrid connection response
+	 * @param connectionResponse Connection Response
+	 * @return Hybrid Siminov Data
+	 */
 	public HybridSiminovData generateHybridConnectionResponse(final IConnectionResponse connectionResponse) {
 		
 		HybridSiminovData hybridConnectionResponse = new HybridSiminovData();
@@ -1140,7 +1150,12 @@ public class ResourceManager {
 		
 		return hybridConnectionResponse;
 	}
-	
+
+	/**
+	 * Generate hybrid registration
+	 * @param registration Registration
+	 * @return Hybrid Siminov Data
+	 */
 	public HybridSiminovData generateHybridRegistration(final IRegistration registration) {
 		
 		HybridSiminovData hybridRegistration = new HybridSiminovData();
@@ -1154,7 +1169,12 @@ public class ResourceManager {
 		
 		return hybridRegistration;
 	}
-	
+
+	/**
+	 * Generate hybrid message
+	 * @param message Message
+	 * @return Hybrid Siminov Data
+	 */
 	public HybridSiminovData generateHybridMessage(final IMessage message) {
 
 		HybridSiminovData hybridMessage = new HybridSiminovData();
@@ -1168,8 +1188,12 @@ public class ResourceManager {
 		
 		return hybridMessage;
 	}
-	
-	
+
+	/**
+	 * Generate hybrid notification exception
+	 * @param notificationException Notification Exception
+	 * @return Hybrid Siminov Data
+	 */
 	public HybridSiminovData generateHybridNotificationException(final NotificationException notificationException) {
 
 		HybridSiminovData hybridNotificationException = new HybridSiminovData();
@@ -1197,8 +1221,13 @@ public class ResourceManager {
 
 		return hybridNotificationException;
 	}
-	
-	
+
+
+	/**
+	 * Generate hybrid sync request
+	 * @param syncRequest Sync Request
+	 * @return Hybrid Siminov Data
+	 */
 	public HybridSiminovData generateHybridSyncRequest(ISyncRequest syncRequest) {
 		
 		HybridSiminovData hybridSyncRequest = new HybridSiminovData();
