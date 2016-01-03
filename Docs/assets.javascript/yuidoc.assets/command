@@ -1,3 +1,3 @@
 Command line to generate JavaScript document.
 
--> yuidoc -c yuidoc.json .
+-> yuidoc -c yuidoc.json /private/var/user/Documents/App/Hybrid/JavaScript 

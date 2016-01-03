@@ -12,18 +12,19 @@ YUI.add("yuidoc-meta", function(Y) {
         "Database",
         "DatabaseDescriptor",
         "DatabaseException",
-        "DatabaseMappingDescriptor",
-        "DatabaseMappingDescriptor.Attribute",
-        "DatabaseMappingDescriptor.Index",
-        "DatabaseMappingDescriptor.Relationship",
         "DeploymentException",
         "Dictionary",
+        "EntityDescriptor",
+        "EntityDescriptor.Attribute",
+        "EntityDescriptor.Index",
+        "EntityDescriptor.Relationship",
         "EventHandler",
         "Function",
         "IAverage",
         "IAverageClause",
         "ICount",
         "ICountClause",
+        "IDatabaseEvents",
         "IDelete",
         "IDeleteClause",
         "IGroupConcat",
@@ -32,13 +33,16 @@ YUI.add("yuidoc-meta", function(Y) {
         "IMaxClause",
         "IMin",
         "IMinClause",
+        "INotificationEvents",
         "IResource",
         "ISelect",
         "ISelectClause",
         "IService",
         "IServiceEvents",
+        "ISiminovEvents",
         "ISum",
         "ISumClause",
+        "ISyncEvents",
         "ITotal",
         "ITotalClause",
         "LibraryDescriptor",
@@ -50,7 +54,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "Registration",
         "Resources",
         "SIDatasHelper",
-        "SIJsonHelper",
         "Select",
         "Service",
         "ServiceDescriptor",
@@ -68,8 +71,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "SyncException",
         "SyncHandler",
         "SyncRequest",
-        "WebSiminovDatas",
-        "WebSiminovDatas.WebSiminovData"
+        "Transaction",
+        "Utils"
     ],
     "modules": [
         "Adapter",
@@ -79,6 +82,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Design",
         "Events",
         "Exception",
+        "Function",
         "Impl",
         "Log",
         "Model",
@@ -93,7 +97,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "Adapter",
             "name": "Adapter",
-            "description": "It is one which describes properties required to map Web TO Native and vice-versa."
+            "description": "It is one which describes properties required to map Hybrid TO Native and vice-versa."
         },
         {
             "displayName": "Collection",
@@ -108,7 +112,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "Database",
             "name": "Database",
-            "description": "Exposes classes which deal with database.\nA Siminov Database Abstraction Layer is an application programming interface which unifies the communication between a computer application and database such as SQLite.\nSiminov Database Layer reduce the amount of work by providing a consistent API to the developer and hide the database specifics behind this interface as much as possible."
+            "description": "Exposes methods which deal with events associated with database operation's.\nIt has methods such as (databaseCreated, databaseDroped, tableCreated, tableDroped, indexCreated)."
         },
         {
             "displayName": "Design",
@@ -124,6 +128,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "Exception",
             "name": "Exception",
             "description": "It contain Siminov defined exceptions."
+        },
+        {
+            "displayName": "Function",
+            "name": "Function",
+            "description": "It provide Util class needed by Siminov Framework."
         },
         {
             "displayName": "Impl",
@@ -158,7 +167,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "Service",
             "name": "Service",
-            "description": "Exposes classes which deal with services.\nService is a client-side communication component that process and handles any web service request. It performs long running operations in the background.\nA Service is a group of APIs which deals on one particular web service."
+            "description": "Exposes classes which deal with services.\nService is a client-side communication component that process and handles any hybrid service request. It performs long running operations in the background.\nA Service is a group of APIs which deals on one particular hybrid service."
         },
         {
             "displayName": "Sync",
@@ -168,8 +177,9 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "Utils",
             "name": "Utils",
-            "description": "It provide Util class needed by Siminov Framework."
+            "description": "Exposes utility api's to framework/application"
         }
-    ]
+    ],
+    "elements": []
 } };
 });
