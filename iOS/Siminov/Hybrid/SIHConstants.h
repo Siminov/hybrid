@@ -1,19 +1,19 @@
-//
-// [SIMINOV FRAMEWORK]
-// Copyright [2015] [Siminov Software Solution LLP|support@siminov.com]
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
+///
+/// [SIMINOV FRAMEWORK - HYBRID]
+/// Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
+///
+/// Licensed under the Apache License, Version 2.0 (the "License");
+/// you may not use this file except in compliance with the License.
+/// You may obtain a copy of the License at
+///
+///     http://www.apache.org/licenses/LICENSE-2.0
+///
+/// Unless required by applicable law or agreed to in writing, software
+/// distributed under the License is distributed on an "AS IS" BASIS,
+/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+/// See the License for the specific language governing permissions and
+/// limitations under the License.
+///
 
 
 
@@ -146,16 +146,34 @@ static NSString * const ADAPTER_DESCRIPTOR_HANDLER_RETURN_PROPERTY_DESCRIPTION =
  */
 static NSString * const HYBRID_SIMINOV_DATAS = @"datas";
 
+/**
+ * Hybrid Siminov Data Type
+ */
 static NSString * const HYBRID_SIMINOV_DATA_TYPE = @"type";
 
+/**
+ * Hybrid Siminov Data Datas
+ */
 static NSString * const HYBRID_SIMINOV_DATA_DATAS = @"datas";
 
+/**
+ * Hybrid Siminov Data Value
+ */
 static NSString * const HYBRID_SIMINOV_DATA_VALUE = @"value";
 
+/**
+ * Hybrid Siminov Data Values
+ */
 static NSString * const HYBRID_SIMINOV_DATA_VALUES = @"values";
 
+/**
+ * Hybrid Siminov Data Value Type
+ */
 static NSString * const HYBRID_SIMINOV_DATA_VALUE_TYPE = @"type";
 
+/**
+ * Hybrid Siminov Data Value Value
+ */
 static NSString * const HYBRID_SIMINOV_DATA_VALUE_VALUE = @"value";
 
 
@@ -174,6 +192,9 @@ static NSString * const HYBRID_LIBRARY_DESCRIPTOR_ADAPTER_DESCRIPTOR = @"adapter
  */
 static NSString * const HYBRID_TO_NATIVE_ADAPTER = @"SIMINOV";
 
+/**
+ * Siminov Hybrid To Native Adapter Interceptor
+ */
 static NSString * const SIMINOV_HYBRID_TO_NATIVE_ADAPTER_INTEREPTOR = @"siminov://";
 
 /**
@@ -186,6 +207,9 @@ static NSString * const NATIVE_TO_HYBRID_ADAPTER = @"SIMINOV-NATIVE-TO-HYBRID";
  */
 static NSString * const NATIVE_TO_HYBRID_ADAPTER_HANDLER = @"HANDLE-NATIVE-TO-HYBRID";
 
+/**
+ * Native To Hybrid Adapter Async Handler
+ */
 static NSString * const NATIVE_TO_HYBRID_ADAPTER_ASYNC_HANDLER = @"HANDLE-NATIVE-TO-HYBRID-ASYNC";
 
 
@@ -223,6 +247,9 @@ static NSString * const SERVICE_EVENT_HANDLER_TRIGGER_EVENT_HANDLER = @"TRIGGER-
  */
 static NSString * const ADAPTER_INVOKE_HANDLER_SERVICE = @"SERVICE";
 
+/**
+ * Adapter Invoke Handler Request Id
+ */
 static NSString * const ADAPTER_INVOKE_HANDLER_REQUEST_ID = @"REQUEST_ID";
 
 /**
@@ -245,10 +272,19 @@ static NSString * const ADAPTER_INVOKE_HANDLER_SERVICE_RESOURCES = @"RESOURCES";
  */
 static NSString * const HTTP_REQUEST_API_QUERY_PARAMETER = @"request_api";
 
+/**
+ * HTTP Request Id
+ */
 static NSString * const HTTP_REQUEST_ID = @"request_id";
 
+/**
+ * HTTP Request Mode
+ */
 static NSString * const HTTP_REQUEST_MODE = @"request_mode";
 
+/**
+ * HTTP Request Mode Async
+ */
 static NSString * const HTTP_REQUEST_MODE_ASYNC = @"ASYNC";
 
 

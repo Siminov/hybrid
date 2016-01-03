@@ -1,11 +1,19 @@
-//
-//  SIHLibraryDescriptorReader.h
-//  hybrid
-//
-//  Created by user on 07/08/15.
-//  Copyright (c) 2015 Siminov. All rights reserved.
-//
-
+///
+/// [SIMINOV FRAMEWORK - HYBRID]
+/// Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
+///
+/// Licensed under the Apache License, Version 2.0 (the "License");
+/// you may not use this file except in compliance with the License.
+/// You may obtain a copy of the License at
+///
+///     http://www.apache.org/licenses/LICENSE-2.0
+///
+/// Unless required by applicable law or agreed to in writing, software
+/// distributed under the License is distributed on an "AS IS" BASIS,
+/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+/// See the License for the specific language governing permissions and
+/// limitations under the License.
+///
 
 #import <Foundation/Foundation.h>
 
@@ -23,19 +31,19 @@
  Example:
 	{@code
 	<library>
-	
- <property name="name">SIMINOV LIBRARY SAMPLE</property>
- <property name="description">Siminov Library Sample</property>
-	
- <!-- Entity Descriptors -->
- <entity-descriptors>
- <entity-descriptor>Credential.xml</entity-descriptor>
- </entity-descriptors>
-	
- <!-- Adapters -->
- <adapters>
- <adapter path="adapter_full_path" />
- </adapters>
+ 
+         <property name="name">SIMINOV LIBRARY SAMPLE</property>
+         <property name="description">Siminov Library Sample</property>
+            
+         <!-- Entity Descriptors -->
+         <entity-descriptors>
+             <entity-descriptor>Credential.xml</entity-descriptor>
+         </entity-descriptors>
+            
+         <!-- Adapters -->
+         <adapters>
+             <adapter path="adapter_full_path" />
+         </adapters>
  
 	</library>
 	}

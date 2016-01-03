@@ -1,10 +1,19 @@
-//
-//  SIHIHandler.h
-//  hybrid
-//
-//  Created by user on 07/08/15.
-//  Copyright (c) 2015 Siminov. All rights reserved.
-//
+///
+/// [SIMINOV FRAMEWORK - HYBRID]
+/// Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
+///
+/// Licensed under the Apache License, Version 2.0 (the "License");
+/// you may not use this file except in compliance with the License.
+/// You may obtain a copy of the License at
+///
+///     http://www.apache.org/licenses/LICENSE-2.0
+///
+/// Unless required by applicable law or agreed to in writing, software
+/// distributed under the License is distributed on an "AS IS" BASIS,
+/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+/// See the License for the specific language governing permissions and
+/// limitations under the License.
+///
 
 #import <Foundation/Foundation.h>
 
@@ -32,6 +41,13 @@
  */
 - (NSString *)handleHybridToNative:(NSString *)action data:(NSString *)data;
 
+/**
+ * Handle reuqest from HYBRID-TO-NATIVE
+ * @param requestId Id of the request
+ * @param action Action needs to be performed on native
+ * @param data Data to native handler
+ * @return
+ */
 - (NSString *)handleHybridToNativeAsync:(NSString *)requestId action:(NSString *)action data:(NSString *)data;
 
 
@@ -42,8 +58,20 @@
  */
 - (void)handleNativeToHybrid:(NSString *)action data:(NSArray *)data;
 
+/**
+ * Handle request from NATIVE-TO-HYBRID
+ * @param requestId Id of the request
+ * @param data Data to hybrid handler
+ */
 - (void)handleNativeToHybridAsync:(NSString *)requestId data:(NSArray *)data;
 
+/**
+ * Handle request from NATIVE-TO-HYBRID
+ * @param functionName Name of the hybrid function
+ * @param apiName Name of the hybrid api
+ * @param action Action needs to be performed on Hybrid
+ * @param parameters Parameters to the hybrid api
+ */
 - (void)handleNativeToHybrid:(NSString *)functionName apiName:(NSString *)apiName action:(NSString *)action parameters:(NSString *)parameters;
 
 

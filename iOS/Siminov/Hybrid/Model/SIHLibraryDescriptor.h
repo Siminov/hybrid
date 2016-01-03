@@ -1,10 +1,19 @@
-//
-//  SIHLibraryDescriptor.h
-//  hybrid
-//
-//  Created by user on 07/08/15.
-//  Copyright (c) 2015 Siminov. All rights reserved.
-//
+///
+/// [SIMINOV FRAMEWORK - HYBRID]
+/// Copyright [2014-2016] [Siminov Software Solution LLP|support@siminov.com]
+///
+/// Licensed under the Apache License, Version 2.0 (the "License");
+/// you may not use this file except in compliance with the License.
+/// You may obtain a copy of the License at
+///
+///     http://www.apache.org/licenses/LICENSE-2.0
+///
+/// Unless required by applicable law or agreed to in writing, software
+/// distributed under the License is distributed on an "AS IS" BASIS,
+/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+/// See the License for the specific language governing permissions and
+/// limitations under the License.
+///
 
 #import <Foundation/Foundation.h>
 
@@ -21,34 +30,34 @@
 	{@code
 	
 	<library>
-	
- <!-- General Properties Of Library -->
  
- <!-- Mandatory Field -->
- <property name="name">name_of_library</property>
- 
- <!-- Optional Field -->
- <property name="description">description_of_library</property>
-	
- 
- 
- <!-- Entity Descriptors Needed Under This Library Descriptor -->
- 
- <!-- Optional Field -->
- <!-- Entity Descriptors -->
- <entity-descriptors>
- <entity-descriptor>name_of_database_descriptor.full_path_of_entity_descriptor_file</entity-descriptor>
- </entity-descriptors>
- 
- 
- <!-- Hybrid Adapters Needed Under This Library Descriptor -->
- 
- <!-- Optional Field -->
- <!-- Hybrid Adapters -->
- <adapters>
- <adapter>full_path_of_hybrid_adapter_file</adapter>
- </adapters>
- 
+         <!-- General Properties Of Library -->
+         
+         <!-- Mandatory Field -->
+         <property name="name">name_of_library</property>
+         
+         <!-- Optional Field -->
+         <property name="description">description_of_library</property>
+            
+         
+         
+         <!-- Entity Descriptors Needed Under This Library Descriptor -->
+         
+         <!-- Optional Field -->
+             <!-- Entity Descriptors -->
+         <entity-descriptors>
+             <entity-descriptor>name_of_database_descriptor.full_path_of_entity_descriptor_file</entity-descriptor>
+         </entity-descriptors>
+         
+         
+         <!-- Hybrid Adapters Needed Under This Library Descriptor -->
+         
+             <!-- Optional Field -->
+             <!-- Hybrid Adapters -->
+         <adapters>
+             <adapter>full_path_of_hybrid_adapter_file</adapter>
+         </adapters>
+         
  
 	</library>
  
