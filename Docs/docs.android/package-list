@@ -1,8 +1,7 @@
-siminov.web
-siminov.web.adapter
-siminov.web.adapter.constants
-siminov.web.adapter.handlers
-siminov.web.events
-siminov.web.model
-siminov.web.utils
-siminov.web.writter
+siminov.hybrid
+siminov.hybrid.adapter
+siminov.hybrid.adapter.constants
+siminov.hybrid.adapter.handlers
+siminov.hybrid.events
+siminov.hybrid.model
+siminov.hybrid.utils
