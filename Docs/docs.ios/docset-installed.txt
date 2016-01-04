@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /var/user/Library/Developer/Shared/Documentation/DocSets/Siminov.Hybrid.Hybrid.docset
+Time: 2016-01-04 11:34:18 +0000

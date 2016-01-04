@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>SIHLibraryDescriptor Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">Hybrid </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Siminov Software Solution LLP</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/addAdapterDescriptor:adapterDescriptor:">- addAdapterDescriptor:adapterDescriptor:</option>
+		
+		<option value="//api/name/addAdapterDescriptorPath:">- addAdapterDescriptorPath:</option>
+		
+		<option value="//api/name/containAdapterDescriptorBasedOnName:">- containAdapterDescriptorBasedOnName:</option>
+		
+		<option value="//api/name/containAdapterDescriptorBasedOnPath:">- containAdapterDescriptorBasedOnPath:</option>
+		
+		<option value="//api/name/getAdapterDescriptorBasedOnName:">- getAdapterDescriptorBasedOnName:</option>
+		
+		<option value="//api/name/getAdapterDescriptorBasedOnPath:">- getAdapterDescriptorBasedOnPath:</option>
+		
+		<option value="//api/name/getAdapterDescriptorPaths">- getAdapterDescriptorPaths</option>
+		
+		<option value="//api/name/getAdapterDescriptors">- getAdapterDescriptors</option>
+		
+		<option value="//api/name/removeAdapater:">- removeAdapater:</option>
+		
+		<option value="//api/name/removeAdapterBasedOnPath:">- removeAdapterBasedOnPath:</option>
+		
+		<option value="//api/name/removeAdapterDescriptorBasedOnName:">- removeAdapterDescriptorBasedOnName:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">SIHLibraryDescriptor Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>SIKLibraryDescriptor</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>SIHLibraryDescriptor.h<br />SIHLibraryDescriptor.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<ul>
+<li>Exposes methods to GET and SET Library Descriptor information as per define in LibraryDescriptor.xml file by application.
+  <p></li>
+</ul>
+
+
+<pre>
+
+Example:
+    {@code
+    
+    <library>
+
+         <!-- General Properties Of Library -->
+         
+         <!-- Mandatory Field -->
+         <property name="name">name_of_library</property>
+         
+         <!-- Optional Field -->
+         <property name="description">description_of_library</property>
+            
+         
+         
+         <!-- Entity Descriptors Needed Under This Library Descriptor -->
+         
+         <!-- Optional Field -->
+             <!-- Entity Descriptors -->
+         <entity-descriptors>
+             <entity-descriptor>name_of_database_descriptor.full_path_of_entity_descriptor_file</entity-descriptor>
+         </entity-descriptors>
+         
+         
+         <!-- Hybrid Adapters Needed Under This Library Descriptor -->
+         
+             <!-- Optional Field -->
+             <!-- Hybrid Adapters -->
+         <adapters>
+             <adapter>full_path_of_hybrid_adapter_file</adapter>
+         </adapters>
+         
+
+    </library>
+
+    }
+    
+</pre>
+
+
+<pre><code>&lt;/p&gt;
+</code></pre>
+
+<p>*</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/getAdapterDescriptorPaths" title="getAdapterDescriptorPaths"></a>
+	<h3 class="method-title"><code><a href="#//api/name/getAdapterDescriptorPaths">&ndash;&nbsp;getAdapterDescriptorPaths</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Get All Adapter Descriptor Paths.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSEnumerator *)getAdapterDescriptorPaths</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>All Adapter Descriptor Paths.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Get All Adapter Descriptor Paths.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/getAdapterDescriptors" title="getAdapterDescriptors"></a>
+	<h3 class="method-title"><code><a href="#//api/name/getAdapterDescriptors">&ndash;&nbsp;getAdapterDescriptors</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Get All Adapter Descriptors.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSEnumerator *)getAdapterDescriptors</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>All Adapter Descriptors.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Get All Adapter Descriptors.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/getAdapterDescriptorBasedOnName:" title="getAdapterDescriptorBasedOnName:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/getAdapterDescriptorBasedOnName:">&ndash;&nbsp;getAdapterDescriptorBasedOnName:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Get Adapter Descriptor Based on adapter descriptor name.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (SIHAdapterDescriptor *)getAdapterDescriptorBasedOnName:(NSString *)<em>adapterDescriptorName</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>adapterDescriptorName</code></th>
+						<td><p>Name of Adapter Descriptor.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Adapter Descriptor.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Get Adapter Descriptor Based on adapter descriptor name.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/getAdapterDescriptorBasedOnPath:" title="getAdapterDescriptorBasedOnPath:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/getAdapterDescriptorBasedOnPath:">&ndash;&nbsp;getAdapterDescriptorBasedOnPath:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Get Adapter Descriptor Based on adapter descriptor path.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (SIHAdapterDescriptor *)getAdapterDescriptorBasedOnPath:(NSString *)<em>adapterDescriptorPath</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>adapterDescriptorPath</code></th>
+						<td><p>Path of Adapter Descriptor.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Adapter Descriptor.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Get Adapter Descriptor Based on adapter descriptor path.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addAdapterDescriptorPath:" title="addAdapterDescriptorPath:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addAdapterDescriptorPath:">&ndash;&nbsp;addAdapterDescriptorPath:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Add Adapter Descriptor Path.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)addAdapterDescriptorPath:(NSString *)<em>adapterDescriptorPath</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>adapterDescriptorPath</code></th>
+						<td><p>Path of Adapter Descriptor.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Add Adapter Descriptor Path.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addAdapterDescriptor:adapterDescriptor:" title="addAdapterDescriptor:adapterDescriptor:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addAdapterDescriptor:adapterDescriptor:">&ndash;&nbsp;addAdapterDescriptor:adapterDescriptor:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Add Adapter Descriptor based on adapter descriptor path.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)addAdapterDescriptor:(NSString *)<em>adapterDescriptorPath</em> adapterDescriptor:(SIHAdapterDescriptor *)<em>adapterDescriptor</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>adapterDescriptorPath</code></th>
+						<td><p>Path of Adapter Descriptor.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>adapterDescriptor</code></th>
+						<td><p>Adapter Descriptor.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Add Adapter Descriptor based on adapter descriptor path.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/containAdapterDescriptorBasedOnPath:" title="containAdapterDescriptorBasedOnPath:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/containAdapterDescriptorBasedOnPath:">&ndash;&nbsp;containAdapterDescriptorBasedOnPath:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Check whether Adapter Descriptor exist based on adapter descriptor path.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (bool)containAdapterDescriptorBasedOnPath:(NSString *)<em>adapterDescriptorPath</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>adapterDescriptorPath</code></th>
+						<td><p>Path of Adapter Descriptor.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>true/false; TRUE if adapter descriptor exist, FALSE if adapter descriptor does not exist.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Check whether Adapter Descriptor exist based on adapter descriptor path.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/containAdapterDescriptorBasedOnName:" title="containAdapterDescriptorBasedOnName:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/containAdapterDescriptorBasedOnName:">&ndash;&nbsp;containAdapterDescriptorBasedOnName:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Check whether Adapter Descriptor exist based on adapter name.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (bool)containAdapterDescriptorBasedOnName:(NSString *)<em>adapterDescriptorName</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>adapterDescriptorName</code></th>
+						<td><p>Name of Adapter Descriptor.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>true/false; TRUE if adapter descriptor exist, FALSE if adapter descriptor does not exist.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Check whether Adapter Descriptor exist based on adapter name.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeAdapterDescriptorBasedOnName:" title="removeAdapterDescriptorBasedOnName:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeAdapterDescriptorBasedOnName:">&ndash;&nbsp;removeAdapterDescriptorBasedOnName:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Remove Adapter Descriptor based on adapter descriptor name.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)removeAdapterDescriptorBasedOnName:(NSString *)<em>adapterDescriptorName</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>adapterDescriptorName</code></th>
+						<td><p>Name of Adapter Descriptor.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Remove Adapter Descriptor based on adapter descriptor name.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeAdapterBasedOnPath:" title="removeAdapterBasedOnPath:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeAdapterBasedOnPath:">&ndash;&nbsp;removeAdapterBasedOnPath:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Remove Adapter Descriptor based on adapter descriptor path.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)removeAdapterBasedOnPath:(NSString *)<em>adapterPath</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>adapterPath</code></th>
+						<td><p>Path of Adapter Descriptor.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Remove Adapter Descriptor based on adapter descriptor path.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeAdapater:" title="removeAdapater:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeAdapater:">&ndash;&nbsp;removeAdapater:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Remove Adapter Descriptor.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)removeAdapater:(SIHAdapterDescriptor *)<em>adapterDescriptor</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>adapterDescriptor</code></th>
+						<td><p>Adapter Descriptor.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Remove Adapter Descriptor.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SIHLibraryDescriptor.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Siminov Software Solution LLP. All rights reserved. Updated: 2016-01-04</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>
