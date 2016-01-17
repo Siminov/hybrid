@@ -39,6 +39,10 @@ try {
 
 
 if(dom == undefined) {
+
+	var SiminovException = require('./SiminovException');
+	var Function = require('../Function/Function');
+
     module.exports = DeploymentException;
     win.DeploymentException = DeploymentException;    
 }

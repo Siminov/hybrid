@@ -40,6 +40,10 @@ try {
 
 
 if(dom == undefined) {
+
+	var SiminovException = require('./SiminovException');
+	var Function = require('../Function/Function');
+
     module.exports = SyncException;
     win.SyncException = SyncException;    
 }

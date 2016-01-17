@@ -54,10 +54,13 @@ if(dom == undefined) {
      */
     var SIHReactInterceptor;
     var RCTDeviceEventEmitter;
-
+    
+    var reactNativeModule = 'NativeModules';
+    var reactNativeDeviceEventEmitterModule = 'RCTDeviceEventEmitter';
+    
     try {
-	SIHReactInterceptor = require('NativeModules').SIHReactInterceptor;
-    	RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
+        SIHReactInterceptor = require(reactNativeModule).SIHReactInterceptor;
+    	RCTDeviceEventEmitter = require(reactNativeDeviceEventEmitterModule);
     } catch(e) {
     
         /*

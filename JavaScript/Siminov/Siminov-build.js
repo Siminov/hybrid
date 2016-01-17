@@ -16,13 +16,95 @@
  **/
 
 
+var win;
+var dom;
+
+try {
+
+    if(!window) {
+    	window = global || window;
+    }
+
+	win = window;
+	dom = window['document'];
+} catch(e) {
+	win = Ti.App.Properties;
+}
+
+
+/*
+    Import Required Siminov
+ */
+
+if(dom != undefined) {
+    //document.write('<script type="text/javascript" src="Siminov/Import.js"></script>');
+} else {
+    
+    var Constants = require('./Constants');
+    var Callback = require('./Callback');
+    
+    
+    /*
+     * Adapter
+     */
+    var Adapter = require('./Adapter/Adapter');
+    
+    
+    /*
+     * Events
+     */
+    var EventHandler = require('./Events/EventHandler');
+    
+    
+    /*
+     * Service
+     */
+    var ServiceEventHandler = require('./Service/ServiceEventHandler');
+    
+    
+    /*
+     * Collection
+     */
+    var Array = require('./Collection/Array');
+    var String = require('./Collection/String');
+    
+    
+    /*
+     * Models
+     */
+    var ApplicationDescriptor = require('./Model/ApplicationDescriptor');
+    var AdapterDescriptor = require('./Model/AdapterDescriptor');
+    var DatabaseDescriptor = require('./Model/DatabaseDescriptor');
+    var EntityDescriptor = require('./Model/EntityDescriptor');
+    var LibraryDescriptor = require('./Model/LibraryDescriptor');
+    var NotificationDescriptor = require('./Model/NotificationDescriptor');
+    var ServiceDescriptor = require('./Model/ServiceDescriptor');
+    var SyncDescriptor = require('./Model/SyncDescriptor');
+    
+    
+    /*
+     * Connection
+     */
+    var ConnectionRequest = require('./Connection/ConnectionRequest');
+    var ConnectionResponse = require('./Connection/ConnectionResponse');
+    
+    
+    /*
+     * Sync
+     */
+    var SyncRequest = require('./Sync/SyncRequest');
+    
+    module.exports = Siminov;
+}
+
+
 
 /**
- 	Exposes methods to deal with SIMINOV WEB FRAMEWORK.
+ 	Exposes methods to deal with SIMINOV HYBRDI FRAMEWORK.
 
  		Such As
 
- 			1. Initialize: Entry point to the SIMINOV WEB.
+ 			1. Initialize: Entry point to the SIMINOV HYBRID.
 
 	@class Siminov
 	@constructor
@@ -35,9 +117,9 @@ function Siminov() {
 
 
 /**
- 	It is the entry point to the SIMINOV WEB FRAMEWORK.
+ 	It is the entry point to the SIMINOV HYBRID FRAMEWORK.
 
- 	When application starts it should call this method to activate SIMINOV WEB FRAMEWORK.
+ 	When application starts it should call this method to activate SIMINOV HYBRID FRAMEWORK.
 
 	Siminov will initialize all databases, and do necessary processing.
 
@@ -51,11 +133,57 @@ function Siminov() {
  */
 Siminov.initialize = function() {
 
+	var callback = arguments && arguments[0];
+	
     var adapter = new Adapter();
     adapter.setAdapterName(Constants.SIMINOV_ADAPTER);
     adapter.setHandlerName(Constants.SIMINOV_ADAPTER_INITIALIZE_SIMINOV_HANDLER);
 
-    adapter.invoke();
+	if(callback) {
+	
+		adapter.setAdapterMode(Adapter.REQUEST_ASYNC_MODE);
+		adapter.setCallback(initializeCallback);
+		
+	    Adapter.invoke(adapter);
+	    
+	    function initializeCallback(data) {
+			callback && callback.onSuccess && callback.onSuccess(data);
+	    }	
+	} else {
+	    Adapter.invoke(adapter);
+	}
+}
+
+
+/**
+ 	It is the entry point to the SIMINOV HYBRID FRAMEWORK.
+
+ 	When application starts it should call this method to activate SIMINOV HYBRID FRAMEWORK.
+ 	This api works asynchronous.
+
+	Siminov will initialize all databases, and do necessary processing asynchronous.
+
+	EXAMPLE:
+          document.addEventListener("deviceready", initialize, false);
+
+            function initialize() {
+
+                var callback = new Callback():
+                callback.onSuccess = function() {
+
+                }
+
+                Siminov.initializeAsync(callback);
+            }
+
+	@class Siminov
+	@method initializeAsync
+	@param callback {Callback} Request Callback
+	@static
+	@constructor
+ */
+Siminov.initializeAsync = function(callback) {
+	Siminov.initialize(callback?callback:new Callback());
 }
 
 
@@ -69,10 +197,38 @@ Siminov.initialize = function() {
 */
 Siminov.shutdown = function() {
 
-	var adapter = new Adapter();
+	var callback = arguments && arguments[0];
+
+    var adapter = new Adapter();
 	
     adapter.setAdapterName(Constants.SIMINOV_ADAPTER);
     adapter.setHandlerName(Constants.SIMINOV_ADAPTER_SHUTDOWN_SIMINOV_HANDLER);
 
-    adapter.invoke();
+	if(callback) {
+
+		adapter.setAdapterMode(Adapter.REQUEST_ASYNC_MODE);
+		adapter.setCallback(shutdownCallback);
+
+	    Adapter.invoke(adapter);
+
+	    function shutdownCallback(data) {
+			callback && callback.onSuccess && callback.onSuccess(data);
+	    }
+	} else {
+	    Adapter.invoke(adapter);
+	}
+}
+
+
+/**
+	It shudown's Siminov Framework asynchronous, and releases all resources acquired by Siminov.
+
+	@class Siminov
+	@method shutdown
+	@param callback {Callback} Request Callback
+	@static
+	@constructor
+*/
+Siminov.shutdownAsync = function(callback) {
+    Siminov.shutdown(callback?callback:new Callback());
 }
