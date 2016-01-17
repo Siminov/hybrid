@@ -1,7 +1,0 @@
-
-
-Steps to generate the documentation:
-
-	- brew install appledoc
-
-	- appledoc --project-name Hybrid --project-company "Siminov Software Solution LLP" --company-id Siminov.Hybrid  --output /private/var/user/Documents/App/Hybrid/Docs/docs.ios  .
