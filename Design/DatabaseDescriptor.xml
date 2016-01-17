@@ -50,7 +50,7 @@
 	
 		<!-- Optional Field -->
 	<entity-descriptors>
-		<entity-descriptor>full_path_of_database_mapping_descriptor_file</entity-descriptor>
+		<entity-descriptor>full_path_of_entity_descriptor_file</entity-descriptor>
 	</entity-descriptors>
 	
 </database-descriptor>
