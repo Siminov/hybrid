@@ -1,4 +1,5 @@
-Siminov Hybrid (Object Relationship Mapping) & (RESTful) - Android, IOS, Windows
+![siminov](https://github.com/Siminov/hybrid/blob/master/Docs/assets.ios/logo.png)
+
 ===================================================
 
 A hybrid application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a hybrid application leverages best of both native and mobile web technologies or other technologies.
