@@ -1,7 +1,7 @@
 ![siminov](https://github.com/Siminov/hybrid/blob/master/Docs/assets.ios/logo.png)
 
 ===================================================
-[![Build Status](https://travis-ci.org/Siminov/hybrid.svg?branch=master)](https://travis-ci.org/Siminov/hybrid) [![Gitter chat](https://badges.gitter.im/gitterHQ/services.png)](https://gitter.im/Siminov) [![NPM version](https://badge.fury.io/js/siminov.svg)](https://npmjs.org/package/siminov)
+[![Build Status](https://travis-ci.org/Siminov/hybrid.svg?branch=master)](https://travis-ci.org/Siminov/hybrid) [![Gitter chat](https://badges.gitter.im/gitterHQ/services.png)](https://gitter.im/Siminov) [![NPM version](https://badge.fury.io/js/siminov.svg)](https://npmjs.org/package/siminov) [![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://github.com/Siminov/hybrid/wiki)
 
 
 A hybrid application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a hybrid application leverages best of both native and mobile web technologies or other technologies.
