@@ -1,0 +1,280 @@
+<project default="compress">
+	<target name="compress">
+        <copy file="../../../Build/Siminov.js"
+            tofile="../../../Build/SiminovBuild.js"
+            overwrite="true">
+            <filterchain>
+                <tokenfilter>
+                    
+                    <!-- Root Package -->
+                    
+                        <!-- Siminov Function -->
+                    <replacestring from='require("./Constants");' to='require("Constants");' />
+                    <replacestring from='require("./Callback");' to='require("Callback");' />
+
+                    <replacestring from='require("./Adapter/Adapter");' to='require("Adapter");' />
+
+                    <replacestring from='require("./Events/EventHandler");' to='require("EventHandler");' />
+
+                    <replacestring from='require("./Service/ServiceEventHandler");' to='require("ServiceEventHandler");' />
+
+                    <replacestring from='require("./Collection/Array");' to='require("Array");' />
+                    <replacestring from='require("./Collection/String");' to='require("String");' />
+
+                    <replacestring from='require("./Model/ApplicationDescriptor");' to='require("ApplicationDescriptor");' />
+                    <replacestring from='require("./Model/AdapterDescriptor");' to='require("AdapterDescriptor");' />
+                    <replacestring from='require("./Model/DatabaseDescriptor");' to='require("DatabaseDescriptor");' />
+                    <replacestring from='require("./Model/EntityDescriptor");' to='require("EntityDescriptor");' />
+                    <replacestring from='require("./Model/LibraryDescriptor");' to='require("LibraryDescriptor");' />
+                    <replacestring from='require("./Model/NotificationDescriptor");' to='require("NotificationDescriptor");' />
+                    <replacestring from='require("./Model/ServiceDescriptor");' to='require("ServiceDescriptor");' />
+                    <replacestring from='require("./Model/SyncDescriptor");' to='require("SyncDescriptor");' />
+
+                    <replacestring from='require("./Connection/ConnectionRequest");' to='require("ConnectionRequest");' />
+                    <replacestring from='require("./Connection/ConnectionResponse");' to='require("ConnectionResponse");' />
+
+                    <replacestring from='require("./Sync/SyncRequest");' to='require("SyncRequest");' />
+
+                        <!-- Constants Function -->
+                        
+                        
+                    <!-- Adapter Package -->
+                    
+                        <!-- Adpater Function -->
+                    <replacestring from='require("../Utils/Utils");' to='require("Utils");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    <replacestring from='require("../Model/HybridSiminovDatas");' to='require("HybridSiminovDatas");' />
+                    <replacestring from='require("../Log/Log");' to='require("Log");' />
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Function/Function");' to='require("Function");' />
+
+
+                    <!-- Collection Package -->
+                    
+                        <!-- Array Function -->
+                        <!-- Dictionary Function -->
+                        <!-- String Function -->
+                        <!-- StringBuilder Function -->
+                        
+                        
+                    <!-- Connection Package -->
+                    
+                        <!-- ConnectionRequest Function -->
+                        <!-- ConnectionResponse Function -->
+                        
+                        
+                    <!-- Database Package -->
+                    
+                        <!-- Clause Function -->
+                    <replacestring from='require("../Collection/StringBuilder");' to='require("StringBuilder");' />
+                        
+                        <!-- Database Function -->
+                    <replacestring from='require("../ReaderWriter/SIDatasHelper");' to='require("SIDatasHelper");' />
+                    <replacestring from='require("../Model/HybridSiminovDatas");' to='require("HybridSiminovDatas");' />
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Callback");' to='require("Callback");' />
+                    <replacestring from='require("./Transaction");' to='require("Transaction");' />
+                    <replacestring from='require("../Adapter/Adapter");' to='require("Adapter");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    <replacestring from='require("../Log/Log");' to='require("Log");' />
+                    <replacestring from='require("../Exception/SiminovException");' to='require("SiminovException");' />
+                    <replacestring from='require("../Resource/ResourceManager");' to='require("ResourceManager");' />
+
+                    <replacestring from='require("./Design/IAverage");' to='require("IAverage");' />
+                    <replacestring from='require("./Design/ICount");' to='require("ICount");' />
+                    <replacestring from='require("./Design/IDelete");' to='require("IDelete");' />
+                    <replacestring from='require("./Design/IGroupConcat");' to='require("IGroupConcat");' />
+                    <replacestring from='require("./Design/IMax");' to='require("IMax");' />
+                    <replacestring from='require("./Design/IMin");' to='require("IMin");' />
+                    <replacestring from='require("./Design/ISelect");' to='require("ISelect");' />
+                    <replacestring from='require("./Design/ISum");' to='require("ISum");' />
+                    <replacestring from='require("./Design/ITotal");' to='require("ITotal");' />
+
+                        <!-- Clause Class -->
+                    <replacestring from='require("./Clause");' to='require("Clause");' />
+
+                        <!-- Transaction Class -->
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+
+                        <!-- Database Design Package -->
+                        
+                            <!-- IAverage Function -->
+                            <!-- IAverageClause Function -->
+                            <!-- ICount Function -->
+                            <!-- ICountClause Function -->
+                            <!-- IDelete Function -->
+                            <!-- IDeleteClause Function -->
+                            <!-- IGroupConcat Function -->
+                            <!-- IGroupConcatClause Function -->
+                            <!-- IMax Function -->
+                            <!-- IMaxClause Function -->
+                            <!-- IMin Function -->
+                            <!-- IMinClause Function -->
+                            <!-- ISelect Function -->
+                            <!-- ISelectClause Function -->
+                            <!-- ISum Function -->
+                            <!-- ISumClause Function -->
+                            <!-- ITotal Function -->
+                            <!-- ITotalClause Function -->
+
+                    <!-- Events Package -->
+                    
+                        <!-- EventHandler Function -->
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    <replacestring from='require("../Function/Function");' to='require("Function");' />
+                    <replacestring from='require("../ReaderWriter/SIDatasHelper");' to='require("SIDatasHelper");' />
+                    <replacestring from='require("../Log/Log");' to='require("Log");' />
+
+                        <!-- IDatabaseEvents Function -->
+                        <!-- INotificationEvents Function -->
+                        <!-- ISiminovEvents Function -->
+                        <!-- ISyncEvents Function -->
+                        
+                    <!-- Exception Package -->
+                    
+                        <!-- DatabaseException Function -->
+                    <replacestring from='require("./SiminovException");' to='require("SiminovException");' />
+                    <replacestring from='require("../Function/Function");' to='require("Function");' />
+                    
+                        <!-- DeploymentException Function -->
+                    <replacestring from='require("./SiminovException");' to='require("SiminovException");' />
+                    <replacestring from='require("../Function/Function");' to='require("Function");' />
+                    
+                        <!-- NotificationException Function -->
+                    <replacestring from='require("./SiminovException");' to='require("SiminovException");' />
+                    <replacestring from='require("../Function/Function");' to='require("Function");' />
+
+                        <!-- ServiceException Function -->
+                    <replacestring from='require("./SiminovException");' to='require("SiminovException");' />
+                    <replacestring from='require("../Function/Function");' to='require("Function");' />
+                    
+                        <!-- SiminovException Function -->
+                        <!-- SiminovExceptionHandler Function -->
+
+                        <!-- SyncException Function -->
+                    <replacestring from='require("./SiminovException");' to='require("SiminovException");' />
+                    <replacestring from='require("../Function/Function");' to='require("Function");' />
+
+                    <!-- Function Package -->
+
+                        <!-- Function Function -->
+                    <replacestring from='require("../Log/Log");' to='require("Log");' />
+                    
+                    
+                    <!-- Log Package -->
+
+                        <!-- Log Function -->
+                        
+                        
+                    <!-- Model Package -->
+                    
+                        <!-- AdapterDescriptor Function -->
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+
+                        <!-- ApplicationDescriptor Function -->
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+
+                        <!-- DatabaseDescriptor Function -->
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+
+                        <!-- EntityDescriptor Function -->
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+
+                        <!-- HybridSiminovDatas Function -->
+                        
+                        <!-- LibraryDescriptor Function -->
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    
+                        <!-- NotificationDescriptor Function -->
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    
+                        <!-- ServiceDescriptor Function -->
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    
+                        <!-- SyncDescriptor Function -->
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    
+                    
+                    <!-- Notification Package -->
+                    
+                        <!-- Message Function -->
+                        <!-- NotificationManager Function -->
+                        <!-- Registration Function -->
+                        
+                        
+                    <!-- ReaderWriter Package -->
+                    
+                        <!-- SIDatasHelper Function -->
+                    <replacestring from='require("../Function/Function");' to='require("Function");' />
+                    <replacestring from='require("../Model/HybridSiminovDatas");' to='require("HybridSiminovDatas");' />
+
+
+                    <!-- Resource Package -->
+                    
+                        <!-- ResourceManager Function -->
+                    <replacestring from='require("../Callback");' to='require("Callback");' />
+                    <replacestring from='require("../Adapter/Adapter");' to='require("Adapter");' />
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Database/Transaction");' to='require("Transaction");' />
+                    <replacestring from='require("../ReaderWriter/SIDatasHelper");' to='require("SIDatasHelper");' />
+
+
+                    <!-- Service Package -->
+                    
+                        <!-- Service Function -->
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    <replacestring from='require("./ServiceHandler");' to='require("ServiceHandler");' />
+                    <replacestring from='require("../Utils/Utils");' to='require("Utils");' />
+                    
+                        <!-- ServiceEventHandler Function -->
+                    <replacestring from='require("../Function/Function");' to='require("Function");' />
+                    <replacestring from='require("../Service/ServiceHandler");' to='require("ServiceHandler");' />
+                    <replacestring from='require("../Sync/SyncHandler");' to='require("SyncHandler");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    <replacestring from='require("../ReaderWriter/SIDatasHelper");' to='require("SIDatasHelper");' />
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    
+                        <!-- ServiceHandler Function -->
+                    <replacestring from='require("../Callback");' to='require("Callback");' />
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Adapter/Adapter");' to='require("Adapter");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    <replacestring from='require("../Model/HybridSiminovDatas");' to='require("HybridSiminovDatas");' />
+                    
+                    
+                    <!-- Sync Package -->
+                    
+                        <!-- SyncHandler Function -->
+                    <replacestring from='require("../Model/HybridSiminovDatas");' to='require("HybridSiminovDatas");' />
+                    <replacestring from='require("../Constants");' to='require("Constants");' />
+                    <replacestring from='require("../Callback");' to='require("Callback");' />
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    <replacestring from='require("../Adapter/Adapter");' to='require("Adapter");' />
+                    
+                        <!-- SyncRequest Function -->
+                    <replacestring from='require("../Collection/Dictionary");' to='require("Dictionary");' />
+                    <replacestring from='require("../Utils/Utils");' to='require("Utils");' />
+
+                    <!-- Utils Package -->
+                    
+                        <!-- Utils Function -->
+                    
+                </tokenfilter>
+            </filterchain>
+        </copy>
+        
+        <delete file="../../../Build/Siminov.js"/>
+        <move file="../../../Build/SiminovBuild.js" tofile="../../../Build/Siminov.js"/>
+        <delete file="../../../Build/SiminovBuild.js"/>
+        
+	</target>
+</project>

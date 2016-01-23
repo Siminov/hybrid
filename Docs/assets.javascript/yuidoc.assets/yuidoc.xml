@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="yuidoc">
+    
+    <property name="yui" value="" />
+    <property name="appDir" value="../../../JavaScript" />
+    
+    <target name="yuidoc">
+        
+        <mkdir dir="../../docs.javascript"/>
+        
+        <copy todir="../../docs.javascript/resources">
+            <fileset dir="./resources" />
+        </copy>
+        
+   	</target>
+    
+</project>

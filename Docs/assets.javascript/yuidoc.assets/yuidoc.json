@@ -1,0 +1,15 @@
+{
+    "name": "Siminov Hybrid",
+    "description": "Siminov Hybrid JavaScript APIs Documentation",
+    "version": "2.0",
+    "url": "https://github.com/Siminov/hybrid/",
+    "logo": "resources/siminov-logo.gif",
+    "options": {
+        "linkNatives": "true",
+        "attributesEmit": "true",
+        
+        "themedir": "bootstrap",
+        "helpers": ["bootstrap/helpers/helpers.js"],
+        "outdir": "../../docs.javascript"
+    }
+}

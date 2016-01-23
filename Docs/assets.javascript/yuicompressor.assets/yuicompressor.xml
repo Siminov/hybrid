@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="yuicompressor">
+    	    
+    <target name="yuicompressor">
+
+        <mkdir dir="../../../Build/Siminov"/>
+
+        <copy todir="../../../Build/Siminov">
+            
+            <fileset dir="../../../JavaScript/Siminov" />
+            
+        </copy>
+        
+        <java jar="yuicompressor-2.4.7.jar" fork="true">
+	        <!-- input path for JS files -->
+	        <arg value="../../../Build/Siminov/Siminov-build.js" />
+	        <arg value="../../../Build/Siminov/Constants.js" />
+	        <arg value="../../../Build/Siminov/Callback.js" /> 
+
+			<!-- Function Module -->
+	        <arg value="../../../Build/Siminov/Function/Function.js" />
+
+			<!-- Adapter Module -->
+	        <arg value="../../../Build/Siminov/Adapter/Adapter.js" />
+
+			<!-- Collection Module -->
+	        <arg value="../../../Build/Siminov/Collection/Array.js" />
+	        <arg value="../../../Build/Siminov/Collection/Dictionary.js" />
+	        <arg value="../../../Build/Siminov/Collection/String.js" />
+	        <arg value="../../../Build/Siminov/Collection/StringBuilder.js" />
+
+			<!-- Connection Module -->
+	        <arg value="../../../Build/Siminov/Connection/ConnectionRequest.js" />
+	        <arg value="../../../Build/Siminov/Connection/ConnectionResponse.js" />
+
+			<!-- Database Module -->
+	        <arg value="../../../Build/Siminov/Database/Database.js" />
+	        <arg value="../../../Build/Siminov/Database/Clause.js" />
+	        <arg value="../../../Build/Siminov/Database/Select.js" />
+	        <arg value="../../../Build/Siminov/Database/Transaction.js" />
+
+	        <arg value="../../../Build/Siminov/Database/Design/IAverage.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/IAverageClause.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/ICount.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/ICountClause.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/IDelete.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/IDeleteClause.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/IGroupConcat.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/IGroupConcatClause.js" />
+            <arg value="../../../Build/Siminov/Database/Design/IMin.js" />
+            <arg value="../../../Build/Siminov/Database/Design/IMinClause.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/IMax.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/IMaxClause.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/ISelect.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/ISelectClause.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/ISum.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/ISumClause.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/ITotal.js" />
+	        <arg value="../../../Build/Siminov/Database/Design/ITotalClause.js" />
+
+            <!-- Events Module -->
+	        <arg value="../../../Build/Siminov/Events/EventHandler.js" />
+            <arg value="../../../Build/Siminov/Events/IDatabaseEvents.js" />
+            <arg value="../../../Build/Siminov/Events/INotificationEvents.js" />
+            <arg value="../../../Build/Siminov/Events/ISiminovEvents.js" />
+            <arg value="../../../Build/Siminov/Events/ISyncEvents.js" />
+            
+            <!-- Exception Module -->
+            <arg value="../../../Build/Siminov/Exception/DatabaseException.js" />
+            <arg value="../../../Build/Siminov/Exception/DeploymentException.js" />
+            <arg value="../../../Build/Siminov/Exception/NotificationException.js" />
+            <arg value="../../../Build/Siminov/Exception/ServiceException.js" />
+            <arg value="../../../Build/Siminov/Exception/SiminovException.js" />
+            <arg value="../../../Build/Siminov/Exception/SiminovExceptionHandler.js" />
+            <arg value="../../../Build/Siminov/Exception/SyncException.js" />
+            
+            <!-- Log Module -->
+	        <arg value="../../../Build/Siminov/Log/Log.js" />
+            
+            <!-- Model Module -->
+	        <arg value="../../../Build/Siminov/Model/AdapterDescriptor.js" />
+            <arg value="../../../Build/Siminov/Model/ApplicationDescriptor.js" />
+            <arg value="../../../Build/Siminov/Model/DatabaseDescriptor.js" />
+            <arg value="../../../Build/Siminov/Model/EntityDescriptor.js" />
+            <arg value="../../../Build/Siminov/Model/HybridSiminovDatas.js" />
+            <arg value="../../../Build/Siminov/Model/LibraryDescriptor.js" />
+            <arg value="../../../Build/Siminov/Model/NotificationDescriptor.js" />
+            <arg value="../../../Build/Siminov/Model/ServiceDescriptor.js" />
+            <arg value="../../../Build/Siminov/Model/SyncDescriptor.js" />
+            
+
+            <!-- Notification Module -->
+	        <arg value="../../../Build/Siminov/Notification/Message.js" />
+            <arg value="../../../Build/Siminov/Notification/NotificationManager.js" />
+            <arg value="../../../Build/Siminov/Notification/Registration.js" />
+            
+            <!-- Reader Writer Module -->
+	        <arg value="../../../Build/Siminov/ReaderWriter/SIDatasHelper.js" />
+            
+            <!-- Resource Module -->
+	        <arg value="../../../Build/Siminov/Resource/ResourceManager.js" />
+            
+            <!-- Service Module -->
+	        <arg value="../../../Build/Siminov/Service/Service.js" />
+            <arg value="../../../Build/Siminov/Service/ServiceEventHandler.js" />
+            <arg value="../../../Build/Siminov/Service/ServiceHandler.js" />
+            
+	        <arg value="../../../Build/Siminov/Service/Design/IResource.js" />
+            <arg value="../../../Build/Siminov/Service/Design/IService.js" />
+            <arg value="../../../Build/Siminov/Service/Design/IServiceEvents.js" />
+            
+            <!-- Sync Module -->
+   	        <arg value="../../../Build/Siminov/Sync/SyncHandler.js" />
+   	        <arg value="../../../Build/Siminov/Sync/SyncRequest.js" />
+            
+            <!-- Utils Module -->
+   	        <arg value="../../../Build/Siminov/Utils/Utils.js" />
+	        	        
+	        <!--<arg value="-v" /> --><!-- Turn on verbose -->
+	        <arg value="-o" />
+		    <arg value="'.js$:.js'" />
+	        <!-- output path for JS files -->
+	        <!--<arg value="../../../Build/Siminov/*.js" />-->
+	        
+	        <classpath>
+	            <pathelement location="yuicompressor-2.4.7.jar"/>
+	        </classpath>
+	    </java>
+	    <echo message="Siminov Web Build Successful." />
+	    
+        <touch file = "../../../Build/Siminov.js" /> 
+        
+	    <concat destfile="../../../Build/Siminov.js">
+   	        <fileset dir="../../../Build/Siminov/" includes="Siminov-build.js" />
+  	        <fileset dir="../../../Build/Siminov/" includes="Constants.js" />
+  	        <fileset dir="../../../Build/Siminov/" includes="Callback.js" />
+  	        <fileset dir="../../../Build/Siminov/Function" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Adapter" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Collection" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Connection" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Database" includes="*.js" />
+  	        <fileset dir="../../../Build/Siminov/Database/Design" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Events" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Exception" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Log" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Model" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Notification" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/ReaderWriter" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Resource" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Service" includes="*.js" />
+	        <fileset dir="../../../Build/Siminov/Service/Design" includes="*.js" />
+  	        <fileset dir="../../../Build/Siminov/Sync" includes="*.js" />
+  	        <fileset dir="../../../Build/Siminov/Utils" includes="*.js" />
+  	    </concat>
+  	    
+	    <delete dir="../../../Build/Siminov" />
+	    
+	    <echo message="Siminov Web Compression Successful." />
+        
+   	</target>
+    
+</project>
