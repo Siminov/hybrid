@@ -3,14 +3,16 @@
 ===================================================
 [![Build Status](https://travis-ci.org/Siminov/hybrid.svg?branch=master)](https://travis-ci.org/Siminov/hybrid) [![Gitter chat](https://badges.gitter.im/gitterHQ/services.png)](https://gitter.im/Siminov) [![NPM version](https://badge.fury.io/js/siminov.svg)](https://npmjs.org/package/siminov) [![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://github.com/Siminov/hybrid/wiki)
 
+Siminov is a open source framework which allows you to easily build your mobile apps without worrying about data storage and backend communication.
 
 A hybrid application, by definition is derived from a combination of technologies, approaches or elements of different kinds. With respect to mobile applications, a hybrid application leverages best of both native and mobile web technologies or other technologies.
 
 In hybrid environment, it is very difficult to handle database and web service calls. Siminov makes application developer life easy by mapping JavaScript/Native model objects (Android - Java | iOS - Objective C | Windows - C#) to relational database and handling all web service calls using the native container capability.
 
-Siminov can be used with PhoneGap, React, Sencha, Xamarin. It enables application developers to build applications for mobile devices using JavaScript, HTML5 and CSS3, instead of device-specific languages.
+Hybrid can be used with PhoneGap, React, Sencha, Xamarin. It enables application developers to build applications for mobile devices using JavaScript, HTML5 and CSS3, instead of device-specific languages.
 
-Siminov not only takes care of the mapping from JavaScript/Native model classes to database tables (and from JavaScript/Native model data types to SQL data types), but also provides data query and retrieval facilities. It can significantly reduce development time otherwise spent with manual data handling in SQLite. Siminov design goal is to relieve the developer from 99% of common data persistence-related programming tasks by eliminating the need for manual, hand-crafted data processing using SQLite. However, unlike many other persistence solutions, Siminov does not hide the power of SQLite from you and guarantees that your investment in relational technology and knowledge is as valid as always.
+Hybrid not only takes care of the mapping from JavaScript/Native model classes to database tables (and from JavaScript/Native model data types to SQL data types), but also provides data query and retrieval facilities. It can significantly reduce development time otherwise spent with manual data handling in SQLite. Siminov design goal is to relieve the developer from 99% of common data persistence-related programming tasks by eliminating the need for manual, hand-crafted data processing using SQLite. However, unlike many other persistence solutions, Siminov does not hide the power of SQLite from you and guarantees that your investment in relational technology and knowledge is as valid as always.
+
 
 Get Started
 -----------
